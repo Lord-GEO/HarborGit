@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && node scripts/build.mjs",
     "icons": "electron scripts/render-icons.cjs",
-    "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts",
+    "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts tests/remotes.test.ts",
     "test:ui": "playwright test",
     "test:portable": "node scripts/smoke-portable.mjs",
     "pack": "npm run build && node -e \"require('electron')\" && electron-builder --win --dir --x64",

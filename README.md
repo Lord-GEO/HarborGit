@@ -51,13 +51,13 @@ npm run icons     # 从 assets/harborgit.svg 重新生成 PNG 与 Windows ICO
 | AI 提交消息 | 在 AI 设置中配置 Responses 或 Chat Completions 兼容接口、基础地址、模型与 Key；按固定暂存快照生成候选，预览应用后可编辑；暂存区变化检测、取消和超时；Key 由系统加密保存在主进程 |
 | 分支 | 本地 / 远程分组；创建并切换；切换已有分支；从远程分支创建；安全删除已合并本地分支；合并本地 / 远程分支到当前 |
 | 智能合并 | 在 dev 上选择“将当前分支合并到…”→master；在独立 worktree 合并已提交内容，dev 的暂存/未暂存/未跟踪文件原样保留；有冲突时新标签解决，完成或中止后可结束合并工作区 |
-| 远程 | 选择已有 remote；Fetch 并 prune；Pull 固定 `--ff-only`；Push 当前 HEAD 到明确的目标分支并设置 upstream；Git 拒绝非快进 push，客户端不强推 |
+| 远程 | 左下角“远程仓库”新增、编辑和删除本地远程配置，支持单独推送地址；保存不联网；Fetch 并 prune；Pull 固定 `--ff-only`；Push 当前 HEAD 到明确的目标分支并设置 upstream；Git 拒绝非快进 push，客户端不强推 |
 | 冲突 | 读取 index 的 base / ours / theirs；展示双方与可编辑结果；查看共同祖先；完整采用一侧或手工保存并暂存；支持 modify/delete 中采用删除一侧；检查后提交完成合并；可中止合并 |
 | 执行反馈 | 异步操作、命令 / stderr / exit code 日志、耗时任务进度、取消和超时；命令失败保留消息并刷新真实状态；窗口重新聚焦或手动刷新可读取外部改动 |
 
 最短使用流程：打开仓库 → 左侧工作区选文件看 Diff → 点击文件旁 `+` 暂存 → 检查暂存区 Diff → 填写提交消息 → 提交 → 提交历史选中提交查看文件。
 
-`Ctrl+O` 打开仓库，`Ctrl+R` 刷新。远程凭据使用本机 Git 已有的 credential helper / SSH 配置；没有内置网页登录和密码录入。终端交互提示被禁用，缺失凭据会返回 Git 的失败信息。
+`Ctrl+O` 打开仓库，`Ctrl+R` 刷新。打开仓库后，点击左下角“远程仓库”配置地址；Fetch / Pull / Push 对话框也有地址管理入口。HTTPS 远程操作和克隆允许本机 Git Credential Manager 打开系统登录窗口或浏览器，完成授权后继续；终端输入提示仍禁用。需要安装并启用 Git for Windows 的 Git Credential Manager；SSH 使用本机密钥配置。地址中不要嵌入用户名或 Token。保存地址仅修改本地配置，无需登录；删除远程配置会移除本地远程跟踪引用和相关上游设置，保留本地分支、文件及服务器仓库。当前编辑表单仅支持单个拉取地址和单个推送地址，遇到多地址配置会提示并保留原配置。
 
 Pull 遇到分叉会保留仓库状态并报告错误：先 Fetch，在分支页将相应远程分支合并到当前，解决冲突后提交，再 Push。冲突中的“当前分支 / 传入分支”针对普通 merge；客户端没有 rebase 流程。
 
@@ -85,7 +85,7 @@ REA 可清点 JAR，但不支持该 JVM `.class` 格式；报告保留原始拒�
 
 1.2 的实测范围和原始输出见 [更新验证](docs/RELEASE-1.2.md)、[后端结果](docs/verification-v1.2-backend-final.txt)、[发行包界面结果](docs/verification-v1.2-packaged-ui.txt)。1.0 历史验证保留在 [VERIFICATION.md](docs/VERIFICATION.md)。所有写入测试使用工作区内新建的专用仓库，远程仅使用本地裸仓库；未使用用户真实仓库或互联网远程进行写验证。
 
-当前未实现：按行 / hunk 部分暂存、rebase / cherry-pick / stash、标签管理、跨分支全文搜索、远程地址管理界面、子模块专用界面、Git LFS 专用操作、内置凭据登录、签名配置界面、自动更新、完整的 rename/rename / 子模块冲突编辑。复杂冲突可以在外部解决后通过 Git CLI 暂存；普通文件的二进制冲突可完整采用一侧。
+当前未实现：按行 / hunk 部分暂存、rebase / cherry-pick / stash、标签管理、跨分支全文搜索、子模块专用界面、Git LFS 专用操作、应用内独立账号管理、签名配置界面、自动更新、完整的 rename/rename / 子模块冲突编辑。复杂冲突可以在外部解决后通过 Git CLI 暂存；普通文件的二进制冲突可完整采用一侧。
 
 未做真实 HTTPS / SSH 服务端认证验证、大型仓库性能基准、所有外部 hooks / 签名工具兼容测试。这里只声称报告中实际验证的范围。IDEA 的功能研究与本客户端的测试结果是两套证据。
 

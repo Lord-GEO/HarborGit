@@ -10,7 +10,7 @@ export class GitError extends Error {
 }
 export interface GitOptions { onActivity?: (event: Activity) => void; gitPath?: string; timeoutMs?: number; outputLimit?: number; mergeWorkspaceRoot?: string; generateMessage?: (snapshot: StagedSnapshot, signal: AbortSignal) => Promise<string>; }
 interface CommandResult { stdout: string; stderr: string; code: number; truncated: boolean; }
-interface RunOptions { accepted?: number[]; input?: string; limit?: number; timeout?: number; }
+interface RunOptions { accepted?: number[]; input?: string; limit?: number; timeout?: number; authenticate?: boolean; }
 const MAX_TEXT = 2 * 1024 * 1024;
 const scrub = (s: string) => s.replace(/(https?:\/\/)[^\s/@]+(?::[^\s/@]*)?@/gi, '$1[redacted]@');
 const text = (v: unknown, label: string, max = 4096): string => {
@@ -22,10 +22,26 @@ function filePath(v: unknown): string {
   if (path.isAbsolute(p) || /^[a-z]:/i.test(p) || p.includes('\\') || p.split('/').some(s => s === '..' || s.toLowerCase() === '.git') || p === '.') throw new GitError({ message: '仅允许仓库内的相对文件路径' });
   return p;
 }
-function ref(v: unknown): string {
-  const s = text(v, '分支名称', 1024);
-  if (s.startsWith('-') || s.startsWith('/') || s.endsWith('/') || s.includes('..') || s.includes('@{') || /[\s~^:?*\[\\\x00-\x1f\x7f]/.test(s)) throw new GitError({ message: '分支名称无效' });
+function ref(v: unknown, label = '分支名称'): string {
+  const s = text(v, label, 1024);
+  if (s.startsWith('-') || s.startsWith('/') || s.endsWith('/') || s.includes('..') || s.includes('@{') || /[\s~^:?*\[\\\x00-\x1f\x7f]/.test(s)) throw new GitError({ message: `${label}无效` });
   return s;
+}
+function remoteUrl(v: unknown): string {
+  const url = text(v, '仓库地址').trim();
+  if (!url || url.startsWith('-') || /[\x00-\x1f\x7f]/.test(url) || /^(?:ext|fd):/i.test(url) || /^[a-z][a-z0-9+.-]*::/i.test(url)) throw new GitError({ message: '仓库地址或协议无效' });
+  if (/^[a-z][a-z0-9+.-]*:\/\//i.test(url)) {
+    let parsed: URL;
+    try { parsed = new URL(url); } catch { throw new GitError({ message: '仓库地址格式无效' }); }
+    if (!['https:', 'http:', 'ssh:', 'git:', 'file:'].includes(parsed.protocol)) throw new GitError({ message: '请使用 HTTPS、SSH、Git 或本地仓库地址' });
+    if (['https:', 'http:'].includes(parsed.protocol) && (parsed.username || parsed.password)) throw new GitError({ message: '请移除地址中的用户名或 Token，通过系统凭据管理器登录' });
+  }
+  return url;
+}
+function failureMessage(output: string): string {
+  if (/cannot prompt because user interactivity has been disabled|could not read (?:Username|Password)|terminal prompts disabled|authentication failed|invalid username or (?:password|token)|password authentication is not supported/i.test(output)) return '远程仓库认证失败。请在系统 Git 凭据管理器的登录窗口完成授权后重试；若未出现窗口，请检查 Git for Windows 是否安装并启用了 Git Credential Manager。也可在远程仓库设置中改用已配置密钥的 SSH 地址。';
+  if (/permission denied \(publickey/i.test(output)) return 'SSH 认证失败，请确认本机 SSH 密钥已添加到远程平台，并且当前账号有权访问该仓库。';
+  return output;
 }
 const hash = (v: unknown) => { const s = text(v, '提交 ID', 64); if (!/^[0-9a-f]{7,64}$/i.test(s)) throw new GitError({ message: '提交 ID 无效' }); return s; };
 function names(v: unknown): string[] {
@@ -80,7 +96,8 @@ export class GitService {
       const out: Buffer[] = [], err: Buffer[] = [];
       const child = spawn(this.options.gitPath ?? 'git', ['--no-pager', '--literal-pathspecs', '-c', 'core.quotepath=false', '-c', 'color.ui=false', ...args], {
         cwd, shell: false, windowsHide: true,
-        env: { ...process.env, GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: 'Never', GIT_MERGE_AUTOEDIT: 'no', GIT_PAGER: 'cat', LC_ALL: 'C.UTF-8' },
+        // Git has no terminal here. Network actions may use the helper's GUI/browser.
+        env: { ...process.env, GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: opts.authenticate ? 'auto' : 'Never', GCM_GUI_PROMPT: opts.authenticate ? 'true' : 'false', GIT_MERGE_AUTOEDIT: 'no', GIT_PAGER: 'cat', LC_ALL: 'C.UTF-8' },
         stdio: ['pipe', 'pipe', 'pipe']
       });
       const stop = (reason: string) => {
@@ -116,7 +133,7 @@ export class GitService {
         const stdout = Buffer.concat(out).toString('utf8'), stderr = scrub(Buffer.concat(err).toString('utf8'));
         this.emit({ id, command, kind: 'finish', text: stopped || spawnError || stderr.slice(-2000), time: now(), exitCode: code ?? -1 });
         if (stopped || spawnError || !(opts.accepted ?? [0]).includes(code ?? -1)) {
-          reject(new GitError({ message: stopped || (spawnError ? `无法启动 Git。请安装 Git for Windows 并将 git.exe 加入 PATH。${spawnError}` : stderr.trim().slice(-4000) || scrub(stdout).trim().slice(-4000) || `Git 命令失败 (${code})`), command, code: code ?? -1, stderr, stdout: scrub(stdout), cancelled: !!stopped }));
+          reject(new GitError({ message: stopped || (spawnError ? `无法启动 Git。请安装 Git for Windows 并将 git.exe 加入 PATH。${spawnError}` : failureMessage(stderr.trim().slice(-4000) || scrub(stdout).trim().slice(-4000) || `Git 命令失败 (${code})`)), command, code: code ?? -1, stderr, stdout: scrub(stdout), cancelled: !!stopped }));
         } else resolve({ stdout, stderr, code: code!, truncated });
       };
       child.on('exit', code => {
@@ -366,12 +383,11 @@ export class GitService {
     switch (operation) {
       case 'open': return this.open(text(p.path, '仓库路径'));
       case 'clone': {
-        const url = text(p.url, '克隆地址'), destination = text(p.destination, '目标目录');
-        if (url.startsWith('-') || /^(?:ext|fd):/i.test(url)) throw new GitError({ message: '克隆地址或协议无效' });
+        const url = remoteUrl(p.url), destination = text(p.destination, '目标目录');
         if (!path.isAbsolute(destination)) throw new GitError({ message: '目标目录必须为绝对路径' });
         const exists = await fs.stat(destination).catch(() => null);
         if (exists && (!exists.isDirectory() || (await fs.readdir(destination)).length)) throw new GitError({ message: '克隆目标必须不存在或为空目录' });
-        await this.run(path.dirname(destination), ['clone', '--progress', '--', url, destination], { timeout: this.options.timeoutMs ?? 600000 });
+        await this.run(path.dirname(destination), ['clone', '--progress', '--', url, destination], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
         return this.open(destination);
       }
       case 'refresh': return this.snapshot();
@@ -412,17 +428,42 @@ export class GitService {
       case 'checkout': { const name = ref(p.name); await this.branchExists(name); const b = (await this.branches()).find(b => b.name === name)!; if (b.remote) await this.git(['switch', '--track', name]); else await this.git(['switch', name]); return this.snapshot(); }
       case 'deleteBranch': { const name = ref(p.name); await this.branchExists(name, true); await this.git(['branch', '-d', '--', name]); return this.snapshot(); }
       case 'remotes': return this.remotes();
+      case 'saveRemote': {
+        const name = ref(p.name, '远程名称'), url = remoteUrl(p.url), pushUrl = p.pushUrl ? remoteUrl(p.pushUrl) : '';
+        if (typeof p.create !== 'boolean') throw new GitError({ message: '远程仓库保存方式无效' });
+        const exists = (await this.remotes()).some(r => r.name === name);
+        if (p.create && exists) throw new GitError({ message: '远程名称已存在，请编辑已有远程仓库或使用其他名称' });
+        if (!p.create && !exists) throw new GitError({ message: '远程仓库不存在，请刷新后重试' });
+        await this.git(['check-ref-format', `refs/remotes/${name}/HEAD`]);
+        if (!p.create) {
+          // Do not silently collapse advanced multi-URL configurations in this form.
+          for (const key of ['url', 'pushurl']) {
+            const values = (await this.git(['config', '--get-all', `remote.${name}.${key}`], { accepted: [0, 1] })).stdout.trim().split('\n').filter(Boolean);
+            if (values.length > 1) throw new GitError({ message: '该远程配置了多个地址，当前表单仅支持单地址配置，未修改任何地址' });
+          }
+        }
+        // Saving is local only: never fetch or authenticate as a side effect.
+        await this.git(p.create ? ['remote', 'add', '--', name, url] : ['remote', 'set-url', '--', name, url]);
+        if (pushUrl) await this.git(['remote', 'set-url', '--push', '--', name, pushUrl]);
+        else await this.git(['config', '--local', '--unset-all', `remote.${name}.pushurl`], { accepted: [0, 5] });
+        return this.snapshot();
+      }
+      case 'removeRemote': {
+        const name = ref(p.name, '远程名称');
+        if (!(await this.remotes()).some(r => r.name === name)) throw new GitError({ message: '远程仓库不存在，请刷新后重试' });
+        await this.git(['remote', 'remove', '--', name]); return this.snapshot();
+      }
       case 'remote': {
-        const action = text(p.action, '远程操作'), remote = ref(p.remote);
+        const action = text(p.action, '远程操作'), remote = ref(p.remote, '远程名称');
         if (!(await this.remotes()).some(r => r.name === remote)) throw new GitError({ message: '远程仓库不存在' });
         const branch = p.branch ? ref(p.branch) : '';
-        if (action === 'fetch') await this.git(['fetch', '--progress', '--prune', '--', remote], { timeout: this.options.timeoutMs ?? 600000 });
-        else if (action === 'pull') await this.git(['pull', '--ff-only', '--no-rebase', '--progress', '--', remote, ...(branch ? [branch] : [])], { timeout: this.options.timeoutMs ?? 600000 });
+        if (action === 'fetch') await this.git(['fetch', '--progress', '--prune', '--', remote], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
+        else if (action === 'pull') await this.git(['pull', '--ff-only', '--no-rebase', '--progress', '--', remote, ...(branch ? [branch] : [])], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
         else if (action === 'push') {
           const status = await this.snapshot();
           if (status.detached || status.unborn) throw new GitError({ message: 'Push 需要已提交的本地分支' });
           // Explicit HEAD avoids push.default matching multiple branches. Never force push.
-          await this.git(['push', '--progress', '--set-upstream', '--', remote, `HEAD:refs/heads/${branch || status.branch}`], { timeout: this.options.timeoutMs ?? 600000 });
+          await this.git(['push', '--progress', '--set-upstream', '--', remote, `HEAD:refs/heads/${branch || status.branch}`], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
         } else throw new GitError({ message: '未知远程操作' });
         return this.snapshot();
       }

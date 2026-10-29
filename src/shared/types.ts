@@ -23,6 +23,7 @@ export interface Requests {
   stagedSnapshot: Record<string, never>; stagedTree: Record<string, never>; generateCommit: Record<string, never>;
   createBranch: { name: string; startPoint?: string }; checkout: { name: string }; deleteBranch: { name: string };
   remotes: Record<string, never>; remote: { action: 'fetch' | 'pull' | 'push'; remote: string; branch?: string };
+  saveRemote: { name: string; url: string; pushUrl?: string; create: boolean }; removeRemote: { name: string };
   merge: { branch: string }; mergeInto: { target: string }; finishMergeWorkspace: Record<string, never>; conflict: { path: string }; resolve: { path: string; choice: 'ours' | 'theirs' | 'manual'; content?: string };
   abortMerge: Record<string, never>; identity: { name: string; email: string };
 }
@@ -31,6 +32,7 @@ export interface Responses {
   history: Commit[]; commitFiles: CommitFile[]; branches: Branch[]; createBranch: Repository; checkout: Repository; deleteBranch: Repository;
   stagedSnapshot: StagedSnapshot; stagedTree: string; generateCommit: AiSuggestion;
   remotes: Remote[]; remote: Repository; merge: Repository; mergeInto: MergeIntoResult; finishMergeWorkspace: { sourceRoot: string }; conflict: Conflict; resolve: Repository; abortMerge: Repository; identity: Repository;
+  saveRemote: Repository; removeRemote: Repository;
 }
 export interface HarborAPI {
   request<K extends keyof Requests>(operation: K, payload: Requests[K], sessionId?: string): Promise<Result<Responses[K]>>;

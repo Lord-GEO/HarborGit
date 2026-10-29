@@ -42,3 +42,13 @@
 @media(max-width:1250px){.history-list.graph-history{width:365px;min-width:305px}.graph-history-toolbar{gap:6px}.graph-history-toolbar select{width:120px}}
 
 .brand-mark{width:33px;height:33px;background:transparent;box-shadow:none;transform:none;border-radius:0;object-fit:contain}
+.remote-settings-modal{width:620px}
+.remote-settings-list{border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.remote-settings-row{display:flex;align-items:center;gap:16px;padding:15px;border-bottom:1px solid var(--line)}
+.remote-settings-row:last-child{border-bottom:0}
+.remote-settings-row>div:first-child{flex:1;min-width:0}
+.remote-settings-row strong{display:block;font-size:12px;color:var(--text);font-weight:500}
+.remote-settings-row code,.remote-settings-row small{display:block;overflow-wrap:anywhere;font-size:11px;color:var(--muted);line-height:1.7;margin-top:6px}
+.remote-settings-row .inline-actions{flex-shrink:0}
+.remote-settings-modal .add-remote{margin-top:14px}
+.remote-config-link{margin-top:12px;font-size:11px}
