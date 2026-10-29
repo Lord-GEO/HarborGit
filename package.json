@@ -1,6 +1,6 @@
 {
   "name": "harbor-git",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "An independent desktop Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",
@@ -55,7 +55,10 @@
     ],
     "asar": true,
     "mac": {
-      "target": ["dmg", "zip"],
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "icon": "assets/harborgit-1024.png",
       "category": "public.app-category.developer-tools",
       "artifactName": "HarborGit-${version}-macOS-${arch}.${ext}",
@@ -85,7 +88,10 @@
       "uninstallerIcon": "assets/harborgit.ico",
       "deleteAppDataOnUninstall": false,
       "runAfterFinish": true,
-      "installerLanguages": ["zh_CN", "en_US"],
+      "installerLanguages": [
+        "zh_CN",
+        "en_US"
+      ],
       "language": "2052"
     },
     "portable": {
