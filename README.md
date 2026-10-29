@@ -60,7 +60,23 @@ macOS 打包命令应在 Mac 上执行。Windows 命令仍是 `npm run dist:setu
 2. 打开仓库的 **Actions → Build desktop packages → Run workflow**。
 3. 构建会并行运行 Windows x64、macOS arm64、macOS x64 三个任务。结束后在此次运行的 **Artifacts** 下载对应压缩包，再解压取得 EXE / DMG / ZIP。
 
-工作流仅手动触发，使用只读仓库权限，产物保留 14 天。当前 macOS 配置使用临时签名（ad-hoc），未做 Apple 公证，适用于测试；下载到其他 Mac 时可能被 Gatekeeper 拦截。正式分发需要改用 Developer ID 证书、启用 hardened runtime 并配置公证，见 [macOS 签名说明](https://www.electron.build/v26/docs/mac/)。本仓库新增的是构建配置，尚未产出或验证 Mac 安装包。
+手动运行仅构建并保存 Artifacts，产物保留 14 天。推送版本标签会自动构建并发布到 GitHub Releases，具体步骤见下方。构建任务使用只读仓库权限，发布任务单独申请 `contents: write`，使用 GitHub 自动提供的 `GITHUB_TOKEN`，无需另配个人 Token。
+
+当前 macOS 配置使用临时签名（ad-hoc），未做 Apple 公证，适用于测试；下载到其他 Mac 时可能被 Gatekeeper 拦截。正式分发需要改用 Developer ID 证书、启用 hardened runtime 并配置公证，见 [macOS 签名说明](https://www.electron.build/v26/docs/mac/)。本仓库新增的是构建配置，尚未产出或验证 Mac 安装包。
+
+## 自动发布 GitHub Release
+
+先将工作流和源码改动提交到 GitHub。以后发版时，在干净的工作区执行，例如从 1.2.1 升级到 1.2.2：
+
+```powershell
+npm version 1.2.2
+git push origin HEAD
+git push origin v1.2.2
+```
+
+`npm version` 会同步修改 `package.json` 和 `package-lock.json`，并创建版本提交及标签。推送 `v1.2.2` 后，Actions 自动校验标签与项目版本号，构建 Windows x64、macOS arm64、macOS x64。全部成功后，发布任务从本次运行收集 5 个安装文件，直接创建 Release、上传 EXE / DMG / ZIP 并生成更新说明，无需下载到本机再上传。
+
+所有以 `v` 开头的标签都会触发工作流，但标签必须严格等于 `v` 加项目版本号，否则构建前就会失败。含预发布标识的版本（如 `1.2.3-beta.1`）会标记为 Prerelease；手动 Run workflow 仍只构建，不发布。任何一套构建失败都会阻止创建 Release；同名 Release 已存在时不会覆盖。如上传中断遗留了同名草稿，可在 Releases 中处理该草稿后重新运行。发布使用 [GitHub CLI](https://cli.github.com/manual/gh_release_create)，尚未在本仓库触发真实发布验证。
 
 ## 已实现的操作
 

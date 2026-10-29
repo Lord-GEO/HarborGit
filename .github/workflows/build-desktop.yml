@@ -2,13 +2,49 @@ name: Build desktop packages
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: read
 
+concurrency:
+  group: desktop-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
+  validate:
+    name: Validate version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check package and tag versions
+        id: version
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync, appendFileSync } from 'node:fs';
+          const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+          const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
+          if (pkg.version !== lock.version || pkg.version !== lock.packages[''].version) {
+            throw new Error('package.json and package-lock.json versions must match.');
+          }
+          if (process.env.REF_TYPE === 'tag' && process.env.REF_NAME !== `v${pkg.version}`) {
+            throw new Error(`Expected tag v${pkg.version}; received ${process.env.REF_NAME}. Update the package version before tagging.`);
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT, `version=${pkg.version}\n`);
+          NODE
+
   package:
     name: Package ${{ matrix.name }}
+    needs: validate
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
     strategy:
@@ -51,3 +87,49 @@ jobs:
           if-no-files-found: error
           compression-level: 0
           retention-days: 14
+
+  release:
+    name: Publish GitHub Release
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    needs: [validate, package]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Collect installation packages
+        uses: actions/download-artifact@v8
+        with:
+          pattern: HarborGit-*
+          path: release-assets
+          merge-multiple: true
+      - name: Create release and upload packages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_VERSION: ${{ needs.validate.outputs.version }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=(
+            "HarborGit-${RELEASE_VERSION}-Setup-x64.exe"
+            "HarborGit-${RELEASE_VERSION}-macOS-arm64.dmg"
+            "HarborGit-${RELEASE_VERSION}-macOS-arm64.zip"
+            "HarborGit-${RELEASE_VERSION}-macOS-x64.dmg"
+            "HarborGit-${RELEASE_VERSION}-macOS-x64.zip"
+          )
+          assets=()
+          for name in "${expected[@]}"; do
+            file="release-assets/$name"
+            if [[ ! -s "$file" ]]; then
+              printf 'Missing or empty release asset: %s\n' "$file" >&2
+              exit 1
+            fi
+            assets+=("$file")
+          done
+          flags=(--repo "$GH_REPO" --verify-tag --title "HarborGit ${RELEASE_VERSION}" --generate-notes)
+          if [[ "$RELEASE_VERSION" == *-* ]]; then
+            flags+=(--prerelease)
+          fi
+          gh release create "$RELEASE_TAG" "${assets[@]}" "${flags[@]}"
