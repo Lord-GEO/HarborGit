@@ -1,0 +1,53 @@
+name: Build desktop packages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows-x64
+            os: windows-latest
+            script: dist:setup
+            files: release/*-Setup-x64.exe
+          - name: macOS-arm64
+            os: macos-latest
+            script: dist:mac:arm64
+            files: |
+              release/*-macOS-arm64.dmg
+              release/*-macOS-arm64.zip
+          - name: macOS-x64
+            os: macos-latest
+            script: dist:mac:x64
+            files: |
+              release/*-macOS-x64.dmg
+              release/*-macOS-x64.zip
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Package application
+        run: npm run ${{ matrix.script }}
+      - name: Upload packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: HarborGit-${{ matrix.name }}
+          path: ${{ matrix.files }}
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14

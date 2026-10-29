@@ -1,6 +1,6 @@
 # HarborGit 1.2.1
 
-可独立运行的 Windows x64 Git 图形客户端。Electron + React + TypeScript，实际仓库操作交给本机 Git CLI。界面、代码和产品设计独立编写；IDEA 的插件只用于研究交互与状态模型，没有作为客户端依赖。
+可独立运行的 Git 图形客户端，已验证 Windows x64，另提供 macOS Apple Silicon / Intel 打包配置（尚未进行 Mac 真机验证）。Electron + React + TypeScript，实际仓库操作交给本机 Git CLI。界面、代码和产品设计独立编写；IDEA 的插件只用于研究交互与状态模型，没有作为客户端依赖。
 
 本次新增 Windows Setup 安装版和 HarborGit 自有图标，支持选择安装目录、创建快捷方式及标准卸载。详见 [1.2.1 更新说明](docs/RELEASE-1.2.1.md)。彩色提交图、AI 提交消息、多项目、明暗主题和智能合并功能继续保留，功能说明见 [1.2 更新说明](docs/RELEASE-1.2.md)。
 
@@ -37,6 +37,30 @@ npm run icons     # 从 assets/harborgit.svg 重新生成 PNG 与 Windows ICO
 ```
 
 安装依赖会下载 Electron 运行时，首次打包会下载 NSIS 等打包工具，需要网络。如果网络环境导致运行时下载失败，可在网络可达环境重新运行 `node node_modules/electron/install.js`。最初构建时的 Electron 下载替代方案与校验过程保留在历史验证报告。
+
+## macOS 打包与 Windows / Mac 同时构建
+
+在 Mac 上安装 Node.js 22.12+ 和 Git，将项目克隆到本机后执行（不要复制 Windows 的 `node_modules`）：
+
+```bash
+npm ci
+npm run dist:mac        # 同时生成 Apple Silicon 和 Intel 两套 DMG / ZIP
+# 或只打包需要的架构：
+npm run dist:mac:arm64  # M 系列芯片
+npm run dist:mac:x64    # Intel
+```
+
+产物保存在 `release/`，例如 `HarborGit-1.2.1-macOS-arm64.dmg`、`HarborGit-1.2.1-macOS-x64.dmg`，以及同名 ZIP。打开 DMG 后将 HarborGit 拖入 Applications。应用运行仍依赖本机 Git 和相应凭据 / SSH 配置。
+
+macOS 打包命令应在 Mac 上执行。Windows 命令仍是 `npm run dist:setup`；跨系统构建与签名限制见 [electron-builder 官方说明](https://www.electron.build/v26/docs/features/multi-platform-build/)。macOS 由打包器按目标架构下载 Electron；Windows 继续复用本机的 Electron，避免将同一架构运行时误打进另一架构的包。
+
+没有 Mac，或希望一次触发同时生成 Windows / Mac 包时，使用仓库内的 [Build desktop packages 工作流](.github/workflows/build-desktop.yml)：
+
+1. 将当前源码及工作流提交、推送到 GitHub 默认分支。
+2. 打开仓库的 **Actions → Build desktop packages → Run workflow**。
+3. 构建会并行运行 Windows x64、macOS arm64、macOS x64 三个任务。结束后在此次运行的 **Artifacts** 下载对应压缩包，再解压取得 EXE / DMG / ZIP。
+
+工作流仅手动触发，使用只读仓库权限，产物保留 14 天。当前 macOS 配置使用临时签名（ad-hoc），未做 Apple 公证，适用于测试；下载到其他 Mac 时可能被 Gatekeeper 拦截。正式分发需要改用 Developer ID 证书、启用 hardened runtime 并配置公证，见 [macOS 签名说明](https://www.electron.build/v26/docs/mac/)。本仓库新增的是构建配置，尚未产出或验证 Mac 安装包。
 
 ## 已实现的操作
 

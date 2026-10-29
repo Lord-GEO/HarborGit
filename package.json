@@ -1,7 +1,7 @@
 {
   "name": "harbor-git",
   "version": "1.2.1",
-  "description": "An independent Windows Git workspace client",
+  "description": "An independent desktop Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",
   "private": true,
@@ -16,10 +16,13 @@
     "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts tests/remotes.test.ts",
     "test:ui": "playwright test",
     "test:portable": "node scripts/smoke-portable.mjs",
-    "pack": "npm run build && node -e \"require('electron')\" && electron-builder --win --dir --x64",
+    "pack": "npm run build && node -e \"require('electron')\" && electron-builder --win --dir --x64 -c.electronDist=node_modules/electron/dist",
     "dist": "npm run dist:setup",
-    "dist:setup": "npm run build && node -e \"require('electron')\" && electron-builder --win nsis --x64",
-    "dist:portable": "npm run build && node -e \"require('electron')\" && electron-builder --win portable --x64"
+    "dist:setup": "npm run build && node -e \"require('electron')\" && electron-builder --win nsis --x64 -c.electronDist=node_modules/electron/dist --publish never",
+    "dist:portable": "npm run build && node -e \"require('electron')\" && electron-builder --win portable --x64 -c.electronDist=node_modules/electron/dist --publish never",
+    "dist:mac": "npm run build && electron-builder --mac --arm64 --x64 --publish never",
+    "dist:mac:arm64": "npm run build && electron-builder --mac --arm64 --publish never",
+    "dist:mac:x64": "npm run build && electron-builder --mac --x64 --publish never"
   },
   "dependencies": {
     "react": "19.3.1",
@@ -51,7 +54,15 @@
       "LICENSE"
     ],
     "asar": true,
-    "electronDist": "node_modules/electron/dist",
+    "mac": {
+      "target": ["dmg", "zip"],
+      "icon": "assets/harborgit-1024.png",
+      "category": "public.app-category.developer-tools",
+      "artifactName": "HarborGit-${version}-macOS-${arch}.${ext}",
+      "identity": "-",
+      "hardenedRuntime": false,
+      "notarize": false
+    },
     "win": {
       "target": [
         "nsis"
