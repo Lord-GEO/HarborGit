@@ -2,13 +2,13 @@ import { spawn, type ChildProcess } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
-import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, Remote, Repository, Requests, Responses, MergeWorkspace, MergeIntoResult } from '../shared/types';
+import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, Remote, Repository, Requests, Responses, MergeWorkspace, MergeIntoResult, StagedSnapshot, AiSuggestion } from '../shared/types';
 
 export class GitError extends Error {
   readonly details: Failure;
   constructor(details: Failure) { super(details.message); this.name = 'GitError'; this.details = details; }
 }
-export interface GitOptions { onActivity?: (event: Activity) => void; gitPath?: string; timeoutMs?: number; outputLimit?: number; mergeWorkspaceRoot?: string; }
+export interface GitOptions { onActivity?: (event: Activity) => void; gitPath?: string; timeoutMs?: number; outputLimit?: number; mergeWorkspaceRoot?: string; generateMessage?: (snapshot: StagedSnapshot, signal: AbortSignal) => Promise<string>; }
 interface CommandResult { stdout: string; stderr: string; code: number; truncated: boolean; }
 interface RunOptions { accepted?: number[]; input?: string; limit?: number; timeout?: number; }
 const MAX_TEXT = 2 * 1024 * 1024;
@@ -58,11 +58,12 @@ export class GitService {
   private root = '';
   private queue: Promise<unknown> = Promise.resolve();
   private running = new Map<string, { child: ChildProcess; stop: (reason: string) => void }>();
+  private aiTasks = new Map<string, AbortController>();
   pendingCount = 0;
   get repositoryRoot() { return this.root; }
   constructor(private options: GitOptions = {}) {}
-  cancel(id: string): boolean { const job = this.running.get(id); if (!job) return false; job.stop('操作已取消，请刷新状态确认已完成的部分'); return true; }
-  cancelAll() { for (const id of this.running.keys()) this.cancel(id); }
+  cancel(id: string): boolean { const ai = this.aiTasks.get(id); if (ai) { ai.abort(); return true; } const job = this.running.get(id); if (!job) return false; job.stop('操作已取消，请刷新状态确认已完成的部分'); return true; }
+  cancelAll() { for (const id of [...this.running.keys(), ...this.aiTasks.keys()]) this.cancel(id); }
   request<K extends keyof Requests>(operation: K, payload: Requests[K]): Promise<Responses[K]> {
     this.pendingCount++;
     const task = this.queue.then(() => this.dispatch(operation, payload));
@@ -224,10 +225,13 @@ export class GitService {
   }
   private async commitHash(v: unknown) { return (await this.git(['rev-parse', '--verify', `${hash(v)}^{commit}`])).stdout.trim(); }
   private async parents(id: string) { return (await this.git(['rev-list', '--parents', '-n', '1', id])).stdout.trim().split(' ').slice(1); }
-  private async history(skip = 0, limit = 100): Promise<Commit[]> {
+  private async history(skip = 0, limit = 100, scope: 'current' | 'all' = 'current'): Promise<Commit[]> {
     if (!Number.isInteger(skip) || skip < 0 || !Number.isInteger(limit) || limit < 1 || limit > 300) throw new GitError({ message: '历史分页参数无效' });
-    if (!await this.hasHead()) return [];
-    const r = await this.git(['log', '-z', `--skip=${skip}`, `--max-count=${limit}`, '--date=iso-strict', '--format=%H%x00%h%x00%P%x00%an%x00%ae%x00%aI%x00%s%x00%b%x00%D', 'HEAD']);
+    if (!['current', 'all'].includes(scope)) throw new GitError({ message: '历史范围无效' });
+    const hasHead = await this.hasHead();
+    if (!hasHead && (scope === 'current' || !(await this.git(['for-each-ref', '--count=1', '--format=%(objectname)'])).stdout.trim())) return [];
+    const revisions = scope === 'all' ? ['--branches', '--remotes', '--tags', ...(hasHead ? ['HEAD'] : [])] : ['HEAD'];
+    const r = await this.git(['log', '-z', '--topo-order', '--decorate=full', `--skip=${skip}`, `--max-count=${limit}`, '--date=iso-strict', '--format=%H%x00%h%x00%P%x00%an%x00%ae%x00%aI%x00%s%x00%b%x00%D', ...revisions, '--']);
     if (r.truncated) throw new GitError({ message: '历史内容过大，请减小每页提交数量' });
     const fields = r.stdout.split('\0'), commits: Commit[] = [];
     for (let i = 0; i + 8 < fields.length; i += 9) {
@@ -235,6 +239,38 @@ export class GitService {
       commits.push({ hash, shortHash, parents: parents ? parents.split(' ') : [], author, email, date, subject, body, refs });
     }
     return commits;
+  }
+  private async stagedTree() { return (await this.git(['write-tree'])).stdout.trim(); }
+  private async stagedSnapshot(): Promise<StagedSnapshot> {
+    const state = await this.snapshot();
+    if (state.entries.some(e => e.conflict)) throw new GitError({ message: '请先解决冲突，再生成提交消息' });
+    const tree = await this.stagedTree();
+    const base = state.head || (await this.git(['hash-object', '-w', '-t', 'tree', '--stdin'], { input: '' })).stdout.trim();
+    const fileResult = await this.git(['diff', '--name-status', '--no-ext-diff', '--no-textconv', '-z', '-M', base, tree, '--']);
+    if (fileResult.truncated) throw new GitError({ message: '暂存文件列表超过读取上限，请拆分提交' });
+    const fields = fileResult.stdout.split('\0'), files: CommitFile[] = [];
+    for (let i = 0; i < fields.length && fields[i];) { const status = fields[i++], first = fields[i++]; if (/^[RC]/.test(status)) files.push({ status, oldPath: first, path: fields[i++] }); else files.push({ status, path: first }); }
+    if (!files.length) throw new GitError({ message: '暂存区为空，请先暂存要提交的文件' });
+    if (files.length > 1000) throw new GitError({ message: '一次最多为 1000 个暂存文件生成消息，请拆分提交' });
+    const result = await this.git(['diff', '--no-ext-diff', '--no-textconv', '--no-color', '--find-renames', '--unified=3', base, tree, '--'], { limit: 80000 });
+    return { tree, files, diff: result.stdout, truncated: result.truncated };
+  }
+  private async generateCommit(): Promise<AiSuggestion> {
+    if (!this.options.generateMessage) throw new GitError({ message: '请先配置 AI 服务' });
+    const snapshot = await this.stagedSnapshot(), id = randomUUID(), controller = new AbortController();
+    const command = 'AI 生成暂存区提交消息', time = () => new Date().toISOString();
+    this.aiTasks.set(id, controller); this.emit({ id, command, kind: 'start', text: '', time: time() });
+    try {
+      const message = await this.options.generateMessage(snapshot, controller.signal);
+      if (controller.signal.aborted) throw new Error('AI 生成已取消');
+      const stale = await this.stagedTree() !== snapshot.tree;
+      this.emit({ id, command, kind: 'finish', text: 'AI 提交消息已生成，等待检查后应用', time: time(), exitCode: 0 });
+      return { message, tree: snapshot.tree, fileCount: snapshot.files.length, truncated: snapshot.truncated, stale };
+    } catch (e) {
+      const message = controller.signal.aborted ? 'AI 生成已取消' : e instanceof Error ? e.message : String(e);
+      this.emit({ id, command, kind: 'finish', text: message, time: time(), exitCode: -1 });
+      throw new GitError({ message, cancelled: controller.signal.aborted });
+    } finally { this.aiTasks.delete(id); }
   }
   private async commitFiles(v: unknown): Promise<CommitFile[]> {
     const id = await this.commitHash(v), parents = await this.parents(id);
@@ -363,7 +399,10 @@ export class GitService {
         if (!status.mergeInProgress && !status.entries.some(e => e.index !== ' ')) throw new GitError({ message: '暂存区为空' });
         await this.git(['commit', '--file=-'], { input: message }); return this.snapshot();
       }
-      case 'history': return this.history(p.skip as number | undefined, p.limit as number | undefined);
+      case 'history': return this.history(p.skip as number | undefined, p.limit as number | undefined, p.scope as 'current' | 'all' | undefined);
+      case 'stagedSnapshot': return this.stagedSnapshot();
+      case 'stagedTree': return this.stagedTree();
+      case 'generateCommit': return this.generateCommit();
       case 'commitFiles': return this.commitFiles(p.hash);
       case 'branches': return this.branches();
       case 'createBranch': {

@@ -37,7 +37,7 @@ flowchart LR
 | 暂存 | `add -A --pathspec-from-file=- --pathspec-file-nul`，stdin 传 NUL 路径 | 重读快照 |
 | 取消暂存 | `reset --quiet HEAD --pathspec-from-file=- --pathspec-file-nul`；unborn 使用 `rm --cached` | 保留工作区内容，重读快照 |
 | 提交 | `commit --file=-`，消息走 stdin | 校验 unresolved / 暂存内容，成功后重读快照 |
-| 历史 | `log -z --skip=N --max-count=100 --format=... HEAD` | NUL 字段解析；消息不使用行切分 |
+| 历史 | `log -z --topo-order --decorate=full --skip=N --max-count=100 --format=...`；全部范围使用 `--branches --remotes --tags` 与有效 HEAD | NUL 字段解析；真实 parents 驱动分支/合并图，支持 unborn HEAD 边界 |
 | 提交文件 / Diff | first parent 与提交 `diff --name-status -z -M` / `diff`；root 用 `diff-tree --root` / `show --root` | 支持 rename、初始提交、merge first parent |
 | 分支 | `for-each-ref`；`check-ref-format --branch`；`switch -c` / `switch`；`branch -d` | 校验存在性；不强删；刷新分支 / 快照 |
 | Fetch | `fetch --progress --prune -- remote` | 更新 refs，再取快照 |
@@ -75,3 +75,16 @@ IPC 请求增加 sessionId；Workspaces 根据会话选择 GitService，服务�
 `mergeInto` 解析并固定源 HEAD，只在目标分支的独立 worktree 执行 merge。因此不需要 stash，也不会把本地未提交内容混入目标提交。目标分支已被其他 worktree 检出时明确拒绝，不强制改变该工作区。冲突或其他失败保留 worktree，元信息写入其 Git 管理目录的 `harborgit-merge.json`，应用重开该路径仍能识别；最近仓库保存恢复路径。完成/中止后，“结束并关闭合并标签”先核验同一个 Git common directory，再调用非强制 `git worktree remove`，有未提交内容时拒绝清理。
 
 主题以 `data-theme` 和独立 CSS 调色样式实现，选择保存在应用本地存储；不使用图像反色。官方行为依据：[Git worktree](https://git-scm.com/docs/git-worktree)、[Git merge 本地修改检查](https://git-scm.com/docs/git-merge)。这是自行设计的 1.1 功能，不属于 IDEA 反编译结论。
+
+
+## 1.2 提交图与 AI
+
+`src/shared/commit-graph.ts` 为纯拓扑布局：按 child-before-parent 次序维护待访问 parent 的轨道，第一父路径延续颜色，其他父节点分配/汇入轨道。每个真实 parent 都生成独立连接段；多父节点为合并节点。分页前缀保留待访问 parent 的连续轨道，在底部提示路径继续。分支色由排序后的命名引用分配分隔色板，主干常见名称有固定色；共享祖先没有唯一的分支归属，显示其汇合路径。`CommitHistory.tsx` 以固定行高 SVG 绘制路径，支持明暗主题和当前/全部范围。
+
+`stagedSnapshot` 先检查冲突并 `write-tree` 固定 index tree，随后在 HEAD（首次提交为空树）与该 tree 之间读取名称状态和 Diff。因此生成输入不会读入工作区后续修改。Diff 限 80,000 字节并标记截断，清单限 1,000 文件，序列化输入上限 250,000 字节；二进制仅包含名称/状态及差异提示。写树只创建 Git 对象，不改变工作区或 index 的内容。
+
+`src/main/ai.ts` 管理配置、OS 加密的 Key、HTTP 请求和协议解析。主进程读取 Key，renderer 只得到 hasApiKey/keyStorage。修改基础地址会清除旧凭据，持久化通过临时文件原子替换，系统加密不可用时 Key 仅保留在内存。服务协议有 Responses 和 Chat Completions 两种，模型 ID 由用户配置，不作自动替换；请求不跟随重定向，默认两分钟超时，响应上限 1 MiB。
+
+AI 生成属于原项目队列，进度带会话 ID，取消通过 AbortController；其他项目独立操作。生成后和应用候选前都检查 index tree，过期候选不覆盖草稿。提示词把仓库内容作为不可信数据，没有 tools 权限，不声称执行测试。只有用户点击“应用到提交信息”才替换编辑框，最终提交仍走原来的显式提交入口。
+
+协议依据采用官方 OpenAI Docs 的 [文本生成与 Responses 输出结构](https://developers.openai.com/api/docs/guides/text) 和 [Chat Completions 请求结构](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create)。本客户端的布局、配置与提交快照流程为自行设计，未将其归为 IDEA 的运行行为。

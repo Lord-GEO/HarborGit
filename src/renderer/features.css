@@ -1,0 +1,42 @@
+.graph-history{width:420px;max-width:48%;min-width:320px}
+.graph-history-toolbar{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--panel);border-bottom:1px solid var(--line);flex-shrink:0}
+.graph-history-toolbar select{width:135px;padding:7px 9px;font-size:11px}
+.graph-history-toolbar>span{font-size:10px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.graph-legend{display:flex;flex-wrap:wrap;gap:7px 12px;padding:9px 14px;background:var(--bg);border-bottom:1px solid var(--line);max-height:66px;overflow:auto;flex-shrink:0}
+.graph-legend:empty{display:none}
+.graph-legend>span{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:var(--text);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.graph-legend i{width:7px;height:7px;border-radius:50%;background:hsl(var(--lane-hue) 68% 65%);flex-shrink:0}
+.graph-rows{position:relative}.commit-graph{position:absolute;left:10px;top:0;z-index:2;pointer-events:none;overflow:visible}
+.graph-edge{fill:none;stroke:hsl(var(--lane-hue) 68% 65%);stroke-width:2;stroke-linecap:round}
+.graph-node{stroke:hsl(var(--lane-hue) 68% 65%);stroke-width:2;fill:var(--panel)}
+.merge-node-center{fill:var(--text)}
+.graph-commit-row{position:relative;padding-top:11px;padding-bottom:10px;box-sizing:border-box;overflow:hidden}
+.graph-commit-row:after{display:none}
+.graph-commit-row>div{overflow:hidden}
+.graph-commit-row strong{line-height:1.45;font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.graph-commit-row small{font-size:9px;margin-top:5px;line-height:1.5}
+.graph-commit-row code{margin-top:3px;font-size:9px;line-height:1}
+.graph-ref-list{display:flex;align-items:center;gap:5px;overflow:hidden;white-space:nowrap;max-height:20px;margin-top:5px}
+.graph-ref{color:hsl(var(--lane-hue) 68% 73%);border:1px solid hsl(var(--lane-hue) 35% 36%);background:hsl(var(--lane-hue) 26% 18%);font-size:8px;line-height:1.3;padding:2px 5px;border-radius:4px;max-width:200px;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.tag-ref{filter:saturate(.25)}.merge-label{font-size:8px;color:var(--muted)}
+.graph-help{margin:0;padding:9px 12px;color:var(--muted);font-size:9px;line-height:1.7;border-top:1px solid var(--line);background:var(--panel);flex-shrink:0}
+.graph-continuation{font-size:10px;color:var(--muted);margin:0;padding:8px 14px 0}
+.commit-box{max-height:66%;overflow-y:auto;flex-shrink:0}
+.ai-commit-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 5px}
+.ai-commit-actions .secondary-button{padding:7px 10px;font-size:11px;color:var(--accent)}
+.ai-send-note{font-size:9px;color:var(--muted);line-height:1.7;margin:0 0 9px}
+.ai-suggestion{padding:11px;background:var(--accent-dark);border:1px solid var(--line);border-radius:7px;margin-bottom:10px}
+.ai-suggestion>strong{font-size:10px;color:var(--accent);font-weight:500}
+.ai-suggestion pre{max-height:130px;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:11px;line-height:1.65;margin:8px 0;color:var(--text)}
+.ai-suggestion small{display:block;font-size:10px;color:var(--amber);margin:6px 0;line-height:1.5}
+.ai-suggestion>div{display:flex;align-items:center;gap:8px;margin-top:9px}
+.ai-suggestion button{font-size:10px}
+.ai-settings-modal{width:610px}.ai-settings-modal .modal-header{margin-bottom:16px}
+.ai-settings-columns{display:flex;gap:16px}.ai-settings-columns>label{flex:1;min-width:0}
+.ai-data-note{font-size:11px;line-height:1.8;padding:12px 14px;margin-top:18px;background:var(--accent-dark);border:1px solid var(--line);border-radius:7px;color:var(--text)}
+.modal .checkbox-label{display:flex;flex-direction:row;align-items:center;gap:8px;margin-top:12px;font-size:11px}
+.checkbox-label input{width:14px;height:14px;margin:0;accent-color:var(--accent)}
+:root[data-theme=light] .graph-legend i,:root[data-theme=light] .graph-edge{background:hsl(var(--lane-hue) 62% 40%);stroke:hsl(var(--lane-hue) 62% 40%)}
+:root[data-theme=light] .graph-node{stroke:hsl(var(--lane-hue) 62% 40%)}
+:root[data-theme=light] .graph-ref{color:hsl(var(--lane-hue) 60% 30%);border-color:hsl(var(--lane-hue) 35% 74%);background:hsl(var(--lane-hue) 45% 93%)}
+@media(max-width:1250px){.history-list.graph-history{width:365px;min-width:305px}.graph-history-toolbar{gap:6px}.graph-history-toolbar select{width:120px}}

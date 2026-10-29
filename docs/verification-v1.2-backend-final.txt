@@ -1,0 +1,35 @@
+
+> harbor-git@1.2.0 test
+> tsx --test tests/git.test.ts tests/graph-ai.test.ts
+
+✔ project sessions isolate concurrent reads/writes, deduplicate paths, and reject closed sessions (2345.0419ms)
+✔ smart merge dev committed changes into master preserves source index, worktree, untracked files and branch (2540.3338ms)
+✔ smart merge conflicts recover in another session; source WIP survives resolve/commit/cleanup (4886.2458ms)
+✔ smart merge conflict survives reopen; abort/cleanup leaves target and source unchanged (3361.1884ms)
+✔ smart merge refuses target checked out in another worktree without modifying either tree (1121.7857ms)
+✔ ordinary merge allows non-overlapping worktree changes and lets Git protect overlapping edits (1876.9351ms)
+✔ unborn repository: literal Unicode/space/leading-dash/pathspec names, stage and unstage, initial history (3167.6298ms)
+✔ workspace and index diffs remain distinct; deleting, renaming, and binary content are represented (4467.1628ms)
+✔ branches: create, switch, reject unsafe deletion, safe deletion and invalid names (3554.326ms)
+✔ clone and local bare remote: fetch/push/fast-forward pull; divergent pull rejects without merge (8461.4702ms)
+✔ merge conflict: read base/ours/theirs, resolve ours, finish merge, inspect merge commit files/diff (3171.1656ms)
+✔ merge conflict: manual resolution and theirs resolution are staged, abort restores original head (3989.8983ms)
+✔ modify/delete conflict: choosing deleted side removes the file and stages resolution (2474.5142ms)
+✔ validation rejects escapes/options/invalid payloads, errors retain useful Git output, previous repo survives bad open (845.2407ms)
+✔ operation log reports commands and completion; a slow commit hook can be cancelled (2383.1557ms)
+✔ slow commit hook times out with a recoverable failure (4194.6278ms)
+✔ all-branch history exposes real merge parents, unmerged tips, topo order, pagination and unborn HEAD (2181.8925ms)
+✔ graph preserves octopus parent edges and never joins unrelated roots (0.4988ms)
+✔ AI snapshot includes only immutable staged content, rename metadata and binary notice; preserves working state (1950.8571ms)
+✔ Responses and Chat protocols use configured endpoint/model, parse text, and never transmit credentials in payload (56.4571ms)
+✔ AI provider reports HTTP/malformed/empty errors, redacts key, times out and supports cancellation (195.5531ms)
+✔ settings keep key out of public responses/plaintext disk, and endpoint changes clear old credentials (245.8127ms)
+✔ generation marks changed index stale and cancellation leaves both index and commit history intact (1924.2394ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53161.893

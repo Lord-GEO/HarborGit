@@ -1,0 +1,15 @@
+✔ all-branch history exposes real merge parents, unmerged tips, topo order, pagination and unborn HEAD (2057.1172ms)
+✔ graph preserves octopus parent edges and never joins unrelated roots (0.309ms)
+✔ AI snapshot includes only immutable staged content, rename metadata and binary notice; preserves working state (1953.0396ms)
+✔ Responses and Chat protocols use configured endpoint/model, parse text, and never transmit credentials in payload (64.635ms)
+✔ AI provider reports HTTP/malformed/empty errors, redacts key, times out and supports cancellation (215.7321ms)
+✔ settings keep key out of public responses/plaintext disk, and endpoint changes clear old credentials (237.9927ms)
+✔ generation marks changed index stale and cancellation leaves both index and commit history intact (2119.8422ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6898.8722

@@ -1,14 +1,14 @@
-# HarborGit 1.1.0
+# HarborGit 1.2.0
 
 可独立运行的 Windows x64 Git 图形客户端。Electron + React + TypeScript，实际仓库操作交给本机 Git CLI。界面、代码和产品设计独立编写；IDEA 的插件只用于研究交互与状态模型，没有作为客户端依赖。
 
-本次新增：多个项目以标签页同时打开、明暗主题切换并记住选择，以及保留未提交改动的跨分支合并。详细操作及验证见 [1.1 更新说明](docs/RELEASE-1.1.md)。
+本次新增：彩色分支提交图、分叉与合并连线，以及根据暂存快照生成提交消息的 AI 助手。详细操作及验证见 [1.2 更新说明](docs/RELEASE-1.2.md)。多项目、明暗主题和智能合并功能继续保留。
 
 ## 直接运行
 
 本次交付已包含打包结果：
 
-- 单文件便携版：`release/HarborGit-1.1.0-Windows-x64.exe`，双击运行。
+- 单文件便携版：`release/HarborGit-1.2.0-Windows-x64.exe`，双击运行。
 - 目录版：`release/win-unpacked/HarborGit.exe`；复制时保留整个 `win-unpacked` 目录。
 
 打包版自带 Electron，无需 Node.js、npm 或 IDEA。需要 **Git for Windows 在 PATH 中**（本机已验证 Git 2.50.1）；客户端不会安装 Git。便携版是启动时解压的单文件分发，设置与最近仓库路径保存在 `%APPDATA%/HarborGit`。该构建未进行代码签名。
@@ -40,7 +40,8 @@ npm run dist      # Windows x64 单文件便携版
 | 文件状态 | 显式区分工作区与暂存区；修改、未跟踪、新增、删除、重命名和冲突；同一文件可同时出现在两组；显示分支、上游和 ahead/behind |
 | Diff | 点击文件查看统一差异和行号；工作区与 index 比较，index 与 HEAD 比较；未跟踪文件按新增显示；二进制提示；初始提交和合并提交的历史 Diff |
 | 暂存与提交 | 单文件或全部暂存 / 取消暂存；保留工作区内容；支持首次提交；多行消息；本仓库提交身份设置；空消息、空暂存区、未解决冲突会阻止提交 |
-| 历史 | 当前 HEAD 可达提交，每页 100 条，可加载更多；作者、时间、hash、refs、消息；选择提交查看变更文件及 Diff；合并提交与第一父提交比较 |
+| 历史与提交图 | 默认全部本地/远程分支、标签及当前 HEAD，按拓扑排序；可筛选当前分支；分支颜色、真实父提交连线、双圈合并节点与分页路径延续；选择提交查看文件和 Diff，merge 与第一父提交比较 |
+| AI 提交消息 | 在 AI 设置中配置 Responses 或 Chat Completions 兼容接口、基础地址、模型与 Key；按固定暂存快照生成候选，预览应用后可编辑；暂存区变化检测、取消和超时；Key 由系统加密保存在主进程 |
 | 分支 | 本地 / 远程分组；创建并切换；切换已有分支；从远程分支创建；安全删除已合并本地分支；合并本地 / 远程分支到当前 |
 | 智能合并 | 在 dev 上选择“将当前分支合并到…”→master；在独立 worktree 合并已提交内容，dev 的暂存/未暂存/未跟踪文件原样保留；有冲突时新标签解决，完成或中止后可结束合并工作区 |
 | 远程 | 选择已有 remote；Fetch 并 prune；Pull 固定 `--ff-only`；Push 当前 HEAD 到明确的目标分支并设置 upstream；Git 拒绝非快进 push，客户端不强推 |
@@ -73,10 +74,12 @@ REA 可清点 JAR，但不支持该 JVM `.class` 格式；报告保留原始拒�
 
 ## 验证与尚未实现
 
-1.1 的实测范围和原始输出见 [更新验证](docs/RELEASE-1.1.md)、[后端结果](docs/verification-v1.1-backend.txt)、[界面结果](docs/verification-v1.1-ui.txt)。1.0 历史验证保留在 [VERIFICATION.md](docs/VERIFICATION.md)。所有写入测试使用工作区内新建的专用仓库，远程仅使用本地裸仓库；未使用用户真实仓库或互联网远程进行写验证。
+1.2 的实测范围和原始输出见 [更新验证](docs/RELEASE-1.2.md)、[后端结果](docs/verification-v1.2-backend-final.txt)、[发行包界面结果](docs/verification-v1.2-packaged-ui.txt)。1.0 历史验证保留在 [VERIFICATION.md](docs/VERIFICATION.md)。所有写入测试使用工作区内新建的专用仓库，远程仅使用本地裸仓库；未使用用户真实仓库或互联网远程进行写验证。
 
-当前未实现：按行 / hunk 部分暂存、rebase / cherry-pick / stash、标签管理、提交图及跨分支搜索、远程地址管理界面、子模块专用界面、Git LFS 专用操作、内置凭据登录、签名配置界面、自动更新、完整的 rename/rename / 子模块冲突编辑。复杂冲突可以在外部解决后通过 Git CLI 暂存；普通文件的二进制冲突可完整采用一侧。
+当前未实现：按行 / hunk 部分暂存、rebase / cherry-pick / stash、标签管理、跨分支全文搜索、远程地址管理界面、子模块专用界面、Git LFS 专用操作、内置凭据登录、签名配置界面、自动更新、完整的 rename/rename / 子模块冲突编辑。复杂冲突可以在外部解决后通过 Git CLI 暂存；普通文件的二进制冲突可完整采用一侧。
 
 未做真实 HTTPS / SSH 服务端认证验证、大型仓库性能基准、所有外部 hooks / 签名工具兼容测试。这里只声称报告中实际验证的范围。IDEA 的功能研究与本客户端的测试结果是两套证据。
 
-![多项目与亮色主题](docs/screenshots/v1.1-light-tabs.png)
+AI 首次使用：顶部“AI 设置”填写协议、基础地址（通常含 /v1）、模型 ID 和 Key，再暂存文件，点击“AI 生成”。只有点击生成才会发送暂存文件清单和文本差异；未暂存内容不发送。候选不会自动覆盖已有草稿，也不会自动提交。测试仅连接本地 HTTP fixture，真实服务的认证、可用模型及生成质量需在自行配置后确认。
+
+![彩色提交图与合并路径](docs/screenshots/v1.2-graph-dark.png)

@@ -7,6 +7,8 @@ const api: HarborAPI = {
   cancel: id => ipcRenderer.invoke('harbor:cancel', id),
   recent: () => ipcRenderer.invoke('harbor:recent'),
   version: () => ipcRenderer.invoke('harbor:version'),
+  aiSettings: () => ipcRenderer.invoke('harbor:ai-settings'),
+  saveAiSettings: settings => ipcRenderer.invoke('harbor:save-ai-settings', settings),
   onActivity: listener => { const handler = (_: unknown, event: Activity) => listener(event); ipcRenderer.on('harbor:activity', handler); return () => ipcRenderer.removeListener('harbor:activity', handler); }
 };
 contextBridge.exposeInMainWorld('harbor', api);

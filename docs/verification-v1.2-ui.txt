@@ -1,0 +1,59 @@
+
+> harbor-git@1.1.0 test:ui
+> playwright test
+
+
+Running 8 tests using 1 worker
+
+(node:46200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\electron.spec.ts:111:1 › desktop UI: open → diff → stage → unstage → commit → history; create/switch/delete branch (17.8s)
+  ok 2 tests\electron.spec.ts:159:1 › desktop UI: clone local bare remote → fetch → pull → stage/commit → push (27.9s)
+  ok 3 tests\electron.spec.ts:188:1 › desktop UI: merge conflicting branch → compare base/ours/theirs → manual resolution → merge commit (20.8s)
+  ok 4 tests\electron.spec.ts:219:1 › desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists (25.5s)
+  ok 5 tests\electron.spec.ts:263:1 › desktop UI: merge committed dev into master with staged/unstaged/untracked source changes (16.2s)
+  ok 6 tests\electron.spec.ts:286:1 › desktop UI: isolated merge conflict opens new tab; resolve and finish without changing dev WIP (21.8s)
+  ok 7 tests\electron.spec.ts:320:1 › desktop UI: colored all-branch graph shows real fork/merge edges and filters current history (14.3s)
+  x  8 tests\electron.spec.ts:345:1 › desktop UI: configure AI, generate only from staged data, preview/apply, stale/error/cancel and encrypted key (33.7s)
+
+
+  1) tests\electron.spec.ts:345:1 › desktop UI: configure AI, generate only from staged data, preview/apply, stale/error/cancel and encrypted key 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "AI 生成已取消"
+    Received string:    "操作已取消"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 15000ms
+      - waiting for getByRole('alert')
+        33 × locator resolved to <div role="alert" class="error-banner">…</div>
+           - unexpected value "操作已取消"
+
+
+      392 |     await expect(page.getByRole('alert')).not.toContainText('fixture-key');
+      393 |     mode = 'slow'; const count = requests.length; await page.getByRole('button', { name: /AI 生成/ }).click(); await expect.poll(() => requests.length).toBe(count + 1);
+    > 394 |     await page.getByRole('button', { name: '取消当前任务', exact: true }).click(); await expect(page.getByRole('alert')).toContainText('AI 生成已取消'); await idle(page);
+          |                                                                                                                    ^
+      395 |     await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('preserve this manual draft');
+      396 |     await close(app, errors);
+      397 |     const reopened = await launch(root); await reopened.page.locator('.project-strip').getByRole('button', { name: 'AI 设置', exact: true }).click();
+        at C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\tests\electron.spec.ts:394:116
+
+    Error Context: test-results\electron-desktop-UI-config-b5129-or-cancel-and-encrypted-key\error-context.md
+
+    Error Context: test-results\electron-desktop-UI-config-b5129-or-cancel-and-encrypted-key\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\electron-desktop-UI-config-b5129-or-cancel-and-encrypted-key\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\electron-desktop-UI-config-b5129-or-cancel-and-encrypted-key\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\electron.spec.ts:345:1 › desktop UI: configure AI, generate only from staged data, preview/apply, stale/error/cancel and encrypted key 
+  7 passed (3.0m)

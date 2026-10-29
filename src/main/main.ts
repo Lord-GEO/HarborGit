@@ -1,15 +1,17 @@
-import { app, BrowserWindow, dialog, ipcMain, type IpcMainInvokeEvent } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, safeStorage, type IpcMainInvokeEvent } from 'electron';
 import path from 'node:path';
 import * as fs from 'node:fs/promises';
 import { GitError } from './git-service';
 import { Workspaces } from './workspaces';
-import type { Requests, Result } from '../shared/types';
+import { AiSettingsStore, generateMessage } from './ai';
+import type { Requests, Result, AiSettingsInput } from '../shared/types';
 
 if (process.env.HARBOR_USER_DATA && path.isAbsolute(process.env.HARBOR_USER_DATA)) app.setPath('userData', process.env.HARBOR_USER_DATA);
 app.setName('HarborGit');
 let win: BrowserWindow | null = null;
 let recentPaths: string[] = [];
-const service = new Workspaces({ mergeWorkspaceRoot: path.join(app.getPath('userData'), 'merge-workspaces'), onActivity: event => { if (win && !win.isDestroyed()) win.webContents.send('harbor:activity', event); } });
+const ai = new AiSettingsStore(path.join(app.getPath('userData'), 'ai-settings.json'), { available: () => safeStorage.isEncryptionAvailable(), encrypt: value => safeStorage.encryptStringAsync(value), decrypt: async value => (await safeStorage.decryptStringAsync(value)).result });
+const service = new Workspaces({ generateMessage: async (snapshot, signal) => generateMessage(await ai.requestConfig(), snapshot, signal), mergeWorkspaceRoot: path.join(app.getPath('userData'), 'merge-workspaces'), onActivity: event => { if (win && !win.isDestroyed()) win.webContents.send('harbor:activity', event); } });
 const recentFile = () => path.join(app.getPath('userData'), 'recent.json');
 function verifySender(event: IpcMainInvokeEvent) {
   if (!win || event.sender !== win.webContents || event.senderFrame !== win.webContents.mainFrame) throw new Error('Invalid IPC sender');
@@ -40,6 +42,12 @@ app.whenReady().then(async () => {
   ipcMain.handle('harbor:cancel', (event, id: string) => { verifySender(event); return typeof id === 'string' && service.cancel(id); });
   ipcMain.handle('harbor:recent', event => { verifySender(event); return recentPaths; });
   ipcMain.handle('harbor:version', event => { verifySender(event); return app.getVersion(); });
+  ipcMain.handle('harbor:ai-settings', async event => {
+    verifySender(event); try { return { ok: true, data: await ai.get() }; } catch (e) { return { ok: false, error: { message: e instanceof Error ? e.message : String(e) } }; }
+  });
+  ipcMain.handle('harbor:save-ai-settings', async (event, input: AiSettingsInput) => {
+    verifySender(event); try { return { ok: true, data: await ai.save(input) }; } catch (e) { return { ok: false, error: { message: e instanceof Error ? e.message : String(e) } }; }
+  });
   win = new BrowserWindow({
     title: 'HarborGit', width: 1460, height: 940, minWidth: 1100, minHeight: 720, backgroundColor: '#111820',
     autoHideMenuBar: true, show: false,

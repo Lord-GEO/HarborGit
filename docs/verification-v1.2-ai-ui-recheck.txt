@@ -1,0 +1,12 @@
+
+> harbor-git@1.2.0 test:ui
+> playwright test --grep configure AI
+
+
+Running 1 test using 1 worker
+
+(node:3000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\electron.spec.ts:345:1 › desktop UI: configure AI, generate only from staged data, preview/apply, stale/error/cancel and encrypted key (22.9s)
+
+  1 passed (23.4s)

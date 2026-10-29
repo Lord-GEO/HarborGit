@@ -42,7 +42,7 @@ try {
   assert.equal(renderer.title, 'HarborGit'); assert.equal(renderer.node, 'undefined'); assert.equal(renderer.bridge, 'function');
   const sha256 = createHash('sha256').update(await readFile(executable)).digest('hex');
   const result = { status: 'passed', time: new Date().toISOString(), executable, sha256, version, renderer, note: 'Launched the self-extracting portable EXE and attached to the extracted app over loopback CDP with a dedicated empty profile; no repository was opened or modified.' };
-  await writeFile(path.join(project, 'docs/verification-v1.1-portable.json'), JSON.stringify(result, null, 2));
+  await writeFile(path.join(project, 'docs/verification-v1.2-portable.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));
 } finally {
   if (browser) {

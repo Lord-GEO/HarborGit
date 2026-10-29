@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createServer } from 'node:http';
 
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const testRoot = path.resolve(project, '../../work/ui-integration');
@@ -314,5 +315,90 @@ test('desktop UI: isolated merge conflict opens new tab; resolve and finish with
   expect(git(repo, ['show', 'master:shared.txt'])).toBe('resolved committed versions');
   expect(git(repo, ['rev-list', '--parents', '-n', '1', 'master']).split(' ')).toHaveLength(3);
   await close(app, errors);
+});
+
+test('desktop UI: colored all-branch graph shows real fork/merge edges and filters current history', async () => {
+  const { root, repo } = await fixture('Colored branch graph'); await initial(repo);
+  git(repo, ['switch', '-c', 'dev']); await writeFile(path.join(repo, 'dev.txt'), 'dev feature\n'); git(repo, ['add', 'dev.txt']); git(repo, ['commit', '-m', 'feat: develop on dev']);
+  git(repo, ['switch', 'main']); await writeFile(path.join(repo, 'main.txt'), 'main work\n'); git(repo, ['add', 'main.txt']); git(repo, ['commit', '-m', 'feat: prepare main']);
+  git(repo, ['merge', '--no-ff', 'dev', '-m', 'merge: integrate dev']); const merged = git(repo, ['rev-parse', 'HEAD']);
+  git(repo, ['switch', '-c', 'experiment']); await writeFile(path.join(repo, 'future.txt'), 'future\n'); git(repo, ['add', 'future.txt']); git(repo, ['commit', '-m', 'feat: unmerged experiment']); git(repo, ['switch', 'main']);
+  const { app, page, errors } = await launch(root); await open(page, repo); await navigate(page, '提交历史');
+  await expect(page.getByRole('button', { name: '查看提交 feat: unmerged experiment', exact: true })).toBeVisible();
+  await expect(page.locator('.graph-legend')).toContainText('main'); await expect(page.locator('.graph-legend')).toContainText('dev');
+  const mainHue = await page.locator('.graph-legend > span').filter({ hasText: /^main/ }).getAttribute('style');
+  const devHue = await page.locator('.graph-legend > span').filter({ hasText: /^dev$/ }).getAttribute('style'); expect(mainHue).not.toBe(devHue);
+  await expect(page.locator(`.commit-graph g[data-commit="${merged}"] path[data-kind="parent"]`)).toHaveCount(2);
+  await expect(page.locator('.commit-graph .graph-node[data-merge=true]')).toHaveCount(1);
+  await page.getByRole('button', { name: '查看提交 merge: integrate dev', exact: true }).click();
+  await expect(page.locator('.history-files')).toContainText('dev.txt');
+  await expect(page.locator('.tab-panel:not([hidden])').getByLabel('差异内容', { exact: true })).toContainText('dev feature');
+  await capture(app, 'v1.2-graph-dark.png');
+  await page.getByRole('button', { name: '切换为亮色主题', exact: true }).click(); await capture(app, 'v1.2-graph-light.png');
+  await page.getByLabel('历史分支范围', { exact: true }).selectOption('current');
+  await expect(page.getByRole('button', { name: '查看提交 feat: unmerged experiment', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: '查看提交 merge: integrate dev', exact: true })).toBeVisible();
+  await expect(page.locator('.commit-graph .graph-node[data-merge=true]')).toHaveCount(1);
+  await close(app, errors);
+});
+
+test('desktop UI: configure AI, generate only from staged data, preview/apply, stale/error/cancel and encrypted key', async () => {
+  const { root, repo } = await fixture('AI staged commit'); await initial(repo);
+  await writeFile(path.join(repo, 'shared.txt'), 'STAGED_SNAPSHOT_ONLY\n'); git(repo, ['add', 'shared.txt']);
+  await writeFile(path.join(repo, 'shared.txt'), 'UNSTAGED_PRIVATE_WORK\n'); await writeFile(path.join(repo, 'secret.txt'), 'UNTRACKED_PRIVATE_WORK\n');
+  const requests: { url: string; body: any; authorization: string | undefined }[] = []; let mode = 'ok';
+  const server = createServer(async (request, response) => {
+    const chunks = []; for await (const value of request) chunks.push(value);
+    requests.push({ url: request.url || '', body: JSON.parse(Buffer.concat(chunks).toString('utf8')), authorization: request.headers.authorization });
+    response.setHeader('Content-Type', 'application/json');
+    if (mode === 'slow') return;
+    if (mode === 'error') { response.statusCode = 401; response.end(JSON.stringify({ error: { message: 'invalid fixture-key' } })); return; }
+    if (mode === 'stale') { await writeFile(path.join(repo, 'shared.txt'), 'INDEX_CHANGED_DURING_AI\n'); git(repo, ['add', 'shared.txt']); }
+    response.end(JSON.stringify(request.url?.endsWith('/responses') ? { output: [{ type: 'message', content: [{ type: 'output_text', text: 'feat: 更新暂存功能\n\n- 调整暂存内容' }] }] } : { choices: [{ message: { content: 'fix: 根据新暂存区生成消息' } }] }));
+  });
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve)); const port = (server.address() as { port: number }).port;
+  try {
+    const { app, page, errors } = await launch(root); await open(page, repo);
+    await page.getByRole('textbox', { name: '提交信息', exact: true }).fill('existing draft should survive');
+    await page.locator('.project-strip').getByRole('button', { name: 'AI 设置', exact: true }).click();
+    const settings = page.getByRole('dialog', { name: 'AI 设置', exact: true });
+    await settings.getByLabel('AI 服务地址', { exact: true }).fill(`http://127.0.0.1:${port}/v1`);
+    await settings.getByLabel('AI 模型', { exact: true }).fill('local-fixture-model'); await settings.getByLabel('AI API Key', { exact: true }).fill('fixture-key');
+    await settings.getByRole('button', { name: '保存 AI 设置', exact: true }).click(); await expect(settings).toBeHidden();
+    const before = git(repo, ['status', '--porcelain=v2', '-z']);
+    await page.getByRole('button', { name: /AI 生成/ }).click();
+    const candidate = page.getByRole('region', { name: 'AI 提交消息候选', exact: true });
+    await expect(candidate).toContainText('feat: 更新暂存功能'); await idle(page);
+    await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('existing draft should survive');
+    expect(requests[0].url).toBe('/v1/responses'); expect(requests[0].authorization).toBe('Bearer fixture-key');
+    expect(requests[0].body.input).toContain('STAGED_SNAPSHOT_ONLY'); expect(requests[0].body.input).not.toContain('UNSTAGED_PRIVATE_WORK'); expect(requests[0].body.input).not.toContain('UNTRACKED_PRIVATE_WORK');
+    expect(git(repo, ['status', '--porcelain=v2', '-z'])).toBe(before);
+    const saved = await readFile(path.join(root, 'fresh-profile/ai-settings.json'), 'utf8'); expect(saved).not.toContain('fixture-key');
+    await capture(app, 'v1.2-ai-candidate.png');
+    await candidate.getByRole('button', { name: '应用到提交信息', exact: true }).click();
+    await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('feat: 更新暂存功能\n\n- 调整暂存内容');
+    await idle(page); await commit(page, 'feat: 更新暂存功能\n\n- 调整暂存内容');
+    expect(git(repo, ['show', 'HEAD:shared.txt'])).toBe('STAGED_SNAPSHOT_ONLY'); expect(await readFile(path.join(repo, 'shared.txt'), 'utf8')).toBe('UNSTAGED_PRIVATE_WORK\n');
+    await page.getByRole('button', { name: '暂存 shared.txt', exact: true }).click(); await idle(page);
+    await page.locator('.project-strip').getByRole('button', { name: 'AI 设置', exact: true }).click();
+    await settings.getByLabel('AI 协议', { exact: true }).selectOption('chat-completions');
+    await settings.getByRole('button', { name: '保存 AI 设置', exact: true }).click(); await expect(settings).toBeHidden();
+    await page.getByRole('textbox', { name: '提交信息', exact: true }).fill('preserve this manual draft');
+    mode = 'stale'; await page.getByRole('button', { name: /AI 生成/ }).click();
+    await expect(candidate).toContainText('暂存区已变化'); await expect(candidate.getByRole('button', { name: '应用到提交信息', exact: true })).toBeDisabled();
+    expect(requests.at(-1)!.url).toBe('/v1/chat/completions');
+    await candidate.getByRole('button', { name: '关闭候选', exact: true }).click();
+    mode = 'error'; await page.getByRole('button', { name: /AI 生成/ }).click(); await expect(page.getByRole('alert')).toContainText('HTTP 401'); await idle(page);
+    await expect(page.getByRole('alert')).not.toContainText('fixture-key');
+    mode = 'slow'; const count = requests.length; await page.getByRole('button', { name: /AI 生成/ }).click(); await expect.poll(() => requests.length).toBe(count + 1);
+    await page.getByRole('button', { name: '取消当前任务', exact: true }).click(); await expect(page.getByRole('alert')).toContainText('操作已取消'); await idle(page);
+    await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('preserve this manual draft');
+    await close(app, errors);
+    const reopened = await launch(root); await reopened.page.locator('.project-strip').getByRole('button', { name: 'AI 设置', exact: true }).click();
+    const restored = reopened.page.getByRole('dialog', { name: 'AI 设置', exact: true });
+    await expect(restored.getByLabel('AI 模型', { exact: true })).toHaveValue('local-fixture-model');
+    if (JSON.parse(saved).encryptedKey) await expect(restored.getByLabel('AI API Key', { exact: true })).toHaveAttribute('placeholder', '已配置，留空保留');
+    await restored.getByRole('button', { name: '关闭 AI 设置', exact: true }).click(); await close(reopened.app, reopened.errors);
+  } finally { server.closeAllConnections(); await new Promise<void>(resolve => server.close(() => resolve())); }
 });
 

@@ -1,0 +1,49 @@
+
+> harbor-git@1.1.0 test
+> tsx --test tests/git.test.ts tests/graph-ai.test.ts
+
+✔ project sessions isolate concurrent reads/writes, deduplicate paths, and reject closed sessions (3787.5123ms)
+✔ smart merge dev committed changes into master preserves source index, worktree, untracked files and branch (4393.6455ms)
+✔ smart merge conflicts recover in another session; source WIP survives resolve/commit/cleanup (6911.6211ms)
+✔ smart merge conflict survives reopen; abort/cleanup leaves target and source unchanged (4716.2181ms)
+✔ smart merge refuses target checked out in another worktree without modifying either tree (1711.9282ms)
+✔ ordinary merge allows non-overlapping worktree changes and lets Git protect overlapping edits (3590.1338ms)
+✔ unborn repository: literal Unicode/space/leading-dash/pathspec names, stage and unstage, initial history (6584.851ms)
+✔ workspace and index diffs remain distinct; deleting, renaming, and binary content are represented (7875.0675ms)
+✔ branches: create, switch, reject unsafe deletion, safe deletion and invalid names (6887.9444ms)
+✔ clone and local bare remote: fetch/push/fast-forward pull; divergent pull rejects without merge (17192.109ms)
+✔ merge conflict: read base/ours/theirs, resolve ours, finish merge, inspect merge commit files/diff (5605.4902ms)
+✔ merge conflict: manual resolution and theirs resolution are staged, abort restores original head (7166.6978ms)
+✔ modify/delete conflict: choosing deleted side removes the file and stages resolution (5298.1712ms)
+✔ validation rejects escapes/options/invalid payloads, errors retain useful Git output, previous repo survives bad open (1751.9515ms)
+✔ operation log reports commands and completion; a slow commit hook can be cancelled (3598.7251ms)
+✔ slow commit hook times out with a recoverable failure (6312.3154ms)
+✖ all-branch history exposes real merge parents, unmerged tips, topo order, pagination and unborn HEAD (3839.7108ms)
+✔ graph preserves octopus parent edges and never joins unrelated roots (7.5023ms)
+✔ AI snapshot includes only immutable staged content, rename metadata and binary notice; preserves working state (2998.1901ms)
+✔ Responses and Chat protocols use configured endpoint/model, parse text, and never transmit credentials in payload (86.9645ms)
+✔ AI provider reports HTTP/malformed/empty errors, redacts key, times out and supports cancellation (226.2629ms)
+✔ settings keep key out of public responses/plaintext disk, and endpoint changes clear old credentials (359.293ms)
+✔ generation marks changed index stale and cancellation leaves both index and commit history intact (3422.2694ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 22
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94778.7209
+
+✖ failing tests:
+
+test at tests\graph-ai.test.ts:37:1
+✖ all-branch history exposes real merge parents, unmerged tips, topo order, pagination and unborn HEAD (3839.7108ms)
+  Error [GitError]: fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+  Use '--' to separate paths from revisions, like this:
+  'git <command> [<revision>...] -- [<file>...]'
+      at ChildProcess.finish (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:119:18)
+      at ChildProcess.emit (node:events:514:20)
+      at maybeClose (node:internal/child_process:1156:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:334:5) {
+    details: { message: "fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'", command: 'git log -z --topo-order --decorate=full --skip=0 --max-count=100 --date=iso-strict --format=%H%x00%h%x00%P%x00%an%x00%ae%x00%aI%x00%s%x00%b%x00%D --all HEAD --ignore-missing', code: 128, stderr: "fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'\n", stdout: '', cancelled: false }
+  }

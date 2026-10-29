@@ -1,0 +1,36 @@
+
+> harbor-git@1.2.0 dist
+> npm run build && node -e "require('electron')" && electron-builder --win portable --x64
+
+
+> harbor-git@1.2.0 build
+> npm run typecheck && node scripts/build.mjs
+
+
+> harbor-git@1.2.0 typecheck
+> tsc --noEmit
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 21 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.64 kB │ gzip:  0.39 kB
+dist/assets/index-BQmQk5Yl.css   42.01 kB │ gzip:  9.33 kB
+dist/assets/index-bS_tf5OQ.js   275.57 kB │ gzip: 84.84 kB │ map: 1,181.98 kB
+
+✓ built in 118ms
+  • electron-builder  version=26.18.0 os=10.0.26200
+  • loaded configuration  file=package.json ("build" field)
+  • executing @electron/rebuild  electronVersion=45.1.0 arch=x64 buildFromSource=false workspaceRoot=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit projectDir=./ appDir=./
+  • installing native dependencies  arch=x64
+  • completed installing native dependencies
+  • packaging       platform=win32 arch=x64 electron=45.1.0 appOutDir=release\win-unpacked
+  • using custom unpacked Electron distribution  electronDist=node_modules\electron\dist
+  • copying unpacked Electron  source=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\node_modules\electron\dist destination=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\release\win-unpacked
+  • searching for node modules  pm=npm searchDir=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit
+  • updating asar integrity executable resource  executablePath=release\win-unpacked\HarborGit.exe
+  • executable resource editing and code signing skipped — signAndEditExecutable is false. To skip only code signing while keeping icon and metadata applied, use signExecutable: false instead.  exe=release\win-unpacked\HarborGit.exe
+  • building        target=portable file=release\HarborGit-1.2.0-Windows-x64.exe archs=x64
+  • default Electron icon is used  reason=application icon is not set
+  • no code signing certificate configured, signing is skipped  path=release\HarborGit-1.2.0-Windows-x64.exe
