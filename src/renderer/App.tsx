@@ -7,6 +7,7 @@ type View = 'changes' | 'history' | 'branches';
 type Selection = { path: string; area: Area; commit?: string; oldPath?: string };
 type Modal = 'open' | 'clone' | 'createBranch' | 'remote' | 'identity' | 'deleteBranch' | 'abortMerge' | 'mergeInto' | null;
 const emptyDiff: Diff = { text: '', binary: false, truncated: false };
+const brandIcon = new URL('../../assets/harborgit.svg', import.meta.url).href;
 const statusLabels: Record<string, string> = { M: '修改', A: '新增', D: '删除', R: '重命名', C: '复制', U: '冲突', '?': '未跟踪', T: '类型变化' };
 const basename = (path: string) => path.split(/[\\/]/).filter(Boolean).at(-1) || path;
 const isStaged = (code: string) => code !== ' ' && code !== '.' && code !== '?' && code !== '!';
@@ -300,7 +301,7 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     });
   };
 
-  if (!api) return <main className="desktop-required"><div className="brand-mark">H</div><h1>HarborGit</h1><p>请通过 Electron 桌面应用启动，以连接本机 Git。</p><code>npm start</code></main>;
+  if (!api) return <main className="desktop-required"><img className="brand-mark" src={brandIcon} alt="" /><h1>HarborGit</h1><p>请通过 Electron 桌面应用启动，以连接本机 Git。</p><code>npm start</code></main>;
 
   const staged = repo?.entries.filter(e => isStaged(e.index) && !e.conflict) || [];
   const unstaged = repo?.entries.filter(e => isChanged(e.worktree) || e.conflict) || [];
@@ -316,7 +317,7 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
   };
 
   return <div className="app-shell">
-    <header className="app-header"><div className="brand"><div className="brand-mark">H</div><strong>Harbor<span>Git</span></strong><span className="brand-caption">把每次改动，稳稳靠岸。</span></div><div className="header-actions"><button className="quiet-button" onClick={showOpen} disabled={!!busy}><Icon name="folder" size={16} />打开仓库</button><button className="quiet-button" onClick={showClone} disabled={!!busy}><Icon name="download" size={16} />克隆</button></div></header>
+    <header className="app-header"><div className="brand"><img className="brand-mark" src={brandIcon} alt="" /><strong>Harbor<span>Git</span></strong><span className="brand-caption">把每次改动，稳稳靠岸。</span></div><div className="header-actions"><button className="quiet-button" onClick={showOpen} disabled={!!busy}><Icon name="folder" size={16} />打开仓库</button><button className="quiet-button" onClick={showClone} disabled={!!busy}><Icon name="download" size={16} />克隆</button></div></header>
     <div className="main-shell">
       <aside className="sidebar"><div className="sidebar-top"><span className="eyebrow">WORKSPACE</span>{repo ? <><h2 title={repo.root}>{basename(repo.root)}</h2><p className="repo-location" title={repo.root}>{repo.root}</p><div className="current-branch"><Icon name="branch" size={16} /><span>{repo.detached ? '分离 HEAD' : repo.branch}</span>{repo.unborn && <span className="tag">空仓库</span>}</div></> : <><h2>你的代码港湾</h2><p className="repo-location">打开仓库，开始下一次提交。</p></>}</div>
         <nav aria-label="主导航"><button className={`nav-item ${view === 'changes' ? 'active' : ''}`} disabled={!repo || !!busy} onClick={() => { setView('changes'); setSelection(null); }}><Icon name="changes" /><span>工作区</span>{repo && <b>{repo.entries.length}</b>}</button><button className={`nav-item ${view === 'history' ? 'active' : ''}`} disabled={!repo || !!busy} onClick={() => { setView('history'); setSelection(null); }}><Icon name="history" /><span>提交历史</span></button><button className={`nav-item ${view === 'branches' ? 'active' : ''}`} disabled={!repo || !!busy} onClick={() => { setView('branches'); setSelection(null); }}><Icon name="branch" /><span>分支管理</span></button></nav>

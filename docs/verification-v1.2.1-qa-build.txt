@@ -1,0 +1,16 @@
+  • electron-builder  version=26.18.0 os=10.0.26200
+  • loaded configuration  file=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\work\installer-verification\harborgit-setup-qa-hsNjTP\builder-qa.json
+  • building        target=nsis file=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\work\installer-verification\harborgit-setup-qa-hsNjTP\artifacts\HarborGit-Installer-QA-Setup.exe archs=x64 oneClick=false perMachine=false
+  • file signing skipped via signExecutable configuration  file=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\work\installer-verification\harborgit-setup-qa-hsNjTP\artifacts\HarborGit-Installer-QA-Setup.__uninstaller.exe
+  • file signing skipped via signExecutable configuration  file=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\work\installer-verification\harborgit-setup-qa-hsNjTP\artifacts\HarborGit-Installer-QA-Setup.exe
+  • building block map  blockMapFile=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\work\installer-verification\harborgit-setup-qa-hsNjTP\artifacts\HarborGit-Installer-QA-Setup.exe.blockmap
+{
+  "root": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-hsNjTP",
+  "project": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\outputs\\HarborGit\\",
+  "version": "1.2.1",
+  "setup": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-hsNjTP\\artifacts\\HarborGit-Installer-QA-Setup.exe",
+  "installDir": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-hsNjTP\\installed 中文 path",
+  "exeName": "HarborGit-Installer-QA.exe",
+  "qaName": "HarborGit Installer QA",
+  "contextFile": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-hsNjTP\\context.json"
+}

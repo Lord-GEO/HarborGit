@@ -1,17 +1,21 @@
-# HarborGit 1.2.0
+# HarborGit 1.2.1
 
 可独立运行的 Windows x64 Git 图形客户端。Electron + React + TypeScript，实际仓库操作交给本机 Git CLI。界面、代码和产品设计独立编写；IDEA 的插件只用于研究交互与状态模型，没有作为客户端依赖。
 
-本次新增：彩色分支提交图、分叉与合并连线，以及根据暂存快照生成提交消息的 AI 助手。详细操作及验证见 [1.2 更新说明](docs/RELEASE-1.2.md)。多项目、明暗主题和智能合并功能继续保留。
+本次新增 Windows Setup 安装版和 HarborGit 自有图标，支持选择安装目录、创建快捷方式及标准卸载。详见 [1.2.1 更新说明](docs/RELEASE-1.2.1.md)。彩色提交图、AI 提交消息、多项目、明暗主题和智能合并功能继续保留，功能说明见 [1.2 更新说明](docs/RELEASE-1.2.md)。
 
-## 直接运行
+## 安装与运行
 
 本次交付已包含打包结果：
 
-- 单文件便携版：`release/HarborGit-1.2.0-Windows-x64.exe`，双击运行。
+- 安装版：`release/HarborGit-1.2.1-Setup-x64.exe`，双击后按向导安装。默认安装到当前用户，可选择目录，创建桌面和开始菜单快捷方式。
 - 目录版：`release/win-unpacked/HarborGit.exe`；复制时保留整个 `win-unpacked` 目录。
 
-打包版自带 Electron，无需 Node.js、npm 或 IDEA。需要 **Git for Windows 在 PATH 中**（本机已验证 Git 2.50.1）；客户端不会安装 Git。便携版是启动时解压的单文件分发，设置与最近仓库路径保存在 `%APPDATA%/HarborGit`。该构建未进行代码签名。
+安装前关闭正在运行的 HarborGit；原便携版无需卸载。安装完成后可从快捷方式启动；在 Windows“设置 → 应用”中卸载。卸载保留 `%APPDATA%/HarborGit` 内的设置、最近仓库记录和加密 AI 配置，也不会删除项目仓库。升级继续使用原配置。
+
+打包版自带 Electron，无需 Node.js、npm 或 IDEA。需要 **Git for Windows 在 PATH 中**（本机已验证 Git 2.50.1）；客户端不会安装 Git。该构建未进行代码签名。需要便携版时可使用下方命令自行打包；之前版本的便携 EXE 仍为历史产物。
+
+![HarborGit 图标](assets/harborgit-128.png)
 
 ## 从源码启动与打包
 
@@ -24,12 +28,15 @@ npm run dev       # Vite 热更新界面；主进程修改后需重启
 npm run build     # 类型检查及生产构建
 npm test          # 真实 Git 后端集成测试
 npm run test:ui   # 真实 Electron 界面端到端测试（先 build）
-npm run test:portable # 运行实际单文件便携版的启动检查（先 dist）
+npm run test:portable # 运行实际单文件便携版的启动检查（先 dist:portable）
 npm run pack      # release/win-unpacked
-npm run dist      # Windows x64 单文件便携版
+npm run dist      # Windows x64 Setup 安装版，同 dist:setup
+npm run dist:setup # release/HarborGit-1.2.1-Setup-x64.exe
+npm run dist:portable # 可选：Windows x64 单文件便携版
+npm run icons     # 从 assets/harborgit.svg 重新生成 PNG 与 Windows ICO
 ```
 
-首次启动 / 打包会下载 Electron 运行时；首次 portable 打包会下载打包工具，需要网络。如果网络环境导致运行时下载失败，可在网络可达环境重新运行 `node node_modules/electron/install.js`。本次构建因 Node 下载器停滞，改用 curl 下载相同的 Electron 官方 ZIP，并在解压前用随 npm 包提供的 SHA-256 校验；见验证报告。
+安装依赖会下载 Electron 运行时，首次打包会下载 NSIS 等打包工具，需要网络。如果网络环境导致运行时下载失败，可在网络可达环境重新运行 `node node_modules/electron/install.js`。最初构建时的 Electron 下载替代方案与校验过程保留在历史验证报告。
 
 ## 已实现的操作
 
@@ -73,6 +80,8 @@ REA 可清点 JAR，但不支持该 JVM `.class` 格式；报告保留原始拒�
 借鉴的依据是 index / worktree 双维状态、文件选择驱动 Diff、后台执行与结果后刷新、base / 双方冲突内容。HarborGit 的布局、组件、命令协议、任务队列、Pull 策略、历史分页、冲突编辑器均为自行设计。IDEA 的 Diff 证据涉及通用内容版本引擎，不能称其每次都调用 `git diff`；HarborGit 自主采用 Git CLI 的 diff。
 
 ## 验证与尚未实现
+
+1.2.1 的 [安装验证](docs/verification-v1.2.1-installer.json)、[已安装程序界面测试](docs/verification-v1.2.1-installed-ui.txt)、[EXE 图标核验](docs/verification-v1.2.1-icons.json)均通过。为保护正在使用的便携版，安装测试采用独立的 QA 安装身份，应用载荷与交付版本一致；完整范围与限制见 [1.2.1 更新说明](docs/RELEASE-1.2.1.md)。
 
 1.2 的实测范围和原始输出见 [更新验证](docs/RELEASE-1.2.md)、[后端结果](docs/verification-v1.2-backend-final.txt)、[发行包界面结果](docs/verification-v1.2-packaged-ui.txt)。1.0 历史验证保留在 [VERIFICATION.md](docs/VERIFICATION.md)。所有写入测试使用工作区内新建的专用仓库，远程仅使用本地裸仓库；未使用用户真实仓库或互联网远程进行写验证。
 

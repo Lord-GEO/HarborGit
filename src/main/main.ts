@@ -8,6 +8,7 @@ import type { Requests, Result, AiSettingsInput } from '../shared/types';
 
 if (process.env.HARBOR_USER_DATA && path.isAbsolute(process.env.HARBOR_USER_DATA)) app.setPath('userData', process.env.HARBOR_USER_DATA);
 app.setName('HarborGit');
+if (process.platform === 'win32') app.setAppUserModelId('dev.harborgit.desktop');
 let win: BrowserWindow | null = null;
 let recentPaths: string[] = [];
 const ai = new AiSettingsStore(path.join(app.getPath('userData'), 'ai-settings.json'), { available: () => safeStorage.isEncryptionAvailable(), encrypt: value => safeStorage.encryptStringAsync(value), decrypt: async value => (await safeStorage.decryptStringAsync(value)).result });
@@ -49,7 +50,7 @@ app.whenReady().then(async () => {
     verifySender(event); try { return { ok: true, data: await ai.save(input) }; } catch (e) { return { ok: false, error: { message: e instanceof Error ? e.message : String(e) } }; }
   });
   win = new BrowserWindow({
-    title: 'HarborGit', width: 1460, height: 940, minWidth: 1100, minHeight: 720, backgroundColor: '#111820',
+    title: 'HarborGit', icon: path.join(__dirname, '../assets/harborgit-256.png'), width: 1460, height: 940, minWidth: 1100, minHeight: 720, backgroundColor: '#111820',
     autoHideMenuBar: true, show: false,
     webPreferences: { preload: path.join(__dirname, 'preload.cjs'), nodeIntegration: false, contextIsolation: true, sandbox: true, webSecurity: true, spellcheck: false }
   });

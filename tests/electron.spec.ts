@@ -48,6 +48,8 @@ async function launch(root: string) {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await expect(page.getByRole('button', { name: '打开本地仓库', exact: true })).toBeVisible();
+  await expect(page.locator('img.brand-mark').first()).toHaveJSProperty('complete', true);
+  await expect(page.locator('img.brand-mark').first()).toHaveJSProperty('naturalWidth', 512);
   return { app, page, errors };
 }
 async function close(app: ElectronApplication, errors: string[]) {

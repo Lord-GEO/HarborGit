@@ -1,0 +1,33 @@
+import { readFile, writeFile, mkdir, stat } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+import { Data, Resource, NtExecutable, NtExecutableResource } from 'resedit';
+const project = fileURLToPath(new URL('..', import.meta.url));
+const info = JSON.parse(await readFile(path.join(project, 'package.json'), 'utf8'));
+const ico = await readFile(path.join(project, 'assets/harborgit.ico'));
+const hash = value => createHash('sha256').update(Buffer.from(value)).digest('hex');
+const source = Data.IconFile.from(ico);
+const sizes = source.icons.map(item => item.width || item.data.width);
+assert.deepEqual(sizes, [16, 20, 24, 32, 40, 48, 64, 128, 256]);
+const hashes = new Set(source.icons.map(item => hash(item.data.isRaw() ? item.data.bin : item.data.generate())));
+const candidates = process.argv.slice(2).length ? process.argv.slice(2) : [path.join(project, 'release/win-unpacked/HarborGit.exe'), path.join(project, `release/HarborGit-${info.version}-Setup-x64.exe`)];
+const results = [];
+await mkdir(path.join(project, 'docs/screenshots'), { recursive: true });
+for (const filename of candidates) {
+  const binary = await readFile(filename), executable = NtExecutable.from(binary, { ignoreCert: true });
+  const resources = NtExecutableResource.from(executable), groups = Resource.IconGroupEntry.fromEntries(resources.entries);
+  assert.ok(groups.length, `No PE icon group in ${filename}`);
+  const items = groups.flatMap(group => group.getIconItemsFromEntries(resources.entries));
+  const matches = items.filter(item => hashes.has(hash(item.isRaw() ? item.bin : item.generate())));
+  assert.ok(matches.length >= 3, `Expected HarborGit icon pixels in ${filename}; found ${matches.length}`);
+  const versions = Resource.VersionInfo.fromEntries(resources.entries);
+  const name = path.basename(filename).includes('Setup') ? 'setup-exe-icon.png' : 'app-exe-icon.png';
+  const preview = [...matches].sort((a, b) => (b.width || 256) - (a.width || 256)).find(item => item.isRaw());
+  if (preview) await writeFile(path.join(project, 'docs/screenshots', name), Buffer.from(preview.bin));
+  results.push({ path: filename, bytes: (await stat(filename)).size, sha256: hash(binary), groups: groups.length, iconImages: items.length, matchingHarborGitImages: matches.length, matchedSizes: matches.map(item => item.width || 256), versionResources: versions.length });
+}
+const result = { status: 'passed', version: info.version, icoSha256: hash(ico), icoSizes: sizes, artifacts: results };
+await writeFile(path.join(project, `docs/verification-v${info.version}-icons.json`), JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));

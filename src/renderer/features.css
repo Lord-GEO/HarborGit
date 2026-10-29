@@ -40,3 +40,5 @@
 :root[data-theme=light] .graph-node{stroke:hsl(var(--lane-hue) 62% 40%)}
 :root[data-theme=light] .graph-ref{color:hsl(var(--lane-hue) 60% 30%);border-color:hsl(var(--lane-hue) 35% 74%);background:hsl(var(--lane-hue) 45% 93%)}
 @media(max-width:1250px){.history-list.graph-history{width:365px;min-width:305px}.graph-history-toolbar{gap:6px}.graph-history-toolbar select{width:120px}}
+
+.brand-mark{width:33px;height:33px;background:transparent;box-shadow:none;transform:none;border-radius:0;object-fit:contain}

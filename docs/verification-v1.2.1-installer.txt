@@ -1,0 +1,30 @@
+{
+    "version":  "1.2.1",
+    "qaIdentity":  "HarborGit Installer QA",
+    "installDir":  "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-hsNjTP\\installed 中文 path",
+    "originalHarborGitBefore":  [
+                                    {
+                                        "ProcessId":  48208,
+                                        "ExecutablePath":  "C:\\Users\\Admin\\AppData\\Local\\Temp\\3LMGendxUZSCPSwuHIkleeApiQc\\HarborGit.exe"
+                                    }
+                                ],
+    "checks":  [
+                   "Custom install path containing spaces and Chinese characters accepted",
+                   "Start menu/desktop shortcuts and uninstall registry entry created",
+                   "Installed executable is byte-identical to shipped HarborGit.exe (only filename differs)",
+                   "Installed application passed open/diff/stage/unstage/commit/history/branch UI flow",
+                   "Uninstall removed the QA application, registration and both shortcuts"
+               ],
+    "registration":  {
+                         "path":  "Microsoft.PowerShell.Core\\Registry::HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\13f59bcc-d816-59cd-8095-8c57888f33a3",
+                         "version":  "1.2.1",
+                         "displayIcon":  "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-hsNjTP\\installed 中文 path\\uninstallerIcon.ico"
+                     },
+    "originalHarborGitAfter":  [
+                                   {
+                                       "ProcessId":  48208,
+                                       "ExecutablePath":  "C:\\Users\\Admin\\AppData\\Local\\Temp\\3LMGendxUZSCPSwuHIkleeApiQc\\HarborGit.exe"
+                                   }
+                               ],
+    "status":  "passed"
+}

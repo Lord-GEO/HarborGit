@@ -1,6 +1,6 @@
 {
   "name": "harbor-git",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "An independent Windows Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",
@@ -12,11 +12,14 @@
     "dev": "node scripts/dev.mjs",
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && node scripts/build.mjs",
+    "icons": "electron scripts/render-icons.cjs",
     "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts",
     "test:ui": "playwright test",
     "test:portable": "node scripts/smoke-portable.mjs",
     "pack": "npm run build && node -e \"require('electron')\" && electron-builder --win --dir --x64",
-    "dist": "npm run build && node -e \"require('electron')\" && electron-builder --win portable --x64"
+    "dist": "npm run dist:setup",
+    "dist:setup": "npm run build && node -e \"require('electron')\" && electron-builder --win nsis --x64",
+    "dist:portable": "npm run build && node -e \"require('electron')\" && electron-builder --win portable --x64"
   },
   "dependencies": {
     "react": "19.3.1",
@@ -43,6 +46,7 @@
     "files": [
       "dist/**/*",
       "dist-electron/**/*",
+      "assets/**/*",
       "package.json",
       "LICENSE"
     ],
@@ -50,9 +54,28 @@
     "electronDist": "node_modules/electron/dist",
     "win": {
       "target": [
-        "portable"
+        "nsis"
       ],
-      "signAndEditExecutable": false
+      "icon": "assets/harborgit.ico",
+      "signAndEditExecutable": true,
+      "signExecutable": false
+    },
+    "nsis": {
+      "artifactName": "HarborGit-${version}-Setup-x64.exe",
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "HarborGit",
+      "uninstallDisplayName": "HarborGit",
+      "installerIcon": "assets/harborgit.ico",
+      "uninstallerIcon": "assets/harborgit.ico",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "installerLanguages": ["zh_CN", "en_US"],
+      "language": "2052"
     },
     "portable": {
       "artifactName": "HarborGit-${version}-Windows-x64.exe"
