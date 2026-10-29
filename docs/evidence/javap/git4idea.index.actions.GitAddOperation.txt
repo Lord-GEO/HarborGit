@@ -1,0 +1,157 @@
+Compiled from "StagingAreaOperation.kt"
+public final class git4idea.index.actions.GitAddOperation implements git4idea.index.actions.StagingAreaOperation {
+  public static final git4idea.index.actions.GitAddOperation INSTANCE;
+
+  private static final javax.swing.Icon icon;
+
+  private git4idea.index.actions.GitAddOperation();
+    Code:
+       0: aload_0
+       1: invokespecial #10                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public java.util.function.Supplier<java.lang.String> getActionText();
+    Code:
+       0: ldc           #18                 // String stage.add.action.text
+       2: iconst_0
+       3: anewarray     #4                  // class java/lang/Object
+       6: invokestatic  #24                 // Method git4idea/i18n/GitBundle.messagePointer:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/function/Supplier;
+       9: dup
+      10: ldc           #26                 // String messagePointer(...)
+      12: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      15: areturn
+
+  public java.lang.String getProgressTitle();
+    Code:
+       0: ldc           #36                 // String stage.add.process
+       2: iconst_0
+       3: anewarray     #4                  // class java/lang/Object
+       6: invokestatic  #40                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: dup
+      10: ldc           #42                 // String message(...)
+      12: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      15: areturn
+
+  public javax.swing.Icon getIcon();
+    Code:
+       0: getstatic     #48                 // Field icon:Ljavax/swing/Icon;
+       3: areturn
+
+  public java.lang.String getErrorMessage();
+    Code:
+       0: ldc           #51                 // String stage.add.error.title
+       2: iconst_0
+       3: anewarray     #4                  // class java/lang/Object
+       6: invokestatic  #40                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: dup
+      10: ldc           #42                 // String message(...)
+      12: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      15: areturn
+
+  public java.lang.String getShortcutText();
+    Code:
+       0: ldc           #54                 // String Git.Stage.Add
+       2: invokestatic  #60                 // Method com/intellij/openapi/keymap/KeymapUtil.getFirstKeyboardShortcutText:(Ljava/lang/String;)Ljava/lang/String;
+       5: dup
+       6: ldc           #62                 // String getFirstKeyboardShortcutText(...)
+       8: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      11: areturn
+
+  public boolean matches(git4idea.index.ui.GitFileStatusNode);
+    Code:
+       0: aload_1
+       1: ldc           #66                 // String statusNode
+       3: invokestatic  #69                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: invokevirtual #75                 // Method git4idea/index/ui/GitFileStatusNode.getKind:()Lgit4idea/index/ui/NodeKind;
+      10: getstatic     #81                 // Field git4idea/index/ui/NodeKind.UNSTAGED:Lgit4idea/index/ui/NodeKind;
+      13: if_acmpeq     26
+      16: aload_1
+      17: invokevirtual #75                 // Method git4idea/index/ui/GitFileStatusNode.getKind:()Lgit4idea/index/ui/NodeKind;
+      20: getstatic     #84                 // Field git4idea/index/ui/NodeKind.UNTRACKED:Lgit4idea/index/ui/NodeKind;
+      23: if_acmpne     30
+      26: iconst_1
+      27: goto          31
+      30: iconst_0
+      31: ireturn
+
+  public void processPaths(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<git4idea.index.ui.GitFileStatusNode>);
+    Code:
+       0: aload_1
+       1: ldc           #90                 // String project
+       3: invokestatic  #69                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #92                 // String root
+       9: invokestatic  #69                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #94                 // String nodes
+      15: invokestatic  #69                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_1
+      19: aload_2
+      20: aload_3
+      21: checkcast     #96                 // class java/lang/Iterable
+      24: astore        4
+      26: astore        14
+      28: astore        13
+      30: iconst_0
+      31: istore        5
+      33: aload         4
+      35: astore        6
+      37: new           #98                 // class java/util/ArrayList
+      40: dup
+      41: aload         4
+      43: bipush        10
+      45: invokestatic  #104                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+      48: invokespecial #107                // Method java/util/ArrayList."<init>":(I)V
+      51: checkcast     #109                // class java/util/Collection
+      54: astore        7
+      56: iconst_0
+      57: istore        8
+      59: aload         6
+      61: invokeinterface #113,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      66: astore        9
+      68: aload         9
+      70: invokeinterface #119,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      75: ifeq          118
+      78: aload         9
+      80: invokeinterface #123,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      85: astore        10
+      87: aload         7
+      89: aload         10
+      91: checkcast     #71                 // class git4idea/index/ui/GitFileStatusNode
+      94: astore        11
+      96: astore        15
+      98: iconst_0
+      99: istore        12
+     101: aload         11
+     103: invokevirtual #127                // Method git4idea/index/ui/GitFileStatusNode.getFilePath:()Lcom/intellij/openapi/vcs/FilePath;
+     106: aload         15
+     108: swap
+     109: invokeinterface #131,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     114: pop
+     115: goto          68
+     118: aload         7
+     120: checkcast     #133                // class java/util/List
+     123: nop
+     124: astore        15
+     126: aload         13
+     128: aload         14
+     130: aload         15
+     132: checkcast     #109                // class java/util/Collection
+     135: iconst_1
+     136: invokestatic  #139                // Method git4idea/util/GitFileUtils.addPaths:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Z)V
+     139: return
+
+  static {};
+    Code:
+       0: new           #2                  // class git4idea/index/actions/GitAddOperation
+       3: dup
+       4: invokespecial #160                // Method "<init>":()V
+       7: putstatic     #163                // Field INSTANCE:Lgit4idea/index/actions/GitAddOperation;
+      10: getstatic     #168                // Field com/intellij/icons/AllIcons$General.Add:Ljavax/swing/Icon;
+      13: dup
+      14: ldc           #169                // String Add
+      16: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: putstatic     #48                 // Field icon:Ljavax/swing/Icon;
+      22: return
+}

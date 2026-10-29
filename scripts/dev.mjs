@@ -1,0 +1,10 @@
+import { spawn } from 'node:child_process';
+import { createServer } from 'vite';
+import { build } from 'esbuild';
+import electron from 'electron';
+await build({ entryPoints: ['src/main/main.ts'], outfile: 'dist-electron/main.cjs', platform: 'node', format: 'cjs', target: 'node22', bundle: true, external: ['electron'] });
+await build({ entryPoints: ['src/main/preload.ts'], outfile: 'dist-electron/preload.cjs', platform: 'node', format: 'cjs', target: 'node22', bundle: true, external: ['electron'] });
+const server = await createServer(); await server.listen();
+const child = spawn(electron, ['.'], { stdio: 'inherit', env: { ...process.env, HARBOR_DEV_URL: 'http://127.0.0.1:5173' }, shell: false });
+child.on('exit', async code => { await server.close(); process.exit(code ?? 0); });
+process.on('SIGINT', () => child.kill());

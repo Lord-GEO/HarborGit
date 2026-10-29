@@ -1,0 +1,177 @@
+Compiled from "GitCloneUtils.kt"
+public final class git4idea.checkout.GitCloneUtils {
+  public static final git4idea.checkout.GitCloneUtils INSTANCE;
+
+  private git4idea.checkout.GitCloneUtils();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public final void clone(com.intellij.openapi.project.Project, java.lang.String, java.lang.String, git4idea.commands.GitShallowCloneOptions, com.intellij.openapi.vcs.CheckoutProvider$Listener, java.lang.String, java.lang.String);
+    Code:
+       0: aload_1
+       1: ldc           #18                 // String project
+       3: invokestatic  #24                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #26                 // String selectedUrl
+       9: invokestatic  #24                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #28                 // String directoryPath
+      15: invokestatic  #24                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         5
+      20: ldc           #30                 // String checkoutListener
+      22: invokestatic  #24                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload         6
+      27: ldc           #32                 // String unableToCreateDirectoryId
+      29: invokestatic  #24                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      32: aload         7
+      34: ldc           #34                 // String unableToFindDirectoryId
+      36: invokestatic  #24                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      39: aload_3
+      40: iconst_0
+      41: anewarray     #36                 // class java/lang/String
+      44: invokestatic  #42                 // Method java/nio/file/Paths.get:(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;
+      47: invokeinterface #48,  1           // InterfaceMethod java/nio/file/Path.toAbsolutePath:()Ljava/nio/file/Path;
+      52: invokeinterface #51,  1           // InterfaceMethod java/nio/file/Path.getParent:()Ljava/nio/file/Path;
+      57: astore        8
+      59: aload         8
+      61: invokevirtual #55                 // Method java/lang/Object.toString:()Ljava/lang/String;
+      64: invokestatic  #61                 // Method com/intellij/dvcs/ui/CloneDvcsValidationUtils.createDestination:(Ljava/lang/String;)Lcom/intellij/openapi/ui/ValidationInfo;
+      67: astore        9
+      69: aload         9
+      71: ifnull        93
+      74: aload_0
+      75: aload_1
+      76: aload         9
+      78: getfield      #67                 // Field com/intellij/openapi/ui/ValidationInfo.message:Ljava/lang/String;
+      81: dup
+      82: ldc           #68                 // String message
+      84: invokestatic  #71                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      87: aload         6
+      89: invokespecial #75                 // Method notifyCreateDirectoryFailed:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/String;)V
+      92: return
+      93: invokestatic  #81                 // Method com/intellij/openapi/vfs/LocalFileSystem.getInstance:()Lcom/intellij/openapi/vfs/LocalFileSystem;
+      96: dup
+      97: ldc           #83                 // String getInstance(...)
+      99: invokestatic  #71                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     102: astore        10
+     104: aload         10
+     106: aload         8
+     108: invokeinterface #87,  1           // InterfaceMethod java/nio/file/Path.toFile:()Ljava/io/File;
+     113: invokevirtual #91                 // Method com/intellij/openapi/vfs/LocalFileSystem.findFileByIoFile:(Ljava/io/File;)Lcom/intellij/openapi/vfs/VirtualFile;
+     116: astore        11
+     118: aload         11
+     120: ifnonnull     137
+     123: aload         10
+     125: aload         8
+     127: invokeinterface #87,  1           // InterfaceMethod java/nio/file/Path.toFile:()Ljava/io/File;
+     132: invokevirtual #94                 // Method com/intellij/openapi/vfs/LocalFileSystem.refreshAndFindFileByIoFile:(Ljava/io/File;)Lcom/intellij/openapi/vfs/VirtualFile;
+     135: astore        11
+     137: aload         11
+     139: ifnonnull     150
+     142: aload_0
+     143: aload_1
+     144: aload         7
+     146: invokespecial #98                 // Method notifyDestinationNotFound:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)V
+     149: return
+     150: aload_3
+     151: iconst_0
+     152: anewarray     #36                 // class java/lang/String
+     155: invokestatic  #42                 // Method java/nio/file/Paths.get:(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;
+     158: invokeinterface #101,  1          // InterfaceMethod java/nio/file/Path.getFileName:()Ljava/nio/file/Path;
+     163: invokevirtual #55                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     166: astore        12
+     168: aload         8
+     170: invokeinterface #48,  1           // InterfaceMethod java/nio/file/Path.toAbsolutePath:()Ljava/nio/file/Path;
+     175: invokevirtual #55                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     178: astore        13
+     180: aload_1
+     181: invokestatic  #106                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     184: aload         5
+     186: aload         11
+     188: aload_2
+     189: aload         12
+     191: aload         13
+     193: aload         4
+     195: invokestatic  #111                // Method git4idea/checkout/GitCheckoutProvider.clone:(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Lcom/intellij/openapi/vcs/CheckoutProvider$Listener;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lgit4idea/commands/GitShallowCloneOptions;)V
+     198: return
+
+  private final void notifyCreateDirectoryFailed(com.intellij.openapi.project.Project, java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: astore        4
+       3: iconst_0
+       4: istore        5
+       6: ldc           #2                  // class git4idea/checkout/GitCloneUtils
+       8: invokestatic  #132                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+      11: dup
+      12: ldc           #83                 // String getInstance(...)
+      14: invokestatic  #71                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      17: ldc           #134                // String clone.dialog.error.unable.to.create.destination.directory
+      19: iconst_0
+      20: anewarray     #4                  // class java/lang/Object
+      23: invokestatic  #139                // Method com/intellij/collaboration/messages/CollaborationToolsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      26: iconst_1
+      27: anewarray     #36                 // class java/lang/String
+      30: astore        4
+      32: aload         4
+      34: iconst_0
+      35: aload_2
+      36: aastore
+      37: aload         4
+      39: invokevirtual #143                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;[Ljava/lang/String;)V
+      42: aload_1
+      43: invokestatic  #148                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+      46: aload_3
+      47: ldc           #150                // String clone.dialog.clone.failed
+      49: iconst_0
+      50: anewarray     #4                  // class java/lang/Object
+      53: invokestatic  #139                // Method com/intellij/collaboration/messages/CollaborationToolsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      56: ldc           #152                // String clone.dialog.error.unable.to.find.destination.directory
+      58: iconst_0
+      59: anewarray     #4                  // class java/lang/Object
+      62: invokestatic  #139                // Method com/intellij/collaboration/messages/CollaborationToolsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      65: invokevirtual #156                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/notification/Notification;
+      68: pop
+      69: return
+
+  private final void notifyDestinationNotFound(com.intellij.openapi.project.Project, java.lang.String);
+    Code:
+       0: aload_0
+       1: astore_3
+       2: iconst_0
+       3: istore        4
+       5: ldc           #2                  // class git4idea/checkout/GitCloneUtils
+       7: invokestatic  #132                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+      10: dup
+      11: ldc           #83                 // String getInstance(...)
+      13: invokestatic  #71                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      16: ldc           #163                // String clone.dialog.error.destination.not.exist
+      18: iconst_0
+      19: anewarray     #4                  // class java/lang/Object
+      22: invokestatic  #139                // Method com/intellij/collaboration/messages/CollaborationToolsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      25: invokevirtual #166                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+      28: aload_1
+      29: invokestatic  #148                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+      32: aload_2
+      33: ldc           #150                // String clone.dialog.clone.failed
+      35: iconst_0
+      36: anewarray     #4                  // class java/lang/Object
+      39: invokestatic  #139                // Method com/intellij/collaboration/messages/CollaborationToolsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      42: ldc           #152                // String clone.dialog.error.unable.to.find.destination.directory
+      44: iconst_0
+      45: anewarray     #4                  // class java/lang/Object
+      48: invokestatic  #139                // Method com/intellij/collaboration/messages/CollaborationToolsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      51: invokevirtual #156                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/notification/Notification;
+      54: pop
+      55: return
+
+  static {};
+    Code:
+       0: new           #2                  // class git4idea/checkout/GitCloneUtils
+       3: dup
+       4: invokespecial #168                // Method "<init>":()V
+       7: putstatic     #171                // Field INSTANCE:Lgit4idea/checkout/GitCloneUtils;
+      10: return
+}

@@ -1,0 +1,2044 @@
+Compiled from "GitLogUtil.java"
+public final class git4idea.history.GitLogUtil {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  public static final java.lang.String GRAFTED;
+
+  public static final java.lang.String REPLACED;
+
+  public static final java.util.List<java.lang.String> LOG_ALL;
+
+  public static final java.lang.String STDIN;
+
+  public static final git4idea.history.GitLogParser$GitLogOption[] COMMIT_METADATA_OPTIONS;
+
+  public git4idea.history.GitLogUtil();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void readTimedCommits(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, java.util.function.Consumer<? super com.intellij.vcs.log.VcsUser>, java.util.function.Consumer<? super com.intellij.vcs.log.VcsRef>, java.util.function.Consumer<? super com.intellij.vcs.log.TimedVcsCommit>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      16: aload_2
+      17: ifnonnull     24
+      20: iconst_2
+      21: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      24: aload         5
+      26: ifnonnull     33
+      29: iconst_3
+      30: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      33: aload_0
+      34: aload_1
+      35: invokestatic  #7                  // Method java/util/Collections.emptyList:()Ljava/util/List;
+      38: aload_2
+      39: aload_3
+      40: aload         4
+      42: aload         5
+      44: invokestatic  #13                 // Method readTimedCommits:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Ljava/util/List;Ljava/util/function/Consumer;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V
+      47: return
+
+  public static void readTimedCommits(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, java.util.List<java.lang.String>, java.util.function.Consumer<? super com.intellij.vcs.log.VcsUser>, java.util.function.Consumer<? super com.intellij.vcs.log.VcsRef>, java.util.function.Consumer<? super com.intellij.vcs.log.TimedVcsCommit>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      16: aload_2
+      17: ifnonnull     25
+      20: bipush        6
+      22: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      25: aload_3
+      26: ifnonnull     34
+      29: bipush        7
+      31: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      34: aload         6
+      36: ifnonnull     44
+      39: bipush        8
+      41: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      44: aload_0
+      45: aload_1
+      46: aload_2
+      47: aload_3
+      48: invokestatic  #7                  // Method java/util/Collections.emptyList:()Ljava/util/List;
+      51: aload         4
+      53: aload         5
+      55: aload         6
+      57: invokestatic  #19                 // Method readTimedCommits:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/function/Consumer;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V
+      60: return
+
+  public static void readTimedCommits(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, java.util.List<java.lang.String>, java.util.List<com.intellij.openapi.vcs.FilePath>, java.util.function.Consumer<? super com.intellij.vcs.log.VcsUser>, java.util.function.Consumer<? super com.intellij.vcs.log.VcsRef>, java.util.function.Consumer<? super com.intellij.vcs.log.TimedVcsCommit>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        9
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        10
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        11
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        12
+      33: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      36: aload         4
+      38: ifnonnull     46
+      41: bipush        13
+      43: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      46: aload         7
+      48: ifnonnull     56
+      51: bipush        14
+      53: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      56: aload_0
+      57: invokestatic  #22                 // Method getObjectsFactoryWithDisposeCheck:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/vcs/log/VcsLogObjectsFactory;
+      60: astore        8
+      62: aload         8
+      64: ifnonnull     68
+      67: return
+      68: aload_0
+      69: aload_1
+      70: aload_2
+      71: iconst_0
+      72: invokestatic  #26                 // Method createGitHandler:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Z)Lgit4idea/commands/GitLineHandler;
+      75: astore        9
+      77: new           #30                 // class java/util/ArrayList
+      80: dup
+      81: iconst_3
+      82: anewarray     #32                 // class git4idea/history/GitLogParser$GitLogOption
+      85: dup
+      86: iconst_0
+      87: getstatic     #34                 // Field git4idea/history/GitLogParser$GitLogOption.HASH:Lgit4idea/history/GitLogParser$GitLogOption;
+      90: aastore
+      91: dup
+      92: iconst_1
+      93: getstatic     #38                 // Field git4idea/history/GitLogParser$GitLogOption.PARENTS:Lgit4idea/history/GitLogParser$GitLogOption;
+      96: aastore
+      97: dup
+      98: iconst_2
+      99: getstatic     #41                 // Field git4idea/history/GitLogParser$GitLogOption.COMMIT_TIME:Lgit4idea/history/GitLogParser$GitLogOption;
+     102: aastore
+     103: invokestatic  #44                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+     106: invokespecial #50                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+     109: astore        10
+     111: aload         5
+     113: ifnull        138
+     116: aload         10
+     118: getstatic     #53                 // Field git4idea/history/GitLogParser$GitLogOption.AUTHOR_NAME:Lgit4idea/history/GitLogParser$GitLogOption;
+     121: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     126: pop
+     127: aload         10
+     129: getstatic     #62                 // Field git4idea/history/GitLogParser$GitLogOption.AUTHOR_EMAIL:Lgit4idea/history/GitLogParser$GitLogOption;
+     132: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     137: pop
+     138: aload         6
+     140: ifnull        154
+     143: aload         10
+     145: getstatic     #65                 // Field git4idea/history/GitLogParser$GitLogOption.REF_NAMES:Lgit4idea/history/GitLogParser$GitLogOption;
+     148: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     153: pop
+     154: aload_0
+     155: aload         10
+     157: iconst_0
+     158: anewarray     #32                 // class git4idea/history/GitLogParser$GitLogOption
+     161: invokeinterface #68,  2           // InterfaceMethod java/util/List.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+     166: checkcast     #72                 // class "[Lgit4idea/history/GitLogParser$GitLogOption;"
+     169: invokestatic  #74                 // Method git4idea/history/GitLogParser.createDefaultParser:(Lcom/intellij/openapi/project/Project;[Lgit4idea/history/GitLogParser$GitLogOption;)Lgit4idea/history/GitLogParser;
+     172: astore        11
+     174: aload         9
+     176: iconst_1
+     177: invokevirtual #80                 // Method git4idea/commands/GitLineHandler.setStdoutSuppressed:(Z)V
+     180: aload         9
+     182: iconst_2
+     183: anewarray     #86                 // class java/lang/String
+     186: dup
+     187: iconst_0
+     188: aload         11
+     190: invokevirtual #88                 // Method git4idea/history/GitLogParser.getPretty:()Ljava/lang/String;
+     193: aastore
+     194: dup
+     195: iconst_1
+     196: ldc           #92                 // String --encoding=UTF-8
+     198: aastore
+     199: invokevirtual #94                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     202: aload         9
+     204: iconst_1
+     205: anewarray     #86                 // class java/lang/String
+     208: dup
+     209: iconst_0
+     210: ldc           #98                 // String --decorate=full
+     212: aastore
+     213: invokevirtual #94                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     216: aload_3
+     217: ldc           #100                // String --
+     219: invokeinterface #102,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+     224: ifeq          280
+     227: aload_3
+     228: ldc           #100                // String --
+     230: invokeinterface #105,  2          // InterfaceMethod java/util/List.indexOf:(Ljava/lang/Object;)I
+     235: istore        12
+     237: aload         9
+     239: aload_3
+     240: iconst_0
+     241: iload         12
+     243: invokeinterface #109,  3          // InterfaceMethod java/util/List.subList:(II)Ljava/util/List;
+     248: invokevirtual #113                // Method git4idea/commands/GitLineHandler.addParameters:(Ljava/util/List;)V
+     251: aload         9
+     253: invokevirtual #116                // Method git4idea/commands/GitLineHandler.endOptions:()V
+     256: aload         9
+     258: aload_3
+     259: iload         12
+     261: iconst_1
+     262: iadd
+     263: aload_3
+     264: invokeinterface #119,  1          // InterfaceMethod java/util/List.size:()I
+     269: invokeinterface #109,  3          // InterfaceMethod java/util/List.subList:(II)Ljava/util/List;
+     274: invokevirtual #113                // Method git4idea/commands/GitLineHandler.addParameters:(Ljava/util/List;)V
+     277: goto          291
+     280: aload         9
+     282: aload_3
+     283: invokevirtual #113                // Method git4idea/commands/GitLineHandler.addParameters:(Ljava/util/List;)V
+     286: aload         9
+     288: invokevirtual #116                // Method git4idea/commands/GitLineHandler.endOptions:()V
+     291: aload         9
+     293: aload         4
+     295: invokevirtual #123                // Method git4idea/commands/GitLineHandler.addRelativePaths:(Ljava/util/Collection;)V
+     298: new           #126                // class git4idea/history/GitLogOutputSplitter
+     301: dup
+     302: aload         9
+     304: aload         11
+     306: aload         8
+     308: aload         7
+     310: aload         6
+     312: aload_1
+     313: aload         5
+     315: invokedynamic #128,  0            // InvokeDynamic #0:accept:(Lcom/intellij/vcs/log/VcsLogObjectsFactory;Ljava/util/function/Consumer;Ljava/util/function/Consumer;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
+     320: invokespecial #132                // Method git4idea/history/GitLogOutputSplitter."<init>":(Lgit4idea/commands/GitLineHandler;Lgit4idea/history/GitLogParser;Ljava/util/function/Consumer;)V
+     323: astore        12
+     325: invokestatic  #135                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     328: aload         9
+     330: invokeinterface #141,  2          // InterfaceMethod git4idea/commands/Git.runCommandWithoutCollectingOutput:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     335: iconst_0
+     336: newarray       int
+     338: invokevirtual #145                // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+     341: aload         12
+     343: invokevirtual #151                // Method git4idea/history/GitLogOutputSplitter.reportErrors:()V
+     346: return
+
+  public static java.util.List<? extends com.intellij.vcs.log.VcsCommitMetadata> collectMetadata(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        15
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        16
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        17
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: new           #154                // class com/intellij/util/CollectConsumer
+      30: dup
+      31: invokespecial #156                // Method com/intellij/util/CollectConsumer."<init>":()V
+      34: astore_3
+      35: aload_0
+      36: aload_1
+      37: aload_2
+      38: aload_3
+      39: invokestatic  #157                // Method collectMetadata:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Ljava/util/function/Consumer;)V
+      42: new           #30                 // class java/util/ArrayList
+      45: dup
+      46: aload_3
+      47: invokevirtual #161                // Method com/intellij/util/CollectConsumer.getResult:()Ljava/util/Collection;
+      50: invokespecial #50                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      53: areturn
+
+  public static com.intellij.vcs.log.VcsCommitMetadata collectMetadataForCommit(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.lang.String) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        18
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        19
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        20
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: aload_1
+      29: aload_2
+      30: invokestatic  #165                // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+      33: invokestatic  #169                // Method collectMetadata:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;)Ljava/util/List;
+      36: invokestatic  #172                // Method com/intellij/util/containers/ContainerUtil.getOnlyItem:(Ljava/util/Collection;)Ljava/lang/Object;
+      39: checkcast     #178                // class com/intellij/vcs/log/VcsCommitMetadata
+      42: areturn
+
+  public static void collectMetadata(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, java.util.function.Consumer<? super com.intellij.vcs.log.VcsCommitMetadata>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        21
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        22
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        23
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        24
+      33: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      36: aload_2
+      37: invokeinterface #180,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      42: ifeq          46
+      45: return
+      46: aload_0
+      47: invokestatic  #22                 // Method getObjectsFactoryWithDisposeCheck:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/vcs/log/VcsLogObjectsFactory;
+      50: astore        4
+      52: aload         4
+      54: ifnonnull     58
+      57: return
+      58: aload_0
+      59: aload_1
+      60: invokestatic  #184                // Method createGitHandler:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Lgit4idea/commands/GitLineHandler;
+      63: astore        5
+      65: aload_0
+      66: getstatic     #187                // Field COMMIT_METADATA_OPTIONS:[Lgit4idea/history/GitLogParser$GitLogOption;
+      69: invokestatic  #74                 // Method git4idea/history/GitLogParser.createDefaultParser:(Lcom/intellij/openapi/project/Project;[Lgit4idea/history/GitLogParser$GitLogOption;)Lgit4idea/history/GitLogParser;
+      72: astore        6
+      74: aload         5
+      76: iconst_1
+      77: invokevirtual #190                // Method git4idea/commands/GitLineHandler.setSilent:(Z)V
+      80: aload         5
+      82: iconst_1
+      83: anewarray     #86                 // class java/lang/String
+      86: dup
+      87: iconst_0
+      88: aload_0
+      89: invokestatic  #193                // Method getNoWalkParameter:(Lcom/intellij/openapi/project/Project;)Ljava/lang/String;
+      92: aastore
+      93: invokevirtual #94                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      96: aload         5
+      98: iconst_2
+      99: anewarray     #86                 // class java/lang/String
+     102: dup
+     103: iconst_0
+     104: aload         6
+     106: invokevirtual #88                 // Method git4idea/history/GitLogParser.getPretty:()Ljava/lang/String;
+     109: aastore
+     110: dup
+     111: iconst_1
+     112: ldc           #92                 // String --encoding=UTF-8
+     114: aastore
+     115: invokevirtual #94                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     118: aload         5
+     120: iconst_1
+     121: anewarray     #86                 // class java/lang/String
+     124: dup
+     125: iconst_0
+     126: ldc           #197                // String --stdin
+     128: aastore
+     129: invokevirtual #94                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     132: aload         5
+     134: invokevirtual #116                // Method git4idea/commands/GitLineHandler.endOptions:()V
+     137: aload_2
+     138: aload         5
+     140: invokestatic  #199                // Method sendHashesToStdin:(Ljava/util/Collection;Lgit4idea/commands/GitHandler;)V
+     143: new           #126                // class git4idea/history/GitLogOutputSplitter
+     146: dup
+     147: aload         5
+     149: aload         6
+     151: aload         5
+     153: aload_3
+     154: aload         4
+     156: aload_1
+     157: invokedynamic #203,  0            // InvokeDynamic #1:accept:(Lgit4idea/commands/GitLineHandler;Ljava/util/function/Consumer;Lcom/intellij/vcs/log/VcsLogObjectsFactory;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/function/Consumer;
+     162: invokespecial #132                // Method git4idea/history/GitLogOutputSplitter."<init>":(Lgit4idea/commands/GitLineHandler;Lgit4idea/history/GitLogParser;Ljava/util/function/Consumer;)V
+     165: astore        7
+     167: invokestatic  #135                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     170: aload         5
+     172: invokeinterface #141,  2          // InterfaceMethod git4idea/commands/Git.runCommandWithoutCollectingOutput:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     177: iconst_0
+     178: newarray       int
+     180: invokevirtual #145                // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+     183: aload         7
+     185: invokevirtual #151                // Method git4idea/history/GitLogOutputSplitter.reportErrors:()V
+     188: return
+
+  public static com.intellij.vcs.log.VcsLogProvider$DetailedLogData collectMetadata(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.lang.String...) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        25
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        26
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: new           #206                // class git4idea/history/GitLogCommandParameters
+      23: dup
+      24: invokestatic  #7                  // Method java/util/Collections.emptyList:()Ljava/util/List;
+      27: aload_2
+      28: invokestatic  #44                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+      31: invokespecial #208                // Method git4idea/history/GitLogCommandParameters."<init>":(Ljava/util/List;Ljava/util/List;)V
+      34: invokestatic  #211                // Method collectMetadata:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/history/GitLogCommandParameters;)Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;
+      37: areturn
+
+  public static com.intellij.vcs.log.VcsLogProvider$DetailedLogData collectMetadata(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, git4idea.history.GitLogCommandParameters) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        27
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        28
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        29
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: invokestatic  #22                 // Method getObjectsFactoryWithDisposeCheck:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/vcs/log/VcsLogObjectsFactory;
+      31: astore_3
+      32: aload_3
+      33: ifnonnull     49
+      36: invokestatic  #214                // Method com/intellij/vcs/log/impl/LogDataImpl.empty:()Lcom/intellij/vcs/log/impl/LogDataImpl;
+      39: dup
+      40: ifnonnull     48
+      43: bipush        30
+      45: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      48: areturn
+      49: new           #220                // class it/unimi/dsi/fastutil/objects/ObjectOpenCustomHashSet
+      52: dup
+      53: getstatic     #222                // Field git4idea/log/GitLogProvider.DONT_CONSIDER_SHA:Lit/unimi/dsi/fastutil/Hash$Strategy;
+      56: invokespecial #228                // Method it/unimi/dsi/fastutil/objects/ObjectOpenCustomHashSet."<init>":(Lit/unimi/dsi/fastutil/Hash$Strategy;)V
+      59: astore        4
+      61: new           #30                 // class java/util/ArrayList
+      64: dup
+      65: invokespecial #231                // Method java/util/ArrayList."<init>":()V
+      68: astore        5
+      70: aload_1
+      71: aload_3
+      72: aload         5
+      74: aload         4
+      76: invokedynamic #232,  0            // InvokeDynamic #2:accept:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/VcsLogObjectsFactory;Ljava/util/List;Ljava/util/Set;)Ljava/util/function/Consumer;
+      81: astore        6
+      83: aload_0
+      84: aload_1
+      85: aload_2
+      86: invokevirtual #235                // Method git4idea/history/GitLogCommandParameters.getConfigParameters:()Ljava/util/List;
+      89: iconst_0
+      90: invokestatic  #26                 // Method createGitHandler:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Z)Lgit4idea/commands/GitLineHandler;
+      93: astore        7
+      95: getstatic     #187                // Field COMMIT_METADATA_OPTIONS:[Lgit4idea/history/GitLogParser$GitLogOption;
+      98: getstatic     #65                 // Field git4idea/history/GitLogParser$GitLogOption.REF_NAMES:Lgit4idea/history/GitLogParser$GitLogOption;
+     101: invokestatic  #238                // Method com/intellij/util/ArrayUtil.append:([Ljava/lang/Object;Ljava/lang/Object;)[Ljava/lang/Object;
+     104: checkcast     #72                 // class "[Lgit4idea/history/GitLogParser$GitLogOption;"
+     107: astore        8
+     109: aload_0
+     110: aload         8
+     112: invokestatic  #74                 // Method git4idea/history/GitLogParser.createDefaultParser:(Lcom/intellij/openapi/project/Project;[Lgit4idea/history/GitLogParser$GitLogOption;)Lgit4idea/history/GitLogParser;
+     115: astore        9
+     117: aload         7
+     119: iconst_1
+     120: invokevirtual #80                 // Method git4idea/commands/GitLineHandler.setStdoutSuppressed:(Z)V
+     123: aload         7
+     125: aload_2
+     126: invokevirtual #244                // Method git4idea/history/GitLogCommandParameters.getFilterParameters:()Ljava/util/List;
+     129: invokevirtual #113                // Method git4idea/commands/GitLineHandler.addParameters:(Ljava/util/List;)V
+     132: aload         7
+     134: iconst_2
+     135: anewarray     #86                 // class java/lang/String
+     138: dup
+     139: iconst_0
+     140: aload         9
+     142: invokevirtual #88                 // Method git4idea/history/GitLogParser.getPretty:()Ljava/lang/String;
+     145: aastore
+     146: dup
+     147: iconst_1
+     148: ldc           #92                 // String --encoding=UTF-8
+     150: aastore
+     151: invokevirtual #94                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     154: aload         7
+     156: iconst_1
+     157: anewarray     #86                 // class java/lang/String
+     160: dup
+     161: iconst_0
+     162: ldc           #98                 // String --decorate=full
+     164: aastore
+     165: invokevirtual #94                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     168: aload         7
+     170: invokevirtual #116                // Method git4idea/commands/GitLineHandler.endOptions:()V
+     173: invokestatic  #247                // InterfaceMethod com/intellij/platform/diagnostic/telemetry/TelemetryManager.getInstance:()Lcom/intellij/platform/diagnostic/telemetry/TelemetryManager;
+     176: getstatic     #252                // Field com/intellij/platform/vcs/impl/shared/telemetry/VcsScopeKt.VcsScope:Lcom/intellij/platform/diagnostic/telemetry/Scope;
+     179: invokeinterface #258,  2          // InterfaceMethod com/intellij/platform/diagnostic/telemetry/TelemetryManager.getTracer:(Lcom/intellij/platform/diagnostic/telemetry/Scope;)Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+     184: astore        10
+     186: aload         10
+     188: getstatic     #262                // Field git4idea/telemetry/GitBackendTelemetrySpan$Log.LoadingCommitMetadata:Lgit4idea/telemetry/GitBackendTelemetrySpan$Log;
+     191: invokevirtual #268                // Method git4idea/telemetry/GitBackendTelemetrySpan$Log.getName:()Ljava/lang/String;
+     194: invokeinterface #271,  2          // InterfaceMethod io/opentelemetry/api/trace/Tracer.spanBuilder:(Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+     199: ldc_w         #277                // String rootName
+     202: aload_1
+     203: invokevirtual #279                // Method com/intellij/openapi/vfs/VirtualFile.getName:()Ljava/lang/String;
+     206: invokeinterface #282,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+     211: aload         7
+     213: aload         9
+     215: aload         6
+     217: invokedynamic #288,  0            // InvokeDynamic #3:consume:(Lgit4idea/commands/GitLineHandler;Lgit4idea/history/GitLogParser;Ljava/util/function/Consumer;)Lcom/intellij/util/ThrowableConsumer;
+     222: invokestatic  #292                // Method com/intellij/platform/diagnostic/telemetry/helpers/TraceUtil.runWithSpanThrows:(Lio/opentelemetry/api/trace/SpanBuilder;Lcom/intellij/util/ThrowableConsumer;)V
+     225: goto          254
+     228: astore        7
+     230: aload         5
+     232: invokeinterface #180,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     237: ifeq          243
+     240: aload         7
+     242: athrow
+     243: getstatic     #300                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     246: ldc_w         #304                // String Error during loading details, returning partially loaded commits\n
+     249: aload         7
+     251: invokevirtual #306                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;Ljava/lang/Throwable;)V
+     254: new           #215                // class com/intellij/vcs/log/impl/LogDataImpl
+     257: dup
+     258: aload         4
+     260: aload         5
+     262: invokespecial #312                // Method com/intellij/vcs/log/impl/LogDataImpl."<init>":(Ljava/util/Set;Ljava/util/List;)V
+     265: areturn
+    Exception table:
+       from    to  target type
+          83   225   228   Class com/intellij/openapi/vcs/VcsException
+
+  public static void readFullDetails(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.function.Consumer<? super git4idea.GitCommit>, java.lang.String...) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        31
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        32
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        33
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        34
+      33: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      36: new           #315                // class git4idea/history/GitFullDetailsCollector
+      39: dup
+      40: aload_0
+      41: aload_1
+      42: new           #317                // class git4idea/history/InternedGitLogRecordBuilder
+      45: dup
+      46: invokespecial #319                // Method git4idea/history/InternedGitLogRecordBuilder."<init>":()V
+      49: invokespecial #320                // Method git4idea/history/GitFullDetailsCollector."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/history/GitLogRecordBuilder;)V
+      52: aload_2
+      53: getstatic     #323                // Field git4idea/history/GitCommitRequirements.DEFAULT:Lgit4idea/history/GitCommitRequirements;
+      56: iconst_0
+      57: aload_3
+      58: invokevirtual #329                // Method git4idea/history/GitFullDetailsCollector.readFullDetails:(Ljava/util/function/Consumer;Lgit4idea/history/GitCommitRequirements;Z[Ljava/lang/String;)V
+      61: return
+
+  public static void readFullDetailsForHashes(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, git4idea.history.GitCommitRequirements, com.intellij.util.Consumer<? super git4idea.GitCommit>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        35
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        36
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        37
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        38
+      33: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      36: aload         4
+      38: ifnonnull     46
+      41: bipush        39
+      43: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      46: aload_2
+      47: invokeinterface #180,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      52: ifeq          56
+      55: return
+      56: new           #315                // class git4idea/history/GitFullDetailsCollector
+      59: dup
+      60: aload_0
+      61: aload_1
+      62: new           #317                // class git4idea/history/InternedGitLogRecordBuilder
+      65: dup
+      66: invokespecial #319                // Method git4idea/history/InternedGitLogRecordBuilder."<init>":()V
+      69: invokespecial #320                // Method git4idea/history/GitFullDetailsCollector."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/history/GitLogRecordBuilder;)V
+      72: aload_2
+      73: aload_3
+      74: iconst_0
+      75: aload         4
+      77: dup
+      78: invokestatic  #333                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      81: pop
+      82: invokedynamic #339,  0            // InvokeDynamic #4:accept:(Lcom/intellij/util/Consumer;)Ljava/util/function/Consumer;
+      87: invokevirtual #342                // Method git4idea/history/GitFullDetailsCollector.readFullDetailsForHashes:(Ljava/util/List;Lgit4idea/history/GitCommitRequirements;ZLjava/util/function/Consumer;)V
+      90: return
+
+  private static java.util.Collection<com.intellij.vcs.log.VcsRef> parseRefs(java.util.Collection<java.lang.String>, com.intellij.vcs.log.Hash, com.intellij.vcs.log.VcsLogObjectsFactory, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        40
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        41
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        42
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        43
+      33: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      36: aload_0
+      37: aload_2
+      38: aload_1
+      39: aload_3
+      40: invokedynamic #346,  0            // InvokeDynamic #5:fun:(Lcom/intellij/vcs/log/VcsLogObjectsFactory;Lcom/intellij/vcs/log/Hash;Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/util/Function;
+      45: invokestatic  #350                // Method com/intellij/util/containers/ContainerUtil.mapNotNull:(Ljava/util/Collection;Lcom/intellij/util/Function;)Ljava/util/List;
+      48: dup
+      49: ifnonnull     57
+      52: bipush        44
+      54: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      57: areturn
+
+  public static com.intellij.vcs.log.VcsLogObjectsFactory getObjectsFactoryWithDisposeCheck(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        45
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: invokedynamic #354,  0            // InvokeDynamic #6:compute:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/util/ThrowableComputable;
+      15: invokestatic  #358                // Method com/intellij/openapi/application/ReadAction.compute:(Lcom/intellij/openapi/util/ThrowableComputable;)Ljava/lang/Object;
+      18: checkcast     #363                // class com/intellij/vcs/log/VcsLogObjectsFactory
+      21: areturn
+
+  public static com.intellij.vcs.log.VcsCommitMetadata createMetadata(com.intellij.openapi.vfs.VirtualFile, git4idea.history.GitLogRecord, com.intellij.vcs.log.VcsLogObjectsFactory);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        46
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        47
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        48
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: aload_1
+      28: invokevirtual #365                // Method git4idea/history/GitLogRecord.getParentsHashes:()[Ljava/lang/String;
+      31: aload_2
+      32: dup
+      33: invokestatic  #333                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      36: pop
+      37: invokedynamic #371,  0            // InvokeDynamic #7:fun:(Lcom/intellij/vcs/log/VcsLogObjectsFactory;)Lcom/intellij/util/Function;
+      42: invokestatic  #374                // Method com/intellij/util/containers/ContainerUtil.map:([Ljava/lang/Object;Lcom/intellij/util/Function;)Ljava/util/List;
+      45: astore_3
+      46: aload_2
+      47: aload_2
+      48: aload_1
+      49: invokevirtual #378                // Method git4idea/history/GitLogRecord.getHash:()Ljava/lang/String;
+      52: invokeinterface #381,  2          // InterfaceMethod com/intellij/vcs/log/VcsLogObjectsFactory.createHash:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+      57: aload_3
+      58: aload_1
+      59: invokevirtual #385                // Method git4idea/history/GitLogRecord.getCommitTime:()J
+      62: aload_0
+      63: aload_1
+      64: invokevirtual #389                // Method git4idea/history/GitLogRecord.getSubject:()Ljava/lang/String;
+      67: aload_1
+      68: invokevirtual #392                // Method git4idea/history/GitLogRecord.getAuthorName:()Ljava/lang/String;
+      71: aload_1
+      72: invokevirtual #395                // Method git4idea/history/GitLogRecord.getAuthorEmail:()Ljava/lang/String;
+      75: aload_1
+      76: invokevirtual #398                // Method git4idea/history/GitLogRecord.getFullMessage:()Ljava/lang/String;
+      79: aload_1
+      80: invokevirtual #401                // Method git4idea/history/GitLogRecord.getCommitterName:()Ljava/lang/String;
+      83: aload_1
+      84: invokevirtual #404                // Method git4idea/history/GitLogRecord.getCommitterEmail:()Ljava/lang/String;
+      87: aload_1
+      88: invokevirtual #407                // Method git4idea/history/GitLogRecord.getAuthorTimeStamp:()J
+      91: invokeinterface #410,  14         // InterfaceMethod com/intellij/vcs/log/VcsLogObjectsFactory.createCommitMetadata:(Lcom/intellij/vcs/log/Hash;Ljava/util/List;JLcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Lcom/intellij/vcs/log/VcsCommitMetadata;
+      96: dup
+      97: ifnonnull     105
+     100: bipush        49
+     102: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+     105: areturn
+
+  public static void sendHashesToStdin(java.util.Collection<java.lang.String>, git4idea.commands.GitHandler);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        50
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        51
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_1
+      19: aload_0
+      20: ldc_w         #414                // String \n
+      23: aload_1
+      24: invokevirtual #416                // Method git4idea/commands/GitHandler.getCharset:()Ljava/nio/charset/Charset;
+      27: iconst_1
+      28: invokestatic  #422                // Method git4idea/commands/GitHandlerInputProcessorUtil.writeLines:(Ljava/util/Collection;Ljava/lang/String;Ljava/nio/charset/Charset;Z)Lcom/intellij/util/ThrowableConsumer;
+      31: invokevirtual #428                // Method git4idea/commands/GitHandler.setInputProcessor:(Lcom/intellij/util/ThrowableConsumer;)V
+      34: return
+
+  public static java.lang.String getNoWalkParameter(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        52
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: getstatic     #432                // Field git4idea/config/GitVersionSpecialty.NO_WALK_UNSORTED:Lgit4idea/config/GitVersionSpecialty;
+      12: aload_0
+      13: invokevirtual #438                // Method git4idea/config/GitVersionSpecialty.existsIn:(Lcom/intellij/openapi/project/Project;)Z
+      16: ifeq          25
+      19: ldc_w         #442                // String --no-walk=unsorted
+      22: goto          28
+      25: ldc_w         #444                // String --no-walk
+      28: areturn
+
+  public static git4idea.commands.GitLineHandler createGitHandler(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        53
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        54
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: invokestatic  #7                  // Method java/util/Collections.emptyList:()Ljava/util/List;
+      23: iconst_0
+      24: invokestatic  #26                 // Method createGitHandler:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Z)Lgit4idea/commands/GitLineHandler;
+      27: areturn
+
+  static git4idea.commands.GitLineHandler createGitHandler(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, boolean);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        55
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        56
+      15: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        57
+      24: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      27: new           #81                 // class git4idea/commands/GitLineHandler
+      30: dup
+      31: aload_0
+      32: aload_1
+      33: getstatic     #446                // Field git4idea/commands/GitCommand.LOG:Lgit4idea/commands/GitCommand;
+      36: aload_2
+      37: invokespecial #451                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;Ljava/util/List;)V
+      40: astore        4
+      42: iload_3
+      43: ifeq          51
+      46: aload         4
+      48: invokevirtual #454                // Method git4idea/commands/GitLineHandler.withLowPriority:()V
+      51: aload         4
+      53: iconst_0
+      54: invokevirtual #457                // Method git4idea/commands/GitLineHandler.setWithMediator:(Z)V
+      57: aload         4
+      59: dup
+      60: ifnonnull     68
+      63: bipush        58
+      65: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+      68: areturn
+
+  public static long parseTime(java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        59
+       6: invokestatic  #856                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: invokevirtual #460                // Method java/lang/String.trim:()Ljava/lang/String;
+      13: invokestatic  #463                // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+      16: ldc2_w        #469                // long 1000l
+      19: lmul
+      20: lreturn
+
+  private static com.intellij.vcs.log.VcsLogObjectsFactory lambda$getObjectsFactoryWithDisposeCheck$6(com.intellij.openapi.project.Project) throws java.lang.RuntimeException;
+    Code:
+       0: aload_0
+       1: invokeinterface #471,  1          // InterfaceMethod com/intellij/openapi/project/Project.isDisposed:()Z
+       6: ifne          22
+       9: aload_0
+      10: ldc_w         #363                // class com/intellij/vcs/log/VcsLogObjectsFactory
+      13: invokeinterface #476,  2          // InterfaceMethod com/intellij/openapi/project/Project.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+      18: checkcast     #363                // class com/intellij/vcs/log/VcsLogObjectsFactory
+      21: areturn
+      22: aconst_null
+      23: areturn
+
+  private static com.intellij.vcs.log.VcsRef lambda$parseRefs$5(com.intellij.vcs.log.VcsLogObjectsFactory, com.intellij.vcs.log.Hash, com.intellij.openapi.vfs.VirtualFile, java.lang.String);
+    Code:
+       0: aload_3
+       1: ldc_w         #480                // String grafted
+       4: invokevirtual #482                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       7: ifne          20
+      10: aload_3
+      11: ldc_w         #485                // String replaced
+      14: invokevirtual #482                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      17: ifeq          22
+      20: aconst_null
+      21: areturn
+      22: aload_3
+      23: invokestatic  #487                // Method git4idea/log/GitRefManager.getRefType:(Ljava/lang/String;)Lcom/intellij/vcs/log/VcsRefType;
+      26: astore        4
+      28: aload_3
+      29: invokestatic  #493                // Method git4idea/branch/GitBranchUtil.stripRefsPrefix:(Ljava/lang/String;)Ljava/lang/String;
+      32: astore_3
+      33: aload_3
+      34: ldc_w         #501                // String origin/HEAD
+      37: invokevirtual #482                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      40: ifeq          47
+      43: aconst_null
+      44: goto          58
+      47: aload_0
+      48: aload_1
+      49: aload_3
+      50: aload         4
+      52: aload_2
+      53: invokeinterface #503,  5          // InterfaceMethod com/intellij/vcs/log/VcsLogObjectsFactory.createRef:(Lcom/intellij/vcs/log/Hash;Ljava/lang/String;Lcom/intellij/vcs/log/VcsRefType;Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/vcs/log/VcsRef;
+      58: areturn
+
+  private static void lambda$collectMetadata$4(git4idea.commands.GitLineHandler, git4idea.history.GitLogParser, java.util.function.Consumer, io.opentelemetry.api.trace.Span) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: new           #126                // class git4idea/history/GitLogOutputSplitter
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: invokespecial #132                // Method git4idea/history/GitLogOutputSplitter."<init>":(Lgit4idea/commands/GitLineHandler;Lgit4idea/history/GitLogParser;Ljava/util/function/Consumer;)V
+      10: astore        4
+      12: invokestatic  #135                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      15: aload_0
+      16: invokeinterface #141,  2          // InterfaceMethod git4idea/commands/Git.runCommandWithoutCollectingOutput:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+      21: iconst_0
+      22: newarray       int
+      24: invokevirtual #145                // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+      27: aload         4
+      29: invokevirtual #151                // Method git4idea/history/GitLogOutputSplitter.reportErrors:()V
+      32: return
+
+  private static void lambda$collectMetadata$3(com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.VcsLogObjectsFactory, java.util.List, java.util.Set, git4idea.history.GitLogRecord);
+    Code:
+       0: aload_0
+       1: aload         4
+       3: aload_1
+       4: invokestatic  #507                // Method createMetadata:(Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/history/GitLogRecord;Lcom/intellij/vcs/log/VcsLogObjectsFactory;)Lcom/intellij/vcs/log/VcsCommitMetadata;
+       7: astore        5
+       9: aload_2
+      10: aload         5
+      12: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      17: pop
+      18: aload         4
+      20: invokevirtual #511                // Method git4idea/history/GitLogRecord.getRefs:()Ljava/util/Collection;
+      23: aload         5
+      25: invokeinterface #514,  1          // InterfaceMethod com/intellij/vcs/log/VcsCommitMetadata.getId:()Ljava/lang/Object;
+      30: checkcast     #518                // class com/intellij/vcs/log/Hash
+      33: aload_1
+      34: aload_0
+      35: invokestatic  #520                // Method parseRefs:(Ljava/util/Collection;Lcom/intellij/vcs/log/Hash;Lcom/intellij/vcs/log/VcsLogObjectsFactory;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/Collection;
+      38: astore        6
+      40: aload         6
+      42: invokeinterface #524,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      47: astore        7
+      49: aload         7
+      51: invokeinterface #530,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      56: ifeq          122
+      59: aload         7
+      61: invokeinterface #535,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      66: checkcast     #538                // class com/intellij/vcs/log/VcsRef
+      69: astore        8
+      71: aload_3
+      72: aload         8
+      74: invokeinterface #540,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      79: ifne          119
+      82: aload_3
+      83: aload         8
+      85: invokedynamic #543,  0            // InvokeDynamic #8:value:(Lcom/intellij/vcs/log/VcsRef;)Lcom/intellij/openapi/util/Condition;
+      90: invokestatic  #547                // Method com/intellij/util/containers/ContainerUtil.find:(Ljava/lang/Iterable;Lcom/intellij/openapi/util/Condition;)Ljava/lang/Object;
+      93: checkcast     #538                // class com/intellij/vcs/log/VcsRef
+      96: astore        9
+      98: getstatic     #300                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     101: aload         8
+     103: invokestatic  #551                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     106: aload         9
+     108: invokestatic  #551                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     111: invokedynamic #555,  0            // InvokeDynamic #9:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     116: invokevirtual #559                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+     119: goto          49
+     122: return
+
+  private static boolean lambda$collectMetadata$2(com.intellij.vcs.log.VcsRef, com.intellij.vcs.log.VcsRef);
+    Code:
+       0: getstatic     #222                // Field git4idea/log/GitLogProvider.DONT_CONSIDER_SHA:Lit/unimi/dsi/fastutil/Hash$Strategy;
+       3: aload_1
+       4: aload_0
+       5: invokeinterface #563,  3          // InterfaceMethod it/unimi/dsi/fastutil/Hash$Strategy.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      10: ireturn
+
+  private static void lambda$collectMetadata$1(git4idea.commands.GitLineHandler, java.util.function.Consumer, com.intellij.vcs.log.VcsLogObjectsFactory, com.intellij.openapi.vfs.VirtualFile, git4idea.history.GitLogRecord);
+    Code:
+       0: new           #568                // class com/intellij/util/SmartList
+       3: dup
+       4: invokespecial #570                // Method com/intellij/util/SmartList."<init>":()V
+       7: astore        5
+       9: aload         4
+      11: invokevirtual #365                // Method git4idea/history/GitLogRecord.getParentsHashes:()[Ljava/lang/String;
+      14: astore        6
+      16: aload         6
+      18: arraylength
+      19: istore        7
+      21: iconst_0
+      22: istore        8
+      24: iload         8
+      26: iload         7
+      28: if_icmpge     57
+      31: aload         6
+      33: iload         8
+      35: aaload
+      36: astore        9
+      38: aload         5
+      40: aload         9
+      42: invokestatic  #571                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+      45: invokeinterface #56,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      50: pop
+      51: iinc          8, 1
+      54: goto          24
+      57: aload         4
+      59: aload_0
+      60: invokevirtual #576                // Method git4idea/history/GitLogRecord.setUsedHandler:(Lgit4idea/commands/GitHandler;)V
+      63: aload_1
+      64: aload_2
+      65: aload         4
+      67: invokevirtual #378                // Method git4idea/history/GitLogRecord.getHash:()Ljava/lang/String;
+      70: invokestatic  #571                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+      73: aload         5
+      75: aload         4
+      77: invokevirtual #385                // Method git4idea/history/GitLogRecord.getCommitTime:()J
+      80: aload_3
+      81: aload         4
+      83: invokevirtual #389                // Method git4idea/history/GitLogRecord.getSubject:()Ljava/lang/String;
+      86: aload         4
+      88: invokevirtual #392                // Method git4idea/history/GitLogRecord.getAuthorName:()Ljava/lang/String;
+      91: aload         4
+      93: invokevirtual #395                // Method git4idea/history/GitLogRecord.getAuthorEmail:()Ljava/lang/String;
+      96: aload         4
+      98: invokevirtual #398                // Method git4idea/history/GitLogRecord.getFullMessage:()Ljava/lang/String;
+     101: aload         4
+     103: invokevirtual #401                // Method git4idea/history/GitLogRecord.getCommitterName:()Ljava/lang/String;
+     106: aload         4
+     108: invokevirtual #404                // Method git4idea/history/GitLogRecord.getCommitterEmail:()Ljava/lang/String;
+     111: aload         4
+     113: invokevirtual #407                // Method git4idea/history/GitLogRecord.getAuthorTimeStamp:()J
+     116: invokeinterface #410,  14         // InterfaceMethod com/intellij/vcs/log/VcsLogObjectsFactory.createCommitMetadata:(Lcom/intellij/vcs/log/Hash;Ljava/util/List;JLcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Lcom/intellij/vcs/log/VcsCommitMetadata;
+     121: invokeinterface #580,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+     126: return
+
+  private static void lambda$readTimedCommits$0(com.intellij.vcs.log.VcsLogObjectsFactory, java.util.function.Consumer, java.util.function.Consumer, com.intellij.openapi.vfs.VirtualFile, java.util.function.Consumer, git4idea.history.GitLogRecord);
+    Code:
+       0: aload         5
+       2: invokevirtual #378                // Method git4idea/history/GitLogRecord.getHash:()Ljava/lang/String;
+       5: invokestatic  #571                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+       8: astore        6
+      10: aload         5
+      12: invokevirtual #365                // Method git4idea/history/GitLogRecord.getParentsHashes:()[Ljava/lang/String;
+      15: aload_0
+      16: dup
+      17: invokestatic  #333                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      20: pop
+      21: invokedynamic #371,  0            // InvokeDynamic #7:fun:(Lcom/intellij/vcs/log/VcsLogObjectsFactory;)Lcom/intellij/util/Function;
+      26: invokestatic  #374                // Method com/intellij/util/containers/ContainerUtil.map:([Ljava/lang/Object;Lcom/intellij/util/Function;)Ljava/util/List;
+      29: astore        7
+      31: aload_1
+      32: aload_0
+      33: aload         6
+      35: aload         7
+      37: aload         5
+      39: invokevirtual #385                // Method git4idea/history/GitLogRecord.getCommitTime:()J
+      42: invokeinterface #585,  5          // InterfaceMethod com/intellij/vcs/log/VcsLogObjectsFactory.createTimedCommit:(Lcom/intellij/vcs/log/Hash;Ljava/util/List;J)Lcom/intellij/vcs/log/TimedVcsCommit;
+      47: invokeinterface #580,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+      52: aload_2
+      53: ifnull        108
+      56: aload         5
+      58: invokevirtual #511                // Method git4idea/history/GitLogRecord.getRefs:()Ljava/util/Collection;
+      61: aload         6
+      63: aload_0
+      64: aload_3
+      65: invokestatic  #520                // Method parseRefs:(Ljava/util/Collection;Lcom/intellij/vcs/log/Hash;Lcom/intellij/vcs/log/VcsLogObjectsFactory;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/Collection;
+      68: invokeinterface #524,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      73: astore        8
+      75: aload         8
+      77: invokeinterface #530,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      82: ifeq          108
+      85: aload         8
+      87: invokeinterface #535,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      92: checkcast     #538                // class com/intellij/vcs/log/VcsRef
+      95: astore        9
+      97: aload_2
+      98: aload         9
+     100: invokeinterface #580,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+     105: goto          75
+     108: aload         4
+     110: ifnull        136
+     113: aload         4
+     115: aload_0
+     116: aload         5
+     118: invokevirtual #392                // Method git4idea/history/GitLogRecord.getAuthorName:()Ljava/lang/String;
+     121: aload         5
+     123: invokevirtual #395                // Method git4idea/history/GitLogRecord.getAuthorEmail:()Ljava/lang/String;
+     126: invokeinterface #589,  3          // InterfaceMethod com/intellij/vcs/log/VcsLogObjectsFactory.createUser:(Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/vcs/log/VcsUser;
+     131: invokeinterface #580,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+     136: return
+
+  static {};
+    Code:
+       0: ldc           #14                 // class git4idea/history/GitLogUtil
+       2: invokestatic  #593                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #300                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: ldc_w         #596                // String HEAD
+      11: ldc_w         #598                // String --branches
+      14: ldc_w         #600                // String --remotes
+      17: ldc_w         #602                // String --tags
+      20: invokestatic  #604                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      23: putstatic     #608                // Field LOG_ALL:Ljava/util/List;
+      26: bipush        11
+      28: anewarray     #32                 // class git4idea/history/GitLogParser$GitLogOption
+      31: dup
+      32: iconst_0
+      33: getstatic     #34                 // Field git4idea/history/GitLogParser$GitLogOption.HASH:Lgit4idea/history/GitLogParser$GitLogOption;
+      36: aastore
+      37: dup
+      38: iconst_1
+      39: getstatic     #38                 // Field git4idea/history/GitLogParser$GitLogOption.PARENTS:Lgit4idea/history/GitLogParser$GitLogOption;
+      42: aastore
+      43: dup
+      44: iconst_2
+      45: getstatic     #41                 // Field git4idea/history/GitLogParser$GitLogOption.COMMIT_TIME:Lgit4idea/history/GitLogParser$GitLogOption;
+      48: aastore
+      49: dup
+      50: iconst_3
+      51: getstatic     #612                // Field git4idea/history/GitLogParser$GitLogOption.COMMITTER_NAME:Lgit4idea/history/GitLogParser$GitLogOption;
+      54: aastore
+      55: dup
+      56: iconst_4
+      57: getstatic     #615                // Field git4idea/history/GitLogParser$GitLogOption.COMMITTER_EMAIL:Lgit4idea/history/GitLogParser$GitLogOption;
+      60: aastore
+      61: dup
+      62: iconst_5
+      63: getstatic     #53                 // Field git4idea/history/GitLogParser$GitLogOption.AUTHOR_NAME:Lgit4idea/history/GitLogParser$GitLogOption;
+      66: aastore
+      67: dup
+      68: bipush        6
+      70: getstatic     #618                // Field git4idea/history/GitLogParser$GitLogOption.AUTHOR_TIME:Lgit4idea/history/GitLogParser$GitLogOption;
+      73: aastore
+      74: dup
+      75: bipush        7
+      77: getstatic     #62                 // Field git4idea/history/GitLogParser$GitLogOption.AUTHOR_EMAIL:Lgit4idea/history/GitLogParser$GitLogOption;
+      80: aastore
+      81: dup
+      82: bipush        8
+      84: getstatic     #621                // Field git4idea/history/GitLogParser$GitLogOption.SUBJECT:Lgit4idea/history/GitLogParser$GitLogOption;
+      87: aastore
+      88: dup
+      89: bipush        9
+      91: getstatic     #624                // Field git4idea/history/GitLogParser$GitLogOption.BODY:Lgit4idea/history/GitLogParser$GitLogOption;
+      94: aastore
+      95: dup
+      96: bipush        10
+      98: getstatic     #627                // Field git4idea/history/GitLogParser$GitLogOption.RAW_BODY:Lgit4idea/history/GitLogParser$GitLogOption;
+     101: aastore
+     102: putstatic     #187                // Field COMMIT_METADATA_OPTIONS:[Lgit4idea/history/GitLogParser$GitLogOption;
+     105: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 59
+
+                     0: 256
+
+                     1: 256
+
+                     2: 256
+
+                     3: 256
+
+                     4: 256
+
+                     5: 256
+
+                     6: 256
+
+                     7: 256
+
+                     8: 256
+
+                     9: 256
+
+                    10: 256
+
+                    11: 256
+
+                    12: 256
+
+                    13: 256
+
+                    14: 256
+
+                    15: 256
+
+                    16: 256
+
+                    17: 256
+
+                    18: 256
+
+                    19: 256
+
+                    20: 256
+
+                    21: 256
+
+                    22: 256
+
+                    23: 256
+
+                    24: 256
+
+                    25: 256
+
+                    26: 256
+
+                    27: 256
+
+                    28: 256
+
+                    29: 256
+
+                    30: 262
+
+                    31: 256
+
+                    32: 256
+
+                    33: 256
+
+                    34: 256
+
+                    35: 256
+
+                    36: 256
+
+                    37: 256
+
+                    38: 256
+
+                    39: 256
+
+                    40: 256
+
+                    41: 256
+
+                    42: 256
+
+                    43: 256
+
+                    44: 262
+
+                    45: 256
+
+                    46: 256
+
+                    47: 256
+
+                    48: 256
+
+                    49: 262
+
+                    50: 256
+
+                    51: 256
+
+                    52: 256
+
+                    53: 256
+
+                    54: 256
+
+                    55: 256
+
+                    56: 256
+
+                    57: 256
+
+                    58: 262
+
+                    59: 256
+               default: 256
+          }
+     256: ldc_w         #858                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     259: goto          268
+     262: ldc_w         #860                // String @NotNull method %s.%s must not return null
+     265: goto          268
+     268: iload_0
+     269: tableswitch   { // 0 to 59
+
+                     0: 524
+
+                     1: 524
+
+                     2: 524
+
+                     3: 524
+
+                     4: 524
+
+                     5: 524
+
+                     6: 524
+
+                     7: 524
+
+                     8: 524
+
+                     9: 524
+
+                    10: 524
+
+                    11: 524
+
+                    12: 524
+
+                    13: 524
+
+                    14: 524
+
+                    15: 524
+
+                    16: 524
+
+                    17: 524
+
+                    18: 524
+
+                    19: 524
+
+                    20: 524
+
+                    21: 524
+
+                    22: 524
+
+                    23: 524
+
+                    24: 524
+
+                    25: 524
+
+                    26: 524
+
+                    27: 524
+
+                    28: 524
+
+                    29: 524
+
+                    30: 528
+
+                    31: 524
+
+                    32: 524
+
+                    33: 524
+
+                    34: 524
+
+                    35: 524
+
+                    36: 524
+
+                    37: 524
+
+                    38: 524
+
+                    39: 524
+
+                    40: 524
+
+                    41: 524
+
+                    42: 524
+
+                    43: 524
+
+                    44: 528
+
+                    45: 524
+
+                    46: 524
+
+                    47: 524
+
+                    48: 524
+
+                    49: 528
+
+                    50: 524
+
+                    51: 524
+
+                    52: 524
+
+                    53: 524
+
+                    54: 524
+
+                    55: 524
+
+                    56: 524
+
+                    57: 524
+
+                    58: 528
+
+                    59: 524
+               default: 524
+          }
+     524: iconst_3
+     525: goto          532
+     528: iconst_2
+     529: goto          532
+     532: anewarray     #2                  // class java/lang/Object
+     535: iload_0
+     536: tableswitch   { // 0 to 59
+
+                     0: 792
+
+                     1: 801
+
+                     2: 810
+
+                     3: 819
+
+                     4: 792
+
+                     5: 801
+
+                     6: 828
+
+                     7: 810
+
+                     8: 819
+
+                     9: 792
+
+                    10: 801
+
+                    11: 828
+
+                    12: 810
+
+                    13: 837
+
+                    14: 819
+
+                    15: 792
+
+                    16: 801
+
+                    17: 846
+
+                    18: 792
+
+                    19: 801
+
+                    20: 855
+
+                    21: 792
+
+                    22: 801
+
+                    23: 846
+
+                    24: 864
+
+                    25: 792
+
+                    26: 801
+
+                    27: 792
+
+                    28: 801
+
+                    29: 810
+
+                    30: 873
+
+                    31: 792
+
+                    32: 801
+
+                    33: 819
+
+                    34: 810
+
+                    35: 792
+
+                    36: 801
+
+                    37: 846
+
+                    38: 882
+
+                    39: 819
+
+                    40: 891
+
+                    41: 900
+
+                    42: 909
+
+                    43: 801
+
+                    44: 873
+
+                    45: 792
+
+                    46: 801
+
+                    47: 918
+
+                    48: 909
+
+                    49: 873
+
+                    50: 846
+
+                    51: 927
+
+                    52: 792
+
+                    53: 792
+
+                    54: 801
+
+                    55: 792
+
+                    56: 801
+
+                    57: 828
+
+                    58: 873
+
+                    59: 936
+               default: 792
+          }
+     792: dup
+     793: iconst_0
+     794: ldc_w         #861                // String project
+     797: aastore
+     798: goto          945
+     801: dup
+     802: iconst_0
+     803: ldc_w         #862                // String root
+     806: aastore
+     807: goto          945
+     810: dup
+     811: iconst_0
+     812: ldc_w         #863                // String parameters
+     815: aastore
+     816: goto          945
+     819: dup
+     820: iconst_0
+     821: ldc_w         #864                // String commitConsumer
+     824: aastore
+     825: goto          945
+     828: dup
+     829: iconst_0
+     830: ldc_w         #865                // String configParameters
+     833: aastore
+     834: goto          945
+     837: dup
+     838: iconst_0
+     839: ldc_w         #866                // String filePaths
+     842: aastore
+     843: goto          945
+     846: dup
+     847: iconst_0
+     848: ldc_w         #867                // String hashes
+     851: aastore
+     852: goto          945
+     855: dup
+     856: iconst_0
+     857: ldc_w         #868                // String commit
+     860: aastore
+     861: goto          945
+     864: dup
+     865: iconst_0
+     866: ldc_w         #869                // String consumer
+     869: aastore
+     870: goto          945
+     873: dup
+     874: iconst_0
+     875: ldc_w         #870                // String git4idea/history/GitLogUtil
+     878: aastore
+     879: goto          945
+     882: dup
+     883: iconst_0
+     884: ldc_w         #871                // String requirements
+     887: aastore
+     888: goto          945
+     891: dup
+     892: iconst_0
+     893: ldc_w         #872                // String refs
+     896: aastore
+     897: goto          945
+     900: dup
+     901: iconst_0
+     902: ldc_w         #873                // String hash
+     905: aastore
+     906: goto          945
+     909: dup
+     910: iconst_0
+     911: ldc_w         #874                // String factory
+     914: aastore
+     915: goto          945
+     918: dup
+     919: iconst_0
+     920: ldc_w         #875                // String record
+     923: aastore
+     924: goto          945
+     927: dup
+     928: iconst_0
+     929: ldc_w         #876                // String handler
+     932: aastore
+     933: goto          945
+     936: dup
+     937: iconst_0
+     938: ldc_w         #877                // String timeString
+     941: aastore
+     942: goto          945
+     945: iload_0
+     946: tableswitch   { // 0 to 59
+
+                     0: 1200
+
+                     1: 1200
+
+                     2: 1200
+
+                     3: 1200
+
+                     4: 1200
+
+                     5: 1200
+
+                     6: 1200
+
+                     7: 1200
+
+                     8: 1200
+
+                     9: 1200
+
+                    10: 1200
+
+                    11: 1200
+
+                    12: 1200
+
+                    13: 1200
+
+                    14: 1200
+
+                    15: 1200
+
+                    16: 1200
+
+                    17: 1200
+
+                    18: 1200
+
+                    19: 1200
+
+                    20: 1200
+
+                    21: 1200
+
+                    22: 1200
+
+                    23: 1200
+
+                    24: 1200
+
+                    25: 1200
+
+                    26: 1200
+
+                    27: 1200
+
+                    28: 1200
+
+                    29: 1200
+
+                    30: 1209
+
+                    31: 1200
+
+                    32: 1200
+
+                    33: 1200
+
+                    34: 1200
+
+                    35: 1200
+
+                    36: 1200
+
+                    37: 1200
+
+                    38: 1200
+
+                    39: 1200
+
+                    40: 1200
+
+                    41: 1200
+
+                    42: 1200
+
+                    43: 1200
+
+                    44: 1218
+
+                    45: 1200
+
+                    46: 1200
+
+                    47: 1200
+
+                    48: 1200
+
+                    49: 1227
+
+                    50: 1200
+
+                    51: 1200
+
+                    52: 1200
+
+                    53: 1200
+
+                    54: 1200
+
+                    55: 1200
+
+                    56: 1200
+
+                    57: 1200
+
+                    58: 1236
+
+                    59: 1200
+               default: 1200
+          }
+    1200: dup
+    1201: iconst_1
+    1202: ldc_w         #870                // String git4idea/history/GitLogUtil
+    1205: aastore
+    1206: goto          1245
+    1209: dup
+    1210: iconst_1
+    1211: ldc_w         #878                // String collectMetadata
+    1214: aastore
+    1215: goto          1245
+    1218: dup
+    1219: iconst_1
+    1220: ldc_w         #879                // String parseRefs
+    1223: aastore
+    1224: goto          1245
+    1227: dup
+    1228: iconst_1
+    1229: ldc_w         #880                // String createMetadata
+    1232: aastore
+    1233: goto          1245
+    1236: dup
+    1237: iconst_1
+    1238: ldc_w         #881                // String createGitHandler
+    1241: aastore
+    1242: goto          1245
+    1245: iload_0
+    1246: tableswitch   { // 0 to 59
+
+                     0: 1500
+
+                     1: 1500
+
+                     2: 1500
+
+                     3: 1500
+
+                     4: 1500
+
+                     5: 1500
+
+                     6: 1500
+
+                     7: 1500
+
+                     8: 1500
+
+                     9: 1500
+
+                    10: 1500
+
+                    11: 1500
+
+                    12: 1500
+
+                    13: 1500
+
+                    14: 1500
+
+                    15: 1509
+
+                    16: 1509
+
+                    17: 1509
+
+                    18: 1518
+
+                    19: 1518
+
+                    20: 1518
+
+                    21: 1509
+
+                    22: 1509
+
+                    23: 1509
+
+                    24: 1509
+
+                    25: 1509
+
+                    26: 1509
+
+                    27: 1509
+
+                    28: 1509
+
+                    29: 1509
+
+                    30: 1527
+
+                    31: 1530
+
+                    32: 1530
+
+                    33: 1530
+
+                    34: 1530
+
+                    35: 1539
+
+                    36: 1539
+
+                    37: 1539
+
+                    38: 1539
+
+                    39: 1539
+
+                    40: 1548
+
+                    41: 1548
+
+                    42: 1548
+
+                    43: 1548
+
+                    44: 1527
+
+                    45: 1557
+
+                    46: 1566
+
+                    47: 1566
+
+                    48: 1566
+
+                    49: 1527
+
+                    50: 1575
+
+                    51: 1575
+
+                    52: 1584
+
+                    53: 1593
+
+                    54: 1593
+
+                    55: 1593
+
+                    56: 1593
+
+                    57: 1593
+
+                    58: 1527
+
+                    59: 1602
+               default: 1500
+          }
+    1500: dup
+    1501: iconst_2
+    1502: ldc_w         #882                // String readTimedCommits
+    1505: aastore
+    1506: goto          1611
+    1509: dup
+    1510: iconst_2
+    1511: ldc_w         #878                // String collectMetadata
+    1514: aastore
+    1515: goto          1611
+    1518: dup
+    1519: iconst_2
+    1520: ldc_w         #883                // String collectMetadataForCommit
+    1523: aastore
+    1524: goto          1611
+    1527: goto          1611
+    1530: dup
+    1531: iconst_2
+    1532: ldc_w         #884                // String readFullDetails
+    1535: aastore
+    1536: goto          1611
+    1539: dup
+    1540: iconst_2
+    1541: ldc_w         #885                // String readFullDetailsForHashes
+    1544: aastore
+    1545: goto          1611
+    1548: dup
+    1549: iconst_2
+    1550: ldc_w         #879                // String parseRefs
+    1553: aastore
+    1554: goto          1611
+    1557: dup
+    1558: iconst_2
+    1559: ldc_w         #886                // String getObjectsFactoryWithDisposeCheck
+    1562: aastore
+    1563: goto          1611
+    1566: dup
+    1567: iconst_2
+    1568: ldc_w         #880                // String createMetadata
+    1571: aastore
+    1572: goto          1611
+    1575: dup
+    1576: iconst_2
+    1577: ldc_w         #887                // String sendHashesToStdin
+    1580: aastore
+    1581: goto          1611
+    1584: dup
+    1585: iconst_2
+    1586: ldc_w         #888                // String getNoWalkParameter
+    1589: aastore
+    1590: goto          1611
+    1593: dup
+    1594: iconst_2
+    1595: ldc_w         #881                // String createGitHandler
+    1598: aastore
+    1599: goto          1611
+    1602: dup
+    1603: iconst_2
+    1604: ldc_w         #889                // String parseTime
+    1607: aastore
+    1608: goto          1611
+    1611: invokestatic  #893                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    1614: iload_0
+    1615: tableswitch   { // 0 to 59
+
+                     0: 1868
+
+                     1: 1868
+
+                     2: 1868
+
+                     3: 1868
+
+                     4: 1868
+
+                     5: 1868
+
+                     6: 1868
+
+                     7: 1868
+
+                     8: 1868
+
+                     9: 1868
+
+                    10: 1868
+
+                    11: 1868
+
+                    12: 1868
+
+                    13: 1868
+
+                    14: 1868
+
+                    15: 1868
+
+                    16: 1868
+
+                    17: 1868
+
+                    18: 1868
+
+                    19: 1868
+
+                    20: 1868
+
+                    21: 1868
+
+                    22: 1868
+
+                    23: 1868
+
+                    24: 1868
+
+                    25: 1868
+
+                    26: 1868
+
+                    27: 1868
+
+                    28: 1868
+
+                    29: 1868
+
+                    30: 1879
+
+                    31: 1868
+
+                    32: 1868
+
+                    33: 1868
+
+                    34: 1868
+
+                    35: 1868
+
+                    36: 1868
+
+                    37: 1868
+
+                    38: 1868
+
+                    39: 1868
+
+                    40: 1868
+
+                    41: 1868
+
+                    42: 1868
+
+                    43: 1868
+
+                    44: 1879
+
+                    45: 1868
+
+                    46: 1868
+
+                    47: 1868
+
+                    48: 1868
+
+                    49: 1879
+
+                    50: 1868
+
+                    51: 1868
+
+                    52: 1868
+
+                    53: 1868
+
+                    54: 1868
+
+                    55: 1868
+
+                    56: 1868
+
+                    57: 1868
+
+                    58: 1879
+
+                    59: 1868
+               default: 1868
+          }
+    1868: new           #895                // class java/lang/IllegalArgumentException
+    1871: dup_x1
+    1872: swap
+    1873: invokespecial #897                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+    1876: goto          1890
+    1879: new           #899                // class java/lang/IllegalStateException
+    1882: dup_x1
+    1883: swap
+    1884: invokespecial #900                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+    1887: goto          1890
+    1890: athrow
+}

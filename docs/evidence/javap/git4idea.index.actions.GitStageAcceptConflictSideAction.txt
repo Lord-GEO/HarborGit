@@ -1,0 +1,37 @@
+Compiled from "GitStageConflictActions.kt"
+public abstract class git4idea.index.actions.GitStageAcceptConflictSideAction extends git4idea.index.actions.GitStageConflictAction {
+  private final boolean takeTheirs;
+
+  public git4idea.index.actions.GitStageAcceptConflictSideAction(java.util.function.Supplier<java.lang.String>, boolean);
+    Code:
+       0: aload_1
+       1: ldc           #10                 // String text
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: invokespecial #19                 // Method git4idea/index/actions/GitStageConflictAction."<init>":(Ljava/util/function/Supplier;)V
+      11: aload_0
+      12: iload_2
+      13: putfield      #23                 // Field takeTheirs:Z
+      16: return
+
+  protected void perform(com.intellij.openapi.project.Project, git4idea.conflicts.GitMergeHandler, java.util.List<? extends git4idea.repo.GitConflict>);
+    Code:
+       0: aload_1
+       1: ldc           #31                 // String project
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #33                 // String handler
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #35                 // String conflicts
+      15: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: getstatic     #41                 // Field git4idea/conflicts/GitConflictsUtil.INSTANCE:Lgit4idea/conflicts/GitConflictsUtil;
+      21: aload_1
+      22: aload_2
+      23: aload_3
+      24: aload_0
+      25: getfield      #23                 // Field takeTheirs:Z
+      28: invokevirtual #45                 // Method git4idea/conflicts/GitConflictsUtil.acceptConflictSide$intellij_vcs_git:(Lcom/intellij/openapi/project/Project;Lgit4idea/conflicts/GitMergeHandler;Ljava/util/List;Z)V
+      31: return
+}

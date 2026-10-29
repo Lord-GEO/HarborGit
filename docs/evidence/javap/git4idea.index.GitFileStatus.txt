@@ -1,0 +1,404 @@
+Compiled from "GitFileStatus.kt"
+public final class git4idea.index.GitFileStatus {
+  private final char index;
+
+  private final char workTree;
+
+  private final com.intellij.openapi.vcs.FilePath path;
+
+  private final com.intellij.openapi.vcs.FilePath origPath;
+
+  public git4idea.index.GitFileStatus(char, char, com.intellij.openapi.vcs.FilePath, com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_3
+       1: ldc           #10                 // String path
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: invokespecial #19                 // Method java/lang/Object."<init>":()V
+      10: aload_0
+      11: iload_1
+      12: putfield      #23                 // Field index:C
+      15: aload_0
+      16: iload_2
+      17: putfield      #26                 // Field workTree:C
+      20: aload_0
+      21: aload_3
+      22: putfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+      25: aload_0
+      26: aload         4
+      28: putfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      31: return
+
+  public git4idea.index.GitFileStatus(char, char, com.intellij.openapi.vcs.FilePath, com.intellij.openapi.vcs.FilePath, int, kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: iload         5
+       2: bipush        8
+       4: iand
+       5: ifeq          11
+       8: aconst_null
+       9: astore        4
+      11: aload_0
+      12: iload_1
+      13: iload_2
+      14: aload_3
+      15: aload         4
+      17: invokespecial #37                 // Method "<init>":(CCLcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)V
+      20: return
+
+  public final char getIndex();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: ireturn
+
+  public final char getWorkTree();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field workTree:C
+       4: ireturn
+
+  public final com.intellij.openapi.vcs.FilePath getPath();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  public final com.intellij.openapi.vcs.FilePath getOrigPath();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  public git4idea.index.GitFileStatus(com.intellij.openapi.vfs.VirtualFile, git4idea.index.LightFileStatus$StatusRecord);
+    Code:
+       0: aload_1
+       1: ldc           #46                 // String root
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #48                 // String record
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: aload_2
+      14: invokevirtual #52                 // Method git4idea/index/LightFileStatus$StatusRecord.getIndex:()C
+      17: aload_2
+      18: invokevirtual #54                 // Method git4idea/index/LightFileStatus$StatusRecord.getWorkTree:()C
+      21: aload_1
+      22: aload_2
+      23: invokevirtual #57                 // Method git4idea/index/LightFileStatus$StatusRecord.getPath:()Ljava/lang/String;
+      26: invokestatic  #63                 // Method git4idea/GitContentRevision.createPath:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;)Lcom/intellij/openapi/vcs/FilePath;
+      29: dup
+      30: ldc           #65                 // String createPath(...)
+      32: invokestatic  #68                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      35: aload_2
+      36: invokevirtual #70                 // Method git4idea/index/LightFileStatus$StatusRecord.getOrigPath:()Ljava/lang/String;
+      39: dup
+      40: ifnull        75
+      43: astore_3
+      44: astore        8
+      46: istore        7
+      48: istore        6
+      50: astore        5
+      52: iconst_0
+      53: istore        4
+      55: aload_1
+      56: aload_3
+      57: invokestatic  #63                 // Method git4idea/GitContentRevision.createPath:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;)Lcom/intellij/openapi/vcs/FilePath;
+      60: astore        9
+      62: aload         5
+      64: iload         6
+      66: iload         7
+      68: aload         8
+      70: aload         9
+      72: goto          77
+      75: pop
+      76: aconst_null
+      77: invokespecial #37                 // Method "<init>":(CCLcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)V
+      80: return
+
+  public final boolean isConflicted();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: aload_0
+       5: getfield      #26                 // Field workTree:C
+       8: invokestatic  #89                 // Method git4idea/index/GitIndexStatusUtilKt.isConflicted:(CC)Z
+      11: ireturn
+
+  public final boolean isUntracked();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: invokestatic  #93                 // Method git4idea/index/GitIndexStatusUtilKt.isUntracked:(C)Z
+       7: ifne          20
+      10: aload_0
+      11: getfield      #26                 // Field workTree:C
+      14: invokestatic  #93                 // Method git4idea/index/GitIndexStatusUtilKt.isUntracked:(C)Z
+      17: ifeq          24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ireturn
+
+  public final boolean isIgnored();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: invokestatic  #96                 // Method git4idea/index/GitIndexStatusUtilKt.isIgnored:(C)Z
+       7: ifne          20
+      10: aload_0
+      11: getfield      #26                 // Field workTree:C
+      14: invokestatic  #96                 // Method git4idea/index/GitIndexStatusUtilKt.isIgnored:(C)Z
+      17: ifeq          24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ireturn
+
+  public final boolean isTracked();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: invokestatic  #96                 // Method git4idea/index/GitIndexStatusUtilKt.isIgnored:(C)Z
+       7: ifne          24
+      10: aload_0
+      11: getfield      #23                 // Field index:C
+      14: invokestatic  #93                 // Method git4idea/index/GitIndexStatusUtilKt.isUntracked:(C)Z
+      17: ifne          24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ireturn
+
+  public final boolean isNotChanged();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: bipush        32
+       6: if_icmpne     29
+       9: aload_0
+      10: getfield      #26                 // Field workTree:C
+      13: bipush        32
+      15: if_icmpne     29
+      18: aload_0
+      19: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      22: ifnonnull     29
+      25: iconst_1
+      26: goto          30
+      29: iconst_0
+      30: ireturn
+
+  public final com.intellij.openapi.vcs.FileStatus getStagedStatus();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: invokestatic  #96                 // Method git4idea/index/GitIndexStatusUtilKt.isIgnored:(C)Z
+       7: ifne          27
+      10: aload_0
+      11: getfield      #23                 // Field index:C
+      14: invokestatic  #93                 // Method git4idea/index/GitIndexStatusUtilKt.isUntracked:(C)Z
+      17: ifne          27
+      20: aload_0
+      21: invokevirtual #102                // Method isConflicted:()Z
+      24: ifeq          31
+      27: aconst_null
+      28: goto          38
+      31: aload_0
+      32: getfield      #23                 // Field index:C
+      35: invokestatic  #106                // Method git4idea/index/GitIndexStatusUtilKt.getFileStatus:(C)Lcom/intellij/openapi/vcs/FileStatus;
+      38: areturn
+
+  public final com.intellij.openapi.vcs.FileStatus getUnStagedStatus();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field workTree:C
+       4: invokestatic  #96                 // Method git4idea/index/GitIndexStatusUtilKt.isIgnored:(C)Z
+       7: ifne          27
+      10: aload_0
+      11: getfield      #26                 // Field workTree:C
+      14: invokestatic  #93                 // Method git4idea/index/GitIndexStatusUtilKt.isUntracked:(C)Z
+      17: ifne          27
+      20: aload_0
+      21: invokevirtual #102                // Method isConflicted:()Z
+      24: ifeq          31
+      27: aconst_null
+      28: goto          38
+      31: aload_0
+      32: getfield      #26                 // Field workTree:C
+      35: invokestatic  #106                // Method git4idea/index/GitIndexStatusUtilKt.getFileStatus:(C)Lcom/intellij/openapi/vcs/FileStatus;
+      38: areturn
+
+  public final char component1();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: ireturn
+
+  public final char component2();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field workTree:C
+       4: ireturn
+
+  public final com.intellij.openapi.vcs.FilePath component3();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  public final com.intellij.openapi.vcs.FilePath component4();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  public final git4idea.index.GitFileStatus copy(char, char, com.intellij.openapi.vcs.FilePath, com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_3
+       1: ldc           #10                 // String path
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: new           #2                  // class git4idea/index/GitFileStatus
+       9: dup
+      10: iload_1
+      11: iload_2
+      12: aload_3
+      13: aload         4
+      15: invokespecial #37                 // Method "<init>":(CCLcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)V
+      18: areturn
+
+  public static git4idea.index.GitFileStatus copy$default(git4idea.index.GitFileStatus, char, char, com.intellij.openapi.vcs.FilePath, com.intellij.openapi.vcs.FilePath, int, java.lang.Object);
+    Code:
+       0: iload         5
+       2: iconst_1
+       3: iand
+       4: ifeq          12
+       7: aload_0
+       8: getfield      #23                 // Field index:C
+      11: istore_1
+      12: iload         5
+      14: iconst_2
+      15: iand
+      16: ifeq          24
+      19: aload_0
+      20: getfield      #26                 // Field workTree:C
+      23: istore_2
+      24: iload         5
+      26: iconst_4
+      27: iand
+      28: ifeq          36
+      31: aload_0
+      32: getfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+      35: astore_3
+      36: iload         5
+      38: bipush        8
+      40: iand
+      41: ifeq          50
+      44: aload_0
+      45: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      48: astore        4
+      50: aload_0
+      51: iload_1
+      52: iload_2
+      53: aload_3
+      54: aload         4
+      56: invokevirtual #119                // Method copy:(CCLcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)Lgit4idea/index/GitFileStatus;
+      59: areturn
+
+  public java.lang.String toString();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: aload_0
+       5: getfield      #26                 // Field workTree:C
+       8: aload_0
+       9: getfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+      12: aload_0
+      13: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      16: invokedynamic #132,  0            // InvokeDynamic #0:makeConcatWithConstants:(CCLcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)Ljava/lang/String;
+      21: areturn
+
+  public int hashCode();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:C
+       4: invokestatic  #139                // Method java/lang/Character.hashCode:(C)I
+       7: istore_1
+       8: iload_1
+       9: bipush        31
+      11: imul
+      12: aload_0
+      13: getfield      #26                 // Field workTree:C
+      16: invokestatic  #139                // Method java/lang/Character.hashCode:(C)I
+      19: iadd
+      20: istore_1
+      21: iload_1
+      22: bipush        31
+      24: imul
+      25: aload_0
+      26: getfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+      29: invokevirtual #141                // Method java/lang/Object.hashCode:()I
+      32: iadd
+      33: istore_1
+      34: iload_1
+      35: bipush        31
+      37: imul
+      38: aload_0
+      39: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      42: ifnonnull     49
+      45: iconst_0
+      46: goto          56
+      49: aload_0
+      50: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      53: invokevirtual #141                // Method java/lang/Object.hashCode:()I
+      56: iadd
+      57: istore_1
+      58: iload_1
+      59: ireturn
+
+  public boolean equals(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: if_acmpne     7
+       5: iconst_1
+       6: ireturn
+       7: aload_1
+       8: instanceof    #2                  // class git4idea/index/GitFileStatus
+      11: ifne          16
+      14: iconst_0
+      15: ireturn
+      16: aload_1
+      17: checkcast     #2                  // class git4idea/index/GitFileStatus
+      20: astore_2
+      21: aload_0
+      22: getfield      #23                 // Field index:C
+      25: aload_2
+      26: getfield      #23                 // Field index:C
+      29: if_icmpeq     34
+      32: iconst_0
+      33: ireturn
+      34: aload_0
+      35: getfield      #26                 // Field workTree:C
+      38: aload_2
+      39: getfield      #26                 // Field workTree:C
+      42: if_icmpeq     47
+      45: iconst_0
+      46: ireturn
+      47: aload_0
+      48: getfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+      51: aload_2
+      52: getfield      #29                 // Field path:Lcom/intellij/openapi/vcs/FilePath;
+      55: invokestatic  #148                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      58: ifne          63
+      61: iconst_0
+      62: ireturn
+      63: aload_0
+      64: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      67: aload_2
+      68: getfield      #32                 // Field origPath:Lcom/intellij/openapi/vcs/FilePath;
+      71: invokestatic  #148                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      74: ifne          79
+      77: iconst_0
+      78: ireturn
+      79: iconst_1
+      80: ireturn
+}

@@ -1,0 +1,10 @@
+Compiled from "StagingAreaOperationAction.kt"
+public final class git4idea.index.actions.GitResetAction extends git4idea.index.actions.StagingAreaOperationAction {
+  public git4idea.index.actions.GitResetAction();
+    Code:
+       0: aload_0
+       1: getstatic     #12                 // Field git4idea/index/actions/GitResetOperation.INSTANCE:Lgit4idea/index/actions/GitResetOperation;
+       4: checkcast     #14                 // class git4idea/index/actions/StagingAreaOperation
+       7: invokespecial #17                 // Method git4idea/index/actions/StagingAreaOperationAction."<init>":(Lgit4idea/index/actions/StagingAreaOperation;)V
+      10: return
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "requested_class": "git4idea.config.GitApplicationSettings",
+    "result": "class name not present at requested classpath; corrected via JAR inventory"
+  },
+  {
+    "requested_class": "git4idea.index.GitStageDiffRequestProducer",
+    "result": "class name not present at requested classpath; corrected via JAR inventory"
+  },
+  {
+    "requested_class": "git4idea.index.GitStageOperation",
+    "result": "class name not present at requested classpath; corrected via JAR inventory"
+  },
+  {
+    "requested_class": "git4idea.log.GitLogUtil",
+    "result": "class name not present at requested classpath; corrected via JAR inventory"
+  },
+  {
+    "requested_class": "git4idea.repo.GitConflictsHolder",
+    "result": "class name not present at requested classpath; corrected via JAR inventory"
+  },
+  {
+    "requested_class": "git4idea.status.GitStatusUtil",
+    "result": "class name not present at requested classpath; corrected via JAR inventory"
+  }
+]

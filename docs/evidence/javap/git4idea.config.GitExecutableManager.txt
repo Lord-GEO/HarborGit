@@ -1,0 +1,1117 @@
+Compiled from "GitExecutableManager.java"
+public class git4idea.config.GitExecutableManager {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  private final git4idea.config.GitExecutableDetector myExecutableDetector;
+
+  private final git4idea.config.GitExecutableFileTester myVersionCache;
+
+  public static final com.intellij.util.messages.Topic<git4idea.config.GitExecutableListener> TOPIC;
+
+  public static git4idea.config.GitExecutableManager getInstance();
+    Code:
+       0: invokestatic  #1                  // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+       3: ldc           #7                  // class git4idea/config/GitExecutableManager
+       5: invokeinterface #9,  2            // InterfaceMethod com/intellij/openapi/application/Application.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+      10: checkcast     #7                  // class git4idea/config/GitExecutableManager
+      13: areturn
+
+  public git4idea.config.GitExecutableManager();
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #21                 // class git4idea/config/GitExecutableDetector
+       8: dup
+       9: invokespecial #23                 // Method git4idea/config/GitExecutableDetector."<init>":()V
+      12: putfield      #24                 // Field myExecutableDetector:Lgit4idea/config/GitExecutableDetector;
+      15: aload_0
+      16: new           #28                 // class git4idea/config/GitExecutableFileTester
+      19: dup
+      20: invokespecial #30                 // Method git4idea/config/GitExecutableFileTester."<init>":()V
+      23: putfield      #31                 // Field myVersionCache:Lgit4idea/config/GitExecutableFileTester;
+      26: return
+
+  public java.lang.String getPathToGit();
+    Code:
+       0: aload_0
+       1: aconst_null
+       2: invokevirtual #35                 // Method getPathToGit:(Lcom/intellij/openapi/project/Project;)Ljava/lang/String;
+       5: dup
+       6: ifnonnull     13
+       9: iconst_0
+      10: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      13: areturn
+
+  public java.lang.String getPathToGit(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aconst_null
+       3: iconst_1
+       4: invokevirtual #39                 // Method getPathToGit:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Z)Ljava/lang/String;
+       7: astore_2
+       8: aload_2
+       9: ifnonnull     16
+      12: invokestatic  #42                 // Method git4idea/config/GitExecutableDetector.getDefaultExecutable:()Ljava/lang/String;
+      15: astore_2
+      16: aload_2
+      17: dup
+      18: ifnonnull     25
+      21: iconst_1
+      22: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      25: areturn
+
+  private java.lang.String getPathToGit(com.intellij.openapi.project.Project, java.nio.file.Path, boolean);
+    Code:
+       0: aconst_null
+       1: astore        4
+       3: aload_1
+       4: ifnull        32
+       7: aload_1
+       8: invokeinterface #46,  1           // InterfaceMethod com/intellij/openapi/project/Project.isDefault:()Z
+      13: ifne          23
+      16: aload_1
+      17: invokestatic  #52                 // Method com/intellij/ide/trustedProjects/TrustedProjects.isProjectTrusted:(Lcom/intellij/openapi/project/Project;)Z
+      20: ifeq          32
+      23: aload_1
+      24: invokestatic  #58                 // Method git4idea/config/GitVcsSettings.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitVcsSettings;
+      27: invokevirtual #64                 // Method git4idea/config/GitVcsSettings.getPathToGit:()Ljava/lang/String;
+      30: astore        4
+      32: aload         4
+      34: ifnonnull     45
+      37: invokestatic  #66                 // Method git4idea/config/GitVcsApplicationSettings.getInstance:()Lgit4idea/config/GitVcsApplicationSettings;
+      40: invokevirtual #71                 // Method git4idea/config/GitVcsApplicationSettings.getSavedPathToGit:()Ljava/lang/String;
+      43: astore        4
+      45: aload         4
+      47: ifnonnull     62
+      50: aload_0
+      51: getfield      #24                 // Field myExecutableDetector:Lgit4idea/config/GitExecutableDetector;
+      54: aload_1
+      55: aload_2
+      56: iload_3
+      57: invokevirtual #74                 // Method git4idea/config/GitExecutableDetector.getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Z)Ljava/lang/String;
+      60: astore        4
+      62: aload         4
+      64: areturn
+
+  public git4idea.config.GitExecutable getExecutable(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aconst_null
+       3: checkcast     #77                 // class java/nio/file/Path
+       6: invokevirtual #79                 // Method getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;)Lgit4idea/config/GitExecutable;
+       9: dup
+      10: ifnonnull     17
+      13: iconst_2
+      14: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      17: areturn
+
+  public git4idea.config.GitExecutable getExecutable(com.intellij.openapi.project.Project, java.nio.file.Path);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iconst_1
+       4: invokevirtual #39                 // Method getPathToGit:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Z)Ljava/lang/String;
+       7: astore_3
+       8: aload_3
+       9: ifnonnull     16
+      12: invokestatic  #42                 // Method git4idea/config/GitExecutableDetector.getDefaultExecutable:()Ljava/lang/String;
+      15: astore_3
+      16: aload_0
+      17: aload_1
+      18: aload_3
+      19: invokevirtual #82                 // Method getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lgit4idea/config/GitExecutable;
+      22: dup
+      23: ifnonnull     30
+      26: iconst_3
+      27: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      30: areturn
+
+  public git4idea.config.GitExecutable getExecutable(com.intellij.openapi.project.Project, java.lang.String);
+    Code:
+       0: aload_2
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: aload_2
+      10: invokestatic  #85                 // Method git4idea/config/GitExecutableDetector.getGitExecutable:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lgit4idea/config/GitExecutable;
+      13: dup
+      14: ifnonnull     21
+      17: iconst_5
+      18: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      21: areturn
+
+  public java.lang.String getDetectedExecutable(com.intellij.openapi.project.Project, boolean);
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field myExecutableDetector:Lgit4idea/config/GitExecutableDetector;
+       4: aload_1
+       5: aconst_null
+       6: iload_2
+       7: invokevirtual #74                 // Method git4idea/config/GitExecutableDetector.getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Z)Ljava/lang/String;
+      10: areturn
+
+  public void dropExecutableCache();
+    Code:
+       0: invokestatic  #371                // Method com/intellij/util/concurrency/ThreadingAssertions.assertBackgroundThread:()V
+       3: aload_0
+       4: getfield      #24                 // Field myExecutableDetector:Lgit4idea/config/GitExecutableDetector;
+       7: invokevirtual #88                 // Method git4idea/config/GitExecutableDetector.clear:()V
+      10: return
+
+  public git4idea.config.GitVersion getVersion(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: aconst_null
+      12: iconst_0
+      13: invokevirtual #39                 // Method getPathToGit:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Z)Ljava/lang/String;
+      16: astore_2
+      17: aload_2
+      18: ifnonnull     34
+      21: getstatic     #91                 // Field git4idea/config/GitVersion.NULL:Lgit4idea/config/GitVersion;
+      24: dup
+      25: ifnonnull     33
+      28: bipush        7
+      30: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      33: areturn
+      34: aload_0
+      35: aload_1
+      36: aload_2
+      37: invokevirtual #82                 // Method getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lgit4idea/config/GitExecutable;
+      40: astore_3
+      41: aload_0
+      42: aload_3
+      43: invokevirtual #97                 // Method getVersion:(Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+      46: dup
+      47: ifnonnull     55
+      50: bipush        8
+      52: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      55: areturn
+
+  public git4idea.config.GitVersion getVersion(git4idea.config.GitExecutable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        9
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #31                 // Field myVersionCache:Lgit4idea/config/GitExecutableFileTester;
+      13: aload_1
+      14: invokevirtual #101                // Method git4idea/config/GitExecutableFileTester.getCachedResultFor:(Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitExecutableFileTester$TestResult;
+      17: astore_2
+      18: aload_2
+      19: ifnull        29
+      22: aload_2
+      23: invokevirtual #105                // Method git4idea/config/GitExecutableFileTester$TestResult.getResult:()Lgit4idea/config/GitVersion;
+      26: ifnonnull     42
+      29: getstatic     #91                 // Field git4idea/config/GitVersion.NULL:Lgit4idea/config/GitVersion;
+      32: dup
+      33: ifnonnull     41
+      36: bipush        10
+      38: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      41: areturn
+      42: aload_2
+      43: invokevirtual #105                // Method git4idea/config/GitExecutableFileTester$TestResult.getResult:()Lgit4idea/config/GitVersion;
+      46: dup
+      47: ifnonnull     55
+      50: bipush        11
+      52: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      55: areturn
+
+  public git4idea.config.GitVersion getVersionUnderModalProgressOrCancel(com.intellij.openapi.project.Project) throws com.intellij.openapi.progress.ProcessCanceledException;
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        12
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: invokestatic  #374                // Method com/intellij/util/concurrency/ThreadingAssertions.assertEventDispatchThread:()V
+      12: invokestatic  #111                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+      15: aload_0
+      16: aload_1
+      17: invokedynamic #116,  0            // InvokeDynamic #0:compute:(Lgit4idea/config/GitExecutableManager;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/util/ThrowableComputable;
+      22: ldc           #120                // String git.executable.version.progress.title
+      24: iconst_0
+      25: anewarray     #16                 // class java/lang/Object
+      28: invokestatic  #122                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      31: iconst_1
+      32: aload_1
+      33: invokevirtual #128                // Method com/intellij/openapi/progress/ProgressManager.runProcessWithProgressSynchronously:(Lcom/intellij/openapi/util/ThrowableComputable;Ljava/lang/String;ZLcom/intellij/openapi/project/Project;)Ljava/lang/Object;
+      36: checkcast     #92                 // class git4idea/config/GitVersion
+      39: dup
+      40: ifnonnull     48
+      43: bipush        13
+      45: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      48: areturn
+
+  public git4idea.config.GitVersion tryGetVersion(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        14
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ldc           #120                // String git.executable.version.progress.title
+      12: iconst_0
+      13: anewarray     #16                 // class java/lang/Object
+      16: invokestatic  #122                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      19: aload_0
+      20: aload_1
+      21: invokedynamic #132,  0            // InvokeDynamic #1:compute:(Lgit4idea/config/GitExecutableManager;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/util/ThrowableComputable;
+      26: invokestatic  #133                // Method runUnderProgressIfNeeded:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/openapi/util/ThrowableComputable;)Ljava/lang/Object;
+      29: checkcast     #92                 // class git4idea/config/GitVersion
+      32: areturn
+
+  public git4idea.config.GitVersion tryGetVersion(com.intellij.openapi.project.Project, git4idea.config.GitExecutable);
+    Code:
+       0: aload_2
+       1: ifnonnull     9
+       4: bipush        15
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ldc           #120                // String git.executable.version.progress.title
+      12: iconst_0
+      13: anewarray     #16                 // class java/lang/Object
+      16: invokestatic  #122                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      19: aload_0
+      20: aload_1
+      21: aload_2
+      22: invokedynamic #137,  0            // InvokeDynamic #2:compute:(Lgit4idea/config/GitExecutableManager;Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lcom/intellij/openapi/util/ThrowableComputable;
+      27: invokestatic  #133                // Method runUnderProgressIfNeeded:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/openapi/util/ThrowableComputable;)Ljava/lang/Object;
+      30: checkcast     #92                 // class git4idea/config/GitVersion
+      33: areturn
+
+  static <T> T runUnderProgressIfNeeded(com.intellij.openapi.project.Project, java.lang.String, com.intellij.openapi.util.ThrowableComputable<T, java.lang.RuntimeException>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        16
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        17
+      15: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      18: invokestatic  #1                  // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+      21: invokeinterface #140,  1          // InterfaceMethod com/intellij/openapi/application/Application.isDispatchThread:()Z
+      26: ifeq          40
+      29: invokestatic  #111                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+      32: aload_2
+      33: aload_1
+      34: iconst_1
+      35: aload_0
+      36: invokevirtual #128                // Method com/intellij/openapi/progress/ProgressManager.runProcessWithProgressSynchronously:(Lcom/intellij/openapi/util/ThrowableComputable;Ljava/lang/String;ZLcom/intellij/openapi/project/Project;)Ljava/lang/Object;
+      39: areturn
+      40: aload_2
+      41: invokeinterface #143,  1          // InterfaceMethod com/intellij/openapi/util/ThrowableComputable.compute:()Ljava/lang/Object;
+      46: areturn
+
+  public git4idea.config.GitVersion getVersionOrIdentifyIfNeeded(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        18
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: invokevirtual #148                // Method getVersion:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitVersion;
+      14: astore_2
+      15: aload_2
+      16: invokevirtual #151                // Method git4idea/config/GitVersion.isNull:()Z
+      19: ifeq          28
+      22: aload_0
+      23: aload_1
+      24: invokevirtual #154                // Method tryGetVersion:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitVersion;
+      27: astore_2
+      28: aload_2
+      29: ifnull        36
+      32: aload_2
+      33: goto          39
+      36: getstatic     #91                 // Field git4idea/config/GitVersion.NULL:Lgit4idea/config/GitVersion;
+      39: dup
+      40: ifnonnull     48
+      43: bipush        19
+      45: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      48: areturn
+
+  public git4idea.config.GitVersion identifyVersion(java.lang.String) throws git4idea.config.GitVersionIdentificationException;
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        20
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aconst_null
+      11: aload_0
+      12: aconst_null
+      13: aload_1
+      14: invokevirtual #82                 // Method getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lgit4idea/config/GitExecutable;
+      17: invokevirtual #157                // Method identifyVersion:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+      20: dup
+      21: ifnonnull     29
+      24: bipush        21
+      26: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      29: areturn
+
+  public git4idea.config.GitVersion identifyVersion(com.intellij.openapi.project.Project, java.lang.String) throws git4idea.config.GitVersionIdentificationException;
+    Code:
+       0: aload_2
+       1: ifnonnull     9
+       4: bipush        22
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: aload_0
+      12: aload_1
+      13: aload_2
+      14: invokevirtual #82                 // Method getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lgit4idea/config/GitExecutable;
+      17: invokevirtual #157                // Method identifyVersion:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+      20: dup
+      21: ifnonnull     29
+      24: bipush        23
+      26: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      29: areturn
+
+  public git4idea.config.GitVersion identifyVersion(com.intellij.openapi.project.Project, git4idea.config.GitExecutable) throws git4idea.config.GitVersionIdentificationException;
+    Code:
+       0: aload_2
+       1: ifnonnull     9
+       4: bipush        24
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #31                 // Field myVersionCache:Lgit4idea/config/GitExecutableFileTester;
+      13: aload_1
+      14: aload_2
+      15: invokevirtual #161                // Method git4idea/config/GitExecutableFileTester.getResultFor:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitExecutableFileTester$TestResult;
+      18: astore_3
+      19: aload_3
+      20: invokevirtual #105                // Method git4idea/config/GitExecutableFileTester$TestResult.getResult:()Lgit4idea/config/GitVersion;
+      23: ifnonnull     95
+      26: aload_3
+      27: invokevirtual #165                // Method git4idea/config/GitExecutableFileTester$TestResult.getException:()Ljava/lang/Exception;
+      30: astore        4
+      32: aload         4
+      34: instanceof    #169                // class java/nio/file/NoSuchFileException
+      37: ifeq          72
+      40: aload_2
+      41: invokevirtual #171                // Method git4idea/config/GitExecutable.getExePath:()Ljava/lang/String;
+      44: invokestatic  #42                 // Method git4idea/config/GitExecutableDetector.getDefaultExecutable:()Ljava/lang/String;
+      47: invokevirtual #176                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      50: ifeq          72
+      53: new           #182                // class git4idea/config/GitNotInstalledException
+      56: dup
+      57: ldc           #184                // String executable.error.git.not.installed
+      59: iconst_0
+      60: anewarray     #16                 // class java/lang/Object
+      63: invokestatic  #122                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      66: aload         4
+      68: invokespecial #186                // Method git4idea/config/GitNotInstalledException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      71: athrow
+      72: new           #189                // class git4idea/config/GitVersionIdentificationException
+      75: dup
+      76: ldc           #191                // String git.executable.validation.cant.identify.executable.message
+      78: iconst_1
+      79: anewarray     #16                 // class java/lang/Object
+      82: dup
+      83: iconst_0
+      84: aload_2
+      85: aastore
+      86: invokestatic  #122                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      89: aload         4
+      91: invokespecial #193                // Method git4idea/config/GitVersionIdentificationException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      94: athrow
+      95: aload_3
+      96: invokevirtual #105                // Method git4idea/config/GitExecutableFileTester$TestResult.getResult:()Lgit4idea/config/GitVersion;
+      99: dup
+     100: ifnonnull     108
+     103: bipush        25
+     105: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+     108: areturn
+
+  public void dropVersionCache(git4idea.config.GitExecutable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        26
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #31                 // Field myVersionCache:Lgit4idea/config/GitExecutableFileTester;
+      13: aload_1
+      14: invokevirtual #194                // Method git4idea/config/GitExecutableFileTester.dropCache:(Lgit4idea/config/GitExecutable;)V
+      17: return
+
+  public void dropVersionCache();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field myVersionCache:Lgit4idea/config/GitExecutableFileTester;
+       4: invokevirtual #198                // Method git4idea/config/GitExecutableFileTester.dropCache:()V
+       7: return
+
+  public boolean testGitExecutableVersionValid(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        27
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: invokestatic  #371                // Method com/intellij/util/concurrency/ThreadingAssertions.assertBackgroundThread:()V
+      12: aload_0
+      13: aload_1
+      14: invokevirtual #200                // Method getExecutable:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitExecutable;
+      17: astore_2
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: invokevirtual #203                // Method identifyVersionOrDisplayError:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+      24: astore_3
+      25: aload_3
+      26: ifnonnull     31
+      29: iconst_0
+      30: ireturn
+      31: aload_1
+      32: invokestatic  #206                // Method git4idea/config/GitExecutableProblemsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitExecutableProblemsNotifier;
+      35: astore        4
+      37: aload_3
+      38: invokevirtual #211                // Method git4idea/config/GitVersion.isSupported:()Z
+      41: ifeq          51
+      44: aload         4
+      46: invokevirtual #214                // Method git4idea/config/GitExecutableProblemsNotifier.expireNotifications:()V
+      49: iconst_1
+      50: ireturn
+      51: aload_1
+      52: aload_3
+      53: new           #217                // class git4idea/config/NotificationErrorNotifier
+      56: dup
+      57: aload_1
+      58: invokespecial #219                // Method git4idea/config/NotificationErrorNotifier."<init>":(Lcom/intellij/openapi/project/Project;)V
+      61: invokestatic  #222                // Method git4idea/config/GitExecutableProblemHandlersKt.showUnsupportedVersionError:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitVersion;Lgit4idea/config/ErrorNotifier;)V
+      64: iconst_0
+      65: ireturn
+
+  private git4idea.config.GitVersion identifyVersionOrDisplayError(com.intellij.openapi.project.Project, git4idea.config.GitExecutable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        28
+       6: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        29
+      15: invokestatic  #378                // Method $$$reportNull$$$0:(I)V
+      18: invokestatic  #371                // Method com/intellij/util/concurrency/ThreadingAssertions.assertBackgroundThread:()V
+      21: aload_0
+      22: aload_1
+      23: aload_2
+      24: invokevirtual #157                // Method identifyVersion:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+      27: areturn
+      28: astore_3
+      29: aload_1
+      30: invokestatic  #206                // Method git4idea/config/GitExecutableProblemsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitExecutableProblemsNotifier;
+      33: aload_3
+      34: invokevirtual #228                // Method git4idea/config/GitExecutableProblemsNotifier.notifyExecutionError:(Ljava/lang/Throwable;)V
+      37: aconst_null
+      38: areturn
+    Exception table:
+       from    to  target type
+          21    27    28   Class git4idea/config/GitVersionIdentificationException
+
+  private git4idea.config.GitVersion lambda$tryGetVersion$2(com.intellij.openapi.project.Project, git4idea.config.GitExecutable) throws java.lang.RuntimeException;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #157                // Method identifyVersion:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+       6: areturn
+       7: astore_3
+       8: aconst_null
+       9: areturn
+    Exception table:
+       from    to  target type
+           0     6     7   Class com/intellij/openapi/progress/ProcessCanceledException
+           0     6     7   Class git4idea/config/GitVersionIdentificationException
+
+  private git4idea.config.GitVersion lambda$tryGetVersion$1(com.intellij.openapi.project.Project) throws java.lang.RuntimeException;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #200                // Method getExecutable:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitExecutable;
+       5: astore_2
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #157                // Method identifyVersion:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+      12: areturn
+      13: astore_2
+      14: aconst_null
+      15: areturn
+    Exception table:
+       from    to  target type
+           0    12    13   Class com/intellij/openapi/progress/ProcessCanceledException
+           0    12    13   Class git4idea/config/GitVersionIdentificationException
+
+  private git4idea.config.GitVersion lambda$getVersionUnderModalProgressOrCancel$0(com.intellij.openapi.project.Project) throws java.lang.RuntimeException;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #200                // Method getExecutable:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitExecutable;
+       5: astore_2
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #157                // Method identifyVersion:(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitExecutable;)Lgit4idea/config/GitVersion;
+      12: astore_3
+      13: goto          26
+      16: astore        4
+      18: new           #232                // class com/intellij/openapi/progress/ProcessCanceledException
+      21: dup
+      22: invokespecial #234                // Method com/intellij/openapi/progress/ProcessCanceledException."<init>":()V
+      25: athrow
+      26: aload_3
+      27: areturn
+    Exception table:
+       from    to  target type
+           6    13    16   Class git4idea/config/GitVersionIdentificationException
+
+  static {};
+    Code:
+       0: ldc           #7                  // class git4idea/config/GitExecutableManager
+       2: invokestatic  #235                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #240                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: new           #244                // class com/intellij/util/messages/Topic
+      11: dup
+      12: ldc           #246                // class git4idea/config/GitExecutableListener
+      14: getstatic     #248                // Field com/intellij/util/messages/Topic$BroadcastDirection.NONE:Lcom/intellij/util/messages/Topic$BroadcastDirection;
+      17: invokespecial #254                // Method com/intellij/util/messages/Topic."<init>":(Ljava/lang/Class;Lcom/intellij/util/messages/Topic$BroadcastDirection;)V
+      20: putstatic     #257                // Field TOPIC:Lcom/intellij/util/messages/Topic;
+      23: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 29
+
+                     0: 136
+
+                     1: 136
+
+                     2: 136
+
+                     3: 136
+
+                     4: 142
+
+                     5: 136
+
+                     6: 142
+
+                     7: 136
+
+                     8: 136
+
+                     9: 142
+
+                    10: 136
+
+                    11: 136
+
+                    12: 142
+
+                    13: 136
+
+                    14: 142
+
+                    15: 142
+
+                    16: 142
+
+                    17: 142
+
+                    18: 142
+
+                    19: 136
+
+                    20: 142
+
+                    21: 136
+
+                    22: 142
+
+                    23: 136
+
+                    24: 142
+
+                    25: 136
+
+                    26: 142
+
+                    27: 142
+
+                    28: 142
+
+                    29: 142
+               default: 136
+          }
+     136: ldc_w         #380                // String @NotNull method %s.%s must not return null
+     139: goto          148
+     142: ldc_w         #382                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     145: goto          148
+     148: iload_0
+     149: tableswitch   { // 0 to 29
+
+                     0: 284
+
+                     1: 284
+
+                     2: 284
+
+                     3: 284
+
+                     4: 288
+
+                     5: 284
+
+                     6: 288
+
+                     7: 284
+
+                     8: 284
+
+                     9: 288
+
+                    10: 284
+
+                    11: 284
+
+                    12: 288
+
+                    13: 284
+
+                    14: 288
+
+                    15: 288
+
+                    16: 288
+
+                    17: 288
+
+                    18: 288
+
+                    19: 284
+
+                    20: 288
+
+                    21: 284
+
+                    22: 288
+
+                    23: 284
+
+                    24: 288
+
+                    25: 284
+
+                    26: 288
+
+                    27: 288
+
+                    28: 288
+
+                    29: 288
+               default: 284
+          }
+     284: iconst_2
+     285: goto          292
+     288: iconst_3
+     289: goto          292
+     292: anewarray     #16                 // class java/lang/Object
+     295: iload_0
+     296: tableswitch   { // 0 to 29
+
+                     0: 432
+
+                     1: 432
+
+                     2: 432
+
+                     3: 432
+
+                     4: 441
+
+                     5: 432
+
+                     6: 450
+
+                     7: 432
+
+                     8: 432
+
+                     9: 459
+
+                    10: 432
+
+                    11: 432
+
+                    12: 450
+
+                    13: 432
+
+                    14: 450
+
+                    15: 459
+
+                    16: 468
+
+                    17: 477
+
+                    18: 450
+
+                    19: 432
+
+                    20: 441
+
+                    21: 432
+
+                    22: 441
+
+                    23: 432
+
+                    24: 459
+
+                    25: 432
+
+                    26: 459
+
+                    27: 450
+
+                    28: 450
+
+                    29: 459
+               default: 432
+          }
+     432: dup
+     433: iconst_0
+     434: ldc_w         #383                // String git4idea/config/GitExecutableManager
+     437: aastore
+     438: goto          486
+     441: dup
+     442: iconst_0
+     443: ldc_w         #384                // String pathToGit
+     446: aastore
+     447: goto          486
+     450: dup
+     451: iconst_0
+     452: ldc_w         #385                // String project
+     455: aastore
+     456: goto          486
+     459: dup
+     460: iconst_0
+     461: ldc_w         #386                // String executable
+     464: aastore
+     465: goto          486
+     468: dup
+     469: iconst_0
+     470: ldc_w         #387                // String title
+     473: aastore
+     474: goto          486
+     477: dup
+     478: iconst_0
+     479: ldc_w         #388                // String task
+     482: aastore
+     483: goto          486
+     486: iload_0
+     487: tableswitch   { // 0 to 29
+
+                     0: 620
+
+                     1: 620
+
+                     2: 629
+
+                     3: 629
+
+                     4: 638
+
+                     5: 629
+
+                     6: 638
+
+                     7: 647
+
+                     8: 647
+
+                     9: 638
+
+                    10: 647
+
+                    11: 647
+
+                    12: 638
+
+                    13: 656
+
+                    14: 638
+
+                    15: 638
+
+                    16: 638
+
+                    17: 638
+
+                    18: 638
+
+                    19: 665
+
+                    20: 638
+
+                    21: 674
+
+                    22: 638
+
+                    23: 674
+
+                    24: 638
+
+                    25: 674
+
+                    26: 638
+
+                    27: 638
+
+                    28: 638
+
+                    29: 638
+               default: 620
+          }
+     620: dup
+     621: iconst_1
+     622: ldc_w         #389                // String getPathToGit
+     625: aastore
+     626: goto          683
+     629: dup
+     630: iconst_1
+     631: ldc_w         #390                // String getExecutable
+     634: aastore
+     635: goto          683
+     638: dup
+     639: iconst_1
+     640: ldc_w         #383                // String git4idea/config/GitExecutableManager
+     643: aastore
+     644: goto          683
+     647: dup
+     648: iconst_1
+     649: ldc_w         #391                // String getVersion
+     652: aastore
+     653: goto          683
+     656: dup
+     657: iconst_1
+     658: ldc_w         #392                // String getVersionUnderModalProgressOrCancel
+     661: aastore
+     662: goto          683
+     665: dup
+     666: iconst_1
+     667: ldc_w         #393                // String getVersionOrIdentifyIfNeeded
+     670: aastore
+     671: goto          683
+     674: dup
+     675: iconst_1
+     676: ldc_w         #394                // String identifyVersion
+     679: aastore
+     680: goto          683
+     683: iload_0
+     684: tableswitch   { // 0 to 29
+
+                     0: 820
+
+                     1: 820
+
+                     2: 820
+
+                     3: 820
+
+                     4: 823
+
+                     5: 820
+
+                     6: 832
+
+                     7: 820
+
+                     8: 820
+
+                     9: 832
+
+                    10: 820
+
+                    11: 820
+
+                    12: 841
+
+                    13: 820
+
+                    14: 850
+
+                    15: 850
+
+                    16: 859
+
+                    17: 859
+
+                    18: 868
+
+                    19: 820
+
+                    20: 877
+
+                    21: 820
+
+                    22: 877
+
+                    23: 820
+
+                    24: 877
+
+                    25: 820
+
+                    26: 886
+
+                    27: 895
+
+                    28: 904
+
+                    29: 904
+               default: 820
+          }
+     820: goto          913
+     823: dup
+     824: iconst_2
+     825: ldc_w         #390                // String getExecutable
+     828: aastore
+     829: goto          913
+     832: dup
+     833: iconst_2
+     834: ldc_w         #391                // String getVersion
+     837: aastore
+     838: goto          913
+     841: dup
+     842: iconst_2
+     843: ldc_w         #392                // String getVersionUnderModalProgressOrCancel
+     846: aastore
+     847: goto          913
+     850: dup
+     851: iconst_2
+     852: ldc_w         #395                // String tryGetVersion
+     855: aastore
+     856: goto          913
+     859: dup
+     860: iconst_2
+     861: ldc_w         #396                // String runUnderProgressIfNeeded
+     864: aastore
+     865: goto          913
+     868: dup
+     869: iconst_2
+     870: ldc_w         #393                // String getVersionOrIdentifyIfNeeded
+     873: aastore
+     874: goto          913
+     877: dup
+     878: iconst_2
+     879: ldc_w         #394                // String identifyVersion
+     882: aastore
+     883: goto          913
+     886: dup
+     887: iconst_2
+     888: ldc_w         #397                // String dropVersionCache
+     891: aastore
+     892: goto          913
+     895: dup
+     896: iconst_2
+     897: ldc_w         #398                // String testGitExecutableVersionValid
+     900: aastore
+     901: goto          913
+     904: dup
+     905: iconst_2
+     906: ldc_w         #399                // String identifyVersionOrDisplayError
+     909: aastore
+     910: goto          913
+     913: invokestatic  #402                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     916: iload_0
+     917: tableswitch   { // 0 to 29
+
+                     0: 1052
+
+                     1: 1052
+
+                     2: 1052
+
+                     3: 1052
+
+                     4: 1063
+
+                     5: 1052
+
+                     6: 1063
+
+                     7: 1052
+
+                     8: 1052
+
+                     9: 1063
+
+                    10: 1052
+
+                    11: 1052
+
+                    12: 1063
+
+                    13: 1052
+
+                    14: 1063
+
+                    15: 1063
+
+                    16: 1063
+
+                    17: 1063
+
+                    18: 1063
+
+                    19: 1052
+
+                    20: 1063
+
+                    21: 1052
+
+                    22: 1063
+
+                    23: 1052
+
+                    24: 1063
+
+                    25: 1052
+
+                    26: 1063
+
+                    27: 1063
+
+                    28: 1063
+
+                    29: 1063
+               default: 1052
+          }
+    1052: new           #404                // class java/lang/IllegalStateException
+    1055: dup_x1
+    1056: swap
+    1057: invokespecial #407                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+    1060: goto          1074
+    1063: new           #409                // class java/lang/IllegalArgumentException
+    1066: dup_x1
+    1067: swap
+    1068: invokespecial #410                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+    1071: goto          1074
+    1074: athrow
+}

@@ -1,0 +1,908 @@
+Compiled from "GitChangesCollector.java"
+final class git4idea.status.GitChangesCollector {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  private final com.intellij.openapi.project.Project myProject;
+
+  private final com.intellij.openapi.vfs.VirtualFile myVcsRoot;
+
+  private final com.intellij.openapi.vcs.history.VcsRevisionNumber myHead;
+
+  private final java.util.Collection<com.intellij.openapi.vcs.changes.Change> myChanges;
+
+  static git4idea.status.GitChangesCollector collect(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, java.util.List<git4idea.index.GitFileStatus>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      16: aload_2
+      17: ifnonnull     24
+      20: iconst_2
+      21: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      24: aload_1
+      25: invokestatic  #1                  // Method getHead:(Lgit4idea/repo/GitRepository;)Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+      28: astore_3
+      29: new           #2                  // class git4idea/status/GitChangesCollector
+      32: dup
+      33: aload_0
+      34: aload_1
+      35: invokeinterface #7,  1            // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      40: aload_3
+      41: invokespecial #13                 // Method "<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;)V
+      44: astore        4
+      46: aload         4
+      48: aload_2
+      49: invokevirtual #17                 // Method collectChanges:(Ljava/util/List;)V
+      52: aload         4
+      54: dup
+      55: ifnonnull     62
+      58: iconst_3
+      59: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      62: areturn
+
+  com.intellij.openapi.vcs.history.VcsRevisionNumber getHead();
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field myHead:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_4
+       9: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  java.util.Collection<com.intellij.openapi.vcs.changes.Change> getChanges();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field myChanges:Ljava/util/Collection;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_5
+       9: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  private git4idea.status.GitChangesCollector(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.history.VcsRevisionNumber);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        7
+      15: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        8
+      24: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: invokespecial #29                 // Method java/lang/Object."<init>":()V
+      31: aload_0
+      32: new           #34                 // class java/util/HashSet
+      35: dup
+      36: invokespecial #36                 // Method java/util/HashSet."<init>":()V
+      39: putfield      #25                 // Field myChanges:Ljava/util/Collection;
+      42: aload_0
+      43: aload_1
+      44: putfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      47: aload_0
+      48: aload_2
+      49: putfield      #41                 // Field myVcsRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      52: aload_0
+      53: aload_3
+      54: putfield      #21                 // Field myHead:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+      57: return
+
+  private void collectChanges(java.util.List<git4idea.index.GitFileStatus>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: new           #45                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #47                 // Method java/util/ArrayList."<init>":()V
+       7: astore_2
+       8: aload_1
+       9: invokeinterface #48,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      14: astore_3
+      15: aload_3
+      16: invokeinterface #54,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      21: ifeq          725
+      24: aload_3
+      25: invokeinterface #60,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      30: checkcast     #64                 // class git4idea/index/GitFileStatus
+      33: astore        4
+      35: aload         4
+      37: invokevirtual #66                 // Method git4idea/index/GitFileStatus.getIndex:()C
+      40: istore        5
+      42: aload         4
+      44: invokevirtual #70                 // Method git4idea/index/GitFileStatus.getWorkTree:()C
+      47: istore        6
+      49: aload         4
+      51: invokevirtual #73                 // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+      54: astore        7
+      56: aload         4
+      58: invokevirtual #77                 // Method git4idea/index/GitFileStatus.getOrigPath:()Lcom/intellij/openapi/vcs/FilePath;
+      61: astore        8
+      63: iload         5
+      65: lookupswitch  { // 8
+
+                    32: 140
+
+                    65: 323
+
+                    67: 323
+
+                    68: 405
+
+                    77: 255
+
+                    82: 592
+
+                    84: 650
+
+                    85: 527
+               default: 715
+          }
+     140: iload         6
+     142: bipush        77
+     144: if_icmpne     156
+     147: aload_0
+     148: aload         7
+     150: invokevirtual #80                 // Method reportModified:(Lcom/intellij/openapi/vcs/FilePath;)V
+     153: goto          722
+     156: iload         6
+     158: bipush        68
+     160: if_icmpne     172
+     163: aload_0
+     164: aload         7
+     166: invokevirtual #84                 // Method reportDeleted:(Lcom/intellij/openapi/vcs/FilePath;)V
+     169: goto          722
+     172: iload         6
+     174: bipush        65
+     176: if_icmpeq     186
+     179: iload         6
+     181: bipush        67
+     183: if_icmpne     195
+     186: aload_0
+     187: aload         7
+     189: invokevirtual #87                 // Method reportAdded:(Lcom/intellij/openapi/vcs/FilePath;)V
+     192: goto          722
+     195: iload         6
+     197: bipush        84
+     199: if_icmpne     211
+     202: aload_0
+     203: aload         7
+     205: invokevirtual #90                 // Method reportTypeChanged:(Lcom/intellij/openapi/vcs/FilePath;)V
+     208: goto          722
+     211: iload         6
+     213: bipush        85
+     215: if_icmpne     227
+     218: aload_0
+     219: aload         7
+     221: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     224: goto          722
+     227: iload         6
+     229: bipush        82
+     231: if_icmpne     245
+     234: aload_0
+     235: aload         7
+     237: aload         8
+     239: invokevirtual #96                 // Method reportRename:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)V
+     242: goto          722
+     245: iload         5
+     247: iload         6
+     249: invokestatic  #100                // Method throwStatus:(CC)V
+     252: goto          722
+     255: iload         6
+     257: bipush        77
+     259: if_icmpne     274
+     262: aload_2
+     263: aload         7
+     265: invokeinterface #104,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     270: pop
+     271: goto          722
+     274: iload         6
+     276: bipush        32
+     278: if_icmpeq     288
+     281: iload         6
+     283: bipush        84
+     285: if_icmpne     297
+     288: aload_0
+     289: aload         7
+     291: invokevirtual #80                 // Method reportModified:(Lcom/intellij/openapi/vcs/FilePath;)V
+     294: goto          722
+     297: iload         6
+     299: bipush        68
+     301: if_icmpne     313
+     304: aload_0
+     305: aload         7
+     307: invokevirtual #84                 // Method reportDeleted:(Lcom/intellij/openapi/vcs/FilePath;)V
+     310: goto          722
+     313: iload         5
+     315: iload         6
+     317: invokestatic  #100                // Method throwStatus:(CC)V
+     320: goto          722
+     323: iload         6
+     325: bipush        77
+     327: if_icmpeq     344
+     330: iload         6
+     332: bipush        32
+     334: if_icmpeq     344
+     337: iload         6
+     339: bipush        84
+     341: if_icmpne     353
+     344: aload_0
+     345: aload         7
+     347: invokevirtual #87                 // Method reportAdded:(Lcom/intellij/openapi/vcs/FilePath;)V
+     350: goto          722
+     353: iload         6
+     355: bipush        68
+     357: if_icmpne     363
+     360: goto          722
+     363: iload         6
+     365: bipush        85
+     367: if_icmpne     379
+     370: aload_0
+     371: aload         7
+     373: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     376: goto          722
+     379: iload         6
+     381: bipush        65
+     383: if_icmpne     395
+     386: aload_0
+     387: aload         7
+     389: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     392: goto          722
+     395: iload         5
+     397: iload         6
+     399: invokestatic  #100                // Method throwStatus:(CC)V
+     402: goto          722
+     405: iload         6
+     407: bipush        77
+     409: if_icmpeq     426
+     412: iload         6
+     414: bipush        32
+     416: if_icmpeq     426
+     419: iload         6
+     421: bipush        84
+     423: if_icmpne     435
+     426: aload_0
+     427: aload         7
+     429: invokevirtual #84                 // Method reportDeleted:(Lcom/intellij/openapi/vcs/FilePath;)V
+     432: goto          722
+     435: iload         6
+     437: bipush        85
+     439: if_icmpne     451
+     442: aload_0
+     443: aload         7
+     445: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     448: goto          722
+     451: iload         6
+     453: bipush        68
+     455: if_icmpne     467
+     458: aload_0
+     459: aload         7
+     461: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     464: goto          722
+     467: iload         6
+     469: bipush        67
+     471: if_icmpne     483
+     474: aload_0
+     475: aload         7
+     477: invokevirtual #80                 // Method reportModified:(Lcom/intellij/openapi/vcs/FilePath;)V
+     480: goto          722
+     483: iload         6
+     485: bipush        82
+     487: if_icmpne     501
+     490: aload_0
+     491: aload         7
+     493: aload         8
+     495: invokevirtual #96                 // Method reportRename:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)V
+     498: goto          722
+     501: iload         6
+     503: bipush        65
+     505: if_icmpne     517
+     508: aload_0
+     509: aload         7
+     511: invokevirtual #80                 // Method reportModified:(Lcom/intellij/openapi/vcs/FilePath;)V
+     514: goto          722
+     517: iload         5
+     519: iload         6
+     521: invokestatic  #100                // Method throwStatus:(CC)V
+     524: goto          722
+     527: iload         6
+     529: bipush        85
+     531: if_icmpeq     541
+     534: iload         6
+     536: bipush        84
+     538: if_icmpne     550
+     541: aload_0
+     542: aload         7
+     544: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     547: goto          722
+     550: iload         6
+     552: bipush        65
+     554: if_icmpne     566
+     557: aload_0
+     558: aload         7
+     560: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     563: goto          722
+     566: iload         6
+     568: bipush        68
+     570: if_icmpne     582
+     573: aload_0
+     574: aload         7
+     576: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     579: goto          722
+     582: iload         5
+     584: iload         6
+     586: invokestatic  #100                // Method throwStatus:(CC)V
+     589: goto          722
+     592: iload         6
+     594: bipush        68
+     596: if_icmpne     608
+     599: aload_0
+     600: aload         8
+     602: invokevirtual #84                 // Method reportDeleted:(Lcom/intellij/openapi/vcs/FilePath;)V
+     605: goto          722
+     608: iload         6
+     610: bipush        32
+     612: if_icmpeq     629
+     615: iload         6
+     617: bipush        77
+     619: if_icmpeq     629
+     622: iload         6
+     624: bipush        84
+     626: if_icmpne     640
+     629: aload_0
+     630: aload         7
+     632: aload         8
+     634: invokevirtual #96                 // Method reportRename:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)V
+     637: goto          722
+     640: iload         5
+     642: iload         6
+     644: invokestatic  #100                // Method throwStatus:(CC)V
+     647: goto          722
+     650: iload         6
+     652: bipush        32
+     654: if_icmpeq     664
+     657: iload         6
+     659: bipush        77
+     661: if_icmpne     673
+     664: aload_0
+     665: aload         7
+     667: invokevirtual #90                 // Method reportTypeChanged:(Lcom/intellij/openapi/vcs/FilePath;)V
+     670: goto          722
+     673: iload         6
+     675: bipush        68
+     677: if_icmpne     689
+     680: aload_0
+     681: aload         7
+     683: invokevirtual #84                 // Method reportDeleted:(Lcom/intellij/openapi/vcs/FilePath;)V
+     686: goto          722
+     689: iload         6
+     691: bipush        84
+     693: if_icmpne     705
+     696: aload_0
+     697: aload         7
+     699: invokevirtual #93                 // Method reportConflict:(Lcom/intellij/openapi/vcs/FilePath;)V
+     702: goto          722
+     705: iload         5
+     707: iload         6
+     709: invokestatic  #100                // Method throwStatus:(CC)V
+     712: goto          722
+     715: iload         5
+     717: iload         6
+     719: invokestatic  #100                // Method throwStatus:(CC)V
+     722: goto          15
+     725: aload_0
+     726: aload_2
+     727: invokevirtual #108                // Method collectStagedUnstagedModifications:(Ljava/util/List;)V
+     730: return
+
+  private void collectStagedUnstagedModifications(java.util.List<com.intellij.openapi.vcs.FilePath>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        9
+       6: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #111,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      15: ifeq          19
+      18: return
+      19: aload_0
+      20: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      23: aload_0
+      24: getfield      #41                 // Field myVcsRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      27: aload_1
+      28: iconst_0
+      29: invokestatic  #114                // Method git4idea/changes/GitChangeUtils.getWorkingTreeChanges:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Z)Ljava/util/Collection;
+      32: astore_2
+      33: new           #34                 // class java/util/HashSet
+      36: dup
+      37: aload_1
+      38: invokespecial #120                // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+      41: astore_3
+      42: aload_2
+      43: invokeinterface #123,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      48: astore        4
+      50: aload         4
+      52: invokeinterface #54,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      57: ifeq          99
+      60: aload         4
+      62: invokeinterface #60,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      67: checkcast     #126                // class git4idea/changes/GitChangeUtils$GitDiffChange
+      70: astore        5
+      72: aload         5
+      74: invokevirtual #128                // Method git4idea/changes/GitChangeUtils$GitDiffChange.getFilePath:()Lcom/intellij/openapi/vcs/FilePath;
+      77: astore        6
+      79: aload_3
+      80: aload         6
+      82: invokeinterface #131,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      87: ifeq          96
+      90: aload_0
+      91: aload         6
+      93: invokevirtual #80                 // Method reportModified:(Lcom/intellij/openapi/vcs/FilePath;)V
+      96: goto          50
+      99: return
+
+  static com.intellij.openapi.vcs.history.VcsRevisionNumber getHead(git4idea.repo.GitRepository);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        10
+       6: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: invokeinterface #136,  1          // InterfaceMethod git4idea/repo/GitRepository.update:()V
+      15: aload_0
+      16: invokeinterface #139,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentRevision:()Ljava/lang/String;
+      21: astore_1
+      22: aload_1
+      23: ifnull        37
+      26: new           #143                // class git4idea/GitRevisionNumber
+      29: dup
+      30: aload_1
+      31: invokespecial #145                // Method git4idea/GitRevisionNumber."<init>":(Ljava/lang/String;)V
+      34: goto          40
+      37: getstatic     #148                // Field com/intellij/openapi/vcs/history/VcsRevisionNumber.NULL:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+      40: dup
+      41: ifnonnull     49
+      44: bipush        11
+      46: invokestatic  #280                // Method $$$reportNull$$$0:(I)V
+      49: areturn
+
+  private static void throwStatus(char, char) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: new           #153                // class com/intellij/openapi/vcs/VcsException
+       3: dup
+       4: ldc           #155                // String status.exception.message.unexpected.xstatus.ystatus
+       6: iconst_2
+       7: anewarray     #30                 // class java/lang/Object
+      10: dup
+      11: iconst_0
+      12: iload_0
+      13: invokestatic  #157                // Method java/lang/Character.valueOf:(C)Ljava/lang/Character;
+      16: aastore
+      17: dup
+      18: iconst_1
+      19: iload_1
+      20: invokestatic  #157                // Method java/lang/Character.valueOf:(C)Ljava/lang/Character;
+      23: aastore
+      24: invokestatic  #163                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      27: invokespecial #169                // Method com/intellij/openapi/vcs/VcsException."<init>":(Ljava/lang/String;)V
+      30: athrow
+
+  private void reportModified(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #21                 // Field myHead:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+       5: aload_0
+       6: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       9: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      12: astore_2
+      13: aload_1
+      14: aconst_null
+      15: aload_0
+      16: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      19: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      22: astore_3
+      23: aload_0
+      24: getstatic     #176                // Field com/intellij/openapi/vcs/FileStatus.MODIFIED:Lcom/intellij/openapi/vcs/FileStatus;
+      27: aload_2
+      28: aload_3
+      29: invokevirtual #182                // Method reportChange:(Lcom/intellij/openapi/vcs/FileStatus;Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/changes/ContentRevision;)V
+      32: return
+
+  private void reportTypeChanged(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #21                 // Field myHead:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+       5: aload_0
+       6: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       9: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      12: astore_2
+      13: aload_1
+      14: aconst_null
+      15: aload_0
+      16: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      19: invokestatic  #186                // Method git4idea/GitContentRevision.createRevisionForTypeChange:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      22: astore_3
+      23: aload_0
+      24: getstatic     #176                // Field com/intellij/openapi/vcs/FileStatus.MODIFIED:Lcom/intellij/openapi/vcs/FileStatus;
+      27: aload_2
+      28: aload_3
+      29: invokevirtual #182                // Method reportChange:(Lcom/intellij/openapi/vcs/FileStatus;Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/changes/ContentRevision;)V
+      32: return
+
+  private void reportAdded(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aconst_null
+       1: astore_2
+       2: aload_1
+       3: aconst_null
+       4: aload_0
+       5: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       8: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      11: astore_3
+      12: aload_0
+      13: getstatic     #189                // Field com/intellij/openapi/vcs/FileStatus.ADDED:Lcom/intellij/openapi/vcs/FileStatus;
+      16: aload_2
+      17: aload_3
+      18: invokevirtual #182                // Method reportChange:(Lcom/intellij/openapi/vcs/FileStatus;Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/changes/ContentRevision;)V
+      21: return
+
+  private void reportDeleted(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #21                 // Field myHead:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+       5: aload_0
+       6: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       9: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      12: astore_2
+      13: aconst_null
+      14: astore_3
+      15: aload_0
+      16: getstatic     #192                // Field com/intellij/openapi/vcs/FileStatus.DELETED:Lcom/intellij/openapi/vcs/FileStatus;
+      19: aload_2
+      20: aload_3
+      21: invokevirtual #182                // Method reportChange:(Lcom/intellij/openapi/vcs/FileStatus;Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/changes/ContentRevision;)V
+      24: return
+
+  private void reportRename(com.intellij.openapi.vcs.FilePath, com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: getfield      #21                 // Field myHead:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+       5: aload_0
+       6: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       9: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      12: astore_3
+      13: aload_1
+      14: aconst_null
+      15: aload_0
+      16: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      19: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      22: astore        4
+      24: aload_0
+      25: getstatic     #176                // Field com/intellij/openapi/vcs/FileStatus.MODIFIED:Lcom/intellij/openapi/vcs/FileStatus;
+      28: aload_3
+      29: aload         4
+      31: invokevirtual #182                // Method reportChange:(Lcom/intellij/openapi/vcs/FileStatus;Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/changes/ContentRevision;)V
+      34: return
+
+  private void reportConflict(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #21                 // Field myHead:Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+       5: aload_0
+       6: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       9: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      12: astore_2
+      13: aload_1
+      14: aconst_null
+      15: aload_0
+      16: getfield      #37                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      19: invokestatic  #170                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      22: astore_3
+      23: aload_0
+      24: getstatic     #195                // Field com/intellij/openapi/vcs/FileStatus.MERGED_WITH_CONFLICTS:Lcom/intellij/openapi/vcs/FileStatus;
+      27: aload_2
+      28: aload_3
+      29: invokevirtual #182                // Method reportChange:(Lcom/intellij/openapi/vcs/FileStatus;Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/changes/ContentRevision;)V
+      32: return
+
+  private void reportChange(com.intellij.openapi.vcs.FileStatus, com.intellij.openapi.vcs.changes.ContentRevision, com.intellij.openapi.vcs.changes.ContentRevision);
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field myChanges:Ljava/util/Collection;
+       4: new           #198                // class com/intellij/openapi/vcs/changes/Change
+       7: dup
+       8: aload_2
+       9: aload_3
+      10: aload_1
+      11: invokespecial #200                // Method com/intellij/openapi/vcs/changes/Change."<init>":(Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/changes/ContentRevision;Lcom/intellij/openapi/vcs/FileStatus;)V
+      14: invokeinterface #203,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+      19: pop
+      20: return
+
+  static {};
+    Code:
+       0: ldc           #2                  // class git4idea/status/GitChangesCollector
+       2: invokestatic  #204                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #210                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 11
+
+                     0: 64
+
+                     1: 64
+
+                     2: 64
+
+                     3: 70
+
+                     4: 70
+
+                     5: 70
+
+                     6: 64
+
+                     7: 64
+
+                     8: 64
+
+                     9: 64
+
+                    10: 64
+
+                    11: 70
+               default: 64
+          }
+      64: ldc_w         #284                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      67: goto          76
+      70: ldc_w         #286                // String @NotNull method %s.%s must not return null
+      73: goto          76
+      76: iload_0
+      77: tableswitch   { // 0 to 11
+
+                     0: 140
+
+                     1: 140
+
+                     2: 140
+
+                     3: 144
+
+                     4: 144
+
+                     5: 144
+
+                     6: 140
+
+                     7: 140
+
+                     8: 140
+
+                     9: 140
+
+                    10: 140
+
+                    11: 144
+               default: 140
+          }
+     140: iconst_3
+     141: goto          148
+     144: iconst_2
+     145: goto          148
+     148: anewarray     #30                 // class java/lang/Object
+     151: iload_0
+     152: tableswitch   { // 0 to 11
+
+                     0: 216
+
+                     1: 225
+
+                     2: 234
+
+                     3: 243
+
+                     4: 243
+
+                     5: 243
+
+                     6: 216
+
+                     7: 252
+
+                     8: 261
+
+                     9: 270
+
+                    10: 225
+
+                    11: 243
+               default: 216
+          }
+     216: dup
+     217: iconst_0
+     218: ldc_w         #287                // String project
+     221: aastore
+     222: goto          279
+     225: dup
+     226: iconst_0
+     227: ldc_w         #288                // String repository
+     230: aastore
+     231: goto          279
+     234: dup
+     235: iconst_0
+     236: ldc_w         #289                // String changes
+     239: aastore
+     240: goto          279
+     243: dup
+     244: iconst_0
+     245: ldc_w         #290                // String git4idea/status/GitChangesCollector
+     248: aastore
+     249: goto          279
+     252: dup
+     253: iconst_0
+     254: ldc_w         #291                // String root
+     257: aastore
+     258: goto          279
+     261: dup
+     262: iconst_0
+     263: ldc_w         #292                // String head
+     266: aastore
+     267: goto          279
+     270: dup
+     271: iconst_0
+     272: ldc_w         #293                // String bothModifiedPaths
+     275: aastore
+     276: goto          279
+     279: iload_0
+     280: tableswitch   { // 0 to 11
+
+                     0: 344
+
+                     1: 344
+
+                     2: 344
+
+                     3: 353
+
+                     4: 362
+
+                     5: 371
+
+                     6: 344
+
+                     7: 344
+
+                     8: 344
+
+                     9: 344
+
+                    10: 344
+
+                    11: 362
+               default: 344
+          }
+     344: dup
+     345: iconst_1
+     346: ldc_w         #290                // String git4idea/status/GitChangesCollector
+     349: aastore
+     350: goto          380
+     353: dup
+     354: iconst_1
+     355: ldc_w         #294                // String collect
+     358: aastore
+     359: goto          380
+     362: dup
+     363: iconst_1
+     364: ldc_w         #295                // String getHead
+     367: aastore
+     368: goto          380
+     371: dup
+     372: iconst_1
+     373: ldc_w         #296                // String getChanges
+     376: aastore
+     377: goto          380
+     380: iload_0
+     381: tableswitch   { // 0 to 11
+
+                     0: 444
+
+                     1: 444
+
+                     2: 444
+
+                     3: 453
+
+                     4: 453
+
+                     5: 453
+
+                     6: 456
+
+                     7: 456
+
+                     8: 456
+
+                     9: 465
+
+                    10: 474
+
+                    11: 453
+               default: 444
+          }
+     444: dup
+     445: iconst_2
+     446: ldc_w         #294                // String collect
+     449: aastore
+     450: goto          483
+     453: goto          483
+     456: dup
+     457: iconst_2
+     458: ldc_w         #297                // String <init>
+     461: aastore
+     462: goto          483
+     465: dup
+     466: iconst_2
+     467: ldc_w         #298                // String collectStagedUnstagedModifications
+     470: aastore
+     471: goto          483
+     474: dup
+     475: iconst_2
+     476: ldc_w         #295                // String getHead
+     479: aastore
+     480: goto          483
+     483: invokestatic  #301                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     486: iload_0
+     487: tableswitch   { // 0 to 11
+
+                     0: 548
+
+                     1: 548
+
+                     2: 548
+
+                     3: 559
+
+                     4: 559
+
+                     5: 559
+
+                     6: 548
+
+                     7: 548
+
+                     8: 548
+
+                     9: 548
+
+                    10: 548
+
+                    11: 559
+               default: 548
+          }
+     548: new           #303                // class java/lang/IllegalArgumentException
+     551: dup_x1
+     552: swap
+     553: invokespecial #304                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     556: goto          570
+     559: new           #306                // class java/lang/IllegalStateException
+     562: dup_x1
+     563: swap
+     564: invokespecial #307                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     567: goto          570
+     570: athrow
+}

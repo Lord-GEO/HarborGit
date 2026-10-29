@@ -1,0 +1,331 @@
+Compiled from "GitStageCommitter.kt"
+public final class git4idea.index.GitStageCommitter extends com.intellij.vcs.commit.AbstractCommitter {
+  private final git4idea.index.GitStageCommitState commitState;
+
+  private final java.util.Map<com.intellij.openapi.vfs.VirtualFile, java.util.Collection<com.intellij.openapi.vcs.FilePath>> toStage;
+
+  private final com.intellij.openapi.vcs.changes.CommitContext commitContext;
+
+  private final java.util.Set<git4idea.repo.GitRepository> successfulRepositories;
+
+  private final java.util.Map<com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.VcsException> failedRoots;
+
+  public git4idea.index.GitStageCommitter(com.intellij.openapi.project.Project, git4idea.index.GitStageCommitState, java.util.Map<com.intellij.openapi.vfs.VirtualFile, ? extends java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>>, com.intellij.openapi.vcs.changes.CommitContext);
+    Code:
+       0: aload_1
+       1: ldc           #10                 // String project
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #18                 // String commitState
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #20                 // String toStage
+      15: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         4
+      20: ldc           #22                 // String commitContext
+      22: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload_0
+      26: aload_1
+      27: aload_2
+      28: invokevirtual #28                 // Method git4idea/index/GitStageCommitState.getCommitMessage:()Ljava/lang/String;
+      31: iconst_0
+      32: invokespecial #31                 // Method com/intellij/vcs/commit/AbstractCommitter."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Z)V
+      35: aload_0
+      36: aload_2
+      37: putfield      #34                 // Field commitState:Lgit4idea/index/GitStageCommitState;
+      40: aload_0
+      41: aload_3
+      42: putfield      #37                 // Field toStage:Ljava/util/Map;
+      45: aload_0
+      46: aload         4
+      48: putfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+      51: aload_0
+      52: new           #42                 // class java/util/LinkedHashSet
+      55: dup
+      56: invokespecial #45                 // Method java/util/LinkedHashSet."<init>":()V
+      59: checkcast     #47                 // class java/util/Set
+      62: putfield      #51                 // Field successfulRepositories:Ljava/util/Set;
+      65: aload_0
+      66: new           #53                 // class java/util/LinkedHashMap
+      69: dup
+      70: invokespecial #54                 // Method java/util/LinkedHashMap."<init>":()V
+      73: checkcast     #56                 // class java/util/Map
+      76: putfield      #59                 // Field failedRoots:Ljava/util/Map;
+      79: return
+
+  public final com.intellij.openapi.vcs.changes.CommitContext getCommitContext();
+    Code:
+       0: aload_0
+       1: getfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+       4: areturn
+
+  public final java.util.Set<git4idea.repo.GitRepository> getSuccessfulRepositories();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field successfulRepositories:Ljava/util/Set;
+       4: areturn
+
+  public final java.util.Map<com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.VcsException> getFailedRoots();
+    Code:
+       0: aload_0
+       1: getfield      #59                 // Field failedRoots:Ljava/util/Map;
+       4: areturn
+
+  protected void commit();
+    Code:
+       0: nop
+       1: aload_0
+       2: getfield      #34                 // Field commitState:Lgit4idea/index/GitStageCommitState;
+       5: invokevirtual #78                 // Method git4idea/index/GitStageCommitState.getRoots:()Ljava/util/Set;
+       8: aload_0
+       9: getfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+      12: invokestatic  #84                 // Method com/intellij/vcs/commit/LocalChangesCommitterKt.getCommitWithoutChangesRoots:(Lcom/intellij/openapi/vcs/changes/CommitContext;)Ljava/util/Collection;
+      15: checkcast     #86                 // class java/lang/Iterable
+      18: astore_2
+      19: astore        11
+      21: iconst_0
+      22: istore_3
+      23: aload_2
+      24: astore        4
+      26: new           #88                 // class java/util/ArrayList
+      29: dup
+      30: aload_2
+      31: bipush        10
+      33: invokestatic  #94                 // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+      36: invokespecial #97                 // Method java/util/ArrayList."<init>":(I)V
+      39: checkcast     #99                 // class java/util/Collection
+      42: astore        5
+      44: iconst_0
+      45: istore        6
+      47: aload         4
+      49: invokeinterface #103,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      54: astore        7
+      56: aload         7
+      58: invokeinterface #109,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      63: ifeq          106
+      66: aload         7
+      68: invokeinterface #113,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      73: astore        8
+      75: aload         5
+      77: aload         8
+      79: checkcast     #115                // class com/intellij/openapi/vcs/VcsRoot
+      82: astore        9
+      84: astore        12
+      86: iconst_0
+      87: istore        10
+      89: aload         9
+      91: invokevirtual #119                // Method com/intellij/openapi/vcs/VcsRoot.getPath:()Lcom/intellij/openapi/vfs/VirtualFile;
+      94: aload         12
+      96: swap
+      97: invokeinterface #123,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     102: pop
+     103: goto          56
+     106: aload         5
+     108: checkcast     #125                // class java/util/List
+     111: nop
+     112: aload         11
+     114: swap
+     115: checkcast     #86                 // class java/lang/Iterable
+     118: invokestatic  #131                // Method kotlin/collections/SetsKt.plus:(Ljava/util/Set;Ljava/lang/Iterable;)Ljava/util/Set;
+     121: astore_1
+     122: aload_1
+     123: invokeinterface #132,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     128: astore_2
+     129: aload_2
+     130: invokeinterface #109,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     135: ifeq          290
+     138: aload_2
+     139: invokeinterface #113,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     144: checkcast     #134                // class com/intellij/openapi/vfs/VirtualFile
+     147: astore_3
+     148: nop
+     149: aload_0
+     150: getfield      #37                 // Field toStage:Ljava/util/Map;
+     153: aload_3
+     154: invokeinterface #138,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     159: checkcast     #99                 // class java/util/Collection
+     162: astore        4
+     164: aload         4
+     166: dup
+     167: ifnull        195
+     170: invokeinterface #141,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     175: ifne          182
+     178: iconst_1
+     179: goto          183
+     182: iconst_0
+     183: iconst_1
+     184: if_icmpne     191
+     187: iconst_1
+     188: goto          197
+     191: iconst_0
+     192: goto          197
+     195: pop
+     196: iconst_0
+     197: ifeq          211
+     200: aload_0
+     201: invokevirtual #145                // Method getProject:()Lcom/intellij/openapi/project/Project;
+     204: aload_3
+     205: aload         4
+     207: iconst_1
+     208: invokestatic  #151                // Method git4idea/util/GitFileUtils.addPaths:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Z)V
+     211: aload_0
+     212: invokevirtual #145                // Method getProject:()Lcom/intellij/openapi/project/Project;
+     215: aload_3
+     216: invokestatic  #157                // Method git4idea/GitUtil.getRepositoryForFile:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Lgit4idea/repo/GitRepository;
+     219: dup
+     220: ldc           #159                // String getRepositoryForFile(...)
+     222: invokestatic  #162                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     225: astore        5
+     227: aload_0
+     228: aload         5
+     230: invokespecial #166                // Method commitRepository:(Lgit4idea/repo/GitRepository;)V
+     233: aload_0
+     234: getfield      #51                 // Field successfulRepositories:Ljava/util/Set;
+     237: aload         5
+     239: invokeinterface #167,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     244: pop
+     245: goto          129
+     248: astore        5
+     250: aload         5
+     252: athrow
+     253: astore        5
+     255: getstatic     #173                // Field com/intellij/vcs/commit/Committer.Companion:Lcom/intellij/vcs/commit/Committer$Companion;
+     258: aload         5
+     260: invokevirtual #179                // Method com/intellij/vcs/commit/Committer$Companion.asVcsException:(Ljava/lang/Throwable;)Lcom/intellij/openapi/vcs/VcsException;
+     263: astore        6
+     265: aload_0
+     266: aload         6
+     268: checkcast     #75                 // class java/lang/Throwable
+     271: invokevirtual #183                // Method addException:(Ljava/lang/Throwable;)V
+     274: aload_0
+     275: getfield      #59                 // Field failedRoots:Ljava/util/Map;
+     278: aload_3
+     279: aload         6
+     281: invokeinterface #187,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     286: pop
+     287: goto          129
+     290: aload_0
+     291: getfield      #59                 // Field failedRoots:Ljava/util/Map;
+     294: invokeinterface #188,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+     299: ifeq          326
+     302: aload_0
+     303: getfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+     306: invokestatic  #194                // Method git4idea/checkin/GitCommitAndPushExecutorKt.isPushAfterCommit:(Lcom/intellij/openapi/vcs/changes/CommitContext;)Z
+     309: ifeq          326
+     312: aload_0
+     313: invokevirtual #145                // Method getProject:()Lcom/intellij/openapi/project/Project;
+     316: aload_0
+     317: getfield      #51                 // Field successfulRepositories:Ljava/util/Set;
+     320: checkcast     #99                 // class java/util/Collection
+     323: invokestatic  #200                // Method git4idea/checkin/GitPushAfterCommitDialog.showOrPush:(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;)V
+     326: aload_0
+     327: invokespecial #203                // Method refreshChanges:()V
+     330: getstatic     #208                // Field com/intellij/history/LocalHistory.Companion:Lcom/intellij/history/LocalHistory$Companion;
+     333: invokevirtual #214                // Method com/intellij/history/LocalHistory$Companion.getInstance:()Lcom/intellij/history/LocalHistory;
+     336: aload_0
+     337: invokevirtual #145                // Method getProject:()Lcom/intellij/openapi/project/Project;
+     340: aload_0
+     341: getfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+     344: aload_0
+     345: invokevirtual #215                // Method getCommitMessage:()Ljava/lang/String;
+     348: invokestatic  #219                // Method com/intellij/vcs/commit/LocalChangesCommitterKt.getLocalHistoryEventName:(Lcom/intellij/openapi/vcs/changes/CommitContext;Ljava/lang/String;)Ljava/lang/String;
+     351: getstatic     #225                // Field com/intellij/vcs/VcsActivity.Commit:Lcom/intellij/history/ActivityId;
+     354: invokevirtual #229                // Method com/intellij/history/LocalHistory.putEventLabel:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/history/ActivityId;)Lcom/intellij/history/Label;
+     357: pop
+     358: invokestatic  #234                // Method git4idea/index/ui/GitStagePanelKt.stagingAreaActionInvoked:()V
+     361: goto          402
+     364: astore_1
+     365: aload_0
+     366: invokespecial #203                // Method refreshChanges:()V
+     369: getstatic     #208                // Field com/intellij/history/LocalHistory.Companion:Lcom/intellij/history/LocalHistory$Companion;
+     372: invokevirtual #214                // Method com/intellij/history/LocalHistory$Companion.getInstance:()Lcom/intellij/history/LocalHistory;
+     375: aload_0
+     376: invokevirtual #145                // Method getProject:()Lcom/intellij/openapi/project/Project;
+     379: aload_0
+     380: getfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+     383: aload_0
+     384: invokevirtual #215                // Method getCommitMessage:()Ljava/lang/String;
+     387: invokestatic  #219                // Method com/intellij/vcs/commit/LocalChangesCommitterKt.getLocalHistoryEventName:(Lcom/intellij/openapi/vcs/changes/CommitContext;Ljava/lang/String;)Ljava/lang/String;
+     390: getstatic     #225                // Field com/intellij/vcs/VcsActivity.Commit:Lcom/intellij/history/ActivityId;
+     393: invokevirtual #229                // Method com/intellij/history/LocalHistory.putEventLabel:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/history/ActivityId;)Lcom/intellij/history/Label;
+     396: pop
+     397: invokestatic  #234                // Method git4idea/index/ui/GitStagePanelKt.stagingAreaActionInvoked:()V
+     400: aload_1
+     401: athrow
+     402: return
+    Exception table:
+       from    to  target type
+         148   245   248   Class com/intellij/openapi/progress/ProcessCanceledException
+         148   245   253   Class java/lang/Throwable
+           0   326   364   any
+         364   365   364   any
+
+  private final void refreshChanges();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field successfulRepositories:Ljava/util/Set;
+       4: invokeinterface #132,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+       9: astore_1
+      10: aload_1
+      11: invokeinterface #109,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      16: ifeq          64
+      19: aload_1
+      20: invokeinterface #113,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #262                // class git4idea/repo/GitRepository
+      28: astore_2
+      29: aload_2
+      30: invokeinterface #265,  1          // InterfaceMethod git4idea/repo/GitRepository.update:()V
+      35: aload_2
+      36: invokestatic  #271                // Method git4idea/repo/GitSubmoduleKt.isSubmodule:(Lgit4idea/repo/GitRepository;)Z
+      39: ifeq          10
+      42: aload_0
+      43: invokevirtual #145                // Method getProject:()Lcom/intellij/openapi/project/Project;
+      46: invokestatic  #276                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/VcsDirtyScopeManager;
+      49: aload_2
+      50: invokeinterface #279,  1          // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      55: invokevirtual #282                // Method com/intellij/openapi/vfs/VirtualFile.getParent:()Lcom/intellij/openapi/vfs/VirtualFile;
+      58: invokevirtual #286                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.dirDirtyRecursively:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+      61: goto          10
+      64: aload_0
+      65: getfield      #34                 // Field commitState:Lgit4idea/index/GitStageCommitState;
+      68: invokevirtual #78                 // Method git4idea/index/GitStageCommitState.getRoots:()Ljava/util/Set;
+      71: invokeinterface #132,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      76: astore_1
+      77: aload_1
+      78: invokeinterface #109,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      83: ifeq          110
+      86: aload_1
+      87: invokeinterface #113,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      92: checkcast     #134                // class com/intellij/openapi/vfs/VirtualFile
+      95: astore_2
+      96: aload_0
+      97: invokevirtual #145                // Method getProject:()Lcom/intellij/openapi/project/Project;
+     100: invokestatic  #276                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/VcsDirtyScopeManager;
+     103: aload_2
+     104: invokevirtual #289                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.rootDirty:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+     107: goto          77
+     110: return
+
+  private final void commitRepository(git4idea.repo.GitRepository) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: new           #293                // class git4idea/checkin/GitRepositoryCommitter
+       3: dup
+       4: aload_1
+       5: new           #295                // class git4idea/checkin/GitCommitOptions
+       8: dup
+       9: aload_0
+      10: getfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+      13: invokespecial #298                // Method git4idea/checkin/GitCommitOptions."<init>":(Lcom/intellij/openapi/vcs/changes/CommitContext;)V
+      16: invokespecial #301                // Method git4idea/checkin/GitRepositoryCommitter."<init>":(Lgit4idea/repo/GitRepository;Lgit4idea/checkin/GitCommitOptions;)V
+      19: astore_2
+      20: aload_2
+      21: aload_0
+      22: invokevirtual #215                // Method getCommitMessage:()Ljava/lang/String;
+      25: invokevirtual #305                // Method git4idea/checkin/GitRepositoryCommitter.commitStaged:(Ljava/lang/String;)V
+      28: getstatic     #310                // Field git4idea/checkin/GitPostCommitChangeConverter.Companion:Lgit4idea/checkin/GitPostCommitChangeConverter$Companion;
+      31: aload_0
+      32: getfield      #40                 // Field commitContext:Lcom/intellij/openapi/vcs/changes/CommitContext;
+      35: aload_1
+      36: invokevirtual #316                // Method git4idea/checkin/GitPostCommitChangeConverter$Companion.markRepositoryCommit:(Lcom/intellij/openapi/vcs/changes/CommitContext;Lgit4idea/repo/GitRepository;)V
+      39: return
+}

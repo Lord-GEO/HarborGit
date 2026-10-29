@@ -1,0 +1,37 @@
+{
+  "name": "harbor-git",
+  "version": "1.0.0",
+  "description": "An independent Windows Git workspace client",
+  "author": "HarborGit contributors",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main.cjs",
+  "scripts": {
+    "start": "npm run build && electron .",
+    "dev": "node scripts/dev.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && node scripts/build.mjs",
+    "test": "tsx --test tests/git.test.ts",
+    "test:ui": "playwright test",
+    "test:portable": "node scripts/smoke-portable.mjs",
+    "pack": "npm run build && node -e \"require('electron')\" && electron-builder --win --dir --x64",
+    "dist": "npm run build && node -e \"require('electron')\" && electron-builder --win portable --x64"
+  },
+  "dependencies": { "react": "19.3.1", "react-dom": "19.3.1" },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/node": "^24.0.0", "@types/react": "^19.0.0", "@types/react-dom": "^19.0.0",
+    "electron": "45.1.0", "electron-builder": "26.18.0", "esbuild": "^0.27.0",
+    "tsx": "^4.20.0", "typescript": "5.9.3", "vite": "8.3.5"
+  },
+  "build": {
+    "appId": "dev.harborgit.desktop", "productName": "HarborGit",
+    "directories": { "output": "release" },
+    "files": ["dist/**/*", "dist-electron/**/*", "package.json", "LICENSE"],
+    "asar": true,
+    "electronDist": "node_modules/electron/dist",
+    "win": { "target": ["portable"], "signAndEditExecutable": false },
+    "portable": { "artifactName": "HarborGit-${version}-Windows-x64.exe" }
+  }
+}

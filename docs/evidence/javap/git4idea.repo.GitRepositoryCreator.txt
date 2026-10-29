@@ -1,0 +1,177 @@
+Compiled from "GitRepositoryCreator.java"
+final class git4idea.repo.GitRepositoryCreator implements com.intellij.dvcs.repo.VcsRepositoryCreator {
+  git4idea.repo.GitRepositoryCreator();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public com.intellij.dvcs.repo.Repository createRepositoryIfValid(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.Disposable);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #59                 // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #59                 // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     24
+      20: iconst_2
+      21: invokestatic  #59                 // Method $$$reportNull$$$0:(I)V
+      24: aload_2
+      25: invokestatic  #7                  // Method git4idea/GitUtil.findGitDir:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/openapi/vfs/VirtualFile;
+      28: astore        4
+      30: aload         4
+      32: ifnonnull     39
+      35: aconst_null
+      36: goto          47
+      39: aload_2
+      40: aload         4
+      42: aload_1
+      43: aload_3
+      44: invokestatic  #13                 // Method git4idea/repo/GitRepositoryImpl.createInstance:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/Disposable;)Lgit4idea/repo/GitRepository;
+      47: areturn
+
+  public com.intellij.openapi.vcs.VcsKey getVcsKey();
+    Code:
+       0: invokestatic  #19                 // Method git4idea/GitVcs.getKey:()Lcom/intellij/openapi/vcs/VcsKey;
+       3: dup
+       4: ifnonnull     11
+       7: iconst_3
+       8: invokestatic  #59                 // Method $$$reportNull$$$0:(I)V
+      11: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 3
+
+                     0: 32
+
+                     1: 32
+
+                     2: 32
+
+                     3: 37
+               default: 32
+          }
+      32: ldc           #65                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      34: goto          42
+      37: ldc           #67                 // String @NotNull method %s.%s must not return null
+      39: goto          42
+      42: iload_0
+      43: tableswitch   { // 0 to 3
+
+                     0: 72
+
+                     1: 72
+
+                     2: 72
+
+                     3: 76
+               default: 72
+          }
+      72: iconst_3
+      73: goto          80
+      76: iconst_2
+      77: goto          80
+      80: anewarray     #2                  // class java/lang/Object
+      83: iload_0
+      84: tableswitch   { // 0 to 3
+
+                     0: 116
+
+                     1: 124
+
+                     2: 132
+
+                     3: 140
+               default: 116
+          }
+     116: dup
+     117: iconst_0
+     118: ldc           #68                 // String project
+     120: aastore
+     121: goto          148
+     124: dup
+     125: iconst_0
+     126: ldc           #69                 // String root
+     128: aastore
+     129: goto          148
+     132: dup
+     133: iconst_0
+     134: ldc           #70                 // String parentDisposable
+     136: aastore
+     137: goto          148
+     140: dup
+     141: iconst_0
+     142: ldc           #71                 // String git4idea/repo/GitRepositoryCreator
+     144: aastore
+     145: goto          148
+     148: iload_0
+     149: tableswitch   { // 0 to 3
+
+                     0: 180
+
+                     1: 180
+
+                     2: 180
+
+                     3: 188
+               default: 180
+          }
+     180: dup
+     181: iconst_1
+     182: ldc           #71                 // String git4idea/repo/GitRepositoryCreator
+     184: aastore
+     185: goto          196
+     188: dup
+     189: iconst_1
+     190: ldc           #72                 // String getVcsKey
+     192: aastore
+     193: goto          196
+     196: iload_0
+     197: tableswitch   { // 0 to 3
+
+                     0: 228
+
+                     1: 228
+
+                     2: 228
+
+                     3: 236
+               default: 228
+          }
+     228: dup
+     229: iconst_2
+     230: ldc           #73                 // String createRepositoryIfValid
+     232: aastore
+     233: goto          239
+     236: goto          239
+     239: invokestatic  #79                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     242: iload_0
+     243: tableswitch   { // 0 to 3
+
+                     0: 272
+
+                     1: 272
+
+                     2: 272
+
+                     3: 283
+               default: 272
+          }
+     272: new           #81                 // class java/lang/IllegalArgumentException
+     275: dup_x1
+     276: swap
+     277: invokespecial #84                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     280: goto          294
+     283: new           #86                 // class java/lang/IllegalStateException
+     286: dup_x1
+     287: swap
+     288: invokespecial #87                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     291: goto          294
+     294: athrow
+}

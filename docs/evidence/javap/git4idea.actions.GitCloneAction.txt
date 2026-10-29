@@ -1,0 +1,182 @@
+Compiled from "GitCloneAction.java"
+public class git4idea.actions.GitCloneAction extends com.intellij.openapi.project.DumbAwareAction {
+  public git4idea.actions.GitCloneAction();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method com/intellij/openapi/project/DumbAwareAction."<init>":()V
+       4: return
+
+  public void update(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #109                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: invokevirtual #7                  // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+      12: aload_1
+      13: invokevirtual #13                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getProject:()Lcom/intellij/openapi/project/Project;
+      16: ifnull        23
+      19: iconst_1
+      20: goto          24
+      23: iconst_0
+      24: invokevirtual #17                 // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+      27: return
+
+  public com.intellij.openapi.actionSystem.ActionUpdateThread getActionUpdateThread();
+    Code:
+       0: getstatic     #23                 // Field com/intellij/openapi/actionSystem/ActionUpdateThread.BGT:Lcom/intellij/openapi/actionSystem/ActionUpdateThread;
+       3: dup
+       4: ifnonnull     11
+       7: iconst_1
+       8: invokestatic  #109                // Method $$$reportNull$$$0:(I)V
+      11: areturn
+
+  public void actionPerformed(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_2
+       5: invokestatic  #109                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: getstatic     #29                 // Field com/intellij/openapi/actionSystem/CommonDataKeys.PROJECT:Lcom/intellij/openapi/actionSystem/DataKey;
+      12: invokevirtual #35                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getData:(Lcom/intellij/openapi/actionSystem/DataKey;)Ljava/lang/Object;
+      15: checkcast     #39                 // class com/intellij/openapi/project/Project
+      18: astore_2
+      19: aload_2
+      20: ifnonnull     24
+      23: return
+      24: aload_2
+      25: invokestatic  #41                 // Method com/intellij/openapi/vcs/ProjectLevelVcsManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/ProjectLevelVcsManager;
+      28: invokevirtual #47                 // Method com/intellij/openapi/vcs/ProjectLevelVcsManager.getCompositeCheckoutListener:()Lcom/intellij/openapi/vcs/CheckoutProvider$Listener;
+      31: astore_3
+      32: new           #51                 // class com/intellij/util/ui/cloneDialog/VcsCloneDialog$Builder
+      35: dup
+      36: aload_2
+      37: invokespecial #53                 // Method com/intellij/util/ui/cloneDialog/VcsCloneDialog$Builder."<init>":(Lcom/intellij/openapi/project/Project;)V
+      40: ldc           #56                 // class git4idea/checkout/GitCheckoutProvider
+      42: invokevirtual #58                 // Method com/intellij/util/ui/cloneDialog/VcsCloneDialog$Builder.forVcs:(Ljava/lang/Class;)Lcom/intellij/util/ui/cloneDialog/VcsCloneDialog;
+      45: astore        4
+      47: aload         4
+      49: invokevirtual #62                 // Method com/intellij/util/ui/cloneDialog/VcsCloneDialog.showAndGet:()Z
+      52: ifeq          61
+      55: aload         4
+      57: aload_3
+      58: invokevirtual #68                 // Method com/intellij/util/ui/cloneDialog/VcsCloneDialog.doClone:(Lcom/intellij/openapi/vcs/CheckoutProvider$Listener;)V
+      61: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 2
+
+                     0: 28
+
+                     1: 33
+
+                     2: 28
+               default: 28
+          }
+      28: ldc           #111                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      30: goto          38
+      33: ldc           #113                // String @NotNull method %s.%s must not return null
+      35: goto          38
+      38: iload_0
+      39: tableswitch   { // 0 to 2
+
+                     0: 64
+
+                     1: 68
+
+                     2: 64
+               default: 64
+          }
+      64: iconst_3
+      65: goto          72
+      68: iconst_2
+      69: goto          72
+      72: anewarray     #115                // class java/lang/Object
+      75: iload_0
+      76: tableswitch   { // 0 to 2
+
+                     0: 104
+
+                     1: 112
+
+                     2: 104
+               default: 104
+          }
+     104: dup
+     105: iconst_0
+     106: ldc           #116                // String e
+     108: aastore
+     109: goto          120
+     112: dup
+     113: iconst_0
+     114: ldc           #117                // String git4idea/actions/GitCloneAction
+     116: aastore
+     117: goto          120
+     120: iload_0
+     121: tableswitch   { // 0 to 2
+
+                     0: 148
+
+                     1: 156
+
+                     2: 148
+               default: 148
+          }
+     148: dup
+     149: iconst_1
+     150: ldc           #117                // String git4idea/actions/GitCloneAction
+     152: aastore
+     153: goto          164
+     156: dup
+     157: iconst_1
+     158: ldc           #118                // String getActionUpdateThread
+     160: aastore
+     161: goto          164
+     164: iload_0
+     165: tableswitch   { // 0 to 2
+
+                     0: 192
+
+                     1: 200
+
+                     2: 203
+               default: 192
+          }
+     192: dup
+     193: iconst_2
+     194: ldc           #119                // String update
+     196: aastore
+     197: goto          211
+     200: goto          211
+     203: dup
+     204: iconst_2
+     205: ldc           #120                // String actionPerformed
+     207: aastore
+     208: goto          211
+     211: invokestatic  #126                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     214: iload_0
+     215: tableswitch   { // 0 to 2
+
+                     0: 240
+
+                     1: 251
+
+                     2: 240
+               default: 240
+          }
+     240: new           #128                // class java/lang/IllegalArgumentException
+     243: dup_x1
+     244: swap
+     245: invokespecial #131                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     248: goto          262
+     251: new           #133                // class java/lang/IllegalStateException
+     254: dup_x1
+     255: swap
+     256: invokespecial #134                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     259: goto          262
+     262: athrow
+}

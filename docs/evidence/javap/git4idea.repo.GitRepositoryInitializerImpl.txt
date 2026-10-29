@@ -1,0 +1,128 @@
+Compiled from "GitRepositoryInitializerImpl.java"
+final class git4idea.repo.GitRepositoryInitializerImpl implements com.intellij.openapi.GitRepositoryInitializer {
+  git4idea.repo.GitRepositoryInitializerImpl();
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void initRepository(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, boolean);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #143                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #143                // Method $$$reportNull$$$0:(I)V
+      16: ldc           #9                  // String progress.title.creating.git.repository
+      18: iconst_0
+      19: anewarray     #4                  // class java/lang/Object
+      22: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      25: invokestatic  #17                 // Method com/intellij/openapi/progress/ProgressManager.progress2:(Ljava/lang/String;)V
+      28: invokestatic  #23                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      31: aload_1
+      32: aload_2
+      33: iconst_0
+      34: anewarray     #29                 // class git4idea/commands/GitLineHandlerListener
+      37: invokeinterface #31,  4           // InterfaceMethod git4idea/commands/Git.init:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;[Lgit4idea/commands/GitLineHandlerListener;)Lgit4idea/commands/GitCommandResult;
+      42: astore        4
+      44: aload         4
+      46: invokevirtual #35                 // Method git4idea/commands/GitCommandResult.success:()Z
+      49: ifne          78
+      52: aload_1
+      53: invokestatic  #41                 // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+      56: ldc           #46                 // String git.init.failed
+      58: ldc           #48                 // String action.Git.Init.error
+      60: iconst_0
+      61: anewarray     #4                  // class java/lang/Object
+      64: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      67: aload         4
+      69: invokevirtual #50                 // Method git4idea/commands/GitCommandResult.getErrorOutputAsHtmlString:()Ljava/lang/String;
+      72: iconst_1
+      73: invokevirtual #54                 // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Lcom/intellij/notification/Notification;
+      76: pop
+      77: return
+      78: aload_1
+      79: aload_2
+      80: invokestatic  #58                 // Method git4idea/actions/GitInit.configureVcsMappings:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      83: aload_1
+      84: aload_2
+      85: invokestatic  #64                 // Method git4idea/GitUtil.generateGitignoreFileIfNeeded:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      88: aload_1
+      89: ldc           #69                 // class git4idea/ignore/GitIgnoreInStoreDirGenerator
+      91: invokeinterface #71,  2           // InterfaceMethod com/intellij/openapi/project/Project.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+      96: checkcast     #69                 // class git4idea/ignore/GitIgnoreInStoreDirGenerator
+      99: invokevirtual #77                 // Method git4idea/ignore/GitIgnoreInStoreDirGenerator.generateGitignoreInStoreDirIfNeededSync:()V
+     102: iload_3
+     103: ifeq          158
+     106: aload_1
+     107: iconst_1
+     108: invokestatic  #80                 // Method com/intellij/configurationStore/StoreUtil.saveSettings:(Lcom/intellij/openapi/components/ComponentManager;Z)V
+     111: aload_1
+     112: aload_2
+     113: aload_2
+     114: invokestatic  #86                 // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+     117: invokestatic  #92                 // Method git4idea/util/GitFileUtils.addFiles:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;)V
+     120: aload_1
+     121: invokestatic  #98                 // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/VcsDirtyScopeManager;
+     124: aload_2
+     125: invokevirtual #103                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.rootDirty:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+     128: goto          158
+     131: astore        5
+     133: aload_1
+     134: invokestatic  #41                 // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+     137: ldc           #109                // String git.init.stage.failed
+     139: ldc           #111                // String action.Git.Init.Stage.error
+     141: iconst_0
+     142: anewarray     #4                  // class java/lang/Object
+     145: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     148: aload         4
+     150: invokevirtual #50                 // Method git4idea/commands/GitCommandResult.getErrorOutputAsHtmlString:()Ljava/lang/String;
+     153: iconst_1
+     154: invokevirtual #54                 // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Lcom/intellij/notification/Notification;
+     157: pop
+     158: return
+    Exception table:
+       from    to  target type
+         111   128   131   Class com/intellij/openapi/vcs/VcsException
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #145                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #4                  // class java/lang/Object
+       6: iload_0
+       7: tableswitch   { // 0 to 1
+
+                     0: 28
+
+                     1: 36
+               default: 28
+          }
+      28: dup
+      29: iconst_0
+      30: ldc           #146                // String project
+      32: aastore
+      33: goto          44
+      36: dup
+      37: iconst_0
+      38: ldc           #147                // String root
+      40: aastore
+      41: goto          44
+      44: dup
+      45: iconst_1
+      46: ldc           #148                // String git4idea/repo/GitRepositoryInitializerImpl
+      48: aastore
+      49: dup
+      50: iconst_2
+      51: ldc           #149                // String initRepository
+      53: aastore
+      54: invokestatic  #154                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      57: new           #156                // class java/lang/IllegalArgumentException
+      60: dup_x1
+      61: swap
+      62: invokespecial #158                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      65: athrow
+}

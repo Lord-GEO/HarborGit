@@ -1,0 +1,406 @@
+Compiled from "GitMerge.java"
+final class git4idea.actions.GitMerge extends git4idea.actions.GitMergeAction<git4idea.merge.GitMergeOption> {
+  git4idea.actions.GitMerge();
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method git4idea/actions/GitMergeAction."<init>":()V
+       4: return
+
+  protected java.lang.String getActionName();
+    Code:
+       0: ldc           #9                  // String merge.action.name
+       2: iconst_0
+       3: anewarray     #11                 // class java/lang/Object
+       6: invokestatic  #13                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: dup
+      10: ifnonnull     17
+      13: iconst_0
+      14: invokestatic  #259                // Method $$$reportNull$$$0:(I)V
+      17: areturn
+
+  protected git4idea.actions.GitMergeAction$DialogState<git4idea.merge.GitMergeOption> displayDialog(com.intellij.openapi.project.Project, java.util.List<com.intellij.openapi.vfs.VirtualFile>, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: invokestatic  #259                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_2
+      13: invokestatic  #259                // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     24
+      20: iconst_3
+      21: invokestatic  #259                // Method $$$reportNull$$$0:(I)V
+      24: new           #19                 // class git4idea/merge/GitMergeDialog
+      27: dup
+      28: aload_1
+      29: aload_3
+      30: aload_2
+      31: invokespecial #21                 // Method git4idea/merge/GitMergeDialog."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;)V
+      34: astore        4
+      36: aload         4
+      38: invokevirtual #24                 // Method git4idea/merge/GitMergeDialog.showAndGet:()Z
+      41: ifne          46
+      44: aconst_null
+      45: areturn
+      46: aload         4
+      48: invokevirtual #28                 // Method git4idea/merge/GitMergeDialog.getSelectedRepository:()Lgit4idea/repo/GitRepository;
+      51: astore        5
+      53: aload_1
+      54: aload         5
+      56: aload         4
+      58: invokevirtual #32                 // Method git4idea/merge/GitMergeDialog.getSelectedBranch:()Lgit4idea/GitBranch;
+      61: aload         4
+      63: invokevirtual #36                 // Method git4idea/merge/GitMergeDialog.getSelectedOptions:()Ljava/util/Set;
+      66: invokestatic  #40                 // Method git4idea/GitOperationsCollector.logMergeFromDialog:(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Lgit4idea/GitBranch;Ljava/util/Collection;)V
+      69: new           #46                 // class git4idea/actions/GitMergeAction$DialogState
+      72: dup
+      73: aload         4
+      75: invokevirtual #48                 // Method git4idea/merge/GitMergeDialog.getSelectedRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      78: ldc           #52                 // String merging.title
+      80: iconst_1
+      81: anewarray     #11                 // class java/lang/Object
+      84: dup
+      85: iconst_0
+      86: aload         4
+      88: invokevirtual #48                 // Method git4idea/merge/GitMergeDialog.getSelectedRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      91: invokevirtual #54                 // Method com/intellij/openapi/vfs/VirtualFile.getPath:()Ljava/lang/String;
+      94: aastore
+      95: invokestatic  #13                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      98: aload_0
+      99: aload_1
+     100: aload         4
+     102: invokevirtual #60                 // Method getHandlerProvider:(Lcom/intellij/openapi/project/Project;Lgit4idea/merge/GitMergeDialog;)Ljava/util/function/Supplier;
+     105: aload         4
+     107: invokevirtual #32                 // Method git4idea/merge/GitMergeDialog.getSelectedBranch:()Lgit4idea/GitBranch;
+     110: aload         4
+     112: invokevirtual #66                 // Method git4idea/merge/GitMergeDialog.shouldCommitAfterMerge:()Z
+     115: aload         4
+     117: invokevirtual #36                 // Method git4idea/merge/GitMergeDialog.getSelectedOptions:()Ljava/util/Set;
+     120: invokespecial #69                 // Method git4idea/actions/GitMergeAction$DialogState."<init>":(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/util/function/Supplier;Lgit4idea/GitBranch;ZLjava/util/Collection;)V
+     123: areturn
+
+  protected java.lang.String getNotificationErrorDisplayId();
+    Code:
+       0: ldc           #72                 // String git.merge.failed
+       2: areturn
+
+  java.util.function.Supplier<git4idea.commands.GitLineHandler> getHandlerProvider(com.intellij.openapi.project.Project, git4idea.merge.GitMergeDialog);
+    Code:
+       0: aload_2
+       1: invokevirtual #48                 // Method git4idea/merge/GitMergeDialog.getSelectedRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+       4: astore_3
+       5: aload_2
+       6: invokevirtual #36                 // Method git4idea/merge/GitMergeDialog.getSelectedOptions:()Ljava/util/Set;
+       9: astore        4
+      11: aload_2
+      12: invokevirtual #74                 // Method git4idea/merge/GitMergeDialog.getCommitMessage:()Ljava/lang/String;
+      15: invokevirtual #77                 // Method java/lang/String.trim:()Ljava/lang/String;
+      18: astore        5
+      20: aload_2
+      21: invokevirtual #32                 // Method git4idea/merge/GitMergeDialog.getSelectedBranch:()Lgit4idea/GitBranch;
+      24: astore        6
+      26: aload_1
+      27: aload_3
+      28: aload         4
+      30: aload         5
+      32: aload         6
+      34: invokedynamic #82,  0             // InvokeDynamic #0:get:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Set;Ljava/lang/String;Lgit4idea/GitBranch;)Ljava/util/function/Supplier;
+      39: dup
+      40: ifnonnull     47
+      43: iconst_4
+      44: invokestatic  #259                // Method $$$reportNull$$$0:(I)V
+      47: areturn
+
+  public void update(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_5
+       5: invokestatic  #259                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: aload_1
+      10: invokespecial #86                 // Method git4idea/actions/GitMergeAction.update:(Lcom/intellij/openapi/actionSystem/AnActionEvent;)V
+      13: aload_1
+      14: invokevirtual #90                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getProject:()Lcom/intellij/openapi/project/Project;
+      17: astore_2
+      18: aload_1
+      19: invokevirtual #96                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+      22: astore_3
+      23: aload_2
+      24: ifnull        57
+      27: aload_2
+      28: iconst_1
+      29: anewarray     #100                // class com/intellij/dvcs/repo/Repository$State
+      32: dup
+      33: iconst_0
+      34: getstatic     #102                // Field com/intellij/dvcs/repo/Repository$State.MERGING:Lcom/intellij/dvcs/repo/Repository$State;
+      37: aastore
+      38: invokestatic  #106                // Method git4idea/GitUtil.getRepositoriesInStates:(Lcom/intellij/openapi/project/Project;[Lcom/intellij/dvcs/repo/Repository$State;)Ljava/util/Collection;
+      41: invokeinterface #112,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+      46: ifne          57
+      49: aload_3
+      50: iconst_0
+      51: invokevirtual #117                // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+      54: goto          107
+      57: aload_2
+      58: ifnull        102
+      61: aload_2
+      62: iconst_2
+      63: anewarray     #100                // class com/intellij/dvcs/repo/Repository$State
+      66: dup
+      67: iconst_0
+      68: getstatic     #123                // Field com/intellij/dvcs/repo/Repository$State.NORMAL:Lcom/intellij/dvcs/repo/Repository$State;
+      71: aastore
+      72: dup
+      73: iconst_1
+      74: getstatic     #126                // Field com/intellij/dvcs/repo/Repository$State.DETACHED:Lcom/intellij/dvcs/repo/Repository$State;
+      77: aastore
+      78: invokestatic  #106                // Method git4idea/GitUtil.getRepositoriesInStates:(Lcom/intellij/openapi/project/Project;[Lcom/intellij/dvcs/repo/Repository$State;)Ljava/util/Collection;
+      81: invokeinterface #112,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+      86: ifeq          102
+      89: aload_3
+      90: iconst_0
+      91: invokevirtual #129                // Method com/intellij/openapi/actionSystem/Presentation.setEnabled:(Z)V
+      94: aload_3
+      95: iconst_1
+      96: invokevirtual #132                // Method com/intellij/openapi/actionSystem/Presentation.setVisible:(Z)V
+      99: goto          107
+     102: aload_3
+     103: iconst_1
+     104: invokevirtual #117                // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+     107: return
+
+  private static git4idea.commands.GitLineHandler lambda$getHandlerProvider$0(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.Set, java.lang.String, git4idea.GitBranch);
+    Code:
+       0: new           #135                // class git4idea/commands/GitLineHandler
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: getstatic     #137                // Field git4idea/commands/GitCommand.MERGE:Lgit4idea/commands/GitCommand;
+       9: invokespecial #143                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      12: astore        5
+      14: aload_2
+      15: invokeinterface #146,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      20: astore        6
+      22: aload         6
+      24: invokeinterface #152,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      29: ifeq          103
+      32: aload         6
+      34: invokeinterface #157,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      39: checkcast     #161                // class git4idea/merge/GitMergeOption
+      42: astore        7
+      44: aload         7
+      46: getstatic     #163                // Field git4idea/merge/GitMergeOption.COMMIT_MESSAGE:Lgit4idea/merge/GitMergeOption;
+      49: if_acmpne     83
+      52: aload_3
+      53: invokevirtual #167                // Method java/lang/String.isEmpty:()Z
+      56: ifne          100
+      59: aload         5
+      61: iconst_2
+      62: anewarray     #78                 // class java/lang/String
+      65: dup
+      66: iconst_0
+      67: aload         7
+      69: invokevirtual #168                // Method git4idea/merge/GitMergeOption.getOption:()Ljava/lang/String;
+      72: aastore
+      73: dup
+      74: iconst_1
+      75: aload_3
+      76: aastore
+      77: invokevirtual #171                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      80: goto          100
+      83: aload         5
+      85: iconst_1
+      86: anewarray     #78                 // class java/lang/String
+      89: dup
+      90: iconst_0
+      91: aload         7
+      93: invokevirtual #168                // Method git4idea/merge/GitMergeOption.getOption:()Ljava/lang/String;
+      96: aastore
+      97: invokevirtual #171                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     100: goto          22
+     103: aload         5
+     105: iconst_1
+     106: anewarray     #78                 // class java/lang/String
+     109: dup
+     110: iconst_0
+     111: aload         4
+     113: invokevirtual #175                // Method git4idea/GitBranch.getName:()Ljava/lang/String;
+     116: aastore
+     117: invokevirtual #171                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     120: aload         5
+     122: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 5
+
+                     0: 40
+
+                     1: 46
+
+                     2: 46
+
+                     3: 46
+
+                     4: 40
+
+                     5: 46
+               default: 40
+          }
+      40: ldc_w         #263                // String @NotNull method %s.%s must not return null
+      43: goto          52
+      46: ldc_w         #265                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      49: goto          52
+      52: iload_0
+      53: tableswitch   { // 0 to 5
+
+                     0: 92
+
+                     1: 96
+
+                     2: 96
+
+                     3: 96
+
+                     4: 92
+
+                     5: 96
+               default: 92
+          }
+      92: iconst_2
+      93: goto          100
+      96: iconst_3
+      97: goto          100
+     100: anewarray     #11                 // class java/lang/Object
+     103: iload_0
+     104: tableswitch   { // 0 to 5
+
+                     0: 144
+
+                     1: 153
+
+                     2: 162
+
+                     3: 171
+
+                     4: 144
+
+                     5: 180
+               default: 144
+          }
+     144: dup
+     145: iconst_0
+     146: ldc_w         #266                // String git4idea/actions/GitMerge
+     149: aastore
+     150: goto          189
+     153: dup
+     154: iconst_0
+     155: ldc_w         #267                // String project
+     158: aastore
+     159: goto          189
+     162: dup
+     163: iconst_0
+     164: ldc_w         #268                // String gitRoots
+     167: aastore
+     168: goto          189
+     171: dup
+     172: iconst_0
+     173: ldc_w         #269                // String defaultRoot
+     176: aastore
+     177: goto          189
+     180: dup
+     181: iconst_0
+     182: ldc_w         #270                // String e
+     185: aastore
+     186: goto          189
+     189: iload_0
+     190: tableswitch   { // 0 to 5
+
+                     0: 228
+
+                     1: 237
+
+                     2: 237
+
+                     3: 237
+
+                     4: 246
+
+                     5: 237
+               default: 228
+          }
+     228: dup
+     229: iconst_1
+     230: ldc_w         #271                // String getActionName
+     233: aastore
+     234: goto          255
+     237: dup
+     238: iconst_1
+     239: ldc_w         #266                // String git4idea/actions/GitMerge
+     242: aastore
+     243: goto          255
+     246: dup
+     247: iconst_1
+     248: ldc_w         #272                // String getHandlerProvider
+     251: aastore
+     252: goto          255
+     255: iload_0
+     256: tableswitch   { // 0 to 5
+
+                     0: 296
+
+                     1: 299
+
+                     2: 299
+
+                     3: 299
+
+                     4: 296
+
+                     5: 308
+               default: 296
+          }
+     296: goto          317
+     299: dup
+     300: iconst_2
+     301: ldc_w         #273                // String displayDialog
+     304: aastore
+     305: goto          317
+     308: dup
+     309: iconst_2
+     310: ldc_w         #274                // String update
+     313: aastore
+     314: goto          317
+     317: invokestatic  #277                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     320: iload_0
+     321: tableswitch   { // 0 to 5
+
+                     0: 360
+
+                     1: 371
+
+                     2: 371
+
+                     3: 371
+
+                     4: 360
+
+                     5: 371
+               default: 360
+          }
+     360: new           #279                // class java/lang/IllegalStateException
+     363: dup_x1
+     364: swap
+     365: invokespecial #282                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     368: goto          382
+     371: new           #284                // class java/lang/IllegalArgumentException
+     374: dup_x1
+     375: swap
+     376: invokespecial #285                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     379: goto          382
+     382: athrow
+}

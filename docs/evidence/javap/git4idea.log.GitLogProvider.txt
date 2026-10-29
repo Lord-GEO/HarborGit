@@ -1,0 +1,1763 @@
+Compiled from "GitLogProvider.kt"
+public final class git4idea.log.GitLogProvider implements com.intellij.vcs.log.VcsLogProvider,com.intellij.vcs.log.impl.VcsIndexableLogProvider {
+  public static final git4idea.log.GitLogProvider$Companion Companion;
+
+  private final com.intellij.openapi.project.Project project;
+
+  private final git4idea.repo.GitRepositoryManager repositoryManager;
+
+  private final com.intellij.vcs.log.VcsLogRefManager refSorter;
+
+  private final com.intellij.platform.diagnostic.telemetry.IJTracer tracer;
+
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  public static final it.unimi.dsi.fastutil.Hash$Strategy<com.intellij.vcs.log.VcsRef> DONT_CONSIDER_SHA;
+
+  public git4idea.log.GitLogProvider(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ldc           #13                 // String project
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: invokespecial #22                 // Method java/lang/Object."<init>":()V
+      10: aload_0
+      11: aload_1
+      12: putfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      15: aload_0
+      16: aload_0
+      17: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      20: invokestatic  #31                 // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      23: dup
+      24: ldc           #33                 // String getInstance(...)
+      26: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      29: putfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      32: aload_0
+      33: new           #42                 // class git4idea/log/GitRefManager
+      36: dup
+      37: aload_0
+      38: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      41: aload_0
+      42: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      45: checkcast     #44                 // class com/intellij/dvcs/repo/RepositoryManager
+      48: invokespecial #47                 // Method git4idea/log/GitRefManager."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/dvcs/repo/RepositoryManager;)V
+      51: checkcast     #49                 // class com/intellij/vcs/log/VcsLogRefManager
+      54: putfield      #53                 // Field refSorter:Lcom/intellij/vcs/log/VcsLogRefManager;
+      57: aload_0
+      58: getstatic     #59                 // Field com/intellij/platform/diagnostic/telemetry/TelemetryManager.Companion:Lcom/intellij/platform/diagnostic/telemetry/TelemetryManager$Companion;
+      61: invokevirtual #64                 // Method com/intellij/platform/diagnostic/telemetry/TelemetryManager$Companion.getInstance:()Lcom/intellij/platform/diagnostic/telemetry/TelemetryManager;
+      64: getstatic     #70                 // Field com/intellij/platform/vcs/impl/shared/telemetry/VcsScopeKt.VcsScope:Lcom/intellij/platform/diagnostic/telemetry/Scope;
+      67: invokeinterface #74,  2           // InterfaceMethod com/intellij/platform/diagnostic/telemetry/TelemetryManager.getTracer:(Lcom/intellij/platform/diagnostic/telemetry/Scope;)Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+      72: putfield      #78                 // Field tracer:Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+      75: return
+
+  public java.lang.Object readRecentCommits(com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.VcsLogProvider$Requirements, com.intellij.vcs.log.VcsLogProvider$RefsLoadingPolicy, kotlin.coroutines.Continuation<? super com.intellij.vcs.log.VcsLogProvider$DetailedLogData>);
+    Code:
+       0: aload         4
+       2: instanceof    #86                 // class git4idea/log/GitLogProvider$readRecentCommits$1
+       5: ifeq          41
+       8: aload         4
+      10: checkcast     #86                 // class git4idea/log/GitLogProvider$readRecentCommits$1
+      13: astore        8
+      15: aload         8
+      17: getfield      #90                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.label:I
+      20: ldc           #91                 // int -2147483648
+      22: iand
+      23: ifeq          41
+      26: aload         8
+      28: dup
+      29: getfield      #90                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.label:I
+      32: ldc           #91                 // int -2147483648
+      34: isub
+      35: putfield      #90                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.label:I
+      38: goto          53
+      41: new           #86                 // class git4idea/log/GitLogProvider$readRecentCommits$1
+      44: dup
+      45: aload_0
+      46: aload         4
+      48: invokespecial #94                 // Method git4idea/log/GitLogProvider$readRecentCommits$1."<init>":(Lgit4idea/log/GitLogProvider;Lkotlin/coroutines/Continuation;)V
+      51: astore        8
+      53: aload         8
+      55: getfield      #98                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.result:Ljava/lang/Object;
+      58: astore        7
+      60: invokestatic  #104                // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
+      63: astore        9
+      65: aload         8
+      67: getfield      #90                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.label:I
+      70: tableswitch   { // 0 to 3
+
+                     0: 100
+
+                     1: 197
+
+                     2: 308
+
+                     3: 394
+               default: 429
+          }
+     100: aload         7
+     102: invokestatic  #110                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     105: getstatic     #115                // Field git4idea/log/GitLogExperimentalProvider.Companion:Lgit4idea/log/GitLogExperimentalProvider$Companion;
+     108: invokevirtual #121                // Method git4idea/log/GitLogExperimentalProvider$Companion.isEnabled:()Z
+     111: ifeq          343
+     114: aload_0
+     115: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+     118: checkcast     #123                // class com/intellij/openapi/components/ComponentManager
+     121: astore        5
+     123: iconst_0
+     124: istore        6
+     126: aload         5
+     128: ldc           #125                // String null cannot be cast to non-null type com.intellij.openapi.components.ComponentManagerEx
+     130: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+     133: aload         5
+     135: checkcast     #130                // class com/intellij/openapi/components/ComponentManagerEx
+     138: ldc           #112                // class git4idea/log/GitLogExperimentalProvider
+     140: aload         8
+     142: aload         8
+     144: aload_1
+     145: putfield      #133                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$0:Ljava/lang/Object;
+     148: aload         8
+     150: aload_2
+     151: putfield      #136                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$1:Ljava/lang/Object;
+     154: aload         8
+     156: aload_3
+     157: putfield      #139                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$2:Ljava/lang/Object;
+     160: aload         8
+     162: aload         5
+     164: invokestatic  #145                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     167: putfield      #148                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$3:Ljava/lang/Object;
+     170: aload         8
+     172: iload         6
+     174: putfield      #151                // Field git4idea/log/GitLogProvider$readRecentCommits$1.I$0:I
+     177: aload         8
+     179: iconst_1
+     180: putfield      #90                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.label:I
+     183: invokeinterface #155,  3          // InterfaceMethod com/intellij/openapi/components/ComponentManagerEx.getServiceAsync:(Ljava/lang/Class;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     188: dup
+     189: aload         9
+     191: if_acmpne     248
+     194: aload         9
+     196: areturn
+     197: aload         8
+     199: getfield      #151                // Field git4idea/log/GitLogProvider$readRecentCommits$1.I$0:I
+     202: istore        6
+     204: aload         8
+     206: getfield      #148                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$3:Ljava/lang/Object;
+     209: checkcast     #123                // class com/intellij/openapi/components/ComponentManager
+     212: astore        5
+     214: aload         8
+     216: getfield      #139                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$2:Ljava/lang/Object;
+     219: checkcast     #157                // class com/intellij/vcs/log/VcsLogProvider$RefsLoadingPolicy
+     222: astore_3
+     223: aload         8
+     225: getfield      #136                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$1:Ljava/lang/Object;
+     228: checkcast     #159                // class com/intellij/vcs/log/VcsLogProvider$Requirements
+     231: astore_2
+     232: aload         8
+     234: getfield      #133                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$0:Ljava/lang/Object;
+     237: checkcast     #161                // class com/intellij/openapi/vfs/VirtualFile
+     240: astore_1
+     241: aload         7
+     243: invokestatic  #110                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     246: aload         7
+     248: nop
+     249: checkcast     #112                // class git4idea/log/GitLogExperimentalProvider
+     252: aload_1
+     253: aload_2
+     254: aload_3
+     255: aload         8
+     257: aload         8
+     259: aload_1
+     260: invokestatic  #145                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     263: putfield      #133                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$0:Ljava/lang/Object;
+     266: aload         8
+     268: aload_2
+     269: invokestatic  #145                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     272: putfield      #136                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$1:Ljava/lang/Object;
+     275: aload         8
+     277: aload_3
+     278: invokestatic  #145                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     281: putfield      #139                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$2:Ljava/lang/Object;
+     284: aload         8
+     286: aconst_null
+     287: putfield      #148                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$3:Ljava/lang/Object;
+     290: aload         8
+     292: iconst_2
+     293: putfield      #90                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.label:I
+     296: invokevirtual #163                // Method git4idea/log/GitLogExperimentalProvider.readRecentCommits:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/VcsLogProvider$Requirements;Lcom/intellij/vcs/log/VcsLogProvider$RefsLoadingPolicy;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     299: dup
+     300: aload         9
+     302: if_acmpne     342
+     305: aload         9
+     307: areturn
+     308: aload         8
+     310: getfield      #139                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$2:Ljava/lang/Object;
+     313: checkcast     #157                // class com/intellij/vcs/log/VcsLogProvider$RefsLoadingPolicy
+     316: astore_3
+     317: aload         8
+     319: getfield      #136                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$1:Ljava/lang/Object;
+     322: checkcast     #159                // class com/intellij/vcs/log/VcsLogProvider$Requirements
+     325: astore_2
+     326: aload         8
+     328: getfield      #133                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$0:Ljava/lang/Object;
+     331: checkcast     #161                // class com/intellij/openapi/vfs/VirtualFile
+     334: astore_1
+     335: aload         7
+     337: invokestatic  #110                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     340: aload         7
+     342: areturn
+     343: aload_0
+     344: aload_1
+     345: aload_2
+     346: aload_3
+     347: aload         8
+     349: aload         8
+     351: aload_1
+     352: invokestatic  #145                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     355: putfield      #133                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$0:Ljava/lang/Object;
+     358: aload         8
+     360: aload_2
+     361: invokestatic  #145                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     364: putfield      #136                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$1:Ljava/lang/Object;
+     367: aload         8
+     369: aload_3
+     370: invokestatic  #145                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     373: putfield      #139                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$2:Ljava/lang/Object;
+     376: aload         8
+     378: iconst_3
+     379: putfield      #90                 // Field git4idea/log/GitLogProvider$readRecentCommits$1.label:I
+     382: invokespecial #164                // InterfaceMethod com/intellij/vcs/log/VcsLogProvider.readRecentCommits:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/VcsLogProvider$Requirements;Lcom/intellij/vcs/log/VcsLogProvider$RefsLoadingPolicy;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     385: dup
+     386: aload         9
+     388: if_acmpne     428
+     391: aload         9
+     393: areturn
+     394: aload         8
+     396: getfield      #139                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$2:Ljava/lang/Object;
+     399: checkcast     #157                // class com/intellij/vcs/log/VcsLogProvider$RefsLoadingPolicy
+     402: astore_3
+     403: aload         8
+     405: getfield      #136                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$1:Ljava/lang/Object;
+     408: checkcast     #159                // class com/intellij/vcs/log/VcsLogProvider$Requirements
+     411: astore_2
+     412: aload         8
+     414: getfield      #133                // Field git4idea/log/GitLogProvider$readRecentCommits$1.L$0:Ljava/lang/Object;
+     417: checkcast     #161                // class com/intellij/openapi/vfs/VirtualFile
+     420: astore_1
+     421: aload         7
+     423: invokestatic  #110                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     426: aload         7
+     428: areturn
+     429: new           #166                // class java/lang/IllegalStateException
+     432: dup
+     433: ldc           #168                // String call to \'resume\' before \'invoke\' with coroutine
+     435: invokespecial #171                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     438: athrow
+
+  public com.intellij.vcs.log.VcsLogProvider$DetailedLogData readFirstBlock(com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.VcsLogProvider$Requirements) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #196                // String requirements
+       9: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      16: checkcast     #44                 // class com/intellij/dvcs/repo/RepositoryManager
+      19: aload_1
+      20: invokestatic  #202                // Method com/intellij/dvcs/repo/RepositoryExtKt.getRepositoryUnlessFresh:(Lcom/intellij/dvcs/repo/RepositoryManager;Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      23: checkcast     #204                // class git4idea/repo/GitRepository
+      26: dup
+      27: ifnonnull     44
+      30: pop
+      31: invokestatic  #210                // Method com/intellij/vcs/log/impl/LogDataImpl.empty:()Lcom/intellij/vcs/log/impl/LogDataImpl;
+      34: dup
+      35: ldc           #212                // String empty(...)
+      37: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      40: checkcast     #214                // class com/intellij/vcs/log/VcsLogProvider$DetailedLogData
+      43: areturn
+      44: astore_3
+      45: aload_2
+      46: invokeinterface #218,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$Requirements.getCommitCount:()I
+      51: iconst_2
+      52: imul
+      53: istore        4
+      55: iconst_4
+      56: anewarray     #220                // class java/lang/String
+      59: astore        6
+      61: aload         6
+      63: iconst_0
+      64: ldc           #222                // String HEAD
+      66: aastore
+      67: aload         6
+      69: iconst_1
+      70: ldc           #224                // String --branches
+      72: aastore
+      73: aload         6
+      75: iconst_2
+      76: ldc           #226                // String --remotes
+      78: aastore
+      79: aload         6
+      81: iconst_3
+      82: iload         4
+      84: invokedynamic #238,  0            // InvokeDynamic #0:makeConcatWithConstants:(I)Ljava/lang/String;
+      89: aastore
+      90: aload         6
+      92: astore        5
+      94: iconst_0
+      95: istore        6
+      97: iconst_0
+      98: istore        7
+     100: aload_2
+     101: instanceof    #240                // class com/intellij/vcs/log/VcsLogProviderRequirementsEx
+     104: ifeq          129
+     107: aload_2
+     108: checkcast     #240                // class com/intellij/vcs/log/VcsLogProviderRequirementsEx
+     111: invokeinterface #243,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProviderRequirementsEx.isRefresh:()Z
+     116: istore        6
+     118: aload_2
+     119: checkcast     #240                // class com/intellij/vcs/log/VcsLogProviderRequirementsEx
+     122: invokeinterface #246,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProviderRequirementsEx.isRefreshRefs:()Z
+     127: istore        7
+     129: aload_0
+     130: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+     133: aload_1
+     134: aload         5
+     136: aload         5
+     138: arraylength
+     139: invokestatic  #252                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     142: checkcast     #254                // class "[Ljava/lang/String;"
+     145: invokestatic  #260                // Method git4idea/history/GitLogUtil.collectMetadata:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;[Ljava/lang/String;)Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;
+     148: dup
+     149: ldc_w         #262                // String collectMetadata(...)
+     152: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     155: astore        8
+     157: aload         8
+     159: invokeinterface #266,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$DetailedLogData.getRefs:()Ljava/util/Set;
+     164: astore        9
+     166: new           #268                // class it/unimi/dsi/fastutil/objects/ObjectOpenCustomHashSet
+     169: dup
+     170: aload         9
+     172: checkcast     #270                // class java/util/Collection
+     175: getstatic     #274                // Field DONT_CONSIDER_SHA:Lit/unimi/dsi/fastutil/Hash$Strategy;
+     178: invokespecial #277                // Method it/unimi/dsi/fastutil/objects/ObjectOpenCustomHashSet."<init>":(Ljava/util/Collection;Lit/unimi/dsi/fastutil/Hash$Strategy;)V
+     181: checkcast     #279                // class java/util/Set
+     184: astore        10
+     186: invokestatic  #284                // Method kotlin/collections/SetsKt.emptySet:()Ljava/util/Set;
+     189: astore        11
+     191: iload         7
+     193: ifeq          465
+     196: aload_0
+     197: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+     200: checkcast     #123                // class com/intellij/openapi/components/ComponentManager
+     203: astore        13
+     205: iconst_0
+     206: istore        14
+     208: ldc_w         #286                // class com/intellij/vcs/log/VcsLogObjectsFactory
+     211: astore        15
+     213: aload         13
+     215: aload         15
+     217: invokeinterface #290,  2          // InterfaceMethod com/intellij/openapi/components/ComponentManager.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+     222: dup
+     223: ifnonnull     235
+     226: pop
+     227: aload         13
+     229: aload         15
+     231: invokestatic  #296                // Method com/intellij/openapi/components/ServicesKt.serviceNotFoundError:(Lcom/intellij/openapi/components/ComponentManager;Ljava/lang/Class;)Ljava/lang/IllegalStateException;
+     234: athrow
+     235: checkcast     #286                // class com/intellij/vcs/log/VcsLogObjectsFactory
+     238: astore        12
+     240: getstatic     #59                 // Field com/intellij/platform/diagnostic/telemetry/TelemetryManager.Companion:Lcom/intellij/platform/diagnostic/telemetry/TelemetryManager$Companion;
+     243: invokevirtual #64                 // Method com/intellij/platform/diagnostic/telemetry/TelemetryManager$Companion.getInstance:()Lcom/intellij/platform/diagnostic/telemetry/TelemetryManager;
+     246: getstatic     #70                 // Field com/intellij/platform/vcs/impl/shared/telemetry/VcsScopeKt.VcsScope:Lcom/intellij/platform/diagnostic/telemetry/Scope;
+     249: invokeinterface #74,  2           // InterfaceMethod com/intellij/platform/diagnostic/telemetry/TelemetryManager.getTracer:(Lcom/intellij/platform/diagnostic/telemetry/Scope;)Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+     254: ldc_w         #298                // String ReadingBranches
+     257: invokeinterface #304,  2          // InterfaceMethod com/intellij/platform/diagnostic/telemetry/IJTracer.spanBuilder:(Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+     262: ldc_w         #306                // String rootName
+     265: aload_3
+     266: invokeinterface #310,  1          // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     271: invokevirtual #314                // Method com/intellij/openapi/vfs/VirtualFile.getName:()Ljava/lang/String;
+     274: invokeinterface #320,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+     279: dup
+     280: ldc_w         #322                // String setAttribute(...)
+     283: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     286: astore        13
+     288: iconst_0
+     289: istore        14
+     291: aload         13
+     293: invokeinterface #326,  1          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.startSpan:()Lio/opentelemetry/api/trace/Span;
+     298: dup
+     299: ldc_w         #328                // String startSpan(...)
+     302: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     305: astore        15
+     307: iconst_0
+     308: istore        16
+     310: nop
+     311: aload         15
+     313: astore        17
+     315: iconst_0
+     316: istore        18
+     318: aload         17
+     320: invokeinterface #334,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.makeCurrent:()Lio/opentelemetry/context/Scope;
+     325: checkcast     #336                // class java/lang/AutoCloseable
+     328: astore        19
+     330: aconst_null
+     331: astore        20
+     333: nop
+     334: aload         19
+     336: checkcast     #338                // class io/opentelemetry/context/Scope
+     339: astore        21
+     341: iconst_0
+     342: istore        22
+     344: aload         17
+     346: astore        23
+     348: iconst_0
+     349: istore        24
+     351: aload_3
+     352: invokeinterface #341,  1          // InterfaceMethod git4idea/repo/GitRepository.update:()V
+     357: aload         12
+     359: aload_3
+     360: invokestatic  #347                // Method git4idea/log/VcsLogObjectsFactoryExtKt.createBranchesRefs:(Lcom/intellij/vcs/log/VcsLogObjectsFactory;Lgit4idea/repo/GitRepository;)Ljava/util/Set;
+     363: astore        21
+     365: aload         19
+     367: aload         20
+     369: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     372: aload         21
+     374: goto          398
+     377: astore        22
+     379: aload         22
+     381: astore        20
+     383: aload         22
+     385: athrow
+     386: astore        22
+     388: aload         19
+     390: aload         20
+     392: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     395: aload         22
+     397: athrow
+     398: nop
+     399: astore        25
+     401: aload         15
+     403: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     408: aload         25
+     410: goto          446
+     413: astore        17
+     415: aload         17
+     417: athrow
+     418: astore        17
+     420: aload         15
+     422: getstatic     #362                // Field io/opentelemetry/api/trace/StatusCode.ERROR:Lio/opentelemetry/api/trace/StatusCode;
+     425: invokeinterface #366,  2          // InterfaceMethod io/opentelemetry/api/trace/Span.setStatus:(Lio/opentelemetry/api/trace/StatusCode;)Lio/opentelemetry/api/trace/Span;
+     430: pop
+     431: aload         17
+     433: athrow
+     434: astore        17
+     436: aload         15
+     438: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     443: aload         17
+     445: athrow
+     446: nop
+     447: astore        11
+     449: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+     452: aload         10
+     454: checkcast     #270                // class java/util/Collection
+     457: aload         11
+     459: checkcast     #270                // class java/util/Collection
+     462: invokestatic  #375                // Method git4idea/log/GitLogProvider$Companion.access$addNewElements:(Lgit4idea/log/GitLogProvider$Companion;Ljava/util/Collection;Ljava/util/Collection;)V
+     465: aconst_null
+     466: astore        12
+     468: aconst_null
+     469: astore        13
+     471: aconst_null
+     472: astore        14
+     474: iload         6
+     476: ifeq          484
+     479: iload         7
+     481: ifne          505
+     484: aload         8
+     486: invokeinterface #379,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$DetailedLogData.getCommits:()Ljava/util/List;
+     491: checkcast     #270                // class java/util/Collection
+     494: invokestatic  #385                // Method kotlin/collections/CollectionsKt.toMutableList:(Ljava/util/Collection;)Ljava/util/List;
+     497: checkcast     #270                // class java/util/Collection
+     500: astore        12
+     502: goto          703
+     505: aload_2
+     506: checkcast     #240                // class com/intellij/vcs/log/VcsLogProviderRequirementsEx
+     509: astore        15
+     511: aload_0
+     512: aload_1
+     513: invokespecial #389                // Method readCurrentTagNames:(Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/Set;
+     516: astore        13
+     518: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+     521: aload         10
+     523: aload         13
+     525: aload         15
+     527: invokeinterface #393,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProviderRequirementsEx.getPreviousRefs:()Lcom/intellij/vcs/log/VcsRefsContainer;
+     532: dup
+     533: ldc_w         #395                // String getPreviousRefs(...)
+     536: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     539: invokestatic  #399                // Method git4idea/log/GitLogProvider$Companion.access$addOldStillExistingTags:(Lgit4idea/log/GitLogProvider$Companion;Ljava/util/Set;Ljava/util/Set;Lcom/intellij/vcs/log/VcsRefsContainer;)V
+     542: new           #401                // class java/util/HashSet
+     545: dup
+     546: aload         8
+     548: invokeinterface #379,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$DetailedLogData.getCommits:()Ljava/util/List;
+     553: checkcast     #270                // class java/util/Collection
+     556: invokespecial #404                // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+     559: checkcast     #270                // class java/util/Collection
+     562: astore        12
+     564: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+     567: aload         15
+     569: invokeinterface #393,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProviderRequirementsEx.getPreviousRefs:()Lcom/intellij/vcs/log/VcsRefsContainer;
+     574: dup
+     575: ldc_w         #395                // String getPreviousRefs(...)
+     578: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     581: invokestatic  #408                // Method git4idea/log/GitLogProvider$Companion.access$getTagNames:(Lgit4idea/log/GitLogProvider$Companion;Lcom/intellij/vcs/log/VcsRefsContainer;)Ljava/util/Set;
+     584: astore        16
+     586: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+     589: aload         9
+     591: checkcast     #270                // class java/util/Collection
+     594: invokestatic  #411                // Method git4idea/log/GitLogProvider$Companion.access$getTagNames:(Lgit4idea/log/GitLogProvider$Companion;Ljava/util/Collection;)Ljava/util/Set;
+     597: astore        17
+     599: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+     602: aload         13
+     604: iconst_2
+     605: anewarray     #279                // class java/util/Set
+     608: astore        19
+     610: aload         19
+     612: iconst_0
+     613: aload         16
+     615: aastore
+     616: aload         19
+     618: iconst_1
+     619: aload         17
+     621: aastore
+     622: aload         19
+     624: invokestatic  #415                // Method git4idea/log/GitLogProvider$Companion.access$remove:(Lgit4idea/log/GitLogProvider$Companion;Ljava/util/Set;[Ljava/util/Set;)Ljava/util/Set;
+     627: astore        18
+     629: aload         18
+     631: checkcast     #270                // class java/util/Collection
+     634: invokeinterface #418,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     639: ifne          646
+     642: iconst_1
+     643: goto          647
+     646: iconst_0
+     647: ifeq          703
+     650: aload_0
+     651: aload_1
+     652: iload         4
+     654: aload         18
+     656: checkcast     #270                // class java/util/Collection
+     659: invokespecial #422                // Method loadSomeCommitsOnTaggedBranches:(Lcom/intellij/openapi/vfs/VirtualFile;ILjava/util/Collection;)Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;
+     662: astore        14
+     664: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+     667: aload         12
+     669: aload         14
+     671: invokeinterface #379,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$DetailedLogData.getCommits:()Ljava/util/List;
+     676: checkcast     #270                // class java/util/Collection
+     679: invokestatic  #375                // Method git4idea/log/GitLogProvider$Companion.access$addNewElements:(Lgit4idea/log/GitLogProvider$Companion;Ljava/util/Collection;Ljava/util/Collection;)V
+     682: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+     685: aload         10
+     687: checkcast     #270                // class java/util/Collection
+     690: aload         14
+     692: invokeinterface #266,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$DetailedLogData.getRefs:()Ljava/util/Set;
+     697: checkcast     #270                // class java/util/Collection
+     700: invokestatic  #375                // Method git4idea/log/GitLogProvider$Companion.access$addNewElements:(Lgit4idea/log/GitLogProvider$Companion;Ljava/util/Collection;Ljava/util/Collection;)V
+     703: aload_0
+     704: getfield      #78                 // Field tracer:Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+     707: ldc_w         #424                // String SortingCommits
+     710: invokeinterface #304,  2          // InterfaceMethod com/intellij/platform/diagnostic/telemetry/IJTracer.spanBuilder:(Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+     715: ldc_w         #306                // String rootName
+     718: aload_1
+     719: invokevirtual #314                // Method com/intellij/openapi/vfs/VirtualFile.getName:()Ljava/lang/String;
+     722: invokeinterface #320,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+     727: dup
+     728: ldc_w         #322                // String setAttribute(...)
+     731: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     734: astore        17
+     736: iconst_0
+     737: istore        18
+     739: aload         17
+     741: invokeinterface #326,  1          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.startSpan:()Lio/opentelemetry/api/trace/Span;
+     746: dup
+     747: ldc_w         #328                // String startSpan(...)
+     750: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     753: astore        19
+     755: iconst_0
+     756: istore        20
+     758: nop
+     759: aload         19
+     761: astore        21
+     763: iconst_0
+     764: istore        22
+     766: aload         21
+     768: invokeinterface #334,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.makeCurrent:()Lio/opentelemetry/context/Scope;
+     773: checkcast     #336                // class java/lang/AutoCloseable
+     776: astore        23
+     778: aconst_null
+     779: astore        24
+     781: nop
+     782: aload         23
+     784: checkcast     #338                // class io/opentelemetry/context/Scope
+     787: astore        25
+     789: iconst_0
+     790: istore        26
+     792: aload         21
+     794: astore        27
+     796: iconst_0
+     797: istore        28
+     799: aload         12
+     801: invokestatic  #429                // Method com/intellij/vcs/log/data/VcsLogSorter.sortByDateTopoOrder:(Ljava/util/Collection;)Ljava/util/List;
+     804: dup
+     805: ldc_w         #431                // String sortByDateTopoOrder(...)
+     808: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     811: astore        29
+     813: aload         29
+     815: aload_2
+     816: invokeinterface #218,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$Requirements.getCommitCount:()I
+     821: invokestatic  #437                // Method com/intellij/util/containers/ContainerUtil.getFirstItems:(Ljava/util/List;I)Ljava/util/List;
+     824: astore        25
+     826: aload         23
+     828: aload         24
+     830: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     833: aload         25
+     835: goto          859
+     838: astore        26
+     840: aload         26
+     842: astore        24
+     844: aload         26
+     846: athrow
+     847: astore        26
+     849: aload         23
+     851: aload         24
+     853: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     856: aload         26
+     858: athrow
+     859: nop
+     860: astore        30
+     862: aload         19
+     864: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     869: aload         30
+     871: goto          907
+     874: astore        21
+     876: aload         21
+     878: athrow
+     879: astore        21
+     881: aload         19
+     883: getstatic     #362                // Field io/opentelemetry/api/trace/StatusCode.ERROR:Lio/opentelemetry/api/trace/StatusCode;
+     886: invokeinterface #366,  2          // InterfaceMethod io/opentelemetry/api/trace/Span.setStatus:(Lio/opentelemetry/api/trace/StatusCode;)Lio/opentelemetry/api/trace/Span;
+     891: pop
+     892: aload         21
+     894: athrow
+     895: astore        21
+     897: aload         19
+     899: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     904: aload         21
+     906: athrow
+     907: nop
+     908: dup
+     909: ldc_w         #439                // String use(...)
+     912: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     915: astore        15
+     917: getstatic     #443                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     920: invokevirtual #448                // Method com/intellij/openapi/diagnostic/Logger.isDebugEnabled:()Z
+     923: ifeq          943
+     926: aload_0
+     927: aload_1
+     928: aload         10
+     930: aload         15
+     932: aload         8
+     934: aload         11
+     936: aload         13
+     938: aload         14
+     940: invokespecial #452                // Method validateDataAndReportError:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Set;Ljava/util/List;Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;Ljava/util/Set;Ljava/util/Set;Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;)V
+     943: new           #206                // class com/intellij/vcs/log/impl/LogDataImpl
+     946: dup
+     947: aload         10
+     949: aload         15
+     951: invokespecial #455                // Method com/intellij/vcs/log/impl/LogDataImpl."<init>":(Ljava/util/Set;Ljava/util/List;)V
+     954: checkcast     #214                // class com/intellij/vcs/log/VcsLogProvider$DetailedLogData
+     957: areturn
+    Exception table:
+       from    to  target type
+         333   365   377   Class java/lang/Throwable
+         333   365   386   any
+         377   386   386   any
+         386   388   386   any
+         310   401   413   Class java/util/concurrent/CancellationException
+         310   401   418   Class java/lang/Throwable
+         310   401   434   any
+         413   418   434   any
+         418   434   434   any
+         434   436   434   any
+         781   826   838   Class java/lang/Throwable
+         781   826   847   any
+         838   847   847   any
+         847   849   847   any
+         758   862   874   Class java/util/concurrent/CancellationException
+         758   862   879   Class java/lang/Throwable
+         758   862   895   any
+         874   879   895   any
+         879   895   895   any
+         895   897   895   any
+
+  private final void validateDataAndReportError(com.intellij.openapi.vfs.VirtualFile, java.util.Set<? extends com.intellij.vcs.log.VcsRef>, java.util.List<? extends com.intellij.vcs.log.VcsCommitMetadata>, com.intellij.vcs.log.VcsLogProvider$DetailedLogData, java.util.Set<? extends com.intellij.vcs.log.VcsRef>, java.util.Set<java.lang.String>, com.intellij.vcs.log.VcsLogProvider$DetailedLogData);
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field tracer:Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+       4: ldc_w         #511                // String ValidatingData
+       7: invokeinterface #304,  2          // InterfaceMethod com/intellij/platform/diagnostic/telemetry/IJTracer.spanBuilder:(Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      12: ldc_w         #306                // String rootName
+      15: aload_1
+      16: invokevirtual #314                // Method com/intellij/openapi/vfs/VirtualFile.getName:()Ljava/lang/String;
+      19: invokeinterface #320,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      24: dup
+      25: ldc_w         #322                // String setAttribute(...)
+      28: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      31: astore        8
+      33: iconst_0
+      34: istore        9
+      36: aload         8
+      38: invokeinterface #326,  1          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.startSpan:()Lio/opentelemetry/api/trace/Span;
+      43: dup
+      44: ldc_w         #328                // String startSpan(...)
+      47: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      50: astore        10
+      52: iconst_0
+      53: istore        11
+      55: nop
+      56: aload         10
+      58: astore        12
+      60: iconst_0
+      61: istore        13
+      63: aload         12
+      65: invokeinterface #334,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.makeCurrent:()Lio/opentelemetry/context/Scope;
+      70: checkcast     #336                // class java/lang/AutoCloseable
+      73: astore        14
+      75: aconst_null
+      76: astore        15
+      78: nop
+      79: aload         14
+      81: checkcast     #338                // class io/opentelemetry/context/Scope
+      84: astore        16
+      86: iconst_0
+      87: istore        17
+      89: aload         12
+      91: astore        18
+      93: iconst_0
+      94: istore        19
+      96: aload_2
+      97: checkcast     #270                // class java/util/Collection
+     100: invokedynamic #529,  0            // InvokeDynamic #1:invoke:()Lkotlin/jvm/functions/Function1;
+     105: invokedynamic #540,  0            // InvokeDynamic #2:fun:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/Function;
+     110: invokestatic  #544                // Method com/intellij/util/containers/ContainerUtil.map2Set:(Ljava/util/Collection;Lcom/intellij/util/Function;)Ljava/util/Set;
+     113: astore        20
+     115: getstatic     #549                // Field com/intellij/vcs/log/graph/impl/facade/PermanentGraphImpl.Companion:Lcom/intellij/vcs/log/graph/impl/facade/PermanentGraphImpl$Companion;
+     118: aload_3
+     119: new           #551                // class com/intellij/vcs/log/graph/impl/print/GraphColorGetterByNodeFactory
+     122: dup
+     123: invokedynamic #563,  0            // InvokeDynamic #3:invoke:()Lkotlin/jvm/functions/Function2;
+     128: invokespecial #566                // Method com/intellij/vcs/log/graph/impl/print/GraphColorGetterByNodeFactory."<init>":(Lkotlin/jvm/functions/Function2;)V
+     131: checkcast     #568                // class com/intellij/vcs/log/graph/api/printer/GraphColorGetterFactory
+     134: aload         20
+     136: aload_1
+     137: aload_2
+     138: aload_3
+     139: aload         4
+     141: aload         5
+     143: aload         6
+     145: aload         7
+     147: invokedynamic #581,  0            // InvokeDynamic #4:compare:(Ljava/util/Set;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Set;Ljava/util/List;Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;Ljava/util/Set;Ljava/util/Set;Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;)Ljava/util/Comparator;
+     152: aload         20
+     154: invokevirtual #587                // Method com/intellij/vcs/log/graph/impl/facade/PermanentGraphImpl$Companion.newInstance:(Ljava/util/List;Lcom/intellij/vcs/log/graph/api/printer/GraphColorGetterFactory;Ljava/util/Comparator;Ljava/util/Set;)Lcom/intellij/vcs/log/graph/impl/facade/PermanentGraphImpl;
+     157: nop
+     158: astore        16
+     160: aload         14
+     162: aload         15
+     164: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     167: aload         16
+     169: goto          193
+     172: astore        17
+     174: aload         17
+     176: astore        15
+     178: aload         17
+     180: athrow
+     181: astore        17
+     183: aload         14
+     185: aload         15
+     187: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     190: aload         17
+     192: athrow
+     193: nop
+     194: astore        21
+     196: aload         10
+     198: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     203: goto          239
+     206: astore        12
+     208: aload         12
+     210: athrow
+     211: astore        12
+     213: aload         10
+     215: getstatic     #362                // Field io/opentelemetry/api/trace/StatusCode.ERROR:Lio/opentelemetry/api/trace/StatusCode;
+     218: invokeinterface #366,  2          // InterfaceMethod io/opentelemetry/api/trace/Span.setStatus:(Lio/opentelemetry/api/trace/StatusCode;)Lio/opentelemetry/api/trace/Span;
+     223: pop
+     224: aload         12
+     226: athrow
+     227: astore        12
+     229: aload         10
+     231: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     236: aload         12
+     238: athrow
+     239: nop
+     240: return
+    Exception table:
+       from    to  target type
+          78   160   172   Class java/lang/Throwable
+          78   160   181   any
+         172   181   181   any
+         181   183   181   any
+          55   196   206   Class java/util/concurrent/CancellationException
+          55   196   211   Class java/lang/Throwable
+          55   196   227   any
+         206   211   227   any
+         211   227   227   any
+         227   229   227   any
+
+  public com.intellij.vcs.log.VcsLogProvider$LogData readAllHashes(com.intellij.openapi.vfs.VirtualFile, com.intellij.util.Consumer<? super com.intellij.vcs.log.TimedVcsCommit>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #596                // String commitConsumer
+      10: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_0
+      14: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      17: checkcast     #44                 // class com/intellij/dvcs/repo/RepositoryManager
+      20: aload_1
+      21: invokestatic  #202                // Method com/intellij/dvcs/repo/RepositoryExtKt.getRepositoryUnlessFresh:(Lcom/intellij/dvcs/repo/RepositoryManager;Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      24: ifnonnull     40
+      27: invokestatic  #210                // Method com/intellij/vcs/log/impl/LogDataImpl.empty:()Lcom/intellij/vcs/log/impl/LogDataImpl;
+      30: dup
+      31: ldc           #212                // String empty(...)
+      33: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      36: checkcast     #598                // class com/intellij/vcs/log/VcsLogProvider$LogData
+      39: areturn
+      40: new           #600                // class java/util/ArrayList
+      43: dup
+      44: getstatic     #603                // Field git4idea/history/GitLogUtil.LOG_ALL:Ljava/util/List;
+      47: checkcast     #270                // class java/util/Collection
+      50: invokespecial #604                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      53: astore_3
+      54: aload_3
+      55: ldc_w         #606                // String --date-order
+      58: invokevirtual #610                // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+      61: pop
+      62: new           #401                // class java/util/HashSet
+      65: dup
+      66: invokespecial #611                // Method java/util/HashSet."<init>":()V
+      69: astore        4
+      71: new           #401                // class java/util/HashSet
+      74: dup
+      75: invokespecial #611                // Method java/util/HashSet."<init>":()V
+      78: astore        5
+      80: aload_0
+      81: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      84: aload_1
+      85: aload_3
+      86: checkcast     #508                // class java/util/List
+      89: new           #613                // class com/intellij/util/CollectConsumer
+      92: dup
+      93: aload         4
+      95: checkcast     #270                // class java/util/Collection
+      98: invokespecial #614                // Method com/intellij/util/CollectConsumer."<init>":(Ljava/util/Collection;)V
+     101: checkcast     #616                // class java/util/function/Consumer
+     104: new           #613                // class com/intellij/util/CollectConsumer
+     107: dup
+     108: aload         5
+     110: checkcast     #270                // class java/util/Collection
+     113: invokespecial #614                // Method com/intellij/util/CollectConsumer."<init>":(Ljava/util/Collection;)V
+     116: checkcast     #616                // class java/util/function/Consumer
+     119: new           #618                // class git4idea/log/GitLogProvider$readAllHashes$1
+     122: dup
+     123: aload_2
+     124: invokespecial #620                // Method git4idea/log/GitLogProvider$readAllHashes$1."<init>":(Ljava/lang/Object;)V
+     127: checkcast     #622                // class kotlin/jvm/functions/Function1
+     130: invokedynamic #632,  0            // InvokeDynamic #5:accept:(Lkotlin/jvm/functions/Function1;)Ljava/util/function/Consumer;
+     135: invokestatic  #636                // Method git4idea/history/GitLogUtil.readTimedCommits:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Ljava/util/function/Consumer;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V
+     138: new           #206                // class com/intellij/vcs/log/impl/LogDataImpl
+     141: dup
+     142: aload         5
+     144: checkcast     #279                // class java/util/Set
+     147: aload         4
+     149: checkcast     #279                // class java/util/Set
+     152: invokespecial #639                // Method com/intellij/vcs/log/impl/LogDataImpl."<init>":(Ljava/util/Set;Ljava/util/Set;)V
+     155: checkcast     #598                // class com/intellij/vcs/log/VcsLogProvider$LogData
+     158: areturn
+
+  public void readFullDetails(com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, com.intellij.util.Consumer<? super com.intellij.vcs.log.VcsFullCommitDetails>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #649                // String hashes
+      10: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_3
+      14: ldc_w         #596                // String commitConsumer
+      17: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: aload_0
+      21: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      24: checkcast     #44                 // class com/intellij/dvcs/repo/RepositoryManager
+      27: aload_1
+      28: invokestatic  #202                // Method com/intellij/dvcs/repo/RepositoryExtKt.getRepositoryUnlessFresh:(Lcom/intellij/dvcs/repo/RepositoryManager;Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      31: checkcast     #204                // class git4idea/repo/GitRepository
+      34: dup
+      35: ifnonnull     40
+      38: pop
+      39: return
+      40: astore        4
+      42: new           #651                // class git4idea/history/GitCommitRequirements
+      45: dup
+      46: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+      49: aload         4
+      51: invokevirtual #655                // Method git4idea/log/GitLogProvider$Companion.shouldIncludeRootChanges$intellij_vcs_git:(Lgit4idea/repo/GitRepository;)Z
+      54: getstatic     #661                // Field git4idea/history/GitCommitRequirements$DiffRenames$Limit$Default.INSTANCE:Lgit4idea/history/GitCommitRequirements$DiffRenames$Limit$Default;
+      57: checkcast     #663                // class git4idea/history/GitCommitRequirements$DiffRenames
+      60: getstatic     #669                // Field git4idea/history/GitCommitRequirements$DiffInMergeCommits.DIFF_TO_PARENTS:Lgit4idea/history/GitCommitRequirements$DiffInMergeCommits;
+      63: invokespecial #672                // Method git4idea/history/GitCommitRequirements."<init>":(ZLgit4idea/history/GitCommitRequirements$DiffRenames;Lgit4idea/history/GitCommitRequirements$DiffInMergeCommits;)V
+      66: astore        5
+      68: aload_0
+      69: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      72: aload_1
+      73: aload_2
+      74: aload         5
+      76: aload_3
+      77: invokestatic  #676                // Method git4idea/history/GitLogUtil.readFullDetailsForHashes:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Lgit4idea/history/GitCommitRequirements;Lcom/intellij/util/Consumer;)V
+      80: return
+
+  public void readMetadata(com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, com.intellij.util.Consumer<? super com.intellij.vcs.log.VcsCommitMetadata>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #649                // String hashes
+      10: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_3
+      14: ldc_w         #681                // String consumer
+      17: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: aload_0
+      21: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      24: aload_1
+      25: aload_2
+      26: new           #683                // class git4idea/log/GitLogProvider$readMetadata$1
+      29: dup
+      30: aload_3
+      31: invokespecial #684                // Method git4idea/log/GitLogProvider$readMetadata$1."<init>":(Ljava/lang/Object;)V
+      34: checkcast     #622                // class kotlin/jvm/functions/Function1
+      37: invokedynamic #689,  0            // InvokeDynamic #6:accept:(Lkotlin/jvm/functions/Function1;)Ljava/util/function/Consumer;
+      42: invokestatic  #692                // Method git4idea/history/GitLogUtil.collectMetadata:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Ljava/util/function/Consumer;)V
+      45: return
+
+  public com.intellij.openapi.vcs.VcsKey getSupportedVcs();
+    Code:
+       0: invokestatic  #699                // Method git4idea/GitVcs.getKey:()Lcom/intellij/openapi/vcs/VcsKey;
+       3: dup
+       4: ldc_w         #701                // String getKey(...)
+       7: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      10: areturn
+
+  public com.intellij.vcs.log.VcsLogRefManager getReferenceManager();
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field refSorter:Lcom/intellij/vcs/log/VcsLogRefManager;
+       4: areturn
+
+  public com.intellij.openapi.Disposable subscribeToRootRefreshEvents(java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>, com.intellij.vcs.log.VcsLogRefresher);
+    Code:
+       0: aload_1
+       1: ldc_w         #708                // String roots
+       4: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_2
+       8: ldc_w         #710                // String refresher
+      11: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      14: aload_0
+      15: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      18: invokeinterface #716,  1          // InterfaceMethod com/intellij/openapi/project/Project.getMessageBus:()Lcom/intellij/util/messages/MessageBus;
+      23: invokeinterface #722,  1          // InterfaceMethod com/intellij/util/messages/MessageBus.connect:()Lcom/intellij/util/messages/MessageBusConnection;
+      28: astore_3
+      29: aload_3
+      30: getstatic     #727                // Field git4idea/repo/GitRepositoryTagsHolder.Companion:Lgit4idea/repo/GitRepositoryTagsHolder$Companion;
+      33: invokevirtual #733                // Method git4idea/repo/GitRepositoryTagsHolder$Companion.getTAGS_UPDATED:()Lcom/intellij/util/messages/Topic;
+      36: aload_0
+      37: aload_1
+      38: aload_2
+      39: invokedynamic #744,  0            // InvokeDynamic #7:tagsUpdated:(Lgit4idea/log/GitLogProvider;Ljava/util/Collection;Lcom/intellij/vcs/log/VcsLogRefresher;)Lgit4idea/repo/GitTagsHolderListener;
+      44: invokeinterface #750,  3          // InterfaceMethod com/intellij/util/messages/MessageBusConnection.subscribe:(Lcom/intellij/util/messages/Topic;Ljava/lang/Object;)V
+      49: aload_3
+      50: getstatic     #754                // Field git4idea/repo/GitRepository.GIT_REPO_CHANGE:Lcom/intellij/util/messages/Topic;
+      53: dup
+      54: ldc_w         #755                // String GIT_REPO_CHANGE
+      57: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      60: aload_0
+      61: aload_1
+      62: aload_2
+      63: invokedynamic #763,  0            // InvokeDynamic #8:repositoryChanged:(Lgit4idea/log/GitLogProvider;Ljava/util/Collection;Lcom/intellij/vcs/log/VcsLogRefresher;)Lgit4idea/repo/GitRepositoryChangeListener;
+      68: invokeinterface #750,  3          // InterfaceMethod com/intellij/util/messages/MessageBusConnection.subscribe:(Lcom/intellij/util/messages/Topic;Ljava/lang/Object;)V
+      73: aload_3
+      74: checkcast     #765                // class com/intellij/openapi/Disposable
+      77: areturn
+
+  private final void refreshOnRepoUpdate(git4idea.repo.GitRepository, java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>, com.intellij.vcs.log.VcsLogRefresher);
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+       4: getstatic     #776                // Field com/intellij/vcs/log/impl/VcsActivityKey.INSTANCE:Lcom/intellij/vcs/log/impl/VcsActivityKey;
+       7: checkcast     #778                // class com/intellij/platform/backend/observation/ActivityKey
+      10: aload_1
+      11: aload_2
+      12: aload_3
+      13: invokedynamic #789,  0            // InvokeDynamic #9:invoke:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Lcom/intellij/vcs/log/VcsLogRefresher;)Lkotlin/jvm/functions/Function0;
+      18: invokestatic  #795                // Method com/intellij/platform/backend/observation/TrackingUtil.trackActivityBlocking:(Lcom/intellij/openapi/project/Project;Lcom/intellij/platform/backend/observation/ActivityKey;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+      21: pop
+      22: return
+
+  public java.util.List<com.intellij.vcs.log.TimedVcsCommit> getCommitsMatchingFilter(com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.VcsLogFilterCollection, com.intellij.vcs.log.graph.PermanentGraph$Options, int) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #801                // String filterCollection
+      10: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_3
+      14: ldc_w         #803                // String graphOptions
+      17: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: aload_2
+      21: getstatic     #809                // Field com/intellij/vcs/log/VcsLogFilterCollection.RANGE_FILTER:Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;
+      24: invokeinterface #813,  2          // InterfaceMethod com/intellij/vcs/log/VcsLogFilterCollection.get:(Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;)Lcom/intellij/vcs/log/VcsLogFilter;
+      29: checkcast     #815                // class com/intellij/vcs/log/VcsLogRangeFilter
+      32: astore        5
+      34: aload         5
+      36: ifnonnull     50
+      39: aload_0
+      40: aload_1
+      41: aload_2
+      42: aconst_null
+      43: aload_3
+      44: iload         4
+      46: invokespecial #818                // Method getCommitsMatchingFilter:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/VcsLogFilterCollection;Lcom/intellij/vcs/log/VcsLogRangeFilter$RefRange;Lcom/intellij/vcs/log/graph/PermanentGraph$Options;I)Ljava/util/List;
+      49: areturn
+      50: new           #820                // class java/util/LinkedHashSet
+      53: dup
+      54: invokespecial #821                // Method java/util/LinkedHashSet."<init>":()V
+      57: astore        6
+      59: aload_2
+      60: astore        7
+      62: aload_2
+      63: getstatic     #824                // Field com/intellij/vcs/log/VcsLogFilterCollection.BRANCH_FILTER:Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;
+      66: invokeinterface #813,  2          // InterfaceMethod com/intellij/vcs/log/VcsLogFilterCollection.get:(Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;)Lcom/intellij/vcs/log/VcsLogFilter;
+      71: ifnonnull     86
+      74: aload_2
+      75: getstatic     #827                // Field com/intellij/vcs/log/VcsLogFilterCollection.REVISION_FILTER:Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;
+      78: invokeinterface #813,  2          // InterfaceMethod com/intellij/vcs/log/VcsLogFilterCollection.get:(Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;)Lcom/intellij/vcs/log/VcsLogFilter;
+      83: ifnull        134
+      86: aload         6
+      88: aload_0
+      89: aload_1
+      90: aload_2
+      91: aconst_null
+      92: aload_3
+      93: iload         4
+      95: invokespecial #818                // Method getCommitsMatchingFilter:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/VcsLogFilterCollection;Lcom/intellij/vcs/log/VcsLogRangeFilter$RefRange;Lcom/intellij/vcs/log/graph/PermanentGraph$Options;I)Ljava/util/List;
+      98: checkcast     #270                // class java/util/Collection
+     101: invokevirtual #831                // Method java/util/LinkedHashSet.addAll:(Ljava/util/Collection;)Z
+     104: pop
+     105: aload_2
+     106: getstatic     #824                // Field com/intellij/vcs/log/VcsLogFilterCollection.BRANCH_FILTER:Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;
+     109: dup
+     110: ldc_w         #832                // String BRANCH_FILTER
+     113: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     116: invokestatic  #838                // Method com/intellij/vcs/log/visible/filters/VcsLogFiltersKt.without:(Lcom/intellij/vcs/log/VcsLogFilterCollection;Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;)Lcom/intellij/vcs/log/VcsLogFilterCollection;
+     119: getstatic     #827                // Field com/intellij/vcs/log/VcsLogFilterCollection.REVISION_FILTER:Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;
+     122: dup
+     123: ldc_w         #839                // String REVISION_FILTER
+     126: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     129: invokestatic  #838                // Method com/intellij/vcs/log/visible/filters/VcsLogFiltersKt.without:(Lcom/intellij/vcs/log/VcsLogFilterCollection;Lcom/intellij/vcs/log/VcsLogFilterCollection$FilterKey;)Lcom/intellij/vcs/log/VcsLogFilterCollection;
+     132: astore        7
+     134: aload         5
+     136: invokeinterface #842,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogRangeFilter.getRanges:()Ljava/util/List;
+     141: invokeinterface #846,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     146: astore        8
+     148: aload         8
+     150: invokeinterface #851,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     155: ifeq          194
+     158: aload         8
+     160: invokeinterface #854,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     165: checkcast     #856                // class com/intellij/vcs/log/VcsLogRangeFilter$RefRange
+     168: astore        9
+     170: aload         6
+     172: aload_0
+     173: aload_1
+     174: aload         7
+     176: aload         9
+     178: aload_3
+     179: iload         4
+     181: invokespecial #818                // Method getCommitsMatchingFilter:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/VcsLogFilterCollection;Lcom/intellij/vcs/log/VcsLogRangeFilter$RefRange;Lcom/intellij/vcs/log/graph/PermanentGraph$Options;I)Ljava/util/List;
+     184: checkcast     #270                // class java/util/Collection
+     187: invokevirtual #831                // Method java/util/LinkedHashSet.addAll:(Ljava/util/Collection;)Z
+     190: pop
+     191: goto          148
+     194: new           #600                // class java/util/ArrayList
+     197: dup
+     198: aload         6
+     200: checkcast     #270                // class java/util/Collection
+     203: invokespecial #604                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+     206: checkcast     #508                // class java/util/List
+     209: areturn
+
+  private final java.util.List<com.intellij.vcs.log.TimedVcsCommit> getCommitsMatchingFilter(com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.VcsLogFilterCollection, com.intellij.vcs.log.VcsLogRangeFilter$RefRange, com.intellij.vcs.log.graph.PermanentGraph$Options, int) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+       3: aload_0
+       4: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+       7: aload_1
+       8: aload_2
+       9: aload_3
+      10: aload         4
+      12: iload         5
+      14: invokevirtual #870                // Method git4idea/log/GitLogProvider$Companion.getGitLogParameters$intellij_vcs_git:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/VcsLogFilterCollection;Lcom/intellij/vcs/log/VcsLogRangeFilter$RefRange;Lcom/intellij/vcs/log/graph/PermanentGraph$Options;I)Lgit4idea/history/GitLogCommandParameters;
+      17: dup
+      18: ifnonnull     26
+      21: pop
+      22: invokestatic  #873                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+      25: areturn
+      26: astore        6
+      28: new           #600                // class java/util/ArrayList
+      31: dup
+      32: invokespecial #874                // Method java/util/ArrayList."<init>":()V
+      35: astore        7
+      37: aload_0
+      38: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      41: aload_1
+      42: aload         6
+      44: invokevirtual #879                // Method git4idea/history/GitLogCommandParameters.getConfigParameters:()Ljava/util/List;
+      47: aload         6
+      49: invokevirtual #882                // Method git4idea/history/GitLogCommandParameters.getFilterParameters:()Ljava/util/List;
+      52: aconst_null
+      53: aconst_null
+      54: new           #613                // class com/intellij/util/CollectConsumer
+      57: dup
+      58: aload         7
+      60: checkcast     #270                // class java/util/Collection
+      63: invokespecial #614                // Method com/intellij/util/CollectConsumer."<init>":(Ljava/util/Collection;)V
+      66: checkcast     #616                // class java/util/function/Consumer
+      69: invokestatic  #885                // Method git4idea/history/GitLogUtil.readTimedCommits:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Ljava/util/List;Ljava/util/function/Consumer;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V
+      72: aload         7
+      74: checkcast     #508                // class java/util/List
+      77: areturn
+
+  public com.intellij.vcs.log.VcsUser getCurrentUser(com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      10: invokestatic  #894                // Method git4idea/GitUserRegistry.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/GitUserRegistry;
+      13: aload_1
+      14: invokevirtual #897                // Method git4idea/GitUserRegistry.getOrReadUser:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/vcs/log/VcsUser;
+      17: areturn
+
+  public java.util.Collection<java.lang.String> getContainingBranches(com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.Hash) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #902                // String commitHash
+      10: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_0
+      14: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      17: aload_1
+      18: iconst_1
+      19: iconst_1
+      20: aload_2
+      21: invokeinterface #907,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      26: invokestatic  #913                // Method git4idea/branch/GitBranchUtil.getBranches:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;ZZLjava/lang/String;)Ljava/util/Collection;
+      29: dup
+      30: ldc_w         #915                // String getBranches(...)
+      33: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      36: areturn
+
+  public java.lang.String getCurrentBranch(com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ldc           #195                // String root
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      10: aload_1
+      11: invokevirtual #922                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRootQuick:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      14: checkcast     #204                // class git4idea/repo/GitRepository
+      17: dup
+      18: ifnonnull     24
+      21: pop
+      22: aconst_null
+      23: areturn
+      24: astore_2
+      25: aload_2
+      26: invokeinterface #925,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentBranchName:()Ljava/lang/String;
+      31: astore_3
+      32: aload_3
+      33: ifnonnull     48
+      36: aload_2
+      37: invokeinterface #928,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentRevision:()Ljava/lang/String;
+      42: ifnull        48
+      45: ldc           #222                // String HEAD
+      47: areturn
+      48: aload_3
+      49: areturn
+
+  public com.intellij.vcs.log.VcsLogDiffHandler getDiffHandler();
+    Code:
+       0: new           #934                // class git4idea/log/GitLogDiffHandler
+       3: dup
+       4: aload_0
+       5: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+       8: invokespecial #936                // Method git4idea/log/GitLogDiffHandler."<init>":(Lcom/intellij/openapi/project/Project;)V
+      11: checkcast     #938                // class com/intellij/vcs/log/VcsLogDiffHandler
+      14: areturn
+
+  public com.intellij.vcs.log.Hash resolveReference(java.lang.String, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ldc_w         #942                // String ref
+       4: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_2
+       8: ldc           #195                // String root
+      10: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_0
+      14: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      17: aload_2
+      18: invokevirtual #945                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      21: checkcast     #204                // class git4idea/repo/GitRepository
+      24: dup
+      25: ifnonnull     31
+      28: pop
+      29: aconst_null
+      30: areturn
+      31: astore_3
+      32: invokestatic  #950                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      35: aload_3
+      36: aload_1
+      37: invokeinterface #953,  3          // InterfaceMethod git4idea/commands/Git.resolveReference:(Lgit4idea/repo/GitRepository;Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+      42: areturn
+
+  public com.intellij.openapi.vfs.VirtualFile getVcsRoot(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: ldc           #13                 // String project
+       3: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #957                // String detectedRoot
+      10: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_3
+      14: ldc_w         #959                // String filePath
+      17: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+      23: aload_0
+      24: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      27: aload_2
+      28: aload_3
+      29: invokevirtual #963                // Method git4idea/log/GitLogProvider$Companion.getCorrectedVcsRoot$intellij_vcs_git:(Lgit4idea/repo/GitRepositoryManager;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;)Lcom/intellij/openapi/vfs/VirtualFile;
+      32: areturn
+
+  public <T> T getPropertyValue(com.intellij.vcs.log.VcsLogProperties$VcsLogProperty<T>);
+    Code:
+       0: aload_1
+       1: ldc_w         #969                // String property
+       4: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_1
+       8: astore_2
+       9: aload_2
+      10: getstatic     #975                // Field com/intellij/vcs/log/VcsLogProperties.LIGHTWEIGHT_BRANCHES:Lcom/intellij/vcs/log/VcsLogProperties$VcsLogProperty;
+      13: invokestatic  #979                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      16: ifeq          29
+      19: iconst_1
+      20: invokestatic  #985                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      23: checkcast     #4                  // class java/lang/Object
+      26: goto          90
+      29: aload_2
+      30: getstatic     #988                // Field com/intellij/vcs/log/VcsLogProperties.SUPPORTS_INDEXING:Lcom/intellij/vcs/log/VcsLogProperties$VcsLogProperty;
+      33: invokestatic  #979                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      36: ifeq          49
+      39: iconst_1
+      40: invokestatic  #985                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      43: checkcast     #4                  // class java/lang/Object
+      46: goto          90
+      49: aload_2
+      50: getstatic     #991                // Field com/intellij/vcs/log/VcsLogProperties.SUPPORTS_LOG_DIRECTORY_HISTORY:Lcom/intellij/vcs/log/VcsLogProperties$VcsLogProperty;
+      53: invokestatic  #979                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      56: ifeq          69
+      59: iconst_1
+      60: invokestatic  #985                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      63: checkcast     #4                  // class java/lang/Object
+      66: goto          90
+      69: aload_2
+      70: getstatic     #994                // Field com/intellij/vcs/log/VcsLogProperties.HAS_COMMITTER:Lcom/intellij/vcs/log/VcsLogProperties$VcsLogProperty;
+      73: invokestatic  #979                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      76: ifeq          89
+      79: iconst_1
+      80: invokestatic  #985                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      83: checkcast     #4                  // class java/lang/Object
+      86: goto          90
+      89: aconst_null
+      90: areturn
+
+  public com.intellij.vcs.log.impl.VcsLogIndexer getIndexer();
+    Code:
+       0: new           #1000               // class git4idea/log/GitLogIndexer
+       3: dup
+       4: aload_0
+       5: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+       8: aload_0
+       9: getfield      #40                 // Field repositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      12: invokespecial #1003               // Method git4idea/log/GitLogIndexer."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepositoryManager;)V
+      15: checkcast     #1005               // class com/intellij/vcs/log/impl/VcsLogIndexer
+      18: areturn
+
+  private final java.util.Set<java.lang.String> readCurrentTagNames(com.intellij.openapi.vfs.VirtualFile) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field tracer:Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+       4: ldc_w         #1008               // String ReadingTags
+       7: invokeinterface #304,  2          // InterfaceMethod com/intellij/platform/diagnostic/telemetry/IJTracer.spanBuilder:(Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      12: ldc_w         #306                // String rootName
+      15: aload_1
+      16: invokevirtual #314                // Method com/intellij/openapi/vfs/VirtualFile.getName:()Ljava/lang/String;
+      19: invokeinterface #320,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      24: dup
+      25: ldc_w         #322                // String setAttribute(...)
+      28: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      31: astore_2
+      32: iconst_0
+      33: istore_3
+      34: aload_2
+      35: invokeinterface #326,  1          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.startSpan:()Lio/opentelemetry/api/trace/Span;
+      40: dup
+      41: ldc_w         #328                // String startSpan(...)
+      44: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      47: astore        4
+      49: iconst_0
+      50: istore        5
+      52: nop
+      53: aload         4
+      55: astore        6
+      57: iconst_0
+      58: istore        7
+      60: aload         6
+      62: invokeinterface #334,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.makeCurrent:()Lio/opentelemetry/context/Scope;
+      67: checkcast     #336                // class java/lang/AutoCloseable
+      70: astore        8
+      72: aconst_null
+      73: astore        9
+      75: nop
+      76: aload         8
+      78: checkcast     #338                // class io/opentelemetry/context/Scope
+      81: astore        10
+      83: iconst_0
+      84: istore        11
+      86: aload         6
+      88: astore        12
+      90: iconst_0
+      91: istore        13
+      93: new           #401                // class java/util/HashSet
+      96: dup
+      97: aload_0
+      98: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+     101: aload_1
+     102: invokestatic  #1012               // Method git4idea/branch/GitBranchUtil.getAllTags:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/List;
+     105: checkcast     #270                // class java/util/Collection
+     108: invokespecial #404                // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+     111: astore        10
+     113: aload         8
+     115: aload         9
+     117: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     120: aload         10
+     122: goto          146
+     125: astore        11
+     127: aload         11
+     129: astore        9
+     131: aload         11
+     133: athrow
+     134: astore        11
+     136: aload         8
+     138: aload         9
+     140: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     143: aload         11
+     145: athrow
+     146: nop
+     147: astore        14
+     149: aload         4
+     151: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     156: aload         14
+     158: goto          194
+     161: astore        6
+     163: aload         6
+     165: athrow
+     166: astore        6
+     168: aload         4
+     170: getstatic     #362                // Field io/opentelemetry/api/trace/StatusCode.ERROR:Lio/opentelemetry/api/trace/StatusCode;
+     173: invokeinterface #366,  2          // InterfaceMethod io/opentelemetry/api/trace/Span.setStatus:(Lio/opentelemetry/api/trace/StatusCode;)Lio/opentelemetry/api/trace/Span;
+     178: pop
+     179: aload         6
+     181: athrow
+     182: astore        6
+     184: aload         4
+     186: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     191: aload         6
+     193: athrow
+     194: nop
+     195: checkcast     #279                // class java/util/Set
+     198: areturn
+    Exception table:
+       from    to  target type
+          75   113   125   Class java/lang/Throwable
+          75   113   134   any
+         125   134   134   any
+         134   136   134   any
+          52   149   161   Class java/util/concurrent/CancellationException
+          52   149   166   Class java/lang/Throwable
+          52   149   182   any
+         161   166   182   any
+         166   182   182   any
+         182   184   182   any
+
+  private final com.intellij.vcs.log.VcsLogProvider$DetailedLogData loadSomeCommitsOnTaggedBranches(com.intellij.openapi.vfs.VirtualFile, int, java.util.Collection<java.lang.String>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field tracer:Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+       4: ldc_w         #1016               // String LoadingCommitsOnTaggedBranch
+       7: invokeinterface #304,  2          // InterfaceMethod com/intellij/platform/diagnostic/telemetry/IJTracer.spanBuilder:(Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      12: ldc_w         #306                // String rootName
+      15: aload_1
+      16: invokevirtual #314                // Method com/intellij/openapi/vfs/VirtualFile.getName:()Ljava/lang/String;
+      19: invokeinterface #320,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      24: dup
+      25: ldc_w         #322                // String setAttribute(...)
+      28: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      31: astore        4
+      33: iconst_0
+      34: istore        5
+      36: aload         4
+      38: invokeinterface #326,  1          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.startSpan:()Lio/opentelemetry/api/trace/Span;
+      43: dup
+      44: ldc_w         #328                // String startSpan(...)
+      47: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      50: astore        6
+      52: iconst_0
+      53: istore        7
+      55: nop
+      56: aload         6
+      58: astore        8
+      60: iconst_0
+      61: istore        9
+      63: aload         8
+      65: invokeinterface #334,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.makeCurrent:()Lio/opentelemetry/context/Scope;
+      70: checkcast     #336                // class java/lang/AutoCloseable
+      73: astore        10
+      75: aconst_null
+      76: astore        11
+      78: nop
+      79: aload         10
+      81: checkcast     #338                // class io/opentelemetry/context/Scope
+      84: astore        12
+      86: iconst_0
+      87: istore        13
+      89: aload         8
+      91: astore        14
+      93: iconst_0
+      94: istore        15
+      96: new           #600                // class java/util/ArrayList
+      99: dup
+     100: invokespecial #874                // Method java/util/ArrayList."<init>":()V
+     103: astore        16
+     105: aload         16
+     107: iload_2
+     108: invokedynamic #238,  0            // InvokeDynamic #0:makeConcatWithConstants:(I)Ljava/lang/String;
+     113: invokevirtual #610                // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+     116: pop
+     117: new           #401                // class java/util/HashSet
+     120: dup
+     121: invokespecial #611                // Method java/util/HashSet."<init>":()V
+     124: astore        17
+     126: new           #401                // class java/util/HashSet
+     129: dup
+     130: invokespecial #611                // Method java/util/HashSet."<init>":()V
+     133: astore        18
+     135: new           #600                // class java/util/ArrayList
+     138: dup
+     139: aload_3
+     140: invokespecial #604                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+     143: checkcast     #508                // class java/util/List
+     146: iconst_1
+     147: aload         16
+     149: aload_0
+     150: aload_1
+     151: aload         17
+     153: aload         18
+     155: invokedynamic #1026,  0           // InvokeDynamic #10:invoke:(Ljava/util/ArrayList;Lgit4idea/log/GitLogProvider;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/HashSet;Ljava/util/HashSet;)Lkotlin/jvm/functions/Function1;
+     160: invokedynamic #1034,  0           // InvokeDynamic #11:consume:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/ThrowableConsumer;
+     165: invokestatic  #1040               // Method com/intellij/vcsUtil/VcsFileUtil.foreachChunk:(Ljava/util/List;ILcom/intellij/util/ThrowableConsumer;)V
+     168: new           #206                // class com/intellij/vcs/log/impl/LogDataImpl
+     171: dup
+     172: aload         17
+     174: checkcast     #279                // class java/util/Set
+     177: new           #600                // class java/util/ArrayList
+     180: dup
+     181: aload         18
+     183: checkcast     #270                // class java/util/Collection
+     186: invokespecial #604                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+     189: checkcast     #508                // class java/util/List
+     192: invokespecial #455                // Method com/intellij/vcs/log/impl/LogDataImpl."<init>":(Ljava/util/Set;Ljava/util/List;)V
+     195: astore        12
+     197: aload         10
+     199: aload         11
+     201: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     204: aload         12
+     206: goto          230
+     209: astore        13
+     211: aload         13
+     213: astore        11
+     215: aload         13
+     217: athrow
+     218: astore        13
+     220: aload         10
+     222: aload         11
+     224: invokestatic  #353                // Method kotlin/jdk7/AutoCloseableKt.closeFinally:(Ljava/lang/AutoCloseable;Ljava/lang/Throwable;)V
+     227: aload         13
+     229: athrow
+     230: nop
+     231: astore        19
+     233: aload         6
+     235: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     240: aload         19
+     242: goto          278
+     245: astore        8
+     247: aload         8
+     249: athrow
+     250: astore        8
+     252: aload         6
+     254: getstatic     #362                // Field io/opentelemetry/api/trace/StatusCode.ERROR:Lio/opentelemetry/api/trace/StatusCode;
+     257: invokeinterface #366,  2          // InterfaceMethod io/opentelemetry/api/trace/Span.setStatus:(Lio/opentelemetry/api/trace/StatusCode;)Lio/opentelemetry/api/trace/Span;
+     262: pop
+     263: aload         8
+     265: athrow
+     266: astore        8
+     268: aload         6
+     270: invokeinterface #356,  1          // InterfaceMethod io/opentelemetry/api/trace/Span.end:()V
+     275: aload         8
+     277: athrow
+     278: nop
+     279: checkcast     #214                // class com/intellij/vcs/log/VcsLogProvider$DetailedLogData
+     282: areturn
+    Exception table:
+       from    to  target type
+          78   197   209   Class java/lang/Throwable
+          78   197   218   any
+         209   218   218   any
+         218   220   218   any
+          55   233   245   Class java/util/concurrent/CancellationException
+          55   233   250   Class java/lang/Throwable
+          55   233   266   any
+         245   250   266   any
+         250   266   266   any
+         266   268   266   any
+
+  private static final com.intellij.vcs.log.Hash validateDataAndReportError$lambda$0$0(com.intellij.vcs.log.VcsRef);
+    Code:
+       0: aload_0
+       1: invokeinterface #1048,  1         // InterfaceMethod com/intellij/vcs/log/VcsRef.getCommitHash:()Lcom/intellij/vcs/log/Hash;
+       6: areturn
+
+  private static final com.intellij.vcs.log.Hash validateDataAndReportError$lambda$0$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #1051,  2         // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #904                // class com/intellij/vcs/log/Hash
+      10: areturn
+
+  private static final int validateDataAndReportError$lambda$0$2(com.intellij.vcs.log.Hash, int);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  private static final int validateDataAndReportError$lambda$0$3(java.util.Set, com.intellij.openapi.vfs.VirtualFile, java.util.Set, java.util.List, com.intellij.vcs.log.VcsLogProvider$DetailedLogData, java.util.Set, java.util.Set, com.intellij.vcs.log.VcsLogProvider$DetailedLogData, com.intellij.vcs.log.Hash, com.intellij.vcs.log.Hash);
+    Code:
+       0: aload_0
+       1: aload         8
+       3: invokeinterface #1057,  2         // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+       8: ifeq          22
+      11: aload_0
+      12: aload         9
+      14: invokeinterface #1057,  2         // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      19: ifne          74
+      22: new           #1059               // class com/intellij/openapi/diagnostic/Attachment
+      25: dup
+      26: ldc_w         #1061               // String error-details.txt
+      29: getstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+      32: aload_1
+      33: aload_2
+      34: aload_3
+      35: aload         4
+      37: aload         5
+      39: aload         6
+      41: aload         7
+      43: invokestatic  #1065               // Method git4idea/log/GitLogProvider$Companion.access$printErrorDetails:(Lgit4idea/log/GitLogProvider$Companion;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Set;Ljava/util/List;Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;Ljava/util/Set;Ljava/util/Set;Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;)Ljava/lang/String;
+      46: invokespecial #1068               // Method com/intellij/openapi/diagnostic/Attachment."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      49: astore        10
+      51: getstatic     #443                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      54: ldc_w         #1070               // String GitLogProvider returned inconsistent data
+      57: iconst_1
+      58: anewarray     #1059               // class com/intellij/openapi/diagnostic/Attachment
+      61: astore        11
+      63: aload         11
+      65: iconst_0
+      66: aload         10
+      68: aastore
+      69: aload         11
+      71: invokevirtual #1074               // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;[Lcom/intellij/openapi/diagnostic/Attachment;)V
+      74: iconst_0
+      75: ireturn
+
+  private static final void readAllHashes$lambda$0(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #1051,  2         // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: pop
+       8: return
+
+  private static final void readMetadata$lambda$0(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #1051,  2         // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: pop
+       8: return
+
+  private static final void subscribeToRootRefreshEvents$lambda$0(git4idea.log.GitLogProvider, java.util.Collection, com.intellij.vcs.log.VcsLogRefresher, git4idea.repo.GitRepository);
+    Code:
+       0: aload_3
+       1: ldc_w         #1087               // String repository
+       4: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_0
+       8: aload_3
+       9: aload_1
+      10: aload_2
+      11: invokespecial #1089               // Method refreshOnRepoUpdate:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Lcom/intellij/vcs/log/VcsLogRefresher;)V
+      14: return
+
+  private static final void subscribeToRootRefreshEvents$lambda$1(git4idea.log.GitLogProvider, java.util.Collection, com.intellij.vcs.log.VcsLogRefresher, git4idea.repo.GitRepository);
+    Code:
+       0: aload_3
+       1: ldc_w         #1087               // String repository
+       4: invokestatic  #19                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_0
+       8: aload_3
+       9: aload_1
+      10: aload_2
+      11: invokespecial #1089               // Method refreshOnRepoUpdate:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Lcom/intellij/vcs/log/VcsLogRefresher;)V
+      14: return
+
+  private static final kotlin.Unit refreshOnRepoUpdate$lambda$0(git4idea.repo.GitRepository, java.util.Collection, com.intellij.vcs.log.VcsLogRefresher);
+    Code:
+       0: aload_0
+       1: invokeinterface #310,  1          // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+       6: dup
+       7: ldc_w         #1094               // String getRoot(...)
+      10: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: astore_3
+      14: aload_1
+      15: aload_3
+      16: invokeinterface #1095,  2         // InterfaceMethod java/util/Collection.contains:(Ljava/lang/Object;)Z
+      21: ifeq          31
+      24: aload_2
+      25: aload_3
+      26: invokeinterface #1100,  2         // InterfaceMethod com/intellij/vcs/log/VcsLogRefresher.refresh:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+      31: getstatic     #1105               // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      34: areturn
+
+  private static final kotlin.Unit loadSomeCommitsOnTaggedBranches$lambda$0$0(java.util.ArrayList, git4idea.log.GitLogProvider, com.intellij.openapi.vfs.VirtualFile, java.util.HashSet, java.util.HashSet, java.util.List);
+    Code:
+       0: aload_0
+       1: checkcast     #508                // class java/util/List
+       4: aload         5
+       6: invokestatic  #1111               // Method com/intellij/util/containers/ContainerUtil.concat:(Ljava/util/List;Ljava/util/List;)Ljava/util/List;
+       9: checkcast     #270                // class java/util/Collection
+      12: invokestatic  #1117               // Method com/intellij/util/ArrayUtilRt.toStringArray:(Ljava/util/Collection;)[Ljava/lang/String;
+      15: dup
+      16: ldc_w         #1119               // String toStringArray(...)
+      19: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      22: astore        6
+      24: aload_1
+      25: getfield      #25                 // Field project:Lcom/intellij/openapi/project/Project;
+      28: aload_2
+      29: aload         6
+      31: aload         6
+      33: arraylength
+      34: invokestatic  #252                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+      37: checkcast     #254                // class "[Ljava/lang/String;"
+      40: invokestatic  #260                // Method git4idea/history/GitLogUtil.collectMetadata:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;[Ljava/lang/String;)Lcom/intellij/vcs/log/VcsLogProvider$DetailedLogData;
+      43: dup
+      44: ldc_w         #262                // String collectMetadata(...)
+      47: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      50: astore        7
+      52: aload_3
+      53: aload         7
+      55: invokeinterface #266,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$DetailedLogData.getRefs:()Ljava/util/Set;
+      60: checkcast     #270                // class java/util/Collection
+      63: invokevirtual #1120               // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+      66: pop
+      67: aload         4
+      69: aload         7
+      71: invokeinterface #379,  1          // InterfaceMethod com/intellij/vcs/log/VcsLogProvider$DetailedLogData.getCommits:()Ljava/util/List;
+      76: checkcast     #270                // class java/util/Collection
+      79: invokevirtual #1120               // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+      82: pop
+      83: getstatic     #1105               // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      86: areturn
+
+  private static final void loadSomeCommitsOnTaggedBranches$lambda$0$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #1051,  2         // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: pop
+       8: return
+
+  static {};
+    Code:
+       0: new           #371                // class git4idea/log/GitLogProvider$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #1128               // Method git4idea/log/GitLogProvider$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #369                // Field Companion:Lgit4idea/log/GitLogProvider$Companion;
+      11: iconst_0
+      12: istore_0
+      13: ldc           #2                  // class git4idea/log/GitLogProvider
+      15: invokestatic  #1131               // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+      18: dup
+      19: ldc           #33                 // String getInstance(...)
+      21: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      24: putstatic     #443                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      27: new           #1133               // class git4idea/log/GitLogProvider$Companion$DONT_CONSIDER_SHA$1
+      30: dup
+      31: invokespecial #1134               // Method git4idea/log/GitLogProvider$Companion$DONT_CONSIDER_SHA$1."<init>":()V
+      34: checkcast     #1136               // class it/unimi/dsi/fastutil/Hash$Strategy
+      37: putstatic     #274                // Field DONT_CONSIDER_SHA:Lit/unimi/dsi/fastutil/Hash$Strategy;
+      40: return
+}

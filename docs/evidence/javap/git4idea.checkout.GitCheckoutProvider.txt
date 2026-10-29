@@ -1,0 +1,785 @@
+Compiled from "GitCheckoutProvider.java"
+public final class git4idea.checkout.GitCheckoutProvider extends com.intellij.openapi.vcs.CheckoutProviderEx {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  private static final java.util.List<java.lang.String> NON_ERROR_LINE_PREFIXES;
+
+  public git4idea.checkout.GitCheckoutProvider();
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method com/intellij/openapi/vcs/CheckoutProviderEx."<init>":()V
+       4: return
+
+  public java.lang.String getVcsName();
+    Code:
+       0: ldc           #9                  // String git4idea.vcs.name.with.mnemonic
+       2: iconst_0
+       3: anewarray     #11                 // class java/lang/Object
+       6: invokestatic  #13                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: dup
+      10: ifnonnull     17
+      13: iconst_0
+      14: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      17: areturn
+
+  public void doCheckout(com.intellij.openapi.project.Project, com.intellij.openapi.vcs.CheckoutProvider$Listener, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       8: invokestatic  #19                 // Method com/intellij/openapi/fileEditor/FileDocumentManager.getInstance:()Lcom/intellij/openapi/fileEditor/FileDocumentManager;
+      11: invokevirtual #25                 // Method com/intellij/openapi/fileEditor/FileDocumentManager.saveAllDocuments:()V
+      14: new           #28                 // class git4idea/checkout/GitCloneDialog
+      17: dup
+      18: aload_1
+      19: aload_3
+      20: invokespecial #30                 // Method git4idea/checkout/GitCloneDialog."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)V
+      23: astore        4
+      25: aload         4
+      27: invokevirtual #33                 // Method git4idea/checkout/GitCloneDialog.showAndGet:()Z
+      30: ifne          34
+      33: return
+      34: aload         4
+      36: invokevirtual #37                 // Method git4idea/checkout/GitCloneDialog.rememberSettings:()V
+      39: invokestatic  #40                 // Method com/intellij/openapi/vfs/LocalFileSystem.getInstance:()Lcom/intellij/openapi/vfs/LocalFileSystem;
+      42: astore        5
+      44: new           #45                 // class java/io/File
+      47: dup
+      48: aload         4
+      50: invokevirtual #47                 // Method git4idea/checkout/GitCloneDialog.getParentDirectory:()Ljava/lang/String;
+      53: invokespecial #51                 // Method java/io/File."<init>":(Ljava/lang/String;)V
+      56: astore        6
+      58: aload         5
+      60: aload         6
+      62: invokevirtual #54                 // Method com/intellij/openapi/vfs/LocalFileSystem.findFileByIoFile:(Ljava/io/File;)Lcom/intellij/openapi/vfs/VirtualFile;
+      65: astore        7
+      67: aload         7
+      69: ifnonnull     81
+      72: aload         5
+      74: aload         6
+      76: invokevirtual #58                 // Method com/intellij/openapi/vfs/LocalFileSystem.refreshAndFindFileByIoFile:(Ljava/io/File;)Lcom/intellij/openapi/vfs/VirtualFile;
+      79: astore        7
+      81: aload         7
+      83: ifnonnull     87
+      86: return
+      87: aload         4
+      89: invokevirtual #61                 // Method git4idea/checkout/GitCloneDialog.getSourceRepositoryURL:()Ljava/lang/String;
+      92: astore        8
+      94: aload         4
+      96: invokevirtual #64                 // Method git4idea/checkout/GitCloneDialog.getDirectoryName:()Ljava/lang/String;
+      99: astore        9
+     101: aload         4
+     103: invokevirtual #47                 // Method git4idea/checkout/GitCloneDialog.getParentDirectory:()Ljava/lang/String;
+     106: astore        10
+     108: aload_1
+     109: invokestatic  #67                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     112: aload_2
+     113: aload         7
+     115: aload         8
+     117: aload         9
+     119: aload         10
+     121: invokestatic  #72                 // Method clone:(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Lcom/intellij/openapi/vcs/CheckoutProvider$Listener;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+     124: return
+
+  public static void clone(com.intellij.openapi.project.Project, git4idea.commands.Git, com.intellij.openapi.vcs.CheckoutProvider$Listener, com.intellij.openapi.vfs.VirtualFile, java.lang.String, java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_2
+       5: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_3
+      13: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: aload_1
+      18: aload_2
+      19: aload_3
+      20: aload         4
+      22: aload         5
+      24: aload         6
+      26: aconst_null
+      27: invokestatic  #78                 // Method clone:(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Lcom/intellij/openapi/vcs/CheckoutProvider$Listener;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lgit4idea/commands/GitShallowCloneOptions;)V
+      30: return
+
+  public static void clone(com.intellij.openapi.project.Project, git4idea.commands.Git, com.intellij.openapi.vcs.CheckoutProvider$Listener, com.intellij.openapi.vfs.VirtualFile, java.lang.String, java.lang.String, java.lang.String, git4idea.commands.GitShallowCloneOptions);
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      16: aload         6
+      18: iconst_1
+      19: anewarray     #81                 // class java/lang/String
+      22: dup
+      23: iconst_0
+      24: aload         5
+      26: aastore
+      27: invokestatic  #83                 // Method java/nio/file/Paths.get:(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;
+      30: invokeinterface #89,  1           // InterfaceMethod java/nio/file/Path.toAbsolutePath:()Ljava/nio/file/Path;
+      35: astore        8
+      37: new           #95                 // class git4idea/checkout/GitCheckoutProvider$1
+      40: dup
+      41: aload         4
+      43: aload         7
+      45: aload_1
+      46: aload_0
+      47: aload         6
+      49: aload         5
+      51: aload_2
+      52: aload_3
+      53: invokespecial #97                 // Method git4idea/checkout/GitCheckoutProvider$1."<init>":(Ljava/lang/String;Lgit4idea/commands/GitShallowCloneOptions;Lgit4idea/commands/Git;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/String;Lcom/intellij/openapi/vcs/CheckoutProvider$Listener;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      56: astore        9
+      58: invokestatic  #100                // Method com/intellij/openapi/wm/impl/welcomeScreen/cloneableProjects/CloneableProjectsService.getInstance:()Lcom/intellij/openapi/wm/impl/welcomeScreen/cloneableProjects/CloneableProjectsService;
+      61: aload         8
+      63: aload         9
+      65: invokevirtual #105                // Method com/intellij/openapi/wm/impl/welcomeScreen/cloneableProjects/CloneableProjectsService.runCloneTask:(Ljava/nio/file/Path;Lcom/intellij/openapi/wm/impl/welcomeScreen/cloneableProjects/CloneableProjectsService$CloneTask;)V
+      68: return
+
+  public static boolean doClone(com.intellij.openapi.project.Project, git4idea.commands.Git, java.lang.String, java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        7
+      15: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        8
+      24: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        9
+      33: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      36: aload         4
+      38: ifnonnull     46
+      41: bipush        10
+      43: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      46: aload_0
+      47: aload_1
+      48: aload_2
+      49: aload_3
+      50: aload         4
+      52: aconst_null
+      53: invokestatic  #109                // Method doClone:(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lgit4idea/commands/GitShallowCloneOptions;)Z
+      56: ireturn
+
+  public static boolean doClone(com.intellij.openapi.project.Project, git4idea.commands.Git, java.lang.String, java.lang.String, java.lang.String, git4idea.commands.GitShallowCloneOptions);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        11
+       6: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        12
+      15: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        13
+      24: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        14
+      33: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      36: aload         4
+      38: ifnonnull     46
+      41: bipush        15
+      43: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      46: invokestatic  #113                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+      49: invokevirtual #118                // Method com/intellij/openapi/progress/ProgressManager.getProgressIndicator:()Lcom/intellij/openapi/progress/ProgressIndicator;
+      52: astore        6
+      54: aload         6
+      56: iconst_0
+      57: invokeinterface #122,  2          // InterfaceMethod com/intellij/openapi/progress/ProgressIndicator.setIndeterminate:(Z)V
+      62: aload         6
+      64: invokestatic  #128                // Method git4idea/commands/GitStandardProgressAnalyzer.createListener:(Lcom/intellij/openapi/progress/ProgressIndicator;)Lgit4idea/commands/GitLineHandlerListener;
+      67: astore        7
+      69: aload_1
+      70: aload_0
+      71: aload_3
+      72: iconst_0
+      73: anewarray     #81                 // class java/lang/String
+      76: invokestatic  #134                // InterfaceMethod java/nio/file/Path.of:(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;
+      79: aload         4
+      81: aload_2
+      82: aload         5
+      84: iconst_1
+      85: anewarray     #137                // class git4idea/commands/GitLineHandlerListener
+      88: dup
+      89: iconst_0
+      90: aload         7
+      92: aastore
+      93: invokeinterface #139,  7          // InterfaceMethod git4idea/commands/Git.clone:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Ljava/lang/String;Ljava/lang/String;Lgit4idea/commands/GitShallowCloneOptions;[Lgit4idea/commands/GitLineHandlerListener;)Lgit4idea/commands/GitCommandResult;
+      98: astore        8
+     100: aload         8
+     102: invokevirtual #142                // Method git4idea/commands/GitCommandResult.success:()Z
+     105: ifeq          110
+     108: iconst_1
+     109: ireturn
+     110: aload_0
+     111: aload         8
+     113: aload         4
+     115: invokestatic  #147                // Method notifyError:(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/GitCommandResult;Ljava/lang/String;)V
+     118: iconst_0
+     119: ireturn
+
+  private static void notifyError(com.intellij.openapi.project.Project, git4idea.commands.GitCommandResult, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        16
+       6: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        17
+      15: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        18
+      24: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      27: aload_1
+      28: invokevirtual #151                // Method git4idea/commands/GitCommandResult.getErrorOutput:()Ljava/util/List;
+      31: invokedynamic #155,  0            // InvokeDynamic #0:value:()Lcom/intellij/openapi/util/Condition;
+      36: invokestatic  #159                // Method com/intellij/util/containers/ContainerUtil.filter:(Ljava/util/Collection;Lcom/intellij/openapi/util/Condition;)Ljava/util/List;
+      39: astore_3
+      40: aload_3
+      41: invokeinterface #165,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      46: ifeq          67
+      49: ldc           #170                // String error.description.cloning.repository.failed
+      51: iconst_1
+      52: anewarray     #11                 // class java/lang/Object
+      55: dup
+      56: iconst_0
+      57: aload_2
+      58: aastore
+      59: invokestatic  #172                // Method com/intellij/dvcs/ui/DvcsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      62: astore        4
+      64: goto          98
+      67: aload_3
+      68: invokedynamic #175,  0            // InvokeDynamic #1:fun:()Lcom/intellij/util/Function;
+      73: invokestatic  #179                // Method com/intellij/util/containers/ContainerUtil.map:(Ljava/util/Collection;Lcom/intellij/util/Function;)Ljava/util/List;
+      76: astore        5
+      78: new           #183                // class com/intellij/openapi/util/text/HtmlBuilder
+      81: dup
+      82: invokespecial #185                // Method com/intellij/openapi/util/text/HtmlBuilder."<init>":()V
+      85: invokestatic  #186                // Method com/intellij/openapi/util/text/HtmlChunk.br:()Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+      88: aload         5
+      90: invokevirtual #192                // Method com/intellij/openapi/util/text/HtmlBuilder.appendWithSeparators:(Lcom/intellij/openapi/util/text/HtmlChunk;Ljava/lang/Iterable;)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      93: invokevirtual #196                // Method com/intellij/openapi/util/text/HtmlBuilder.toString:()Ljava/lang/String;
+      96: astore        4
+      98: aload_0
+      99: invokestatic  #199                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+     102: ldc           #204                // String git.clone.failed
+     104: ldc           #206                // String error.title.cloning.repository.failed
+     106: iconst_0
+     107: anewarray     #11                 // class java/lang/Object
+     110: invokestatic  #172                // Method com/intellij/dvcs/ui/DvcsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     113: aload         4
+     115: iconst_1
+     116: invokevirtual #208                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Lcom/intellij/notification/Notification;
+     119: pop
+     120: return
+
+  public java.lang.String getVcsId();
+    Code:
+       0: ldc           #213                // String git
+       2: areturn
+
+  public void doCheckout(com.intellij.openapi.project.Project, com.intellij.openapi.vcs.CheckoutProvider$Listener);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        19
+       6: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: aload_2
+      12: aconst_null
+      13: invokevirtual #215                // Method doCheckout:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vcs/CheckoutProvider$Listener;Ljava/lang/String;)V
+      16: return
+
+  public com.intellij.openapi.vcs.ui.VcsCloneComponent buildVcsCloneComponent(com.intellij.openapi.project.Project, com.intellij.openapi.application.ModalityState, com.intellij.openapi.vcs.ui.cloneDialog.VcsCloneDialogComponentStateListener);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        20
+       6: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        21
+      15: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        22
+      24: invokestatic  #391                // Method $$$reportNull$$$0:(I)V
+      27: new           #219                // class git4idea/ui/GitCloneDialogComponent
+      30: dup
+      31: aload_1
+      32: aload_2
+      33: aload_3
+      34: invokespecial #221                // Method git4idea/ui/GitCloneDialogComponent."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/application/ModalityState;Lcom/intellij/openapi/vcs/ui/cloneDialog/VcsCloneDialogComponentStateListener;)V
+      37: areturn
+
+  private static com.intellij.openapi.util.text.HtmlChunk lambda$notifyError$2(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokestatic  #224                // Method git4idea/GitUtil.cleanupErrorPrefixes:(Ljava/lang/String;)Ljava/lang/String;
+       4: invokestatic  #230                // Method com/intellij/openapi/util/text/HtmlChunk.text:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk;
+       7: areturn
+
+  private static boolean lambda$notifyError$1(java.lang.String);
+    Code:
+       0: getstatic     #234                // Field NON_ERROR_LINE_PREFIXES:Ljava/util/List;
+       3: aload_0
+       4: invokedynamic #238,  0            // InvokeDynamic #2:value:(Ljava/lang/String;)Lcom/intellij/openapi/util/Condition;
+       9: invokestatic  #241                // Method com/intellij/util/containers/ContainerUtil.exists:(Ljava/lang/Iterable;Lcom/intellij/openapi/util/Condition;)Z
+      12: ifne          19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: ireturn
+
+  private static boolean lambda$notifyError$0(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #245                // Method com/intellij/openapi/util/text/StringUtil.startsWithIgnoreCase:(Ljava/lang/String;Ljava/lang/String;)Z
+       5: ireturn
+
+  static {};
+    Code:
+       0: ldc           #73                 // class git4idea/checkout/GitCheckoutProvider
+       2: invokestatic  #251                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #256                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: iconst_3
+       9: anewarray     #81                 // class java/lang/String
+      12: dup
+      13: iconst_0
+      14: ldc_w         #260                // String Cloning into
+      17: aastore
+      18: dup
+      19: iconst_1
+      20: ldc_w         #262                // String remote:
+      23: aastore
+      24: dup
+      25: iconst_2
+      26: ldc_w         #264                // String submodule
+      29: aastore
+      30: invokestatic  #266                // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+      33: putstatic     #234                // Field NON_ERROR_LINE_PREFIXES:Ljava/util/List;
+      36: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 22
+
+                     0: 108
+
+                     1: 114
+
+                     2: 114
+
+                     3: 114
+
+                     4: 114
+
+                     5: 114
+
+                     6: 114
+
+                     7: 114
+
+                     8: 114
+
+                     9: 114
+
+                    10: 114
+
+                    11: 114
+
+                    12: 114
+
+                    13: 114
+
+                    14: 114
+
+                    15: 114
+
+                    16: 114
+
+                    17: 114
+
+                    18: 114
+
+                    19: 114
+
+                    20: 114
+
+                    21: 114
+
+                    22: 114
+               default: 108
+          }
+     108: ldc_w         #393                // String @NotNull method %s.%s must not return null
+     111: goto          120
+     114: ldc_w         #395                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     117: goto          120
+     120: iload_0
+     121: tableswitch   { // 0 to 22
+
+                     0: 228
+
+                     1: 232
+
+                     2: 232
+
+                     3: 232
+
+                     4: 232
+
+                     5: 232
+
+                     6: 232
+
+                     7: 232
+
+                     8: 232
+
+                     9: 232
+
+                    10: 232
+
+                    11: 232
+
+                    12: 232
+
+                    13: 232
+
+                    14: 232
+
+                    15: 232
+
+                    16: 232
+
+                    17: 232
+
+                    18: 232
+
+                    19: 232
+
+                    20: 232
+
+                    21: 232
+
+                    22: 232
+               default: 228
+          }
+     228: iconst_2
+     229: goto          236
+     232: iconst_3
+     233: goto          236
+     236: anewarray     #11                 // class java/lang/Object
+     239: iload_0
+     240: tableswitch   { // 0 to 22
+
+                     0: 348
+
+                     1: 357
+
+                     2: 357
+
+                     3: 366
+
+                     4: 357
+
+                     5: 366
+
+                     6: 357
+
+                     7: 366
+
+                     8: 374
+
+                     9: 383
+
+                    10: 392
+
+                    11: 357
+
+                    12: 366
+
+                    13: 374
+
+                    14: 383
+
+                    15: 392
+
+                    16: 357
+
+                    17: 401
+
+                    18: 392
+
+                    19: 357
+
+                    20: 357
+
+                    21: 410
+
+                    22: 419
+               default: 348
+          }
+     348: dup
+     349: iconst_0
+     350: ldc_w         #396                // String git4idea/checkout/GitCheckoutProvider
+     353: aastore
+     354: goto          428
+     357: dup
+     358: iconst_0
+     359: ldc_w         #397                // String project
+     362: aastore
+     363: goto          428
+     366: dup
+     367: iconst_0
+     368: ldc           #213                // String git
+     370: aastore
+     371: goto          428
+     374: dup
+     375: iconst_0
+     376: ldc_w         #398                // String directoryName
+     379: aastore
+     380: goto          428
+     383: dup
+     384: iconst_0
+     385: ldc_w         #399                // String parentDirectory
+     388: aastore
+     389: goto          428
+     392: dup
+     393: iconst_0
+     394: ldc_w         #400                // String sourceRepositoryURL
+     397: aastore
+     398: goto          428
+     401: dup
+     402: iconst_0
+     403: ldc_w         #401                // String commandResult
+     406: aastore
+     407: goto          428
+     410: dup
+     411: iconst_0
+     412: ldc_w         #402                // String modalityState
+     415: aastore
+     416: goto          428
+     419: dup
+     420: iconst_0
+     421: ldc_w         #403                // String dialogStateListener
+     424: aastore
+     425: goto          428
+     428: iload_0
+     429: tableswitch   { // 0 to 22
+
+                     0: 536
+
+                     1: 545
+
+                     2: 545
+
+                     3: 545
+
+                     4: 545
+
+                     5: 545
+
+                     6: 545
+
+                     7: 545
+
+                     8: 545
+
+                     9: 545
+
+                    10: 545
+
+                    11: 545
+
+                    12: 545
+
+                    13: 545
+
+                    14: 545
+
+                    15: 545
+
+                    16: 545
+
+                    17: 545
+
+                    18: 545
+
+                    19: 545
+
+                    20: 545
+
+                    21: 545
+
+                    22: 545
+               default: 536
+          }
+     536: dup
+     537: iconst_1
+     538: ldc_w         #404                // String getVcsName
+     541: aastore
+     542: goto          554
+     545: dup
+     546: iconst_1
+     547: ldc_w         #396                // String git4idea/checkout/GitCheckoutProvider
+     550: aastore
+     551: goto          554
+     554: iload_0
+     555: tableswitch   { // 0 to 22
+
+                     0: 660
+
+                     1: 663
+
+                     2: 672
+
+                     3: 672
+
+                     4: 672
+
+                     5: 672
+
+                     6: 681
+
+                     7: 681
+
+                     8: 681
+
+                     9: 681
+
+                    10: 681
+
+                    11: 681
+
+                    12: 681
+
+                    13: 681
+
+                    14: 681
+
+                    15: 681
+
+                    16: 690
+
+                    17: 690
+
+                    18: 690
+
+                    19: 663
+
+                    20: 699
+
+                    21: 699
+
+                    22: 699
+               default: 660
+          }
+     660: goto          708
+     663: dup
+     664: iconst_2
+     665: ldc_w         #405                // String doCheckout
+     668: aastore
+     669: goto          708
+     672: dup
+     673: iconst_2
+     674: ldc_w         #406                // String clone
+     677: aastore
+     678: goto          708
+     681: dup
+     682: iconst_2
+     683: ldc_w         #407                // String doClone
+     686: aastore
+     687: goto          708
+     690: dup
+     691: iconst_2
+     692: ldc_w         #408                // String notifyError
+     695: aastore
+     696: goto          708
+     699: dup
+     700: iconst_2
+     701: ldc_w         #409                // String buildVcsCloneComponent
+     704: aastore
+     705: goto          708
+     708: invokestatic  #412                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     711: iload_0
+     712: tableswitch   { // 0 to 22
+
+                     0: 820
+
+                     1: 831
+
+                     2: 831
+
+                     3: 831
+
+                     4: 831
+
+                     5: 831
+
+                     6: 831
+
+                     7: 831
+
+                     8: 831
+
+                     9: 831
+
+                    10: 831
+
+                    11: 831
+
+                    12: 831
+
+                    13: 831
+
+                    14: 831
+
+                    15: 831
+
+                    16: 831
+
+                    17: 831
+
+                    18: 831
+
+                    19: 831
+
+                    20: 831
+
+                    21: 831
+
+                    22: 831
+               default: 820
+          }
+     820: new           #414                // class java/lang/IllegalStateException
+     823: dup_x1
+     824: swap
+     825: invokespecial #415                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     828: goto          842
+     831: new           #417                // class java/lang/IllegalArgumentException
+     834: dup_x1
+     835: swap
+     836: invokespecial #418                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     839: goto          842
+     842: athrow
+}

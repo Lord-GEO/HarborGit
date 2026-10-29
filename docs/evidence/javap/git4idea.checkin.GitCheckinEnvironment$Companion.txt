@@ -1,0 +1,3321 @@
+Compiled from "GitCheckinEnvironment.kt"
+public final class git4idea.checkin.GitCheckinEnvironment$Companion {
+  private git4idea.checkin.GitCheckinEnvironment$Companion();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  private final java.util.List<com.intellij.openapi.vcs.VcsException> commitRepository(git4idea.repo.GitRepository, java.util.Collection<git4idea.checkin.GitCheckinEnvironment$CommitChange>, java.lang.String, com.intellij.openapi.vcs.changes.CommitContext, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: new           #17                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+       7: checkcast     #20                 // class java/util/List
+      10: astore        6
+      12: aload_1
+      13: invokeinterface #26,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      18: dup
+      19: ldc           #28                 // String getProject(...)
+      21: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      24: astore        7
+      26: nop
+      27: aload_0
+      28: aload_1
+      29: aload_2
+      30: invokespecial #38                 // Method addPartialChangesToIndex:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;)Lkotlin/Pair;
+      33: astore        8
+      35: aload         8
+      37: invokevirtual #44                 // Method kotlin/Pair.component1:()Ljava/lang/Object;
+      40: checkcast     #20                 // class java/util/List
+      43: astore        9
+      45: aload         8
+      47: invokevirtual #47                 // Method kotlin/Pair.component2:()Ljava/lang/Object;
+      50: checkcast     #20                 // class java/util/List
+      53: astore        10
+      55: new           #49                 // class java/util/HashSet
+      58: dup
+      59: aload         10
+      61: checkcast     #51                 // class java/util/Collection
+      64: invokespecial #54                 // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+      67: astore        11
+      69: aload_0
+      70: aload_1
+      71: aload_2
+      72: aload         11
+      74: checkcast     #56                 // class java/util/Set
+      77: aload         6
+      79: invokespecial #60                 // Method addCaseOnlyRenamesToIndex:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/util/Set;Ljava/util/List;)Ljava/util/List;
+      82: astore        12
+      84: aload         6
+      86: invokeinterface #64,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+      91: ifne          97
+      94: aload         6
+      96: areturn
+      97: aload         11
+      99: aload         12
+     101: checkcast     #51                 // class java/util/Collection
+     104: invokevirtual #68                 // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+     107: pop
+     108: aload         6
+     110: aload_0
+     111: aload         7
+     113: aload_1
+     114: aload_2
+     115: aload         11
+     117: checkcast     #56                 // class java/util/Set
+     120: aload_3
+     121: aload         5
+     123: invokevirtual #72                 // Method commitUsingIndex:(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/util/Set;Ljava/lang/String;Lgit4idea/checkin/GitCommitOptions;)Ljava/util/List;
+     126: checkcast     #51                 // class java/util/Collection
+     129: invokeinterface #73,  2           // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     134: pop
+     135: aload         6
+     137: invokeinterface #64,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+     142: ifne          148
+     145: aload         6
+     147: areturn
+     148: aload_0
+     149: aload         9
+     151: invokespecial #77                 // Method applyPartialChanges:(Ljava/util/List;)V
+     154: aload_1
+     155: invokeinterface #80,  1           // InterfaceMethod git4idea/repo/GitRepository.update:()V
+     160: aload_1
+     161: invokestatic  #86                 // Method git4idea/repo/GitSubmoduleKt.isSubmodule:(Lgit4idea/repo/GitRepository;)Z
+     164: ifeq          184
+     167: aload         7
+     169: invokestatic  #92                 // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/VcsDirtyScopeManager;
+     172: aload_1
+     173: invokeinterface #96,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     178: invokevirtual #101                // Method com/intellij/openapi/vfs/VirtualFile.getParent:()Lcom/intellij/openapi/vfs/VirtualFile;
+     181: invokevirtual #105                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.dirDirtyRecursively:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+     184: getstatic     #111                // Field git4idea/checkin/GitPostCommitChangeConverter.Companion:Lgit4idea/checkin/GitPostCommitChangeConverter$Companion;
+     187: aload         4
+     189: aload_1
+     190: invokevirtual #117                // Method git4idea/checkin/GitPostCommitChangeConverter$Companion.markRepositoryCommit:(Lcom/intellij/openapi/vcs/changes/CommitContext;Lgit4idea/repo/GitRepository;)V
+     193: goto          208
+     196: astore        9
+     198: aload         6
+     200: aload         9
+     202: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     207: pop
+     208: aload         6
+     210: areturn
+    Exception table:
+       from    to  target type
+          26   193   196   Class com/intellij/openapi/vcs/VcsException
+
+  public final java.util.List<com.intellij.openapi.vcs.VcsException> commitUsingIndex(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, java.util.Collection<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>, java.util.Set<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>, java.lang.String, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: aload_1
+       1: ldc           #154                // String project
+       3: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #158                // String repository
+       9: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #160                // String rootChanges
+      15: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         4
+      20: ldc           #161                // String changedWithIndex
+      22: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload         5
+      27: ldc           #162                // String message
+      29: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      32: aload         6
+      34: ldc           #163                // String commitOptions
+      36: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      39: aload_0
+      40: aload_1
+      41: aload_2
+      42: aload_3
+      43: aload         4
+      45: aload         6
+      47: aload         5
+      49: invokedynamic #183,  0            // InvokeDynamic #0:invoke:(Ljava/lang/String;)Lkotlin/jvm/functions/Function1;
+      54: invokespecial #187                // Method stageAndCommit:(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/util/Set;Lgit4idea/checkin/GitCommitOptions;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+      57: areturn
+
+  public final java.util.List<com.intellij.openapi.vcs.VcsException> commitUsingIndex(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, java.util.Collection<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>, java.util.Set<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>, java.io.File, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: aload_1
+       1: ldc           #154                // String project
+       3: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #158                // String repository
+       9: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #160                // String rootChanges
+      15: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         4
+      20: ldc           #161                // String changedWithIndex
+      22: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload         5
+      27: ldc           #194                // String messageFile
+      29: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      32: aload         6
+      34: ldc           #163                // String commitOptions
+      36: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      39: aload_0
+      40: aload_1
+      41: aload_2
+      42: aload_3
+      43: aload         4
+      45: aload         6
+      47: aload         5
+      49: invokedynamic #202,  0            // InvokeDynamic #1:invoke:(Ljava/io/File;)Lkotlin/jvm/functions/Function1;
+      54: invokespecial #187                // Method stageAndCommit:(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/util/Set;Lgit4idea/checkin/GitCommitOptions;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+      57: areturn
+
+  private final java.util.List<com.intellij.openapi.vcs.VcsException> stageAndCommit(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, java.util.Collection<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>, java.util.Set<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>, git4idea.checkin.GitCommitOptions, kotlin.jvm.functions.Function1<? super git4idea.checkin.GitRepositoryCommitter, kotlin.Unit>);
+    Code:
+       0: new           #17                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+       7: checkcast     #20                 // class java/util/List
+      10: astore        7
+      12: nop
+      13: aload_3
+      14: checkcast     #208                // class java/lang/Iterable
+      17: astore        9
+      19: new           #49                 // class java/util/HashSet
+      22: dup
+      23: invokespecial #209                // Method java/util/HashSet."<init>":()V
+      26: checkcast     #51                 // class java/util/Collection
+      29: astore        10
+      31: iconst_0
+      32: istore        11
+      34: aload         9
+      36: astore        12
+      38: iconst_0
+      39: istore        13
+      41: aload         12
+      43: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      48: astore        14
+      50: aload         14
+      52: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      57: ifeq          118
+      60: aload         14
+      62: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      67: astore        15
+      69: aload         15
+      71: astore        16
+      73: iconst_0
+      74: istore        17
+      76: aload         16
+      78: checkcast     #223                // class git4idea/checkin/GitCheckinEnvironment$ChangedPath
+      81: astore        18
+      83: iconst_0
+      84: istore        19
+      86: aload         18
+      88: invokevirtual #227                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+      91: dup
+      92: ifnull        113
+      95: astore        20
+      97: iconst_0
+      98: istore        21
+     100: aload         10
+     102: aload         20
+     104: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     109: pop
+     110: goto          114
+     113: pop
+     114: nop
+     115: goto          50
+     118: nop
+     119: aload         10
+     121: checkcast     #56                 // class java/util/Set
+     124: astore        8
+     126: aload_3
+     127: checkcast     #208                // class java/lang/Iterable
+     130: astore        10
+     132: new           #49                 // class java/util/HashSet
+     135: dup
+     136: invokespecial #209                // Method java/util/HashSet."<init>":()V
+     139: checkcast     #51                 // class java/util/Collection
+     142: astore        11
+     144: iconst_0
+     145: istore        12
+     147: aload         10
+     149: astore        13
+     151: iconst_0
+     152: istore        14
+     154: aload         13
+     156: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     161: astore        15
+     163: aload         15
+     165: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     170: ifeq          231
+     173: aload         15
+     175: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     180: astore        16
+     182: aload         16
+     184: astore        17
+     186: iconst_0
+     187: istore        18
+     189: aload         17
+     191: checkcast     #223                // class git4idea/checkin/GitCheckinEnvironment$ChangedPath
+     194: astore        19
+     196: iconst_0
+     197: istore        20
+     199: aload         19
+     201: invokevirtual #231                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     204: dup
+     205: ifnull        226
+     208: astore        21
+     210: iconst_0
+     211: istore        22
+     213: aload         11
+     215: aload         21
+     217: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     222: pop
+     223: goto          227
+     226: pop
+     227: nop
+     228: goto          163
+     231: nop
+     232: aload         11
+     234: checkcast     #56                 // class java/util/Set
+     237: astore        9
+     239: getstatic     #236                // Field git4idea/checkin/GitStagingAreaStateManager.Companion:Lgit4idea/checkin/GitStagingAreaStateManager$Companion;
+     242: aload_2
+     243: invokevirtual #242                // Method git4idea/checkin/GitStagingAreaStateManager$Companion.create:(Lgit4idea/repo/GitRepository;)Lgit4idea/checkin/GitStagingAreaStateManager;
+     246: astore        10
+     248: aload         10
+     250: aload         8
+     252: aload         9
+     254: invokeinterface #246,  3          // InterfaceMethod git4idea/checkin/GitStagingAreaStateManager.prepareStagingArea:(Ljava/util/Set;Ljava/util/Set;)V
+     259: aload         10
+     261: checkcast     #248                // class java/io/Closeable
+     264: astore        11
+     266: aconst_null
+     267: astore        12
+     269: nop
+     270: aload         11
+     272: checkcast     #233                // class git4idea/checkin/GitStagingAreaStateManager
+     275: astore        13
+     277: iconst_0
+     278: istore        14
+     280: getstatic     #252                // Field git4idea/checkin/GitCheckinEnvironment.Companion:Lgit4idea/checkin/GitCheckinEnvironment$Companion;
+     283: aload         4
+     285: checkcast     #51                 // class java/util/Collection
+     288: invokespecial #256                // Method getPaths:(Ljava/util/Collection;)Ljava/util/List;
+     291: astore        15
+     293: new           #49                 // class java/util/HashSet
+     296: dup
+     297: aload         8
+     299: checkcast     #51                 // class java/util/Collection
+     302: invokespecial #54                 // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+     305: astore        16
+     307: aload         16
+     309: aload         15
+     311: checkcast     #51                 // class java/util/Collection
+     314: invokevirtual #259                // Method java/util/HashSet.removeAll:(Ljava/util/Collection;)Z
+     317: pop
+     318: new           #49                 // class java/util/HashSet
+     321: dup
+     322: aload         9
+     324: checkcast     #51                 // class java/util/Collection
+     327: invokespecial #54                 // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+     330: astore        17
+     332: aload         17
+     334: aload         16
+     336: checkcast     #51                 // class java/util/Collection
+     339: invokevirtual #259                // Method java/util/HashSet.removeAll:(Ljava/util/Collection;)Z
+     342: pop
+     343: aload         17
+     345: aload         15
+     347: checkcast     #51                 // class java/util/Collection
+     350: invokevirtual #259                // Method java/util/HashSet.removeAll:(Ljava/util/Collection;)Z
+     353: pop
+     354: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     357: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     360: pop
+     361: ldc_w         #271                // String Updating index: added: %s, removed: %s
+     364: astore        18
+     366: iconst_2
+     367: anewarray     #4                  // class java/lang/Object
+     370: astore        19
+     372: aload         19
+     374: iconst_0
+     375: aload         16
+     377: aastore
+     378: aload         19
+     380: iconst_1
+     381: aload         17
+     383: aastore
+     384: aload         19
+     386: astore        19
+     388: aload         18
+     390: aload         19
+     392: aload         19
+     394: arraylength
+     395: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     398: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     401: dup
+     402: ldc_w         #283                // String format(...)
+     405: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     408: invokevirtual #289                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     411: aload_1
+     412: aload_2
+     413: invokeinterface #96,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     418: aload         16
+     420: checkcast     #51                 // class java/util/Collection
+     423: aload         17
+     425: checkcast     #51                 // class java/util/Collection
+     428: aload         7
+     430: invokestatic  #295                // Method git4idea/util/GitFileUtils.stageForCommit:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Ljava/util/Collection;Ljava/util/List;)V
+     433: aload         7
+     435: invokeinterface #64,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+     440: ifne          457
+     443: aload         7
+     445: astore        21
+     447: aload         11
+     449: aload         12
+     451: invokestatic  #301                // Method kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+     454: aload         21
+     456: areturn
+     457: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     460: ldc_w         #303                // String Performing commit...
+     463: invokevirtual #289                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     466: new           #305                // class git4idea/checkin/GitRepositoryCommitter
+     469: dup
+     470: aload_2
+     471: aload         5
+     473: invokespecial #308                // Method git4idea/checkin/GitRepositoryCommitter."<init>":(Lgit4idea/repo/GitRepository;Lgit4idea/checkin/GitCommitOptions;)V
+     476: astore        20
+     478: aload         6
+     480: aload         20
+     482: invokeinterface #312,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+     487: pop
+     488: nop
+     489: getstatic     #317                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     492: astore        13
+     494: aload         11
+     496: aload         12
+     498: invokestatic  #301                // Method kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+     501: goto          537
+     504: astore        14
+     506: aload         14
+     508: astore        12
+     510: aload         14
+     512: athrow
+     513: astore        14
+     515: aload         11
+     517: aload         12
+     519: invokestatic  #301                // Method kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+     522: aload         14
+     524: athrow
+     525: astore        9
+     527: aload         7
+     529: aload         9
+     531: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     536: pop
+     537: aload         7
+     539: areturn
+    Exception table:
+       from    to  target type
+         269   447   504   Class java/lang/Throwable
+         457   494   504   Class java/lang/Throwable
+         269   447   513   any
+         457   494   513   any
+         504   513   513   any
+         513   515   513   any
+          12   525   525   Class com/intellij/openapi/vcs/VcsException
+
+  private final kotlin.Pair<java.util.List<com.intellij.openapi.vcs.ex.PartialCommitHelper>, java.util.List<git4idea.checkin.GitCheckinEnvironment$CommitChange>> addPartialChangesToIndex(git4idea.repo.GitRepository, java.util.Collection<git4idea.checkin.GitCheckinEnvironment$CommitChange>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: invokeinterface #26,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+       6: dup
+       7: ldc           #28                 // String getProject(...)
+       9: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: astore_3
+      13: aload_2
+      14: checkcast     #208                // class java/lang/Iterable
+      17: astore        4
+      19: iconst_0
+      20: istore        5
+      22: aload         4
+      24: instanceof    #51                 // class java/util/Collection
+      27: ifeq          47
+      30: aload         4
+      32: checkcast     #51                 // class java/util/Collection
+      35: invokeinterface #352,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+      40: ifeq          47
+      43: iconst_1
+      44: goto          106
+      47: aload         4
+      49: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      54: astore        6
+      56: aload         6
+      58: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      63: ifeq          105
+      66: aload         6
+      68: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      73: astore        7
+      75: aload         7
+      77: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+      80: astore        8
+      82: iconst_0
+      83: istore        9
+      85: aload         8
+      87: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+      90: ifnull        97
+      93: iconst_1
+      94: goto          98
+      97: iconst_0
+      98: ifeq          56
+     101: iconst_0
+     102: goto          106
+     105: iconst_1
+     106: ifeq          123
+     109: new           #40                 // class kotlin/Pair
+     112: dup
+     113: invokestatic  #363                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+     116: invokestatic  #363                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+     119: invokespecial #366                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     122: areturn
+     123: aload_0
+     124: aload_3
+     125: aload_2
+     126: aload_3
+     127: invokedynamic #378,  0            // InvokeDynamic #2:compute:(Ljava/util/Collection;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/util/Computable;
+     132: invokespecial #382                // Method computeAfterLSTManagerUpdate:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/util/Computable;)Ljava/lang/Object;
+     135: checkcast     #40                 // class kotlin/Pair
+     138: dup
+     139: ifnonnull     161
+     142: pop
+     143: new           #15                 // class com/intellij/openapi/vcs/VcsException
+     146: dup
+     147: ldc_w         #384                // String error.commit.cant.collect.partial.changes
+     150: iconst_0
+     151: anewarray     #4                  // class java/lang/Object
+     154: invokestatic  #388                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     157: invokespecial #390                // Method com/intellij/openapi/vcs/VcsException."<init>":(Ljava/lang/String;)V
+     160: athrow
+     161: astore        4
+     163: aload         4
+     165: invokevirtual #44                 // Method kotlin/Pair.component1:()Ljava/lang/Object;
+     168: checkcast     #20                 // class java/util/List
+     171: astore        5
+     173: aload         4
+     175: invokevirtual #47                 // Method kotlin/Pair.component2:()Ljava/lang/Object;
+     178: checkcast     #20                 // class java/util/List
+     181: astore        6
+     183: new           #17                 // class java/util/ArrayList
+     186: dup
+     187: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     190: checkcast     #20                 // class java/util/List
+     193: astore        7
+     195: aload         6
+     197: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     202: astore        8
+     204: aload         8
+     206: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     211: ifeq          254
+     214: aload         8
+     216: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     221: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     224: astore        9
+     226: aload         9
+     228: invokevirtual #394                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.isMove:()Z
+     231: ifeq          204
+     234: aload         7
+     236: aload         9
+     238: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     241: dup
+     242: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     245: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     250: pop
+     251: goto          204
+     254: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     257: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     260: pop
+     261: ldc_w         #401                // String Updating index for partial changes: removing: %s
+     264: astore        9
+     266: iconst_1
+     267: anewarray     #4                  // class java/lang/Object
+     270: astore        10
+     272: aload         10
+     274: iconst_0
+     275: aload         7
+     277: aastore
+     278: aload         10
+     280: astore        10
+     282: aload         9
+     284: aload         10
+     286: aload         10
+     288: arraylength
+     289: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     292: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     295: dup
+     296: ldc_w         #283                // String format(...)
+     299: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     302: invokevirtual #289                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     305: aload_3
+     306: aload_1
+     307: invokeinterface #96,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     312: aload         7
+     314: checkcast     #51                 // class java/util/Collection
+     317: iconst_1
+     318: anewarray     #144                // class java/lang/String
+     321: astore        8
+     323: aload         8
+     325: iconst_0
+     326: ldc_w         #403                // String --ignore-unmatch
+     329: aastore
+     330: aload         8
+     332: invokestatic  #407                // Method git4idea/util/GitFileUtils.deletePaths:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;[Ljava/lang/String;)V
+     335: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     338: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     341: pop
+     342: ldc_w         #409                // String Updating index for partial changes: changes: %s
+     345: astore        9
+     347: iconst_1
+     348: anewarray     #4                  // class java/lang/Object
+     351: astore        10
+     353: aload         10
+     355: iconst_0
+     356: aload         6
+     358: aastore
+     359: aload         10
+     361: astore        10
+     363: aload         9
+     365: aload         10
+     367: aload         10
+     369: arraylength
+     370: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     373: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     376: dup
+     377: ldc_w         #283                // String format(...)
+     380: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     383: invokevirtual #289                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     386: iconst_0
+     387: istore        8
+     389: aload         6
+     391: checkcast     #51                 // class java/util/Collection
+     394: invokeinterface #413,  1          // InterfaceMethod java/util/Collection.size:()I
+     399: istore        9
+     401: iload         8
+     403: iload         9
+     405: if_icmpge     552
+     408: aload         6
+     410: iload         8
+     412: invokeinterface #417,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     417: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     420: astore        10
+     422: aload         10
+     424: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     427: dup
+     428: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     431: astore        11
+     433: aload         5
+     435: iload         8
+     437: invokeinterface #417,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     442: checkcast     #420                // class com/intellij/openapi/vcs/ex/PartialCommitHelper
+     445: astore        12
+     447: aload         10
+     449: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+     452: dup
+     453: ifnonnull     490
+     456: pop
+     457: new           #15                 // class com/intellij/openapi/vcs/VcsException
+     460: dup
+     461: ldc_w         #425                // String cannot.find.file.error
+     464: iconst_1
+     465: anewarray     #4                  // class java/lang/Object
+     468: astore        15
+     470: aload         15
+     472: iconst_0
+     473: aload         11
+     475: invokeinterface #429,  1          // InterfaceMethod com/intellij/openapi/vcs/FilePath.getPresentableUrl:()Ljava/lang/String;
+     480: aastore
+     481: aload         15
+     483: invokestatic  #432                // Method com/intellij/openapi/diff/DiffBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     486: invokespecial #390                // Method com/intellij/openapi/vcs/VcsException."<init>":(Ljava/lang/String;)V
+     489: athrow
+     490: astore        13
+     492: aload_0
+     493: aload_1
+     494: aload         10
+     496: invokespecial #436                // Method getStagedFile:(Lgit4idea/repo/GitRepository;Lgit4idea/checkin/GitCheckinEnvironment$CommitChange;)Lgit4idea/index/GitIndexUtil$StagedFile;
+     499: astore        14
+     501: aload         14
+     503: ifnull        518
+     506: aload         14
+     508: invokevirtual #441                // Method git4idea/index/GitIndexUtil$StagedFile.isExecutable:()Z
+     511: ifeq          518
+     514: iconst_1
+     515: goto          519
+     518: iconst_0
+     519: istore        15
+     521: aload_0
+     522: aload_1
+     523: aload         12
+     525: invokevirtual #444                // Method com/intellij/openapi/vcs/ex/PartialCommitHelper.getContent:()Ljava/lang/String;
+     528: aload         13
+     530: invokevirtual #448                // Method convertDocumentContentToBytesWithBOM:(Lgit4idea/repo/GitRepository;Ljava/lang/String;Lcom/intellij/openapi/vfs/VirtualFile;)[B
+     533: astore        16
+     535: aload_1
+     536: aload         11
+     538: aload         16
+     540: iload         15
+     542: invokestatic  #454                // Method git4idea/index/GitIndexUtil.write:(Lgit4idea/repo/GitRepository;Lcom/intellij/openapi/vcs/FilePath;[BZ)Lcom/intellij/vcs/log/Hash;
+     545: pop
+     546: iinc          8, 1
+     549: goto          401
+     552: new           #40                 // class kotlin/Pair
+     555: dup
+     556: aload         5
+     558: aload         6
+     560: invokespecial #366                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     563: areturn
+
+  private final void applyPartialChanges(java.util.List<? extends com.intellij.openapi.vcs.ex.PartialCommitHelper>);
+    Code:
+       0: invokestatic  #480                // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+       3: aload_1
+       4: invokedynamic #489,  0            // InvokeDynamic #3:run:(Ljava/util/List;)Ljava/lang/Runnable;
+       9: invokeinterface #495,  2          // InterfaceMethod com/intellij/openapi/application/Application.invokeLater:(Ljava/lang/Runnable;)V
+      14: return
+
+  private final byte[] convertDocumentContentToBytes(git4idea.repo.GitRepository, java.lang.String, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: invokestatic  #501                // Method com/intellij/openapi/fileEditor/FileDocumentManager.getInstance:()Lcom/intellij/openapi/fileEditor/FileDocumentManager;
+       3: aload_3
+       4: aload_1
+       5: invokeinterface #26,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      10: invokevirtual #505                // Method com/intellij/openapi/fileEditor/FileDocumentManager.getLineSeparator:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/project/Project;)Ljava/lang/String;
+      13: dup
+      14: ldc_w         #507                // String getLineSeparator(...)
+      17: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: astore        4
+      22: aload         4
+      24: ldc_w         #509                // String \n
+      27: invokestatic  #513                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      30: ifeq          37
+      33: aload_2
+      34: goto          52
+      37: aload_2
+      38: aload         4
+      40: invokestatic  #519                // Method com/intellij/openapi/util/text/StringUtil.convertLineSeparators:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      43: astore        6
+      45: aload         6
+      47: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      50: aload         6
+      52: astore        5
+      54: aload_1
+      55: invokeinterface #26,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      60: aload_3
+      61: aload         5
+      63: aload_3
+      64: invokevirtual #523                // Method com/intellij/openapi/vfs/VirtualFile.getCharset:()Ljava/nio/charset/Charset;
+      67: invokestatic  #529                // Method com/intellij/openapi/fileEditor/impl/LoadTextUtil.charsetForWriting:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/nio/charset/Charset;)Lcom/intellij/openapi/util/Pair$NonNull;
+      70: getfield      #534                // Field com/intellij/openapi/util/Pair$NonNull.second:Ljava/lang/Object;
+      73: dup
+      74: ldc_w         #535                // String second
+      77: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      80: checkcast     #536                // class "[B"
+      83: areturn
+
+  public final byte[] convertDocumentContentToBytesWithBOM(git4idea.repo.GitRepository, java.lang.String, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ldc           #158                // String repository
+       3: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #540                // String documentContent
+      10: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_3
+      14: ldc_w         #541                // String file
+      17: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: aload_0
+      21: aload_1
+      22: aload_2
+      23: aload_3
+      24: invokespecial #543                // Method convertDocumentContentToBytes:(Lgit4idea/repo/GitRepository;Ljava/lang/String;Lcom/intellij/openapi/vfs/VirtualFile;)[B
+      27: astore        4
+      29: aload_3
+      30: invokevirtual #547                // Method com/intellij/openapi/vfs/VirtualFile.getBOM:()[B
+      33: astore        5
+      35: aload         5
+      37: ifnull        66
+      40: aload         4
+      42: aload         5
+      44: invokestatic  #553                // Method com/intellij/util/ArrayUtil.startsWith:([B[B)Z
+      47: ifne          66
+      50: aload         5
+      52: aload         4
+      54: invokestatic  #557                // Method com/intellij/util/ArrayUtil.mergeArrays:([B[B)[B
+      57: dup
+      58: ldc_w         #559                // String mergeArrays(...)
+      61: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      64: astore        4
+      66: aload         4
+      68: areturn
+
+  private final git4idea.index.GitIndexUtil$StagedFile getStagedFile(git4idea.repo.GitRepository, git4idea.checkin.GitCheckinEnvironment$CommitChange) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_2
+       1: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+       4: astore_3
+       5: aload_3
+       6: ifnull        24
+       9: aload_1
+      10: aload_3
+      11: invokestatic  #564                // Method git4idea/index/GitIndexUtil.listStaged:(Lgit4idea/repo/GitRepository;Lcom/intellij/openapi/vcs/FilePath;)Lgit4idea/index/GitIndexUtil$StagedFile;
+      14: astore        4
+      16: aload         4
+      18: ifnull        24
+      21: aload         4
+      23: areturn
+      24: aload_2
+      25: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+      28: astore        4
+      30: aload         4
+      32: ifnull        51
+      35: aload_1
+      36: aload         4
+      38: invokestatic  #564                // Method git4idea/index/GitIndexUtil.listStaged:(Lgit4idea/repo/GitRepository;Lcom/intellij/openapi/vcs/FilePath;)Lgit4idea/index/GitIndexUtil$StagedFile;
+      41: astore        5
+      43: aload         5
+      45: ifnull        51
+      48: aload         5
+      50: areturn
+      51: aconst_null
+      52: areturn
+
+  private final <T> T computeAfterLSTManagerUpdate(com.intellij.openapi.project.Project, com.intellij.openapi.util.Computable<T>);
+    Code:
+       0: invokestatic  #480                // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+       3: invokeinterface #572,  1          // InterfaceMethod com/intellij/openapi/application/Application.assertIsNonDispatchThread:()V
+       8: new           #574                // class java/util/concurrent/CompletableFuture
+      11: dup
+      12: invokespecial #575                // Method java/util/concurrent/CompletableFuture."<init>":()V
+      15: astore_3
+      16: getstatic     #580                // Field com/intellij/openapi/vcs/impl/LineStatusTrackerManager.Companion:Lcom/intellij/openapi/vcs/impl/LineStatusTrackerManager$Companion;
+      19: aload_1
+      20: invokevirtual #585                // Method com/intellij/openapi/vcs/impl/LineStatusTrackerManager$Companion.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/impl/LineStatusTrackerManagerI;
+      23: aload_3
+      24: aload_2
+      25: invokedynamic #593,  0            // InvokeDynamic #4:run:(Ljava/util/concurrent/CompletableFuture;Lcom/intellij/openapi/util/Computable;)Ljava/lang/Runnable;
+      30: invokeinterface #598,  2          // InterfaceMethod com/intellij/openapi/vcs/impl/LineStatusTrackerManagerI.invokeAfterUpdate:(Ljava/lang/Runnable;)V
+      35: nop
+      36: aload_3
+      37: checkcast     #600                // class java/util/concurrent/Future
+      40: invokestatic  #606                // Method com/intellij/openapi/progress/util/ProgressIndicatorUtils.awaitWithCheckCanceled:(Ljava/util/concurrent/Future;)Ljava/lang/Object;
+      43: areturn
+      44: astore        4
+      46: aload         4
+      48: athrow
+      49: astore        4
+      51: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+      54: aload         4
+      56: invokevirtual #610                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+      59: aconst_null
+      60: areturn
+    Exception table:
+       from    to  target type
+          35    44    44   Class com/intellij/openapi/progress/ProcessCanceledException
+          35    44    49   Class java/lang/Throwable
+
+  private final java.util.List<git4idea.checkin.GitCheckinEnvironment$CommitChange> addCaseOnlyRenamesToIndex(git4idea.repo.GitRepository, java.util.Collection<git4idea.checkin.GitCheckinEnvironment$CommitChange>, java.util.Set<git4idea.checkin.GitCheckinEnvironment$CommitChange>, java.util.List<? super com.intellij.openapi.vcs.VcsException>);
+    Code:
+       0: getstatic     #624                // Field com/intellij/openapi/util/SystemInfo.isFileSystemCaseSensitive:Z
+       3: ifeq          10
+       6: invokestatic  #363                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+       9: areturn
+      10: aload_2
+      11: checkcast     #208                // class java/lang/Iterable
+      14: astore        6
+      16: iconst_0
+      17: istore        7
+      19: aload         6
+      21: astore        8
+      23: new           #17                 // class java/util/ArrayList
+      26: dup
+      27: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+      30: checkcast     #51                 // class java/util/Collection
+      33: astore        9
+      35: iconst_0
+      36: istore        10
+      38: aload         8
+      40: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      45: astore        11
+      47: aload         11
+      49: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      54: ifeq          122
+      57: aload         11
+      59: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      64: astore        12
+      66: aload         12
+      68: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+      71: astore        13
+      73: iconst_0
+      74: istore        14
+      76: aload_3
+      77: aload         13
+      79: invokeinterface #627,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      84: ifne          105
+      87: getstatic     #252                // Field git4idea/checkin/GitCheckinEnvironment.Companion:Lgit4idea/checkin/GitCheckinEnvironment$Companion;
+      90: aload         13
+      92: checkcast     #223                // class git4idea/checkin/GitCheckinEnvironment$ChangedPath
+      95: invokevirtual #631                // Method isCaseOnlyRename:(Lgit4idea/checkin/GitCheckinEnvironment$ChangedPath;)Z
+      98: ifeq          105
+     101: iconst_1
+     102: goto          106
+     105: iconst_0
+     106: ifeq          47
+     109: aload         9
+     111: aload         12
+     113: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     118: pop
+     119: goto          47
+     122: aload         9
+     124: checkcast     #20                 // class java/util/List
+     127: nop
+     128: astore        5
+     130: aload         5
+     132: invokeinterface #64,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+     137: ifeq          144
+     140: invokestatic  #363                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+     143: areturn
+     144: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     147: aload_0
+     148: aload_1
+     149: invokeinterface #96,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     154: invokevirtual #634                // Method com/intellij/openapi/vfs/VirtualFile.getPath:()Ljava/lang/String;
+     157: dup
+     158: ldc_w         #636                // String getPath(...)
+     161: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     164: aload         5
+     166: checkcast     #51                 // class java/util/Collection
+     169: invokevirtual #640                // Method getLogString:(Ljava/lang/String;Ljava/util/Collection;)Ljava/lang/String;
+     172: aload_1
+     173: checkcast     #642                // class com/intellij/dvcs/repo/Repository
+     176: invokestatic  #648                // Method com/intellij/dvcs/DvcsUtil.getShortRepositoryName:(Lcom/intellij/dvcs/repo/Repository;)Ljava/lang/String;
+     179: invokedynamic #659,  0            // InvokeDynamic #5:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     184: invokevirtual #662                // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+     187: aload         5
+     189: checkcast     #208                // class java/lang/Iterable
+     192: astore        7
+     194: iconst_0
+     195: istore        8
+     197: aload         7
+     199: astore        9
+     201: new           #17                 // class java/util/ArrayList
+     204: dup
+     205: aload         7
+     207: bipush        10
+     209: invokestatic  #666                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+     212: invokespecial #669                // Method java/util/ArrayList."<init>":(I)V
+     215: checkcast     #51                 // class java/util/Collection
+     218: astore        10
+     220: iconst_0
+     221: istore        11
+     223: aload         9
+     225: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     230: astore        12
+     232: aload         12
+     234: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     239: ifeq          286
+     242: aload         12
+     244: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     249: astore        13
+     251: aload         10
+     253: aload         13
+     255: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     258: astore        14
+     260: astore        17
+     262: iconst_0
+     263: istore        15
+     265: aload         14
+     267: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     270: dup
+     271: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     274: aload         17
+     276: swap
+     277: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     282: pop
+     283: goto          232
+     286: aload         10
+     288: checkcast     #20                 // class java/util/List
+     291: nop
+     292: astore        6
+     294: aload         5
+     296: checkcast     #208                // class java/lang/Iterable
+     299: astore        8
+     301: iconst_0
+     302: istore        9
+     304: aload         8
+     306: astore        10
+     308: new           #17                 // class java/util/ArrayList
+     311: dup
+     312: aload         8
+     314: bipush        10
+     316: invokestatic  #666                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+     319: invokespecial #669                // Method java/util/ArrayList."<init>":(I)V
+     322: checkcast     #51                 // class java/util/Collection
+     325: astore        11
+     327: iconst_0
+     328: istore        12
+     330: aload         10
+     332: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     337: astore        13
+     339: aload         13
+     341: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     346: ifeq          393
+     349: aload         13
+     351: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     356: astore        14
+     358: aload         11
+     360: aload         14
+     362: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     365: astore        15
+     367: astore        17
+     369: iconst_0
+     370: istore        16
+     372: aload         15
+     374: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     377: dup
+     378: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     381: aload         17
+     383: swap
+     384: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     389: pop
+     390: goto          339
+     393: aload         11
+     395: checkcast     #20                 // class java/util/List
+     398: nop
+     399: astore        7
+     401: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     404: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     407: pop
+     408: ldc_w         #671                // String Updating index for case only changes: added: %s,\n removed: %s
+     411: astore        9
+     413: iconst_2
+     414: anewarray     #4                  // class java/lang/Object
+     417: astore        10
+     419: aload         10
+     421: iconst_0
+     422: aload         6
+     424: aastore
+     425: aload         10
+     427: iconst_1
+     428: aload         7
+     430: aastore
+     431: aload         10
+     433: astore        10
+     435: aload         9
+     437: aload         10
+     439: aload         10
+     441: arraylength
+     442: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     445: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     448: dup
+     449: ldc_w         #283                // String format(...)
+     452: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     455: invokevirtual #289                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     458: aload_1
+     459: invokeinterface #26,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+     464: aload_1
+     465: invokeinterface #96,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     470: aload         6
+     472: checkcast     #51                 // class java/util/Collection
+     475: aload         7
+     477: checkcast     #51                 // class java/util/Collection
+     480: aload         4
+     482: invokestatic  #295                // Method git4idea/util/GitFileUtils.stageForCommit:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Ljava/util/Collection;Ljava/util/List;)V
+     485: aload         5
+     487: areturn
+
+  private final java.util.List<com.intellij.openapi.vcs.FilePath> getPaths(java.util.Collection<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>);
+    Code:
+       0: new           #17                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+       7: checkcast     #20                 // class java/util/List
+      10: astore_2
+      11: aload_1
+      12: invokeinterface #689,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      17: astore_3
+      18: aload_3
+      19: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          87
+      27: aload_3
+      28: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #223                // class git4idea/checkin/GitCheckinEnvironment$ChangedPath
+      36: astore        4
+      38: aload         4
+      40: invokevirtual #231                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+      43: aload         4
+      45: invokevirtual #227                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+      48: invokestatic  #695                // Method com/intellij/openapi/vcs/changes/ChangesUtil.equalsCaseSensitive:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)Z
+      51: ifeq          66
+      54: aload_2
+      55: aload         4
+      57: invokevirtual #231                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+      60: invokestatic  #701                // Method com/intellij/util/containers/UtilKt.addIfNotNull:(Ljava/util/List;Ljava/lang/Object;)V
+      63: goto          18
+      66: aload_2
+      67: aload         4
+      69: invokevirtual #231                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+      72: invokestatic  #701                // Method com/intellij/util/containers/UtilKt.addIfNotNull:(Ljava/util/List;Ljava/lang/Object;)V
+      75: aload_2
+      76: aload         4
+      78: invokevirtual #227                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+      81: invokestatic  #701                // Method com/intellij/util/containers/UtilKt.addIfNotNull:(Ljava/util/List;Ljava/lang/Object;)V
+      84: goto          18
+      87: aload_2
+      88: areturn
+
+  private final kotlin.Pair<java.util.Collection<git4idea.checkin.GitCheckinEnvironment$CommitChange>, java.util.List<com.intellij.openapi.vcs.VcsException>> commitExplicitRenames(git4idea.repo.GitRepository, java.util.Collection<git4idea.checkin.GitCheckinEnvironment$CommitChange>, java.lang.String, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: aload_1
+       1: invokeinterface #26,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+       6: dup
+       7: ldc           #28                 // String getProject(...)
+       9: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: astore        5
+      14: getstatic     #711                // Field git4idea/checkin/GitCheckinExplicitMovementProvider.EP_NAME:Lcom/intellij/openapi/extensions/ExtensionPointName;
+      17: invokevirtual #716                // Method com/intellij/openapi/extensions/ExtensionPointName.getExtensionList:()Ljava/util/List;
+      20: checkcast     #208                // class java/lang/Iterable
+      23: astore        7
+      25: iconst_0
+      26: istore        8
+      28: aload         7
+      30: astore        9
+      32: new           #17                 // class java/util/ArrayList
+      35: dup
+      36: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+      39: checkcast     #51                 // class java/util/Collection
+      42: astore        10
+      44: iconst_0
+      45: istore        11
+      47: aload         9
+      49: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      54: astore        12
+      56: aload         12
+      58: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      63: ifeq          108
+      66: aload         12
+      68: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      73: astore        13
+      75: aload         13
+      77: checkcast     #707                // class git4idea/checkin/GitCheckinExplicitMovementProvider
+      80: astore        14
+      82: iconst_0
+      83: istore        15
+      85: aload         14
+      87: aload         5
+      89: invokevirtual #720                // Method git4idea/checkin/GitCheckinExplicitMovementProvider.isEnabled:(Lcom/intellij/openapi/project/Project;)Z
+      92: ifeq          56
+      95: aload         10
+      97: aload         13
+      99: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     104: pop
+     105: goto          56
+     108: aload         10
+     110: checkcast     #20                 // class java/util/List
+     113: nop
+     114: astore        6
+     116: new           #17                 // class java/util/ArrayList
+     119: dup
+     120: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     123: checkcast     #20                 // class java/util/List
+     126: astore        7
+     128: aload_3
+     129: astore        8
+     131: aload_0
+     132: aload         5
+     134: aload         8
+     136: invokespecial #724                // Method getIssueLinks:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Ljava/lang/String;
+     139: astore        9
+     141: aload_2
+     142: checkcast     #208                // class java/lang/Iterable
+     145: astore        11
+     147: iconst_0
+     148: istore        12
+     150: aload         11
+     152: astore        13
+     154: new           #17                 // class java/util/ArrayList
+     157: dup
+     158: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     161: checkcast     #51                 // class java/util/Collection
+     164: astore        14
+     166: iconst_0
+     167: istore        15
+     169: aload         13
+     171: astore        16
+     173: iconst_0
+     174: istore        17
+     176: aload         16
+     178: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     183: astore        18
+     185: aload         18
+     187: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     192: ifeq          253
+     195: aload         18
+     197: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     202: astore        19
+     204: aload         19
+     206: astore        20
+     208: iconst_0
+     209: istore        21
+     211: aload         20
+     213: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     216: astore        22
+     218: iconst_0
+     219: istore        23
+     221: aload         22
+     223: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     226: dup
+     227: ifnull        248
+     230: astore        24
+     232: iconst_0
+     233: istore        25
+     235: aload         14
+     237: aload         24
+     239: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     244: pop
+     245: goto          249
+     248: pop
+     249: nop
+     250: goto          185
+     253: nop
+     254: aload         14
+     256: checkcast     #20                 // class java/util/List
+     259: nop
+     260: astore        10
+     262: aload_2
+     263: checkcast     #208                // class java/lang/Iterable
+     266: astore        12
+     268: iconst_0
+     269: istore        13
+     271: aload         12
+     273: astore        14
+     275: new           #17                 // class java/util/ArrayList
+     278: dup
+     279: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     282: checkcast     #51                 // class java/util/Collection
+     285: astore        15
+     287: iconst_0
+     288: istore        16
+     290: aload         14
+     292: astore        17
+     294: iconst_0
+     295: istore        18
+     297: aload         17
+     299: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     304: astore        19
+     306: aload         19
+     308: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     313: ifeq          374
+     316: aload         19
+     318: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     323: astore        20
+     325: aload         20
+     327: astore        21
+     329: iconst_0
+     330: istore        22
+     332: aload         21
+     334: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     337: astore        23
+     339: iconst_0
+     340: istore        24
+     342: aload         23
+     344: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     347: dup
+     348: ifnull        369
+     351: astore        25
+     353: iconst_0
+     354: istore        26
+     356: aload         15
+     358: aload         25
+     360: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     365: pop
+     366: goto          370
+     369: pop
+     370: nop
+     371: goto          306
+     374: nop
+     375: aload         15
+     377: checkcast     #20                 // class java/util/List
+     380: nop
+     381: astore        11
+     383: new           #49                 // class java/util/HashSet
+     386: dup
+     387: invokespecial #209                // Method java/util/HashSet."<init>":()V
+     390: astore        12
+     392: aload         6
+     394: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     399: astore        13
+     401: aload         13
+     403: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     408: ifeq          480
+     411: aload         13
+     413: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     418: checkcast     #707                // class git4idea/checkin/GitCheckinExplicitMovementProvider
+     421: astore        14
+     423: aload         14
+     425: aload         5
+     427: aload         10
+     429: aload         11
+     431: invokevirtual #728                // Method git4idea/checkin/GitCheckinExplicitMovementProvider.collectExplicitMovements:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Ljava/util/List;)Ljava/util/Collection;
+     434: dup
+     435: ldc_w         #730                // String collectExplicitMovements(...)
+     438: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     441: astore        15
+     443: aload         15
+     445: invokeinterface #352,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     450: ifne          401
+     453: aload         14
+     455: aload         8
+     457: invokevirtual #734                // Method git4idea/checkin/GitCheckinExplicitMovementProvider.getCommitMessage:(Ljava/lang/String;)Ljava/lang/String;
+     460: dup
+     461: ldc_w         #736                // String getCommitMessage(...)
+     464: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     467: astore        8
+     469: aload         12
+     471: aload         15
+     473: invokevirtual #68                 // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+     476: pop
+     477: goto          401
+     480: aload         9
+     482: checkcast     #738                // class java/lang/CharSequence
+     485: invokestatic  #744                // Method kotlin/text/StringsKt.isBlank:(Ljava/lang/CharSequence;)Z
+     488: ifne          502
+     491: aload         8
+     493: aload         9
+     495: invokedynamic #747,  0            // InvokeDynamic #6:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     500: astore        8
+     502: nop
+     503: aload_0
+     504: aload_1
+     505: aload_2
+     506: aload         12
+     508: checkcast     #51                 // class java/util/Collection
+     511: invokespecial #751                // Method addExplicitMovementsToIndex:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/util/Collection;)Lkotlin/Pair;
+     514: dup
+     515: ifnonnull     530
+     518: pop
+     519: new           #40                 // class kotlin/Pair
+     522: dup
+     523: aload_2
+     524: aload         7
+     526: invokespecial #366                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     529: areturn
+     530: astore        13
+     532: aload         13
+     534: invokevirtual #44                 // Method kotlin/Pair.component1:()Ljava/lang/Object;
+     537: checkcast     #20                 // class java/util/List
+     540: astore        14
+     542: aload         13
+     544: invokevirtual #47                 // Method kotlin/Pair.component2:()Ljava/lang/Object;
+     547: checkcast     #20                 // class java/util/List
+     550: astore        15
+     552: aload         7
+     554: aload_0
+     555: aload         5
+     557: aload_1
+     558: aload         14
+     560: checkcast     #51                 // class java/util/Collection
+     563: new           #49                 // class java/util/HashSet
+     566: dup
+     567: aload         14
+     569: checkcast     #51                 // class java/util/Collection
+     572: invokespecial #54                 // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+     575: checkcast     #56                 // class java/util/Set
+     578: aload         8
+     580: aload         4
+     582: invokevirtual #72                 // Method commitUsingIndex:(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/util/Set;Ljava/lang/String;Lgit4idea/checkin/GitCommitOptions;)Ljava/util/List;
+     585: checkcast     #51                 // class java/util/Collection
+     588: invokeinterface #73,  2           // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     593: pop
+     594: aload         14
+     596: checkcast     #208                // class java/lang/Iterable
+     599: astore        17
+     601: iconst_0
+     602: istore        18
+     604: aload         17
+     606: astore        19
+     608: new           #17                 // class java/util/ArrayList
+     611: dup
+     612: aload         17
+     614: bipush        10
+     616: invokestatic  #666                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+     619: invokespecial #669                // Method java/util/ArrayList."<init>":(I)V
+     622: checkcast     #51                 // class java/util/Collection
+     625: astore        20
+     627: iconst_0
+     628: istore        21
+     630: aload         19
+     632: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     637: astore        22
+     639: aload         22
+     641: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     646: ifeq          697
+     649: aload         22
+     651: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     656: astore        23
+     658: aload         20
+     660: aload         23
+     662: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     665: astore        24
+     667: astore        27
+     669: iconst_0
+     670: istore        25
+     672: aload         24
+     674: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     677: aload         24
+     679: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     682: invokestatic  #757                // Method com/intellij/openapi/util/Couple.of:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/intellij/openapi/util/Couple;
+     685: aload         27
+     687: swap
+     688: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     693: pop
+     694: goto          639
+     697: aload         20
+     699: checkcast     #20                 // class java/util/List
+     702: nop
+     703: astore        16
+     705: aload         6
+     707: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     712: astore        17
+     714: aload         17
+     716: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     721: ifeq          748
+     724: aload         17
+     726: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     731: checkcast     #707                // class git4idea/checkin/GitCheckinExplicitMovementProvider
+     734: astore        18
+     736: aload         18
+     738: aload         5
+     740: aload         16
+     742: invokevirtual #761                // Method git4idea/checkin/GitCheckinExplicitMovementProvider.afterMovementsCommitted:(Lcom/intellij/openapi/project/Project;Ljava/util/List;)V
+     745: goto          714
+     748: new           #40                 // class kotlin/Pair
+     751: dup
+     752: aload         15
+     754: aload         7
+     756: invokespecial #366                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     759: areturn
+     760: astore        14
+     762: aload         7
+     764: aload         14
+     766: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     771: pop
+     772: new           #40                 // class kotlin/Pair
+     775: dup
+     776: aload_2
+     777: aload         7
+     779: invokespecial #366                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     782: areturn
+    Exception table:
+       from    to  target type
+         502   760   760   Class com/intellij/openapi/vcs/VcsException
+
+  private final java.lang.String getIssueLinks(com.intellij.openapi.project.Project, java.lang.String);
+    Code:
+       0: aload_1
+       1: invokestatic  #790                // Method com/intellij/openapi/vcs/IssueNavigationConfiguration.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/IssueNavigationConfiguration;
+       4: aload_2
+       5: checkcast     #738                // class java/lang/CharSequence
+       8: invokevirtual #794                // Method com/intellij/openapi/vcs/IssueNavigationConfiguration.findIssueLinks:(Ljava/lang/CharSequence;)Ljava/util/List;
+      11: astore_3
+      12: new           #796                // class java/lang/StringBuilder
+      15: dup
+      16: invokespecial #797                // Method java/lang/StringBuilder."<init>":()V
+      19: astore        4
+      21: aload_3
+      22: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      27: astore        5
+      29: aload         5
+      31: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      36: ifeq          86
+      39: aload         5
+      41: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      46: checkcast     #799                // class com/intellij/openapi/vcs/IssueNavigationConfiguration$LinkMatch
+      49: astore        6
+      51: aload         6
+      53: invokevirtual #803                // Method com/intellij/openapi/vcs/IssueNavigationConfiguration$LinkMatch.getRange:()Lcom/intellij/openapi/util/TextRange;
+      56: aload_2
+      57: invokevirtual #808                // Method com/intellij/openapi/util/TextRange.substring:(Ljava/lang/String;)Ljava/lang/String;
+      60: dup
+      61: ldc_w         #810                // String substring(...)
+      64: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      67: astore        7
+      69: aload         4
+      71: aload         7
+      73: invokevirtual #814                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      76: ldc_w         #509                // String \n
+      79: invokevirtual #814                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      82: pop
+      83: goto          29
+      86: aload         4
+      88: invokevirtual #817                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      91: dup
+      92: ldc_w         #819                // String toString(...)
+      95: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      98: areturn
+
+  private final kotlin.Pair<java.util.List<git4idea.checkin.GitCheckinEnvironment$CommitChange>, java.util.List<git4idea.checkin.GitCheckinEnvironment$CommitChange>> addExplicitMovementsToIndex(git4idea.repo.GitRepository, java.util.Collection<git4idea.checkin.GitCheckinEnvironment$CommitChange>, java.util.Collection<? extends git4idea.checkin.GitCheckinExplicitMovementProvider$Movement>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: aload_3
+       2: aload_2
+       3: invokespecial #830                // Method filterExcludedChanges:(Ljava/util/Collection;Ljava/util/Collection;)Ljava/util/List;
+       6: astore        4
+       8: aload         4
+      10: invokeinterface #64,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+      15: ifeq          20
+      18: aconst_null
+      19: areturn
+      20: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+      23: aload         4
+      25: aload_1
+      26: checkcast     #642                // class com/intellij/dvcs/repo/Repository
+      29: invokestatic  #648                // Method com/intellij/dvcs/DvcsUtil.getShortRepositoryName:(Lcom/intellij/dvcs/repo/Repository;)Ljava/lang/String;
+      32: invokedynamic #835,  0            // InvokeDynamic #7:makeConcatWithConstants:(Ljava/util/List;Ljava/lang/String;)Ljava/lang/String;
+      37: invokevirtual #662                // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+      40: new           #837                // class java/util/HashMap
+      43: dup
+      44: invokespecial #838                // Method java/util/HashMap."<init>":()V
+      47: astore        5
+      49: aload         4
+      51: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      56: astore        6
+      58: aload         6
+      60: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      65: ifeq          119
+      68: aload         6
+      70: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      75: checkcast     #840                // class git4idea/checkin/GitCheckinExplicitMovementProvider$Movement
+      78: astore        7
+      80: aload         5
+      82: checkcast     #842                // class java/util/Map
+      85: aload         7
+      87: invokevirtual #845                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getBefore:()Lcom/intellij/openapi/vcs/FilePath;
+      90: aload         7
+      92: invokeinterface #849,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      97: pop
+      98: aload         5
+     100: checkcast     #842                // class java/util/Map
+     103: aload         7
+     105: invokevirtual #852                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getAfter:()Lcom/intellij/openapi/vcs/FilePath;
+     108: aload         7
+     110: invokeinterface #849,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     115: pop
+     116: goto          58
+     119: new           #17                 // class java/util/ArrayList
+     122: dup
+     123: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     126: checkcast     #20                 // class java/util/List
+     129: astore        6
+     131: new           #17                 // class java/util/ArrayList
+     134: dup
+     135: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     138: checkcast     #20                 // class java/util/List
+     141: astore        7
+     143: new           #837                // class java/util/HashMap
+     146: dup
+     147: invokespecial #838                // Method java/util/HashMap."<init>":()V
+     150: astore        8
+     152: new           #837                // class java/util/HashMap
+     155: dup
+     156: invokespecial #838                // Method java/util/HashMap."<init>":()V
+     159: astore        9
+     161: aload_2
+     162: invokeinterface #689,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     167: astore        10
+     169: aload         10
+     171: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     176: ifeq          295
+     179: aload         10
+     181: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     186: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     189: astore        11
+     191: aload         5
+     193: checkcast     #842                // class java/util/Map
+     196: aload         11
+     198: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     201: invokeinterface #855,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+     206: ifne          240
+     209: aload         5
+     211: checkcast     #842                // class java/util/Map
+     214: aload         11
+     216: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     219: invokeinterface #855,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+     224: ifne          240
+     227: aload         6
+     229: aload         11
+     231: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     236: pop
+     237: goto          169
+     240: aload         11
+     242: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     245: ifnull        266
+     248: aload         8
+     250: checkcast     #842                // class java/util/Map
+     253: aload         11
+     255: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     258: aload         11
+     260: invokeinterface #849,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     265: pop
+     266: aload         11
+     268: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     271: ifnull        169
+     274: aload         9
+     276: checkcast     #842                // class java/util/Map
+     279: aload         11
+     281: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     284: aload         11
+     286: invokeinterface #849,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     291: pop
+     292: goto          169
+     295: aload         4
+     297: checkcast     #208                // class java/lang/Iterable
+     300: astore        11
+     302: iconst_0
+     303: istore        12
+     305: aload         11
+     307: astore        13
+     309: new           #17                 // class java/util/ArrayList
+     312: dup
+     313: aload         11
+     315: bipush        10
+     317: invokestatic  #666                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+     320: invokespecial #669                // Method java/util/ArrayList."<init>":(I)V
+     323: checkcast     #51                 // class java/util/Collection
+     326: astore        14
+     328: iconst_0
+     329: istore        15
+     331: aload         13
+     333: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     338: astore        16
+     340: aload         16
+     342: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     347: ifeq          390
+     350: aload         16
+     352: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     357: astore        17
+     359: aload         14
+     361: aload         17
+     363: checkcast     #840                // class git4idea/checkin/GitCheckinExplicitMovementProvider$Movement
+     366: astore        18
+     368: astore        22
+     370: iconst_0
+     371: istore        19
+     373: aload         18
+     375: invokevirtual #845                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getBefore:()Lcom/intellij/openapi/vcs/FilePath;
+     378: aload         22
+     380: swap
+     381: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     386: pop
+     387: goto          340
+     390: aload         14
+     392: checkcast     #20                 // class java/util/List
+     395: nop
+     396: astore        10
+     398: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     401: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     404: pop
+     405: ldc_w         #857                // String Updating index for explicit movements: removing: %s
+     408: astore        12
+     410: iconst_1
+     411: anewarray     #4                  // class java/lang/Object
+     414: astore        13
+     416: aload         13
+     418: iconst_0
+     419: aload         10
+     421: aastore
+     422: aload         13
+     424: astore        13
+     426: aload         12
+     428: aload         13
+     430: aload         13
+     432: arraylength
+     433: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     436: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     439: dup
+     440: ldc_w         #283                // String format(...)
+     443: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     446: invokevirtual #289                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     449: aload_1
+     450: invokeinterface #26,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+     455: aload_1
+     456: invokeinterface #96,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     461: aload         10
+     463: checkcast     #51                 // class java/util/Collection
+     466: iconst_1
+     467: anewarray     #144                // class java/lang/String
+     470: astore        11
+     472: aload         11
+     474: iconst_0
+     475: ldc_w         #403                // String --ignore-unmatch
+     478: aastore
+     479: aload         11
+     481: invokestatic  #407                // Method git4idea/util/GitFileUtils.deletePaths:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;[Ljava/lang/String;)V
+     484: aload         4
+     486: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     491: astore        11
+     493: aload         11
+     495: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     500: ifeq          886
+     503: aload         11
+     505: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     510: checkcast     #840                // class git4idea/checkin/GitCheckinExplicitMovementProvider$Movement
+     513: astore        12
+     515: aload         12
+     517: invokevirtual #845                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getBefore:()Lcom/intellij/openapi/vcs/FilePath;
+     520: dup
+     521: ldc_w         #859                // String getBefore(...)
+     524: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     527: astore        13
+     529: aload         12
+     531: invokevirtual #852                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getAfter:()Lcom/intellij/openapi/vcs/FilePath;
+     534: dup
+     535: ldc_w         #861                // String getAfter(...)
+     538: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     541: astore        14
+     543: aload         8
+     545: aload         13
+     547: invokevirtual #863                // Method java/util/HashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     550: dup
+     551: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     554: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     557: astore        15
+     559: aload         9
+     561: aload         14
+     563: invokevirtual #863                // Method java/util/HashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     566: dup
+     567: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     570: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     573: astore        16
+     575: aload         15
+     577: invokevirtual #867                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforeRevision:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+     580: astore        17
+     582: aload         17
+     584: ifnonnull     647
+     587: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     590: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     593: pop
+     594: ldc_w         #869                // String Unknown before revision: %s, %s
+     597: astore        19
+     599: iconst_2
+     600: anewarray     #4                  // class java/lang/Object
+     603: astore        20
+     605: aload         20
+     607: iconst_0
+     608: aload         15
+     610: aastore
+     611: aload         20
+     613: iconst_1
+     614: aload         16
+     616: aastore
+     617: aload         20
+     619: astore        20
+     621: aload         19
+     623: aload         20
+     625: aload         20
+     627: arraylength
+     628: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     631: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     634: dup
+     635: ldc_w         #283                // String format(...)
+     638: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     641: invokevirtual #871                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     644: goto          493
+     647: aload_1
+     648: aload         13
+     650: aload         17
+     652: invokestatic  #875                // Method git4idea/index/GitIndexUtil.listTree:(Lgit4idea/repo/GitRepository;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;)Lgit4idea/index/GitIndexUtil$StagedFile;
+     655: astore        18
+     657: aload         18
+     659: ifnonnull     722
+     662: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     665: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     668: pop
+     669: ldc_w         #877                // String Can\'t get revision for explicit move: %s -> %s
+     672: astore        20
+     674: iconst_2
+     675: anewarray     #4                  // class java/lang/Object
+     678: astore        21
+     680: aload         21
+     682: iconst_0
+     683: aload         13
+     685: aastore
+     686: aload         21
+     688: iconst_1
+     689: aload         14
+     691: aastore
+     692: aload         21
+     694: astore        21
+     696: aload         20
+     698: aload         21
+     700: aload         21
+     702: arraylength
+     703: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     706: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     709: dup
+     710: ldc_w         #283                // String format(...)
+     713: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     716: invokevirtual #871                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     719: goto          493
+     722: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     725: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     728: pop
+     729: ldc_w         #879                // String Updating index for explicit movements: adding movement: %s -> %s
+     732: astore        20
+     734: iconst_2
+     735: anewarray     #4                  // class java/lang/Object
+     738: astore        21
+     740: aload         21
+     742: iconst_0
+     743: aload         13
+     745: aastore
+     746: aload         21
+     748: iconst_1
+     749: aload         14
+     751: aastore
+     752: aload         21
+     754: astore        21
+     756: aload         20
+     758: aload         21
+     760: aload         21
+     762: arraylength
+     763: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     766: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     769: dup
+     770: ldc_w         #283                // String format(...)
+     773: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     776: invokevirtual #289                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     779: aload         18
+     781: invokevirtual #882                // Method git4idea/index/GitIndexUtil$StagedFile.getBlobHash:()Ljava/lang/String;
+     784: invokestatic  #888                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+     787: dup
+     788: ldc_w         #890                // String build(...)
+     791: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     794: astore        19
+     796: aload         18
+     798: invokevirtual #441                // Method git4idea/index/GitIndexUtil$StagedFile.isExecutable:()Z
+     801: istore        20
+     803: aload_1
+     804: aload         14
+     806: aload         19
+     808: iload         20
+     810: invokestatic  #894                // Method git4idea/index/GitIndexUtil.updateIndex:(Lgit4idea/repo/GitRepository;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;Z)V
+     813: aload         6
+     815: new           #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     818: dup
+     819: aload         14
+     821: aload         14
+     823: aconst_null
+     824: aconst_null
+     825: aload         16
+     827: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+     830: aload         16
+     832: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+     835: invokespecial #897                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange."<init>":(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     838: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     843: pop
+     844: aload         7
+     846: new           #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     849: dup
+     850: aload         13
+     852: aload         14
+     854: aconst_null
+     855: aconst_null
+     856: aconst_null
+     857: aconst_null
+     858: invokespecial #897                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange."<init>":(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     861: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     866: pop
+     867: aload         8
+     869: aload         13
+     871: invokevirtual #900                // Method java/util/HashMap.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     874: pop
+     875: aload         9
+     877: aload         14
+     879: invokevirtual #900                // Method java/util/HashMap.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     882: pop
+     883: goto          493
+     886: aload         8
+     888: checkcast     #842                // class java/util/Map
+     891: astore        11
+     893: iconst_0
+     894: istore        12
+     896: aload         11
+     898: invokeinterface #904,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+     903: invokeinterface #905,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     908: astore        13
+     910: aload         13
+     912: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     917: ifeq          993
+     920: aload         13
+     922: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     927: checkcast     #907                // class java/util/Map$Entry
+     930: astore        14
+     932: aload         14
+     934: astore        15
+     936: iconst_0
+     937: istore        16
+     939: aload         15
+     941: invokeinterface #910,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     946: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     949: astore        17
+     951: aload         6
+     953: new           #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     956: dup
+     957: aload         17
+     959: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     962: aconst_null
+     963: aload         17
+     965: invokevirtual #867                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforeRevision:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+     968: aconst_null
+     969: aload         17
+     971: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+     974: aload         17
+     976: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+     979: invokespecial #897                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange."<init>":(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     982: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     987: pop
+     988: nop
+     989: nop
+     990: goto          910
+     993: nop
+     994: aload         9
+     996: checkcast     #842                // class java/util/Map
+     999: astore        11
+    1001: iconst_0
+    1002: istore        12
+    1004: aload         11
+    1006: invokeinterface #904,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+    1011: invokeinterface #905,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+    1016: astore        13
+    1018: aload         13
+    1020: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+    1025: ifeq          1101
+    1028: aload         13
+    1030: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+    1035: checkcast     #907                // class java/util/Map$Entry
+    1038: astore        14
+    1040: aload         14
+    1042: astore        15
+    1044: iconst_0
+    1045: istore        16
+    1047: aload         15
+    1049: invokeinterface #910,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+    1054: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+    1057: astore        17
+    1059: aload         6
+    1061: new           #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+    1064: dup
+    1065: aconst_null
+    1066: aload         17
+    1068: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+    1071: aconst_null
+    1072: aload         17
+    1074: invokevirtual #913                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterRevision:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+    1077: aload         17
+    1079: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+    1082: aload         17
+    1084: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+    1087: invokespecial #897                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange."<init>":(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+    1090: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1095: pop
+    1096: nop
+    1097: nop
+    1098: goto          1018
+    1101: nop
+    1102: aload         7
+    1104: invokeinterface #64,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+    1109: ifeq          1114
+    1112: aconst_null
+    1113: areturn
+    1114: new           #40                 // class kotlin/Pair
+    1117: dup
+    1118: aload         7
+    1120: aload         6
+    1122: invokespecial #366                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+    1125: areturn
+
+  private final java.util.List<git4idea.checkin.GitCheckinExplicitMovementProvider$Movement> filterExcludedChanges(java.util.Collection<? extends git4idea.checkin.GitCheckinExplicitMovementProvider$Movement>, java.util.Collection<git4idea.checkin.GitCheckinEnvironment$CommitChange>);
+    Code:
+       0: invokestatic  #943                // Method com/google/common/collect/HashMultiset.create:()Lcom/google/common/collect/HashMultiset;
+       3: dup
+       4: ldc_w         #945                // String create(...)
+       7: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      10: astore_3
+      11: aload_1
+      12: invokeinterface #689,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      17: astore        4
+      19: aload         4
+      21: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      26: ifeq          64
+      29: aload         4
+      31: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      36: checkcast     #840                // class git4idea/checkin/GitCheckinExplicitMovementProvider$Movement
+      39: astore        5
+      41: aload_3
+      42: aload         5
+      44: invokevirtual #845                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getBefore:()Lcom/intellij/openapi/vcs/FilePath;
+      47: invokevirtual #946                // Method com/google/common/collect/HashMultiset.add:(Ljava/lang/Object;)Z
+      50: pop
+      51: aload_3
+      52: aload         5
+      54: invokevirtual #852                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getAfter:()Lcom/intellij/openapi/vcs/FilePath;
+      57: invokevirtual #946                // Method com/google/common/collect/HashMultiset.add:(Ljava/lang/Object;)Z
+      60: pop
+      61: goto          19
+      64: invokestatic  #943                // Method com/google/common/collect/HashMultiset.create:()Lcom/google/common/collect/HashMultiset;
+      67: dup
+      68: ldc_w         #945                // String create(...)
+      71: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      74: astore        4
+      76: invokestatic  #943                // Method com/google/common/collect/HashMultiset.create:()Lcom/google/common/collect/HashMultiset;
+      79: dup
+      80: ldc_w         #945                // String create(...)
+      83: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      86: astore        5
+      88: aload_2
+      89: invokeinterface #689,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      94: astore        6
+      96: aload         6
+      98: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     103: ifeq          147
+     106: aload         6
+     108: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     113: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     116: astore        7
+     118: aload         4
+     120: checkcast     #51                 // class java/util/Collection
+     123: aload         7
+     125: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     128: invokestatic  #951                // Method com/intellij/util/containers/ContainerUtil.addIfNotNull:(Ljava/util/Collection;Ljava/lang/Object;)V
+     131: aload         5
+     133: checkcast     #51                 // class java/util/Collection
+     136: aload         7
+     138: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     141: invokestatic  #951                // Method com/intellij/util/containers/ContainerUtil.addIfNotNull:(Ljava/util/Collection;Ljava/lang/Object;)V
+     144: goto          96
+     147: aload_1
+     148: checkcast     #208                // class java/lang/Iterable
+     151: astore        6
+     153: iconst_0
+     154: istore        7
+     156: aload         6
+     158: astore        8
+     160: new           #17                 // class java/util/ArrayList
+     163: dup
+     164: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     167: checkcast     #51                 // class java/util/Collection
+     170: astore        9
+     172: iconst_0
+     173: istore        10
+     175: aload         8
+     177: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     182: astore        11
+     184: aload         11
+     186: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     191: ifeq          314
+     194: aload         11
+     196: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     201: astore        12
+     203: aload         12
+     205: checkcast     #840                // class git4idea/checkin/GitCheckinExplicitMovementProvider$Movement
+     208: astore        13
+     210: iconst_0
+     211: istore        14
+     213: aload_3
+     214: aload         13
+     216: invokevirtual #845                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getBefore:()Lcom/intellij/openapi/vcs/FilePath;
+     219: invokevirtual #955                // Method com/google/common/collect/HashMultiset.count:(Ljava/lang/Object;)I
+     222: iconst_1
+     223: if_icmpne     297
+     226: aload_3
+     227: aload         13
+     229: invokevirtual #852                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getAfter:()Lcom/intellij/openapi/vcs/FilePath;
+     232: invokevirtual #955                // Method com/google/common/collect/HashMultiset.count:(Ljava/lang/Object;)I
+     235: iconst_1
+     236: if_icmpne     297
+     239: aload         4
+     241: aload         13
+     243: invokevirtual #845                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getBefore:()Lcom/intellij/openapi/vcs/FilePath;
+     246: invokevirtual #955                // Method com/google/common/collect/HashMultiset.count:(Ljava/lang/Object;)I
+     249: iconst_1
+     250: if_icmpne     297
+     253: aload         5
+     255: aload         13
+     257: invokevirtual #852                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getAfter:()Lcom/intellij/openapi/vcs/FilePath;
+     260: invokevirtual #955                // Method com/google/common/collect/HashMultiset.count:(Ljava/lang/Object;)I
+     263: iconst_1
+     264: if_icmpne     297
+     267: aload         4
+     269: aload         13
+     271: invokevirtual #852                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getAfter:()Lcom/intellij/openapi/vcs/FilePath;
+     274: invokevirtual #955                // Method com/google/common/collect/HashMultiset.count:(Ljava/lang/Object;)I
+     277: ifne          297
+     280: aload         5
+     282: aload         13
+     284: invokevirtual #845                // Method git4idea/checkin/GitCheckinExplicitMovementProvider$Movement.getBefore:()Lcom/intellij/openapi/vcs/FilePath;
+     287: invokevirtual #955                // Method com/google/common/collect/HashMultiset.count:(Ljava/lang/Object;)I
+     290: ifne          297
+     293: iconst_1
+     294: goto          298
+     297: iconst_0
+     298: ifeq          184
+     301: aload         9
+     303: aload         12
+     305: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     310: pop
+     311: goto          184
+     314: aload         9
+     316: checkcast     #20                 // class java/util/List
+     319: nop
+     320: areturn
+
+  private final java.util.List<git4idea.checkin.GitCheckinEnvironment$CommitChange> collectChangesToCommit(java.util.Collection<? extends com.intellij.openapi.vcs.changes.Change>);
+    Code:
+       0: new           #17                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+       7: checkcast     #20                 // class java/util/List
+      10: astore_2
+      11: new           #964                // class com/intellij/util/containers/MultiMap
+      14: dup
+      15: invokespecial #965                // Method com/intellij/util/containers/MultiMap."<init>":()V
+      18: astore_3
+      19: aload_1
+      20: invokeinterface #689,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      25: astore        4
+      27: aload         4
+      29: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      34: ifeq          91
+      37: aload         4
+      39: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      44: checkcast     #967                // class com/intellij/openapi/vcs/changes/Change
+      47: astore        5
+      49: aload_0
+      50: aload         5
+      52: invokespecial #971                // Method createCommitChange:(Lcom/intellij/openapi/vcs/changes/Change;)Lgit4idea/checkin/GitCheckinEnvironment$CommitChange;
+      55: astore        6
+      57: aload         6
+      59: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+      62: ifnull        79
+      65: aload_3
+      66: aload         6
+      68: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+      71: aload         6
+      73: invokevirtual #974                // Method com/intellij/util/containers/MultiMap.putValue:(Ljava/lang/Object;Ljava/lang/Object;)V
+      76: goto          27
+      79: aload_2
+      80: aload         6
+      82: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      87: pop
+      88: goto          27
+      91: aload_3
+      92: invokevirtual #975                // Method com/intellij/util/containers/MultiMap.entrySet:()Ljava/util/Set;
+      95: invokeinterface #905,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     100: astore        4
+     102: aload         4
+     104: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     109: ifeq          1057
+     112: aload         4
+     114: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     119: checkcast     #907                // class java/util/Map$Entry
+     122: astore        5
+     124: aload         5
+     126: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     129: aload         5
+     131: invokeinterface #978,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     136: checkcast     #98                 // class com/intellij/openapi/vfs/VirtualFile
+     139: astore        6
+     141: aload         5
+     143: invokeinterface #910,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     148: checkcast     #51                 // class java/util/Collection
+     151: astore        7
+     153: aload         7
+     155: invokeinterface #413,  1          // InterfaceMethod java/util/Collection.size:()I
+     160: iconst_2
+     161: if_icmpge     181
+     164: aload_2
+     165: aload         7
+     167: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     170: aload         7
+     172: invokeinterface #73,  2           // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     177: pop
+     178: goto          102
+     181: aload         7
+     183: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     186: aload         7
+     188: checkcast     #208                // class java/lang/Iterable
+     191: astore        9
+     193: iconst_0
+     194: istore        10
+     196: aload         9
+     198: instanceof    #51                 // class java/util/Collection
+     201: ifeq          221
+     204: aload         9
+     206: checkcast     #51                 // class java/util/Collection
+     209: invokeinterface #352,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     214: ifeq          221
+     217: iconst_0
+     218: goto          280
+     221: aload         9
+     223: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     228: astore        11
+     230: aload         11
+     232: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     237: ifeq          279
+     240: aload         11
+     242: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     247: astore        12
+     249: aload         12
+     251: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     254: astore        13
+     256: iconst_0
+     257: istore        14
+     259: aload         13
+     261: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+     264: ifnull        271
+     267: iconst_1
+     268: goto          272
+     271: iconst_0
+     272: ifeq          230
+     275: iconst_1
+     276: goto          280
+     279: iconst_0
+     280: istore        8
+     282: iload         8
+     284: ifne          299
+     287: aload_2
+     288: aload         7
+     290: invokeinterface #73,  2           // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     295: pop
+     296: goto          102
+     299: aload         7
+     301: checkcast     #208                // class java/lang/Iterable
+     304: astore        10
+     306: iconst_0
+     307: istore        11
+     309: aload         10
+     311: instanceof    #51                 // class java/util/Collection
+     314: ifeq          334
+     317: aload         10
+     319: checkcast     #51                 // class java/util/Collection
+     322: invokeinterface #352,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     327: ifeq          334
+     330: iconst_0
+     331: goto          393
+     334: aload         10
+     336: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     341: astore        12
+     343: aload         12
+     345: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     350: ifeq          392
+     353: aload         12
+     355: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     360: astore        13
+     362: aload         13
+     364: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     367: astore        14
+     369: iconst_0
+     370: istore        15
+     372: aload         14
+     374: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+     377: ifnonnull     384
+     380: iconst_1
+     381: goto          385
+     384: iconst_0
+     385: ifeq          343
+     388: iconst_1
+     389: goto          393
+     392: iconst_0
+     393: istore        9
+     395: aload         7
+     397: checkcast     #208                // class java/lang/Iterable
+     400: astore        11
+     402: iconst_0
+     403: istore        12
+     405: aload         11
+     407: instanceof    #51                 // class java/util/Collection
+     410: ifeq          430
+     413: aload         11
+     415: checkcast     #51                 // class java/util/Collection
+     418: invokeinterface #352,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     423: ifeq          430
+     426: iconst_0
+     427: goto          489
+     430: aload         11
+     432: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     437: astore        13
+     439: aload         13
+     441: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     446: ifeq          488
+     449: aload         13
+     451: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     456: astore        14
+     458: aload         14
+     460: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     463: astore        15
+     465: iconst_0
+     466: istore        16
+     468: aload         15
+     470: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     473: ifnonnull     480
+     476: iconst_1
+     477: goto          481
+     480: iconst_0
+     481: ifeq          439
+     484: iconst_1
+     485: goto          489
+     488: iconst_0
+     489: istore        10
+     491: aload         7
+     493: checkcast     #208                // class java/lang/Iterable
+     496: astore        12
+     498: iconst_0
+     499: istore        13
+     501: aload         12
+     503: instanceof    #51                 // class java/util/Collection
+     506: ifeq          526
+     509: aload         12
+     511: checkcast     #51                 // class java/util/Collection
+     514: invokeinterface #352,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     519: ifeq          526
+     522: iconst_0
+     523: goto          585
+     526: aload         12
+     528: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     533: astore        14
+     535: aload         14
+     537: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     542: ifeq          584
+     545: aload         14
+     547: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     552: astore        15
+     554: aload         15
+     556: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     559: astore        16
+     561: iconst_0
+     562: istore        17
+     564: aload         16
+     566: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     569: ifnonnull     576
+     572: iconst_1
+     573: goto          577
+     576: iconst_0
+     577: ifeq          535
+     580: iconst_1
+     581: goto          585
+     584: iconst_0
+     585: istore        11
+     587: iload         9
+     589: ifne          597
+     592: iload         10
+     594: ifeq          802
+     597: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     600: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     603: pop
+     604: ldc_w         #980                // String Ignoring changelists on commit of %s: %s
+     607: astore        13
+     609: iconst_2
+     610: anewarray     #4                  // class java/lang/Object
+     613: astore        14
+     615: aload         14
+     617: iconst_0
+     618: aload         6
+     620: aastore
+     621: aload         14
+     623: iconst_1
+     624: aload         7
+     626: aastore
+     627: aload         14
+     629: astore        14
+     631: aload         13
+     633: aload         14
+     635: aload         14
+     637: arraylength
+     638: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+     641: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     644: dup
+     645: ldc_w         #283                // String format(...)
+     648: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     651: invokevirtual #871                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     654: aload_2
+     655: aload         7
+     657: checkcast     #208                // class java/lang/Iterable
+     660: astore        12
+     662: astore        22
+     664: iconst_0
+     665: istore        13
+     667: aload         12
+     669: astore        14
+     671: new           #17                 // class java/util/ArrayList
+     674: dup
+     675: aload         12
+     677: bipush        10
+     679: invokestatic  #666                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+     682: invokespecial #669                // Method java/util/ArrayList."<init>":(I)V
+     685: checkcast     #51                 // class java/util/Collection
+     688: astore        15
+     690: iconst_0
+     691: istore        16
+     693: aload         14
+     695: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     700: astore        17
+     702: aload         17
+     704: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     709: ifeq          781
+     712: aload         17
+     714: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     719: astore        18
+     721: aload         15
+     723: aload         18
+     725: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     728: astore        19
+     730: astore        23
+     732: iconst_0
+     733: istore        20
+     735: new           #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     738: dup
+     739: aload         19
+     741: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     744: aload         19
+     746: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     749: aload         19
+     751: invokevirtual #867                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforeRevision:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+     754: aload         19
+     756: invokevirtual #913                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterRevision:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+     759: aconst_null
+     760: aload         19
+     762: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+     765: invokespecial #897                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange."<init>":(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     768: nop
+     769: aload         23
+     771: swap
+     772: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     777: pop
+     778: goto          702
+     781: aload         15
+     783: checkcast     #20                 // class java/util/List
+     786: nop
+     787: aload         22
+     789: swap
+     790: checkcast     #51                 // class java/util/Collection
+     793: invokeinterface #73,  2           // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     798: pop
+     799: goto          102
+     802: aload         7
+     804: checkcast     #208                // class java/lang/Iterable
+     807: invokestatic  #984                // Method kotlin/collections/CollectionsKt.first:(Ljava/lang/Iterable;)Ljava/lang/Object;
+     810: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     813: astore        12
+     815: iload         11
+     817: ifeq          824
+     820: aconst_null
+     821: goto          829
+     824: aload         12
+     826: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     829: astore        13
+     831: aload         12
+     833: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     836: dup
+     837: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     840: astore        14
+     842: aload         12
+     844: invokevirtual #867                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforeRevision:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+     847: astore        15
+     849: aload         12
+     851: invokevirtual #913                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterRevision:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+     854: astore        16
+     856: new           #49                 // class java/util/HashSet
+     859: dup
+     860: invokespecial #209                // Method java/util/HashSet."<init>":()V
+     863: astore        17
+     865: iconst_0
+     866: istore        18
+     868: aload         7
+     870: invokeinterface #689,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     875: astore        19
+     877: aload         19
+     879: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     884: ifeq          953
+     887: aload         19
+     889: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     894: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     897: astore        20
+     899: aload         17
+     901: aload         20
+     903: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+     906: dup
+     907: ifnonnull     914
+     910: pop
+     911: invokestatic  #363                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+     914: checkcast     #51                 // class java/util/Collection
+     917: invokevirtual #68                 // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+     920: pop
+     921: aload         13
+     923: aload         20
+     925: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     928: invokestatic  #513                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     931: ifeq          947
+     934: aload         14
+     936: aload         20
+     938: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     941: invokestatic  #513                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     944: ifne          877
+     947: iconst_1
+     948: istore        18
+     950: goto          877
+     953: iload         18
+     955: ifeq          1015
+     958: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     961: getstatic     #269                // Field kotlin/jvm/internal/StringCompanionObject.INSTANCE:Lkotlin/jvm/internal/StringCompanionObject;
+     964: pop
+     965: ldc_w         #986                // String Change mismatch on commit of %s: %s
+     968: astore        20
+     970: iconst_2
+     971: anewarray     #4                  // class java/lang/Object
+     974: astore        21
+     976: aload         21
+     978: iconst_0
+     979: aload         6
+     981: aastore
+     982: aload         21
+     984: iconst_1
+     985: aload         7
+     987: aastore
+     988: aload         21
+     990: astore        21
+     992: aload         20
+     994: aload         21
+     996: aload         21
+     998: arraylength
+     999: invokestatic  #277                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+    1002: invokestatic  #281                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    1005: dup
+    1006: ldc_w         #283                // String format(...)
+    1009: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+    1012: invokevirtual #989                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+    1015: aload_2
+    1016: new           #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+    1019: dup
+    1020: aload         13
+    1022: aload         14
+    1024: aload         15
+    1026: aload         16
+    1028: new           #17                 // class java/util/ArrayList
+    1031: dup
+    1032: aload         17
+    1034: checkcast     #51                 // class java/util/Collection
+    1037: invokespecial #990                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+    1040: checkcast     #20                 // class java/util/List
+    1043: aload         6
+    1045: invokespecial #897                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange."<init>":(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+    1048: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1053: pop
+    1054: goto          102
+    1057: aload_2
+    1058: areturn
+
+  private final git4idea.checkin.GitCheckinEnvironment$CommitChange createCommitChange(com.intellij.openapi.vcs.changes.Change);
+    Code:
+       0: aload_1
+       1: invokestatic  #1018               // Method com/intellij/openapi/vcs/changes/ChangesUtil.getBeforePath:(Lcom/intellij/openapi/vcs/changes/Change;)Lcom/intellij/openapi/vcs/FilePath;
+       4: astore_2
+       5: aload_1
+       6: invokestatic  #1020               // Method com/intellij/openapi/vcs/changes/ChangesUtil.getAfterPath:(Lcom/intellij/openapi/vcs/changes/Change;)Lcom/intellij/openapi/vcs/FilePath;
+       9: astore_3
+      10: aload_1
+      11: invokevirtual #1023               // Method com/intellij/openapi/vcs/changes/Change.getBeforeRevision:()Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      14: astore        4
+      16: aload_1
+      17: invokevirtual #1025               // Method com/intellij/openapi/vcs/changes/Change.getAfterRevision:()Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      20: astore        5
+      22: aload         4
+      24: dup
+      25: ifnull        36
+      28: invokeinterface #1030,  1         // InterfaceMethod com/intellij/openapi/vcs/changes/ContentRevision.getRevisionNumber:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+      33: goto          38
+      36: pop
+      37: aconst_null
+      38: astore        6
+      40: aload         5
+      42: dup
+      43: ifnull        54
+      46: invokeinterface #1030,  1         // InterfaceMethod com/intellij/openapi/vcs/changes/ContentRevision.getRevisionNumber:()Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;
+      51: goto          56
+      54: pop
+      55: aconst_null
+      56: astore        7
+      58: aload_1
+      59: instanceof    #1032               // class com/intellij/openapi/vcs/changes/ChangeListChange
+      62: ifeq          78
+      65: aload_1
+      66: checkcast     #1032               // class com/intellij/openapi/vcs/changes/ChangeListChange
+      69: invokevirtual #1035               // Method com/intellij/openapi/vcs/changes/ChangeListChange.getChangeListId:()Ljava/lang/String;
+      72: invokestatic  #1039               // Method kotlin/collections/CollectionsKt.listOf:(Ljava/lang/Object;)Ljava/util/List;
+      75: goto          79
+      78: aconst_null
+      79: astore        8
+      81: aload         5
+      83: instanceof    #1041               // class com/intellij/openapi/vcs/changes/CurrentContentRevision
+      86: ifeq          100
+      89: aload         5
+      91: checkcast     #1041               // class com/intellij/openapi/vcs/changes/CurrentContentRevision
+      94: invokevirtual #1042               // Method com/intellij/openapi/vcs/changes/CurrentContentRevision.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+      97: goto          101
+     100: aconst_null
+     101: astore        9
+     103: new           #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     106: dup
+     107: aload_2
+     108: aload_3
+     109: aload         6
+     111: aload         7
+     113: aload         8
+     115: aload         9
+     117: invokespecial #897                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange."<init>":(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     120: areturn
+
+  public final java.io.File createCommitMessageFile(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.lang.String) throws java.io.IOException;
+    Code:
+       0: aload_1
+       1: ldc           #154                // String project
+       3: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #1051               // String root
+      10: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_3
+      14: ldc           #162                // String message
+      16: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: getstatic     #1056               // Field git4idea/config/GitEelExecutableDetectionHelper.Companion:Lgit4idea/config/GitEelExecutableDetectionHelper$Companion;
+      22: invokevirtual #1061               // Method git4idea/config/GitEelExecutableDetectionHelper$Companion.canUseEel:()Z
+      25: ifeq          42
+      28: aload_1
+      29: invokestatic  #1064               // Method git4idea/checkin/GitCheckinEnvironment.access$getGIT_COMMIT_MSG_FILE_PREFIX$cp:()Ljava/lang/String;
+      32: invokestatic  #1067               // Method git4idea/checkin/GitCheckinEnvironment.access$getGIT_COMMIT_MSG_FILE_EXT$cp:()Ljava/lang/String;
+      35: iconst_1
+      36: invokestatic  #1073               // Method com/intellij/platform/eel/provider/utils/EelPathUtils.createTemporaryFile:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/String;Z)Ljava/nio/file/Path;
+      39: goto          71
+      42: invokestatic  #1064               // Method git4idea/checkin/GitCheckinEnvironment.access$getGIT_COMMIT_MSG_FILE_PREFIX$cp:()Ljava/lang/String;
+      45: invokestatic  #1067               // Method git4idea/checkin/GitCheckinEnvironment.access$getGIT_COMMIT_MSG_FILE_EXT$cp:()Ljava/lang/String;
+      48: invokestatic  #1079               // Method com/intellij/openapi/util/io/FileUtil.createTempFile:(Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
+      51: astore        5
+      53: aload         5
+      55: astore        6
+      57: iconst_0
+      58: istore        7
+      60: aload         6
+      62: invokevirtual #1084               // Method java/io/File.deleteOnExit:()V
+      65: nop
+      66: aload         5
+      68: invokevirtual #1088               // Method java/io/File.toPath:()Ljava/nio/file/Path;
+      71: astore        4
+      73: aload_1
+      74: aload_2
+      75: invokestatic  #1094               // Method git4idea/config/GitConfigUtil.getCommitEncodingCharsetCached:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/nio/charset/Charset;
+      78: dup
+      79: ldc_w         #1096               // String getCommitEncodingCharsetCached(...)
+      82: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      85: astore        5
+      87: new           #1098               // class java/io/OutputStreamWriter
+      90: dup
+      91: aload         4
+      93: iconst_0
+      94: anewarray     #1100               // class java/nio/file/OpenOption
+      97: invokestatic  #1106               // Method java/nio/file/Files.newOutputStream:(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/io/OutputStream;
+     100: aload         5
+     102: invokespecial #1109               // Method java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+     105: checkcast     #248                // class java/io/Closeable
+     108: astore        6
+     110: aconst_null
+     111: astore        7
+     113: nop
+     114: aload         6
+     116: checkcast     #1098               // class java/io/OutputStreamWriter
+     119: astore        8
+     121: iconst_0
+     122: istore        9
+     124: aload         8
+     126: aload_3
+     127: invokevirtual #1111               // Method java/io/OutputStreamWriter.write:(Ljava/lang/String;)V
+     130: nop
+     131: getstatic     #317                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     134: astore        8
+     136: aload         6
+     138: aload         7
+     140: invokestatic  #301                // Method kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+     143: goto          167
+     146: astore        9
+     148: aload         9
+     150: astore        7
+     152: aload         9
+     154: athrow
+     155: astore        9
+     157: aload         6
+     159: aload         7
+     161: invokestatic  #301                // Method kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+     164: aload         9
+     166: athrow
+     167: aload         4
+     169: invokeinterface #1117,  1         // InterfaceMethod java/nio/file/Path.toFile:()Ljava/io/File;
+     174: dup
+     175: ldc_w         #1119               // String toFile(...)
+     178: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     181: areturn
+    Exception table:
+       from    to  target type
+         113   136   146   Class java/lang/Throwable
+         113   136   155   any
+         146   155   155   any
+         155   157   155   any
+
+  public final void runWithMessageFile(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.lang.String, com.intellij.util.ThrowableConsumer<? super java.io.File, ? extends com.intellij.openapi.vcs.VcsException>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ldc           #154                // String project
+       3: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc_w         #1051               // String root
+      10: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_3
+      14: ldc           #162                // String message
+      16: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: aload         4
+      21: ldc_w         #1133               // String task
+      24: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      27: nop
+      28: aload_0
+      29: aload_1
+      30: aload_2
+      31: aload_3
+      32: invokevirtual #1135               // Method createCommitMessageFile:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;)Ljava/io/File;
+      35: astore        6
+      37: goto          65
+      40: astore        7
+      42: new           #15                 // class com/intellij/openapi/vcs/VcsException
+      45: dup
+      46: ldc_w         #1137               // String error.commit.cant.create.message.file
+      49: iconst_0
+      50: anewarray     #4                  // class java/lang/Object
+      53: invokestatic  #388                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      56: aload         7
+      58: checkcast     #206                // class java/lang/Throwable
+      61: invokespecial #1140               // Method com/intellij/openapi/vcs/VcsException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      64: athrow
+      65: aload         6
+      67: astore        5
+      69: nop
+      70: aload         4
+      72: aload         5
+      74: invokeinterface #1145,  2         // InterfaceMethod com/intellij/util/ThrowableConsumer.consume:(Ljava/lang/Object;)V
+      79: aload         5
+      81: invokevirtual #1148               // Method java/io/File.delete:()Z
+      84: ifne          100
+      87: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+      90: aload         5
+      92: invokedynamic #1153,  0           // InvokeDynamic #8:makeConcatWithConstants:(Ljava/io/File;)Ljava/lang/String;
+      97: invokevirtual #871                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     100: goto          129
+     103: astore        6
+     105: aload         5
+     107: invokevirtual #1148               // Method java/io/File.delete:()Z
+     110: ifne          126
+     113: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     116: aload         5
+     118: invokedynamic #1153,  0           // InvokeDynamic #8:makeConcatWithConstants:(Ljava/io/File;)Ljava/lang/String;
+     123: invokevirtual #871                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     126: aload         6
+     128: athrow
+     129: return
+    Exception table:
+       from    to  target type
+          27    37    40   Class java/io/IOException
+          69    79   103   any
+         103   105   103   any
+
+  private final java.util.Map<git4idea.repo.GitRepository, java.util.Collection<com.intellij.openapi.vcs.changes.Change>> sortChangesByGitRoot(com.intellij.openapi.project.Project, java.util.List<? extends com.intellij.openapi.vcs.changes.Change>, java.util.List<? super com.intellij.openapi.vcs.VcsException>);
+    Code:
+       0: new           #837                // class java/util/HashMap
+       3: dup
+       4: invokespecial #838                // Method java/util/HashMap."<init>":()V
+       7: astore        4
+       9: aload_2
+      10: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      15: astore        5
+      17: aload         5
+      19: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          134
+      27: aload         5
+      29: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      34: checkcast     #967                // class com/intellij/openapi/vcs/changes/Change
+      37: astore        6
+      39: nop
+      40: aload         6
+      42: invokestatic  #1162               // Method com/intellij/openapi/vcs/changes/ChangesUtil.getFilePath:(Lcom/intellij/openapi/vcs/changes/Change;)Lcom/intellij/openapi/vcs/FilePath;
+      45: dup
+      46: ldc_w         #1164               // String getFilePath(...)
+      49: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      52: astore        7
+      54: aload_1
+      55: aload         7
+      57: invokeinterface #1167,  1         // InterfaceMethod com/intellij/openapi/vcs/FilePath.getParentPath:()Lcom/intellij/openapi/vcs/FilePath;
+      62: dup
+      63: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      66: invokestatic  #1173               // Method git4idea/GitUtil.getRepositoryForFile:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vcs/FilePath;)Lgit4idea/repo/GitRepository;
+      69: dup
+      70: ldc_w         #1175               // String getRepositoryForFile(...)
+      73: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      76: astore        8
+      78: aload         4
+      80: aload         8
+      82: invokedynamic #1184,  0           // InvokeDynamic #9:invoke:()Lkotlin/jvm/functions/Function1;
+      87: invokedynamic #1195,  0           // InvokeDynamic #10:apply:(Lkotlin/jvm/functions/Function1;)Ljava/util/function/Function;
+      92: invokevirtual #1199               // Method java/util/HashMap.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+      95: dup
+      96: ldc_w         #1201               // String computeIfAbsent(...)
+      99: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     102: checkcast     #51                 // class java/util/Collection
+     105: astore        9
+     107: aload         9
+     109: aload         6
+     111: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     116: pop
+     117: goto          17
+     120: astore        8
+     122: aload_3
+     123: aload         8
+     125: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     130: pop
+     131: goto          17
+     134: aload         4
+     136: checkcast     #842                // class java/util/Map
+     139: areturn
+    Exception table:
+       from    to  target type
+          39   117   120   Class com/intellij/openapi/vcs/VcsException
+
+  public final java.util.List<git4idea.checkin.GitCheckinExplicitMovementProvider> collectActiveMovementProviders(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ldc           #154                // String project
+       3: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: getstatic     #711                // Field git4idea/checkin/GitCheckinExplicitMovementProvider.EP_NAME:Lcom/intellij/openapi/extensions/ExtensionPointName;
+       9: invokevirtual #716                // Method com/intellij/openapi/extensions/ExtensionPointName.getExtensionList:()Ljava/util/List;
+      12: astore_2
+      13: aload_2
+      14: checkcast     #208                // class java/lang/Iterable
+      17: astore        4
+      19: iconst_0
+      20: istore        5
+      22: aload         4
+      24: astore        6
+      26: new           #17                 // class java/util/ArrayList
+      29: dup
+      30: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+      33: checkcast     #51                 // class java/util/Collection
+      36: astore        7
+      38: iconst_0
+      39: istore        8
+      41: aload         6
+      43: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      48: astore        9
+      50: aload         9
+      52: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      57: ifeq          101
+      60: aload         9
+      62: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      67: astore        10
+      69: aload         10
+      71: checkcast     #707                // class git4idea/checkin/GitCheckinExplicitMovementProvider
+      74: astore        11
+      76: iconst_0
+      77: istore        12
+      79: aload         11
+      81: aload_1
+      82: invokevirtual #720                // Method git4idea/checkin/GitCheckinExplicitMovementProvider.isEnabled:(Lcom/intellij/openapi/project/Project;)Z
+      85: ifeq          50
+      88: aload         7
+      90: aload         10
+      92: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+      97: pop
+      98: goto          50
+     101: aload         7
+     103: checkcast     #20                 // class java/util/List
+     106: nop
+     107: astore_3
+     108: aload_3
+     109: invokeinterface #64,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+     114: ifeq          121
+     117: invokestatic  #363                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+     120: areturn
+     121: aload_0
+     122: aload_1
+     123: invokestatic  #1211               // Method com/intellij/openapi/vcs/changes/ChangeListManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ChangeListManager;
+     126: invokevirtual #1215               // Method com/intellij/openapi/vcs/changes/ChangeListManager.getAllChanges:()Ljava/util/Collection;
+     129: dup
+     130: ldc_w         #1217               // String getAllChanges(...)
+     133: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     136: invokespecial #1219               // Method collectChangesToCommit:(Ljava/util/Collection;)Ljava/util/List;
+     139: astore        4
+     141: aload         4
+     143: checkcast     #208                // class java/lang/Iterable
+     146: astore        6
+     148: iconst_0
+     149: istore        7
+     151: aload         6
+     153: astore        8
+     155: new           #17                 // class java/util/ArrayList
+     158: dup
+     159: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     162: checkcast     #51                 // class java/util/Collection
+     165: astore        9
+     167: iconst_0
+     168: istore        10
+     170: aload         8
+     172: astore        11
+     174: iconst_0
+     175: istore        12
+     177: aload         11
+     179: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     184: astore        13
+     186: aload         13
+     188: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     193: ifeq          254
+     196: aload         13
+     198: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     203: astore        14
+     205: aload         14
+     207: astore        15
+     209: iconst_0
+     210: istore        16
+     212: aload         15
+     214: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     217: astore        17
+     219: iconst_0
+     220: istore        18
+     222: aload         17
+     224: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+     227: dup
+     228: ifnull        249
+     231: astore        19
+     233: iconst_0
+     234: istore        20
+     236: aload         9
+     238: aload         19
+     240: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     245: pop
+     246: goto          250
+     249: pop
+     250: nop
+     251: goto          186
+     254: nop
+     255: aload         9
+     257: checkcast     #20                 // class java/util/List
+     260: nop
+     261: astore        5
+     263: aload         4
+     265: checkcast     #208                // class java/lang/Iterable
+     268: astore        7
+     270: iconst_0
+     271: istore        8
+     273: aload         7
+     275: astore        9
+     277: new           #17                 // class java/util/ArrayList
+     280: dup
+     281: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     284: checkcast     #51                 // class java/util/Collection
+     287: astore        10
+     289: iconst_0
+     290: istore        11
+     292: aload         9
+     294: astore        12
+     296: iconst_0
+     297: istore        13
+     299: aload         12
+     301: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     306: astore        14
+     308: aload         14
+     310: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     315: ifeq          376
+     318: aload         14
+     320: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     325: astore        15
+     327: aload         15
+     329: astore        16
+     331: iconst_0
+     332: istore        17
+     334: aload         16
+     336: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+     339: astore        18
+     341: iconst_0
+     342: istore        19
+     344: aload         18
+     346: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+     349: dup
+     350: ifnull        371
+     353: astore        20
+     355: iconst_0
+     356: istore        21
+     358: aload         10
+     360: aload         20
+     362: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     367: pop
+     368: goto          372
+     371: pop
+     372: nop
+     373: goto          308
+     376: nop
+     377: aload         10
+     379: checkcast     #20                 // class java/util/List
+     382: nop
+     383: astore        6
+     385: aload_3
+     386: checkcast     #208                // class java/lang/Iterable
+     389: astore        7
+     391: iconst_0
+     392: istore        8
+     394: aload         7
+     396: astore        9
+     398: new           #17                 // class java/util/ArrayList
+     401: dup
+     402: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+     405: checkcast     #51                 // class java/util/Collection
+     408: astore        10
+     410: iconst_0
+     411: istore        11
+     413: aload         9
+     415: invokeinterface #213,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     420: astore        12
+     422: aload         12
+     424: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     429: ifeq          516
+     432: aload         12
+     434: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     439: astore        13
+     441: aload         13
+     443: checkcast     #707                // class git4idea/checkin/GitCheckinExplicitMovementProvider
+     446: astore        14
+     448: iconst_0
+     449: istore        15
+     451: aload         14
+     453: aload_1
+     454: aload         5
+     456: aload         6
+     458: invokevirtual #728                // Method git4idea/checkin/GitCheckinExplicitMovementProvider.collectExplicitMovements:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Ljava/util/List;)Ljava/util/Collection;
+     461: dup
+     462: ldc_w         #730                // String collectExplicitMovements(...)
+     465: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     468: astore        16
+     470: getstatic     #252                // Field git4idea/checkin/GitCheckinEnvironment.Companion:Lgit4idea/checkin/GitCheckinEnvironment$Companion;
+     473: aload         16
+     475: aload         4
+     477: checkcast     #51                 // class java/util/Collection
+     480: invokespecial #830                // Method filterExcludedChanges:(Ljava/util/Collection;Ljava/util/Collection;)Ljava/util/List;
+     483: checkcast     #51                 // class java/util/Collection
+     486: invokeinterface #352,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     491: ifne          498
+     494: iconst_1
+     495: goto          499
+     498: iconst_0
+     499: nop
+     500: ifeq          422
+     503: aload         10
+     505: aload         13
+     507: invokeinterface #228,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     512: pop
+     513: goto          422
+     516: aload         10
+     518: checkcast     #20                 // class java/util/List
+     521: nop
+     522: areturn
+
+  public final boolean isCaseOnlyRename(git4idea.checkin.GitCheckinEnvironment$ChangedPath);
+    Code:
+       0: aload_1
+       1: ldc_w         #1227               // String change
+       4: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: getstatic     #624                // Field com/intellij/openapi/util/SystemInfo.isFileSystemCaseSensitive:Z
+      10: ifeq          15
+      13: iconst_0
+      14: ireturn
+      15: aload_1
+      16: invokevirtual #1228               // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.isMove:()Z
+      19: ifne          24
+      22: iconst_0
+      23: ireturn
+      24: aload_1
+      25: invokevirtual #227                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+      28: dup
+      29: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      32: astore_2
+      33: aload_1
+      34: invokevirtual #231                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+      37: dup
+      38: invokestatic  #399                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      41: astore_3
+      42: aload_3
+      43: invokeinterface #1229,  1         // InterfaceMethod com/intellij/openapi/vcs/FilePath.getPath:()Ljava/lang/String;
+      48: aload_2
+      49: invokeinterface #1229,  1         // InterfaceMethod com/intellij/openapi/vcs/FilePath.getPath:()Ljava/lang/String;
+      54: invokestatic  #1233               // Method git4idea/GitUtil.isCaseOnlyChange:(Ljava/lang/String;Ljava/lang/String;)Z
+      57: ireturn
+
+  public final java.lang.String getLogString(java.lang.String, java.util.Collection<? extends git4idea.checkin.GitCheckinEnvironment$ChangedPath>);
+    Code:
+       0: aload_1
+       1: ldc_w         #1236               // String rootPath
+       4: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_2
+       8: ldc_w         #1237               // String changes
+      11: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      14: aload_1
+      15: aload_2
+      16: invokedynamic #1244,  0           // InvokeDynamic #11:invoke:()Lkotlin/jvm/functions/Function1;
+      21: invokedynamic #1255,  0           // InvokeDynamic #12:convert:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/containers/Convertor;
+      26: invokedynamic #1260,  0           // InvokeDynamic #13:invoke:()Lkotlin/jvm/functions/Function1;
+      31: invokedynamic #1265,  0           // InvokeDynamic #14:convert:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/containers/Convertor;
+      36: invokestatic  #1268               // Method git4idea/GitUtil.getLogString:(Ljava/lang/String;Ljava/util/Collection;Lcom/intellij/util/containers/Convertor;Lcom/intellij/util/containers/Convertor;)Ljava/lang/String;
+      39: dup
+      40: ldc_w         #1270               // String getLogString(...)
+      43: invokestatic  #34                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      46: areturn
+
+  private static final kotlin.Unit commitUsingIndex$lambda$0(java.lang.String, git4idea.checkin.GitRepositoryCommitter);
+    Code:
+       0: aload_1
+       1: ldc_w         #1271               // String committer
+       4: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_1
+       8: aload_0
+       9: invokevirtual #1273               // Method git4idea/checkin/GitRepositoryCommitter.commitStaged:(Ljava/lang/String;)V
+      12: getstatic     #317                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      15: areturn
+
+  private static final kotlin.Unit commitUsingIndex$lambda$1(java.io.File, git4idea.checkin.GitRepositoryCommitter);
+    Code:
+       0: aload_1
+       1: ldc_w         #1271               // String committer
+       4: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_1
+       8: aload_0
+       9: invokevirtual #1277               // Method git4idea/checkin/GitRepositoryCommitter.commitStaged:(Ljava/io/File;)V
+      12: getstatic     #317                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      15: areturn
+
+  private static final kotlin.Pair addPartialChangesToIndex$lambda$1(java.util.Collection, com.intellij.openapi.project.Project);
+    Code:
+       0: new           #17                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+       7: checkcast     #20                 // class java/util/List
+      10: astore_2
+      11: new           #17                 // class java/util/ArrayList
+      14: dup
+      15: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+      18: checkcast     #20                 // class java/util/List
+      21: astore_3
+      22: aload_0
+      23: invokeinterface #689,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      28: astore        4
+      30: aload         4
+      32: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      37: ifeq          178
+      40: aload         4
+      42: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      47: checkcast     #354                // class git4idea/checkin/GitCheckinEnvironment$CommitChange
+      50: astore        5
+      52: aload         5
+      54: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+      57: ifnull        30
+      60: aload         5
+      62: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+      65: ifnull        30
+      68: aload         5
+      70: invokevirtual #395                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+      73: ifnull        30
+      76: aload         5
+      78: invokevirtual #418                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+      81: ifnull        30
+      84: aload_1
+      85: aload         5
+      87: invokevirtual #423                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+      90: invokestatic  #1284               // Method com/intellij/openapi/vcs/impl/PartialChangesUtil.getPartialTracker:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/openapi/vcs/ex/PartialLocalLineStatusTracker;
+      93: astore        6
+      95: aload         6
+      97: ifnull        30
+     100: aload         6
+     102: invokeinterface #1289,  1         // InterfaceMethod com/intellij/openapi/vcs/ex/PartialLocalLineStatusTracker.hasPartialChangesToCommit:()Z
+     107: ifeq          30
+     110: aload         6
+     112: invokeinterface #1292,  1         // InterfaceMethod com/intellij/openapi/vcs/ex/PartialLocalLineStatusTracker.isOperational:()Z
+     117: ifne          143
+     120: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+     123: aload         6
+     125: invokeinterface #1293,  1         // InterfaceMethod com/intellij/openapi/vcs/ex/PartialLocalLineStatusTracker.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+     130: invokevirtual #1294               // Method com/intellij/openapi/vfs/VirtualFile.getPresentableUrl:()Ljava/lang/String;
+     133: invokedynamic #1298,  0           // InvokeDynamic #15:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     138: invokevirtual #871                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     141: aconst_null
+     142: areturn
+     143: aload_2
+     144: aload         6
+     146: getstatic     #1304               // Field com/intellij/diff/util/Side.LEFT:Lcom/intellij/diff/util/Side;
+     149: aload         5
+     151: invokevirtual #358                // Method git4idea/checkin/GitCheckinEnvironment$CommitChange.getChangelistIds:()Ljava/util/List;
+     154: iconst_1
+     155: invokeinterface #1308,  4         // InterfaceMethod com/intellij/openapi/vcs/ex/PartialLocalLineStatusTracker.handlePartialCommit:(Lcom/intellij/diff/util/Side;Ljava/util/List;Z)Lcom/intellij/openapi/vcs/ex/PartialCommitHelper;
+     160: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     165: pop
+     166: aload_3
+     167: aload         5
+     169: invokeinterface #121,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     174: pop
+     175: goto          30
+     178: new           #40                 // class kotlin/Pair
+     181: dup
+     182: aload_2
+     183: aload_3
+     184: invokespecial #366                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     187: areturn
+
+  private static final void applyPartialChanges$lambda$0(java.util.List);
+    Code:
+       0: aload_0
+       1: invokeinterface #391,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       6: astore_1
+       7: aload_1
+       8: invokeinterface #218,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      13: ifeq          45
+      16: aload_1
+      17: invokeinterface #221,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #420                // class com/intellij/openapi/vcs/ex/PartialCommitHelper
+      25: astore_2
+      26: nop
+      27: aload_2
+      28: invokevirtual #1315               // Method com/intellij/openapi/vcs/ex/PartialCommitHelper.applyChanges:()V
+      31: goto          7
+      34: astore_3
+      35: invokestatic  #263                // Method git4idea/checkin/GitCheckinEnvironment.access$getLOG$cp:()Lcom/intellij/openapi/diagnostic/Logger;
+      38: aload_3
+      39: invokevirtual #1317               // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/Throwable;)V
+      42: goto          7
+      45: return
+    Exception table:
+       from    to  target type
+          26    31    34   Class java/lang/Throwable
+
+  private static final void computeAfterLSTManagerUpdate$lambda$0(java.util.concurrent.CompletableFuture, com.intellij.openapi.util.Computable);
+    Code:
+       0: nop
+       1: aload_0
+       2: aload_1
+       3: invokeinterface #1320,  1         // InterfaceMethod com/intellij/openapi/util/Computable.compute:()Ljava/lang/Object;
+       8: invokevirtual #1323               // Method java/util/concurrent/CompletableFuture.complete:(Ljava/lang/Object;)Z
+      11: pop
+      12: goto          22
+      15: astore_2
+      16: aload_0
+      17: aload_2
+      18: invokevirtual #1327               // Method java/util/concurrent/CompletableFuture.completeExceptionally:(Ljava/lang/Throwable;)Z
+      21: pop
+      22: return
+    Exception table:
+       from    to  target type
+           0    12    15   Class java/lang/Throwable
+
+  private static final java.util.Collection sortChangesByGitRoot$lambda$0(git4idea.repo.GitRepository);
+    Code:
+       0: aload_0
+       1: ldc_w         #1331               // String <unused var>
+       4: invokestatic  #157                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: new           #17                 // class java/util/ArrayList
+      10: dup
+      11: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+      14: checkcast     #20                 // class java/util/List
+      17: checkcast     #51                 // class java/util/Collection
+      20: areturn
+
+  private static final java.util.Collection sortChangesByGitRoot$lambda$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #312,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #51                 // class java/util/Collection
+      10: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath getLogString$lambda$0(git4idea.checkin.GitCheckinEnvironment$ChangedPath);
+    Code:
+       0: aload_0
+       1: invokevirtual #231                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getBeforePath:()Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath getLogString$lambda$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #312,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #348                // class com/intellij/openapi/vcs/FilePath
+      10: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath getLogString$lambda$2(git4idea.checkin.GitCheckinEnvironment$ChangedPath);
+    Code:
+       0: aload_0
+       1: invokevirtual #227                // Method git4idea/checkin/GitCheckinEnvironment$ChangedPath.getAfterPath:()Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath getLogString$lambda$3(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #312,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #348                // class com/intellij/openapi/vcs/FilePath
+      10: areturn
+
+  public static final java.util.Map access$sortChangesByGitRoot(git4idea.checkin.GitCheckinEnvironment$Companion, com.intellij.openapi.project.Project, java.util.List, java.util.List);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #1337               // Method sortChangesByGitRoot:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Ljava/util/List;)Ljava/util/Map;
+       7: areturn
+
+  public static final java.util.List access$collectChangesToCommit(git4idea.checkin.GitCheckinEnvironment$Companion, java.util.Collection);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #1219               // Method collectChangesToCommit:(Ljava/util/Collection;)Ljava/util/List;
+       5: areturn
+
+  public static final kotlin.Pair access$commitExplicitRenames(git4idea.checkin.GitCheckinEnvironment$Companion, git4idea.repo.GitRepository, java.util.Collection, java.lang.String, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: aload         4
+       6: invokespecial #1344               // Method commitExplicitRenames:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/lang/String;Lgit4idea/checkin/GitCommitOptions;)Lkotlin/Pair;
+       9: areturn
+
+  public static final java.util.List access$commitRepository(git4idea.checkin.GitCheckinEnvironment$Companion, git4idea.repo.GitRepository, java.util.Collection, java.lang.String, com.intellij.openapi.vcs.changes.CommitContext, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: aload         4
+       6: aload         5
+       8: invokespecial #1348               // Method commitRepository:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Ljava/lang/String;Lcom/intellij/openapi/vcs/changes/CommitContext;Lgit4idea/checkin/GitCommitOptions;)Ljava/util/List;
+      11: areturn
+
+  public git4idea.checkin.GitCheckinEnvironment$Companion(kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: aload_0
+       1: invokespecial #1350               // Method "<init>":()V
+       4: return
+}

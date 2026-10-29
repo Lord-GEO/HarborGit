@@ -1,0 +1,716 @@
+Compiled from "GitConflictResolver.java"
+public class git4idea.merge.GitConflictResolver {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  protected final com.intellij.openapi.project.Project myProject;
+
+  private final java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile> myRoots;
+
+  private final git4idea.merge.GitConflictResolver$Params myParams;
+
+  public git4idea.merge.GitConflictResolver(com.intellij.openapi.project.Project, java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>, git4idea.merge.GitConflictResolver$Params);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     24
+      20: iconst_2
+      21: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      24: aload_0
+      25: invokespecial #3                  // Method java/lang/Object."<init>":()V
+      28: aload_0
+      29: aload_1
+      30: putfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      33: aload_0
+      34: aload_2
+      35: putfield      #15                 // Field myRoots:Ljava/util/Collection;
+      38: aload_0
+      39: aload_3
+      40: putfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+      43: return
+
+  public final boolean merge();
+    Code:
+       0: invokestatic  #473                // Method com/intellij/util/concurrency/ThreadingAssertions.assertBackgroundThread:()V
+       3: aload_0
+       4: iconst_0
+       5: invokevirtual #23                 // Method merge:(Z)Z
+       8: ireturn
+
+  public final void mergeNoProceed();
+    Code:
+       0: invokestatic  #473                // Method com/intellij/util/concurrency/ThreadingAssertions.assertBackgroundThread:()V
+       3: aload_0
+       4: iconst_1
+       5: invokevirtual #23                 // Method merge:(Z)Z
+       8: pop
+       9: return
+
+  public final void mergeNoProceedInBackground();
+    Code:
+       0: invokestatic  #476                // Method com/intellij/util/concurrency/ThreadingAssertions.assertEventDispatchThread:()V
+       3: new           #27                 // class git4idea/merge/GitConflictResolver$1
+       6: dup
+       7: aload_0
+       8: aload_0
+       9: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      12: ldc           #29                 // String apply.changes.resolving.conflicts.progress.title
+      14: iconst_0
+      15: anewarray     #4                  // class java/lang/Object
+      18: invokestatic  #31                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      21: invokespecial #37                 // Method git4idea/merge/GitConflictResolver$1."<init>":(Lgit4idea/merge/GitConflictResolver;Lcom/intellij/openapi/project/Project;Ljava/lang/String;)V
+      24: invokevirtual #40                 // Method git4idea/merge/GitConflictResolver$1.queue:()V
+      27: return
+
+  private boolean merge(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+       4: aload_0
+       5: getfield      #15                 // Field myRoots:Ljava/util/Collection;
+       8: invokestatic  #43                 // Method getUnmergedFiles:(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;)Ljava/util/Collection;
+      11: astore_2
+      12: aload_2
+      13: invokeinterface #47,  1           // InterfaceMethod java/util/Collection.isEmpty:()Z
+      18: ifeq          46
+      21: getstatic     #53                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      24: ldc           #57                 // String merge: no unmerged files
+      26: invokevirtual #59                 // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+      29: iload_1
+      30: ifne          40
+      33: aload_0
+      34: invokevirtual #65                 // Method proceedIfNothingToMerge:()Z
+      37: ifeq          44
+      40: iconst_1
+      41: goto          45
+      44: iconst_0
+      45: ireturn
+      46: aload_0
+      47: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      50: invokestatic  #68                 // Method com/intellij/openapi/vcs/merge/MergeConflictManager.isNonModalMergeEnabled:(Lcom/intellij/openapi/project/Project;)Z
+      53: ifeq          70
+      56: aload_0
+      57: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      60: invokestatic  #74                 // Method com/intellij/openapi/vcs/merge/MergeConflictManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/merge/MergeConflictManager;
+      63: aload_2
+      64: invokevirtual #78                 // Method com/intellij/openapi/vcs/merge/MergeConflictManager.showMergeConflicts:(Ljava/util/Collection;)V
+      67: goto          75
+      70: aload_0
+      71: aload_2
+      72: invokevirtual #82                 // Method showMergeDialog:(Ljava/util/Collection;)V
+      75: aload_0
+      76: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      79: aload_0
+      80: getfield      #15                 // Field myRoots:Ljava/util/Collection;
+      83: invokestatic  #43                 // Method getUnmergedFiles:(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;)Ljava/util/Collection;
+      86: astore_3
+      87: aload_3
+      88: invokeinterface #47,  1           // InterfaceMethod java/util/Collection.isEmpty:()Z
+      93: ifeq          121
+      96: getstatic     #53                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      99: ldc           #85                 // String merge no more unmerged files
+     101: invokevirtual #59                 // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+     104: iload_1
+     105: ifne          115
+     108: aload_0
+     109: invokevirtual #87                 // Method proceedAfterAllMerged:()Z
+     112: ifeq          119
+     115: iconst_1
+     116: goto          120
+     119: iconst_0
+     120: ireturn
+     121: getstatic     #53                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     124: aload_3
+     125: invokestatic  #90                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     128: invokedynamic #96,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     133: invokevirtual #59                 // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+     136: iload_1
+     137: ifeq          147
+     140: aload_0
+     141: invokevirtual #100                // Method notifyUnresolvedRemainAfterNotification:()V
+     144: goto          151
+     147: aload_0
+     148: invokevirtual #103                // Method notifyUnresolvedRemain:()V
+     151: iconst_0
+     152: ireturn
+     153: astore_2
+     154: aload_0
+     155: aload_2
+     156: invokevirtual #108                // Method notifyException:(Lcom/intellij/openapi/vcs/VcsException;)V
+     159: iconst_0
+     160: ireturn
+    Exception table:
+       from    to  target type
+           0    45   153   Class com/intellij/openapi/vcs/VcsException
+          46   120   153   Class com/intellij/openapi/vcs/VcsException
+         121   152   153   Class com/intellij/openapi/vcs/VcsException
+
+  private void showMergeDialog(java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_3
+       5: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+       8: invokestatic  #112                // Method com/intellij/openapi/application/TransactionGuard.getInstance:()Lcom/intellij/openapi/application/TransactionGuard;
+      11: invokestatic  #117                // Method com/intellij/openapi/application/ModalityState.defaultModalityState:()Lcom/intellij/openapi/application/ModalityState;
+      14: invokevirtual #123                // Method com/intellij/openapi/application/TransactionGuard.assertWriteSafeContext:(Lcom/intellij/openapi/application/ModalityState;)V
+      17: invokestatic  #127                // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+      20: aload_0
+      21: aload_1
+      22: invokedynamic #133,  0            // InvokeDynamic #1:run:(Lgit4idea/merge/GitConflictResolver;Ljava/util/Collection;)Ljava/lang/Runnable;
+      27: invokeinterface #137,  2          // InterfaceMethod com/intellij/openapi/application/Application.invokeAndWait:(Ljava/lang/Runnable;)V
+      32: return
+
+  protected boolean proceedIfNothingToMerge() throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  protected boolean proceedAfterAllMerged() throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: invokestatic  #473                // Method com/intellij/util/concurrency/ThreadingAssertions.assertBackgroundThread:()V
+       3: iconst_1
+       4: ireturn
+
+  protected void notifyUnresolvedRemain();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+       5: getfield      #143                // Field git4idea/merge/GitConflictResolver$Params.myErrorNotificationTitle:Ljava/lang/String;
+       8: ldc           #149                // String merge.unresolved.conflicts.remaining.notification.body
+      10: iconst_0
+      11: anewarray     #4                  // class java/lang/Object
+      14: invokestatic  #31                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      17: aload_0
+      18: getfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+      21: getfield      #151                // Field git4idea/merge/GitConflictResolver$Params.myErrorNotificationAdditionalDescription:Ljava/lang/String;
+      24: invokedynamic #154,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      29: invokevirtual #157                // Method notifyWarning:(Ljava/lang/String;Ljava/lang/String;)V
+      32: return
+
+  private void notifyUnresolvedRemainAfterNotification();
+    Code:
+       0: aload_0
+       1: ldc           #161                // String merge.unresolved.conflicts.remaining.notification.title
+       3: iconst_0
+       4: anewarray     #4                  // class java/lang/Object
+       7: invokestatic  #31                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      10: aload_0
+      11: getfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+      14: getfield      #151                // Field git4idea/merge/GitConflictResolver$Params.myErrorNotificationAdditionalDescription:Ljava/lang/String;
+      17: invokevirtual #157                // Method notifyWarning:(Ljava/lang/String;Ljava/lang/String;)V
+      20: return
+
+  protected final void notifyWarning(java.lang.String, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      16: invokestatic  #163                // Method com/intellij/openapi/vcs/VcsNotifier.importantNotification:()Lcom/intellij/notification/NotificationGroup;
+      19: aload_1
+      20: aload_2
+      21: getstatic     #169                // Field com/intellij/notification/NotificationType.WARNING:Lcom/intellij/notification/NotificationType;
+      24: invokevirtual #175                // Method com/intellij/notification/NotificationGroup.createNotification:(Ljava/lang/String;Ljava/lang/String;Lcom/intellij/notification/NotificationType;)Lcom/intellij/notification/Notification;
+      27: astore_3
+      28: aload_3
+      29: ldc           #181                // String git.cannot.resolve.conflict
+      31: invokevirtual #183                // Method com/intellij/notification/Notification.setDisplayId:(Ljava/lang/String;)Lcom/intellij/notification/Notification;
+      34: pop
+      35: aload_3
+      36: ldc           #189                // String action.NotificationAction.text.resolve
+      38: iconst_0
+      39: anewarray     #4                  // class java/lang/Object
+      42: invokestatic  #191                // Method git4idea/i18n/GitBundle.messagePointer:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/function/Supplier;
+      45: aload_0
+      46: aload_3
+      47: invokedynamic #195,  0            // InvokeDynamic #3:run:(Lgit4idea/merge/GitConflictResolver;Lcom/intellij/notification/Notification;)Ljava/lang/Runnable;
+      52: invokestatic  #198                // Method com/intellij/notification/NotificationAction.createSimple:(Ljava/util/function/Supplier;Ljava/lang/Runnable;)Lcom/intellij/notification/NotificationAction;
+      55: invokevirtual #204                // Method com/intellij/notification/Notification.addAction:(Lcom/intellij/openapi/actionSystem/AnAction;)Lcom/intellij/notification/Notification;
+      58: pop
+      59: aload_0
+      60: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      63: invokestatic  #208                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+      66: aload_3
+      67: invokevirtual #211                // Method com/intellij/openapi/vcs/VcsNotifier.notify:(Lcom/intellij/notification/Notification;)Lcom/intellij/notification/Notification;
+      70: pop
+      71: return
+
+  private void notifyException(com.intellij.openapi.vcs.VcsException);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+       9: getstatic     #53                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      12: ldc           #215                // String mergeFiles
+      14: aload_1
+      15: invokevirtual #217                // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;Ljava/lang/Throwable;)V
+      18: ldc           #220                // String conflict.resolver.unmerged.files.check.error.notification.description.text
+      20: iconst_1
+      21: anewarray     #4                  // class java/lang/Object
+      24: dup
+      25: iconst_0
+      26: aload_0
+      27: getfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+      30: getfield      #151                // Field git4idea/merge/GitConflictResolver$Params.myErrorNotificationAdditionalDescription:Ljava/lang/String;
+      33: aastore
+      34: invokestatic  #31                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      37: astore_2
+      38: aload_0
+      39: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      42: invokestatic  #208                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+      45: ldc           #222                // String git.conflict.resolving.error
+      47: aload_0
+      48: getfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+      51: getfield      #143                // Field git4idea/merge/GitConflictResolver$Params.myErrorNotificationTitle:Ljava/lang/String;
+      54: new           #224                // class com/intellij/openapi/util/text/HtmlBuilder
+      57: dup
+      58: invokespecial #226                // Method com/intellij/openapi/util/text/HtmlBuilder."<init>":()V
+      61: aload_2
+      62: invokevirtual #227                // Method com/intellij/openapi/util/text/HtmlBuilder.appendRaw:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      65: invokevirtual #231                // Method com/intellij/openapi/util/text/HtmlBuilder.br:()Lcom/intellij/openapi/util/text/HtmlBuilder;
+      68: aload_1
+      69: invokevirtual #235                // Method com/intellij/openapi/vcs/VcsException.getLocalizedMessage:()Ljava/lang/String;
+      72: invokevirtual #227                // Method com/intellij/openapi/util/text/HtmlBuilder.appendRaw:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      75: invokevirtual #239                // Method com/intellij/openapi/util/text/HtmlBuilder.toString:()Ljava/lang/String;
+      78: invokevirtual #242                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/notification/Notification;
+      81: pop
+      82: return
+
+  private static java.util.Collection<com.intellij.openapi.vfs.VirtualFile> getUnmergedFiles(com.intellij.openapi.project.Project, java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        7
+       6: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        8
+      15: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      18: new           #246                // class java/util/HashSet
+      21: dup
+      22: invokespecial #248                // Method java/util/HashSet."<init>":()V
+      25: astore_2
+      26: aload_1
+      27: invokeinterface #249,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      32: astore_3
+      33: aload_3
+      34: invokeinterface #253,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      39: ifeq          69
+      42: aload_3
+      43: invokeinterface #258,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      48: checkcast     #262                // class com/intellij/openapi/vfs/VirtualFile
+      51: astore        4
+      53: aload_2
+      54: aload_0
+      55: aload         4
+      57: invokestatic  #264                // Method getUnmergedFiles:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/Collection;
+      60: invokeinterface #267,  2          // InterfaceMethod java/util/Collection.addAll:(Ljava/util/Collection;)Z
+      65: pop
+      66: goto          33
+      69: aload_2
+      70: dup
+      71: ifnonnull     79
+      74: bipush        9
+      76: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      79: areturn
+
+  private static java.util.Collection<com.intellij.openapi.vfs.VirtualFile> getUnmergedFiles(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        10
+       6: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        11
+      15: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: invokestatic  #271                // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      22: aload_1
+      23: invokevirtual #276                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      26: checkcast     #280                // class git4idea/repo/GitRepository
+      29: astore_2
+      30: aload_2
+      31: ifnonnull     62
+      34: getstatic     #53                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      37: aload_1
+      38: invokestatic  #90                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      41: invokedynamic #282,  0            // InvokeDynamic #4:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      46: invokevirtual #283                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+      49: invokestatic  #286                // Method java/util/Collections.emptyList:()Ljava/util/List;
+      52: dup
+      53: ifnonnull     61
+      56: bipush        12
+      58: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      61: areturn
+      62: aload_2
+      63: invokestatic  #292                // Method git4idea/changes/GitChangeUtils.getUnmergedFiles:(Lgit4idea/repo/GitRepository;)Ljava/util/List;
+      66: astore_3
+      67: aload_3
+      68: invokedynamic #297,  0            // InvokeDynamic #5:fun:()Lcom/intellij/util/Function;
+      73: invokestatic  #301                // Method com/intellij/util/containers/ContainerUtil.mapNotNull:(Ljava/util/Collection;Lcom/intellij/util/Function;)Ljava/util/List;
+      76: dup
+      77: ifnonnull     85
+      80: bipush        13
+      82: invokestatic  #480                // Method $$$reportNull$$$0:(I)V
+      85: areturn
+
+  private static com.intellij.openapi.vfs.VirtualFile lambda$getUnmergedFiles$2(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: invokestatic  #307                // Method com/intellij/openapi/vfs/LocalFileSystem.getInstance:()Lcom/intellij/openapi/vfs/LocalFileSystem;
+       3: aload_0
+       4: invokeinterface #312,  1          // InterfaceMethod com/intellij/openapi/vcs/FilePath.getPath:()Ljava/lang/String;
+       9: invokevirtual #317                // Method com/intellij/openapi/vfs/LocalFileSystem.refreshAndFindFileByPath:(Ljava/lang/String;)Lcom/intellij/openapi/vfs/VirtualFile;
+      12: areturn
+
+  private void lambda$notifyWarning$1(com.intellij.notification.Notification);
+    Code:
+       0: aload_1
+       1: invokevirtual #321                // Method com/intellij/notification/Notification.expire:()V
+       4: aload_0
+       5: invokevirtual #324                // Method mergeNoProceedInBackground:()V
+       8: return
+
+  private void lambda$showMergeDialog$0(java.util.Collection);
+    Code:
+       0: new           #327                // class git4idea/merge/GitMergeProvider
+       3: dup
+       4: aload_0
+       5: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+       8: aload_0
+       9: getfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+      12: getfield      #329                // Field git4idea/merge/GitConflictResolver$Params.reverse:Z
+      15: invokespecial #333                // Method git4idea/merge/GitMergeProvider."<init>":(Lcom/intellij/openapi/project/Project;Z)V
+      18: astore_2
+      19: aload_0
+      20: getfield      #9                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      23: invokestatic  #336                // Method com/intellij/openapi/vcs/AbstractVcsHelper.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/AbstractVcsHelper;
+      26: new           #341                // class java/util/ArrayList
+      29: dup
+      30: aload_1
+      31: invokespecial #343                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      34: aload_2
+      35: aload_0
+      36: getfield      #19                 // Field myParams:Lgit4idea/merge/GitConflictResolver$Params;
+      39: getfield      #345                // Field git4idea/merge/GitConflictResolver$Params.myMergeDialogCustomizer:Lcom/intellij/openapi/vcs/merge/MergeDialogCustomizer;
+      42: invokevirtual #349                // Method com/intellij/openapi/vcs/AbstractVcsHelper.showMergeDialog:(Ljava/util/List;Lcom/intellij/openapi/vcs/merge/MergeProvider;Lcom/intellij/openapi/vcs/merge/MergeDialogCustomizer;)Ljava/util/List;
+      45: pop
+      46: return
+
+  static {};
+    Code:
+       0: ldc           #10                 // class git4idea/merge/GitConflictResolver
+       2: invokestatic  #352                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #53                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 13
+
+                     0: 72
+
+                     1: 72
+
+                     2: 72
+
+                     3: 72
+
+                     4: 72
+
+                     5: 72
+
+                     6: 72
+
+                     7: 72
+
+                     8: 72
+
+                     9: 78
+
+                    10: 72
+
+                    11: 72
+
+                    12: 78
+
+                    13: 78
+               default: 72
+          }
+      72: ldc_w         #486                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      75: goto          84
+      78: ldc_w         #488                // String @NotNull method %s.%s must not return null
+      81: goto          84
+      84: iload_0
+      85: tableswitch   { // 0 to 13
+
+                     0: 156
+
+                     1: 156
+
+                     2: 156
+
+                     3: 156
+
+                     4: 156
+
+                     5: 156
+
+                     6: 156
+
+                     7: 156
+
+                     8: 156
+
+                     9: 160
+
+                    10: 156
+
+                    11: 156
+
+                    12: 160
+
+                    13: 160
+               default: 156
+          }
+     156: iconst_3
+     157: goto          164
+     160: iconst_2
+     161: goto          164
+     164: anewarray     #4                  // class java/lang/Object
+     167: iload_0
+     168: tableswitch   { // 0 to 13
+
+                     0: 240
+
+                     1: 249
+
+                     2: 258
+
+                     3: 267
+
+                     4: 276
+
+                     5: 285
+
+                     6: 294
+
+                     7: 240
+
+                     8: 249
+
+                     9: 303
+
+                    10: 240
+
+                    11: 312
+
+                    12: 303
+
+                    13: 303
+               default: 240
+          }
+     240: dup
+     241: iconst_0
+     242: ldc_w         #489                // String project
+     245: aastore
+     246: goto          321
+     249: dup
+     250: iconst_0
+     251: ldc_w         #490                // String roots
+     254: aastore
+     255: goto          321
+     258: dup
+     259: iconst_0
+     260: ldc_w         #491                // String params
+     263: aastore
+     264: goto          321
+     267: dup
+     268: iconst_0
+     269: ldc_w         #492                // String initiallyUnmergedFiles
+     272: aastore
+     273: goto          321
+     276: dup
+     277: iconst_0
+     278: ldc_w         #493                // String title
+     281: aastore
+     282: goto          321
+     285: dup
+     286: iconst_0
+     287: ldc_w         #494                // String content
+     290: aastore
+     291: goto          321
+     294: dup
+     295: iconst_0
+     296: ldc_w         #495                // String e
+     299: aastore
+     300: goto          321
+     303: dup
+     304: iconst_0
+     305: ldc_w         #496                // String git4idea/merge/GitConflictResolver
+     308: aastore
+     309: goto          321
+     312: dup
+     313: iconst_0
+     314: ldc_w         #497                // String root
+     317: aastore
+     318: goto          321
+     321: iload_0
+     322: tableswitch   { // 0 to 13
+
+                     0: 392
+
+                     1: 392
+
+                     2: 392
+
+                     3: 392
+
+                     4: 392
+
+                     5: 392
+
+                     6: 392
+
+                     7: 392
+
+                     8: 392
+
+                     9: 401
+
+                    10: 392
+
+                    11: 392
+
+                    12: 401
+
+                    13: 401
+               default: 392
+          }
+     392: dup
+     393: iconst_1
+     394: ldc_w         #496                // String git4idea/merge/GitConflictResolver
+     397: aastore
+     398: goto          410
+     401: dup
+     402: iconst_1
+     403: ldc_w         #498                // String getUnmergedFiles
+     406: aastore
+     407: goto          410
+     410: iload_0
+     411: tableswitch   { // 0 to 13
+
+                     0: 480
+
+                     1: 480
+
+                     2: 480
+
+                     3: 489
+
+                     4: 498
+
+                     5: 498
+
+                     6: 507
+
+                     7: 516
+
+                     8: 516
+
+                     9: 525
+
+                    10: 516
+
+                    11: 516
+
+                    12: 525
+
+                    13: 525
+               default: 480
+          }
+     480: dup
+     481: iconst_2
+     482: ldc_w         #499                // String <init>
+     485: aastore
+     486: goto          528
+     489: dup
+     490: iconst_2
+     491: ldc_w         #500                // String showMergeDialog
+     494: aastore
+     495: goto          528
+     498: dup
+     499: iconst_2
+     500: ldc_w         #501                // String notifyWarning
+     503: aastore
+     504: goto          528
+     507: dup
+     508: iconst_2
+     509: ldc_w         #502                // String notifyException
+     512: aastore
+     513: goto          528
+     516: dup
+     517: iconst_2
+     518: ldc_w         #498                // String getUnmergedFiles
+     521: aastore
+     522: goto          528
+     525: goto          528
+     528: invokestatic  #505                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     531: iload_0
+     532: tableswitch   { // 0 to 13
+
+                     0: 604
+
+                     1: 604
+
+                     2: 604
+
+                     3: 604
+
+                     4: 604
+
+                     5: 604
+
+                     6: 604
+
+                     7: 604
+
+                     8: 604
+
+                     9: 615
+
+                    10: 604
+
+                    11: 604
+
+                    12: 615
+
+                    13: 615
+               default: 604
+          }
+     604: new           #507                // class java/lang/IllegalArgumentException
+     607: dup_x1
+     608: swap
+     609: invokespecial #509                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     612: goto          626
+     615: new           #511                // class java/lang/IllegalStateException
+     618: dup_x1
+     619: swap
+     620: invokespecial #512                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     623: goto          626
+     626: athrow
+}

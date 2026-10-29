@@ -1,0 +1,444 @@
+Compiled from "GitStageCommitWorkflowHandler.kt"
+public final class git4idea.index.GitStageCommitWorkflowHandler extends com.intellij.vcs.commit.NonModalCommitWorkflowHandler<git4idea.index.GitStageCommitWorkflow, com.intellij.vcs.commit.NonModalCommitWorkflowUi> {
+  public static final git4idea.index.GitStageCommitWorkflowHandler$Companion Companion;
+
+  private final git4idea.index.GitStageCommitWorkflow workflow;
+
+  private final git4idea.index.ui.GitStageCommitPanel ui;
+
+  private final git4idea.index.GitStageCommitMessagePolicy commitMessagePolicy;
+
+  private final com.intellij.openapi.vcs.CheckinProjectPanel commitPanel;
+
+  private final com.intellij.vcs.commit.NonModalAmendCommitHandler amendCommitHandler;
+
+  private git4idea.index.GitStageTracker$State state;
+
+  public git4idea.index.GitStageCommitWorkflowHandler(git4idea.index.GitStageCommitWorkflow, git4idea.index.ui.GitStageCommitPanel);
+    Code:
+       0: aload_1
+       1: ldc           #10                 // String workflow
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #18                 // String ui
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: invokespecial #21                 // Method com/intellij/vcs/commit/NonModalCommitWorkflowHandler."<init>":()V
+      16: aload_0
+      17: aload_1
+      18: putfield      #24                 // Field workflow:Lgit4idea/index/GitStageCommitWorkflow;
+      21: aload_0
+      22: aload_2
+      23: putfield      #27                 // Field ui:Lgit4idea/index/ui/GitStageCommitPanel;
+      26: aload_0
+      27: new           #29                 // class git4idea/index/GitStageCommitMessagePolicy
+      30: dup
+      31: aload_0
+      32: invokevirtual #33                 // Method getProject:()Lcom/intellij/openapi/project/Project;
+      35: aload_0
+      36: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      39: invokevirtual #43                 // Method git4idea/index/ui/GitStageCommitPanel.getCommitMessageUi:()Lcom/intellij/vcs/commit/CommitMessageUi;
+      42: invokespecial #46                 // Method git4idea/index/GitStageCommitMessagePolicy."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/vcs/commit/CommitMessageUi;)V
+      45: putfield      #50                 // Field commitMessagePolicy:Lgit4idea/index/GitStageCommitMessagePolicy;
+      48: aload_0
+      49: new           #52                 // class com/intellij/vcs/commit/CommitProjectPanelAdapter
+      52: dup
+      53: aload_0
+      54: checkcast     #54                 // class com/intellij/vcs/commit/AbstractCommitWorkflowHandler
+      57: invokespecial #57                 // Method com/intellij/vcs/commit/CommitProjectPanelAdapter."<init>":(Lcom/intellij/vcs/commit/AbstractCommitWorkflowHandler;)V
+      60: checkcast     #59                 // class com/intellij/openapi/vcs/CheckinProjectPanel
+      63: putfield      #63                 // Field commitPanel:Lcom/intellij/openapi/vcs/CheckinProjectPanel;
+      66: aload_0
+      67: new           #65                 // class com/intellij/vcs/commit/NonModalAmendCommitHandler
+      70: dup
+      71: aload_0
+      72: checkcast     #5                  // class com/intellij/vcs/commit/NonModalCommitWorkflowHandler
+      75: invokespecial #68                 // Method com/intellij/vcs/commit/NonModalAmendCommitHandler."<init>":(Lcom/intellij/vcs/commit/NonModalCommitWorkflowHandler;)V
+      78: putfield      #72                 // Field amendCommitHandler:Lcom/intellij/vcs/commit/NonModalAmendCommitHandler;
+      81: aload_0
+      82: getstatic     #78                 // Field git4idea/index/GitStageTracker$State.Companion:Lgit4idea/index/GitStageTracker$State$Companion;
+      85: invokevirtual #84                 // Method git4idea/index/GitStageTracker$State$Companion.getEMPTY$intellij_vcs_git:()Lgit4idea/index/GitStageTracker$State;
+      88: putfield      #88                 // Field state:Lgit4idea/index/GitStageTracker$State;
+      91: nop
+      92: aload_0
+      93: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      96: checkcast     #90                 // class com/intellij/openapi/Disposable
+      99: aload_0
+     100: checkcast     #90                 // class com/intellij/openapi/Disposable
+     103: invokestatic  #96                 // Method com/intellij/openapi/util/Disposer.register:(Lcom/intellij/openapi/Disposable;Lcom/intellij/openapi/Disposable;)V
+     106: aload_0
+     107: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+     110: aload_0
+     111: checkcast     #102                // class com/intellij/vcs/commit/CommitWorkflowListener
+     114: aload_0
+     115: checkcast     #90                 // class com/intellij/openapi/Disposable
+     118: invokevirtual #108                // Method git4idea/index/GitStageCommitWorkflow.addListener:(Lcom/intellij/vcs/commit/CommitWorkflowListener;Lcom/intellij/openapi/Disposable;)V
+     121: aload_0
+     122: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+     125: new           #110                // class git4idea/index/GitStageCommitWorkflowHandler$GitStageCommitStateCleaner
+     128: dup
+     129: aload_0
+     130: invokespecial #113                // Method git4idea/index/GitStageCommitWorkflowHandler$GitStageCommitStateCleaner."<init>":(Lgit4idea/index/GitStageCommitWorkflowHandler;)V
+     133: checkcast     #115                // class com/intellij/vcs/commit/CommitterResultHandler
+     136: aload_0
+     137: checkcast     #90                 // class com/intellij/openapi/Disposable
+     140: invokevirtual #119                // Method git4idea/index/GitStageCommitWorkflow.addVcsCommitListener:(Lcom/intellij/vcs/commit/CommitterResultHandler;Lcom/intellij/openapi/Disposable;)V
+     143: aload_0
+     144: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+     147: new           #121                // class com/intellij/vcs/commit/NonModalCommitWorkflowHandler$PostCommitChecksRunner
+     150: dup
+     151: aload_0
+     152: checkcast     #5                  // class com/intellij/vcs/commit/NonModalCommitWorkflowHandler
+     155: invokespecial #122                // Method com/intellij/vcs/commit/NonModalCommitWorkflowHandler$PostCommitChecksRunner."<init>":(Lcom/intellij/vcs/commit/NonModalCommitWorkflowHandler;)V
+     158: checkcast     #115                // class com/intellij/vcs/commit/CommitterResultHandler
+     161: aload_0
+     162: checkcast     #90                 // class com/intellij/openapi/Disposable
+     165: invokevirtual #119                // Method git4idea/index/GitStageCommitWorkflow.addVcsCommitListener:(Lcom/intellij/vcs/commit/CommitterResultHandler;Lcom/intellij/openapi/Disposable;)V
+     168: aload_0
+     169: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     172: aload_0
+     173: checkcast     #124                // class com/intellij/vcs/commit/CommitExecutorListener
+     176: aload_0
+     177: checkcast     #90                 // class com/intellij/openapi/Disposable
+     180: invokevirtual #128                // Method git4idea/index/ui/GitStageCommitPanel.addExecutorListener:(Lcom/intellij/vcs/commit/CommitExecutorListener;Lcom/intellij/openapi/Disposable;)V
+     183: aload_0
+     184: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     187: aload_0
+     188: invokedynamic #146,  0            // InvokeDynamic #0:dataSnapshot:(Lgit4idea/index/GitStageCommitWorkflowHandler;)Lcom/intellij/openapi/actionSystem/EdtNoGetDataProvider;
+     193: checkcast     #148                // class com/intellij/openapi/actionSystem/DataProvider
+     196: invokevirtual #152                // Method git4idea/index/ui/GitStageCommitPanel.addDataProvider:(Lcom/intellij/openapi/actionSystem/DataProvider;)V
+     199: aload_0
+     200: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     203: new           #154                // class git4idea/index/GitStageCommitWorkflowHandler$2
+     206: dup
+     207: aload_0
+     208: invokespecial #155                // Method git4idea/index/GitStageCommitWorkflowHandler$2."<init>":(Lgit4idea/index/GitStageCommitWorkflowHandler;)V
+     211: checkcast     #157                // class com/intellij/openapi/vcs/changes/InclusionListener
+     214: aload_0
+     215: checkcast     #90                 // class com/intellij/openapi/Disposable
+     218: invokevirtual #161                // Method git4idea/index/ui/GitStageCommitPanel.addInclusionListener:(Lcom/intellij/openapi/vcs/changes/InclusionListener;Lcom/intellij/openapi/Disposable;)V
+     221: aload_0
+     222: invokevirtual #164                // Method setupDumbModeTracking:()V
+     225: aload_0
+     226: invokevirtual #167                // Method setupCommitHandlersTracking:()V
+     229: aload_0
+     230: invokevirtual #170                // Method setupCommitChecksResultTracking:()V
+     233: aload_0
+     234: invokevirtual #173                // Method vcsesChanged:()V
+     237: aload_0
+     238: getfield      #50                 // Field commitMessagePolicy:Lgit4idea/index/GitStageCommitMessagePolicy;
+     241: invokevirtual #176                // Method git4idea/index/GitStageCommitMessagePolicy.init:()V
+     244: aload_0
+     245: checkcast     #90                 // class com/intellij/openapi/Disposable
+     248: aload_0
+     249: getfield      #50                 // Field commitMessagePolicy:Lgit4idea/index/GitStageCommitMessagePolicy;
+     252: checkcast     #90                 // class com/intellij/openapi/Disposable
+     255: invokestatic  #96                 // Method com/intellij/openapi/util/Disposer.register:(Lcom/intellij/openapi/Disposable;Lcom/intellij/openapi/Disposable;)V
+     258: nop
+     259: return
+
+  public git4idea.index.GitStageCommitWorkflow getWorkflow();
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field workflow:Lgit4idea/index/GitStageCommitWorkflow;
+       4: areturn
+
+  public git4idea.index.ui.GitStageCommitPanel getUi();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field ui:Lgit4idea/index/ui/GitStageCommitPanel;
+       4: areturn
+
+  protected com.intellij.openapi.vcs.CheckinProjectPanel getCommitPanel();
+    Code:
+       0: aload_0
+       1: getfield      #63                 // Field commitPanel:Lcom/intellij/openapi/vcs/CheckinProjectPanel;
+       4: areturn
+
+  public com.intellij.vcs.commit.NonModalAmendCommitHandler getAmendCommitHandler();
+    Code:
+       0: aload_0
+       1: getfield      #72                 // Field amendCommitHandler:Lcom/intellij/vcs/commit/NonModalAmendCommitHandler;
+       4: areturn
+
+  public com.intellij.vcs.commit.CommitAuthorTracker getCommitAuthorTracker();
+    Code:
+       0: aload_0
+       1: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+       4: checkcast     #186                // class com/intellij/vcs/commit/CommitAuthorTracker
+       7: areturn
+
+  public final git4idea.index.GitStageTracker$State getState();
+    Code:
+       0: aload_0
+       1: getfield      #88                 // Field state:Lgit4idea/index/GitStageTracker$State;
+       4: areturn
+
+  public final void setState(git4idea.index.GitStageTracker$State);
+    Code:
+       0: aload_1
+       1: ldc           #191                // String <set-?>
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: putfield      #88                 // Field state:Lgit4idea/index/GitStageTracker$State;
+      11: return
+
+  public boolean isCommitEmpty();
+    Code:
+       0: aload_0
+       1: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+       4: invokevirtual #197                // Method git4idea/index/ui/GitStageCommitPanel.getRootsToCommit:()Ljava/util/Set;
+       7: invokeinterface #202,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+      12: ireturn
+
+  public void beforeCommitChecksEnded(com.intellij.vcs.commit.CommitSessionInfo, com.intellij.vcs.commit.CommitChecksResult);
+    Code:
+       0: aload_1
+       1: ldc           #206                // String sessionInfo
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #208                // String result
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: aload_1
+      14: aload_2
+      15: invokespecial #210                // Method com/intellij/vcs/commit/NonModalCommitWorkflowHandler.beforeCommitChecksEnded:(Lcom/intellij/vcs/commit/CommitSessionInfo;Lcom/intellij/vcs/commit/CommitChecksResult;)V
+      18: aload_2
+      19: invokevirtual #215                // Method com/intellij/vcs/commit/CommitChecksResult.getShouldCommit:()Z
+      22: ifeq          50
+      25: aload_0
+      26: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+      29: aload_0
+      30: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+      33: invokevirtual #219                // Method git4idea/index/GitStageCommitWorkflow.getCommitState$intellij_vcs_git:()Lgit4idea/index/GitStageCommitState;
+      36: aconst_null
+      37: iconst_0
+      38: aload_0
+      39: invokevirtual #223                // Method getCommitMessage:()Ljava/lang/String;
+      42: iconst_3
+      43: aconst_null
+      44: invokestatic  #229                // Method git4idea/index/GitStageCommitState.copy$default:(Lgit4idea/index/GitStageCommitState;Ljava/util/Set;ZLjava/lang/String;ILjava/lang/Object;)Lgit4idea/index/GitStageCommitState;
+      47: invokevirtual #233                // Method git4idea/index/GitStageCommitWorkflow.setCommitState$intellij_vcs_git:(Lgit4idea/index/GitStageCommitState;)V
+      50: return
+
+  protected java.lang.Object updateWorkflow(com.intellij.vcs.commit.CommitSessionInfo, kotlin.coroutines.Continuation<? super java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+       4: aload_0
+       5: getfield      #88                 // Field state:Lgit4idea/index/GitStageTracker$State;
+       8: invokevirtual #242                // Method git4idea/index/GitStageCommitWorkflow.setTrackerState$intellij_vcs_git:(Lgit4idea/index/GitStageTracker$State;)V
+      11: aload_0
+      12: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+      15: new           #225                // class git4idea/index/GitStageCommitState
+      18: dup
+      19: aload_0
+      20: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      23: invokevirtual #197                // Method git4idea/index/ui/GitStageCommitPanel.getRootsToCommit:()Ljava/util/Set;
+      26: aload_0
+      27: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      30: invokevirtual #245                // Method git4idea/index/ui/GitStageCommitPanel.isCommitAll:()Z
+      33: aload_0
+      34: invokevirtual #223                // Method getCommitMessage:()Ljava/lang/String;
+      37: invokespecial #248                // Method git4idea/index/GitStageCommitState."<init>":(Ljava/util/Set;ZLjava/lang/String;)V
+      40: invokevirtual #233                // Method git4idea/index/GitStageCommitWorkflow.setCommitState$intellij_vcs_git:(Lgit4idea/index/GitStageCommitState;)V
+      43: iconst_1
+      44: invokestatic  #254                // Method kotlin/coroutines/jvm/internal/Boxing.boxBoolean:(Z)Ljava/lang/Boolean;
+      47: areturn
+
+  protected java.lang.String getDefaultCommitActionName(boolean, boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+       4: invokevirtual #245                // Method git4idea/index/ui/GitStageCommitPanel.isCommitAll:()Z
+       7: ifeq          14
+      10: iload_1
+      11: ifeq          21
+      14: aload_0
+      15: iload_1
+      16: iload_2
+      17: invokespecial #260                // Method com/intellij/vcs/commit/NonModalCommitWorkflowHandler.getDefaultCommitActionName:(ZZ)Ljava/lang/String;
+      20: areturn
+      21: getstatic     #263                // Field Companion:Lgit4idea/index/GitStageCommitWorkflowHandler$Companion;
+      24: iload_2
+      25: invokestatic  #269                // Method git4idea/index/GitStageCommitWorkflowHandler$Companion.access$getDefaultCommitAllActionName:(Lgit4idea/index/GitStageCommitWorkflowHandler$Companion;Z)Ljava/lang/String;
+      28: areturn
+
+  protected void saveCommitMessageBeforeCommit();
+    Code:
+       0: aload_0
+       1: getfield      #50                 // Field commitMessagePolicy:Lgit4idea/index/GitStageCommitMessagePolicy;
+       4: invokevirtual #276                // Method git4idea/index/GitStageCommitMessagePolicy.onBeforeCommit:()V
+       7: return
+
+  protected boolean checkCommit(com.intellij.vcs.commit.CommitSessionInfo);
+    Code:
+       0: aload_1
+       1: ldc           #206                // String sessionInfo
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: invokespecial #280                // Method com/intellij/vcs/commit/NonModalCommitWorkflowHandler.checkCommit:(Lcom/intellij/vcs/commit/CommitSessionInfo;)Z
+      11: istore_2
+      12: aload_0
+      13: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      16: invokevirtual #284                // Method git4idea/index/ui/GitStageCommitPanel.getCommitProgressUi:()Lgit4idea/index/ui/GitStageCommitProgressPanel;
+      19: aload_0
+      20: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      23: invokevirtual #287                // Method git4idea/index/ui/GitStageCommitPanel.getIncludedRoots:()Ljava/util/Set;
+      26: invokeinterface #202,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+      31: invokevirtual #293                // Method git4idea/index/ui/GitStageCommitProgressPanel.setEmptyRoots:(Z)V
+      34: aload_0
+      35: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      38: invokevirtual #284                // Method git4idea/index/ui/GitStageCommitPanel.getCommitProgressUi:()Lgit4idea/index/ui/GitStageCommitProgressPanel;
+      41: aload_0
+      42: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+      45: invokevirtual #296                // Method git4idea/index/ui/GitStageCommitPanel.getConflictedRoots:()Ljava/util/Set;
+      48: checkcast     #298                // class java/lang/Iterable
+      51: astore_3
+      52: astore        9
+      54: iconst_0
+      55: istore        4
+      57: aload_3
+      58: instanceof    #300                // class java/util/Collection
+      61: ifeq          80
+      64: aload_3
+      65: checkcast     #300                // class java/util/Collection
+      68: invokeinterface #301,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+      73: ifeq          80
+      76: iconst_0
+      77: goto          139
+      80: aload_3
+      81: invokeinterface #305,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      86: astore        5
+      88: aload         5
+      90: invokeinterface #310,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      95: ifeq          138
+      98: aload         5
+     100: invokeinterface #314,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     105: astore        6
+     107: aload         6
+     109: checkcast     #316                // class com/intellij/openapi/vfs/VirtualFile
+     112: astore        7
+     114: iconst_0
+     115: istore        8
+     117: aload_0
+     118: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     121: invokevirtual #197                // Method git4idea/index/ui/GitStageCommitPanel.getRootsToCommit:()Ljava/util/Set;
+     124: aload         7
+     126: invokeinterface #320,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+     131: ifeq          88
+     134: iconst_1
+     135: goto          139
+     138: iconst_0
+     139: istore        10
+     141: aload         9
+     143: iload         10
+     145: invokevirtual #323                // Method git4idea/index/ui/GitStageCommitProgressPanel.setUnmerged:(Z)V
+     148: aload_0
+     149: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     152: invokevirtual #284                // Method git4idea/index/ui/GitStageCommitPanel.getCommitProgressUi:()Lgit4idea/index/ui/GitStageCommitProgressPanel;
+     155: aload_0
+     156: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     159: invokevirtual #245                // Method git4idea/index/ui/GitStageCommitPanel.isCommitAll:()Z
+     162: ifeq          182
+     165: aload_0
+     166: invokevirtual #325                // Method getAmendCommitHandler:()Lcom/intellij/vcs/commit/NonModalAmendCommitHandler;
+     169: invokevirtual #329                // Method com/intellij/vcs/commit/NonModalAmendCommitHandler.getCommitToAmend:()Lcom/intellij/vcs/commit/CommitToAmend;
+     172: instanceof    #331                // class com/intellij/vcs/commit/CommitToAmend$None
+     175: ifeq          182
+     178: iconst_1
+     179: goto          183
+     182: iconst_0
+     183: invokevirtual #334                // Method git4idea/index/ui/GitStageCommitProgressPanel.setCommitAll:(Z)V
+     186: iload_2
+     187: ifeq          220
+     190: aload_0
+     191: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     194: invokevirtual #284                // Method git4idea/index/ui/GitStageCommitPanel.getCommitProgressUi:()Lgit4idea/index/ui/GitStageCommitProgressPanel;
+     197: invokevirtual #337                // Method git4idea/index/ui/GitStageCommitProgressPanel.isEmptyRoots:()Z
+     200: ifne          220
+     203: aload_0
+     204: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+     207: invokevirtual #284                // Method git4idea/index/ui/GitStageCommitPanel.getCommitProgressUi:()Lgit4idea/index/ui/GitStageCommitProgressPanel;
+     210: invokevirtual #340                // Method git4idea/index/ui/GitStageCommitProgressPanel.isUnmerged:()Z
+     213: ifne          220
+     216: iconst_1
+     217: goto          221
+     220: iconst_0
+     221: ireturn
+
+  public boolean isExecutorEnabled(com.intellij.openapi.vcs.changes.CommitExecutor);
+    Code:
+       0: aload_1
+       1: ldc_w         #356                // String executor
+       4: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_1
+       8: new           #358                // class com/intellij/openapi/vcs/changes/CommitContext
+      11: dup
+      12: invokespecial #359                // Method com/intellij/openapi/vcs/changes/CommitContext."<init>":()V
+      15: invokeinterface #365,  2          // InterfaceMethod com/intellij/openapi/vcs/changes/CommitExecutor.createCommitSession:(Lcom/intellij/openapi/vcs/changes/CommitContext;)Lcom/intellij/openapi/vcs/changes/CommitSession;
+      20: dup
+      21: ldc_w         #367                // String createCommitSession(...)
+      24: invokestatic  #370                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      27: astore_2
+      28: aload_2
+      29: getstatic     #376                // Field com/intellij/openapi/vcs/changes/CommitSession.VCS_COMMIT:Lcom/intellij/openapi/vcs/changes/CommitSession;
+      32: invokestatic  #380                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      35: ifeq          50
+      38: aload_0
+      39: aload_1
+      40: invokespecial #382                // Method com/intellij/vcs/commit/NonModalCommitWorkflowHandler.isExecutorEnabled:(Lcom/intellij/openapi/vcs/changes/CommitExecutor;)Z
+      43: ifeq          50
+      46: iconst_1
+      47: goto          51
+      50: iconst_0
+      51: ireturn
+
+  private static final void _init_$lambda$0(git4idea.index.GitStageCommitWorkflowHandler, com.intellij.openapi.actionSystem.DataSink);
+    Code:
+       0: aload_1
+       1: ldc_w         #386                // String sink
+       4: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       7: aload_0
+       8: aload_1
+       9: invokevirtual #389                // Method uiDataSnapshot:(Lcom/intellij/openapi/actionSystem/DataSink;)V
+      12: return
+
+  public com.intellij.vcs.commit.AbstractCommitWorkflow getWorkflow();
+    Code:
+       0: aload_0
+       1: invokevirtual #100                // Method getWorkflow:()Lgit4idea/index/GitStageCommitWorkflow;
+       4: checkcast     #394                // class com/intellij/vcs/commit/AbstractCommitWorkflow
+       7: areturn
+
+  public com.intellij.vcs.commit.CommitWorkflowUi getUi();
+    Code:
+       0: aload_0
+       1: invokevirtual #37                 // Method getUi:()Lgit4idea/index/ui/GitStageCommitPanel;
+       4: checkcast     #397                // class com/intellij/vcs/commit/CommitWorkflowUi
+       7: areturn
+
+  public com.intellij.vcs.commit.AmendCommitHandler getAmendCommitHandler();
+    Code:
+       0: aload_0
+       1: invokevirtual #325                // Method getAmendCommitHandler:()Lcom/intellij/vcs/commit/NonModalAmendCommitHandler;
+       4: checkcast     #400                // class com/intellij/vcs/commit/AmendCommitHandler
+       7: areturn
+
+  public static final git4idea.index.GitStageCommitMessagePolicy access$getCommitMessagePolicy$p(git4idea.index.GitStageCommitWorkflowHandler);
+    Code:
+       0: aload_0
+       1: getfield      #50                 // Field commitMessagePolicy:Lgit4idea/index/GitStageCommitMessagePolicy;
+       4: areturn
+
+  static {};
+    Code:
+       0: new           #265                // class git4idea/index/GitStageCommitWorkflowHandler$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #407                // Method git4idea/index/GitStageCommitWorkflowHandler$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #263                // Field Companion:Lgit4idea/index/GitStageCommitWorkflowHandler$Companion;
+      11: return
+}

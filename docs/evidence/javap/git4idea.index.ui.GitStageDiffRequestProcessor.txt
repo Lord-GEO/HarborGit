@@ -1,0 +1,137 @@
+Compiled from "GitStageDiffRequestProcessor.kt"
+public final class git4idea.index.ui.GitStageDiffRequestProcessor extends com.intellij.openapi.vcs.changes.ui.TreeHandlerDiffRequestProcessor {
+  private final git4idea.index.ui.GitStageTree stageTree;
+
+  private final boolean isInEditor;
+
+  public git4idea.index.ui.GitStageDiffRequestProcessor(git4idea.index.ui.GitStageTree, git4idea.index.GitStageTracker, boolean);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String stageTree
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #17                 // String tracker
+       9: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: ldc           #19                 // String Stage
+      15: aload_1
+      16: checkcast     #21                 // class com/intellij/openapi/vcs/changes/ui/ChangesTree
+      19: getstatic     #27                 // Field git4idea/index/ui/GitStageDiffPreviewHandler.INSTANCE:Lgit4idea/index/ui/GitStageDiffPreviewHandler;
+      22: checkcast     #29                 // class com/intellij/openapi/vcs/changes/ui/ChangesTreeDiffPreviewHandler
+      25: invokespecial #32                 // Method com/intellij/openapi/vcs/changes/ui/TreeHandlerDiffRequestProcessor."<init>":(Ljava/lang/String;Lcom/intellij/openapi/vcs/changes/ui/ChangesTree;Lcom/intellij/openapi/vcs/changes/ui/ChangesTreeDiffPreviewHandler;)V
+      28: aload_0
+      29: aload_1
+      30: putfield      #35                 // Field stageTree:Lgit4idea/index/ui/GitStageTree;
+      33: aload_0
+      34: iload_3
+      35: putfield      #39                 // Field isInEditor:Z
+      38: nop
+      39: new           #41                 // class git4idea/index/ui/GitStagingProcessorTracker
+      42: dup
+      43: aload_2
+      44: aload_0
+      45: getfield      #35                 // Field stageTree:Lgit4idea/index/ui/GitStageTree;
+      48: checkcast     #21                 // class com/intellij/openapi/vcs/changes/ui/ChangesTree
+      51: aload_0
+      52: checkcast     #43                 // class com/intellij/diff/impl/DiffEditorViewer
+      55: aload_0
+      56: invokevirtual #47                 // Method getHandler:()Lcom/intellij/openapi/vcs/changes/ui/ChangesTreeDiffPreviewHandler;
+      59: invokespecial #50                 // Method git4idea/index/ui/GitStagingProcessorTracker."<init>":(Lgit4idea/index/GitStageTracker;Lcom/intellij/openapi/vcs/changes/ui/ChangesTree;Lcom/intellij/diff/impl/DiffEditorViewer;Lcom/intellij/openapi/vcs/changes/ui/ChangesTreeDiffPreviewHandler;)V
+      62: invokevirtual #54                 // Method git4idea/index/ui/GitStagingProcessorTracker.track:()V
+      65: nop
+      66: return
+
+  public final git4idea.index.ui.GitStageTree getStageTree();
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field stageTree:Lgit4idea/index/ui/GitStageTree;
+       4: areturn
+
+  protected boolean shouldAddToolbarBottomBorder(com.intellij.diff.FrameDiffTool$ToolbarComponents);
+    Code:
+       0: aload_1
+       1: ldc           #63                 // String toolbarComponents
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #39                 // Field isInEditor:Z
+      10: ifeq          21
+      13: aload_0
+      14: aload_1
+      15: invokespecial #65                 // Method com/intellij/openapi/vcs/changes/ui/TreeHandlerDiffRequestProcessor.shouldAddToolbarBottomBorder:(Lcom/intellij/diff/FrameDiffTool$ToolbarComponents;)Z
+      18: ifeq          25
+      21: iconst_1
+      22: goto          26
+      25: iconst_0
+      26: ireturn
+
+  public boolean forceKeepCurrentFileWhileFocused();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  protected com.intellij.openapi.actionSystem.AnAction createGoToChangeAction();
+    Code:
+       0: new           #72                 // class git4idea/index/ui/GitStageDiffRequestProcessor$MyGoToChangePopupAction
+       3: dup
+       4: aload_0
+       5: invokespecial #75                 // Method git4idea/index/ui/GitStageDiffRequestProcessor$MyGoToChangePopupAction."<init>":(Lgit4idea/index/ui/GitStageDiffRequestProcessor;)V
+       8: checkcast     #77                 // class com/intellij/openapi/actionSystem/AnAction
+      11: areturn
+
+  protected com.intellij.diff.requests.DiffRequest loadRequestFast(com.intellij.diff.chains.DiffRequestProducer);
+    Code:
+       0: aload_1
+       1: ldc           #82                 // String provider
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: invokespecial #84                 // Method com/intellij/openapi/vcs/changes/ui/TreeHandlerDiffRequestProcessor.loadRequestFast:(Lcom/intellij/diff/chains/DiffRequestProducer;)Lcom/intellij/diff/requests/DiffRequest;
+      11: dup
+      12: ifnonnull     18
+      15: pop
+      16: aconst_null
+      17: areturn
+      18: astore_2
+      19: aload_0
+      20: aload_2
+      21: invokespecial #88                 // Method isValid:(Lcom/intellij/diff/requests/DiffRequest;)Z
+      24: ifne          29
+      27: aconst_null
+      28: areturn
+      29: aload_2
+      30: areturn
+
+  private final boolean isValid(com.intellij.diff.requests.DiffRequest);
+    Code:
+       0: aload_1
+       1: invokestatic  #99                 // Method git4idea/index/GitStageDiffUtilKt.getHEAD_INFO:()Lcom/intellij/openapi/util/Key;
+       4: invokevirtual #103                // Method com/intellij/diff/requests/DiffRequest.getUserData:(Lcom/intellij/openapi/util/Key;)Ljava/lang/Object;
+       7: checkcast     #105                // class git4idea/index/HeadInfo
+      10: dup
+      11: ifnull        30
+      14: aload_0
+      15: invokevirtual #109                // Method getProject:()Lcom/intellij/openapi/project/Project;
+      18: dup
+      19: ldc           #111                // String getProject(...)
+      21: invokestatic  #114                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      24: invokestatic  #118                // Method git4idea/index/GitStageDiffUtilKt.isCurrent:(Lgit4idea/index/HeadInfo;Lcom/intellij/openapi/project/Project;)Z
+      27: goto          32
+      30: pop
+      31: iconst_1
+      32: ireturn
+
+  public com.intellij.diff.requests.DiffRequest loadRequestFast(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #122                // class com/intellij/diff/chains/DiffRequestProducer
+       5: invokevirtual #123                // Method loadRequestFast:(Lcom/intellij/diff/chains/DiffRequestProducer;)Lcom/intellij/diff/requests/DiffRequest;
+       8: areturn
+
+  public static final void access$selectChange(git4idea.index.ui.GitStageDiffRequestProcessor, com.intellij.openapi.vcs.changes.ChangeViewDiffRequestProcessor$Wrapper);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #131                // Method selectChange:(Lcom/intellij/openapi/vcs/changes/ChangeViewDiffRequestProcessor$Wrapper;)V
+       5: return
+}

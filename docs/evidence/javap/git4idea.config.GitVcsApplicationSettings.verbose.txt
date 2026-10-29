@@ -1,0 +1,890 @@
+Classfile jar:file:///D:/Program%20Files/JetBrains/IntelliJ%20IDEA%202026.1.3/plugins/vcs-git/lib/vcs-git.jar!/git4idea/config/GitVcsApplicationSettings.class
+  Last modified 1979��11��30��; size 6537 bytes
+  SHA-256 checksum 23615e3e44817f8909c17586be7d68d3d5e058db0e40c64394b839eb203df5bf
+  Compiled from "GitVcsApplicationSettings.java"
+public final class git4idea.config.GitVcsApplicationSettings extends java.lang.Object implements com.intellij.openapi.components.PersistentStateComponent<git4idea.config.GitVcsApplicationSettings$State>
+  minor version: 0
+  major version: 65
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #11                         // git4idea/config/GitVcsApplicationSettings
+  super_class: #2                         // java/lang/Object
+  interfaces: 1, fields: 1, methods: 27, attributes: 5
+Constant pool:
+    #1 = Methodref          #2.#3         // java/lang/Object."<init>":()V
+    #2 = Class              #4            // java/lang/Object
+    #3 = NameAndType        #5:#6         // "<init>":()V
+    #4 = Utf8               java/lang/Object
+    #5 = Utf8               <init>
+    #6 = Utf8               ()V
+    #7 = Class              #8            // git4idea/config/GitVcsApplicationSettings$State
+    #8 = Utf8               git4idea/config/GitVcsApplicationSettings$State
+    #9 = Methodref          #7.#3         // git4idea/config/GitVcsApplicationSettings$State."<init>":()V
+   #10 = Fieldref           #11.#12       // git4idea/config/GitVcsApplicationSettings.myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+   #11 = Class              #13           // git4idea/config/GitVcsApplicationSettings
+   #12 = NameAndType        #14:#15       // myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+   #13 = Utf8               git4idea/config/GitVcsApplicationSettings
+   #14 = Utf8               myState
+   #15 = Utf8               Lgit4idea/config/GitVcsApplicationSettings$State;
+   #16 = Methodref          #17.#18       // com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+   #17 = Class              #19           // com/intellij/openapi/application/ApplicationManager
+   #18 = NameAndType        #20:#21       // getApplication:()Lcom/intellij/openapi/application/Application;
+   #19 = Utf8               com/intellij/openapi/application/ApplicationManager
+   #20 = Utf8               getApplication
+   #21 = Utf8               ()Lcom/intellij/openapi/application/Application;
+   #22 = InterfaceMethodref #23.#24       // com/intellij/openapi/application/Application.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+   #23 = Class              #25           // com/intellij/openapi/application/Application
+   #24 = NameAndType        #26:#27       // getService:(Ljava/lang/Class;)Ljava/lang/Object;
+   #25 = Utf8               com/intellij/openapi/application/Application
+   #26 = Utf8               getService
+   #27 = Utf8               (Ljava/lang/Class;)Ljava/lang/Object;
+   #28 = Fieldref           #7.#29        // git4idea/config/GitVcsApplicationSettings$State.myPathToGit:Ljava/lang/String;
+   #29 = NameAndType        #30:#31       // myPathToGit:Ljava/lang/String;
+   #30 = Utf8               myPathToGit
+   #31 = Utf8               Ljava/lang/String;
+   #32 = Methodref          #33.#34       // git4idea/config/GitExecutableDetector.fireExecutableChanged:()V
+   #33 = Class              #35           // git4idea/config/GitExecutableDetector
+   #34 = NameAndType        #36:#6        // fireExecutableChanged:()V
+   #35 = Utf8               git4idea/config/GitExecutableDetector
+   #36 = Utf8               fireExecutableChanged
+   #37 = Fieldref           #7.#38        // git4idea/config/GitVcsApplicationSettings$State.ANNOTATE_IGNORE_SPACES:Z
+   #38 = NameAndType        #39:#40       // ANNOTATE_IGNORE_SPACES:Z
+   #39 = Utf8               ANNOTATE_IGNORE_SPACES
+   #40 = Utf8               Z
+   #41 = Fieldref           #7.#42        // git4idea/config/GitVcsApplicationSettings$State.ANNOTATE_DETECT_INNER_MOVEMENTS:Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+   #42 = NameAndType        #43:#44       // ANNOTATE_DETECT_INNER_MOVEMENTS:Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+   #43 = Utf8               ANNOTATE_DETECT_INNER_MOVEMENTS
+   #44 = Utf8               Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+   #45 = Fieldref           #7.#46        // git4idea/config/GitVcsApplicationSettings$State.USE_CREDENTIAL_HELPER:Z
+   #46 = NameAndType        #47:#40       // USE_CREDENTIAL_HELPER:Z
+   #47 = Utf8               USE_CREDENTIAL_HELPER
+   #48 = Fieldref           #7.#49        // git4idea/config/GitVcsApplicationSettings$State.STAGING_AREA_ENABLED:Z
+   #49 = NameAndType        #50:#40       // STAGING_AREA_ENABLED:Z
+   #50 = Utf8               STAGING_AREA_ENABLED
+   #51 = Fieldref           #7.#52        // git4idea/config/GitVcsApplicationSettings$State.COMBINED_STASHES_AND_SHELVES_ENABLED:Z
+   #52 = NameAndType        #53:#40       // COMBINED_STASHES_AND_SHELVES_ENABLED:Z
+   #53 = Utf8               COMBINED_STASHES_AND_SHELVES_ENABLED
+   #54 = Fieldref           #7.#55        // git4idea/config/GitVcsApplicationSettings$State.COMPARE_WITH_LOCAL_IN_STASHES_ENABLED:Z
+   #55 = NameAndType        #56:#40       // COMPARE_WITH_LOCAL_IN_STASHES_ENABLED:Z
+   #56 = Utf8               COMPARE_WITH_LOCAL_IN_STASHES_ENABLED
+   #57 = Fieldref           #7.#58        // git4idea/config/GitVcsApplicationSettings$State.EMPTY_CHERRY_PICK_RESOLUTION_STRATEGY:Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+   #58 = NameAndType        #59:#60       // EMPTY_CHERRY_PICK_RESOLUTION_STRATEGY:Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+   #59 = Utf8               EMPTY_CHERRY_PICK_RESOLUTION_STRATEGY
+   #60 = Utf8               Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+   #61 = Fieldref           #7.#62        // git4idea/config/GitVcsApplicationSettings$State.SPLIT_DIFF_PREVIEW_IN_STASHES_ENABLED:Z
+   #62 = NameAndType        #63:#40       // SPLIT_DIFF_PREVIEW_IN_STASHES_ENABLED:Z
+   #63 = Utf8               SPLIT_DIFF_PREVIEW_IN_STASHES_ENABLED
+   #64 = Fieldref           #7.#65        // git4idea/config/GitVcsApplicationSettings$State.SHOW_DROP_COMMIT_DIALOG:Z
+   #65 = NameAndType        #66:#40       // SHOW_DROP_COMMIT_DIALOG:Z
+   #66 = Utf8               SHOW_DROP_COMMIT_DIALOG
+   #67 = Methodref          #11.#68       // git4idea/config/GitVcsApplicationSettings.loadState:(Lgit4idea/config/GitVcsApplicationSettings$State;)V
+   #68 = NameAndType        #69:#70       // loadState:(Lgit4idea/config/GitVcsApplicationSettings$State;)V
+   #69 = Utf8               loadState
+   #70 = Utf8               (Lgit4idea/config/GitVcsApplicationSettings$State;)V
+   #71 = Methodref          #11.#72       // git4idea/config/GitVcsApplicationSettings.getState:()Lgit4idea/config/GitVcsApplicationSettings$State;
+   #72 = NameAndType        #73:#74       // getState:()Lgit4idea/config/GitVcsApplicationSettings$State;
+   #73 = Utf8               getState
+   #74 = Utf8               ()Lgit4idea/config/GitVcsApplicationSettings$State;
+   #75 = Class              #76           // com/intellij/openapi/components/PersistentStateComponent
+   #76 = Utf8               com/intellij/openapi/components/PersistentStateComponent
+   #77 = Utf8               Code
+   #78 = Utf8               LineNumberTable
+   #79 = Utf8               LocalVariableTable
+   #80 = Utf8               this
+   #81 = Utf8               Lgit4idea/config/GitVcsApplicationSettings;
+   #82 = Utf8               getInstance
+   #83 = Utf8               ()Lgit4idea/config/GitVcsApplicationSettings;
+   #84 = Utf8               state
+   #85 = Utf8               RuntimeInvisibleTypeAnnotations
+   #86 = Utf8               Lorg/jetbrains/annotations/NotNull;
+   #87 = Utf8               RuntimeInvisibleParameterAnnotations
+   #88 = Utf8               getSavedPathToGit
+   #89 = Utf8               ()Ljava/lang/String;
+   #90 = Utf8               RuntimeInvisibleAnnotations
+   #91 = Utf8               Lorg/jetbrains/annotations/Nullable;
+   #92 = Utf8               setPathToGit
+   #93 = Utf8               (Ljava/lang/String;)V
+   #94 = Utf8               pathToGit
+   #95 = Utf8               isIgnoreWhitespaces
+   #96 = Utf8               ()Z
+   #97 = Utf8               setIgnoreWhitespaces
+   #98 = Utf8               (Z)V
+   #99 = Utf8               value
+  #100 = Utf8               getAnnotateDetectMovementsOption
+  #101 = Utf8               ()Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+  #102 = Utf8               setAnnotateDetectMovementsOption
+  #103 = Utf8               (Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;)V
+  #104 = Utf8               setUseCredentialHelper
+  #105 = Utf8               useCredentialHelper
+  #106 = Utf8               isUseCredentialHelper
+  #107 = Utf8               isStagingAreaEnabled
+  #108 = Utf8               setStagingAreaEnabled
+  #109 = Utf8               isCombinedStashesAndShelvesTabEnabled
+  #110 = Utf8               setCombinedStashesAndShelvesTabEnabled
+  #111 = Utf8               isEnabled
+  #112 = Utf8               isCompareWithLocalInStashesEnabled
+  #113 = Utf8               getEmptyCherryPickResolutionStrategy
+  #114 = Utf8               ()Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+  #115 = Utf8               setEmptyCherryPickResolutionStrategy
+  #116 = Utf8               (Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;)V
+  #117 = Utf8               strategy
+  #118 = Utf8               setCompareWithLocalInStashesEnabled
+  #119 = Utf8               isSplitDiffPreviewInStashesEnabled
+  #120 = Utf8               setSplitDiffPreviewInStashesEnabled
+  #121 = Utf8               isShowDropCommitDialog
+  #122 = Utf8               setShowDropCommitDialog
+  #123 = Utf8               (Ljava/lang/Object;)V
+  #124 = Utf8               MethodParameters
+  #125 = Utf8               ()Ljava/lang/Object;
+  #126 = Utf8               Signature
+  #127 = Utf8               Ljava/lang/Object;Lcom/intellij/openapi/components/PersistentStateComponent<Lgit4idea/config/GitVcsApplicationSettings$State;>;
+  #128 = Utf8               SourceFile
+  #129 = Utf8               GitVcsApplicationSettings.java
+  #130 = Utf8               RuntimeVisibleAnnotations
+  #131 = Utf8               Lcom/intellij/openapi/components/State;
+  #132 = Utf8               name
+  #133 = Utf8               Git.Application.Settings
+  #134 = Utf8               category
+  #135 = Utf8               Lcom/intellij/openapi/components/SettingsCategory;
+  #136 = Utf8               TOOLS
+  #137 = Utf8               exportable
+  #138 = Integer            1
+  #139 = Utf8               storages
+  #140 = Utf8               Lcom/intellij/openapi/components/Storage;
+  #141 = Utf8               git.xml
+  #142 = Utf8               roamingType
+  #143 = Utf8               Lcom/intellij/openapi/components/RoamingType;
+  #144 = Utf8               DISABLED
+  #145 = Utf8               NestMembers
+  #146 = Class              #147          // git4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption
+  #147 = Utf8               git4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption
+  #148 = Utf8               InnerClasses
+  #149 = Utf8               State
+  #150 = Utf8               AnnotateDetectMovementsOption
+  #151 = Utf8               $$$reportNull$$$0
+  #152 = Utf8               (I)V
+  #153 = NameAndType        #151:#152     // $$$reportNull$$$0:(I)V
+  #154 = Methodref          #11.#153      // git4idea/config/GitVcsApplicationSettings.$$$reportNull$$$0:(I)V
+  #155 = Utf8               Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+  #156 = String             #155          // Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+  #157 = Utf8               @NotNull method %s.%s must not return null
+  #158 = String             #157          // @NotNull method %s.%s must not return null
+  #159 = String             #84           // state
+  #160 = String             #13           // git4idea/config/GitVcsApplicationSettings
+  #161 = String             #99           // value
+  #162 = String             #100          // getAnnotateDetectMovementsOption
+  #163 = String             #69           // loadState
+  #164 = String             #102          // setAnnotateDetectMovementsOption
+  #165 = Utf8               java/lang/String
+  #166 = Class              #165          // java/lang/String
+  #167 = Utf8               format
+  #168 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #169 = NameAndType        #167:#168     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #170 = Methodref          #166.#169     // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #171 = Utf8               java/lang/IllegalArgumentException
+  #172 = Class              #171          // java/lang/IllegalArgumentException
+  #173 = NameAndType        #5:#93        // "<init>":(Ljava/lang/String;)V
+  #174 = Methodref          #172.#173     // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+  #175 = Utf8               java/lang/IllegalStateException
+  #176 = Class              #175          // java/lang/IllegalStateException
+  #177 = Methodref          #176.#173     // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+  #178 = Utf8               [Ljava/lang/Object;
+  #179 = Class              #178          // "[Ljava/lang/Object;"
+  #180 = Utf8               java/lang/RuntimeException
+  #181 = Class              #180          // java/lang/RuntimeException
+  #182 = Utf8               StackMapTable
+{
+  private git4idea.config.GitVcsApplicationSettings$State myState;
+    descriptor: Lgit4idea/config/GitVcsApplicationSettings$State;
+    flags: (0x0002) ACC_PRIVATE
+
+  public git4idea.config.GitVcsApplicationSettings();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #7                  // class git4idea/config/GitVcsApplicationSettings$State
+         8: dup
+         9: invokespecial #9                  // Method git4idea/config/GitVcsApplicationSettings$State."<init>":()V
+        12: putfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+        15: return
+      LineNumberTable:
+        line 21: 0
+        line 22: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public static git4idea.config.GitVcsApplicationSettings getInstance();
+    descriptor: ()Lgit4idea/config/GitVcsApplicationSettings;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: invokestatic  #16                 // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+         3: ldc           #11                 // class git4idea/config/GitVcsApplicationSettings
+         5: invokeinterface #22,  2           // InterfaceMethod com/intellij/openapi/application/Application.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+        10: checkcast     #11                 // class git4idea/config/GitVcsApplicationSettings
+        13: areturn
+      LineNumberTable:
+        line 41: 0
+
+  public git4idea.config.GitVcsApplicationSettings$State getState();
+    descriptor: ()Lgit4idea/config/GitVcsApplicationSettings$State;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: areturn
+      LineNumberTable:
+        line 46: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public void loadState(git4idea.config.GitVcsApplicationSettings$State);
+    descriptor: (Lgit4idea/config/GitVcsApplicationSettings$State;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     8
+         4: iconst_0
+         5: invokestatic  #154                // Method $$$reportNull$$$0:(I)V
+         8: aload_0
+         9: aload_1
+        10: putfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+        13: return
+      StackMapTable: number_of_entries = 1
+        frame_type = 8 /* same */
+      LineNumberTable:
+        line 51: 8
+        line 52: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0      14     1 state   Lgit4idea/config/GitVcsApplicationSettings$State;
+    RuntimeInvisibleTypeAnnotations:
+      0: #86(): METHOD_FORMAL_PARAMETER, param_index=0
+        org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #86()
+          org.jetbrains.annotations.NotNull
+
+  public java.lang.String getSavedPathToGit();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #28                 // Field git4idea/config/GitVcsApplicationSettings$State.myPathToGit:Ljava/lang/String;
+         7: areturn
+      LineNumberTable:
+        line 55: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+    RuntimeInvisibleAnnotations:
+      0: #91()
+        org.jetbrains.annotations.Nullable
+    RuntimeInvisibleTypeAnnotations:
+      0: #91(): METHOD_RETURN
+        org.jetbrains.annotations.Nullable
+
+  public void setPathToGit(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: aload_1
+         5: putfield      #28                 // Field git4idea/config/GitVcsApplicationSettings$State.myPathToGit:Ljava/lang/String;
+         8: invokestatic  #32                 // Method git4idea/config/GitExecutableDetector.fireExecutableChanged:()V
+        11: return
+      LineNumberTable:
+        line 59: 0
+        line 60: 8
+        line 61: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0      12     1 pathToGit   Ljava/lang/String;
+    RuntimeInvisibleTypeAnnotations:
+      0: #91(): METHOD_FORMAL_PARAMETER, param_index=0
+        org.jetbrains.annotations.Nullable
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #91()
+          org.jetbrains.annotations.Nullable
+
+  public boolean isIgnoreWhitespaces();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #37                 // Field git4idea/config/GitVcsApplicationSettings$State.ANNOTATE_IGNORE_SPACES:Z
+         7: ireturn
+      LineNumberTable:
+        line 64: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public void setIgnoreWhitespaces(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: iload_1
+         5: putfield      #37                 // Field git4idea/config/GitVcsApplicationSettings$State.ANNOTATE_IGNORE_SPACES:Z
+         8: return
+      LineNumberTable:
+        line 68: 0
+        line 69: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 value   Z
+
+  public git4idea.config.GitVcsApplicationSettings$AnnotateDetectMovementsOption getAnnotateDetectMovementsOption();
+    descriptor: ()Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #41                 // Field git4idea/config/GitVcsApplicationSettings$State.ANNOTATE_DETECT_INNER_MOVEMENTS:Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+         7: dup
+         8: ifnonnull     15
+        11: iconst_1
+        12: invokestatic  #154                // Method $$$reportNull$$$0:(I)V
+        15: areturn
+      StackMapTable: number_of_entries = 1
+        frame_type = 79 /* same_locals_1_stack_item */
+          stack = [ class git4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption ]
+      LineNumberTable:
+        line 72: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+    RuntimeInvisibleAnnotations:
+      0: #86()
+        org.jetbrains.annotations.NotNull
+    RuntimeInvisibleTypeAnnotations:
+      0: #86(): METHOD_RETURN
+        org.jetbrains.annotations.NotNull
+
+  public void setAnnotateDetectMovementsOption(git4idea.config.GitVcsApplicationSettings$AnnotateDetectMovementsOption);
+    descriptor: (Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     8
+         4: iconst_2
+         5: invokestatic  #154                // Method $$$reportNull$$$0:(I)V
+         8: aload_0
+         9: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+        12: aload_1
+        13: putfield      #41                 // Field git4idea/config/GitVcsApplicationSettings$State.ANNOTATE_DETECT_INNER_MOVEMENTS:Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+        16: return
+      StackMapTable: number_of_entries = 1
+        frame_type = 8 /* same */
+      LineNumberTable:
+        line 76: 8
+        line 77: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0      17     1 value   Lgit4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption;
+    RuntimeInvisibleTypeAnnotations:
+      0: #86(): METHOD_FORMAL_PARAMETER, param_index=0
+        org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #86()
+          org.jetbrains.annotations.NotNull
+
+  public void setUseCredentialHelper(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: iload_1
+         5: putfield      #45                 // Field git4idea/config/GitVcsApplicationSettings$State.USE_CREDENTIAL_HELPER:Z
+         8: return
+      LineNumberTable:
+        line 80: 0
+        line 81: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 useCredentialHelper   Z
+
+  public boolean isUseCredentialHelper();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #45                 // Field git4idea/config/GitVcsApplicationSettings$State.USE_CREDENTIAL_HELPER:Z
+         7: ireturn
+      LineNumberTable:
+        line 84: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public boolean isStagingAreaEnabled();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #48                 // Field git4idea/config/GitVcsApplicationSettings$State.STAGING_AREA_ENABLED:Z
+         7: ireturn
+      LineNumberTable:
+        line 88: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public void setStagingAreaEnabled(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: iload_1
+         5: putfield      #48                 // Field git4idea/config/GitVcsApplicationSettings$State.STAGING_AREA_ENABLED:Z
+         8: return
+      LineNumberTable:
+        line 92: 0
+        line 93: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 isStagingAreaEnabled   Z
+
+  public boolean isCombinedStashesAndShelvesTabEnabled();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #51                 // Field git4idea/config/GitVcsApplicationSettings$State.COMBINED_STASHES_AND_SHELVES_ENABLED:Z
+         7: ireturn
+      LineNumberTable:
+        line 96: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public void setCombinedStashesAndShelvesTabEnabled(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: iload_1
+         5: putfield      #51                 // Field git4idea/config/GitVcsApplicationSettings$State.COMBINED_STASHES_AND_SHELVES_ENABLED:Z
+         8: return
+      LineNumberTable:
+        line 99: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 isEnabled   Z
+
+  public boolean isCompareWithLocalInStashesEnabled();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #54                 // Field git4idea/config/GitVcsApplicationSettings$State.COMPARE_WITH_LOCAL_IN_STASHES_ENABLED:Z
+         7: ireturn
+      LineNumberTable:
+        line 101: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public git4idea.cherrypick.EmptyCherryPickResolutionStrategy getEmptyCherryPickResolutionStrategy();
+    descriptor: ()Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #57                 // Field git4idea/config/GitVcsApplicationSettings$State.EMPTY_CHERRY_PICK_RESOLUTION_STRATEGY:Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+         7: areturn
+      LineNumberTable:
+        line 103: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public void setEmptyCherryPickResolutionStrategy(git4idea.cherrypick.EmptyCherryPickResolutionStrategy);
+    descriptor: (Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: aload_1
+         5: putfield      #57                 // Field git4idea/config/GitVcsApplicationSettings$State.EMPTY_CHERRY_PICK_RESOLUTION_STRATEGY:Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+         8: return
+      LineNumberTable:
+        line 105: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 strategy   Lgit4idea/cherrypick/EmptyCherryPickResolutionStrategy;
+
+  public void setCompareWithLocalInStashesEnabled(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: iload_1
+         5: putfield      #54                 // Field git4idea/config/GitVcsApplicationSettings$State.COMPARE_WITH_LOCAL_IN_STASHES_ENABLED:Z
+         8: return
+      LineNumberTable:
+        line 108: 0
+        line 109: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 isEnabled   Z
+
+  public boolean isSplitDiffPreviewInStashesEnabled();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #61                 // Field git4idea/config/GitVcsApplicationSettings$State.SPLIT_DIFF_PREVIEW_IN_STASHES_ENABLED:Z
+         7: ireturn
+      LineNumberTable:
+        line 112: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public void setSplitDiffPreviewInStashesEnabled(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: iload_1
+         5: putfield      #61                 // Field git4idea/config/GitVcsApplicationSettings$State.SPLIT_DIFF_PREVIEW_IN_STASHES_ENABLED:Z
+         8: return
+      LineNumberTable:
+        line 116: 0
+        line 117: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 isEnabled   Z
+
+  public boolean isShowDropCommitDialog();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: getfield      #64                 // Field git4idea/config/GitVcsApplicationSettings$State.SHOW_DROP_COMMIT_DIALOG:Z
+         7: ireturn
+      LineNumberTable:
+        line 120: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  public void setShowDropCommitDialog(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #10                 // Field myState:Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: iload_1
+         5: putfield      #64                 // Field git4idea/config/GitVcsApplicationSettings$State.SHOW_DROP_COMMIT_DIALOG:Z
+         8: return
+      LineNumberTable:
+        line 124: 0
+        line 125: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+            0       9     1 isShowDropCommitDialog   Z
+
+  public void loadState(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #7                  // class git4idea/config/GitVcsApplicationSettings$State
+         5: invokevirtual #67                 // Method loadState:(Lgit4idea/config/GitVcsApplicationSettings$State;)V
+         8: return
+      LineNumberTable:
+        line 17: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+    RuntimeInvisibleTypeAnnotations:
+      0: #86(): METHOD_FORMAL_PARAMETER, param_index=0
+        org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #86()
+          org.jetbrains.annotations.NotNull
+    MethodParameters:
+      Name                           Flags
+      <no name>                      synthetic
+
+  public java.lang.Object getState();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #71                 // Method getState:()Lgit4idea/config/GitVcsApplicationSettings$State;
+         4: areturn
+      LineNumberTable:
+        line 17: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lgit4idea/config/GitVcsApplicationSettings;
+
+  private static void $$$reportNull$$$0(int);
+    descriptor: (I)V
+    flags: (0x100a) ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=5, locals=1, args_size=1
+         0: iload_0
+         1: tableswitch   { // 0 to 2
+
+                       0: 28
+
+                       1: 33
+
+                       2: 28
+                 default: 28
+            }
+        28: ldc           #156                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+        30: goto          38
+        33: ldc           #158                // String @NotNull method %s.%s must not return null
+        35: goto          38
+        38: iload_0
+        39: tableswitch   { // 0 to 2
+
+                       0: 64
+
+                       1: 68
+
+                       2: 64
+                 default: 64
+            }
+        64: iconst_3
+        65: goto          72
+        68: iconst_2
+        69: goto          72
+        72: anewarray     #2                  // class java/lang/Object
+        75: iload_0
+        76: tableswitch   { // 0 to 2
+
+                       0: 104
+
+                       1: 112
+
+                       2: 120
+                 default: 104
+            }
+       104: dup
+       105: iconst_0
+       106: ldc           #159                // String state
+       108: aastore
+       109: goto          128
+       112: dup
+       113: iconst_0
+       114: ldc           #160                // String git4idea/config/GitVcsApplicationSettings
+       116: aastore
+       117: goto          128
+       120: dup
+       121: iconst_0
+       122: ldc           #161                // String value
+       124: aastore
+       125: goto          128
+       128: iload_0
+       129: tableswitch   { // 0 to 2
+
+                       0: 156
+
+                       1: 164
+
+                       2: 156
+                 default: 156
+            }
+       156: dup
+       157: iconst_1
+       158: ldc           #160                // String git4idea/config/GitVcsApplicationSettings
+       160: aastore
+       161: goto          172
+       164: dup
+       165: iconst_1
+       166: ldc           #162                // String getAnnotateDetectMovementsOption
+       168: aastore
+       169: goto          172
+       172: iload_0
+       173: tableswitch   { // 0 to 2
+
+                       0: 200
+
+                       1: 208
+
+                       2: 211
+                 default: 200
+            }
+       200: dup
+       201: iconst_2
+       202: ldc           #163                // String loadState
+       204: aastore
+       205: goto          219
+       208: goto          219
+       211: dup
+       212: iconst_2
+       213: ldc           #164                // String setAnnotateDetectMovementsOption
+       215: aastore
+       216: goto          219
+       219: invokestatic  #170                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       222: iload_0
+       223: tableswitch   { // 0 to 2
+
+                       0: 248
+
+                       1: 259
+
+                       2: 248
+                 default: 248
+            }
+       248: new           #172                // class java/lang/IllegalArgumentException
+       251: dup_x1
+       252: swap
+       253: invokespecial #174                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+       256: goto          270
+       259: new           #176                // class java/lang/IllegalStateException
+       262: dup_x1
+       263: swap
+       264: invokespecial #177                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       267: goto          270
+       270: athrow
+      StackMapTable: number_of_entries = 20
+        frame_type = 28 /* same */
+        frame_type = 4 /* same */
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 89 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 3
+          locals = [ int ]
+          stack = [ class java/lang/String, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 31
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 27
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 27
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ int ]
+          stack = [ class java/lang/String, class "[Ljava/lang/Object;" ]
+        frame_type = 92 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/lang/RuntimeException ]
+}
+InnerClasses:
+  public static final #149= #7 of #11;    // State=class git4idea/config/GitVcsApplicationSettings$State of class git4idea/config/GitVcsApplicationSettings
+  public static final #150= #146 of #11;  // AnnotateDetectMovementsOption=class git4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption of class git4idea/config/GitVcsApplicationSettings
+Signature: #127                         // Ljava/lang/Object;Lcom/intellij/openapi/components/PersistentStateComponent<Lgit4idea/config/GitVcsApplicationSettings$State;>;
+SourceFile: "GitVcsApplicationSettings.java"
+RuntimeVisibleAnnotations:
+  0: #131(#132=s#133,#134=e#135.#136,#137=Z#138,#139=[@#140(#99=s#141,#142=e#143.#144)])
+    com.intellij.openapi.components.State(
+      name="Git.Application.Settings"
+      category=Lcom/intellij/openapi/components/SettingsCategory;.TOOLS
+      exportable=true
+      storages=[@com.intellij.openapi.components.Storage(
+        value="git.xml"
+        roamingType=Lcom/intellij/openapi/components/RoamingType;.DISABLED
+      )]
+    )
+NestMembers:
+  git4idea/config/GitVcsApplicationSettings$AnnotateDetectMovementsOption
+  git4idea/config/GitVcsApplicationSettings$State

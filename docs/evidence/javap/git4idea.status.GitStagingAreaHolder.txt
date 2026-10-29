@@ -1,0 +1,1106 @@
+Compiled from "GitStagingAreaHolder.java"
+public class git4idea.status.GitStagingAreaHolder {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  public static final com.intellij.util.messages.Topic<git4idea.status.GitStagingAreaHolder$StagingAreaListener> TOPIC;
+
+  private final com.intellij.openapi.project.Project myProject;
+
+  private final git4idea.repo.GitRepository myRepository;
+
+  private final java.lang.Object LOCK;
+
+  private final java.util.List<git4idea.index.GitFileStatus> myRecords;
+
+  public git4idea.status.GitStagingAreaHolder(git4idea.repo.GitRepository);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: invokespecial #1                  // Method java/lang/Object."<init>":()V
+      12: aload_0
+      13: new           #2                  // class java/lang/Object
+      16: dup
+      17: invokespecial #1                  // Method java/lang/Object."<init>":()V
+      20: putfield      #7                  // Field LOCK:Ljava/lang/Object;
+      23: aload_0
+      24: new           #13                 // class java/util/ArrayList
+      27: dup
+      28: invokespecial #15                 // Method java/util/ArrayList."<init>":()V
+      31: putfield      #16                 // Field myRecords:Ljava/util/List;
+      34: aload_0
+      35: aload_1
+      36: invokeinterface #20,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      41: putfield      #26                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      44: aload_0
+      45: aload_1
+      46: putfield      #30                 // Field myRepository:Lgit4idea/repo/GitRepository;
+      49: return
+
+  public java.util.List<git4idea.index.GitFileStatus> getAllRecords();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field LOCK:Ljava/lang/Object;
+       4: dup
+       5: astore_1
+       6: monitorenter
+       7: new           #13                 // class java/util/ArrayList
+      10: dup
+      11: aload_0
+      12: getfield      #16                 // Field myRecords:Ljava/util/List;
+      15: invokespecial #34                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      18: aload_1
+      19: monitorexit
+      20: dup
+      21: ifnonnull     28
+      24: iconst_1
+      25: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      28: areturn
+      29: astore_2
+      30: aload_1
+      31: monitorexit
+      32: aload_2
+      33: athrow
+    Exception table:
+       from    to  target type
+           7    20    29   any
+          29    32    29   any
+
+  public git4idea.index.GitFileStatus findRecord(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_2
+       5: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #7                  // Field LOCK:Ljava/lang/Object;
+      12: dup
+      13: astore_2
+      14: monitorenter
+      15: aload_0
+      16: getfield      #16                 // Field myRecords:Ljava/util/List;
+      19: aload_1
+      20: invokedynamic #37,  0             // InvokeDynamic #0:value:(Lcom/intellij/openapi/vcs/FilePath;)Lcom/intellij/openapi/util/Condition;
+      25: invokestatic  #41                 // Method com/intellij/util/containers/ContainerUtil.find:(Ljava/lang/Iterable;Lcom/intellij/openapi/util/Condition;)Ljava/lang/Object;
+      28: checkcast     #47                 // class git4idea/index/GitFileStatus
+      31: aload_2
+      32: monitorexit
+      33: areturn
+      34: astore_3
+      35: aload_2
+      36: monitorexit
+      37: aload_3
+      38: athrow
+    Exception table:
+       from    to  target type
+          15    33    34   any
+          34    37    34   any
+
+  public boolean isEmpty();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field LOCK:Ljava/lang/Object;
+       4: dup
+       5: astore_1
+       6: monitorenter
+       7: aload_0
+       8: getfield      #16                 // Field myRecords:Ljava/util/List;
+      11: invokeinterface #49,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+      16: aload_1
+      17: monitorexit
+      18: ireturn
+      19: astore_2
+      20: aload_1
+      21: monitorexit
+      22: aload_2
+      23: athrow
+    Exception table:
+       from    to  target type
+           7    18    19   any
+          19    22    19   any
+
+  public boolean hasConflicts();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field LOCK:Ljava/lang/Object;
+       4: dup
+       5: astore_1
+       6: monitorenter
+       7: aload_0
+       8: getfield      #16                 // Field myRecords:Ljava/util/List;
+      11: invokedynamic #55,  0             // InvokeDynamic #1:value:()Lcom/intellij/openapi/util/Condition;
+      16: invokestatic  #58                 // Method com/intellij/util/containers/ContainerUtil.exists:(Ljava/lang/Iterable;Lcom/intellij/openapi/util/Condition;)Z
+      19: aload_1
+      20: monitorexit
+      21: ireturn
+      22: astore_2
+      23: aload_1
+      24: monitorexit
+      25: aload_2
+      26: athrow
+    Exception table:
+       from    to  target type
+           7    21    22   any
+          22    25    22   any
+
+  public java.util.List<git4idea.repo.GitConflict> getAllConflicts();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field LOCK:Ljava/lang/Object;
+       4: dup
+       5: astore_1
+       6: monitorenter
+       7: aload_0
+       8: getfield      #16                 // Field myRecords:Ljava/util/List;
+      11: aload_0
+      12: invokedynamic #62,  0             // InvokeDynamic #2:fun:(Lgit4idea/status/GitStagingAreaHolder;)Lcom/intellij/util/Function;
+      17: invokestatic  #66                 // Method com/intellij/util/containers/ContainerUtil.mapNotNull:(Ljava/util/Collection;Lcom/intellij/util/Function;)Ljava/util/List;
+      20: aload_1
+      21: monitorexit
+      22: dup
+      23: ifnonnull     30
+      26: iconst_3
+      27: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      30: areturn
+      31: astore_2
+      32: aload_1
+      33: monitorexit
+      34: aload_2
+      35: athrow
+    Exception table:
+       from    to  target type
+           7    22    31   any
+          31    34    31   any
+
+  public git4idea.repo.GitConflict findConflict(com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: aload_0
+      10: aload_1
+      11: invokevirtual #70                 // Method findRecord:(Lcom/intellij/openapi/vcs/FilePath;)Lgit4idea/index/GitFileStatus;
+      14: invokevirtual #74                 // Method createConflict:(Lgit4idea/index/GitFileStatus;)Lgit4idea/repo/GitConflict;
+      17: areturn
+
+  private git4idea.repo.GitConflict createConflict(git4idea.index.GitFileStatus);
+    Code:
+       0: aload_1
+       1: ifnonnull     6
+       4: aconst_null
+       5: areturn
+       6: aload_0
+       7: getfield      #30                 // Field myRepository:Lgit4idea/repo/GitRepository;
+      10: invokeinterface #78,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      15: aload_1
+      16: invokestatic  #82                 // Method createConflict:(Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/index/GitFileStatus;)Lgit4idea/repo/GitConflict;
+      19: areturn
+
+  public static git4idea.repo.GitConflict createConflict(com.intellij.openapi.vfs.VirtualFile, git4idea.index.GitFileStatus);
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_5
+       5: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     17
+      12: bipush        6
+      14: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      17: aload_1
+      18: invokevirtual #85                 // Method git4idea/index/GitFileStatus.getIndex:()C
+      21: aload_1
+      22: invokevirtual #89                 // Method git4idea/index/GitFileStatus.getWorkTree:()C
+      25: invokestatic  #92                 // Method git4idea/index/GitIndexStatusUtilKt.isConflicted:(CC)Z
+      28: ifne          33
+      31: aconst_null
+      32: areturn
+      33: new           #98                 // class git4idea/repo/GitConflict
+      36: dup
+      37: aload_0
+      38: aload_1
+      39: invokevirtual #100                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+      42: aload_1
+      43: invokevirtual #85                 // Method git4idea/index/GitFileStatus.getIndex:()C
+      46: invokestatic  #104                // Method getConflictStatus:(C)Lgit4idea/repo/GitConflict$Status;
+      49: aload_1
+      50: invokevirtual #89                 // Method git4idea/index/GitFileStatus.getWorkTree:()C
+      53: invokestatic  #104                // Method getConflictStatus:(C)Lgit4idea/repo/GitConflict$Status;
+      56: invokespecial #108                // Method git4idea/repo/GitConflict."<init>":(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lgit4idea/repo/GitConflict$Status;Lgit4idea/repo/GitConflict$Status;)V
+      59: areturn
+
+  private static git4idea.repo.GitConflict$Status getConflictStatus(char);
+    Code:
+       0: iload_0
+       1: bipush        65
+       3: if_icmpne     19
+       6: getstatic     #111                // Field git4idea/repo/GitConflict$Status.ADDED:Lgit4idea/repo/GitConflict$Status;
+       9: dup
+      10: ifnonnull     18
+      13: bipush        7
+      15: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      18: areturn
+      19: iload_0
+      20: bipush        68
+      22: if_icmpne     38
+      25: getstatic     #117                // Field git4idea/repo/GitConflict$Status.DELETED:Lgit4idea/repo/GitConflict$Status;
+      28: dup
+      29: ifnonnull     37
+      32: bipush        8
+      34: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      37: areturn
+      38: getstatic     #120                // Field git4idea/repo/GitConflict$Status.MODIFIED:Lgit4idea/repo/GitConflict$Status;
+      41: dup
+      42: ifnonnull     50
+      45: bipush        9
+      47: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      50: areturn
+
+  public java.util.List<git4idea.index.GitFileStatus> refresh(com.intellij.openapi.vcs.util.paths.RootDirtySet) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        10
+       6: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #30                 // Field myRepository:Lgit4idea/repo/GitRepository;
+      13: invokeinterface #78,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      18: astore_2
+      19: aload_0
+      20: getfield      #26                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      23: aload_1
+      24: invokevirtual #123                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.isEverythingDirty:()Z
+      27: invokestatic  #128                // Method git4idea/GitRefreshUsageCollector.logStatusRefresh:(Lcom/intellij/openapi/project/Project;Z)Lcom/intellij/internal/statistic/StructuredIdeActivity;
+      30: astore_3
+      31: aload_0
+      32: getfield      #26                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      35: aload_2
+      36: aload_1
+      37: invokevirtual #134                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.collectFilePaths:()Ljava/util/List;
+      40: iconst_1
+      41: iconst_0
+      42: iconst_0
+      43: invokestatic  #138                // Method git4idea/index/GitIndexStatusUtilKt.getStatus:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;ZZZ)Ljava/util/List;
+      46: astore        4
+      48: aload_3
+      49: invokevirtual #142                // Method com/intellij/internal/statistic/StructuredIdeActivity.finished:()Lcom/intellij/internal/statistic/StructuredIdeActivity;
+      52: pop
+      53: aload_0
+      54: aload         4
+      56: aload_1
+      57: invokevirtual #148                // Method removeUnwantedRecords:(Ljava/util/Collection;Lcom/intellij/openapi/vcs/util/paths/RootDirtySet;)V
+      60: aload_0
+      61: getfield      #7                  // Field LOCK:Ljava/lang/Object;
+      64: dup
+      65: astore        5
+      67: monitorenter
+      68: aload_0
+      69: getfield      #16                 // Field myRecords:Ljava/util/List;
+      72: aload_1
+      73: invokedynamic #152,  0            // InvokeDynamic #3:test:(Lcom/intellij/openapi/vcs/util/paths/RootDirtySet;)Ljava/util/function/Predicate;
+      78: invokeinterface #156,  2          // InterfaceMethod java/util/List.removeIf:(Ljava/util/function/Predicate;)Z
+      83: pop
+      84: aload_0
+      85: getfield      #16                 // Field myRecords:Ljava/util/List;
+      88: aload         4
+      90: invokeinterface #160,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      95: pop
+      96: aload         5
+      98: monitorexit
+      99: goto          110
+     102: astore        6
+     104: aload         5
+     106: monitorexit
+     107: aload         6
+     109: athrow
+     110: aload_0
+     111: getfield      #26                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     114: getstatic     #164                // Field TOPIC:Lcom/intellij/util/messages/Topic;
+     117: invokestatic  #168                // Method com/intellij/openapi/progress/util/BackgroundTaskUtil.syncPublisher:(Lcom/intellij/openapi/project/Project;Lcom/intellij/util/messages/Topic;)Ljava/lang/Object;
+     120: checkcast     #174                // class git4idea/status/GitStagingAreaHolder$StagingAreaListener
+     123: aload_0
+     124: getfield      #30                 // Field myRepository:Lgit4idea/repo/GitRepository;
+     127: invokeinterface #176,  2          // InterfaceMethod git4idea/status/GitStagingAreaHolder$StagingAreaListener.stagingAreaChanged:(Lgit4idea/repo/GitRepository;)V
+     132: aload         4
+     134: dup
+     135: ifnonnull     143
+     138: bipush        11
+     140: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+     143: areturn
+    Exception table:
+       from    to  target type
+          68    99   102   any
+         102   107   102   any
+
+  private void removeUnwantedRecords(java.util.Collection<git4idea.index.GitFileStatus>, com.intellij.openapi.vcs.util.paths.RootDirtySet);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        12
+       6: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        13
+      15: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: getfield      #26                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      22: invokestatic  #180                // Method com/intellij/openapi/vcs/ProjectLevelVcsManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/ProjectLevelVcsManager;
+      25: astore_3
+      26: aload_0
+      27: getfield      #30                 // Field myRepository:Lgit4idea/repo/GitRepository;
+      30: invokeinterface #78,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      35: astore        4
+      37: iconst_0
+      38: istore        5
+      40: bipush        10
+      42: istore        6
+      44: aload_1
+      45: invokeinterface #186,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      50: astore        7
+      52: aload         7
+      54: invokeinterface #192,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      59: ifeq          218
+      62: aload         7
+      64: invokeinterface #197,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      69: checkcast     #47                 // class git4idea/index/GitFileStatus
+      72: astore        8
+      74: aload         8
+      76: aload_2
+      77: invokestatic  #201                // Method isUnder:(Lgit4idea/index/GitFileStatus;Lcom/intellij/openapi/vcs/util/paths/RootDirtySet;)Z
+      80: istore        9
+      82: iload         9
+      84: ifne          97
+      87: aload         7
+      89: invokeinterface #205,  1          // InterfaceMethod java/util/Iterator.remove:()V
+      94: goto          52
+      97: aload_3
+      98: aload         8
+     100: invokevirtual #100                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+     103: invokevirtual #208                // Method com/intellij/openapi/vcs/ProjectLevelVcsManager.getVcsRootFor:(Lcom/intellij/openapi/vcs/FilePath;)Lcom/intellij/openapi/vfs/VirtualFile;
+     106: astore        10
+     108: aload         4
+     110: aload         10
+     112: invokevirtual #212                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     115: ifne          128
+     118: aload         8
+     120: aload         10
+     122: invokestatic  #216                // Method isSubmoduleStatus:(Lgit4idea/index/GitFileStatus;Lcom/intellij/openapi/vfs/VirtualFile;)Z
+     125: ifeq          132
+     128: iconst_1
+     129: goto          133
+     132: iconst_0
+     133: istore        11
+     135: iload         11
+     137: ifeq          143
+     140: goto          52
+     143: aload         7
+     145: invokeinterface #205,  1          // InterfaceMethod java/util/Iterator.remove:()V
+     150: iinc          5, 1
+     153: iload         5
+     155: iload         6
+     157: if_icmplt     169
+     160: getstatic     #220                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     163: invokevirtual #224                // Method com/intellij/openapi/diagnostic/Logger.isDebugEnabled:()Z
+     166: ifeq          215
+     169: getstatic     #220                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     172: ldc           #229                // String Ignoring change under another root: %s; root: %s; mapped root: %s
+     174: iconst_3
+     175: anewarray     #2                  // class java/lang/Object
+     178: dup
+     179: iconst_0
+     180: aload         8
+     182: aastore
+     183: dup
+     184: iconst_1
+     185: aload         4
+     187: invokevirtual #231                // Method com/intellij/openapi/vfs/VirtualFile.getPresentableUrl:()Ljava/lang/String;
+     190: aastore
+     191: dup
+     192: iconst_2
+     193: aload         10
+     195: ifnull        206
+     198: aload         10
+     200: invokevirtual #231                // Method com/intellij/openapi/vfs/VirtualFile.getPresentableUrl:()Ljava/lang/String;
+     203: goto          208
+     206: ldc           #237                // String null
+     208: aastore
+     209: invokestatic  #239                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     212: invokevirtual #245                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     215: goto          52
+     218: iload         5
+     220: iload         6
+     222: if_icmplt     248
+     225: getstatic     #220                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     228: ldc           #249                // String Ignoring changed files under another root: %s files total
+     230: iconst_1
+     231: anewarray     #2                  // class java/lang/Object
+     234: dup
+     235: iconst_0
+     236: iload         5
+     238: invokestatic  #251                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     241: aastore
+     242: invokestatic  #239                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     245: invokevirtual #245                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     248: return
+
+  private static boolean isUnder(git4idea.index.GitFileStatus, com.intellij.openapi.vcs.util.paths.RootDirtySet);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        14
+       6: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        15
+      15: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      18: aload_1
+      19: aload_0
+      20: invokevirtual #100                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+      23: invokevirtual #257                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.belongsTo:(Lcom/intellij/openapi/vcs/FilePath;)Z
+      26: ifne          47
+      29: aload_0
+      30: invokevirtual #261                // Method git4idea/index/GitFileStatus.getOrigPath:()Lcom/intellij/openapi/vcs/FilePath;
+      33: ifnull        51
+      36: aload_1
+      37: aload_0
+      38: invokevirtual #261                // Method git4idea/index/GitFileStatus.getOrigPath:()Lcom/intellij/openapi/vcs/FilePath;
+      41: invokevirtual #257                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.belongsTo:(Lcom/intellij/openapi/vcs/FilePath;)Z
+      44: ifeq          51
+      47: iconst_1
+      48: goto          52
+      51: iconst_0
+      52: ireturn
+
+  private static boolean isSubmoduleStatus(git4idea.index.GitFileStatus, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        16
+       6: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     15
+      13: iconst_0
+      14: ireturn
+      15: aload_0
+      16: invokevirtual #100                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+      19: invokeinterface #264,  1          // InterfaceMethod com/intellij/openapi/vcs/FilePath.getPath:()Ljava/lang/String;
+      24: astore_2
+      25: aload_1
+      26: invokevirtual #268                // Method com/intellij/openapi/vfs/VirtualFile.getPath:()Ljava/lang/String;
+      29: astore_3
+      30: aload_2
+      31: aload_3
+      32: invokevirtual #269                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      35: ireturn
+
+  public static java.util.Map<com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.util.paths.RootDirtySet> collectDirtyPathsPerRoot(git4idea.GitVcsDirtyScope, java.util.Map<git4idea.repo.GitRepository, git4idea.repo.GitSubmodule>);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        17
+       6: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        18
+      15: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: invokevirtual #270                // Method git4idea/GitVcsDirtyScope.getProject:()Lcom/intellij/openapi/project/Project;
+      22: astore_2
+      23: new           #273                // class java/util/HashMap
+      26: dup
+      27: aload_0
+      28: invokevirtual #275                // Method git4idea/GitVcsDirtyScope.getDirtySetsPerRoot:()Ljava/util/Map;
+      31: invokespecial #279                // Method java/util/HashMap."<init>":(Ljava/util/Map;)V
+      34: astore_3
+      35: aload_3
+      36: invokeinterface #282,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      41: invokeinterface #288,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      46: astore        4
+      48: aload         4
+      50: invokeinterface #192,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      55: ifeq          230
+      58: aload         4
+      60: invokeinterface #197,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      65: checkcast     #232                // class com/intellij/openapi/vfs/VirtualFile
+      68: astore        5
+      70: aload_3
+      71: aload         5
+      73: invokeinterface #291,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      78: checkcast     #124                // class com/intellij/openapi/vcs/util/paths/RootDirtySet
+      81: astore        6
+      83: aload         6
+      85: invokevirtual #123                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.isEverythingDirty:()Z
+      88: ifeq          94
+      91: goto          48
+      94: aload_2
+      95: invokestatic  #295                // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      98: aload         5
+     100: invokevirtual #300                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+     103: checkcast     #21                 // class git4idea/repo/GitRepository
+     106: astore        7
+     108: aload         7
+     110: ifnonnull     116
+     113: goto          48
+     116: aload         7
+     118: invokeinterface #304,  1          // InterfaceMethod git4idea/repo/GitRepository.getStagingAreaHolder:()Lgit4idea/status/GitStagingAreaHolder;
+     123: invokevirtual #308                // Method getAllRecords:()Ljava/util/List;
+     126: astore        8
+     128: aload         8
+     130: invokeinterface #311,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     135: astore        9
+     137: aload         9
+     139: invokeinterface #192,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     144: ifeq          227
+     147: aload         9
+     149: invokeinterface #197,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     154: checkcast     #47                 // class git4idea/index/GitFileStatus
+     157: astore        10
+     159: aload         10
+     161: invokevirtual #100                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+     164: astore        11
+     166: aload         10
+     168: invokevirtual #261                // Method git4idea/index/GitFileStatus.getOrigPath:()Lcom/intellij/openapi/vcs/FilePath;
+     171: astore        12
+     173: aload         12
+     175: ifnull        195
+     178: aload         6
+     180: aload         12
+     182: invokevirtual #312                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.markDirty:(Lcom/intellij/openapi/vcs/FilePath;)V
+     185: aload         6
+     187: aload         11
+     189: invokevirtual #312                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.markDirty:(Lcom/intellij/openapi/vcs/FilePath;)V
+     192: goto          224
+     195: aload         10
+     197: invokevirtual #85                 // Method git4idea/index/GitFileStatus.getIndex:()C
+     200: invokestatic  #316                // Method isStatusCodeForPotentialRename:(C)Z
+     203: ifne          217
+     206: aload         10
+     208: invokevirtual #89                 // Method git4idea/index/GitFileStatus.getWorkTree:()C
+     211: invokestatic  #316                // Method isStatusCodeForPotentialRename:(C)Z
+     214: ifeq          224
+     217: aload         6
+     219: aload         11
+     221: invokevirtual #312                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.markDirty:(Lcom/intellij/openapi/vcs/FilePath;)V
+     224: goto          137
+     227: goto          48
+     230: aload_1
+     231: invokeinterface #320,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+     236: invokeinterface #186,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     241: astore        4
+     243: aload         4
+     245: invokeinterface #192,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     250: ifeq          346
+     253: aload         4
+     255: invokeinterface #197,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     260: checkcast     #324                // class git4idea/repo/GitSubmodule
+     263: astore        5
+     265: aload         5
+     267: invokevirtual #326                // Method git4idea/repo/GitSubmodule.getRepository:()Lgit4idea/repo/GitRepository;
+     270: invokeinterface #78,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     275: astore        6
+     277: aload         5
+     279: invokevirtual #330                // Method git4idea/repo/GitSubmodule.getParent:()Lgit4idea/repo/GitRepository;
+     282: invokeinterface #78,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     287: astore        7
+     289: aload_3
+     290: aload         6
+     292: invokeinterface #291,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     297: checkcast     #124                // class com/intellij/openapi/vcs/util/paths/RootDirtySet
+     300: astore        8
+     302: aload         8
+     304: ifnull        343
+     307: aload         8
+     309: invokevirtual #123                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.isEverythingDirty:()Z
+     312: ifeq          343
+     315: aload_3
+     316: aload         7
+     318: invokedynamic #333,  0            // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+     323: invokeinterface #337,  3          // InterfaceMethod java/util/Map.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+     328: checkcast     #124                // class com/intellij/openapi/vcs/util/paths/RootDirtySet
+     331: astore        9
+     333: aload         9
+     335: aload         6
+     337: invokestatic  #341                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/openapi/vcs/FilePath;
+     340: invokevirtual #312                // Method com/intellij/openapi/vcs/util/paths/RootDirtySet.markDirty:(Lcom/intellij/openapi/vcs/FilePath;)V
+     343: goto          243
+     346: aload_3
+     347: dup
+     348: ifnonnull     356
+     351: bipush        19
+     353: invokestatic  #515                // Method $$$reportNull$$$0:(I)V
+     356: areturn
+
+  private static boolean isStatusCodeForPotentialRename(char);
+    Code:
+       0: iload_0
+       1: invokestatic  #347                // Method git4idea/index/GitIndexStatusUtilKt.isRenamed:(C)Z
+       4: ifne          21
+       7: iload_0
+       8: invokestatic  #350                // Method git4idea/index/GitIndexStatusUtilKt.isDeleted:(C)Z
+      11: ifne          21
+      14: iload_0
+      15: invokestatic  #353                // Method git4idea/index/GitIndexStatusUtilKt.isAdded:(C)Z
+      18: ifeq          25
+      21: iconst_1
+      22: goto          26
+      25: iconst_0
+      26: ireturn
+
+  private static com.intellij.openapi.vcs.util.paths.RootDirtySet lambda$collectDirtyPathsPerRoot$3(com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: invokestatic  #356                // Method git4idea/GitVcsDirtyScope.createDirtySetForRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/openapi/vcs/util/paths/RootDirtySet;
+       4: areturn
+
+  private static boolean lambda$refresh$2(com.intellij.openapi.vcs.util.paths.RootDirtySet, git4idea.index.GitFileStatus);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokestatic  #201                // Method isUnder:(Lgit4idea/index/GitFileStatus;Lcom/intellij/openapi/vcs/util/paths/RootDirtySet;)Z
+       5: ireturn
+
+  private static boolean lambda$hasConflicts$1(git4idea.index.GitFileStatus);
+    Code:
+       0: aload_0
+       1: invokevirtual #85                 // Method git4idea/index/GitFileStatus.getIndex:()C
+       4: aload_0
+       5: invokevirtual #89                 // Method git4idea/index/GitFileStatus.getWorkTree:()C
+       8: invokestatic  #92                 // Method git4idea/index/GitIndexStatusUtilKt.isConflicted:(CC)Z
+      11: ireturn
+
+  private static boolean lambda$findRecord$0(com.intellij.openapi.vcs.FilePath, git4idea.index.GitFileStatus);
+    Code:
+       0: aload_1
+       1: invokevirtual #100                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+       4: aload_0
+       5: invokeinterface #360,  2          // InterfaceMethod com/intellij/openapi/vcs/FilePath.equals:(Ljava/lang/Object;)Z
+      10: ireturn
+
+  static {};
+    Code:
+       0: ldc           #8                  // class git4idea/status/GitStagingAreaHolder
+       2: invokestatic  #361                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #220                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: ldc_w         #364                // String GitStagingAreaHolder change
+      11: ldc           #174                // class git4idea/status/GitStagingAreaHolder$StagingAreaListener
+      13: invokestatic  #366                // Method com/intellij/util/messages/Topic.create:(Ljava/lang/String;Ljava/lang/Class;)Lcom/intellij/util/messages/Topic;
+      16: putstatic     #164                // Field TOPIC:Lcom/intellij/util/messages/Topic;
+      19: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 19
+
+                     0: 96
+
+                     1: 102
+
+                     2: 96
+
+                     3: 102
+
+                     4: 96
+
+                     5: 96
+
+                     6: 96
+
+                     7: 102
+
+                     8: 102
+
+                     9: 102
+
+                    10: 96
+
+                    11: 102
+
+                    12: 96
+
+                    13: 96
+
+                    14: 96
+
+                    15: 96
+
+                    16: 96
+
+                    17: 96
+
+                    18: 96
+
+                    19: 102
+               default: 96
+          }
+      96: ldc_w         #517                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      99: goto          108
+     102: ldc_w         #519                // String @NotNull method %s.%s must not return null
+     105: goto          108
+     108: iload_0
+     109: tableswitch   { // 0 to 19
+
+                     0: 204
+
+                     1: 208
+
+                     2: 204
+
+                     3: 208
+
+                     4: 204
+
+                     5: 204
+
+                     6: 204
+
+                     7: 208
+
+                     8: 208
+
+                     9: 208
+
+                    10: 204
+
+                    11: 208
+
+                    12: 204
+
+                    13: 204
+
+                    14: 204
+
+                    15: 204
+
+                    16: 204
+
+                    17: 204
+
+                    18: 204
+
+                    19: 208
+               default: 204
+          }
+     204: iconst_3
+     205: goto          212
+     208: iconst_2
+     209: goto          212
+     212: anewarray     #2                  // class java/lang/Object
+     215: iload_0
+     216: tableswitch   { // 0 to 19
+
+                     0: 312
+
+                     1: 321
+
+                     2: 330
+
+                     3: 321
+
+                     4: 330
+
+                     5: 339
+
+                     6: 348
+
+                     7: 321
+
+                     8: 321
+
+                     9: 321
+
+                    10: 357
+
+                    11: 321
+
+                    12: 366
+
+                    13: 357
+
+                    14: 348
+
+                    15: 375
+
+                    16: 348
+
+                    17: 384
+
+                    18: 393
+
+                    19: 321
+               default: 312
+          }
+     312: dup
+     313: iconst_0
+     314: ldc_w         #520                // String repository
+     317: aastore
+     318: goto          402
+     321: dup
+     322: iconst_0
+     323: ldc_w         #521                // String git4idea/status/GitStagingAreaHolder
+     326: aastore
+     327: goto          402
+     330: dup
+     331: iconst_0
+     332: ldc_w         #522                // String path
+     335: aastore
+     336: goto          402
+     339: dup
+     340: iconst_0
+     341: ldc_w         #523                // String root
+     344: aastore
+     345: goto          402
+     348: dup
+     349: iconst_0
+     350: ldc_w         #524                // String record
+     353: aastore
+     354: goto          402
+     357: dup
+     358: iconst_0
+     359: ldc_w         #525                // String dirtyPaths
+     362: aastore
+     363: goto          402
+     366: dup
+     367: iconst_0
+     368: ldc_w         #526                // String rootRecords
+     371: aastore
+     372: goto          402
+     375: dup
+     376: iconst_0
+     377: ldc_w         #527                // String dirtySet
+     380: aastore
+     381: goto          402
+     384: dup
+     385: iconst_0
+     386: ldc_w         #528                // String dirtyScope
+     389: aastore
+     390: goto          402
+     393: dup
+     394: iconst_0
+     395: ldc_w         #529                // String knownSubmodules
+     398: aastore
+     399: goto          402
+     402: iload_0
+     403: tableswitch   { // 0 to 19
+
+                     0: 496
+
+                     1: 505
+
+                     2: 496
+
+                     3: 514
+
+                     4: 496
+
+                     5: 496
+
+                     6: 496
+
+                     7: 523
+
+                     8: 523
+
+                     9: 523
+
+                    10: 496
+
+                    11: 532
+
+                    12: 496
+
+                    13: 496
+
+                    14: 496
+
+                    15: 496
+
+                    16: 496
+
+                    17: 496
+
+                    18: 496
+
+                    19: 541
+               default: 496
+          }
+     496: dup
+     497: iconst_1
+     498: ldc_w         #521                // String git4idea/status/GitStagingAreaHolder
+     501: aastore
+     502: goto          550
+     505: dup
+     506: iconst_1
+     507: ldc_w         #530                // String getAllRecords
+     510: aastore
+     511: goto          550
+     514: dup
+     515: iconst_1
+     516: ldc_w         #531                // String getAllConflicts
+     519: aastore
+     520: goto          550
+     523: dup
+     524: iconst_1
+     525: ldc_w         #532                // String getConflictStatus
+     528: aastore
+     529: goto          550
+     532: dup
+     533: iconst_1
+     534: ldc_w         #533                // String refresh
+     537: aastore
+     538: goto          550
+     541: dup
+     542: iconst_1
+     543: ldc_w         #534                // String collectDirtyPathsPerRoot
+     546: aastore
+     547: goto          550
+     550: iload_0
+     551: tableswitch   { // 0 to 19
+
+                     0: 644
+
+                     1: 653
+
+                     2: 656
+
+                     3: 653
+
+                     4: 665
+
+                     5: 674
+
+                     6: 674
+
+                     7: 653
+
+                     8: 653
+
+                     9: 653
+
+                    10: 683
+
+                    11: 653
+
+                    12: 692
+
+                    13: 692
+
+                    14: 701
+
+                    15: 701
+
+                    16: 710
+
+                    17: 719
+
+                    18: 719
+
+                    19: 653
+               default: 644
+          }
+     644: dup
+     645: iconst_2
+     646: ldc_w         #535                // String <init>
+     649: aastore
+     650: goto          728
+     653: goto          728
+     656: dup
+     657: iconst_2
+     658: ldc_w         #536                // String findRecord
+     661: aastore
+     662: goto          728
+     665: dup
+     666: iconst_2
+     667: ldc_w         #537                // String findConflict
+     670: aastore
+     671: goto          728
+     674: dup
+     675: iconst_2
+     676: ldc_w         #538                // String createConflict
+     679: aastore
+     680: goto          728
+     683: dup
+     684: iconst_2
+     685: ldc_w         #533                // String refresh
+     688: aastore
+     689: goto          728
+     692: dup
+     693: iconst_2
+     694: ldc_w         #539                // String removeUnwantedRecords
+     697: aastore
+     698: goto          728
+     701: dup
+     702: iconst_2
+     703: ldc_w         #540                // String isUnder
+     706: aastore
+     707: goto          728
+     710: dup
+     711: iconst_2
+     712: ldc_w         #541                // String isSubmoduleStatus
+     715: aastore
+     716: goto          728
+     719: dup
+     720: iconst_2
+     721: ldc_w         #534                // String collectDirtyPathsPerRoot
+     724: aastore
+     725: goto          728
+     728: invokestatic  #239                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     731: iload_0
+     732: tableswitch   { // 0 to 19
+
+                     0: 828
+
+                     1: 839
+
+                     2: 828
+
+                     3: 839
+
+                     4: 828
+
+                     5: 828
+
+                     6: 828
+
+                     7: 839
+
+                     8: 839
+
+                     9: 839
+
+                    10: 828
+
+                    11: 839
+
+                    12: 828
+
+                    13: 828
+
+                    14: 828
+
+                    15: 828
+
+                    16: 828
+
+                    17: 828
+
+                    18: 828
+
+                    19: 839
+               default: 828
+          }
+     828: new           #543                // class java/lang/IllegalArgumentException
+     831: dup_x1
+     832: swap
+     833: invokespecial #545                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     836: goto          850
+     839: new           #547                // class java/lang/IllegalStateException
+     842: dup_x1
+     843: swap
+     844: invokespecial #548                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     847: goto          850
+     850: athrow
+}

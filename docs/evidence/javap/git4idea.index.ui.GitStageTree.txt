@@ -1,0 +1,697 @@
+Compiled from "GitStageTree.kt"
+public abstract class git4idea.index.ui.GitStageTree extends com.intellij.openapi.vcs.changes.ui.AsyncChangesTree {
+  private final git4idea.index.ui.GitStageUiSettings settings;
+
+  private final com.intellij.openapi.vcs.changes.ui.AsyncChangesTreeModel changesTreeModel;
+
+  public git4idea.index.ui.GitStageTree(com.intellij.openapi.project.Project, git4idea.index.ui.GitStageUiSettings, com.intellij.openapi.Disposable);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String project
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #17                 // String settings
+       9: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #19                 // String parentDisposable
+      15: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_0
+      19: aload_1
+      20: iconst_0
+      21: iconst_1
+      22: invokespecial #22                 // Method com/intellij/openapi/vcs/changes/ui/AsyncChangesTree."<init>":(Lcom/intellij/openapi/project/Project;ZZ)V
+      25: aload_0
+      26: aload_2
+      27: putfield      #25                 // Field settings:Lgit4idea/index/ui/GitStageUiSettings;
+      30: nop
+      31: aload_0
+      32: getstatic     #31                 // Field git4idea/index/ui/GitStageTreeStateStrategy.INSTANCE:Lgit4idea/index/ui/GitStageTreeStateStrategy;
+      35: checkcast     #33                 // class com/intellij/openapi/vcs/changes/ui/ChangesTree$TreeStateStrategy
+      38: invokevirtual #37                 // Method setTreeStateStrategy:(Lcom/intellij/openapi/vcs/changes/ui/ChangesTree$TreeStateStrategy;)V
+      41: aload_0
+      42: iconst_0
+      43: invokevirtual #41                 // Method setScrollToSelection:(Z)V
+      46: new           #43                 // class git4idea/index/ui/GitStageTree$MyDnDSupport
+      49: dup
+      50: aload_0
+      51: invokespecial #46                 // Method git4idea/index/ui/GitStageTree$MyDnDSupport."<init>":(Lgit4idea/index/ui/GitStageTree;)V
+      54: aload_3
+      55: invokevirtual #50                 // Method git4idea/index/ui/GitStageTree$MyDnDSupport.install:(Lcom/intellij/openapi/Disposable;)V
+      58: aload_0
+      59: getfield      #25                 // Field settings:Lgit4idea/index/ui/GitStageUiSettings;
+      62: new           #52                 // class git4idea/index/ui/GitStageTree$1
+      65: dup
+      66: aload_0
+      67: invokespecial #53                 // Method git4idea/index/ui/GitStageTree$1."<init>":(Lgit4idea/index/ui/GitStageTree;)V
+      70: checkcast     #55                 // class git4idea/index/ui/GitStageUiSettingsListener
+      73: aload_3
+      74: invokeinterface #61,  3           // InterfaceMethod git4idea/index/ui/GitStageUiSettings.addListener:(Lgit4idea/index/ui/GitStageUiSettingsListener;Lcom/intellij/openapi/Disposable;)V
+      79: new           #63                 // class git4idea/index/ui/GitStageTree$2
+      82: dup
+      83: aload_0
+      84: invokespecial #64                 // Method git4idea/index/ui/GitStageTree$2."<init>":(Lgit4idea/index/ui/GitStageTree;)V
+      87: invokevirtual #67                 // Method git4idea/index/ui/GitStageTree$2.install:()V
+      90: nop
+      91: aload_0
+      92: new           #69                 // class git4idea/index/ui/GitStageTree$GitStateTreeModel
+      95: dup
+      96: aload_0
+      97: invokespecial #70                 // Method git4idea/index/ui/GitStageTree$GitStateTreeModel."<init>":(Lgit4idea/index/ui/GitStageTree;)V
+     100: checkcast     #72                 // class com/intellij/openapi/vcs/changes/ui/AsyncChangesTreeModel
+     103: putfield      #76                 // Field changesTreeModel:Lcom/intellij/openapi/vcs/changes/ui/AsyncChangesTreeModel;
+     106: return
+
+  protected abstract git4idea.index.GitStageTracker$State getState();
+
+  protected abstract java.util.Map<com.intellij.openapi.vfs.VirtualFile, java.util.List<com.intellij.openapi.vcs.FilePath>> getIgnoredFilePaths();
+
+  protected abstract java.util.List<git4idea.index.actions.StagingAreaOperation> getOperations();
+
+  public int getToggleClickCount();
+    Code:
+       0: iconst_2
+       1: ireturn
+
+  protected abstract void performStageOperation(java.util.List<git4idea.index.ui.GitFileStatusNode>, git4idea.index.actions.StagingAreaOperation);
+
+  protected abstract git4idea.index.actions.StagingAreaOperation getDndOperation(git4idea.index.ui.NodeKind);
+
+  protected abstract void showMergeDialog(java.util.List<? extends com.intellij.openapi.vfs.VirtualFile>);
+
+  protected abstract com.intellij.openapi.vcs.changes.ui.HoverIcon createHoverIcon(git4idea.index.ui.GitStageTree$ChangesBrowserGitFileStatusNode);
+
+  protected void customizeTreeModel(com.intellij.openapi.vcs.changes.ui.TreeModelBuilder);
+    Code:
+       0: aload_1
+       1: ldc           #105                // String builder
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: return
+
+  protected com.intellij.openapi.vcs.changes.ui.AsyncChangesTreeModel getChangesTreeModel();
+    Code:
+       0: aload_0
+       1: getfield      #76                 // Field changesTreeModel:Lcom/intellij/openapi/vcs/changes/ui/AsyncChangesTreeModel;
+       4: areturn
+
+  public void uiDataSnapshot(com.intellij.openapi.actionSystem.DataSink);
+    Code:
+       0: aload_1
+       1: ldc           #112                // String sink
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: invokespecial #114                // Method com/intellij/openapi/vcs/changes/ui/AsyncChangesTree.uiDataSnapshot:(Lcom/intellij/openapi/actionSystem/DataSink;)V
+      11: aload_0
+      12: invokevirtual #118                // Method selectedStatusNodes:()Lcom/intellij/util/containers/JBIterable;
+      15: invokevirtual #123                // Method com/intellij/util/containers/JBIterable.collect:()Lcom/intellij/util/containers/JBIterable;
+      18: dup
+      19: ldc           #125                // String collect(...)
+      21: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      24: astore_2
+      25: aload_0
+      26: invokespecial #131                // Method selectedChanges:()Lcom/intellij/util/containers/JBIterable;
+      29: invokevirtual #123                // Method com/intellij/util/containers/JBIterable.collect:()Lcom/intellij/util/containers/JBIterable;
+      32: dup
+      33: ldc           #125                // String collect(...)
+      35: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      38: astore_3
+      39: aload_1
+      40: getstatic     #137                // Field git4idea/index/ui/GitStageDataKeys.GIT_STAGE_TREE:Lcom/intellij/openapi/actionSystem/DataKey;
+      43: aload_0
+      44: invokeinterface #143,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.set:(Lcom/intellij/openapi/actionSystem/DataKey;Ljava/lang/Object;)V
+      49: aload_1
+      50: getstatic     #146                // Field git4idea/index/ui/GitStageDataKeys.GIT_STAGE_UI_SETTINGS:Lcom/intellij/openapi/actionSystem/DataKey;
+      53: aload_0
+      54: getfield      #25                 // Field settings:Lgit4idea/index/ui/GitStageUiSettings;
+      57: invokeinterface #143,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.set:(Lcom/intellij/openapi/actionSystem/DataKey;Ljava/lang/Object;)V
+      62: aload_1
+      63: getstatic     #149                // Field git4idea/index/ui/GitStageDataKeys.GIT_FILE_STATUS_NODES:Lcom/intellij/openapi/actionSystem/DataKey;
+      66: aload_2
+      67: invokeinterface #143,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.set:(Lcom/intellij/openapi/actionSystem/DataKey;Ljava/lang/Object;)V
+      72: aload_1
+      73: getstatic     #154                // Field com/intellij/openapi/vcs/VcsDataKeys.FILE_PATHS:Lcom/intellij/openapi/actionSystem/DataKey;
+      76: dup
+      77: ldc           #155                // String FILE_PATHS
+      79: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      82: aload_2
+      83: invokedynamic #174,  0            // InvokeDynamic #0:invoke:()Lkotlin/jvm/functions/Function1;
+      88: invokedynamic #185,  0            // InvokeDynamic #1:fun:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/Function;
+      93: invokevirtual #189                // Method com/intellij/util/containers/JBIterable.map:(Lcom/intellij/util/Function;)Lcom/intellij/util/containers/JBIterable;
+      96: dup
+      97: ldc           #191                // String map(...)
+      99: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     102: checkcast     #193                // class java/lang/Iterable
+     105: aload_3
+     106: invokedynamic #200,  0            // InvokeDynamic #2:invoke:()Lkotlin/jvm/functions/Function1;
+     111: invokedynamic #205,  0            // InvokeDynamic #3:fun:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/Function;
+     116: invokevirtual #189                // Method com/intellij/util/containers/JBIterable.map:(Lcom/intellij/util/Function;)Lcom/intellij/util/containers/JBIterable;
+     119: dup
+     120: ldc           #191                // String map(...)
+     122: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     125: checkcast     #193                // class java/lang/Iterable
+     128: invokestatic  #211                // Method kotlin/collections/CollectionsKt.plus:(Ljava/lang/Iterable;Ljava/lang/Iterable;)Ljava/util/List;
+     131: invokeinterface #143,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.set:(Lcom/intellij/openapi/actionSystem/DataKey;Ljava/lang/Object;)V
+     136: aload_1
+     137: getstatic     #214                // Field com/intellij/openapi/vcs/VcsDataKeys.CHANGES:Lcom/intellij/openapi/actionSystem/DataKey;
+     140: dup
+     141: ldc           #215                // String CHANGES
+     143: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     146: aload_3
+     147: getstatic     #221                // Field com/intellij/openapi/vcs/changes/Change.EMPTY_CHANGE_ARRAY:[Lcom/intellij/openapi/vcs/changes/Change;
+     150: invokevirtual #225                // Method com/intellij/util/containers/JBIterable.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+     153: invokeinterface #143,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.set:(Lcom/intellij/openapi/actionSystem/DataKey;Ljava/lang/Object;)V
+     158: aload_1
+     159: getstatic     #230                // Field com/intellij/openapi/actionSystem/PlatformDataKeys.DELETE_ELEMENT_PROVIDER:Lcom/intellij/openapi/actionSystem/DataKey;
+     162: dup
+     163: ldc           #231                // String DELETE_ELEMENT_PROVIDER
+     165: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     168: aload_2
+     169: invokevirtual #235                // Method com/intellij/util/containers/JBIterable.isEmpty:()Z
+     172: ifne          185
+     175: new           #237                // class com/intellij/openapi/fileChooser/actions/VirtualFileDeleteProvider
+     178: dup
+     179: invokespecial #239                // Method com/intellij/openapi/fileChooser/actions/VirtualFileDeleteProvider."<init>":()V
+     182: goto          186
+     185: aconst_null
+     186: invokeinterface #143,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.set:(Lcom/intellij/openapi/actionSystem/DataKey;Ljava/lang/Object;)V
+     191: aload_1
+     192: getstatic     #242                // Field com/intellij/openapi/vcs/VcsDataKeys.VIRTUAL_FILES:Lcom/intellij/openapi/actionSystem/DataKey;
+     195: dup
+     196: ldc           #243                // String VIRTUAL_FILES
+     198: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     201: aload_0
+     202: aload_2
+     203: aload_3
+     204: invokedynamic #255,  0            // InvokeDynamic #4:invoke:(Lgit4idea/index/ui/GitStageTree;Lcom/intellij/util/containers/JBIterable;Lcom/intellij/util/containers/JBIterable;)Lkotlin/jvm/functions/Function0;
+     209: invokeinterface #259,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.lazy:(Lcom/intellij/openapi/actionSystem/DataKey;Lkotlin/jvm/functions/Function0;)V
+     214: aload_1
+     215: getstatic     #264                // Field com/intellij/openapi/actionSystem/CommonDataKeys.VIRTUAL_FILE_ARRAY:Lcom/intellij/openapi/actionSystem/DataKey;
+     218: dup
+     219: ldc_w         #265                // String VIRTUAL_FILE_ARRAY
+     222: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     225: aload_0
+     226: aload_2
+     227: aload_3
+     228: invokedynamic #273,  0            // InvokeDynamic #5:invoke:(Lgit4idea/index/ui/GitStageTree;Lcom/intellij/util/containers/JBIterable;Lcom/intellij/util/containers/JBIterable;)Lkotlin/jvm/functions/Function0;
+     233: invokeinterface #259,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.lazy:(Lcom/intellij/openapi/actionSystem/DataKey;Lkotlin/jvm/functions/Function0;)V
+     238: aload_1
+     239: getstatic     #276                // Field com/intellij/openapi/actionSystem/CommonDataKeys.NAVIGATABLE_ARRAY:Lcom/intellij/openapi/actionSystem/DataKey;
+     242: dup
+     243: ldc_w         #277                // String NAVIGATABLE_ARRAY
+     246: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     249: aload_0
+     250: aload_2
+     251: aload_3
+     252: invokedynamic #285,  0            // InvokeDynamic #6:invoke:(Lgit4idea/index/ui/GitStageTree;Lcom/intellij/util/containers/JBIterable;Lcom/intellij/util/containers/JBIterable;)Lkotlin/jvm/functions/Function0;
+     257: invokeinterface #259,  3          // InterfaceMethod com/intellij/openapi/actionSystem/DataSink.lazy:(Lcom/intellij/openapi/actionSystem/DataKey;Lkotlin/jvm/functions/Function0;)V
+     262: return
+
+  public final com.intellij.util.containers.JBIterable<git4idea.index.ui.GitFileStatusNode> selectedStatusNodes();
+    Code:
+       0: aload_0
+       1: checkcast     #293                // class javax/swing/JTree
+       4: invokestatic  #299                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.selected:(Ljavax/swing/JTree;)Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;
+       7: ldc_w         #301                // class git4idea/index/ui/GitFileStatusNode
+      10: invokevirtual #305                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.iterateUserObjects:(Ljava/lang/Class;)Lcom/intellij/util/containers/JBIterable;
+      13: dup
+      14: ldc_w         #307                // String iterateUserObjects(...)
+      17: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: areturn
+
+  private final com.intellij.util.containers.JBIterable<com.intellij.openapi.vcs.changes.Change> selectedChanges();
+    Code:
+       0: aload_0
+       1: checkcast     #293                // class javax/swing/JTree
+       4: invokestatic  #299                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.selected:(Ljavax/swing/JTree;)Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;
+       7: ldc           #217                // class com/intellij/openapi/vcs/changes/Change
+       9: invokevirtual #305                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.iterateUserObjects:(Ljava/lang/Class;)Lcom/intellij/util/containers/JBIterable;
+      12: dup
+      13: ldc_w         #307                // String iterateUserObjects(...)
+      16: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: areturn
+
+  private final java.util.List<com.intellij.openapi.vfs.VirtualFile> selectedVirtualFiles(com.intellij.util.containers.JBIterable<git4idea.index.ui.GitFileStatusNode>, com.intellij.util.containers.JBIterable<com.intellij.openapi.vcs.changes.Change>);
+    Code:
+       0: aload_1
+       1: invokedynamic #318,  0            // InvokeDynamic #7:invoke:()Lkotlin/jvm/functions/Function1;
+       6: invokedynamic #326,  0            // InvokeDynamic #8:fun:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/Function;
+      11: invokevirtual #189                // Method com/intellij/util/containers/JBIterable.map:(Lcom/intellij/util/Function;)Lcom/intellij/util/containers/JBIterable;
+      14: dup
+      15: ldc           #191                // String map(...)
+      17: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: checkcast     #193                // class java/lang/Iterable
+      23: aload_2
+      24: invokedynamic #333,  0            // InvokeDynamic #9:invoke:()Lkotlin/jvm/functions/Function1;
+      29: invokedynamic #338,  0            // InvokeDynamic #10:fun:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/Function;
+      34: invokevirtual #189                // Method com/intellij/util/containers/JBIterable.map:(Lcom/intellij/util/Function;)Lcom/intellij/util/containers/JBIterable;
+      37: dup
+      38: ldc           #191                // String map(...)
+      40: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      43: checkcast     #193                // class java/lang/Iterable
+      46: invokestatic  #211                // Method kotlin/collections/CollectionsKt.plus:(Ljava/lang/Iterable;Ljava/lang/Iterable;)Ljava/util/List;
+      49: checkcast     #193                // class java/lang/Iterable
+      52: invokestatic  #342                // Method kotlin/collections/CollectionsKt.filterNotNull:(Ljava/lang/Iterable;)Ljava/util/List;
+      55: areturn
+
+  public final com.intellij.openapi.ListSelection<git4idea.index.ui.GitFileStatusNode> statusNodesListSelection(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iconst_0
+       3: invokevirtual #349                // Method listSelection:(ZZ)Lcom/intellij/openapi/ListSelection;
+       6: invokedynamic #356,  0            // InvokeDynamic #11:invoke:()Lkotlin/jvm/functions/Function1;
+      11: invokedynamic #364,  0            // InvokeDynamic #12:fun:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/util/NullableFunction;
+      16: invokevirtual #369                // Method com/intellij/openapi/ListSelection.map:(Lcom/intellij/util/NullableFunction;)Lcom/intellij/openapi/ListSelection;
+      19: dup
+      20: ldc           #191                // String map(...)
+      22: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: areturn
+
+  public final com.intellij.openapi.ListSelection<?> listSelection(boolean, boolean);
+    Code:
+       0: aload_0
+       1: checkcast     #293                // class javax/swing/JTree
+       4: invokestatic  #299                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.selected:(Ljavax/swing/JTree;)Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;
+       7: dup
+       8: ldc_w         #374                // String selected(...)
+      11: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      14: astore_3
+      15: aload_0
+      16: aload_3
+      17: iload_2
+      18: invokespecial #378                // Method targetUserObjects:(Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;Z)Ljava/util/List;
+      21: astore        4
+      23: aload         4
+      25: invokeinterface #383,  1          // InterfaceMethod java/util/List.size:()I
+      30: iconst_1
+      31: if_icmple     51
+      34: aload         4
+      36: iconst_0
+      37: invokestatic  #387                // Method com/intellij/openapi/ListSelection.createAt:(Ljava/util/List;I)Lcom/intellij/openapi/ListSelection;
+      40: invokevirtual #391                // Method com/intellij/openapi/ListSelection.asExplicitSelection:()Lcom/intellij/openapi/ListSelection;
+      43: dup
+      44: ldc_w         #393                // String asExplicitSelection(...)
+      47: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      50: areturn
+      51: aload         4
+      53: invokestatic  #397                // Method kotlin/collections/CollectionsKt.singleOrNull:(Ljava/util/List;)Ljava/lang/Object;
+      56: astore        5
+      58: iload_1
+      59: ifeq          157
+      62: aload         5
+      64: instanceof    #301                // class git4idea/index/ui/GitFileStatusNode
+      67: ifeq          157
+      70: aload         5
+      72: checkcast     #301                // class git4idea/index/ui/GitFileStatusNode
+      75: invokevirtual #401                // Method git4idea/index/ui/GitFileStatusNode.getKind:()Lgit4idea/index/ui/NodeKind;
+      78: astore        8
+      80: getstatic     #407                // Field git4idea/index/ui/GitStageTree$WhenMappings.$EnumSwitchMapping$0:[I
+      83: aload         8
+      85: invokevirtual #412                // Method git4idea/index/ui/NodeKind.ordinal:()I
+      88: iaload
+      89: tableswitch   { // 1 to 5
+
+                     1: 124
+
+                     2: 124
+
+                     3: 137
+
+                     4: 137
+
+                     5: 137
+               default: 149
+          }
+     124: aload_0
+     125: checkcast     #293                // class javax/swing/JTree
+     128: getstatic     #416                // Field git4idea/index/ui/NodeKind.UNSTAGED:Lgit4idea/index/ui/NodeKind;
+     131: invokestatic  #420                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.allUnderTag:(Ljavax/swing/JTree;Ljava/lang/Object;)Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;
+     134: goto          164
+     137: aload_0
+     138: checkcast     #293                // class javax/swing/JTree
+     141: aload         8
+     143: invokestatic  #420                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.allUnderTag:(Ljavax/swing/JTree;Ljava/lang/Object;)Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;
+     146: goto          164
+     149: new           #422                // class kotlin/NoWhenBranchMatchedException
+     152: dup
+     153: invokespecial #423                // Method kotlin/NoWhenBranchMatchedException."<init>":()V
+     156: athrow
+     157: aload_0
+     158: checkcast     #293                // class javax/swing/JTree
+     161: invokestatic  #426                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.all:(Ljavax/swing/JTree;)Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;
+     164: astore        7
+     166: aload         7
+     168: invokestatic  #430                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     171: aload         7
+     173: astore        6
+     175: iload_1
+     176: ifeq          222
+     179: aload         5
+     181: ifnull        222
+     184: iload_2
+     185: ifne          200
+     188: aload         5
+     190: instanceof    #217                // class com/intellij/openapi/vcs/changes/Change
+     193: ifeq          200
+     196: invokestatic  #433                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+     199: pop
+     200: aload         6
+     202: aload         5
+     204: invokevirtual #439                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     207: invokevirtual #443                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.userObjects:(Ljava/lang/Class;)Ljava/util/List;
+     210: astore        8
+     212: aload         8
+     214: invokestatic  #430                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     217: aload         8
+     219: goto          229
+     222: aload_0
+     223: aload         6
+     225: iload_2
+     226: invokespecial #378                // Method targetUserObjects:(Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;Z)Ljava/util/List;
+     229: astore        7
+     231: aload         7
+     233: invokeinterface #383,  1          // InterfaceMethod java/util/List.size:()I
+     238: aload         4
+     240: invokeinterface #383,  1          // InterfaceMethod java/util/List.size:()I
+     245: if_icmpgt     267
+     248: aload         4
+     250: iconst_0
+     251: invokestatic  #387                // Method com/intellij/openapi/ListSelection.createAt:(Ljava/util/List;I)Lcom/intellij/openapi/ListSelection;
+     254: invokevirtual #391                // Method com/intellij/openapi/ListSelection.asExplicitSelection:()Lcom/intellij/openapi/ListSelection;
+     257: dup
+     258: ldc_w         #393                // String asExplicitSelection(...)
+     261: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     264: goto          281
+     267: aload         7
+     269: aload         5
+     271: invokestatic  #447                // Method com/intellij/openapi/ListSelection.create:(Ljava/util/List;Ljava/lang/Object;)Lcom/intellij/openapi/ListSelection;
+     274: dup
+     275: ldc_w         #449                // String create(...)
+     278: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     281: areturn
+
+  public static com.intellij.openapi.ListSelection listSelection$default(git4idea.index.ui.GitStageTree, boolean, boolean, int, java.lang.Object);
+    Code:
+       0: aload         4
+       2: ifnull        16
+       5: new           #462                // class java/lang/UnsupportedOperationException
+       8: dup
+       9: ldc_w         #464                // String Super calls with default arguments not supported in this target, function: listSelection
+      12: invokespecial #467                // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+      15: athrow
+      16: iload_3
+      17: iconst_2
+      18: iand
+      19: ifeq          24
+      22: iconst_1
+      23: istore_2
+      24: aload_0
+      25: iload_1
+      26: iload_2
+      27: invokevirtual #349                // Method listSelection:(ZZ)Lcom/intellij/openapi/ListSelection;
+      30: areturn
+
+  private final java.util.List<java.lang.Object> targetUserObjects(com.intellij.openapi.vcs.changes.ui.VcsTreeModelData, boolean);
+    Code:
+       0: iload_2
+       1: ifne          19
+       4: aload_1
+       5: ldc_w         #301                // class git4idea/index/ui/GitFileStatusNode
+       8: invokevirtual #443                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.userObjects:(Ljava/lang/Class;)Ljava/util/List;
+      11: dup
+      12: ldc_w         #470                // String userObjects(...)
+      15: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: areturn
+      19: aload_1
+      20: ldc_w         #301                // class git4idea/index/ui/GitFileStatusNode
+      23: invokevirtual #443                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.userObjects:(Ljava/lang/Class;)Ljava/util/List;
+      26: dup
+      27: ldc_w         #470                // String userObjects(...)
+      30: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      33: checkcast     #472                // class java/util/Collection
+      36: aload_1
+      37: ldc           #217                // class com/intellij/openapi/vcs/changes/Change
+      39: invokevirtual #443                // Method com/intellij/openapi/vcs/changes/ui/VcsTreeModelData.userObjects:(Ljava/lang/Class;)Ljava/util/List;
+      42: dup
+      43: ldc_w         #470                // String userObjects(...)
+      46: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      49: checkcast     #193                // class java/lang/Iterable
+      52: invokestatic  #475                // Method kotlin/collections/CollectionsKt.plus:(Ljava/util/Collection;Ljava/lang/Iterable;)Ljava/util/List;
+      55: areturn
+
+  static java.util.List targetUserObjects$default(git4idea.index.ui.GitStageTree, com.intellij.openapi.vcs.changes.ui.VcsTreeModelData, boolean, int, java.lang.Object);
+    Code:
+       0: aload         4
+       2: ifnull        16
+       5: new           #462                // class java/lang/UnsupportedOperationException
+       8: dup
+       9: ldc_w         #480                // String Super calls with default arguments not supported in this target, function: targetUserObjects
+      12: invokespecial #467                // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+      15: athrow
+      16: iload_3
+      17: iconst_1
+      18: iand
+      19: ifeq          24
+      22: iconst_0
+      23: istore_2
+      24: aload_0
+      25: aload_1
+      26: iload_2
+      27: invokespecial #378                // Method targetUserObjects:(Lcom/intellij/openapi/vcs/changes/ui/VcsTreeModelData;Z)Ljava/util/List;
+      30: areturn
+
+  private final java.lang.String getTooltipText(git4idea.index.actions.StagingAreaOperation);
+    Code:
+       0: aload_1
+       1: invokeinterface #488,  1          // InterfaceMethod git4idea/index/actions/StagingAreaOperation.getShortcutText:()Ljava/lang/String;
+       6: astore_2
+       7: aload_2
+       8: ifnonnull     33
+      11: aload_1
+      12: invokeinterface #492,  1          // InterfaceMethod git4idea/index/actions/StagingAreaOperation.getActionText:()Ljava/util/function/Supplier;
+      17: invokeinterface #497,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      22: dup
+      23: ldc_w         #499                // String get(...)
+      26: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      29: checkcast     #501                // class java/lang/String
+      32: areturn
+      33: new           #503                // class com/intellij/openapi/util/text/HtmlBuilder
+      36: dup
+      37: invokespecial #504                // Method com/intellij/openapi/util/text/HtmlBuilder."<init>":()V
+      40: aload_1
+      41: invokeinterface #492,  1          // InterfaceMethod git4idea/index/actions/StagingAreaOperation.getActionText:()Ljava/util/function/Supplier;
+      46: invokeinterface #497,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      51: checkcast     #501                // class java/lang/String
+      54: invokevirtual #508                // Method com/intellij/openapi/util/text/HtmlBuilder.append:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      57: iconst_2
+      58: invokevirtual #512                // Method com/intellij/openapi/util/text/HtmlBuilder.nbsp:(I)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      61: invokestatic  #518                // Method com/intellij/util/ui/JBUI$CurrentTheme$Tooltip.shortcutForeground:()Ljava/awt/Color;
+      64: invokestatic  #524                // Method com/intellij/ui/ColorUtil.toHex:(Ljava/awt/Color;)Ljava/lang/String;
+      67: invokestatic  #530                // Method com/intellij/openapi/util/text/HtmlChunk.font:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+      70: aload_2
+      71: invokevirtual #535                // Method com/intellij/openapi/util/text/HtmlChunk$Element.addText:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+      74: checkcast     #526                // class com/intellij/openapi/util/text/HtmlChunk
+      77: invokevirtual #538                // Method com/intellij/openapi/util/text/HtmlBuilder.append:(Lcom/intellij/openapi/util/text/HtmlChunk;)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      80: ldc_w         #540                // String html
+      83: invokevirtual #543                // Method com/intellij/openapi/util/text/HtmlBuilder.wrapWith:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+      86: invokevirtual #546                // Method com/intellij/openapi/util/text/HtmlChunk$Element.toString:()Ljava/lang/String;
+      89: astore_3
+      90: aload_3
+      91: ldc_w         #548                // String toString(...)
+      94: invokestatic  #128                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      97: aload_3
+      98: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath uiDataSnapshot$lambda$0(git4idea.index.ui.GitFileStatusNode);
+    Code:
+       0: aload_0
+       1: invokevirtual #556                // Method git4idea/index/ui/GitFileStatusNode.getFilePath:()Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath uiDataSnapshot$lambda$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #562,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #564                // class com/intellij/openapi/vcs/FilePath
+      10: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath uiDataSnapshot$lambda$2(com.intellij.openapi.vcs.changes.Change);
+    Code:
+       0: aload_0
+       1: invokestatic  #571                // Method com/intellij/openapi/vcs/changes/ChangesUtil.getFilePath:(Lcom/intellij/openapi/vcs/changes/Change;)Lcom/intellij/openapi/vcs/FilePath;
+       4: areturn
+
+  private static final com.intellij.openapi.vcs.FilePath uiDataSnapshot$lambda$3(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #562,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #564                // class com/intellij/openapi/vcs/FilePath
+      10: areturn
+
+  private static final java.lang.Iterable uiDataSnapshot$lambda$4(git4idea.index.ui.GitStageTree, com.intellij.util.containers.JBIterable, com.intellij.util.containers.JBIterable);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #574                // Method selectedVirtualFiles:(Lcom/intellij/util/containers/JBIterable;Lcom/intellij/util/containers/JBIterable;)Ljava/util/List;
+       6: checkcast     #193                // class java/lang/Iterable
+       9: areturn
+
+  private static final com.intellij.openapi.vfs.VirtualFile[] uiDataSnapshot$lambda$5(git4idea.index.ui.GitStageTree, com.intellij.util.containers.JBIterable, com.intellij.util.containers.JBIterable);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #574                // Method selectedVirtualFiles:(Lcom/intellij/util/containers/JBIterable;Lcom/intellij/util/containers/JBIterable;)Ljava/util/List;
+       6: checkcast     #193                // class java/lang/Iterable
+       9: invokestatic  #580                // Method kotlin/collections/CollectionsKt.toList:(Ljava/lang/Iterable;)Ljava/util/List;
+      12: checkcast     #472                // class java/util/Collection
+      15: astore_3
+      16: iconst_0
+      17: istore        4
+      19: aload_3
+      20: astore        5
+      22: aload         5
+      24: iconst_0
+      25: anewarray     #582                // class com/intellij/openapi/vfs/VirtualFile
+      28: invokeinterface #583,  2          // InterfaceMethod java/util/Collection.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+      33: checkcast     #585                // class "[Lcom/intellij/openapi/vfs/VirtualFile;"
+      36: areturn
+
+  private static final com.intellij.pom.Navigatable[] uiDataSnapshot$lambda$6(git4idea.index.ui.GitStageTree, com.intellij.util.containers.JBIterable, com.intellij.util.containers.JBIterable);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #574                // Method selectedVirtualFiles:(Lcom/intellij/util/containers/JBIterable;Lcom/intellij/util/containers/JBIterable;)Ljava/util/List;
+       6: checkcast     #193                // class java/lang/Iterable
+       9: astore_3
+      10: nop
+      11: iconst_0
+      12: istore        4
+      14: aload_3
+      15: astore        5
+      17: new           #592                // class java/util/ArrayList
+      20: dup
+      21: aload_3
+      22: bipush        10
+      24: invokestatic  #596                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+      27: invokespecial #599                // Method java/util/ArrayList."<init>":(I)V
+      30: checkcast     #472                // class java/util/Collection
+      33: astore        6
+      35: iconst_0
+      36: istore        7
+      38: aload         5
+      40: invokeinterface #603,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      45: astore        8
+      47: aload         8
+      49: invokeinterface #608,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      54: ifeq          105
+      57: aload         8
+      59: invokeinterface #611,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      64: astore        9
+      66: aload         6
+      68: aload         9
+      70: checkcast     #582                // class com/intellij/openapi/vfs/VirtualFile
+      73: astore        10
+      75: astore        12
+      77: iconst_0
+      78: istore        11
+      80: new           #613                // class com/intellij/openapi/fileEditor/OpenFileDescriptor
+      83: dup
+      84: aload_0
+      85: invokevirtual #617                // Method getProject:()Lcom/intellij/openapi/project/Project;
+      88: aload         10
+      90: invokespecial #620                // Method com/intellij/openapi/fileEditor/OpenFileDescriptor."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      93: aload         12
+      95: swap
+      96: invokeinterface #624,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     101: pop
+     102: goto          47
+     105: aload         6
+     107: checkcast     #380                // class java/util/List
+     110: nop
+     111: checkcast     #193                // class java/lang/Iterable
+     114: invokestatic  #580                // Method kotlin/collections/CollectionsKt.toList:(Ljava/lang/Iterable;)Ljava/util/List;
+     117: checkcast     #472                // class java/util/Collection
+     120: astore_3
+     121: iconst_0
+     122: istore        4
+     124: aload_3
+     125: astore        5
+     127: aload         5
+     129: iconst_0
+     130: anewarray     #613                // class com/intellij/openapi/fileEditor/OpenFileDescriptor
+     133: invokeinterface #583,  2          // InterfaceMethod java/util/Collection.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+     138: checkcast     #626                // class "[Lcom/intellij/pom/Navigatable;"
+     141: areturn
+
+  private static final com.intellij.openapi.vfs.VirtualFile selectedVirtualFiles$lambda$0(git4idea.index.ui.GitFileStatusNode);
+    Code:
+       0: aload_0
+       1: invokevirtual #556                // Method git4idea/index/ui/GitFileStatusNode.getFilePath:()Lcom/intellij/openapi/vcs/FilePath;
+       4: invokeinterface #639,  1          // InterfaceMethod com/intellij/openapi/vcs/FilePath.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+       9: areturn
+
+  private static final com.intellij.openapi.vfs.VirtualFile selectedVirtualFiles$lambda$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #562,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #582                // class com/intellij/openapi/vfs/VirtualFile
+      10: areturn
+
+  private static final com.intellij.openapi.vfs.VirtualFile selectedVirtualFiles$lambda$2(com.intellij.openapi.vcs.changes.Change);
+    Code:
+       0: aload_0
+       1: invokevirtual #640                // Method com/intellij/openapi/vcs/changes/Change.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+       4: areturn
+
+  private static final com.intellij.openapi.vfs.VirtualFile selectedVirtualFiles$lambda$3(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #562,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #582                // class com/intellij/openapi/vfs/VirtualFile
+      10: areturn
+
+  private static final git4idea.index.ui.GitFileStatusNode statusNodesListSelection$lambda$0(java.lang.Object);
+    Code:
+       0: aload_0
+       1: instanceof    #301                // class git4idea/index/ui/GitFileStatusNode
+       4: ifeq          14
+       7: aload_0
+       8: checkcast     #301                // class git4idea/index/ui/GitFileStatusNode
+      11: goto          15
+      14: aconst_null
+      15: areturn
+
+  private static final git4idea.index.ui.GitFileStatusNode statusNodesListSelection$lambda$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #562,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #301                // class git4idea/index/ui/GitFileStatusNode
+      10: areturn
+
+  public static final com.intellij.openapi.project.Project access$getMyProject$p$s-901215190(git4idea.index.ui.GitStageTree);
+    Code:
+       0: aload_0
+       1: getfield      #645                // Field myProject:Lcom/intellij/openapi/project/Project;
+       4: areturn
+
+  public static final git4idea.index.ui.GitStageUiSettings access$getSettings$p(git4idea.index.ui.GitStageTree);
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field settings:Lgit4idea/index/ui/GitStageUiSettings;
+       4: areturn
+
+  public static final java.lang.String access$getTooltipText(git4idea.index.ui.GitStageTree, git4idea.index.actions.StagingAreaOperation);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #652                // Method getTooltipText:(Lgit4idea/index/actions/StagingAreaOperation;)Ljava/lang/String;
+       5: areturn
+}

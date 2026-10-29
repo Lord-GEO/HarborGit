@@ -1,0 +1,967 @@
+Compiled from "GitLogDiffHandler.java"
+public class git4idea.log.GitLogDiffHandler implements com.intellij.vcs.log.VcsLogDiffHandler {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  private final com.intellij.openapi.project.Project myProject;
+
+  private final com.intellij.diff.DiffContentFactoryEx myDiffContentFactory;
+
+  public git4idea.log.GitLogDiffHandler(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: invokespecial #1                  // Method java/lang/Object."<init>":()V
+      12: aload_0
+      13: aload_1
+      14: putfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      17: aload_0
+      18: invokestatic  #13                 // Method com/intellij/diff/DiffContentFactoryEx.getInstanceEx:()Lcom/intellij/diff/DiffContentFactoryEx;
+      21: putfield      #19                 // Field myDiffContentFactory:Lcom/intellij/diff/DiffContentFactoryEx;
+      24: return
+
+  public void showDiff(com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       8: aload_3
+       9: ifnonnull     16
+      12: iconst_2
+      13: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      16: aload         5
+      18: ifnonnull     25
+      21: iconst_3
+      22: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      25: aload_2
+      26: ifnonnull     35
+      29: aload         4
+      31: ifnonnull     35
+      34: return
+      35: aload_2
+      36: aload         4
+      38: invokestatic  #23                 // Method com/intellij/util/ObjectUtils.chooseNotNull:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      41: checkcast     #29                 // class com/intellij/openapi/vcs/FilePath
+      44: astore        6
+      46: aload         6
+      48: invokeinterface #31,  1           // InterfaceMethod com/intellij/openapi/vcs/FilePath.isDirectory:()Z
+      53: ifeq          72
+      56: aload_0
+      57: aload_1
+      58: aload         6
+      60: invokestatic  #35                 // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      63: aload_3
+      64: aload         5
+      66: invokevirtual #41                 // Method showDiffForPaths:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Lcom/intellij/vcs/log/Hash;Lcom/intellij/vcs/log/Hash;)V
+      69: goto          110
+      72: aload         6
+      74: aload_0
+      75: aload_1
+      76: aload_2
+      77: aload_3
+      78: aload         4
+      80: aload         5
+      82: invokedynamic #45,  0             // InvokeDynamic #0:compute:(Lgit4idea/log/GitLogDiffHandler;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;)Lcom/intellij/openapi/util/ThrowableComputable;
+      87: invokestatic  #49                 // Method com/intellij/diff/chains/SimpleDiffRequestProducer.create:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/util/ThrowableComputable;)Lcom/intellij/diff/chains/DiffRequestProducer;
+      90: astore        7
+      92: aload         7
+      94: invokestatic  #55                 // Method com/intellij/diff/chains/SimpleDiffRequestChain.fromProducer:(Lcom/intellij/diff/chains/DiffRequestProducer;)Lcom/intellij/diff/chains/SimpleDiffRequestChain;
+      97: astore        8
+      99: aload_0
+     100: aload         8
+     102: invokedynamic #61,  0             // InvokeDynamic #1:run:(Lgit4idea/log/GitLogDiffHandler;Lcom/intellij/diff/chains/SimpleDiffRequestChain;)Ljava/lang/Runnable;
+     107: invokestatic  #65                 // Method com/intellij/util/ui/UIUtil.invokeLaterIfNeeded:(Ljava/lang/Runnable;)V
+     110: return
+
+  public void showDiffWithLocal(com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash, com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       8: aload_3
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      16: aload         4
+      18: ifnonnull     26
+      21: bipush        6
+      23: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      26: aload         4
+      28: invokeinterface #31,  1           // InterfaceMethod com/intellij/openapi/vcs/FilePath.isDirectory:()Z
+      33: ifeq          51
+      36: aload_0
+      37: aload_1
+      38: aload         4
+      40: invokestatic  #35                 // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      43: aload_3
+      44: aconst_null
+      45: invokevirtual #41                 // Method showDiffForPaths:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Lcom/intellij/vcs/log/Hash;Lcom/intellij/vcs/log/Hash;)V
+      48: goto          87
+      51: aload         4
+      53: aload_0
+      54: aload_1
+      55: aload_2
+      56: aload_3
+      57: aload         4
+      59: invokedynamic #71,  0             // InvokeDynamic #2:compute:(Lgit4idea/log/GitLogDiffHandler;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;Lcom/intellij/openapi/vcs/FilePath;)Lcom/intellij/openapi/util/ThrowableComputable;
+      64: invokestatic  #49                 // Method com/intellij/diff/chains/SimpleDiffRequestProducer.create:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/util/ThrowableComputable;)Lcom/intellij/diff/chains/DiffRequestProducer;
+      67: astore        5
+      69: aload         5
+      71: invokestatic  #55                 // Method com/intellij/diff/chains/SimpleDiffRequestChain.fromProducer:(Lcom/intellij/diff/chains/DiffRequestProducer;)Lcom/intellij/diff/chains/SimpleDiffRequestChain;
+      74: astore        6
+      76: aload_0
+      77: aload         6
+      79: invokedynamic #74,  0             // InvokeDynamic #3:run:(Lgit4idea/log/GitLogDiffHandler;Lcom/intellij/diff/chains/SimpleDiffRequestChain;)Ljava/lang/Runnable;
+      84: invokestatic  #65                 // Method com/intellij/util/ui/UIUtil.invokeLaterIfNeeded:(Ljava/lang/Runnable;)V
+      87: return
+
+  public void showDiffForPaths(com.intellij.openapi.vfs.VirtualFile, java.util.Collection<com.intellij.openapi.vcs.FilePath>, com.intellij.vcs.log.Hash, com.intellij.vcs.log.Hash);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        7
+       6: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       9: aload_3
+      10: ifnonnull     18
+      13: bipush        8
+      15: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload         4
+      21: aload_2
+      22: aload_1
+      23: aload_3
+      24: invokedynamic #75,  0             // InvokeDynamic #4:run:(Lgit4idea/log/GitLogDiffHandler;Lcom/intellij/vcs/log/Hash;Ljava/util/Collection;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/Hash;)Ljava/lang/Runnable;
+      29: invokestatic  #65                 // Method com/intellij/util/ui/UIUtil.invokeLaterIfNeeded:(Ljava/lang/Runnable;)V
+      32: return
+
+  private static java.lang.String getTitleForPaths(com.intellij.openapi.vfs.VirtualFile, java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        9
+       6: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        10
+      15: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      18: aload_1
+      19: aload_0
+      20: invokedynamic #78,  0             // InvokeDynamic #5:fun:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/util/Function;
+      25: ldc           #82                 // String ,
+      27: invokestatic  #84                 // Method com/intellij/openapi/util/text/StringUtil.join:(Ljava/util/Collection;Lcom/intellij/util/Function;Ljava/lang/String;)Ljava/lang/String;
+      30: astore_2
+      31: aload_2
+      32: bipush        100
+      34: iconst_0
+      35: invokestatic  #90                 // Method com/intellij/openapi/util/text/StringUtil.shortenTextWithEllipsis:(Ljava/lang/String;II)Ljava/lang/String;
+      38: dup
+      39: ifnonnull     47
+      42: bipush        11
+      44: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      47: areturn
+
+  private com.intellij.diff.contents.DiffContent createCurrentDiffContent(com.intellij.openapi.vcs.FilePath) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        12
+       6: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      13: aload_1
+      14: invokestatic  #94                 // Method git4idea/GitContentRevision.getRepositoryIfSubmodule:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vcs/FilePath;)Lgit4idea/repo/GitSubmodule;
+      17: astore_2
+      18: aload_2
+      19: ifnull        76
+      22: aload_2
+      23: invokevirtual #100                // Method git4idea/repo/GitSubmodule.getRepository:()Lgit4idea/repo/GitRepository;
+      26: invokestatic  #106                // Method git4idea/diff/GitSubmoduleContentRevision.createCurrentRevision:(Lgit4idea/repo/GitRepository;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      29: astore_3
+      30: aload_3
+      31: invokeinterface #112,  1          // InterfaceMethod com/intellij/openapi/vcs/changes/ContentRevision.getContent:()Ljava/lang/String;
+      36: astore        4
+      38: aload         4
+      40: ifnull        59
+      43: aload_0
+      44: getfield      #19                 // Field myDiffContentFactory:Lcom/intellij/diff/DiffContentFactoryEx;
+      47: aload_0
+      48: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      51: aload         4
+      53: invokevirtual #118                // Method com/intellij/diff/DiffContentFactoryEx.create:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lcom/intellij/diff/contents/DocumentContent;
+      56: goto          66
+      59: aload_0
+      60: getfield      #19                 // Field myDiffContentFactory:Lcom/intellij/diff/DiffContentFactoryEx;
+      63: invokevirtual #121                // Method com/intellij/diff/DiffContentFactoryEx.createEmpty:()Lcom/intellij/diff/contents/EmptyContent;
+      66: dup
+      67: ifnonnull     75
+      70: bipush        13
+      72: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      75: areturn
+      76: aload_1
+      77: invokeinterface #125,  1          // InterfaceMethod com/intellij/openapi/vcs/FilePath.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+      82: astore_3
+      83: getstatic     #129                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      86: aload_3
+      87: ifnull        94
+      90: iconst_1
+      91: goto          95
+      94: iconst_0
+      95: invokevirtual #133                // Method com/intellij/openapi/diagnostic/Logger.assertTrue:(Z)Z
+      98: pop
+      99: aload_0
+     100: getfield      #19                 // Field myDiffContentFactory:Lcom/intellij/diff/DiffContentFactoryEx;
+     103: aload_0
+     104: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+     107: aload_3
+     108: invokevirtual #139                // Method com/intellij/diff/DiffContentFactoryEx.create:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/diff/contents/DiffContent;
+     111: dup
+     112: ifnonnull     120
+     115: bipush        14
+     117: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+     120: areturn
+
+  private com.intellij.diff.contents.DiffContent createDiffContent(com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        15
+       6: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       9: aload_3
+      10: ifnonnull     18
+      13: bipush        16
+      15: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      18: new           #142                // class git4idea/GitRevisionNumber
+      21: dup
+      22: aload_3
+      23: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      28: invokespecial #149                // Method git4idea/GitRevisionNumber."<init>":(Ljava/lang/String;)V
+      31: astore        5
+      33: aload_2
+      34: ifnonnull     49
+      37: new           #152                // class com/intellij/diff/contents/EmptyContent
+      40: dup
+      41: invokespecial #154                // Method com/intellij/diff/contents/EmptyContent."<init>":()V
+      44: astore        4
+      46: goto          167
+      49: aload_0
+      50: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      53: aload_2
+      54: invokestatic  #94                 // Method git4idea/GitContentRevision.getRepositoryIfSubmodule:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vcs/FilePath;)Lgit4idea/repo/GitSubmodule;
+      57: astore        6
+      59: aload         6
+      61: ifnull        115
+      64: aload         6
+      66: aload         5
+      68: invokestatic  #155                // Method git4idea/diff/GitSubmoduleContentRevision.createRevision:(Lgit4idea/repo/GitSubmodule;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      71: astore        7
+      73: aload         7
+      75: invokeinterface #112,  1          // InterfaceMethod com/intellij/openapi/vcs/changes/ContentRevision.getContent:()Ljava/lang/String;
+      80: astore        8
+      82: aload         8
+      84: ifnull        103
+      87: aload_0
+      88: getfield      #19                 // Field myDiffContentFactory:Lcom/intellij/diff/DiffContentFactoryEx;
+      91: aload_0
+      92: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      95: aload         8
+      97: invokevirtual #118                // Method com/intellij/diff/DiffContentFactoryEx.create:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lcom/intellij/diff/contents/DocumentContent;
+     100: goto          110
+     103: aload_0
+     104: getfield      #19                 // Field myDiffContentFactory:Lcom/intellij/diff/DiffContentFactoryEx;
+     107: invokevirtual #121                // Method com/intellij/diff/DiffContentFactoryEx.createEmpty:()Lcom/intellij/diff/contents/EmptyContent;
+     110: astore        4
+     112: goto          167
+     115: aload_0
+     116: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+     119: aload_1
+     120: aload_3
+     121: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+     126: aload_1
+     127: aload_2
+     128: invokestatic  #159                // Method com/intellij/vcsUtil/VcsFileUtil.relativePath:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;)Ljava/lang/String;
+     131: invokestatic  #165                // Method git4idea/util/GitFileUtils.getFileContent:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;)[B
+     134: astore        7
+     136: aload_0
+     137: getfield      #19                 // Field myDiffContentFactory:Lcom/intellij/diff/DiffContentFactoryEx;
+     140: aload_0
+     141: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+     144: aload         7
+     146: aload_2
+     147: invokevirtual #171                // Method com/intellij/diff/DiffContentFactoryEx.createFromBytes:(Lcom/intellij/openapi/project/Project;[BLcom/intellij/openapi/vcs/FilePath;)Lcom/intellij/diff/contents/DiffContent;
+     150: astore        4
+     152: goto          167
+     155: astore        7
+     157: new           #177                // class com/intellij/openapi/vcs/VcsException
+     160: dup
+     161: aload         7
+     163: invokespecial #179                // Method com/intellij/openapi/vcs/VcsException."<init>":(Ljava/lang/Throwable;)V
+     166: athrow
+     167: aload         4
+     169: getstatic     #182                // Field com/intellij/diff/DiffVcsDataKeys.REVISION_INFO:Lcom/intellij/openapi/util/Key;
+     172: new           #188                // class com/intellij/openapi/util/Pair
+     175: dup
+     176: aload_2
+     177: aload         5
+     179: invokespecial #190                // Method com/intellij/openapi/util/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     182: invokeinterface #193,  3          // InterfaceMethod com/intellij/diff/contents/DiffContent.putUserData:(Lcom/intellij/openapi/util/Key;Ljava/lang/Object;)V
+     187: aload         4
+     189: dup
+     190: ifnonnull     198
+     193: bipush        17
+     195: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+     198: areturn
+    Exception table:
+       from    to  target type
+         115   152   155   Class java/io/IOException
+
+  public com.intellij.openapi.vcs.changes.ContentRevision createContentRevision(com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        18
+       6: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        19
+      15: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      18: new           #142                // class git4idea/GitRevisionNumber
+      21: dup
+      22: aload_2
+      23: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      28: invokespecial #149                // Method git4idea/GitRevisionNumber."<init>":(Ljava/lang/String;)V
+      31: astore_3
+      32: aload_1
+      33: aload_3
+      34: aload_0
+      35: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      38: invokestatic  #199                // Method git4idea/GitContentRevision.createRevision:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/ContentRevision;
+      41: dup
+      42: ifnonnull     50
+      45: bipush        20
+      47: invokestatic  #444                // Method $$$reportNull$$$0:(I)V
+      50: areturn
+
+  private static java.lang.String lambda$getTitleForPaths$6(com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #159                // Method com/intellij/vcsUtil/VcsFileUtil.relativePath:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;)Ljava/lang/String;
+       5: areturn
+
+  private void lambda$showDiffForPaths$5(com.intellij.vcs.log.Hash, java.util.Collection, com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.Hash);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: goto          9
+       8: iconst_0
+       9: istore        5
+      11: aload_2
+      12: ifnull        19
+      15: aload_2
+      16: goto          26
+      19: aload_3
+      20: invokestatic  #202                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/openapi/vcs/FilePath;
+      23: invokestatic  #35                 // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      26: astore        6
+      28: aload         4
+      30: invokeinterface #208,  1          // InterfaceMethod com/intellij/vcs/log/Hash.toShortString:()Ljava/lang/String;
+      35: astore        7
+      37: iload         5
+      39: ifeq          54
+      42: ldc           #211                // String git.log.diff.handler.local.version.name
+      44: iconst_0
+      45: anewarray     #2                  // class java/lang/Object
+      48: invokestatic  #213                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      51: goto          60
+      54: aload_1
+      55: invokeinterface #208,  1          // InterfaceMethod com/intellij/vcs/log/Hash.toShortString:()Ljava/lang/String;
+      60: astore        8
+      62: aload_2
+      63: ifnull        96
+      66: ldc           #219                // String git.log.diff.handler.changes.between.revisions.in.paths.title
+      68: iconst_3
+      69: anewarray     #2                  // class java/lang/Object
+      72: dup
+      73: iconst_0
+      74: aload         7
+      76: aastore
+      77: dup
+      78: iconst_1
+      79: aload         8
+      81: aastore
+      82: dup
+      83: iconst_2
+      84: aload_3
+      85: aload_2
+      86: invokestatic  #221                // Method getTitleForPaths:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;)Ljava/lang/String;
+      89: aastore
+      90: invokestatic  #213                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      93: goto          115
+      96: ldc           #225                // String git.log.diff.handler.changes.between.revisions.title
+      98: iconst_2
+      99: anewarray     #2                  // class java/lang/Object
+     102: dup
+     103: iconst_0
+     104: aload         7
+     106: aastore
+     107: dup
+     108: iconst_1
+     109: aload         8
+     111: aastore
+     112: invokestatic  #213                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     115: astore        9
+     117: iload         5
+     119: ifeq          128
+     122: getstatic     #227                // Field com/intellij/vcs/CompareWithLocalDialog$LocalContent.AFTER:Lcom/intellij/vcs/CompareWithLocalDialog$LocalContent;
+     125: goto          131
+     128: getstatic     #233                // Field com/intellij/vcs/CompareWithLocalDialog$LocalContent.NONE:Lcom/intellij/vcs/CompareWithLocalDialog$LocalContent;
+     131: astore        10
+     133: aload_0
+     134: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+     137: aload         9
+     139: aload         10
+     141: aload_0
+     142: iload         5
+     144: aload_3
+     145: aload         4
+     147: aload         6
+     149: aload_1
+     150: invokedynamic #236,  0            // InvokeDynamic #6:compute:(Lgit4idea/log/GitLogDiffHandler;ZLcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/Hash;Ljava/util/Collection;Lcom/intellij/vcs/log/Hash;)Lcom/intellij/openapi/util/ThrowableComputable;
+     155: invokestatic  #239                // Method com/intellij/vcs/CompareWithLocalDialog.showChanges:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/vcs/CompareWithLocalDialog$LocalContent;Lcom/intellij/openapi/util/ThrowableComputable;)V
+     158: return
+
+  private java.util.Collection lambda$showDiffForPaths$4(boolean, com.intellij.openapi.vfs.VirtualFile, com.intellij.vcs.log.Hash, java.util.Collection, com.intellij.vcs.log.Hash) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: iload_1
+       1: ifeq          22
+       4: aload_0
+       5: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+       8: aload_2
+       9: aload_3
+      10: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      15: aload         4
+      17: iconst_0
+      18: invokestatic  #245                // Method git4idea/changes/GitChangeUtils.getDiffWithWorkingDir:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/util/Collection;Z)Ljava/util/Collection;
+      21: areturn
+      22: aload_0
+      23: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      26: aload_2
+      27: aload_3
+      28: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      33: aload         5
+      35: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      40: aload         4
+      42: invokestatic  #251                // Method git4idea/changes/GitChangeUtils.getDiff:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;Ljava/util/Collection;)Ljava/util/Collection;
+      45: areturn
+
+  private void lambda$showDiffWithLocal$3(com.intellij.diff.chains.SimpleDiffRequestChain);
+    Code:
+       0: invokestatic  #255                // Method com/intellij/diff/DiffManager.getInstance:()Lcom/intellij/diff/DiffManager;
+       3: aload_0
+       4: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+       7: aload_1
+       8: getstatic     #261                // Field com/intellij/diff/DiffDialogHints.DEFAULT:Lcom/intellij/diff/DiffDialogHints;
+      11: invokevirtual #267                // Method com/intellij/diff/DiffManager.showDiff:(Lcom/intellij/openapi/project/Project;Lcom/intellij/diff/chains/DiffRequestChain;Lcom/intellij/diff/DiffDialogHints;)V
+      14: return
+
+  private com.intellij.diff.requests.DiffRequest lambda$showDiffWithLocal$2(com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash, com.intellij.openapi.vcs.FilePath) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokevirtual #271                // Method createDiffContent:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;)Lcom/intellij/diff/contents/DiffContent;
+       7: astore        5
+       9: aload_0
+      10: aload         4
+      12: invokevirtual #275                // Method createCurrentDiffContent:(Lcom/intellij/openapi/vcs/FilePath;)Lcom/intellij/diff/contents/DiffContent;
+      15: astore        6
+      17: new           #279                // class com/intellij/diff/requests/SimpleDiffRequest
+      20: dup
+      21: invokestatic  #281                // Method com/intellij/diff/DiffRequestFactory.getInstance:()Lcom/intellij/diff/DiffRequestFactory;
+      24: aload_2
+      25: aload         4
+      27: invokevirtual #286                // Method com/intellij/diff/DiffRequestFactory.getTitleForModification:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)Ljava/lang/String;
+      30: aload         5
+      32: aload         6
+      34: aload_3
+      35: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      40: ldc_w         #290                // String git.log.diff.handler.local.version.content.title
+      43: iconst_0
+      44: anewarray     #2                  // class java/lang/Object
+      47: invokestatic  #213                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      50: invokespecial #292                // Method com/intellij/diff/requests/SimpleDiffRequest."<init>":(Ljava/lang/String;Lcom/intellij/diff/contents/DiffContent;Lcom/intellij/diff/contents/DiffContent;Ljava/lang/String;Ljava/lang/String;)V
+      53: areturn
+
+  private void lambda$showDiff$1(com.intellij.diff.chains.SimpleDiffRequestChain);
+    Code:
+       0: invokestatic  #255                // Method com/intellij/diff/DiffManager.getInstance:()Lcom/intellij/diff/DiffManager;
+       3: aload_0
+       4: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+       7: aload_1
+       8: getstatic     #261                // Field com/intellij/diff/DiffDialogHints.DEFAULT:Lcom/intellij/diff/DiffDialogHints;
+      11: invokevirtual #267                // Method com/intellij/diff/DiffManager.showDiff:(Lcom/intellij/openapi/project/Project;Lcom/intellij/diff/chains/DiffRequestChain;Lcom/intellij/diff/DiffDialogHints;)V
+      14: return
+
+  private com.intellij.diff.requests.DiffRequest lambda$showDiff$0(com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokevirtual #271                // Method createDiffContent:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;)Lcom/intellij/diff/contents/DiffContent;
+       7: astore        6
+       9: aload_0
+      10: aload_1
+      11: aload         4
+      13: aload         5
+      15: invokevirtual #271                // Method createDiffContent:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;)Lcom/intellij/diff/contents/DiffContent;
+      18: astore        7
+      20: new           #279                // class com/intellij/diff/requests/SimpleDiffRequest
+      23: dup
+      24: invokestatic  #281                // Method com/intellij/diff/DiffRequestFactory.getInstance:()Lcom/intellij/diff/DiffRequestFactory;
+      27: aload_2
+      28: aload         4
+      30: invokevirtual #286                // Method com/intellij/diff/DiffRequestFactory.getTitleForModification:(Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/FilePath;)Ljava/lang/String;
+      33: aload         6
+      35: aload         7
+      37: aload_3
+      38: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      43: aload         5
+      45: invokeinterface #144,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      50: invokespecial #292                // Method com/intellij/diff/requests/SimpleDiffRequest."<init>":(Ljava/lang/String;Lcom/intellij/diff/contents/DiffContent;Lcom/intellij/diff/contents/DiffContent;Ljava/lang/String;Ljava/lang/String;)V
+      53: areturn
+
+  static {};
+    Code:
+       0: ldc           #8                  // class git4idea/log/GitLogDiffHandler
+       2: invokestatic  #295                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #129                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 20
+
+                     0: 100
+
+                     1: 100
+
+                     2: 100
+
+                     3: 100
+
+                     4: 100
+
+                     5: 100
+
+                     6: 100
+
+                     7: 100
+
+                     8: 100
+
+                     9: 100
+
+                    10: 100
+
+                    11: 106
+
+                    12: 100
+
+                    13: 106
+
+                    14: 106
+
+                    15: 100
+
+                    16: 100
+
+                    17: 106
+
+                    18: 100
+
+                    19: 100
+
+                    20: 106
+               default: 100
+          }
+     100: ldc_w         #446                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     103: goto          112
+     106: ldc_w         #448                // String @NotNull method %s.%s must not return null
+     109: goto          112
+     112: iload_0
+     113: tableswitch   { // 0 to 20
+
+                     0: 212
+
+                     1: 212
+
+                     2: 212
+
+                     3: 212
+
+                     4: 212
+
+                     5: 212
+
+                     6: 212
+
+                     7: 212
+
+                     8: 212
+
+                     9: 212
+
+                    10: 212
+
+                    11: 216
+
+                    12: 212
+
+                    13: 216
+
+                    14: 216
+
+                    15: 212
+
+                    16: 212
+
+                    17: 216
+
+                    18: 212
+
+                    19: 212
+
+                    20: 216
+               default: 212
+          }
+     212: iconst_3
+     213: goto          220
+     216: iconst_2
+     217: goto          220
+     220: anewarray     #2                  // class java/lang/Object
+     223: iload_0
+     224: tableswitch   { // 0 to 20
+
+                     0: 324
+
+                     1: 333
+
+                     2: 342
+
+                     3: 351
+
+                     4: 333
+
+                     5: 360
+
+                     6: 369
+
+                     7: 333
+
+                     8: 378
+
+                     9: 333
+
+                    10: 387
+
+                    11: 396
+
+                    12: 369
+
+                    13: 396
+
+                    14: 396
+
+                    15: 333
+
+                    16: 405
+
+                    17: 396
+
+                    18: 414
+
+                    19: 405
+
+                    20: 396
+               default: 324
+          }
+     324: dup
+     325: iconst_0
+     326: ldc_w         #449                // String project
+     329: aastore
+     330: goto          423
+     333: dup
+     334: iconst_0
+     335: ldc_w         #450                // String root
+     338: aastore
+     339: goto          423
+     342: dup
+     343: iconst_0
+     344: ldc_w         #451                // String leftHash
+     347: aastore
+     348: goto          423
+     351: dup
+     352: iconst_0
+     353: ldc_w         #452                // String rightHash
+     356: aastore
+     357: goto          423
+     360: dup
+     361: iconst_0
+     362: ldc_w         #453                // String revisionHash
+     365: aastore
+     366: goto          423
+     369: dup
+     370: iconst_0
+     371: ldc_w         #454                // String localPath
+     374: aastore
+     375: goto          423
+     378: dup
+     379: iconst_0
+     380: ldc_w         #455                // String leftRevision
+     383: aastore
+     384: goto          423
+     387: dup
+     388: iconst_0
+     389: ldc_w         #456                // String filePaths
+     392: aastore
+     393: goto          423
+     396: dup
+     397: iconst_0
+     398: ldc_w         #457                // String git4idea/log/GitLogDiffHandler
+     401: aastore
+     402: goto          423
+     405: dup
+     406: iconst_0
+     407: ldc_w         #458                // String hash
+     410: aastore
+     411: goto          423
+     414: dup
+     415: iconst_0
+     416: ldc_w         #459                // String filePath
+     419: aastore
+     420: goto          423
+     423: iload_0
+     424: tableswitch   { // 0 to 20
+
+                     0: 524
+
+                     1: 524
+
+                     2: 524
+
+                     3: 524
+
+                     4: 524
+
+                     5: 524
+
+                     6: 524
+
+                     7: 524
+
+                     8: 524
+
+                     9: 524
+
+                    10: 524
+
+                    11: 533
+
+                    12: 524
+
+                    13: 542
+
+                    14: 542
+
+                    15: 524
+
+                    16: 524
+
+                    17: 551
+
+                    18: 524
+
+                    19: 524
+
+                    20: 560
+               default: 524
+          }
+     524: dup
+     525: iconst_1
+     526: ldc_w         #457                // String git4idea/log/GitLogDiffHandler
+     529: aastore
+     530: goto          569
+     533: dup
+     534: iconst_1
+     535: ldc_w         #460                // String getTitleForPaths
+     538: aastore
+     539: goto          569
+     542: dup
+     543: iconst_1
+     544: ldc_w         #461                // String createCurrentDiffContent
+     547: aastore
+     548: goto          569
+     551: dup
+     552: iconst_1
+     553: ldc_w         #462                // String createDiffContent
+     556: aastore
+     557: goto          569
+     560: dup
+     561: iconst_1
+     562: ldc_w         #463                // String createContentRevision
+     565: aastore
+     566: goto          569
+     569: iload_0
+     570: tableswitch   { // 0 to 20
+
+                     0: 668
+
+                     1: 677
+
+                     2: 677
+
+                     3: 677
+
+                     4: 686
+
+                     5: 686
+
+                     6: 686
+
+                     7: 695
+
+                     8: 695
+
+                     9: 704
+
+                    10: 704
+
+                    11: 713
+
+                    12: 716
+
+                    13: 713
+
+                    14: 713
+
+                    15: 725
+
+                    16: 725
+
+                    17: 713
+
+                    18: 734
+
+                    19: 734
+
+                    20: 713
+               default: 668
+          }
+     668: dup
+     669: iconst_2
+     670: ldc_w         #464                // String <init>
+     673: aastore
+     674: goto          743
+     677: dup
+     678: iconst_2
+     679: ldc_w         #465                // String showDiff
+     682: aastore
+     683: goto          743
+     686: dup
+     687: iconst_2
+     688: ldc_w         #466                // String showDiffWithLocal
+     691: aastore
+     692: goto          743
+     695: dup
+     696: iconst_2
+     697: ldc_w         #467                // String showDiffForPaths
+     700: aastore
+     701: goto          743
+     704: dup
+     705: iconst_2
+     706: ldc_w         #460                // String getTitleForPaths
+     709: aastore
+     710: goto          743
+     713: goto          743
+     716: dup
+     717: iconst_2
+     718: ldc_w         #461                // String createCurrentDiffContent
+     721: aastore
+     722: goto          743
+     725: dup
+     726: iconst_2
+     727: ldc_w         #462                // String createDiffContent
+     730: aastore
+     731: goto          743
+     734: dup
+     735: iconst_2
+     736: ldc_w         #463                // String createContentRevision
+     739: aastore
+     740: goto          743
+     743: invokestatic  #470                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     746: iload_0
+     747: tableswitch   { // 0 to 20
+
+                     0: 844
+
+                     1: 844
+
+                     2: 844
+
+                     3: 844
+
+                     4: 844
+
+                     5: 844
+
+                     6: 844
+
+                     7: 844
+
+                     8: 844
+
+                     9: 844
+
+                    10: 844
+
+                    11: 855
+
+                    12: 844
+
+                    13: 855
+
+                    14: 855
+
+                    15: 844
+
+                    16: 844
+
+                    17: 855
+
+                    18: 844
+
+                    19: 844
+
+                    20: 855
+               default: 844
+          }
+     844: new           #472                // class java/lang/IllegalArgumentException
+     847: dup_x1
+     848: swap
+     849: invokespecial #473                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     852: goto          866
+     855: new           #475                // class java/lang/IllegalStateException
+     858: dup_x1
+     859: swap
+     860: invokespecial #476                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     863: goto          866
+     866: athrow
+}

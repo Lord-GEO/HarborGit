@@ -1,0 +1,151 @@
+Compiled from "GitRepositoryCommitter.kt"
+public final class git4idea.checkin.GitRepositoryCommitterKt {
+  private static final void setCommitOptions(git4idea.commands.GitLineHandler, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: aload_1
+       1: invokevirtual #12                 // Method git4idea/checkin/GitCommitOptions.getCommitToAmend:()Lcom/intellij/vcs/commit/CommitToAmend;
+       4: instanceof    #14                 // class com/intellij/vcs/commit/CommitToAmend$Last
+       7: ifeq          25
+      10: aload_0
+      11: iconst_1
+      12: anewarray     #16                 // class java/lang/String
+      15: astore_2
+      16: aload_2
+      17: iconst_0
+      18: ldc           #18                 // String --amend
+      20: aastore
+      21: aload_2
+      22: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      25: aload_1
+      26: invokevirtual #12                 // Method git4idea/checkin/GitCommitOptions.getCommitToAmend:()Lcom/intellij/vcs/commit/CommitToAmend;
+      29: instanceof    #26                 // class com/intellij/vcs/commit/CommitToAmend$Specific
+      32: ifeq          50
+      35: aload_0
+      36: iconst_1
+      37: anewarray     #16                 // class java/lang/String
+      40: astore_2
+      41: aload_2
+      42: iconst_0
+      43: ldc           #28                 // String --allow-empty
+      45: aastore
+      46: aload_2
+      47: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      50: aload_1
+      51: invokevirtual #32                 // Method git4idea/checkin/GitCommitOptions.isSignOff:()Z
+      54: ifeq          72
+      57: aload_0
+      58: iconst_1
+      59: anewarray     #16                 // class java/lang/String
+      62: astore_2
+      63: aload_2
+      64: iconst_0
+      65: ldc           #34                 // String --signoff
+      67: aastore
+      68: aload_2
+      69: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      72: aload_1
+      73: invokevirtual #37                 // Method git4idea/checkin/GitCommitOptions.isSkipHooks:()Z
+      76: ifeq          94
+      79: aload_0
+      80: iconst_1
+      81: anewarray     #16                 // class java/lang/String
+      84: astore_2
+      85: aload_2
+      86: iconst_0
+      87: ldc           #39                 // String --no-verify
+      89: aastore
+      90: aload_2
+      91: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      94: aload_1
+      95: invokevirtual #42                 // Method git4idea/checkin/GitCommitOptions.isCleanupCommitMessage:()Z
+      98: ifeq          116
+     101: aload_0
+     102: iconst_1
+     103: anewarray     #16                 // class java/lang/String
+     106: astore_2
+     107: aload_2
+     108: iconst_0
+     109: ldc           #44                 // String --cleanup=strip
+     111: aastore
+     112: aload_2
+     113: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     116: aload_1
+     117: invokevirtual #48                 // Method git4idea/checkin/GitCommitOptions.getCommitAuthor:()Lcom/intellij/vcs/log/VcsUser;
+     120: dup
+     121: ifnull        153
+     124: astore_3
+     125: iconst_0
+     126: istore        4
+     128: aload_0
+     129: iconst_1
+     130: anewarray     #16                 // class java/lang/String
+     133: astore        5
+     135: aload         5
+     137: iconst_0
+     138: aload_3
+     139: invokedynamic #60,  0             // InvokeDynamic #0:makeConcatWithConstants:(Lcom/intellij/vcs/log/VcsUser;)Ljava/lang/String;
+     144: aastore
+     145: aload         5
+     147: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     150: goto          155
+     153: pop
+     154: nop
+     155: aload_1
+     156: invokevirtual #64                 // Method git4idea/checkin/GitCommitOptions.getCommitAuthorDate:()Ljava/util/Date;
+     159: dup
+     160: ifnull        199
+     163: astore_3
+     164: iconst_0
+     165: istore        4
+     167: aload_0
+     168: iconst_2
+     169: anewarray     #16                 // class java/lang/String
+     172: astore        5
+     174: aload         5
+     176: iconst_0
+     177: ldc           #66                 // String --date
+     179: aastore
+     180: aload         5
+     182: iconst_1
+     183: getstatic     #72                 // Field git4idea/checkin/GitCheckinEnvironment.COMMIT_DATE_FORMAT:Ljava/text/SimpleDateFormat;
+     186: aload_3
+     187: invokevirtual #78                 // Method java/text/SimpleDateFormat.format:(Ljava/util/Date;)Ljava/lang/String;
+     190: aastore
+     191: aload         5
+     193: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     196: goto          201
+     199: pop
+     200: nop
+     201: return
+
+  private static final void setCommitMessage(git4idea.commands.GitLineHandler, java.io.File);
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: anewarray     #16                 // class java/lang/String
+       5: astore_2
+       6: aload_2
+       7: iconst_0
+       8: ldc           #96                 // String -F
+      10: aastore
+      11: aload_2
+      12: invokevirtual #24                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      15: aload_0
+      16: aload_1
+      17: invokevirtual #100                // Method git4idea/commands/GitLineHandler.addAbsoluteFile:(Ljava/io/File;)V
+      20: return
+
+  public static final void access$setCommitMessage(git4idea.commands.GitLineHandler, java.io.File);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #106                // Method setCommitMessage:(Lgit4idea/commands/GitLineHandler;Ljava/io/File;)V
+       5: return
+
+  public static final void access$setCommitOptions(git4idea.commands.GitLineHandler, git4idea.checkin.GitCommitOptions);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #110                // Method setCommitOptions:(Lgit4idea/commands/GitLineHandler;Lgit4idea/checkin/GitCommitOptions;)V
+       5: return
+}

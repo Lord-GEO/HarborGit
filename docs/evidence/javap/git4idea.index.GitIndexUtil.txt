@@ -1,0 +1,1933 @@
+Compiled from "GitIndexUtil.java"
+public final class git4idea.index.GitIndexUtil {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  public static final com.intellij.vcs.log.Hash NULL_HASH;
+
+  public static final java.lang.String EXECUTABLE_MODE;
+
+  public static final java.lang.String DEFAULT_MODE;
+
+  public static final java.lang.String SUBMODULE_MODE;
+
+  public git4idea.index.GitIndexUtil();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static git4idea.index.GitIndexUtil$StagedFile listStaged(git4idea.repo.GitRepository, com.intellij.openapi.vcs.FilePath) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: aload_1
+      18: invokestatic  #7                  // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      21: invokestatic  #13                 // Method listStaged:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;)Ljava/util/List;
+      24: astore_2
+      25: aload_2
+      26: invokeinterface #19,  1           // InterfaceMethod java/util/List.size:()I
+      31: iconst_1
+      32: if_icmpeq     37
+      35: aconst_null
+      36: areturn
+      37: aload_2
+      38: iconst_0
+      39: invokeinterface #25,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      44: checkcast     #29                 // class git4idea/index/GitIndexUtil$StagedFile
+      47: areturn
+
+  public static java.util.List<git4idea.index.GitIndexUtil$StagedFile> listStaged(git4idea.repo.GitRepository, java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_2
+       5: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_3
+      13: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: invokeinterface #31,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      22: astore_2
+      23: aload_0
+      24: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      29: astore_3
+      30: aload_2
+      31: aload_3
+      32: aload_1
+      33: invokestatic  #41                 // Method listStaged:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;)Ljava/util/List;
+      36: areturn
+
+  public static java.util.List<git4idea.index.GitIndexUtil$StagedFile> listStaged(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      16: aload_2
+      17: ifnonnull     25
+      20: bipush        6
+      22: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      25: new           #44                 // class java/util/ArrayList
+      28: dup
+      29: invokespecial #46                 // Method java/util/ArrayList."<init>":()V
+      32: astore_3
+      33: new           #47                 // class git4idea/commands/GitLineHandler
+      36: dup
+      37: aload_0
+      38: aload_1
+      39: getstatic     #49                 // Field git4idea/commands/GitCommand.LS_FILES:Lgit4idea/commands/GitCommand;
+      42: invokespecial #55                 // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      45: astore        4
+      47: aload         4
+      49: iconst_1
+      50: anewarray     #58                 // class java/lang/String
+      53: dup
+      54: iconst_0
+      55: ldc           #60                 // String -s
+      57: aastore
+      58: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      61: aload         4
+      63: invokevirtual #66                 // Method git4idea/commands/GitLineHandler.endOptions:()V
+      66: aload         4
+      68: aload_2
+      69: invokevirtual #69                 // Method git4idea/commands/GitLineHandler.addRelativePaths:(Ljava/util/Collection;)V
+      72: aload         4
+      74: new           #73                 // class git4idea/index/GitIndexUtil$1
+      77: dup
+      78: aload_3
+      79: aload_1
+      80: invokespecial #75                 // Method git4idea/index/GitIndexUtil$1."<init>":(Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      83: invokevirtual #78                 // Method git4idea/commands/GitLineHandler.addLineListener:(Lgit4idea/commands/GitLineHandlerListener;)V
+      86: invokestatic  #82                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      89: aload         4
+      91: invokeinterface #88,  2           // InterfaceMethod git4idea/commands/Git.runCommandWithoutCollectingOutput:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+      96: iconst_0
+      97: newarray       int
+      99: invokevirtual #92                 // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+     102: aload_3
+     103: dup
+     104: ifnonnull     112
+     107: bipush        7
+     109: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+     112: areturn
+
+  public static git4idea.index.GitIndexUtil$StagedFile listTree(git4idea.repo.GitRepository, com.intellij.openapi.vcs.FilePath, com.intellij.openapi.vcs.history.VcsRevisionNumber) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        8
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        9
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        10
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: aload_1
+      29: invokestatic  #7                  // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      32: aload_2
+      33: invokestatic  #98                 // Method listTree:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;)Ljava/util/List;
+      36: astore_3
+      37: aload_3
+      38: invokeinterface #19,  1           // InterfaceMethod java/util/List.size:()I
+      43: iconst_1
+      44: if_icmpne     60
+      47: aload_3
+      48: iconst_0
+      49: invokeinterface #25,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      54: instanceof    #29                 // class git4idea/index/GitIndexUtil$StagedFile
+      57: ifne          62
+      60: aconst_null
+      61: areturn
+      62: aload_3
+      63: iconst_0
+      64: invokeinterface #25,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      69: checkcast     #29                 // class git4idea/index/GitIndexUtil$StagedFile
+      72: areturn
+
+  public static java.util.List<git4idea.index.GitIndexUtil$StagedFileOrDirectory> listTree(git4idea.repo.GitRepository, java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>, com.intellij.openapi.vcs.history.VcsRevisionNumber) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        11
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        12
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        13
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: new           #44                 // class java/util/ArrayList
+      30: dup
+      31: invokespecial #46                 // Method java/util/ArrayList."<init>":()V
+      34: astore_3
+      35: aload_0
+      36: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      41: aload_1
+      42: invokestatic  #102                // Method com/intellij/vcsUtil/VcsFileUtil.chunkPaths:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;)Ljava/util/List;
+      45: invokeinterface #108,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      50: astore        4
+      52: aload         4
+      54: invokeinterface #112,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      59: ifeq          91
+      62: aload         4
+      64: invokeinterface #118,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      69: checkcast     #20                 // class java/util/List
+      72: astore        5
+      74: aload_3
+      75: aload_0
+      76: aload         5
+      78: aload_2
+      79: invokestatic  #122                // Method listTreeForRawPaths:(Lgit4idea/repo/GitRepository;Ljava/util/List;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;)Ljava/util/List;
+      82: invokeinterface #126,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      87: pop
+      88: goto          52
+      91: aload_3
+      92: dup
+      93: ifnonnull     101
+      96: bipush        14
+      98: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+     101: areturn
+
+  public static java.util.List<git4idea.index.GitIndexUtil$StagedFileOrDirectory> listTreeForRawPaths(git4idea.repo.GitRepository, java.util.List<java.lang.String>, com.intellij.openapi.vcs.history.VcsRevisionNumber) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        15
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        16
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        17
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: invokeinterface #31,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      33: aload_0
+      34: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      39: aload_1
+      40: aload_2
+      41: invokestatic  #130                // Method listTreeForRawPaths:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;)Ljava/util/List;
+      44: areturn
+
+  public static java.util.List<git4idea.index.GitIndexUtil$StagedFileOrDirectory> listTreeForRawPaths(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<java.lang.String>, com.intellij.openapi.vcs.history.VcsRevisionNumber) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        18
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        19
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        20
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: new           #44                 // class java/util/ArrayList
+      30: dup
+      31: invokespecial #46                 // Method java/util/ArrayList."<init>":()V
+      34: astore        4
+      36: new           #47                 // class git4idea/commands/GitLineHandler
+      39: dup
+      40: aload_0
+      41: aload_1
+      42: getstatic     #133                // Field git4idea/commands/GitCommand.LS_TREE:Lgit4idea/commands/GitCommand;
+      45: invokespecial #55                 // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      48: astore        5
+      50: aload         5
+      52: iconst_1
+      53: anewarray     #58                 // class java/lang/String
+      56: dup
+      57: iconst_0
+      58: aload_3
+      59: invokeinterface #136,  1          // InterfaceMethod com/intellij/openapi/vcs/history/VcsRevisionNumber.asString:()Ljava/lang/String;
+      64: aastore
+      65: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      68: aload         5
+      70: invokevirtual #66                 // Method git4idea/commands/GitLineHandler.endOptions:()V
+      73: aload         5
+      75: aload_2
+      76: invokevirtual #142                // Method git4idea/commands/GitLineHandler.addParameters:(Ljava/util/List;)V
+      79: aload         5
+      81: new           #145                // class git4idea/index/GitIndexUtil$2
+      84: dup
+      85: aload         4
+      87: aload_1
+      88: invokespecial #147                // Method git4idea/index/GitIndexUtil$2."<init>":(Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      91: invokevirtual #78                 // Method git4idea/commands/GitLineHandler.addLineListener:(Lgit4idea/commands/GitLineHandlerListener;)V
+      94: invokestatic  #82                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      97: aload         5
+      99: invokeinterface #88,  2           // InterfaceMethod git4idea/commands/Git.runCommandWithoutCollectingOutput:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     104: iconst_0
+     105: newarray       int
+     107: invokevirtual #92                 // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+     110: aload         4
+     112: dup
+     113: ifnonnull     121
+     116: bipush        21
+     118: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+     121: areturn
+
+  private static git4idea.index.GitIndexUtil$StagedFile parseListFilesStagedRecord(com.intellij.openapi.vfs.VirtualFile, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        22
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        23
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: new           #148                // class git4idea/util/StringScanner
+      21: dup
+      22: aload_1
+      23: invokespecial #150                // Method git4idea/util/StringScanner."<init>":(Ljava/lang/String;)V
+      26: astore_2
+      27: aload_2
+      28: invokevirtual #153                // Method git4idea/util/StringScanner.spaceToken:()Ljava/lang/String;
+      31: astore_3
+      32: aload_2
+      33: invokevirtual #153                // Method git4idea/util/StringScanner.spaceToken:()Ljava/lang/String;
+      36: astore        4
+      38: aload_2
+      39: invokevirtual #156                // Method git4idea/util/StringScanner.tabToken:()Ljava/lang/String;
+      42: astore        5
+      44: aload_2
+      45: invokevirtual #159                // Method git4idea/util/StringScanner.line:()Ljava/lang/String;
+      48: astore        6
+      50: ldc           #162                // String 0
+      52: aload         5
+      54: invokevirtual #164                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      57: ifne          62
+      60: aconst_null
+      61: areturn
+      62: aload_0
+      63: aload         6
+      65: invokestatic  #168                // Method git4idea/GitUtil.unescapePath:(Ljava/lang/String;)Ljava/lang/String;
+      68: invokestatic  #174                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;)Lcom/intellij/openapi/vcs/FilePath;
+      71: astore        7
+      73: ldc           #180                // String 100755
+      75: aload_3
+      76: invokevirtual #164                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      79: istore        8
+      81: new           #29                 // class git4idea/index/GitIndexUtil$StagedFile
+      84: dup
+      85: aload         7
+      87: aload         4
+      89: iload         8
+      91: invokespecial #182                // Method git4idea/index/GitIndexUtil$StagedFile."<init>":(Lcom/intellij/openapi/vcs/FilePath;Ljava/lang/String;Z)V
+      94: areturn
+      95: astore_2
+      96: getstatic     #187                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      99: aload_2
+     100: invokevirtual #191                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     103: aconst_null
+     104: areturn
+    Exception table:
+       from    to  target type
+          18    61    95   Class com/intellij/openapi/vcs/VcsException
+          62    94    95   Class com/intellij/openapi/vcs/VcsException
+
+  public static git4idea.index.GitIndexUtil$StagedFileOrDirectory parseListTreeRecord(com.intellij.openapi.vfs.VirtualFile, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        24
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        25
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: new           #148                // class git4idea/util/StringScanner
+      21: dup
+      22: aload_1
+      23: invokespecial #150                // Method git4idea/util/StringScanner."<init>":(Ljava/lang/String;)V
+      26: astore_2
+      27: aload_2
+      28: invokevirtual #153                // Method git4idea/util/StringScanner.spaceToken:()Ljava/lang/String;
+      31: astore_3
+      32: aload_2
+      33: invokevirtual #153                // Method git4idea/util/StringScanner.spaceToken:()Ljava/lang/String;
+      36: astore        4
+      38: aload_2
+      39: invokevirtual #156                // Method git4idea/util/StringScanner.tabToken:()Ljava/lang/String;
+      42: astore        5
+      44: aload_2
+      45: invokevirtual #159                // Method git4idea/util/StringScanner.line:()Ljava/lang/String;
+      48: invokestatic  #168                // Method git4idea/GitUtil.unescapePath:(Ljava/lang/String;)Ljava/lang/String;
+      51: astore        6
+      53: ldc           #197                // String tree
+      55: aload         4
+      57: invokevirtual #164                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      60: ifeq          78
+      63: new           #199                // class git4idea/index/GitIndexUtil$StagedDirectory
+      66: dup
+      67: aload_0
+      68: aload         6
+      70: iconst_1
+      71: invokestatic  #201                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Z)Lcom/intellij/openapi/vcs/FilePath;
+      74: invokespecial #204                // Method git4idea/index/GitIndexUtil$StagedDirectory."<init>":(Lcom/intellij/openapi/vcs/FilePath;)V
+      77: areturn
+      78: ldc           #207                // String commit
+      80: aload         4
+      82: invokevirtual #164                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      85: ifeq          105
+      88: new           #209                // class git4idea/index/GitIndexUtil$StagedSubrepo
+      91: dup
+      92: aload_0
+      93: aload         6
+      95: iconst_1
+      96: invokestatic  #201                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Z)Lcom/intellij/openapi/vcs/FilePath;
+      99: aload         5
+     101: invokespecial #211                // Method git4idea/index/GitIndexUtil$StagedSubrepo."<init>":(Lcom/intellij/openapi/vcs/FilePath;Ljava/lang/String;)V
+     104: areturn
+     105: ldc           #214                // String blob
+     107: aload         4
+     109: invokevirtual #164                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     112: ifne          117
+     115: aconst_null
+     116: areturn
+     117: ldc           #180                // String 100755
+     119: aload_3
+     120: invokevirtual #164                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     123: istore        7
+     125: new           #29                 // class git4idea/index/GitIndexUtil$StagedFile
+     128: dup
+     129: aload_0
+     130: aload         6
+     132: invokestatic  #174                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;)Lcom/intellij/openapi/vcs/FilePath;
+     135: aload         5
+     137: iload         7
+     139: invokespecial #182                // Method git4idea/index/GitIndexUtil$StagedFile."<init>":(Lcom/intellij/openapi/vcs/FilePath;Ljava/lang/String;Z)V
+     142: areturn
+     143: astore_2
+     144: getstatic     #187                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     147: aload_2
+     148: invokevirtual #191                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     151: aconst_null
+     152: areturn
+    Exception table:
+       from    to  target type
+          18    77   143   Class com/intellij/openapi/vcs/VcsException
+          78   104   143   Class com/intellij/openapi/vcs/VcsException
+         105   116   143   Class com/intellij/openapi/vcs/VcsException
+         117   142   143   Class com/intellij/openapi/vcs/VcsException
+
+  public static com.intellij.vcs.log.Hash loadStagedSubmoduleHash(git4idea.repo.GitRepository, git4idea.repo.GitRepository) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        26
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        27
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: new           #47                 // class git4idea/commands/GitLineHandler
+      21: dup
+      22: aload_1
+      23: invokeinterface #31,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      28: aload_1
+      29: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      34: getstatic     #216                // Field git4idea/commands/GitCommand.SUBMODULE:Lgit4idea/commands/GitCommand;
+      37: invokespecial #55                 // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      40: astore_2
+      41: aload_2
+      42: iconst_2
+      43: anewarray     #58                 // class java/lang/String
+      46: dup
+      47: iconst_0
+      48: ldc           #219                // String status
+      50: aastore
+      51: dup
+      52: iconst_1
+      53: ldc           #221                // String --cached
+      55: aastore
+      56: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      59: aload_2
+      60: aload_0
+      61: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      66: invokestatic  #223                // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+      69: invokevirtual #227                // Method git4idea/commands/GitLineHandler.addRelativeFiles:(Ljava/util/Collection;)V
+      72: invokestatic  #82                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      75: aload_2
+      76: invokeinterface #230,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+      81: iconst_0
+      82: newarray       int
+      84: invokevirtual #233                // Method git4idea/commands/GitCommandResult.getOutputOrThrow:([I)Ljava/lang/String;
+      87: astore_3
+      88: new           #148                // class git4idea/util/StringScanner
+      91: dup
+      92: aload_3
+      93: invokespecial #150                // Method git4idea/util/StringScanner."<init>":(Ljava/lang/String;)V
+      96: astore        4
+      98: aload         4
+     100: iconst_1
+     101: invokevirtual #237                // Method git4idea/util/StringScanner.skipChars:(I)V
+     104: aload         4
+     106: invokevirtual #153                // Method git4idea/util/StringScanner.spaceToken:()Ljava/lang/String;
+     109: astore        5
+     111: aload         5
+     113: invokestatic  #241                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+     116: dup
+     117: ifnonnull     125
+     120: bipush        28
+     122: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+     125: areturn
+
+  public static com.intellij.vcs.log.Hash loadSubmoduleHashAt(git4idea.repo.GitRepository, git4idea.repo.GitRepository, com.intellij.openapi.vcs.history.VcsRevisionNumber) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        29
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        30
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        31
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      33: invokestatic  #247                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/openapi/vcs/FilePath;
+      36: astore_3
+      37: aload_1
+      38: aload_3
+      39: invokestatic  #223                // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+      42: aload_2
+      43: invokestatic  #98                 // Method listTree:(Lgit4idea/repo/GitRepository;Ljava/util/Collection;Lcom/intellij/openapi/vcs/history/VcsRevisionNumber;)Ljava/util/List;
+      46: astore        4
+      48: aload         4
+      50: invokeinterface #19,  1           // InterfaceMethod java/util/List.size:()I
+      55: iconst_1
+      56: if_icmpeq     89
+      59: getstatic     #187                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      62: ldc           #250                // String Unexpected output of ls-tree command for submodule [%s] at [%s]: %s
+      64: iconst_3
+      65: anewarray     #2                  // class java/lang/Object
+      68: dup
+      69: iconst_0
+      70: aload_3
+      71: aastore
+      72: dup
+      73: iconst_1
+      74: aload_2
+      75: aastore
+      76: dup
+      77: iconst_2
+      78: aload         4
+      80: aastore
+      81: invokestatic  #252                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      84: invokevirtual #256                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+      87: aconst_null
+      88: areturn
+      89: aload         4
+      91: iconst_0
+      92: invokeinterface #25,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      97: ldc           #209                // class git4idea/index/GitIndexUtil$StagedSubrepo
+      99: invokestatic  #258                // Method com/intellij/util/ObjectUtils.tryCast:(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
+     102: checkcast     #209                // class git4idea/index/GitIndexUtil$StagedSubrepo
+     105: astore        5
+     107: aload         5
+     109: ifnonnull     143
+     112: getstatic     #187                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     115: ldc_w         #264                // String Unexpected type of ls-tree for submodule [%s] at [%s]: %s
+     118: iconst_3
+     119: anewarray     #2                  // class java/lang/Object
+     122: dup
+     123: iconst_0
+     124: aload_3
+     125: aastore
+     126: dup
+     127: iconst_1
+     128: aload_2
+     129: aastore
+     130: dup
+     131: iconst_2
+     132: aload         5
+     134: aastore
+     135: invokestatic  #252                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     138: invokevirtual #256                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     141: aconst_null
+     142: areturn
+     143: aload_3
+     144: aload         5
+     146: invokevirtual #266                // Method git4idea/index/GitIndexUtil$StagedSubrepo.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+     149: invokeinterface #270,  2          // InterfaceMethod com/intellij/openapi/vcs/FilePath.equals:(Ljava/lang/Object;)Z
+     154: ifne          187
+     157: getstatic     #187                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     160: ldc_w         #273                // String Submodule path [%s] doesn\'t match the ls-tree output path [%s]
+     163: iconst_2
+     164: anewarray     #2                  // class java/lang/Object
+     167: dup
+     168: iconst_0
+     169: aload         5
+     171: invokevirtual #266                // Method git4idea/index/GitIndexUtil$StagedSubrepo.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+     174: aastore
+     175: dup
+     176: iconst_1
+     177: aload_3
+     178: aastore
+     179: invokestatic  #252                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     182: invokevirtual #256                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     185: aconst_null
+     186: areturn
+     187: aload         5
+     189: invokevirtual #275                // Method git4idea/index/GitIndexUtil$StagedSubrepo.getBlobHash:()Ljava/lang/String;
+     192: invokestatic  #241                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+     195: areturn
+
+  public static com.intellij.vcs.log.Hash write(git4idea.repo.GitRepository, com.intellij.openapi.vcs.FilePath, byte[], boolean) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        32
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        33
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        34
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: aload_1
+      29: new           #278                // class java/io/ByteArrayInputStream
+      32: dup
+      33: aload_2
+      34: invokespecial #280                // Method java/io/ByteArrayInputStream."<init>":([B)V
+      37: iload_3
+      38: invokestatic  #283                // Method write:(Lgit4idea/repo/GitRepository;Lcom/intellij/openapi/vcs/FilePath;Ljava/io/InputStream;Z)Lcom/intellij/vcs/log/Hash;
+      41: areturn
+
+  public static com.intellij.vcs.log.Hash write(git4idea.repo.GitRepository, com.intellij.openapi.vcs.FilePath, java.io.InputStream, boolean) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        35
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        36
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        37
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: invokeinterface #31,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      33: aload_0
+      34: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      39: aload_1
+      40: aload_2
+      41: iload_3
+      42: invokestatic  #287                // Method write:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Ljava/io/InputStream;Z)Lcom/intellij/vcs/log/Hash;
+      45: areturn
+
+  public static com.intellij.vcs.log.Hash write(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, java.io.InputStream, boolean) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        38
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        39
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        40
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        41
+      33: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      36: aload_0
+      37: aload_1
+      38: aload_2
+      39: aload_3
+      40: iload         4
+      42: iconst_0
+      43: invokestatic  #290                // Method write:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Ljava/io/InputStream;ZZ)Lcom/intellij/vcs/log/Hash;
+      46: areturn
+
+  public static com.intellij.vcs.log.Hash write(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, java.io.InputStream, boolean, boolean) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        42
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        43
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        44
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        45
+      33: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      36: aload_0
+      37: aload_1
+      38: aload_2
+      39: aload_3
+      40: invokestatic  #293                // Method hashObject:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Ljava/io/InputStream;)Lcom/intellij/vcs/log/Hash;
+      43: astore        6
+      45: aload_0
+      46: aload_1
+      47: aload_2
+      48: aload         6
+      50: iload         4
+      52: iload         5
+      54: invokestatic  #297                // Method updateIndex:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;ZZ)V
+      57: aload         6
+      59: dup
+      60: ifnonnull     68
+      63: bipush        46
+      65: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      68: areturn
+
+  private static com.intellij.vcs.log.Hash hashObject(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, java.io.InputStream) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        47
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        48
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        49
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        50
+      33: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      36: new           #47                 // class git4idea/commands/GitLineHandler
+      39: dup
+      40: aload_0
+      41: aload_1
+      42: getstatic     #301                // Field git4idea/commands/GitCommand.HASH_OBJECT:Lgit4idea/commands/GitCommand;
+      45: invokespecial #55                 // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      48: astore        4
+      50: aload         4
+      52: iconst_1
+      53: invokevirtual #304                // Method git4idea/commands/GitLineHandler.setSilent:(Z)V
+      56: aload         4
+      58: iconst_2
+      59: anewarray     #58                 // class java/lang/String
+      62: dup
+      63: iconst_0
+      64: ldc_w         #308                // String -w
+      67: aastore
+      68: dup
+      69: iconst_1
+      70: ldc_w         #310                // String --stdin
+      73: aastore
+      74: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      77: aload         4
+      79: iconst_1
+      80: anewarray     #58                 // class java/lang/String
+      83: dup
+      84: iconst_0
+      85: ldc_w         #312                // String --path
+      88: aastore
+      89: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      92: aload         4
+      94: iconst_1
+      95: anewarray     #271                // class com/intellij/openapi/vcs/FilePath
+      98: dup
+      99: iconst_0
+     100: aload_2
+     101: aastore
+     102: invokevirtual #314                // Method git4idea/commands/GitLineHandler.addRelativePaths:([Lcom/intellij/openapi/vcs/FilePath;)V
+     105: aload         4
+     107: aload_3
+     108: invokestatic  #317                // Method git4idea/commands/GitHandlerInputProcessorUtil.redirectStream:(Ljava/io/InputStream;)Lcom/intellij/util/ThrowableConsumer;
+     111: invokevirtual #323                // Method git4idea/commands/GitLineHandler.setInputProcessor:(Lcom/intellij/util/ThrowableConsumer;)V
+     114: aload         4
+     116: invokevirtual #66                 // Method git4idea/commands/GitLineHandler.endOptions:()V
+     119: invokestatic  #82                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     122: aload         4
+     124: invokeinterface #230,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     129: iconst_0
+     130: newarray       int
+     132: invokevirtual #233                // Method git4idea/commands/GitCommandResult.getOutputOrThrow:([I)Ljava/lang/String;
+     135: astore        5
+     137: aload         5
+     139: invokevirtual #327                // Method java/lang/String.trim:()Ljava/lang/String;
+     142: invokestatic  #241                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+     145: dup
+     146: ifnonnull     154
+     149: bipush        51
+     151: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+     154: areturn
+
+  public static void updateIndex(git4idea.repo.GitRepository, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash, boolean) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        52
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        53
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        54
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: invokeinterface #31,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      33: aload_0
+      34: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      39: aload_1
+      40: aload_2
+      41: iload_3
+      42: iconst_0
+      43: invokestatic  #297                // Method updateIndex:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/vcs/log/Hash;ZZ)V
+      46: return
+
+  public static void updateIndex(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vcs.FilePath, com.intellij.vcs.log.Hash, boolean, boolean) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        55
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        56
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        57
+      24: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        58
+      33: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      36: iload         4
+      38: ifeq          46
+      41: ldc           #180                // String 100755
+      43: goto          49
+      46: ldc_w         #330                // String 100644
+      49: astore        6
+      51: aload_1
+      52: aload_2
+      53: invokestatic  #332                // Method com/intellij/vcsUtil/VcsFileUtil.relativePath:(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/FilePath;)Ljava/lang/String;
+      56: astore        7
+      58: new           #47                 // class git4idea/commands/GitLineHandler
+      61: dup
+      62: aload_0
+      63: aload_1
+      64: getstatic     #336                // Field git4idea/commands/GitCommand.UPDATE_INDEX:Lgit4idea/commands/GitCommand;
+      67: invokespecial #55                 // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      70: astore        8
+      72: iload         5
+      74: ifeq          92
+      77: aload         8
+      79: iconst_1
+      80: anewarray     #58                 // class java/lang/String
+      83: dup
+      84: iconst_0
+      85: ldc_w         #339                // String --add
+      88: aastore
+      89: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      92: getstatic     #341                // Field git4idea/config/GitVersionSpecialty.CACHEINFO_SUPPORTS_SINGLE_PARAMETER_FORM:Lgit4idea/config/GitVersionSpecialty;
+      95: aload_0
+      96: invokevirtual #347                // Method git4idea/config/GitVersionSpecialty.existsIn:(Lcom/intellij/openapi/project/Project;)Z
+      99: ifeq          138
+     102: aload         8
+     104: iconst_2
+     105: anewarray     #58                 // class java/lang/String
+     108: dup
+     109: iconst_0
+     110: ldc_w         #351                // String --cacheinfo
+     113: aastore
+     114: dup
+     115: iconst_1
+     116: aload         6
+     118: aload_3
+     119: invokeinterface #353,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+     124: aload         7
+     126: invokedynamic #356,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     131: aastore
+     132: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     135: goto          172
+     138: aload         8
+     140: iconst_4
+     141: anewarray     #58                 // class java/lang/String
+     144: dup
+     145: iconst_0
+     146: ldc_w         #351                // String --cacheinfo
+     149: aastore
+     150: dup
+     151: iconst_1
+     152: aload         6
+     154: aastore
+     155: dup
+     156: iconst_2
+     157: aload_3
+     158: invokeinterface #353,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+     163: aastore
+     164: dup
+     165: iconst_3
+     166: aload         7
+     168: aastore
+     169: invokevirtual #62                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     172: aload         8
+     174: invokevirtual #66                 // Method git4idea/commands/GitLineHandler.endOptions:()V
+     177: invokestatic  #82                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     180: aload         8
+     182: invokeinterface #88,  2           // InterfaceMethod git4idea/commands/Git.runCommandWithoutCollectingOutput:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     187: iconst_0
+     188: newarray       int
+     190: invokevirtual #92                 // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+     193: return
+
+  public static byte[] read(git4idea.repo.GitRepository, java.lang.String) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        59
+       6: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        60
+      15: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: invokeinterface #31,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      24: astore_2
+      25: aload_0
+      26: invokeinterface #37,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      31: astore_3
+      32: new           #360                // class git4idea/commands/GitBinaryHandler
+      35: dup
+      36: aload_2
+      37: aload_3
+      38: getstatic     #362                // Field git4idea/commands/GitCommand.SHOW:Lgit4idea/commands/GitCommand;
+      41: invokespecial #365                // Method git4idea/commands/GitBinaryHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      44: astore        4
+      46: aload         4
+      48: iconst_1
+      49: invokevirtual #366                // Method git4idea/commands/GitBinaryHandler.setSilent:(Z)V
+      52: aload         4
+      54: iconst_1
+      55: anewarray     #58                 // class java/lang/String
+      58: dup
+      59: iconst_0
+      60: aload_1
+      61: aastore
+      62: invokevirtual #367                // Method git4idea/commands/GitBinaryHandler.addParameters:([Ljava/lang/String;)V
+      65: aload         4
+      67: invokevirtual #368                // Method git4idea/commands/GitBinaryHandler.endOptions:()V
+      70: aload         4
+      72: invokevirtual #369                // Method git4idea/commands/GitBinaryHandler.run:()[B
+      75: dup
+      76: ifnonnull     84
+      79: bipush        61
+      81: invokestatic  #502                // Method $$$reportNull$$$0:(I)V
+      84: areturn
+
+  static {};
+    Code:
+       0: ldc           #14                 // class git4idea/index/GitIndexUtil
+       2: invokestatic  #373                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #187                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: ldc           #162                // String 0
+      10: bipush        40
+      12: invokevirtual #376                // Method java/lang/String.repeat:(I)Ljava/lang/String;
+      15: invokestatic  #241                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+      18: putstatic     #380                // Field NULL_HASH:Lcom/intellij/vcs/log/Hash;
+      21: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 61
+
+                     0: 264
+
+                     1: 264
+
+                     2: 264
+
+                     3: 264
+
+                     4: 264
+
+                     5: 264
+
+                     6: 264
+
+                     7: 270
+
+                     8: 264
+
+                     9: 264
+
+                    10: 264
+
+                    11: 264
+
+                    12: 264
+
+                    13: 264
+
+                    14: 270
+
+                    15: 264
+
+                    16: 264
+
+                    17: 264
+
+                    18: 264
+
+                    19: 264
+
+                    20: 264
+
+                    21: 270
+
+                    22: 264
+
+                    23: 264
+
+                    24: 264
+
+                    25: 264
+
+                    26: 264
+
+                    27: 264
+
+                    28: 270
+
+                    29: 264
+
+                    30: 264
+
+                    31: 264
+
+                    32: 264
+
+                    33: 264
+
+                    34: 264
+
+                    35: 264
+
+                    36: 264
+
+                    37: 264
+
+                    38: 264
+
+                    39: 264
+
+                    40: 264
+
+                    41: 264
+
+                    42: 264
+
+                    43: 264
+
+                    44: 264
+
+                    45: 264
+
+                    46: 270
+
+                    47: 264
+
+                    48: 264
+
+                    49: 264
+
+                    50: 264
+
+                    51: 270
+
+                    52: 264
+
+                    53: 264
+
+                    54: 264
+
+                    55: 264
+
+                    56: 264
+
+                    57: 264
+
+                    58: 264
+
+                    59: 264
+
+                    60: 264
+
+                    61: 270
+               default: 264
+          }
+     264: ldc_w         #511                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     267: goto          276
+     270: ldc_w         #513                // String @NotNull method %s.%s must not return null
+     273: goto          276
+     276: iload_0
+     277: tableswitch   { // 0 to 61
+
+                     0: 540
+
+                     1: 540
+
+                     2: 540
+
+                     3: 540
+
+                     4: 540
+
+                     5: 540
+
+                     6: 540
+
+                     7: 544
+
+                     8: 540
+
+                     9: 540
+
+                    10: 540
+
+                    11: 540
+
+                    12: 540
+
+                    13: 540
+
+                    14: 544
+
+                    15: 540
+
+                    16: 540
+
+                    17: 540
+
+                    18: 540
+
+                    19: 540
+
+                    20: 540
+
+                    21: 544
+
+                    22: 540
+
+                    23: 540
+
+                    24: 540
+
+                    25: 540
+
+                    26: 540
+
+                    27: 540
+
+                    28: 544
+
+                    29: 540
+
+                    30: 540
+
+                    31: 540
+
+                    32: 540
+
+                    33: 540
+
+                    34: 540
+
+                    35: 540
+
+                    36: 540
+
+                    37: 540
+
+                    38: 540
+
+                    39: 540
+
+                    40: 540
+
+                    41: 540
+
+                    42: 540
+
+                    43: 540
+
+                    44: 540
+
+                    45: 540
+
+                    46: 544
+
+                    47: 540
+
+                    48: 540
+
+                    49: 540
+
+                    50: 540
+
+                    51: 544
+
+                    52: 540
+
+                    53: 540
+
+                    54: 540
+
+                    55: 540
+
+                    56: 540
+
+                    57: 540
+
+                    58: 540
+
+                    59: 540
+
+                    60: 540
+
+                    61: 544
+               default: 540
+          }
+     540: iconst_3
+     541: goto          548
+     544: iconst_2
+     545: goto          548
+     548: anewarray     #2                  // class java/lang/Object
+     551: iload_0
+     552: tableswitch   { // 0 to 61
+
+                     0: 816
+
+                     1: 825
+
+                     2: 816
+
+                     3: 834
+
+                     4: 843
+
+                     5: 852
+
+                     6: 834
+
+                     7: 861
+
+                     8: 816
+
+                     9: 825
+
+                    10: 870
+
+                    11: 816
+
+                    12: 834
+
+                    13: 870
+
+                    14: 861
+
+                    15: 816
+
+                    16: 834
+
+                    17: 870
+
+                    18: 879
+
+                    19: 834
+
+                    20: 870
+
+                    21: 861
+
+                    22: 852
+
+                    23: 888
+
+                    24: 852
+
+                    25: 888
+
+                    26: 897
+
+                    27: 906
+
+                    28: 861
+
+                    29: 897
+
+                    30: 906
+
+                    31: 915
+
+                    32: 816
+
+                    33: 825
+
+                    34: 924
+
+                    35: 816
+
+                    36: 825
+
+                    37: 933
+
+                    38: 843
+
+                    39: 852
+
+                    40: 825
+
+                    41: 933
+
+                    42: 843
+
+                    43: 852
+
+                    44: 825
+
+                    45: 933
+
+                    46: 861
+
+                    47: 843
+
+                    48: 852
+
+                    49: 825
+
+                    50: 933
+
+                    51: 861
+
+                    52: 816
+
+                    53: 825
+
+                    54: 942
+
+                    55: 843
+
+                    56: 852
+
+                    57: 825
+
+                    58: 942
+
+                    59: 816
+
+                    60: 942
+
+                    61: 861
+               default: 816
+          }
+     816: dup
+     817: iconst_0
+     818: ldc_w         #514                // String repository
+     821: aastore
+     822: goto          951
+     825: dup
+     826: iconst_0
+     827: ldc_w         #515                // String filePath
+     830: aastore
+     831: goto          951
+     834: dup
+     835: iconst_0
+     836: ldc_w         #516                // String filePaths
+     839: aastore
+     840: goto          951
+     843: dup
+     844: iconst_0
+     845: ldc_w         #517                // String project
+     848: aastore
+     849: goto          951
+     852: dup
+     853: iconst_0
+     854: ldc_w         #518                // String root
+     857: aastore
+     858: goto          951
+     861: dup
+     862: iconst_0
+     863: ldc_w         #519                // String git4idea/index/GitIndexUtil
+     866: aastore
+     867: goto          951
+     870: dup
+     871: iconst_0
+     872: ldc_w         #520                // String revision
+     875: aastore
+     876: goto          951
+     879: dup
+     880: iconst_0
+     881: ldc_w         #521                // String repositoryRoot
+     884: aastore
+     885: goto          951
+     888: dup
+     889: iconst_0
+     890: ldc_w         #522                // String line
+     893: aastore
+     894: goto          951
+     897: dup
+     898: iconst_0
+     899: ldc_w         #523                // String submodule
+     902: aastore
+     903: goto          951
+     906: dup
+     907: iconst_0
+     908: ldc_w         #524                // String parentRepo
+     911: aastore
+     912: goto          951
+     915: dup
+     916: iconst_0
+     917: ldc_w         #525                // String revisionNumber
+     920: aastore
+     921: goto          951
+     924: dup
+     925: iconst_0
+     926: ldc_w         #526                // String bytes
+     929: aastore
+     930: goto          951
+     933: dup
+     934: iconst_0
+     935: ldc_w         #527                // String content
+     938: aastore
+     939: goto          951
+     942: dup
+     943: iconst_0
+     944: ldc_w         #528                // String blobHash
+     947: aastore
+     948: goto          951
+     951: iload_0
+     952: tableswitch   { // 0 to 61
+
+                     0: 1216
+
+                     1: 1216
+
+                     2: 1216
+
+                     3: 1216
+
+                     4: 1216
+
+                     5: 1216
+
+                     6: 1216
+
+                     7: 1225
+
+                     8: 1216
+
+                     9: 1216
+
+                    10: 1216
+
+                    11: 1216
+
+                    12: 1216
+
+                    13: 1216
+
+                    14: 1234
+
+                    15: 1216
+
+                    16: 1216
+
+                    17: 1216
+
+                    18: 1216
+
+                    19: 1216
+
+                    20: 1216
+
+                    21: 1243
+
+                    22: 1216
+
+                    23: 1216
+
+                    24: 1216
+
+                    25: 1216
+
+                    26: 1216
+
+                    27: 1216
+
+                    28: 1252
+
+                    29: 1216
+
+                    30: 1216
+
+                    31: 1216
+
+                    32: 1216
+
+                    33: 1216
+
+                    34: 1216
+
+                    35: 1216
+
+                    36: 1216
+
+                    37: 1216
+
+                    38: 1216
+
+                    39: 1216
+
+                    40: 1216
+
+                    41: 1216
+
+                    42: 1216
+
+                    43: 1216
+
+                    44: 1216
+
+                    45: 1216
+
+                    46: 1261
+
+                    47: 1216
+
+                    48: 1216
+
+                    49: 1216
+
+                    50: 1216
+
+                    51: 1270
+
+                    52: 1216
+
+                    53: 1216
+
+                    54: 1216
+
+                    55: 1216
+
+                    56: 1216
+
+                    57: 1216
+
+                    58: 1216
+
+                    59: 1216
+
+                    60: 1216
+
+                    61: 1279
+               default: 1216
+          }
+    1216: dup
+    1217: iconst_1
+    1218: ldc_w         #519                // String git4idea/index/GitIndexUtil
+    1221: aastore
+    1222: goto          1288
+    1225: dup
+    1226: iconst_1
+    1227: ldc_w         #529                // String listStaged
+    1230: aastore
+    1231: goto          1288
+    1234: dup
+    1235: iconst_1
+    1236: ldc_w         #530                // String listTree
+    1239: aastore
+    1240: goto          1288
+    1243: dup
+    1244: iconst_1
+    1245: ldc_w         #531                // String listTreeForRawPaths
+    1248: aastore
+    1249: goto          1288
+    1252: dup
+    1253: iconst_1
+    1254: ldc_w         #532                // String loadStagedSubmoduleHash
+    1257: aastore
+    1258: goto          1288
+    1261: dup
+    1262: iconst_1
+    1263: ldc_w         #533                // String write
+    1266: aastore
+    1267: goto          1288
+    1270: dup
+    1271: iconst_1
+    1272: ldc_w         #534                // String hashObject
+    1275: aastore
+    1276: goto          1288
+    1279: dup
+    1280: iconst_1
+    1281: ldc_w         #535                // String read
+    1284: aastore
+    1285: goto          1288
+    1288: iload_0
+    1289: tableswitch   { // 0 to 61
+
+                     0: 1552
+
+                     1: 1552
+
+                     2: 1552
+
+                     3: 1552
+
+                     4: 1552
+
+                     5: 1552
+
+                     6: 1552
+
+                     7: 1561
+
+                     8: 1564
+
+                     9: 1564
+
+                    10: 1564
+
+                    11: 1564
+
+                    12: 1564
+
+                    13: 1564
+
+                    14: 1561
+
+                    15: 1573
+
+                    16: 1573
+
+                    17: 1573
+
+                    18: 1573
+
+                    19: 1573
+
+                    20: 1573
+
+                    21: 1561
+
+                    22: 1582
+
+                    23: 1582
+
+                    24: 1591
+
+                    25: 1591
+
+                    26: 1600
+
+                    27: 1600
+
+                    28: 1561
+
+                    29: 1609
+
+                    30: 1609
+
+                    31: 1609
+
+                    32: 1618
+
+                    33: 1618
+
+                    34: 1618
+
+                    35: 1618
+
+                    36: 1618
+
+                    37: 1618
+
+                    38: 1618
+
+                    39: 1618
+
+                    40: 1618
+
+                    41: 1618
+
+                    42: 1618
+
+                    43: 1618
+
+                    44: 1618
+
+                    45: 1618
+
+                    46: 1561
+
+                    47: 1627
+
+                    48: 1627
+
+                    49: 1627
+
+                    50: 1627
+
+                    51: 1561
+
+                    52: 1636
+
+                    53: 1636
+
+                    54: 1636
+
+                    55: 1636
+
+                    56: 1636
+
+                    57: 1636
+
+                    58: 1636
+
+                    59: 1645
+
+                    60: 1645
+
+                    61: 1561
+               default: 1552
+          }
+    1552: dup
+    1553: iconst_2
+    1554: ldc_w         #529                // String listStaged
+    1557: aastore
+    1558: goto          1654
+    1561: goto          1654
+    1564: dup
+    1565: iconst_2
+    1566: ldc_w         #530                // String listTree
+    1569: aastore
+    1570: goto          1654
+    1573: dup
+    1574: iconst_2
+    1575: ldc_w         #531                // String listTreeForRawPaths
+    1578: aastore
+    1579: goto          1654
+    1582: dup
+    1583: iconst_2
+    1584: ldc_w         #536                // String parseListFilesStagedRecord
+    1587: aastore
+    1588: goto          1654
+    1591: dup
+    1592: iconst_2
+    1593: ldc_w         #537                // String parseListTreeRecord
+    1596: aastore
+    1597: goto          1654
+    1600: dup
+    1601: iconst_2
+    1602: ldc_w         #532                // String loadStagedSubmoduleHash
+    1605: aastore
+    1606: goto          1654
+    1609: dup
+    1610: iconst_2
+    1611: ldc_w         #538                // String loadSubmoduleHashAt
+    1614: aastore
+    1615: goto          1654
+    1618: dup
+    1619: iconst_2
+    1620: ldc_w         #533                // String write
+    1623: aastore
+    1624: goto          1654
+    1627: dup
+    1628: iconst_2
+    1629: ldc_w         #534                // String hashObject
+    1632: aastore
+    1633: goto          1654
+    1636: dup
+    1637: iconst_2
+    1638: ldc_w         #539                // String updateIndex
+    1641: aastore
+    1642: goto          1654
+    1645: dup
+    1646: iconst_2
+    1647: ldc_w         #535                // String read
+    1650: aastore
+    1651: goto          1654
+    1654: invokestatic  #252                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    1657: iload_0
+    1658: tableswitch   { // 0 to 61
+
+                     0: 1920
+
+                     1: 1920
+
+                     2: 1920
+
+                     3: 1920
+
+                     4: 1920
+
+                     5: 1920
+
+                     6: 1920
+
+                     7: 1931
+
+                     8: 1920
+
+                     9: 1920
+
+                    10: 1920
+
+                    11: 1920
+
+                    12: 1920
+
+                    13: 1920
+
+                    14: 1931
+
+                    15: 1920
+
+                    16: 1920
+
+                    17: 1920
+
+                    18: 1920
+
+                    19: 1920
+
+                    20: 1920
+
+                    21: 1931
+
+                    22: 1920
+
+                    23: 1920
+
+                    24: 1920
+
+                    25: 1920
+
+                    26: 1920
+
+                    27: 1920
+
+                    28: 1931
+
+                    29: 1920
+
+                    30: 1920
+
+                    31: 1920
+
+                    32: 1920
+
+                    33: 1920
+
+                    34: 1920
+
+                    35: 1920
+
+                    36: 1920
+
+                    37: 1920
+
+                    38: 1920
+
+                    39: 1920
+
+                    40: 1920
+
+                    41: 1920
+
+                    42: 1920
+
+                    43: 1920
+
+                    44: 1920
+
+                    45: 1920
+
+                    46: 1931
+
+                    47: 1920
+
+                    48: 1920
+
+                    49: 1920
+
+                    50: 1920
+
+                    51: 1931
+
+                    52: 1920
+
+                    53: 1920
+
+                    54: 1920
+
+                    55: 1920
+
+                    56: 1920
+
+                    57: 1920
+
+                    58: 1920
+
+                    59: 1920
+
+                    60: 1920
+
+                    61: 1931
+               default: 1920
+          }
+    1920: new           #541                // class java/lang/IllegalArgumentException
+    1923: dup_x1
+    1924: swap
+    1925: invokespecial #542                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+    1928: goto          1942
+    1931: new           #544                // class java/lang/IllegalStateException
+    1934: dup_x1
+    1935: swap
+    1936: invokespecial #545                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+    1939: goto          1942
+    1942: athrow
+}

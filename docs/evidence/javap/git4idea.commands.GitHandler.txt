@@ -1,0 +1,1877 @@
+Compiled from "GitHandler.java"
+public abstract class git4idea.commands.GitHandler {
+  protected static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  protected static final com.intellij.openapi.diagnostic.Logger OUTPUT_LOG;
+
+  protected static final com.intellij.openapi.diagnostic.Logger TIME_LOG;
+
+  protected static final com.intellij.openapi.diagnostic.Logger CALL_TRACE_LOG;
+
+  private final com.intellij.openapi.project.Project myProject;
+
+  protected final git4idea.config.GitExecutable myExecutable;
+
+  private final git4idea.commands.GitCommand myCommand;
+
+  private boolean myPreValidateExecutable;
+
+  private boolean myEnableInteractiveCallbacks;
+
+  protected final com.intellij.execution.configurations.GeneralCommandLine myCommandLine;
+
+  private final java.util.Map<java.lang.String, java.lang.String> myCustomEnv;
+
+  protected java.lang.Process myProcess;
+
+  private boolean myStdoutSuppressed;
+
+  private boolean myStderrSuppressed;
+
+  private com.intellij.util.ThrowableConsumer<? super java.io.OutputStream, java.io.IOException> myInputProcessor;
+
+  private final com.intellij.util.EventDispatcher<com.intellij.openapi.vcs.ProcessEventListener> myListeners;
+
+  protected boolean mySilent;
+
+  private final git4idea.config.GitExecutableContext myExecutableContext;
+
+  private long myStartTime;
+
+  private static final long LONG_TIME;
+
+  private java.lang.Integer myExitCode;
+
+  private static final int LAST_OUTPUT_SIZE;
+
+  private final java.util.List<com.intellij.openapi.vcs.VcsException> myErrors;
+
+  protected git4idea.commands.GitHandler(com.intellij.openapi.project.Project, java.nio.file.Path, git4idea.commands.GitCommand, java.util.List<java.lang.String>);
+    Code:
+       0: aload_2
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       8: aload_3
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      16: aload         4
+      18: ifnonnull     25
+      21: iconst_2
+      22: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      25: aload_0
+      26: aload_1
+      27: aload_2
+      28: invokestatic  #1                  // Method git4idea/config/GitExecutableManager.getInstance:()Lgit4idea/config/GitExecutableManager;
+      31: aload_1
+      32: aload_2
+      33: invokevirtual #7                  // Method git4idea/config/GitExecutableManager.getExecutable:(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;)Lgit4idea/config/GitExecutable;
+      36: aload_3
+      37: aload         4
+      39: invokespecial #11                 // Method "<init>":(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Lgit4idea/config/GitExecutable;Lgit4idea/commands/GitCommand;Ljava/util/List;)V
+      42: return
+
+  protected git4idea.commands.GitHandler(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, git4idea.commands.GitCommand, java.util.List<java.lang.String>);
+    Code:
+       0: aload_2
+       1: ifnonnull     8
+       4: iconst_3
+       5: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       8: aload_3
+       9: ifnonnull     16
+      12: iconst_4
+      13: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      16: aload         4
+      18: ifnonnull     25
+      21: iconst_5
+      22: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      25: aload_0
+      26: aload_1
+      27: aload_2
+      28: invokevirtual #17                 // Method com/intellij/openapi/vfs/VirtualFile.toNioPath:()Ljava/nio/file/Path;
+      31: aload_3
+      32: aload         4
+      34: invokespecial #23                 // Method "<init>":(Lcom/intellij/openapi/project/Project;Ljava/nio/file/Path;Lgit4idea/commands/GitCommand;Ljava/util/List;)V
+      37: return
+
+  protected git4idea.commands.GitHandler(com.intellij.openapi.project.Project, java.nio.file.Path, git4idea.config.GitExecutable, git4idea.commands.GitCommand, java.util.List<java.lang.String>);
+    Code:
+       0: aload_2
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_3
+      10: ifnonnull     18
+      13: bipush        7
+      15: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      18: aload         4
+      20: ifnonnull     28
+      23: bipush        8
+      25: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      28: aload         5
+      30: ifnonnull     38
+      33: bipush        9
+      35: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      38: aload_0
+      39: invokespecial #26                 // Method java/lang/Object."<init>":()V
+      42: aload_0
+      43: iconst_1
+      44: putfield      #31                 // Field myPreValidateExecutable:Z
+      47: aload_0
+      48: iconst_1
+      49: putfield      #35                 // Field myEnableInteractiveCallbacks:Z
+      52: aload_0
+      53: new           #38                 // class java/util/HashMap
+      56: dup
+      57: invokespecial #40                 // Method java/util/HashMap."<init>":()V
+      60: putfield      #41                 // Field myCustomEnv:Ljava/util/Map;
+      63: aload_0
+      64: ldc           #45                 // class com/intellij/openapi/vcs/ProcessEventListener
+      66: invokestatic  #47                 // Method com/intellij/util/EventDispatcher.create:(Ljava/lang/Class;)Lcom/intellij/util/EventDispatcher;
+      69: putfield      #53                 // Field myListeners:Lcom/intellij/util/EventDispatcher;
+      72: aload_0
+      73: new           #57                 // class java/util/ArrayList
+      76: dup
+      77: invokespecial #59                 // Method java/util/ArrayList."<init>":()V
+      80: invokestatic  #60                 // Method java/util/Collections.synchronizedList:(Ljava/util/List;)Ljava/util/List;
+      83: putfield      #66                 // Field myErrors:Ljava/util/List;
+      86: aload_0
+      87: aload_1
+      88: putfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      91: aload_0
+      92: aload_3
+      93: putfield      #74                 // Field myExecutable:Lgit4idea/config/GitExecutable;
+      96: aload_0
+      97: aload         4
+      99: putfield      #78                 // Field myCommand:Lgit4idea/commands/GitCommand;
+     102: aload_0
+     103: new           #82                 // class com/intellij/execution/configurations/GeneralCommandLine
+     106: dup
+     107: invokespecial #84                 // Method com/intellij/execution/configurations/GeneralCommandLine."<init>":()V
+     110: aload_2
+     111: invokevirtual #85                 // Method com/intellij/execution/configurations/GeneralCommandLine.withWorkingDirectory:(Ljava/nio/file/Path;)Lcom/intellij/execution/configurations/GeneralCommandLine;
+     114: aload_3
+     115: invokevirtual #89                 // Method git4idea/config/GitExecutable.getExePath:()Ljava/lang/String;
+     118: invokevirtual #95                 // Method com/intellij/execution/configurations/GeneralCommandLine.withExePath:(Ljava/lang/String;)Lcom/intellij/execution/configurations/GeneralCommandLine;
+     121: getstatic     #99                 // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+     124: invokevirtual #105                // Method com/intellij/execution/configurations/GeneralCommandLine.withCharset:(Ljava/nio/charset/Charset;)Lcom/intellij/execution/configurations/GeneralCommandLine;
+     127: putfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+     130: aload         5
+     132: invokestatic  #113                // Method getConfigParameters:(Ljava/util/List;)Ljava/util/List;
+     135: invokeinterface #116,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     140: astore        6
+     142: aload         6
+     144: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     149: ifeq          188
+     152: aload         6
+     154: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     159: checkcast     #132                // class java/lang/String
+     162: astore        7
+     164: aload_0
+     165: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+     168: iconst_2
+     169: anewarray     #132                // class java/lang/String
+     172: dup
+     173: iconst_0
+     174: ldc           #134                // String -c
+     176: aastore
+     177: dup
+     178: iconst_1
+     179: aload         7
+     181: aastore
+     182: invokevirtual #136                // Method com/intellij/execution/configurations/GeneralCommandLine.addParameters:([Ljava/lang/String;)V
+     185: goto          142
+     188: aload_0
+     189: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+     192: aload         4
+     194: invokevirtual #140                // Method git4idea/commands/GitCommand.name:()Ljava/lang/String;
+     197: invokevirtual #145                // Method com/intellij/execution/configurations/GeneralCommandLine.addParameter:(Ljava/lang/String;)V
+     200: aload_0
+     201: iconst_1
+     202: putfield      #149                // Field myStdoutSuppressed:Z
+     205: aload_0
+     206: aload_0
+     207: getfield      #78                 // Field myCommand:Lgit4idea/commands/GitCommand;
+     210: invokevirtual #152                // Method git4idea/commands/GitCommand.lockingPolicy:()Lgit4idea/commands/GitCommand$LockingPolicy;
+     213: getstatic     #156                // Field git4idea/commands/GitCommand$LockingPolicy.WRITE:Lgit4idea/commands/GitCommand$LockingPolicy;
+     216: if_acmpeq     223
+     219: iconst_1
+     220: goto          224
+     223: iconst_0
+     224: putfield      #162                // Field mySilent:Z
+     227: aload_0
+     228: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     231: ifnull        244
+     234: aload_0
+     235: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     238: invokestatic  #165                // Method git4idea/GitVcs.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/GitVcs;
+     241: goto          245
+     244: aconst_null
+     245: astore        6
+     247: aload_2
+     248: iconst_1
+     249: invokestatic  #170                // Method com/intellij/openapi/vfs/VfsUtil.findFile:(Ljava/nio/file/Path;Z)Lcom/intellij/openapi/vfs/VirtualFile;
+     252: astore        7
+     254: aload_0
+     255: getfield      #74                 // Field myExecutable:Lgit4idea/config/GitExecutable;
+     258: instanceof    #176                // class git4idea/config/GitExecutable$Wsl
+     261: ifeq          270
+     264: getstatic     #178                // Field com/intellij/openapi/vcs/VcsEnvCustomizer$ExecutableType.WSL:Lcom/intellij/openapi/vcs/VcsEnvCustomizer$ExecutableType;
+     267: goto          273
+     270: getstatic     #184                // Field com/intellij/openapi/vcs/VcsEnvCustomizer$ExecutableType.LOCAL:Lcom/intellij/openapi/vcs/VcsEnvCustomizer$ExecutableType;
+     273: astore        8
+     275: aload_0
+     276: new           #187                // class git4idea/config/GitExecutableContext
+     279: dup
+     280: aload         6
+     282: aload         7
+     284: aload         8
+     286: invokespecial #189                // Method git4idea/config/GitExecutableContext."<init>":(Lcom/intellij/openapi/vcs/AbstractVcs;Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/openapi/vcs/VcsEnvCustomizer$ExecutableType;)V
+     289: putfield      #192                // Field myExecutableContext:Lgit4idea/config/GitExecutableContext;
+     292: return
+
+  private static java.util.List<java.lang.String> getConfigParameters(java.util.List<java.lang.String>);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        10
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: new           #57                 // class java/util/ArrayList
+      12: dup
+      13: invokespecial #59                 // Method java/util/ArrayList."<init>":()V
+      16: astore_1
+      17: aload_1
+      18: ldc           #196                // String core.quotepath=false
+      20: invokeinterface #198,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      25: pop
+      26: aload_1
+      27: ldc           #202                // String log.showSignature=false
+      29: invokeinterface #198,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      34: pop
+      35: aload_1
+      36: aload_0
+      37: invokeinterface #204,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      42: pop
+      43: invokestatic  #208                // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+      46: invokeinterface #214,  1          // InterfaceMethod com/intellij/openapi/application/Application.isUnitTestMode:()Z
+      51: ifeq          63
+      54: aload_1
+      55: ldc           #219                // String protocol.file.allow=always
+      57: invokeinterface #198,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      62: pop
+      63: aload_1
+      64: dup
+      65: ifnonnull     73
+      68: bipush        11
+      70: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      73: areturn
+
+  protected com.intellij.openapi.vcs.ProcessEventListener listeners();
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field myListeners:Lcom/intellij/util/EventDispatcher;
+       4: invokevirtual #221                // Method com/intellij/util/EventDispatcher.getMulticaster:()Ljava/util/EventListener;
+       7: checkcast     #45                 // class com/intellij/openapi/vcs/ProcessEventListener
+      10: dup
+      11: ifnonnull     19
+      14: bipush        12
+      16: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      19: areturn
+
+  public com.intellij.openapi.project.Project project();
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       4: areturn
+
+  java.nio.file.Path getWorkingDirectory();
+    Code:
+       0: aload_0
+       1: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+       4: invokevirtual #225                // Method com/intellij/execution/configurations/GeneralCommandLine.getWorkingDirectory:()Ljava/nio/file/Path;
+       7: areturn
+
+  public com.intellij.openapi.vcs.VcsEnvCustomizer$VcsExecutableContext getExecutableContext();
+    Code:
+       0: aload_0
+       1: getfield      #192                // Field myExecutableContext:Lgit4idea/config/GitExecutableContext;
+       4: areturn
+
+  public git4idea.config.GitExecutable getExecutable();
+    Code:
+       0: aload_0
+       1: getfield      #74                 // Field myExecutable:Lgit4idea/config/GitExecutable;
+       4: dup
+       5: ifnonnull     13
+       8: bipush        13
+      10: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      13: areturn
+
+  git4idea.commands.GitCommand getCommand();
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field myCommand:Lgit4idea/commands/GitCommand;
+       4: dup
+       5: ifnonnull     13
+       8: bipush        14
+      10: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      13: areturn
+
+  protected void addListener(com.intellij.openapi.vcs.ProcessEventListener);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        15
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #53                 // Field myListeners:Lcom/intellij/util/EventDispatcher;
+      13: aload_1
+      14: invokevirtual #228                // Method com/intellij/util/EventDispatcher.addListener:(Ljava/util/EventListener;)V
+      17: return
+
+  public void withLowPriority();
+    Code:
+       0: aload_0
+       1: getfield      #192                // Field myExecutableContext:Lgit4idea/config/GitExecutableContext;
+       4: iconst_1
+       5: invokevirtual #232                // Method git4idea/config/GitExecutableContext.withLowPriority:(Z)V
+       8: return
+
+  public void withNoTty();
+    Code:
+       0: aload_0
+       1: getfield      #192                // Field myExecutableContext:Lgit4idea/config/GitExecutableContext;
+       4: iconst_1
+       5: invokevirtual #236                // Method git4idea/config/GitExecutableContext.withNoTty:(Z)V
+       8: return
+
+  public void addConfigParameters(java.lang.String...);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #239                // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+       5: invokevirtual #245                // Method addConfigParameters:(Ljava/util/List;)V
+       8: return
+
+  public void addConfigParameters(java.util.List<java.lang.String>);
+    Code:
+       0: aload_1
+       1: invokeinterface #116,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       6: astore_2
+       7: aload_2
+       8: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      13: ifeq          52
+      16: aload_2
+      17: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #132                // class java/lang/String
+      25: astore_3
+      26: aload_0
+      27: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      30: invokevirtual #249                // Method com/intellij/execution/configurations/GeneralCommandLine.getParametersList:()Lcom/intellij/execution/configurations/ParametersList;
+      33: iconst_2
+      34: anewarray     #132                // class java/lang/String
+      37: dup
+      38: iconst_0
+      39: ldc           #134                // String -c
+      41: aastore
+      42: dup
+      43: iconst_1
+      44: aload_3
+      45: aastore
+      46: invokevirtual #253                // Method com/intellij/execution/configurations/ParametersList.prependAll:([Ljava/lang/String;)V
+      49: goto          7
+      52: return
+
+  public void addParameters(java.lang.String...);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        16
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: invokestatic  #239                // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+      14: invokevirtual #258                // Method addParameters:(Ljava/util/List;)V
+      17: return
+
+  public void addParameters(java.util.List<java.lang.String>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        17
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #116,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      15: astore_2
+      16: aload_2
+      17: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      22: ifeq          50
+      25: aload_2
+      26: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      31: checkcast     #132                // class java/lang/String
+      34: astore_3
+      35: aload_0
+      36: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      39: aload_0
+      40: aload_3
+      41: invokevirtual #260                // Method escapeParameterIfNeeded:(Ljava/lang/String;)Ljava/lang/String;
+      44: invokevirtual #145                // Method com/intellij/execution/configurations/GeneralCommandLine.addParameter:(Ljava/lang/String;)V
+      47: goto          16
+      50: return
+
+  private java.lang.String escapeParameterIfNeeded(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        18
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: invokevirtual #264                // Method escapeNeeded:(Ljava/lang/String;)Z
+      14: ifeq          37
+      17: aload_1
+      18: ldc_w         #268                // String \\^
+      21: ldc_w         #270                // String ^^^^
+      24: invokevirtual #272                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      27: dup
+      28: ifnonnull     36
+      31: bipush        19
+      33: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      36: areturn
+      37: aload_1
+      38: dup
+      39: ifnonnull     47
+      42: bipush        20
+      44: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      47: areturn
+
+  private boolean escapeNeeded(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        21
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: getstatic     #276                // Field com/intellij/openapi/util/SystemInfo.isWindows:Z
+      12: ifeq          36
+      15: aload_0
+      16: invokevirtual #281                // Method isCmd:()Z
+      19: ifeq          36
+      22: aload_1
+      23: ldc_w         #284                // String ^
+      26: invokevirtual #286                // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      29: ifeq          36
+      32: iconst_1
+      33: goto          37
+      36: iconst_0
+      37: ireturn
+
+  private boolean isCmd();
+    Code:
+       0: aload_0
+       1: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+       4: invokevirtual #290                // Method com/intellij/execution/configurations/GeneralCommandLine.getExePath:()Ljava/lang/String;
+       7: invokestatic  #291                // Method com/intellij/openapi/util/text/StringUtil.toLowerCase:(Ljava/lang/String;)Ljava/lang/String;
+      10: ldc_w         #296                // String cmd
+      13: invokevirtual #298                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+      16: ireturn
+
+  public void addRelativePaths(com.intellij.openapi.vcs.FilePath...);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        22
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: invokestatic  #239                // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+      14: invokevirtual #301                // Method addRelativePaths:(Ljava/util/Collection;)V
+      17: return
+
+  public void addRelativePaths(java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        23
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #305,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      15: astore_2
+      16: aload_2
+      17: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      22: ifeq          58
+      25: aload_2
+      26: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      31: checkcast     #308                // class com/intellij/openapi/vcs/FilePath
+      34: astore_3
+      35: aload_0
+      36: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      39: aload_0
+      40: invokevirtual #310                // Method getWorkingDirectory:()Ljava/nio/file/Path;
+      43: invokeinterface #311,  1          // InterfaceMethod java/nio/file/Path.toFile:()Ljava/io/File;
+      48: aload_3
+      49: invokestatic  #317                // Method com/intellij/vcsUtil/VcsFileUtil.relativePath:(Ljava/io/File;Lcom/intellij/openapi/vcs/FilePath;)Ljava/lang/String;
+      52: invokevirtual #145                // Method com/intellij/execution/configurations/GeneralCommandLine.addParameter:(Ljava/lang/String;)V
+      55: goto          16
+      58: return
+
+  public void addRelativeFiles(java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        24
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #305,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      15: astore_2
+      16: aload_2
+      17: invokeinterface #122,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      22: ifeq          58
+      25: aload_2
+      26: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      31: checkcast     #18                 // class com/intellij/openapi/vfs/VirtualFile
+      34: astore_3
+      35: aload_0
+      36: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      39: aload_0
+      40: invokevirtual #310                // Method getWorkingDirectory:()Ljava/nio/file/Path;
+      43: invokeinterface #311,  1          // InterfaceMethod java/nio/file/Path.toFile:()Ljava/io/File;
+      48: aload_3
+      49: invokestatic  #323                // Method com/intellij/vcsUtil/VcsFileUtil.relativePath:(Ljava/io/File;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/lang/String;
+      52: invokevirtual #145                // Method com/intellij/execution/configurations/GeneralCommandLine.addParameter:(Ljava/lang/String;)V
+      55: goto          16
+      58: return
+
+  public void addAbsoluteFile(java.io.File);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        25
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      13: aload_0
+      14: getfield      #74                 // Field myExecutable:Lgit4idea/config/GitExecutable;
+      17: aload_1
+      18: invokevirtual #326                // Method java/io/File.toPath:()Ljava/nio/file/Path;
+      21: invokevirtual #331                // Method git4idea/config/GitExecutable.convertFilePath:(Ljava/nio/file/Path;)Ljava/lang/String;
+      24: invokevirtual #145                // Method com/intellij/execution/configurations/GeneralCommandLine.addParameter:(Ljava/lang/String;)V
+      27: return
+
+  public void endOptions();
+    Code:
+       0: aload_0
+       1: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+       4: ldc_w         #335                // String --
+       7: invokevirtual #145                // Method com/intellij/execution/configurations/GeneralCommandLine.addParameter:(Ljava/lang/String;)V
+      10: return
+
+  private boolean isStarted();
+    Code:
+       0: aload_0
+       1: getfield      #337                // Field myProcess:Ljava/lang/Process;
+       4: ifnull        11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  public boolean isLargeCommandLine();
+    Code:
+       0: aload_0
+       1: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+       4: invokevirtual #341                // Method com/intellij/execution/configurations/GeneralCommandLine.getCommandLineString:()Ljava/lang/String;
+       7: invokevirtual #344                // Method java/lang/String.length:()I
+      10: sipush        7600
+      13: if_icmple     20
+      16: iconst_1
+      17: goto          21
+      20: iconst_0
+      21: ireturn
+
+  public java.lang.String printableCommandLine();
+    Code:
+       0: aload_0
+       1: invokevirtual #348                // Method getExecutable:()Lgit4idea/config/GitExecutable;
+       4: invokevirtual #351                // Method git4idea/config/GitExecutable.isLocal:()Z
+       7: ifeq          25
+      10: aload_0
+      11: aload_0
+      12: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      15: ldc_w         #354                // String git
+      18: invokevirtual #356                // Method com/intellij/execution/configurations/GeneralCommandLine.getCommandLineString:(Ljava/lang/String;)Ljava/lang/String;
+      21: invokevirtual #358                // Method unescapeCommandLine:(Ljava/lang/String;)Ljava/lang/String;
+      24: areturn
+      25: aload_0
+      26: aload_0
+      27: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      30: aconst_null
+      31: invokevirtual #356                // Method com/intellij/execution/configurations/GeneralCommandLine.getCommandLineString:(Ljava/lang/String;)Ljava/lang/String;
+      34: invokevirtual #358                // Method unescapeCommandLine:(Ljava/lang/String;)Ljava/lang/String;
+      37: areturn
+
+  private java.lang.String unescapeCommandLine(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        26
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: aload_1
+      11: invokevirtual #264                // Method escapeNeeded:(Ljava/lang/String;)Z
+      14: ifeq          37
+      17: aload_1
+      18: ldc_w         #361                // String \\^\\^\\^\\^
+      21: ldc_w         #284                // String ^
+      24: invokevirtual #272                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      27: dup
+      28: ifnonnull     36
+      31: bipush        27
+      33: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      36: areturn
+      37: aload_1
+      38: dup
+      39: ifnonnull     47
+      42: bipush        28
+      44: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      47: areturn
+
+  public java.nio.charset.Charset getCharset();
+    Code:
+       0: aload_0
+       1: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+       4: invokevirtual #363                // Method com/intellij/execution/configurations/GeneralCommandLine.getCharset:()Ljava/nio/charset/Charset;
+       7: dup
+       8: ifnonnull     16
+      11: bipush        29
+      13: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      16: areturn
+
+  public void setCharset(java.nio.charset.Charset);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        30
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      13: aload_1
+      14: invokevirtual #367                // Method com/intellij/execution/configurations/GeneralCommandLine.setCharset:(Ljava/nio/charset/Charset;)V
+      17: return
+
+  public void setSilent(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #162                // Field mySilent:Z
+       5: iload_1
+       6: ifeq          19
+       9: aload_0
+      10: iconst_1
+      11: invokevirtual #371                // Method setStderrSuppressed:(Z)V
+      14: aload_0
+      15: iconst_1
+      16: invokevirtual #374                // Method setStdoutSuppressed:(Z)V
+      19: return
+
+  boolean isSilent();
+    Code:
+       0: aload_0
+       1: getfield      #162                // Field mySilent:Z
+       4: ireturn
+
+  boolean isStdoutSuppressed();
+    Code:
+       0: aload_0
+       1: getfield      #149                // Field myStdoutSuppressed:Z
+       4: ireturn
+
+  public void setStdoutSuppressed(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #149                // Field myStdoutSuppressed:Z
+       5: return
+
+  boolean isStderrSuppressed();
+    Code:
+       0: aload_0
+       1: getfield      #377                // Field myStderrSuppressed:Z
+       4: ireturn
+
+  public void setStderrSuppressed(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #377                // Field myStderrSuppressed:Z
+       5: return
+
+  public void setInputProcessor(com.intellij.util.ThrowableConsumer<? super java.io.OutputStream, java.io.IOException>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #380                // Field myInputProcessor:Lcom/intellij/util/ThrowableConsumer;
+       5: return
+
+  public void addCustomEnvironmentVariable(java.lang.String, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        31
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #41                 // Field myCustomEnv:Ljava/util/Map;
+      13: aload_1
+      14: aload_2
+      15: invokeinterface #384,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      20: pop
+      21: return
+
+  public boolean containsCustomEnvironmentVariable(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        32
+       6: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #41                 // Field myCustomEnv:Ljava/util/Map;
+      13: aload_1
+      14: invokeinterface #390,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+      19: ireturn
+
+  public void setPreValidateExecutable(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #31                 // Field myPreValidateExecutable:Z
+       5: return
+
+  boolean isPreValidateExecutable();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field myPreValidateExecutable:Z
+       4: ireturn
+
+  public boolean isEnableInteractiveCallbacks();
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field myEnableInteractiveCallbacks:Z
+       4: ireturn
+
+  public void setEnableInteractiveCallbacks(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #35                 // Field myEnableInteractiveCallbacks:Z
+       5: return
+
+  void runInCurrentThread() throws java.io.IOException;
+    Code:
+       0: invokestatic  #393                // Method com/intellij/platform/vcs/impl/shared/telemetry/VcsScopeKt.getVcsTracer:()Lcom/intellij/platform/diagnostic/telemetry/IJTracer;
+       3: getstatic     #399                // Field git4idea/telemetry/GitBackendTelemetrySpan$Repository.RunGitCommand:Lgit4idea/telemetry/GitBackendTelemetrySpan$Repository;
+       6: invokevirtual #405                // Method git4idea/telemetry/GitBackendTelemetrySpan$Repository.getName:()Ljava/lang/String;
+       9: invokeinterface #408,  2          // InterfaceMethod com/intellij/platform/diagnostic/telemetry/IJTracer.spanBuilder:(Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      14: ldc_w         #414                // String git.command
+      17: aload_0
+      18: getfield      #78                 // Field myCommand:Lgit4idea/commands/GitCommand;
+      21: invokevirtual #140                // Method git4idea/commands/GitCommand.name:()Ljava/lang/String;
+      24: invokeinterface #416,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      29: ldc_w         #422                // String working.directory
+      32: aload_0
+      33: invokevirtual #424                // Method getDirectoryPathForLogging:()Ljava/lang/String;
+      36: invokeinterface #416,  3          // InterfaceMethod io/opentelemetry/api/trace/SpanBuilder.setAttribute:(Ljava/lang/String;Ljava/lang/String;)Lio/opentelemetry/api/trace/SpanBuilder;
+      41: astore_1
+      42: aload_1
+      43: aload_0
+      44: invokedynamic #427,  0            // InvokeDynamic #0:consume:(Lgit4idea/commands/GitHandler;)Lcom/intellij/util/ThrowableConsumer;
+      49: invokestatic  #431                // Method com/intellij/platform/diagnostic/telemetry/helpers/TraceUtil.runWithSpanThrows:(Lio/opentelemetry/api/trace/SpanBuilder;Lcom/intellij/util/ThrowableConsumer;)V
+      52: return
+
+  private void logTime();
+    Code:
+       0: aload_0
+       1: getfield      #437                // Field myStartTime:J
+       4: lconst_0
+       5: lcmp
+       6: ifle          63
+       9: invokestatic  #441                // Method java/lang/System.currentTimeMillis:()J
+      12: aload_0
+      13: getfield      #437                // Field myStartTime:J
+      16: lsub
+      17: lstore_1
+      18: getstatic     #447                // Field TIME_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      21: invokevirtual #451                // Method com/intellij/openapi/diagnostic/Logger.isDebugEnabled:()Z
+      24: ifne          49
+      27: lload_1
+      28: ldc2_w        #456                // long 10000l
+      31: lcmp
+      32: ifle          49
+      35: getstatic     #458                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      38: aload_0
+      39: lload_1
+      40: invokevirtual #461                // Method formatDurationMessage:(J)Ljava/lang/String;
+      43: invokevirtual #465                // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+      46: goto          60
+      49: getstatic     #447                // Field TIME_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      52: aload_0
+      53: lload_1
+      54: invokevirtual #461                // Method formatDurationMessage:(J)Ljava/lang/String;
+      57: invokevirtual #468                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+      60: goto          86
+      63: getstatic     #458                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      66: ldc_w         #471                // String git %s finished.
+      69: iconst_1
+      70: anewarray     #27                 // class java/lang/Object
+      73: dup
+      74: iconst_0
+      75: aload_0
+      76: getfield      #78                 // Field myCommand:Lgit4idea/commands/GitCommand;
+      79: aastore
+      80: invokestatic  #473                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      83: invokevirtual #468                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+      86: return
+
+  private java.lang.String formatDurationMessage(long);
+    Code:
+       0: ldc_w         #477                // String git %s took %s ms. Command parameters: %n%s
+       3: iconst_3
+       4: anewarray     #27                 // class java/lang/Object
+       7: dup
+       8: iconst_0
+       9: aload_0
+      10: getfield      #78                 // Field myCommand:Lgit4idea/commands/GitCommand;
+      13: aastore
+      14: dup
+      15: iconst_1
+      16: lload_1
+      17: invokestatic  #479                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      20: aastore
+      21: dup
+      22: iconst_2
+      23: aload_0
+      24: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      27: invokevirtual #341                // Method com/intellij/execution/configurations/GeneralCommandLine.getCommandLineString:()Ljava/lang/String;
+      30: aastore
+      31: invokestatic  #473                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      34: dup
+      35: ifnonnull     43
+      38: bipush        33
+      40: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      43: areturn
+
+  private void start();
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       4: ifnonnull     34
+       7: aload_0
+       8: invokevirtual #310                // Method getWorkingDirectory:()Ljava/nio/file/Path;
+      11: invokestatic  #485                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      14: checkcast     #312                // class java/nio/file/Path
+      17: invokestatic  #491                // Method com/intellij/ide/trustedProjects/TrustedProjects.isProjectTrusted:(Ljava/nio/file/Path;)Z
+      20: ifne          34
+      23: new           #497                // class java/lang/IllegalStateException
+      26: dup
+      27: ldc_w         #499                // String Shouldn\'t be possible to run a Git command in potentially untrusted project. Pass Project to GitHandler constructor if applicable.
+      30: invokespecial #501                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      33: athrow
+      34: aload_0
+      35: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      38: ifnull        74
+      41: aload_0
+      42: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      45: invokeinterface #503,  1          // InterfaceMethod com/intellij/openapi/project/Project.isDefault:()Z
+      50: ifne          74
+      53: aload_0
+      54: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      57: invokestatic  #508                // Method com/intellij/ide/trustedProjects/TrustedProjects.isProjectTrusted:(Lcom/intellij/openapi/project/Project;)Z
+      60: ifne          74
+      63: new           #497                // class java/lang/IllegalStateException
+      66: dup
+      67: ldc_w         #511                // String Shouldn\'t be possible to run a Git command in the safe mode
+      70: invokespecial #501                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      73: athrow
+      74: aload_0
+      75: invokevirtual #513                // Method isStarted:()Z
+      78: ifeq          92
+      81: new           #497                // class java/lang/IllegalStateException
+      84: dup
+      85: ldc_w         #516                // String The process has been already started
+      88: invokespecial #501                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      91: athrow
+      92: aload_0
+      93: invokestatic  #441                // Method java/lang/System.currentTimeMillis:()J
+      96: putfield      #437                // Field myStartTime:J
+      99: aload_0
+     100: invokevirtual #424                // Method getDirectoryPathForLogging:()Ljava/lang/String;
+     103: astore_1
+     104: aload_0
+     105: getfield      #162                // Field mySilent:Z
+     108: ifne          130
+     111: getstatic     #458                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     114: aload_1
+     115: aload_0
+     116: invokevirtual #518                // Method printableCommandLine:()Ljava/lang/String;
+     119: invokedynamic #521,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     124: invokevirtual #465                // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+     127: goto          146
+     130: getstatic     #458                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     133: aload_1
+     134: aload_0
+     135: invokevirtual #518                // Method printableCommandLine:()Ljava/lang/String;
+     138: invokedynamic #521,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     143: invokevirtual #468                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     146: getstatic     #524                // Field CALL_TRACE_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     149: invokevirtual #451                // Method com/intellij/openapi/diagnostic/Logger.isDebugEnabled:()Z
+     152: ifeq          178
+     155: getstatic     #524                // Field CALL_TRACE_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     158: new           #527                // class java/lang/Throwable
+     161: dup
+     162: aload_1
+     163: aload_0
+     164: invokevirtual #518                // Method printableCommandLine:()Ljava/lang/String;
+     167: invokedynamic #521,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     172: invokespecial #529                // Method java/lang/Throwable."<init>":(Ljava/lang/String;)V
+     175: invokevirtual #530                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/Throwable;)V
+     178: aload_0
+     179: invokevirtual #533                // Method prepareEnvironment:()V
+     182: aload_0
+     183: getfield      #74                 // Field myExecutable:Lgit4idea/config/GitExecutable;
+     186: aload_0
+     187: aload_0
+     188: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+     191: aload_0
+     192: getfield      #192                // Field myExecutableContext:Lgit4idea/config/GitExecutableContext;
+     195: invokevirtual #536                // Method git4idea/config/GitExecutable.patchCommandLine:(Lgit4idea/commands/GitHandler;Lcom/intellij/execution/configurations/GeneralCommandLine;Lgit4idea/config/GitExecutableContext;)V
+     198: getstatic     #540                // Field OUTPUT_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     201: ldc_w         #543                // String %s %% %s started: %s
+     204: iconst_3
+     205: anewarray     #27                 // class java/lang/Object
+     208: dup
+     209: iconst_0
+     210: aload_0
+     211: invokevirtual #545                // Method getCommand:()Lgit4idea/commands/GitCommand;
+     214: aastore
+     215: dup
+     216: iconst_1
+     217: aload_0
+     218: invokevirtual #549                // Method java/lang/Object.hashCode:()I
+     221: invokestatic  #552                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     224: aastore
+     225: dup
+     226: iconst_2
+     227: aload_0
+     228: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+     231: aastore
+     232: invokestatic  #473                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     235: invokevirtual #468                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     238: aload_0
+     239: aload_0
+     240: invokevirtual #557                // Method startProcess:()Ljava/lang/Process;
+     243: putfield      #337                // Field myProcess:Ljava/lang/Process;
+     246: aload_0
+     247: invokevirtual #561                // Method startHandlingStreams:()V
+     250: goto          291
+     253: astore_1
+     254: aload_1
+     255: athrow
+     256: astore_1
+     257: invokestatic  #208                // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+     260: invokeinterface #214,  1          // InterfaceMethod com/intellij/openapi/application/Application.isUnitTestMode:()Z
+     265: ifne          275
+     268: getstatic     #458                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     271: aload_1
+     272: invokevirtual #566                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     275: aload_0
+     276: getfield      #53                 // Field myListeners:Lcom/intellij/util/EventDispatcher;
+     279: invokevirtual #221                // Method com/intellij/util/EventDispatcher.getMulticaster:()Ljava/util/EventListener;
+     282: checkcast     #45                 // class com/intellij/openapi/vcs/ProcessEventListener
+     285: aload_1
+     286: invokeinterface #569,  2          // InterfaceMethod com/intellij/openapi/vcs/ProcessEventListener.startFailed:(Ljava/lang/Throwable;)V
+     291: return
+    Exception table:
+       from    to  target type
+          92   250   253   Class com/intellij/openapi/progress/ProcessCanceledException
+          92   250   256   Class java/lang/Throwable
+
+  private java.lang.String getDirectoryPathForLogging();
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       4: ifnull        29
+       7: aload_0
+       8: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      11: invokeinterface #572,  1          // InterfaceMethod com/intellij/openapi/project/Project.getBasePath:()Ljava/lang/String;
+      16: aload_0
+      17: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      20: invokevirtual #225                // Method com/intellij/execution/configurations/GeneralCommandLine.getWorkingDirectory:()Ljava/nio/file/Path;
+      23: invokestatic  #575                // Method git4idea/commands/GitImplBase.stringifyWorkingDir:(Ljava/lang/String;Ljava/nio/file/Path;)Ljava/lang/String;
+      26: goto          39
+      29: aload_0
+      30: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+      33: invokevirtual #581                // Method com/intellij/execution/configurations/GeneralCommandLine.getWorkDirectory:()Ljava/io/File;
+      36: invokevirtual #584                // Method java/io/File.getPath:()Ljava/lang/String;
+      39: dup
+      40: ifnonnull     48
+      43: bipush        34
+      45: invokestatic  #893                // Method $$$reportNull$$$0:(I)V
+      48: areturn
+
+  private void prepareEnvironment();
+    Code:
+       0: aload_0
+       1: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+       4: invokevirtual #587                // Method com/intellij/execution/configurations/GeneralCommandLine.getEnvironment:()Ljava/util/Map;
+       7: astore_1
+       8: aload_1
+       9: invokeinterface #591,  1          // InterfaceMethod java/util/Map.clear:()V
+      14: aload_0
+      15: getfield      #74                 // Field myExecutable:Lgit4idea/config/GitExecutable;
+      18: invokevirtual #351                // Method git4idea/config/GitExecutable.isLocal:()Z
+      21: ifeq          33
+      24: aload_1
+      25: invokestatic  #594                // Method com/intellij/util/EnvironmentUtil.getEnvironmentMap:()Ljava/util/Map;
+      28: invokeinterface #599,  2          // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+      33: aload_1
+      34: aload_0
+      35: getfield      #74                 // Field myExecutable:Lgit4idea/config/GitExecutable;
+      38: invokevirtual #603                // Method git4idea/config/GitExecutable.getLocaleEnv:()Ljava/util/Map;
+      41: invokeinterface #599,  2          // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+      46: aload_1
+      47: aload_0
+      48: getfield      #41                 // Field myCustomEnv:Ljava/util/Map;
+      51: invokeinterface #599,  2          // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+      56: aload_1
+      57: ldc_w         #606                // String INTELLIJ_GIT_EXECUTABLE
+      60: ldc_w         #608                // String true
+      63: invokeinterface #384,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      68: pop
+      69: invokestatic  #610                // Method shouldSuppressReadLocks:()Z
+      72: ifne          107
+      75: ldc_w         #613                // String git.use.env.from.project.context
+      78: invokestatic  #615                // Method com/intellij/openapi/util/registry/Registry.is:(Ljava/lang/String;)Z
+      81: ifeq          107
+      84: getstatic     #620                // Field com/intellij/openapi/vcs/VcsEnvCustomizer.EP_NAME:Lcom/intellij/openapi/extensions/ExtensionPointName;
+      87: aload_0
+      88: aload_1
+      89: invokedynamic #626,  0            // InvokeDynamic #2:accept:(Lgit4idea/commands/GitHandler;Ljava/util/Map;)Ljava/util/function/Consumer;
+      94: invokevirtual #630                // Method com/intellij/openapi/extensions/ExtensionPointName.forEachExtensionSafe:(Ljava/util/function/Consumer;)V
+      97: aload_1
+      98: ldc_w         #636                // String PS1
+     101: invokeinterface #638,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     106: pop
+     107: return
+
+  protected static boolean shouldSuppressReadLocks();
+    Code:
+       0: invokestatic  #641                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+       3: invokevirtual #646                // Method com/intellij/openapi/progress/ProgressManager.getProgressIndicator:()Lcom/intellij/openapi/progress/ProgressIndicator;
+       6: instanceof    #650                // class com/intellij/openapi/progress/util/PotemkinProgress
+       9: ifeq          29
+      12: invokestatic  #208                // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+      15: invokeinterface #652,  1          // InterfaceMethod com/intellij/openapi/application/Application.isDispatchThread:()Z
+      20: ifne          27
+      23: iconst_1
+      24: goto          28
+      27: iconst_0
+      28: ireturn
+      29: iconst_0
+      30: ireturn
+
+  protected abstract java.lang.Process startProcess() throws com.intellij.execution.ExecutionException;
+
+  protected abstract void startHandlingStreams();
+
+  protected abstract void waitForProcess();
+
+  public java.lang.String toString();
+    Code:
+       0: aload_0
+       1: getfield      #109                // Field myCommandLine:Lcom/intellij/execution/configurations/GeneralCommandLine;
+       4: invokevirtual #655                // Method com/intellij/execution/configurations/GeneralCommandLine.toString:()Ljava/lang/String;
+       7: areturn
+
+  protected void setExitCode(int);
+    Code:
+       0: aload_0
+       1: getfield      #658                // Field myExitCode:Ljava/lang/Integer;
+       4: ifnonnull     18
+       7: aload_0
+       8: iload_1
+       9: invokestatic  #552                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      12: putfield      #658                // Field myExitCode:Ljava/lang/Integer;
+      15: goto          34
+      18: getstatic     #458                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      21: iload_1
+      22: aload_0
+      23: getfield      #658                // Field myExitCode:Ljava/lang/Integer;
+      26: invokedynamic #662,  0            // InvokeDynamic #3:makeConcatWithConstants:(ILjava/lang/Integer;)Ljava/lang/String;
+      31: invokevirtual #465                // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+      34: return
+
+  void runInCurrentThread(java.lang.Runnable);
+    Code:
+       0: aload_0
+       1: invokevirtual #665                // Method start:()V
+       4: aload_0
+       5: invokevirtual #513                // Method isStarted:()Z
+       8: ifeq          25
+      11: aload_1
+      12: ifnull        21
+      15: aload_1
+      16: invokeinterface #668,  1          // InterfaceMethod java/lang/Runnable.run:()V
+      21: aload_0
+      22: invokevirtual #673                // Method waitForProcess:()V
+      25: aload_0
+      26: invokevirtual #676                // Method logTime:()V
+      29: goto          39
+      32: astore_2
+      33: aload_0
+      34: invokevirtual #676                // Method logTime:()V
+      37: aload_2
+      38: athrow
+      39: return
+    Exception table:
+       from    to  target type
+           0    25    32   any
+
+  private void lambda$prepareEnvironment$1(java.util.Map, com.intellij.openapi.vcs.VcsEnvCustomizer);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: getfield      #70                 // Field myProject:Lcom/intellij/openapi/project/Project;
+       5: aload_1
+       6: aload_0
+       7: getfield      #192                // Field myExecutableContext:Lgit4idea/config/GitExecutableContext;
+      10: invokevirtual #679                // Method com/intellij/openapi/vcs/VcsEnvCustomizer.customizeCommandAndEnvironment:(Lcom/intellij/openapi/project/Project;Ljava/util/Map;Lcom/intellij/openapi/vcs/VcsEnvCustomizer$VcsExecutableContext;)V
+      13: return
+
+  private void lambda$runInCurrentThread$0(io.opentelemetry.api.trace.Span) throws java.io.IOException;
+    Code:
+       0: aload_0
+       1: invokevirtual #665                // Method start:()V
+       4: aload_0
+       5: invokevirtual #513                // Method isStarted:()Z
+       8: ifeq          48
+      11: aload_0
+      12: getfield      #380                // Field myInputProcessor:Lcom/intellij/util/ThrowableConsumer;
+      15: ifnull        34
+      18: aload_0
+      19: getfield      #380                // Field myInputProcessor:Lcom/intellij/util/ThrowableConsumer;
+      22: aload_0
+      23: getfield      #337                // Field myProcess:Ljava/lang/Process;
+      26: invokevirtual #683                // Method java/lang/Process.getOutputStream:()Ljava/io/OutputStream;
+      29: invokeinterface #689,  2          // InterfaceMethod com/intellij/util/ThrowableConsumer.consume:(Ljava/lang/Object;)V
+      34: aload_0
+      35: invokevirtual #673                // Method waitForProcess:()V
+      38: goto          48
+      41: astore_2
+      42: aload_0
+      43: invokevirtual #673                // Method waitForProcess:()V
+      46: aload_2
+      47: athrow
+      48: aload_0
+      49: invokevirtual #676                // Method logTime:()V
+      52: goto          62
+      55: astore_3
+      56: aload_0
+      57: invokevirtual #676                // Method logTime:()V
+      60: aload_3
+      61: athrow
+      62: return
+    Exception table:
+       from    to  target type
+          11    34    41   any
+           0    48    55   any
+
+  static {};
+    Code:
+       0: ldc           #12                 // class git4idea/commands/GitHandler
+       2: invokestatic  #694                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #458                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: ldc           #12                 // class git4idea/commands/GitHandler
+      10: invokevirtual #697                // Method java/lang/Class.getName:()Ljava/lang/String;
+      13: invokedynamic #700,  0            // InvokeDynamic #4:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      18: invokestatic  #702                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/String;)Lcom/intellij/openapi/diagnostic/Logger;
+      21: putstatic     #540                // Field OUTPUT_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      24: ldc           #12                 // class git4idea/commands/GitHandler
+      26: invokevirtual #697                // Method java/lang/Class.getName:()Ljava/lang/String;
+      29: invokedynamic #705,  0            // InvokeDynamic #5:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      34: invokestatic  #702                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/String;)Lcom/intellij/openapi/diagnostic/Logger;
+      37: putstatic     #447                // Field TIME_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      40: ldc           #12                 // class git4idea/commands/GitHandler
+      42: invokevirtual #697                // Method java/lang/Class.getName:()Ljava/lang/String;
+      45: invokedynamic #706,  0            // InvokeDynamic #6:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      50: invokestatic  #702                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/String;)Lcom/intellij/openapi/diagnostic/Logger;
+      53: putstatic     #524                // Field CALL_TRACE_LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      56: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 34
+
+                     0: 156
+
+                     1: 156
+
+                     2: 156
+
+                     3: 156
+
+                     4: 156
+
+                     5: 156
+
+                     6: 156
+
+                     7: 156
+
+                     8: 156
+
+                     9: 156
+
+                    10: 156
+
+                    11: 162
+
+                    12: 162
+
+                    13: 162
+
+                    14: 162
+
+                    15: 156
+
+                    16: 156
+
+                    17: 156
+
+                    18: 156
+
+                    19: 162
+
+                    20: 162
+
+                    21: 156
+
+                    22: 156
+
+                    23: 156
+
+                    24: 156
+
+                    25: 156
+
+                    26: 156
+
+                    27: 162
+
+                    28: 162
+
+                    29: 162
+
+                    30: 156
+
+                    31: 156
+
+                    32: 156
+
+                    33: 162
+
+                    34: 162
+               default: 156
+          }
+     156: ldc_w         #897                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     159: goto          168
+     162: ldc_w         #899                // String @NotNull method %s.%s must not return null
+     165: goto          168
+     168: iload_0
+     169: tableswitch   { // 0 to 34
+
+                     0: 324
+
+                     1: 324
+
+                     2: 324
+
+                     3: 324
+
+                     4: 324
+
+                     5: 324
+
+                     6: 324
+
+                     7: 324
+
+                     8: 324
+
+                     9: 324
+
+                    10: 324
+
+                    11: 328
+
+                    12: 328
+
+                    13: 328
+
+                    14: 328
+
+                    15: 324
+
+                    16: 324
+
+                    17: 324
+
+                    18: 324
+
+                    19: 328
+
+                    20: 328
+
+                    21: 324
+
+                    22: 324
+
+                    23: 324
+
+                    24: 324
+
+                    25: 324
+
+                    26: 324
+
+                    27: 328
+
+                    28: 328
+
+                    29: 328
+
+                    30: 324
+
+                    31: 324
+
+                    32: 324
+
+                    33: 328
+
+                    34: 328
+               default: 324
+          }
+     324: iconst_3
+     325: goto          332
+     328: iconst_2
+     329: goto          332
+     332: anewarray     #27                 // class java/lang/Object
+     335: iload_0
+     336: tableswitch   { // 0 to 34
+
+                     0: 492
+
+                     1: 501
+
+                     2: 510
+
+                     3: 519
+
+                     4: 501
+
+                     5: 510
+
+                     6: 492
+
+                     7: 528
+
+                     8: 501
+
+                     9: 510
+
+                    10: 537
+
+                    11: 546
+
+                    12: 546
+
+                    13: 546
+
+                    14: 546
+
+                    15: 555
+
+                    16: 564
+
+                    17: 564
+
+                    18: 573
+
+                    19: 546
+
+                    20: 546
+
+                    21: 573
+
+                    22: 564
+
+                    23: 582
+
+                    24: 591
+
+                    25: 600
+
+                    26: 609
+
+                    27: 546
+
+                    28: 546
+
+                    29: 546
+
+                    30: 618
+
+                    31: 627
+
+                    32: 636
+
+                    33: 546
+
+                    34: 546
+               default: 492
+          }
+     492: dup
+     493: iconst_0
+     494: ldc_w         #900                // String directory
+     497: aastore
+     498: goto          645
+     501: dup
+     502: iconst_0
+     503: ldc_w         #901                // String command
+     506: aastore
+     507: goto          645
+     510: dup
+     511: iconst_0
+     512: ldc_w         #902                // String configParameters
+     515: aastore
+     516: goto          645
+     519: dup
+     520: iconst_0
+     521: ldc_w         #903                // String vcsRoot
+     524: aastore
+     525: goto          645
+     528: dup
+     529: iconst_0
+     530: ldc_w         #904                // String executable
+     533: aastore
+     534: goto          645
+     537: dup
+     538: iconst_0
+     539: ldc_w         #905                // String requestedConfigParameters
+     542: aastore
+     543: goto          645
+     546: dup
+     547: iconst_0
+     548: ldc_w         #906                // String git4idea/commands/GitHandler
+     551: aastore
+     552: goto          645
+     555: dup
+     556: iconst_0
+     557: ldc_w         #907                // String listener
+     560: aastore
+     561: goto          645
+     564: dup
+     565: iconst_0
+     566: ldc_w         #908                // String parameters
+     569: aastore
+     570: goto          645
+     573: dup
+     574: iconst_0
+     575: ldc_w         #909                // String parameter
+     578: aastore
+     579: goto          645
+     582: dup
+     583: iconst_0
+     584: ldc_w         #910                // String filePaths
+     587: aastore
+     588: goto          645
+     591: dup
+     592: iconst_0
+     593: ldc_w         #911                // String files
+     596: aastore
+     597: goto          645
+     600: dup
+     601: iconst_0
+     602: ldc_w         #912                // String file
+     605: aastore
+     606: goto          645
+     609: dup
+     610: iconst_0
+     611: ldc_w         #913                // String commandLine
+     614: aastore
+     615: goto          645
+     618: dup
+     619: iconst_0
+     620: ldc_w         #914                // String charset
+     623: aastore
+     624: goto          645
+     627: dup
+     628: iconst_0
+     629: ldc_w         #915                // String name
+     632: aastore
+     633: goto          645
+     636: dup
+     637: iconst_0
+     638: ldc_w         #916                // String key
+     641: aastore
+     642: goto          645
+     645: iload_0
+     646: tableswitch   { // 0 to 34
+
+                     0: 800
+
+                     1: 800
+
+                     2: 800
+
+                     3: 800
+
+                     4: 800
+
+                     5: 800
+
+                     6: 800
+
+                     7: 800
+
+                     8: 800
+
+                     9: 800
+
+                    10: 800
+
+                    11: 809
+
+                    12: 818
+
+                    13: 827
+
+                    14: 836
+
+                    15: 800
+
+                    16: 800
+
+                    17: 800
+
+                    18: 800
+
+                    19: 845
+
+                    20: 845
+
+                    21: 800
+
+                    22: 800
+
+                    23: 800
+
+                    24: 800
+
+                    25: 800
+
+                    26: 800
+
+                    27: 854
+
+                    28: 854
+
+                    29: 863
+
+                    30: 800
+
+                    31: 800
+
+                    32: 800
+
+                    33: 872
+
+                    34: 881
+               default: 800
+          }
+     800: dup
+     801: iconst_1
+     802: ldc_w         #906                // String git4idea/commands/GitHandler
+     805: aastore
+     806: goto          890
+     809: dup
+     810: iconst_1
+     811: ldc_w         #917                // String getConfigParameters
+     814: aastore
+     815: goto          890
+     818: dup
+     819: iconst_1
+     820: ldc_w         #918                // String listeners
+     823: aastore
+     824: goto          890
+     827: dup
+     828: iconst_1
+     829: ldc_w         #919                // String getExecutable
+     832: aastore
+     833: goto          890
+     836: dup
+     837: iconst_1
+     838: ldc_w         #920                // String getCommand
+     841: aastore
+     842: goto          890
+     845: dup
+     846: iconst_1
+     847: ldc_w         #921                // String escapeParameterIfNeeded
+     850: aastore
+     851: goto          890
+     854: dup
+     855: iconst_1
+     856: ldc_w         #922                // String unescapeCommandLine
+     859: aastore
+     860: goto          890
+     863: dup
+     864: iconst_1
+     865: ldc_w         #923                // String getCharset
+     868: aastore
+     869: goto          890
+     872: dup
+     873: iconst_1
+     874: ldc_w         #924                // String formatDurationMessage
+     877: aastore
+     878: goto          890
+     881: dup
+     882: iconst_1
+     883: ldc_w         #925                // String getDirectoryPathForLogging
+     886: aastore
+     887: goto          890
+     890: iload_0
+     891: tableswitch   { // 0 to 34
+
+                     0: 1044
+
+                     1: 1044
+
+                     2: 1044
+
+                     3: 1044
+
+                     4: 1044
+
+                     5: 1044
+
+                     6: 1044
+
+                     7: 1044
+
+                     8: 1044
+
+                     9: 1044
+
+                    10: 1053
+
+                    11: 1062
+
+                    12: 1062
+
+                    13: 1062
+
+                    14: 1062
+
+                    15: 1065
+
+                    16: 1074
+
+                    17: 1074
+
+                    18: 1083
+
+                    19: 1062
+
+                    20: 1062
+
+                    21: 1092
+
+                    22: 1101
+
+                    23: 1101
+
+                    24: 1110
+
+                    25: 1119
+
+                    26: 1128
+
+                    27: 1062
+
+                    28: 1062
+
+                    29: 1062
+
+                    30: 1137
+
+                    31: 1146
+
+                    32: 1155
+
+                    33: 1062
+
+                    34: 1062
+               default: 1044
+          }
+    1044: dup
+    1045: iconst_2
+    1046: ldc_w         #926                // String <init>
+    1049: aastore
+    1050: goto          1164
+    1053: dup
+    1054: iconst_2
+    1055: ldc_w         #917                // String getConfigParameters
+    1058: aastore
+    1059: goto          1164
+    1062: goto          1164
+    1065: dup
+    1066: iconst_2
+    1067: ldc_w         #927                // String addListener
+    1070: aastore
+    1071: goto          1164
+    1074: dup
+    1075: iconst_2
+    1076: ldc_w         #928                // String addParameters
+    1079: aastore
+    1080: goto          1164
+    1083: dup
+    1084: iconst_2
+    1085: ldc_w         #921                // String escapeParameterIfNeeded
+    1088: aastore
+    1089: goto          1164
+    1092: dup
+    1093: iconst_2
+    1094: ldc_w         #929                // String escapeNeeded
+    1097: aastore
+    1098: goto          1164
+    1101: dup
+    1102: iconst_2
+    1103: ldc_w         #930                // String addRelativePaths
+    1106: aastore
+    1107: goto          1164
+    1110: dup
+    1111: iconst_2
+    1112: ldc_w         #931                // String addRelativeFiles
+    1115: aastore
+    1116: goto          1164
+    1119: dup
+    1120: iconst_2
+    1121: ldc_w         #932                // String addAbsoluteFile
+    1124: aastore
+    1125: goto          1164
+    1128: dup
+    1129: iconst_2
+    1130: ldc_w         #922                // String unescapeCommandLine
+    1133: aastore
+    1134: goto          1164
+    1137: dup
+    1138: iconst_2
+    1139: ldc_w         #933                // String setCharset
+    1142: aastore
+    1143: goto          1164
+    1146: dup
+    1147: iconst_2
+    1148: ldc_w         #934                // String addCustomEnvironmentVariable
+    1151: aastore
+    1152: goto          1164
+    1155: dup
+    1156: iconst_2
+    1157: ldc_w         #935                // String containsCustomEnvironmentVariable
+    1160: aastore
+    1161: goto          1164
+    1164: invokestatic  #473                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    1167: iload_0
+    1168: tableswitch   { // 0 to 34
+
+                     0: 1324
+
+                     1: 1324
+
+                     2: 1324
+
+                     3: 1324
+
+                     4: 1324
+
+                     5: 1324
+
+                     6: 1324
+
+                     7: 1324
+
+                     8: 1324
+
+                     9: 1324
+
+                    10: 1324
+
+                    11: 1335
+
+                    12: 1335
+
+                    13: 1335
+
+                    14: 1335
+
+                    15: 1324
+
+                    16: 1324
+
+                    17: 1324
+
+                    18: 1324
+
+                    19: 1335
+
+                    20: 1335
+
+                    21: 1324
+
+                    22: 1324
+
+                    23: 1324
+
+                    24: 1324
+
+                    25: 1324
+
+                    26: 1324
+
+                    27: 1335
+
+                    28: 1335
+
+                    29: 1335
+
+                    30: 1324
+
+                    31: 1324
+
+                    32: 1324
+
+                    33: 1335
+
+                    34: 1335
+               default: 1324
+          }
+    1324: new           #937                // class java/lang/IllegalArgumentException
+    1327: dup_x1
+    1328: swap
+    1329: invokespecial #938                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+    1332: goto          1346
+    1335: new           #497                // class java/lang/IllegalStateException
+    1338: dup_x1
+    1339: swap
+    1340: invokespecial #501                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+    1343: goto          1346
+    1346: athrow
+}

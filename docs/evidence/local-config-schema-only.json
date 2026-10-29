@@ -1,0 +1,55 @@
+[
+  {
+    "path": "C:\\Users\\Admin\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.1\\options\\git.xml",
+    "exists": false,
+    "components": [],
+    "option_names": [],
+    "map_keys": []
+  },
+  {
+    "path": "C:\\Users\\Admin\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.1\\options\\vcs.xml",
+    "exists": true,
+    "components": [
+      "VcsApplicationSettings"
+    ],
+    "option_names": [
+      "SHOW_EDITOR_PREVIEW_ON_DOUBLE_CLICK"
+    ],
+    "map_keys": []
+  },
+  {
+    "path": "C:\\Users\\Admin\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.1\\options\\vcs-inputs.xml",
+    "exists": true,
+    "components": [
+      "GitRememberedInputs"
+    ],
+    "option_names": [
+      "url",
+      "userName",
+      "visitedUrls"
+    ],
+    "map_keys": []
+  },
+  {
+    "path": "C:\\Users\\Admin\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.1\\options\\advancedSettings.xml",
+    "exists": true,
+    "components": [
+      "AdvancedSettings"
+    ],
+    "option_names": [
+      "settings"
+    ],
+    "map_keys": [
+      "gateway.wsl.open.projects.natively",
+      "open.devcontainer.projects.natively",
+      "show.diff.as.editor.tab"
+    ]
+  },
+  {
+    "path": "C:\\Users\\Admin\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.1\\options\\keymap.xml",
+    "exists": false,
+    "components": [],
+    "option_names": [],
+    "map_keys": []
+  }
+]

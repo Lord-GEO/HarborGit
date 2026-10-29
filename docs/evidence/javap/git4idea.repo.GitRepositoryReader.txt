@@ -1,0 +1,935 @@
+Compiled from "GitRepositoryReader.kt"
+public final class git4idea.repo.GitRepositoryReader {
+  public static final git4idea.repo.GitRepositoryReader$Companion Companion;
+
+  private final com.intellij.openapi.project.Project project;
+
+  private final git4idea.repo.GitRepositoryFiles gitFiles;
+
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  private static final java.lang.String DETACHED_HEAD;
+
+  public git4idea.repo.GitRepositoryReader(com.intellij.openapi.project.Project, git4idea.repo.GitRepositoryFiles);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String project
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #17                 // String gitFiles
+       9: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: invokespecial #20                 // Method java/lang/Object."<init>":()V
+      16: aload_0
+      17: aload_1
+      18: putfield      #23                 // Field project:Lcom/intellij/openapi/project/Project;
+      21: aload_0
+      22: aload_2
+      23: putfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      26: return
+
+  public final git4idea.repo.GitBranchState readState(java.util.Collection<git4idea.repo.GitRemote>);
+    Code:
+       0: aload_1
+       1: ldc           #33                 // String remotes
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: invokespecial #37                 // Method readHead:()Lgit4idea/repo/GitRepositoryReader$HeadInfo;
+      10: astore_2
+      11: aconst_null
+      12: astore_3
+      13: aload_2
+      14: ifnull        37
+      17: getstatic     #43                 // Field com/intellij/openapi/util/registry/Registry.Companion:Lcom/intellij/openapi/util/registry/Registry$Companion;
+      20: ldc           #45                 // String git.read.branches.from.disk
+      22: invokevirtual #51                 // Method com/intellij/openapi/util/registry/Registry$Companion.is:(Ljava/lang/String;)Z
+      25: ifeq          37
+      28: aload_0
+      29: aload_1
+      30: invokespecial #55                 // Method readBranches:(Ljava/util/Collection;)Lgit4idea/repo/GitRepositoryReader$GitBranches;
+      33: astore_3
+      34: goto          143
+      37: aload_0
+      38: aload_1
+      39: invokespecial #59                 // Method readBranchesFromGit:(Ljava/util/Collection;)Lkotlin/Pair;
+      42: astore        4
+      44: aload         4
+      46: invokevirtual #65                 // Method kotlin/Pair.getFirst:()Ljava/lang/Object;
+      49: checkcast     #67                 // class git4idea/repo/GitRepositoryReader$GitBranches
+      52: astore_3
+      53: aload         4
+      55: invokevirtual #70                 // Method kotlin/Pair.getSecond:()Ljava/lang/Object;
+      58: checkcast     #72                 // class git4idea/repo/GitRepositoryReader$HeadInfo
+      61: astore        5
+      63: aload_2
+      64: ifnull        78
+      67: aload         5
+      69: getstatic     #78                 // Field git4idea/repo/GitRepositoryReader$HeadInfo$Unknown.INSTANCE:Lgit4idea/repo/GitRepositoryReader$HeadInfo$Unknown;
+      72: invokestatic  #82                 // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      75: ifne          81
+      78: aload         5
+      80: astore_2
+      81: aload_2
+      82: instanceof    #74                 // class git4idea/repo/GitRepositoryReader$HeadInfo$Unknown
+      85: ifeq          143
+      88: aload_0
+      89: invokespecial #86                 // Method resolveHeadRevision:()Lcom/intellij/vcs/log/Hash;
+      92: astore        6
+      94: aload         6
+      96: ifnull        115
+      99: new           #88                 // class git4idea/repo/GitRepositoryReader$HeadInfo$DetachedHead
+     102: dup
+     103: aload         6
+     105: invokespecial #91                 // Method git4idea/repo/GitRepositoryReader$HeadInfo$DetachedHead."<init>":(Lcom/intellij/vcs/log/Hash;)V
+     108: checkcast     #72                 // class git4idea/repo/GitRepositoryReader$HeadInfo
+     111: astore_2
+     112: goto          143
+     115: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     118: new           #97                 // class com/intellij/dvcs/repo/RepoStateException
+     121: dup
+     122: aload_0
+     123: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+     126: invokevirtual #103                // Method git4idea/repo/GitRepositoryFiles.getRootDir:()Lcom/intellij/openapi/vfs/VirtualFile;
+     129: invokedynamic #115,  0            // InvokeDynamic #0:makeConcatWithConstants:(Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/lang/String;
+     134: invokespecial #118                // Method com/intellij/dvcs/repo/RepoStateException."<init>":(Ljava/lang/String;)V
+     137: checkcast     #120                // class java/lang/Throwable
+     140: invokevirtual #126                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     143: aload_0
+     144: aload_2
+     145: instanceof    #128                // class git4idea/repo/GitRepositoryReader$HeadInfo$Branch
+     148: invokespecial #132                // Method readRepositoryState:(Z)Lcom/intellij/dvcs/repo/Repository$State;
+     151: astore        4
+     153: aload_0
+     154: aload_2
+     155: aload         4
+     157: aload_3
+     158: invokespecial #136                // Method parseHeadState:(Lgit4idea/repo/GitRepositoryReader$HeadInfo;Lcom/intellij/dvcs/repo/Repository$State;Lgit4idea/repo/GitRepositoryReader$GitBranches;)Lgit4idea/repo/GitRepositoryReader$GitHeadState;
+     161: astore        5
+     163: new           #138                // class git4idea/repo/GitBranchState
+     166: dup
+     167: aload         5
+     169: invokevirtual #144                // Method git4idea/repo/GitRepositoryReader$GitHeadState.getCurrentRevision:()Ljava/lang/String;
+     172: aload         5
+     174: invokevirtual #148                // Method git4idea/repo/GitRepositoryReader$GitHeadState.getCurrentBranch:()Lgit4idea/GitLocalBranch;
+     177: aload         4
+     179: aload_3
+     180: invokevirtual #152                // Method git4idea/repo/GitRepositoryReader$GitBranches.getLocalBranches:()Ljava/util/Map;
+     183: aload_3
+     184: invokevirtual #155                // Method git4idea/repo/GitRepositoryReader$GitBranches.getRemoteBranches:()Ljava/util/Map;
+     187: invokespecial #158                // Method git4idea/repo/GitBranchState."<init>":(Ljava/lang/String;Lgit4idea/GitLocalBranch;Lcom/intellij/dvcs/repo/Repository$State;Ljava/util/Map;Ljava/util/Map;)V
+     190: areturn
+
+  private final git4idea.repo.GitRepositoryReader$GitHeadState parseHeadState(git4idea.repo.GitRepositoryReader$HeadInfo, com.intellij.dvcs.repo.Repository$State, git4idea.repo.GitRepositoryReader$GitBranches);
+    Code:
+       0: aload_1
+       1: instanceof    #128                // class git4idea/repo/GitRepositoryReader$HeadInfo$Branch
+       4: ifeq          76
+       7: aload_0
+       8: aload_1
+       9: checkcast     #128                // class git4idea/repo/GitRepositoryReader$HeadInfo$Branch
+      12: invokevirtual #179                // Method git4idea/repo/GitRepositoryReader$HeadInfo$Branch.getBranch:()Lgit4idea/GitLocalBranch;
+      15: aload_3
+      16: invokespecial #183                // Method fixCurrentBranchCase:(Lgit4idea/GitLocalBranch;Lgit4idea/repo/GitRepositoryReader$GitBranches;)Lgit4idea/GitLocalBranch;
+      19: astore        4
+      21: aload         4
+      23: ifnull        43
+      26: aload_3
+      27: invokevirtual #152                // Method git4idea/repo/GitRepositoryReader$GitBranches.getLocalBranches:()Ljava/util/Map;
+      30: aload         4
+      32: invokeinterface #189,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      37: checkcast     #176                // class com/intellij/vcs/log/Hash
+      40: goto          44
+      43: aconst_null
+      44: astore        5
+      46: aload         5
+      48: dup
+      49: ifnull        60
+      52: invokeinterface #192,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      57: goto          62
+      60: pop
+      61: aconst_null
+      62: astore        6
+      64: new           #140                // class git4idea/repo/GitRepositoryReader$GitHeadState
+      67: dup
+      68: aload         4
+      70: aload         6
+      72: invokespecial #195                // Method git4idea/repo/GitRepositoryReader$GitHeadState."<init>":(Lgit4idea/GitLocalBranch;Ljava/lang/String;)V
+      75: areturn
+      76: nop
+      77: aload_2
+      78: getstatic     #200                // Field com/intellij/dvcs/repo/Repository$State.REBASING:Lcom/intellij/dvcs/repo/Repository$State;
+      81: if_acmpne     96
+      84: aload_0
+      85: aload_0
+      86: invokespecial #203                // Method findRebaseBranch:()Lgit4idea/GitLocalBranch;
+      89: aload_3
+      90: invokespecial #183                // Method fixCurrentBranchCase:(Lgit4idea/GitLocalBranch;Lgit4idea/repo/GitRepositoryReader$GitBranches;)Lgit4idea/GitLocalBranch;
+      93: goto          97
+      96: aconst_null
+      97: astore        4
+      99: aload_1
+     100: instanceof    #88                 // class git4idea/repo/GitRepositoryReader$HeadInfo$DetachedHead
+     103: ifeq          138
+     106: aload_1
+     107: checkcast     #88                 // class git4idea/repo/GitRepositoryReader$HeadInfo$DetachedHead
+     110: invokevirtual #206                // Method git4idea/repo/GitRepositoryReader$HeadInfo$DetachedHead.getHash:()Lcom/intellij/vcs/log/Hash;
+     113: invokeinterface #192,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+     118: dup
+     119: ldc           #208                // String asString(...)
+     121: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     124: astore        5
+     126: new           #140                // class git4idea/repo/GitRepositoryReader$GitHeadState
+     129: dup
+     130: aload         4
+     132: aload         5
+     134: invokespecial #195                // Method git4idea/repo/GitRepositoryReader$GitHeadState."<init>":(Lgit4idea/GitLocalBranch;Ljava/lang/String;)V
+     137: areturn
+     138: aload         4
+     140: ifnonnull     175
+     143: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     146: ldc           #213                // String Couldn\'t identify neither current branch nor current revision.
+     148: invokevirtual #215                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     151: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     154: invokevirtual #219                // Method com/intellij/openapi/diagnostic/Logger.isDebugEnabled:()Z
+     157: ifeq          175
+     160: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     163: ldc           #221                // String Dumping files in .git/refs/, and the content of .git/packed-refs.
+     165: invokevirtual #224                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     168: aload_0
+     169: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+     172: invokestatic  #230                // Method git4idea/repo/GitRefUtil.logDebugAllRefsFiles:(Lgit4idea/repo/GitRepositoryFiles;)V
+     175: new           #140                // class git4idea/repo/GitRepositoryReader$GitHeadState
+     178: dup
+     179: aload         4
+     181: aconst_null
+     182: invokespecial #195                // Method git4idea/repo/GitRepositoryReader$GitHeadState."<init>":(Lgit4idea/GitLocalBranch;Ljava/lang/String;)V
+     185: areturn
+
+  public final git4idea.repo.GitHooksInfo readHooksInfo();
+    Code:
+       0: getstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+       3: aload_0
+       4: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       7: invokevirtual #248                // Method git4idea/repo/GitRepositoryFiles.getPreCommitHookFile:()Ljava/io/File;
+      10: dup
+      11: ldc           #250                // String getPreCommitHookFile(...)
+      13: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      16: invokestatic  #256                // Method git4idea/repo/GitRepositoryReader$Companion.access$isExistingExecutableFile:(Lgit4idea/repo/GitRepositoryReader$Companion;Ljava/io/File;)Z
+      19: ifne          45
+      22: getstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+      25: aload_0
+      26: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      29: invokevirtual #259                // Method git4idea/repo/GitRepositoryFiles.getCommitMsgHookFile:()Ljava/io/File;
+      32: dup
+      33: ldc_w         #261                // String getCommitMsgHookFile(...)
+      36: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      39: invokestatic  #256                // Method git4idea/repo/GitRepositoryReader$Companion.access$isExistingExecutableFile:(Lgit4idea/repo/GitRepositoryReader$Companion;Ljava/io/File;)Z
+      42: ifeq          49
+      45: iconst_1
+      46: goto          50
+      49: iconst_0
+      50: istore_1
+      51: getstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+      54: aload_0
+      55: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      58: invokevirtual #264                // Method git4idea/repo/GitRepositoryFiles.getPrePushHookFile:()Ljava/io/File;
+      61: dup
+      62: ldc_w         #266                // String getPrePushHookFile(...)
+      65: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      68: invokestatic  #256                // Method git4idea/repo/GitRepositoryReader$Companion.access$isExistingExecutableFile:(Lgit4idea/repo/GitRepositoryReader$Companion;Ljava/io/File;)Z
+      71: istore_2
+      72: new           #268                // class git4idea/repo/GitHooksInfo
+      75: dup
+      76: iload_1
+      77: iload_2
+      78: invokespecial #271                // Method git4idea/repo/GitHooksInfo."<init>":(ZZ)V
+      81: areturn
+
+  public final boolean hasShallowCommits();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       4: invokevirtual #278                // Method git4idea/repo/GitRepositoryFiles.getShallowFile:()Ljava/io/File;
+       7: dup
+       8: ldc_w         #280                // String getShallowFile(...)
+      11: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      14: astore_1
+      15: aload_1
+      16: invokevirtual #285                // Method java/io/File.exists:()Z
+      19: ifne          24
+      22: iconst_0
+      23: ireturn
+      24: aload_1
+      25: invokevirtual #289                // Method java/io/File.length:()J
+      28: lconst_0
+      29: lcmp
+      30: ifle          37
+      33: iconst_1
+      34: goto          38
+      37: iconst_0
+      38: ireturn
+
+  private final com.intellij.dvcs.repo.Repository$State readRepositoryState(boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #294                // Method isMergeInProgress:()Z
+       4: ifeq          11
+       7: getstatic     #297                // Field com/intellij/dvcs/repo/Repository$State.MERGING:Lcom/intellij/dvcs/repo/Repository$State;
+      10: areturn
+      11: aload_0
+      12: invokespecial #300                // Method isRebaseInProgress:()Z
+      15: ifeq          22
+      18: getstatic     #200                // Field com/intellij/dvcs/repo/Repository$State.REBASING:Lcom/intellij/dvcs/repo/Repository$State;
+      21: areturn
+      22: iload_1
+      23: ifne          30
+      26: getstatic     #303                // Field com/intellij/dvcs/repo/Repository$State.DETACHED:Lcom/intellij/dvcs/repo/Repository$State;
+      29: areturn
+      30: aload_0
+      31: invokespecial #306                // Method isCherryPickInProgress:()Z
+      34: ifeq          41
+      37: getstatic     #309                // Field com/intellij/dvcs/repo/Repository$State.GRAFTING:Lcom/intellij/dvcs/repo/Repository$State;
+      40: areturn
+      41: aload_0
+      42: invokespecial #312                // Method isRevertInProgress:()Z
+      45: ifeq          52
+      48: getstatic     #315                // Field com/intellij/dvcs/repo/Repository$State.REVERTING:Lcom/intellij/dvcs/repo/Repository$State;
+      51: areturn
+      52: getstatic     #320                // Field git4idea/repo/GitSequencerTodoReader.INSTANCE:Lgit4idea/repo/GitSequencerTodoReader;
+      55: aload_0
+      56: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      59: invokevirtual #324                // Method git4idea/repo/GitSequencerTodoReader.getTodoBasedState:(Lgit4idea/repo/GitRepositoryFiles;)Lcom/intellij/dvcs/repo/Repository$State;
+      62: astore_2
+      63: aload_2
+      64: ifnull        69
+      67: aload_2
+      68: areturn
+      69: getstatic     #327                // Field com/intellij/dvcs/repo/Repository$State.NORMAL:Lcom/intellij/dvcs/repo/Repository$State;
+      72: areturn
+
+  private final git4idea.GitLocalBranch findRebaseBranch();
+    Code:
+       0: getstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+       3: aload_0
+       4: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       7: invokevirtual #332                // Method git4idea/repo/GitRepositoryFiles.getRebaseApplyDir:()Ljava/io/File;
+      10: dup
+      11: ldc_w         #334                // String getRebaseApplyDir(...)
+      14: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      17: invokestatic  #338                // Method git4idea/repo/GitRepositoryReader$Companion.access$readRebaseDirBranchFile:(Lgit4idea/repo/GitRepositoryReader$Companion;Ljava/io/File;)Ljava/lang/String;
+      20: dup
+      21: ifnonnull     45
+      24: pop
+      25: getstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+      28: aload_0
+      29: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      32: invokevirtual #341                // Method git4idea/repo/GitRepositoryFiles.getRebaseMergeDir:()Ljava/io/File;
+      35: dup
+      36: ldc_w         #343                // String getRebaseMergeDir(...)
+      39: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      42: invokestatic  #338                // Method git4idea/repo/GitRepositoryReader$Companion.access$readRebaseDirBranchFile:(Lgit4idea/repo/GitRepositoryReader$Companion;Ljava/io/File;)Ljava/lang/String;
+      45: astore_1
+      46: aload_1
+      47: ifnull        69
+      50: aload_1
+      51: ldc_w         #345                // String detached HEAD
+      54: invokestatic  #82                 // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      57: ifne          69
+      60: new           #237                // class git4idea/GitLocalBranch
+      63: dup
+      64: aload_1
+      65: invokespecial #346                // Method git4idea/GitLocalBranch."<init>":(Ljava/lang/String;)V
+      68: areturn
+      69: aconst_null
+      70: areturn
+
+  private final git4idea.GitLocalBranch fixCurrentBranchCase(git4idea.GitLocalBranch, git4idea.repo.GitRepositoryReader$GitBranches);
+    Code:
+       0: aload_1
+       1: ifnonnull     6
+       4: aconst_null
+       5: areturn
+       6: aload_2
+       7: invokevirtual #152                // Method git4idea/repo/GitRepositoryReader$GitBranches.getLocalBranches:()Ljava/util/Map;
+      10: invokeinterface #350,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      15: checkcast     #352                // class java/lang/Iterable
+      18: astore_3
+      19: aload_3
+      20: invokeinterface #356,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      25: astore        4
+      27: aload         4
+      29: invokeinterface #361,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      34: ifeq          70
+      37: aload         4
+      39: invokeinterface #364,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      44: astore        5
+      46: aload         5
+      48: checkcast     #237                // class git4idea/GitLocalBranch
+      51: astore        6
+      53: iconst_0
+      54: istore        7
+      56: aload         6
+      58: aload_1
+      59: invokestatic  #82                 // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      62: ifeq          27
+      65: aload         5
+      67: goto          71
+      70: aconst_null
+      71: checkcast     #237                // class git4idea/GitLocalBranch
+      74: dup
+      75: ifnonnull     80
+      78: pop
+      79: aload_1
+      80: areturn
+
+  private final boolean isMergeInProgress();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       4: invokevirtual #370                // Method git4idea/repo/GitRepositoryFiles.getMergeHeadFile:()Ljava/io/File;
+       7: invokevirtual #285                // Method java/io/File.exists:()Z
+      10: ireturn
+
+  private final boolean isRebaseInProgress();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       4: invokevirtual #332                // Method git4idea/repo/GitRepositoryFiles.getRebaseApplyDir:()Ljava/io/File;
+       7: invokevirtual #285                // Method java/io/File.exists:()Z
+      10: ifne          26
+      13: aload_0
+      14: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      17: invokevirtual #341                // Method git4idea/repo/GitRepositoryFiles.getRebaseMergeDir:()Ljava/io/File;
+      20: invokevirtual #285                // Method java/io/File.exists:()Z
+      23: ifeq          30
+      26: iconst_1
+      27: goto          31
+      30: iconst_0
+      31: ireturn
+
+  private final boolean isCherryPickInProgress();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       4: invokevirtual #373                // Method git4idea/repo/GitRepositoryFiles.getCherryPickHead:()Ljava/io/File;
+       7: invokevirtual #285                // Method java/io/File.exists:()Z
+      10: ireturn
+
+  private final boolean isRevertInProgress();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       4: invokevirtual #376                // Method git4idea/repo/GitRepositoryFiles.getRevertHead:()Ljava/io/File;
+       7: invokevirtual #285                // Method java/io/File.exists:()Z
+      10: ireturn
+
+  private final java.util.Map<java.lang.String, java.lang.String> readPackedBranches();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       4: invokevirtual #381                // Method git4idea/repo/GitRepositoryFiles.getPackedRefsPath:()Ljava/io/File;
+       7: dup
+       8: ldc_w         #383                // String getPackedRefsPath(...)
+      11: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      14: astore_1
+      15: aload_1
+      16: invokevirtual #285                // Method java/io/File.exists:()Z
+      19: ifne          26
+      22: invokestatic  #388                // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+      25: areturn
+      26: nop
+      27: aload_1
+      28: ldc_w         #390                // String UTF-8
+      31: invokestatic  #396                // Method com/intellij/dvcs/DvcsUtil.tryLoadFile:(Ljava/io/File;Ljava/lang/String;)Ljava/lang/String;
+      34: dup
+      35: ldc_w         #398                // String tryLoadFile(...)
+      38: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      41: astore_2
+      42: new           #400                // class java/util/LinkedHashMap
+      45: dup
+      46: invokespecial #401                // Method java/util/LinkedHashMap."<init>":()V
+      49: checkcast     #185                // class java/util/Map
+      52: astore_3
+      53: getstatic     #406                // Field com/intellij/openapi/util/text/LineTokenizer.Companion:Lcom/intellij/openapi/util/text/LineTokenizer$Companion;
+      56: aload_2
+      57: checkcast     #408                // class java/lang/CharSequence
+      60: iconst_0
+      61: iconst_0
+      62: iconst_4
+      63: aconst_null
+      64: invokestatic  #414                // Method com/intellij/openapi/util/text/LineTokenizer$Companion.tokenize$default:(Lcom/intellij/openapi/util/text/LineTokenizer$Companion;Ljava/lang/CharSequence;ZZILjava/lang/Object;)[Ljava/lang/String;
+      67: astore        4
+      69: iconst_0
+      70: istore        5
+      72: aload         4
+      74: arraylength
+      75: istore        6
+      77: iload         5
+      79: iload         6
+      81: if_icmpge     129
+      84: aload         4
+      86: iload         5
+      88: aaload
+      89: astore        7
+      91: aload         7
+      93: invokestatic  #418                // Method git4idea/repo/GitRefUtil.parseBranchesLine:(Ljava/lang/String;)Lcom/intellij/openapi/util/Pair;
+      96: dup
+      97: ifnonnull     104
+     100: pop
+     101: goto          123
+     104: astore        8
+     106: aload_3
+     107: aload         8
+     109: getfield      #424                // Field com/intellij/openapi/util/Pair.first:Ljava/lang/Object;
+     112: aload         8
+     114: getfield      #427                // Field com/intellij/openapi/util/Pair.second:Ljava/lang/Object;
+     117: invokeinterface #431,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     122: pop
+     123: iinc          5, 1
+     126: goto          77
+     129: aload_3
+     130: areturn
+     131: astore_3
+     132: invokestatic  #388                // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+     135: areturn
+    Exception table:
+       from    to  target type
+          26   131   131   Class com/intellij/dvcs/repo/RepoStateException
+
+  private final git4idea.repo.GitRepositoryReader$GitBranches readBranches(java.util.Collection<git4idea.repo.GitRemote>);
+    Code:
+       0: aload_0
+       1: invokespecial #445                // Method readBranchRefsFromFiles:()Ljava/util/Map;
+       4: astore_2
+       5: aload_2
+       6: invokestatic  #449                // Method git4idea/repo/GitRefUtil.resolveRefs:(Ljava/util/Map;)Ljava/util/Map;
+       9: dup
+      10: ldc_w         #451                // String resolveRefs(...)
+      13: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      16: astore_3
+      17: getstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+      20: aload_1
+      21: aload_3
+      22: invokestatic  #455                // Method git4idea/repo/GitRepositoryReader$Companion.access$createBranchesFromData:(Lgit4idea/repo/GitRepositoryReader$Companion;Ljava/util/Collection;Ljava/util/Map;)Lgit4idea/repo/GitRepositoryReader$GitBranches;
+      25: areturn
+
+  private final java.util.Map<java.lang.String, java.lang.String> readBranchRefsFromFiles();
+    Code:
+       0: nop
+       1: new           #459                // class java/util/HashMap
+       4: dup
+       5: aload_0
+       6: invokespecial #461                // Method readPackedBranches:()Ljava/util/Map;
+       9: invokespecial #464                // Method java/util/HashMap."<init>":(Ljava/util/Map;)V
+      12: checkcast     #185                // class java/util/Map
+      15: astore_1
+      16: aload_1
+      17: aload_0
+      18: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      21: invokevirtual #467                // Method git4idea/repo/GitRepositoryFiles.getRefsHeadsFile:()Ljava/io/File;
+      24: ldc_w         #469                // String refs/heads/
+      27: aload_0
+      28: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      31: invokestatic  #473                // Method git4idea/repo/GitRefUtil.readFromRefsFiles:(Ljava/io/File;Ljava/lang/String;Lgit4idea/repo/GitRepositoryFiles;)Ljava/util/Map;
+      34: dup
+      35: ldc_w         #475                // String readFromRefsFiles(...)
+      38: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      41: invokeinterface #478,  2          // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+      46: aload_1
+      47: aload_0
+      48: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      51: invokevirtual #481                // Method git4idea/repo/GitRepositoryFiles.getRefsRemotesFile:()Ljava/io/File;
+      54: ldc_w         #483                // String refs/remotes/
+      57: aload_0
+      58: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      61: invokestatic  #473                // Method git4idea/repo/GitRefUtil.readFromRefsFiles:(Ljava/io/File;Ljava/lang/String;Lgit4idea/repo/GitRepositoryFiles;)Ljava/util/Map;
+      64: dup
+      65: ldc_w         #475                // String readFromRefsFiles(...)
+      68: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      71: invokeinterface #478,  2          // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+      76: aload_1
+      77: areturn
+      78: astore_2
+      79: aload_0
+      80: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      83: invokestatic  #230                // Method git4idea/repo/GitRefUtil.logDebugAllRefsFiles:(Lgit4idea/repo/GitRepositoryFiles;)V
+      86: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      89: ldc_w         #485                // String Error reading refs from files
+      92: aload_2
+      93: invokevirtual #488                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;Ljava/lang/Throwable;)V
+      96: invokestatic  #388                // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+      99: areturn
+    Exception table:
+       from    to  target type
+           0    78    78   Class java/lang/Throwable
+
+  private final kotlin.Pair<git4idea.repo.GitRepositoryReader$GitBranches, git4idea.repo.GitRepositoryReader$HeadInfo> readBranchesFromGit(java.util.Collection<git4idea.repo.GitRemote>);
+    Code:
+       0: nop
+       1: new           #495                // class git4idea/commands/GitLineHandler
+       4: dup
+       5: aload_0
+       6: getfield      #23                 // Field project:Lcom/intellij/openapi/project/Project;
+       9: aload_0
+      10: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      13: invokevirtual #103                // Method git4idea/repo/GitRepositoryFiles.getRootDir:()Lcom/intellij/openapi/vfs/VirtualFile;
+      16: getstatic     #501                // Field git4idea/commands/GitCommand.FOR_EACH_REF:Lgit4idea/commands/GitCommand;
+      19: invokespecial #504                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      22: astore_2
+      23: aload_2
+      24: iconst_0
+      25: invokevirtual #508                // Method git4idea/commands/GitLineHandler.setEnableInteractiveCallbacks:(Z)V
+      28: aload_2
+      29: iconst_2
+      30: anewarray     #239                // class java/lang/String
+      33: astore_3
+      34: aload_3
+      35: iconst_0
+      36: ldc_w         #510                // String refs/heads/**
+      39: aastore
+      40: aload_3
+      41: iconst_1
+      42: ldc_w         #512                // String refs/remotes/**
+      45: aastore
+      46: aload_3
+      47: invokevirtual #516                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      50: aload_2
+      51: iconst_1
+      52: anewarray     #239                // class java/lang/String
+      55: astore_3
+      56: aload_3
+      57: iconst_0
+      58: ldc_w         #518                // String --no-color
+      61: aastore
+      62: aload_3
+      63: invokevirtual #516                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      66: aload_2
+      67: iconst_1
+      68: anewarray     #239                // class java/lang/String
+      71: astore_3
+      72: aload_3
+      73: iconst_0
+      74: ldc_w         #520                // String --format=%(refname)\t%(objectname)\t%(HEAD)
+      77: aastore
+      78: aload_3
+      79: invokevirtual #516                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      82: new           #400                // class java/util/LinkedHashMap
+      85: dup
+      86: invokespecial #401                // Method java/util/LinkedHashMap."<init>":()V
+      89: checkcast     #185                // class java/util/Map
+      92: astore_3
+      93: new           #522                // class kotlin/jvm/internal/Ref$ObjectRef
+      96: dup
+      97: invokespecial #523                // Method kotlin/jvm/internal/Ref$ObjectRef."<init>":()V
+     100: astore        4
+     102: aload_2
+     103: new           #525                // class git4idea/repo/GitRepositoryReader$readBranchesFromGit$1
+     106: dup
+     107: aload         4
+     109: aload_3
+     110: invokespecial #528                // Method git4idea/repo/GitRepositoryReader$readBranchesFromGit$1."<init>":(Lkotlin/jvm/internal/Ref$ObjectRef;Ljava/util/Map;)V
+     113: checkcast     #530                // class git4idea/commands/GitLineHandlerListener
+     116: invokevirtual #534                // Method git4idea/commands/GitLineHandler.addLineListener:(Lgit4idea/commands/GitLineHandlerListener;)V
+     119: invokestatic  #540                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     122: aload_2
+     123: invokeinterface #544,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     128: iconst_0
+     129: newarray       int
+     131: invokevirtual #550                // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+     134: aload         4
+     136: getfield      #553                // Field kotlin/jvm/internal/Ref$ObjectRef.element:Ljava/lang/Object;
+     139: checkcast     #72                 // class git4idea/repo/GitRepositoryReader$HeadInfo
+     142: astore        5
+     144: getstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+     147: aload_1
+     148: aload_3
+     149: invokestatic  #455                // Method git4idea/repo/GitRepositoryReader$Companion.access$createBranchesFromData:(Lgit4idea/repo/GitRepositoryReader$Companion;Ljava/util/Collection;Ljava/util/Map;)Lgit4idea/repo/GitRepositoryReader$GitBranches;
+     152: astore        6
+     154: aload         5
+     156: ifnull        171
+     159: new           #61                 // class kotlin/Pair
+     162: dup
+     163: aload         6
+     165: aload         5
+     167: invokespecial #556                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     170: areturn
+     171: aload         6
+     173: invokevirtual #152                // Method git4idea/repo/GitRepositoryReader$GitBranches.getLocalBranches:()Ljava/util/Map;
+     176: invokeinterface #559,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+     181: ifeq          227
+     184: aload_0
+     185: invokespecial #562                // Method resolveCurrentBranch:()Lgit4idea/GitLocalBranch;
+     188: astore        7
+     190: aload         7
+     192: ifnull        227
+     195: new           #61                 // class kotlin/Pair
+     198: dup
+     199: new           #67                 // class git4idea/repo/GitRepositoryReader$GitBranches
+     202: dup
+     203: invokestatic  #388                // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+     206: aload         6
+     208: invokevirtual #155                // Method git4idea/repo/GitRepositoryReader$GitBranches.getRemoteBranches:()Ljava/util/Map;
+     211: invokespecial #565                // Method git4idea/repo/GitRepositoryReader$GitBranches."<init>":(Ljava/util/Map;Ljava/util/Map;)V
+     214: new           #128                // class git4idea/repo/GitRepositoryReader$HeadInfo$Branch
+     217: dup
+     218: aload         7
+     220: invokespecial #568                // Method git4idea/repo/GitRepositoryReader$HeadInfo$Branch."<init>":(Lgit4idea/GitLocalBranch;)V
+     223: invokespecial #556                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     226: areturn
+     227: new           #61                 // class kotlin/Pair
+     230: dup
+     231: aload         6
+     233: getstatic     #78                 // Field git4idea/repo/GitRepositoryReader$HeadInfo$Unknown.INSTANCE:Lgit4idea/repo/GitRepositoryReader$HeadInfo$Unknown;
+     236: invokespecial #556                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     239: areturn
+     240: astore_3
+     241: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     244: aload_3
+     245: checkcast     #120                // class java/lang/Throwable
+     248: invokevirtual #126                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     251: new           #61                 // class kotlin/Pair
+     254: dup
+     255: new           #67                 // class git4idea/repo/GitRepositoryReader$GitBranches
+     258: dup
+     259: invokestatic  #388                // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+     262: invokestatic  #388                // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+     265: invokespecial #565                // Method git4idea/repo/GitRepositoryReader$GitBranches."<init>":(Ljava/util/Map;Ljava/util/Map;)V
+     268: getstatic     #78                 // Field git4idea/repo/GitRepositoryReader$HeadInfo$Unknown.INSTANCE:Lgit4idea/repo/GitRepositoryReader$HeadInfo$Unknown;
+     271: invokespecial #556                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     274: areturn
+    Exception table:
+       from    to  target type
+           0   240   240   Class com/intellij/openapi/vcs/VcsException
+
+  private final git4idea.GitLocalBranch resolveCurrentBranch();
+    Code:
+       0: nop
+       1: new           #495                // class git4idea/commands/GitLineHandler
+       4: dup
+       5: aload_0
+       6: getfield      #23                 // Field project:Lcom/intellij/openapi/project/Project;
+       9: aload_0
+      10: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      13: invokevirtual #103                // Method git4idea/repo/GitRepositoryFiles.getRootDir:()Lcom/intellij/openapi/vfs/VirtualFile;
+      16: getstatic     #576                // Field git4idea/commands/GitCommand.BRANCH:Lgit4idea/commands/GitCommand;
+      19: invokespecial #504                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      22: astore_1
+      23: aload_1
+      24: iconst_0
+      25: invokevirtual #508                // Method git4idea/commands/GitLineHandler.setEnableInteractiveCallbacks:(Z)V
+      28: aload_1
+      29: iconst_1
+      30: anewarray     #239                // class java/lang/String
+      33: astore_2
+      34: aload_2
+      35: iconst_0
+      36: ldc_w         #578                // String --show-current
+      39: aastore
+      40: aload_2
+      41: invokevirtual #516                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      44: aload_1
+      45: iconst_1
+      46: anewarray     #239                // class java/lang/String
+      49: astore_2
+      50: aload_2
+      51: iconst_0
+      52: ldc_w         #518                // String --no-color
+      55: aastore
+      56: aload_2
+      57: invokevirtual #516                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      60: invokestatic  #540                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      63: aload_1
+      64: invokeinterface #544,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+      69: iconst_0
+      70: newarray       int
+      72: invokevirtual #582                // Method git4idea/commands/GitCommandResult.getOutputOrThrow:([I)Ljava/lang/String;
+      75: dup
+      76: ldc_w         #584                // String getOutputOrThrow(...)
+      79: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      82: checkcast     #408                // class java/lang/CharSequence
+      85: invokestatic  #590                // Method kotlin/text/StringsKt.trim:(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+      88: invokevirtual #593                // Method java/lang/Object.toString:()Ljava/lang/String;
+      91: astore_2
+      92: aload_2
+      93: checkcast     #408                // class java/lang/CharSequence
+      96: invokeinterface #596,  1          // InterfaceMethod java/lang/CharSequence.length:()I
+     101: ifne          108
+     104: iconst_1
+     105: goto          109
+     108: iconst_0
+     109: ifeq          114
+     112: aconst_null
+     113: areturn
+     114: new           #237                // class git4idea/GitLocalBranch
+     117: dup
+     118: aload_2
+     119: invokespecial #346                // Method git4idea/GitLocalBranch."<init>":(Ljava/lang/String;)V
+     122: areturn
+     123: astore_2
+     124: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     127: aload_2
+     128: checkcast     #120                // class java/lang/Throwable
+     131: invokevirtual #126                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     134: aconst_null
+     135: areturn
+    Exception table:
+       from    to  target type
+           0   123   123   Class com/intellij/openapi/vcs/VcsException
+
+  private final com.intellij.vcs.log.Hash resolveHeadRevision();
+    Code:
+       0: nop
+       1: new           #495                // class git4idea/commands/GitLineHandler
+       4: dup
+       5: aload_0
+       6: getfield      #23                 // Field project:Lcom/intellij/openapi/project/Project;
+       9: aload_0
+      10: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+      13: invokevirtual #103                // Method git4idea/repo/GitRepositoryFiles.getRootDir:()Lcom/intellij/openapi/vfs/VirtualFile;
+      16: getstatic     #600                // Field git4idea/commands/GitCommand.REV_PARSE:Lgit4idea/commands/GitCommand;
+      19: invokespecial #504                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      22: astore_1
+      23: aload_1
+      24: iconst_0
+      25: invokevirtual #508                // Method git4idea/commands/GitLineHandler.setEnableInteractiveCallbacks:(Z)V
+      28: aload_1
+      29: iconst_1
+      30: anewarray     #239                // class java/lang/String
+      33: astore_2
+      34: aload_2
+      35: iconst_0
+      36: ldc_w         #602                // String --verify
+      39: aastore
+      40: aload_2
+      41: invokevirtual #516                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      44: aload_1
+      45: iconst_1
+      46: anewarray     #239                // class java/lang/String
+      49: astore_2
+      50: aload_2
+      51: iconst_0
+      52: ldc_w         #604                // String HEAD^{commit}
+      55: aastore
+      56: aload_2
+      57: invokevirtual #516                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      60: invokestatic  #540                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      63: aload_1
+      64: invokeinterface #544,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+      69: iconst_0
+      70: newarray       int
+      72: invokevirtual #582                // Method git4idea/commands/GitCommandResult.getOutputOrThrow:([I)Ljava/lang/String;
+      75: dup
+      76: ldc_w         #584                // String getOutputOrThrow(...)
+      79: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      82: checkcast     #408                // class java/lang/CharSequence
+      85: invokestatic  #590                // Method kotlin/text/StringsKt.trim:(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+      88: invokevirtual #593                // Method java/lang/Object.toString:()Ljava/lang/String;
+      91: astore_2
+      92: aload_2
+      93: invokestatic  #609                // Method git4idea/GitUtil.isHashString:(Ljava/lang/String;)Z
+      96: ifeq          104
+      99: aload_2
+     100: invokestatic  #615                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+     103: areturn
+     104: aconst_null
+     105: areturn
+     106: astore_2
+     107: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     110: aload_2
+     111: checkcast     #120                // class java/lang/Throwable
+     114: invokevirtual #126                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     117: aconst_null
+     118: areturn
+    Exception table:
+       from    to  target type
+           0   106   106   Class com/intellij/openapi/vcs/VcsException
+
+  private final git4idea.repo.GitRepositoryReader$HeadInfo readHead();
+    Code:
+       0: aconst_null
+       1: astore_1
+       2: nop
+       3: aload_0
+       4: getfield      #26                 // Field gitFiles:Lgit4idea/repo/GitRepositoryFiles;
+       7: invokevirtual #618                // Method git4idea/repo/GitRepositoryFiles.getHeadFile:()Ljava/io/File;
+      10: ldc_w         #390                // String UTF-8
+      13: invokestatic  #396                // Method com/intellij/dvcs/DvcsUtil.tryLoadFile:(Ljava/io/File;Ljava/lang/String;)Ljava/lang/String;
+      16: dup
+      17: ldc_w         #398                // String tryLoadFile(...)
+      20: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      23: astore_1
+      24: goto          45
+      27: astore_2
+      28: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      31: aload_2
+      32: checkcast     #120                // class java/lang/Throwable
+      35: invokevirtual #126                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+      38: getstatic     #78                 // Field git4idea/repo/GitRepositoryReader$HeadInfo$Unknown.INSTANCE:Lgit4idea/repo/GitRepositoryReader$HeadInfo$Unknown;
+      41: checkcast     #72                 // class git4idea/repo/GitRepositoryReader$HeadInfo
+      44: areturn
+      45: aload_1
+      46: ldc_w         #620                // String ref: refs/heads/.invalid
+      49: invokestatic  #82                 // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      52: ifeq          57
+      55: aconst_null
+      56: areturn
+      57: aload_1
+      58: invokestatic  #623                // Method git4idea/repo/GitRefUtil.parseHash:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+      61: astore_2
+      62: aload_2
+      63: ifnull        78
+      66: new           #88                 // class git4idea/repo/GitRepositoryReader$HeadInfo$DetachedHead
+      69: dup
+      70: aload_2
+      71: invokespecial #91                 // Method git4idea/repo/GitRepositoryReader$HeadInfo$DetachedHead."<init>":(Lcom/intellij/vcs/log/Hash;)V
+      74: checkcast     #72                 // class git4idea/repo/GitRepositoryReader$HeadInfo
+      77: areturn
+      78: aload_1
+      79: invokestatic  #627                // Method git4idea/repo/GitRefUtil.getTarget:(Ljava/lang/String;)Ljava/lang/String;
+      82: astore_3
+      83: aload_3
+      84: ifnull        106
+      87: new           #128                // class git4idea/repo/GitRepositoryReader$HeadInfo$Branch
+      90: dup
+      91: new           #237                // class git4idea/GitLocalBranch
+      94: dup
+      95: aload_3
+      96: invokespecial #346                // Method git4idea/GitLocalBranch."<init>":(Ljava/lang/String;)V
+      99: invokespecial #568                // Method git4idea/repo/GitRepositoryReader$HeadInfo$Branch."<init>":(Lgit4idea/GitLocalBranch;)V
+     102: checkcast     #72                 // class git4idea/repo/GitRepositoryReader$HeadInfo
+     105: areturn
+     106: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     109: new           #97                 // class com/intellij/dvcs/repo/RepoStateException
+     112: dup
+     113: aload_1
+     114: invokedynamic #631,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     119: invokespecial #118                // Method com/intellij/dvcs/repo/RepoStateException."<init>":(Ljava/lang/String;)V
+     122: checkcast     #120                // class java/lang/Throwable
+     125: invokevirtual #126                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+     128: getstatic     #78                 // Field git4idea/repo/GitRepositoryReader$HeadInfo$Unknown.INSTANCE:Lgit4idea/repo/GitRepositoryReader$HeadInfo$Unknown;
+     131: checkcast     #72                 // class git4idea/repo/GitRepositoryReader$HeadInfo
+     134: areturn
+    Exception table:
+       from    to  target type
+           2    24    27   Class com/intellij/dvcs/repo/RepoStateException
+
+  public static final com.intellij.openapi.diagnostic.Logger access$getLOG$cp();
+    Code:
+       0: getstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       3: areturn
+
+  static {};
+    Code:
+       0: new           #252                // class git4idea/repo/GitRepositoryReader$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #640                // Method git4idea/repo/GitRepositoryReader$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #244                // Field Companion:Lgit4idea/repo/GitRepositoryReader$Companion;
+      11: ldc           #2                  // class git4idea/repo/GitRepositoryReader
+      13: invokestatic  #643                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+      16: dup
+      17: ldc_w         #645                // String getInstance(...)
+      20: invokestatic  #211                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      23: putstatic     #95                 // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      26: return
+}

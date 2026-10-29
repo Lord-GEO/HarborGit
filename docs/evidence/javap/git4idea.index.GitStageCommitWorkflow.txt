@@ -1,0 +1,274 @@
+Compiled from "GitStageCommitWorkflow.kt"
+public final class git4idea.index.GitStageCommitWorkflow extends com.intellij.vcs.commit.NonModalCommitWorkflow {
+  private git4idea.index.GitStageTracker$State trackerState;
+
+  public git4idea.index.GitStageCommitState commitState;
+
+  public git4idea.index.GitStageCommitWorkflow(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String project
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: invokespecial #17                 // Method com/intellij/vcs/commit/NonModalCommitWorkflow."<init>":(Lcom/intellij/openapi/project/Project;)V
+      11: aload_0
+      12: getstatic     #23                 // Field git4idea/index/GitStageTracker$State.Companion:Lgit4idea/index/GitStageTracker$State$Companion;
+      15: invokevirtual #29                 // Method git4idea/index/GitStageTracker$State$Companion.getEMPTY$intellij_vcs_git:()Lgit4idea/index/GitStageTracker$State;
+      18: putfield      #33                 // Field trackerState:Lgit4idea/index/GitStageTracker$State;
+      21: nop
+      22: aload_0
+      23: aload_1
+      24: invokestatic  #39                 // Method git4idea/GitVcs.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/GitVcs;
+      27: invokestatic  #45                 // Method kotlin/collections/SetsKt.setOf:(Ljava/lang/Object;)Ljava/util/Set;
+      30: invokevirtual #49                 // Method updateVcses:(Ljava/util/Set;)V
+      33: nop
+      34: return
+
+  public boolean isDefaultCommitEnabled();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public final git4idea.index.GitStageTracker$State getTrackerState$intellij_vcs_git();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field trackerState:Lgit4idea/index/GitStageTracker$State;
+       4: areturn
+
+  public final void setTrackerState$intellij_vcs_git(git4idea.index.GitStageTracker$State);
+    Code:
+       0: aload_1
+       1: ldc           #59                 // String <set-?>
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: putfield      #33                 // Field trackerState:Lgit4idea/index/GitStageTracker$State;
+      11: return
+
+  public final git4idea.index.GitStageCommitState getCommitState$intellij_vcs_git();
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field commitState:Lgit4idea/index/GitStageCommitState;
+       4: dup
+       5: ifnull        9
+       8: areturn
+       9: pop
+      10: ldc           #66                 // String commitState
+      12: invokestatic  #70                 // Method kotlin/jvm/internal/Intrinsics.throwUninitializedPropertyAccessException:(Ljava/lang/String;)V
+      15: aconst_null
+      16: areturn
+
+  public final void setCommitState$intellij_vcs_git(git4idea.index.GitStageCommitState);
+    Code:
+       0: aload_1
+       1: ldc           #59                 // String <set-?>
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: putfield      #65                 // Field commitState:Lgit4idea/index/GitStageCommitState;
+      11: return
+
+  protected void performCommit(com.intellij.vcs.commit.CommitSessionInfo);
+    Code:
+       0: aload_1
+       1: ldc           #78                 // String sessionInfo
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: invokevirtual #83                 // Method com/intellij/vcs/commit/CommitSessionInfo.isVcsCommit:()Z
+      10: istore_2
+      11: getstatic     #89                 // Field kotlin/_Assertions.ENABLED:Z
+      14: ifeq          42
+      17: iload_2
+      18: ifne          42
+      21: iconst_0
+      22: istore_3
+      23: aload_1
+      24: invokevirtual #93                 // Method com/intellij/vcs/commit/CommitSessionInfo.getExecutor:()Lcom/intellij/openapi/vcs/changes/CommitExecutor;
+      27: invokedynamic #105,  0            // InvokeDynamic #0:makeConcatWithConstants:(Lcom/intellij/openapi/vcs/changes/CommitExecutor;)Ljava/lang/String;
+      32: astore_3
+      33: new           #107                // class java/lang/AssertionError
+      36: dup
+      37: aload_3
+      38: invokespecial #110                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+      41: athrow
+      42: invokestatic  #116                // Method git4idea/index/GitStageCommitWorkflowKt.access$getLOG$p:()Lcom/intellij/openapi/diagnostic/Logger;
+      45: ldc           #118                // String Do actual commit
+      47: invokevirtual #123                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+      50: aload_0
+      51: invokevirtual #127                // Method getCommitContext:()Lcom/intellij/openapi/vcs/changes/CommitContext;
+      54: getstatic     #132                // Field git4idea/repo/GitCommitTemplateTracker.Companion:Lgit4idea/repo/GitCommitTemplateTracker$Companion;
+      57: aload_0
+      58: invokevirtual #136                // Method getProject:()Lcom/intellij/openapi/project/Project;
+      61: invokevirtual #141                // Method git4idea/repo/GitCommitTemplateTracker$Companion.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitCommitTemplateTracker;
+      64: aconst_null
+      65: iconst_1
+      66: aconst_null
+      67: invokestatic  #145                // Method git4idea/repo/GitCommitTemplateTracker.exists$default:(Lgit4idea/repo/GitCommitTemplateTracker;Lgit4idea/repo/GitRepository;ILjava/lang/Object;)Z
+      70: invokestatic  #151                // Method com/intellij/vcs/commit/AbstractCommitWorkflowKt.setCleanupCommitMessage:(Lcom/intellij/openapi/vcs/changes/CommitContext;Z)V
+      73: new           #153                // class git4idea/index/GitStageCommitter
+      76: dup
+      77: aload_0
+      78: invokevirtual #136                // Method getProject:()Lcom/intellij/openapi/project/Project;
+      81: aload_0
+      82: invokevirtual #155                // Method getCommitState$intellij_vcs_git:()Lgit4idea/index/GitStageCommitState;
+      85: aload_0
+      86: invokespecial #159                // Method getPathsToStage:()Ljava/util/Map;
+      89: aload_0
+      90: invokevirtual #127                // Method getCommitContext:()Lcom/intellij/openapi/vcs/changes/CommitContext;
+      93: invokespecial #162                // Method git4idea/index/GitStageCommitter."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/index/GitStageCommitState;Ljava/util/Map;Lcom/intellij/openapi/vcs/changes/CommitContext;)V
+      96: astore_2
+      97: aload_0
+      98: aload_1
+      99: aload_2
+     100: checkcast     #164                // class com/intellij/vcs/commit/Committer
+     103: invokevirtual #168                // Method addCommonResultHandlers:(Lcom/intellij/vcs/commit/CommitSessionInfo;Lcom/intellij/vcs/commit/Committer;)V
+     106: aload_2
+     107: new           #170                // class git4idea/index/GitStageShowNotificationCommitResultHandler
+     110: dup
+     111: aload_2
+     112: invokespecial #173                // Method git4idea/index/GitStageShowNotificationCommitResultHandler."<init>":(Lgit4idea/index/GitStageCommitter;)V
+     115: checkcast     #175                // class com/intellij/vcs/commit/CommitterResultHandler
+     118: invokevirtual #179                // Method git4idea/index/GitStageCommitter.addResultHandler:(Lcom/intellij/vcs/commit/CommitterResultHandler;)V
+     121: aload_2
+     122: ldc           #181                // String stage.commit.process
+     124: iconst_0
+     125: anewarray     #183                // class java/lang/Object
+     128: invokestatic  #189                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     131: dup
+     132: ldc           #191                // String message(...)
+     134: invokestatic  #194                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     137: iconst_0
+     138: invokevirtual #198                // Method git4idea/index/GitStageCommitter.runCommit:(Ljava/lang/String;Z)V
+     141: return
+
+  private final java.util.Map<com.intellij.openapi.vfs.VirtualFile, java.util.Collection<com.intellij.openapi.vcs.FilePath>> getPathsToStage();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field trackerState:Lgit4idea/index/GitStageTracker$State;
+       4: invokevirtual #207                // Method git4idea/index/GitStageTracker$State.getRootStates:()Ljava/util/Map;
+       7: astore_1
+       8: iconst_0
+       9: istore_2
+      10: aload_1
+      11: astore_3
+      12: new           #209                // class java/util/LinkedHashMap
+      15: dup
+      16: invokespecial #212                // Method java/util/LinkedHashMap."<init>":()V
+      19: checkcast     #214                // class java/util/Map
+      22: astore        4
+      24: iconst_0
+      25: istore        5
+      27: aload_3
+      28: invokeinterface #218,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      33: invokeinterface #224,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      38: astore        6
+      40: aload         6
+      42: invokeinterface #229,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      47: ifeq          116
+      50: aload         6
+      52: invokeinterface #233,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      57: checkcast     #235                // class java/util/Map$Entry
+      60: astore        7
+      62: aload         7
+      64: astore        8
+      66: iconst_0
+      67: istore        9
+      69: aload_0
+      70: invokevirtual #155                // Method getCommitState$intellij_vcs_git:()Lgit4idea/index/GitStageCommitState;
+      73: invokevirtual #238                // Method git4idea/index/GitStageCommitState.getRoots:()Ljava/util/Set;
+      76: aload         8
+      78: invokeinterface #241,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      83: invokeinterface #245,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      88: ifeq          40
+      91: aload         4
+      93: aload         7
+      95: invokeinterface #241,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     100: aload         7
+     102: invokeinterface #248,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     107: invokeinterface #252,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     112: pop
+     113: goto          40
+     116: aload         4
+     118: nop
+     119: astore_1
+     120: nop
+     121: iconst_0
+     122: istore_2
+     123: aload_1
+     124: astore_3
+     125: new           #209                // class java/util/LinkedHashMap
+     128: dup
+     129: aload_1
+     130: invokeinterface #256,  1          // InterfaceMethod java/util/Map.size:()I
+     135: invokestatic  #262                // Method kotlin/collections/MapsKt.mapCapacity:(I)I
+     138: invokespecial #265                // Method java/util/LinkedHashMap."<init>":(I)V
+     141: checkcast     #214                // class java/util/Map
+     144: astore        4
+     146: iconst_0
+     147: istore        5
+     149: aload_3
+     150: invokeinterface #218,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+     155: checkcast     #267                // class java/lang/Iterable
+     158: astore        6
+     160: aload         4
+     162: astore        7
+     164: iconst_0
+     165: istore        8
+     167: aload         6
+     169: invokeinterface #268,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     174: astore        9
+     176: aload         9
+     178: invokeinterface #229,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     183: ifeq          302
+     186: aload         9
+     188: invokeinterface #233,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     193: astore        10
+     195: aload         7
+     197: aload         10
+     199: checkcast     #235                // class java/util/Map$Entry
+     202: astore        11
+     204: astore        12
+     206: iconst_0
+     207: istore        13
+     209: aload         11
+     211: invokeinterface #241,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     216: aload         12
+     218: swap
+     219: aload         10
+     221: checkcast     #235                // class java/util/Map$Entry
+     224: astore        14
+     226: astore        17
+     228: astore        16
+     230: iconst_0
+     231: istore        15
+     233: aload_0
+     234: invokevirtual #155                // Method getCommitState$intellij_vcs_git:()Lgit4idea/index/GitStageCommitState;
+     237: invokevirtual #271                // Method git4idea/index/GitStageCommitState.isCommitAll:()Z
+     240: ifeq          272
+     243: aload_0
+     244: invokevirtual #127                // Method getCommitContext:()Lcom/intellij/openapi/vcs/changes/CommitContext;
+     247: invokestatic  #275                // Method com/intellij/vcs/commit/AbstractCommitWorkflowKt.getCommitToAmend:(Lcom/intellij/openapi/vcs/changes/CommitContext;)Lcom/intellij/vcs/commit/CommitToAmend;
+     250: instanceof    #277                // class com/intellij/vcs/commit/CommitToAmend$None
+     253: ifeq          272
+     256: aload         14
+     258: invokeinterface #248,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     263: checkcast     #279                // class git4idea/index/GitStageTracker$RootState
+     266: invokestatic  #283                // Method git4idea/index/GitStageCommitWorkflowKt.access$getChangedPaths:(Lgit4idea/index/GitStageTracker$RootState;)Ljava/util/Collection;
+     269: goto          285
+     272: aload         14
+     274: invokeinterface #248,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     279: checkcast     #279                // class git4idea/index/GitStageTracker$RootState
+     282: invokestatic  #286                // Method git4idea/index/GitStageCommitWorkflowKt.access$getFullyStagedPaths:(Lgit4idea/index/GitStageTracker$RootState;)Ljava/util/Collection;
+     285: astore        18
+     287: aload         16
+     289: aload         17
+     291: aload         18
+     293: invokeinterface #252,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     298: pop
+     299: goto          176
+     302: aload         7
+     304: nop
+     305: nop
+     306: areturn
+}

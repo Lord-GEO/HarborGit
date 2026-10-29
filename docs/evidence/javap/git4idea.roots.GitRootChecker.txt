@@ -1,0 +1,379 @@
+Compiled from "GitRootChecker.java"
+final class git4idea.roots.GitRootChecker extends com.intellij.openapi.vcs.VcsRootChecker {
+  git4idea.roots.GitRootChecker();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method com/intellij/openapi/vcs/VcsRootChecker."<init>":()V
+       4: return
+
+  public boolean isRoot(com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ldc           #9                  // String .git
+      11: invokevirtual #11                 // Method com/intellij/openapi/vfs/VirtualFile.findChild:(Ljava/lang/String;)Lcom/intellij/openapi/vfs/VirtualFile;
+      14: ifnull        31
+      17: aload_1
+      18: invokevirtual #17                 // Method com/intellij/openapi/vfs/VirtualFile.toNioPath:()Ljava/nio/file/Path;
+      21: invokestatic  #21                 // Method git4idea/GitUtil.isGitRoot:(Ljava/nio/file/Path;)Z
+      24: ifeq          31
+      27: iconst_1
+      28: goto          32
+      31: iconst_0
+      32: ireturn
+
+  public boolean validateRoot(com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: invokevirtual #17                 // Method com/intellij/openapi/vfs/VirtualFile.toNioPath:()Ljava/nio/file/Path;
+      12: invokestatic  #21                 // Method git4idea/GitUtil.isGitRoot:(Ljava/nio/file/Path;)Z
+      15: ireturn
+
+  public com.intellij.openapi.vcs.VcsKey getSupportedVcs();
+    Code:
+       0: invokestatic  #25                 // Method git4idea/GitVcs.getKey:()Lcom/intellij/openapi/vcs/VcsKey;
+       3: dup
+       4: ifnonnull     11
+       7: iconst_2
+       8: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+      11: areturn
+
+  public boolean isVcsDir(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_3
+       5: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: ldc           #9                  // String .git
+      11: invokevirtual #31                 // Method java/lang/String.equalsIgnoreCase:(Ljava/lang/String;)Z
+      14: ireturn
+
+  public boolean isIgnored(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+       8: aload_3
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+      16: new           #37                 // class git4idea/commands/GitLineHandler
+      19: dup
+      20: aload_1
+      21: aload_2
+      22: getstatic     #39                 // Field git4idea/commands/GitCommand.CHECK_IGNORE:Lgit4idea/commands/GitCommand;
+      25: invokespecial #45                 // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      28: astore        4
+      30: aload         4
+      32: iconst_1
+      33: anewarray     #32                 // class java/lang/String
+      36: dup
+      37: iconst_0
+      38: ldc           #48                 // String --quiet
+      40: aastore
+      41: invokevirtual #50                 // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      44: aload         4
+      46: aload_3
+      47: invokestatic  #54                 // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+      50: invokevirtual #60                 // Method git4idea/commands/GitLineHandler.addRelativeFiles:(Ljava/util/Collection;)V
+      53: invokestatic  #64                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      56: aload         4
+      58: invokeinterface #70,  2           // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+      63: invokevirtual #74                 // Method git4idea/commands/GitCommandResult.success:()Z
+      66: ireturn
+
+  public java.util.List<com.intellij.openapi.vfs.VirtualFile> suggestDependentRoots(com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokevirtual #17                 // Method com/intellij/openapi/vfs/VirtualFile.toNioPath:()Ljava/nio/file/Path;
+      13: ldc           #82                 // String .gitmodules
+      15: invokeinterface #84,  2           // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+      20: astore_2
+      21: new           #90                 // class git4idea/repo/GitModulesFileReader
+      24: dup
+      25: invokespecial #92                 // Method git4idea/repo/GitModulesFileReader."<init>":()V
+      28: aload_2
+      29: invokevirtual #93                 // Method git4idea/repo/GitModulesFileReader.read:(Ljava/nio/file/Path;)Ljava/util/Collection;
+      32: astore_3
+      33: aload_3
+      34: aload_1
+      35: invokedynamic #97,  0             // InvokeDynamic #0:fun:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/util/Function;
+      40: invokestatic  #101                // Method com/intellij/util/containers/ContainerUtil.mapNotNull:(Ljava/util/Collection;Lcom/intellij/util/Function;)Ljava/util/List;
+      43: dup
+      44: ifnonnull     52
+      47: bipush        7
+      49: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+      52: areturn
+      53: astore_2
+      54: aload_2
+      55: athrow
+      56: astore_2
+      57: ldc           #111                // class git4idea/roots/GitRootChecker
+      59: invokestatic  #113                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+      62: aload_2
+      63: invokevirtual #118                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/Throwable;)V
+      66: invokestatic  #122                // Method java/util/Collections.emptyList:()Ljava/util/List;
+      69: dup
+      70: ifnonnull     78
+      73: bipush        8
+      75: invokestatic  #216                // Method $$$reportNull$$$0:(I)V
+      78: areturn
+    Exception table:
+       from    to  target type
+           9    43    53   Class java/util/concurrent/CancellationException
+           9    43    56   Class java/lang/Exception
+
+  private static com.intellij.openapi.vfs.VirtualFile lambda$suggestDependentRoots$0(com.intellij.openapi.vfs.VirtualFile, git4idea.repo.GitSubmoduleInfo);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #126                // Method git4idea/repo/GitSubmoduleInfo.getPath:()Ljava/lang/String;
+       5: invokestatic  #132                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;)Lcom/intellij/openapi/vcs/FilePath;
+       8: invokeinterface #138,  1          // InterfaceMethod com/intellij/openapi/vcs/FilePath.getVirtualFile:()Lcom/intellij/openapi/vfs/VirtualFile;
+      13: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 8
+
+                     0: 52
+
+                     1: 52
+
+                     2: 57
+
+                     3: 52
+
+                     4: 52
+
+                     5: 52
+
+                     6: 52
+
+                     7: 57
+
+                     8: 57
+               default: 52
+          }
+      52: ldc           #224                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      54: goto          62
+      57: ldc           #226                // String @NotNull method %s.%s must not return null
+      59: goto          62
+      62: iload_0
+      63: tableswitch   { // 0 to 8
+
+                     0: 112
+
+                     1: 112
+
+                     2: 116
+
+                     3: 112
+
+                     4: 112
+
+                     5: 112
+
+                     6: 112
+
+                     7: 116
+
+                     8: 116
+               default: 112
+          }
+     112: iconst_3
+     113: goto          120
+     116: iconst_2
+     117: goto          120
+     120: anewarray     #228                // class java/lang/Object
+     123: iload_0
+     124: tableswitch   { // 0 to 8
+
+                     0: 176
+
+                     1: 184
+
+                     2: 192
+
+                     3: 200
+
+                     4: 208
+
+                     5: 216
+
+                     6: 224
+
+                     7: 192
+
+                     8: 192
+               default: 176
+          }
+     176: dup
+     177: iconst_0
+     178: ldc           #229                // String path
+     180: aastore
+     181: goto          232
+     184: dup
+     185: iconst_0
+     186: ldc           #230                // String file
+     188: aastore
+     189: goto          232
+     192: dup
+     193: iconst_0
+     194: ldc           #231                // String git4idea/roots/GitRootChecker
+     196: aastore
+     197: goto          232
+     200: dup
+     201: iconst_0
+     202: ldc           #232                // String dirName
+     204: aastore
+     205: goto          232
+     208: dup
+     209: iconst_0
+     210: ldc           #233                // String project
+     212: aastore
+     213: goto          232
+     216: dup
+     217: iconst_0
+     218: ldc           #234                // String checkForIgnore
+     220: aastore
+     221: goto          232
+     224: dup
+     225: iconst_0
+     226: ldc           #235                // String vcsRoot
+     228: aastore
+     229: goto          232
+     232: iload_0
+     233: tableswitch   { // 0 to 8
+
+                     0: 284
+
+                     1: 284
+
+                     2: 292
+
+                     3: 284
+
+                     4: 284
+
+                     5: 284
+
+                     6: 284
+
+                     7: 300
+
+                     8: 300
+               default: 284
+          }
+     284: dup
+     285: iconst_1
+     286: ldc           #231                // String git4idea/roots/GitRootChecker
+     288: aastore
+     289: goto          308
+     292: dup
+     293: iconst_1
+     294: ldc           #236                // String getSupportedVcs
+     296: aastore
+     297: goto          308
+     300: dup
+     301: iconst_1
+     302: ldc           #237                // String suggestDependentRoots
+     304: aastore
+     305: goto          308
+     308: iload_0
+     309: tableswitch   { // 0 to 8
+
+                     0: 360
+
+                     1: 368
+
+                     2: 376
+
+                     3: 379
+
+                     4: 387
+
+                     5: 387
+
+                     6: 395
+
+                     7: 376
+
+                     8: 376
+               default: 360
+          }
+     360: dup
+     361: iconst_2
+     362: ldc           #238                // String isRoot
+     364: aastore
+     365: goto          403
+     368: dup
+     369: iconst_2
+     370: ldc           #239                // String validateRoot
+     372: aastore
+     373: goto          403
+     376: goto          403
+     379: dup
+     380: iconst_2
+     381: ldc           #240                // String isVcsDir
+     383: aastore
+     384: goto          403
+     387: dup
+     388: iconst_2
+     389: ldc           #241                // String isIgnored
+     391: aastore
+     392: goto          403
+     395: dup
+     396: iconst_2
+     397: ldc           #237                // String suggestDependentRoots
+     399: aastore
+     400: goto          403
+     403: invokestatic  #245                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     406: iload_0
+     407: tableswitch   { // 0 to 8
+
+                     0: 456
+
+                     1: 456
+
+                     2: 467
+
+                     3: 456
+
+                     4: 456
+
+                     5: 456
+
+                     6: 456
+
+                     7: 467
+
+                     8: 467
+               default: 456
+          }
+     456: new           #247                // class java/lang/IllegalArgumentException
+     459: dup_x1
+     460: swap
+     461: invokespecial #250                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     464: goto          478
+     467: new           #252                // class java/lang/IllegalStateException
+     470: dup_x1
+     471: swap
+     472: invokespecial #253                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     475: goto          478
+     478: athrow
+}

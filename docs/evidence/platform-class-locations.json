@@ -1,0 +1,14 @@
+[
+  {
+    "jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.ide.impl.jar",
+    "class": "com/intellij/ide/actions/OpenFileAction.class"
+  },
+  {
+    "jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.ide.impl.jar",
+    "class": "com/intellij/openapi/project/impl/ProjectManagerImpl.class"
+  },
+  {
+    "jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.ide.impl.jar",
+    "class": "com/intellij/ide/impl/ProjectUtil.class"
+  }
+]

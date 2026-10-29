@@ -1,0 +1,18 @@
+{
+  "tool": "mcp__rea__open_binary",
+  "rea_version": "6.8.0",
+  "target_member": "git4idea/commands/GitImpl.class",
+  "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+  "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+  "result": {
+    "code": "target_unavailable",
+    "category": "unsupported_target",
+    "message": "Cannot open artifact: unsupported binary format.",
+    "retryable": false,
+    "reason": "unsupported binary format",
+    "constraint": "file_format_rejected"
+  },
+  "additional_observation": "REA session reported JEB provider_missing; Android JADX provider_missing. Managed artifact tools target .NET PE/CLI and were not treated as JVM class tools.",
+  "fallback": "Python zipfile for JAR members and resource parsing; installed JDK javap -p -c for selected JVM bytecode, javap -v -p for annotations.",
+  "boundary": "Disassembly establishes static bytecode calls and constants, not live execution or original Java/Kotlin source. No REA installation/configuration repair was necessary."
+}

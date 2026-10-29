@@ -1,0 +1,746 @@
+[
+  {
+    "output": "javap/com.intellij.ide.actions.OpenFileAction.txt",
+    "output_sha256": "b5ed519aba0b9178737fa44eea4035927374d3e2d7642d8e3d491c9fcb250521",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.ide.impl.jar",
+    "member": "com/intellij/ide/actions/OpenFileAction.class",
+    "member_sha256": "c1e89bbe77fa4c5939198a2b26eaeb6bc01b11a1c77c01db78e87a8291b9c608",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/com.intellij.ide.impl.ProjectUtil.txt",
+    "output_sha256": "777eac752705c6b37d7b3c581ee3834599a8b5128aabfb97f56d5e9250f069b5",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.ide.impl.jar",
+    "member": "com/intellij/ide/impl/ProjectUtil.class",
+    "member_sha256": "b3c1bd77c1576981c0078f48afee2c70928fe405f8e77900993431a03a320635",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.actions.GitCloneAction.txt",
+    "output_sha256": "77b92479c0f20407bc033c5b9151c7bb1a5f3e7c1cddb13526754ceab9f5d2e9",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitCloneAction.class",
+    "member_sha256": "a7bbe8a65a2c8891375970027122b3d6d71f457841244b212af8ea2685857a96",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.actions.GitMerge.txt",
+    "output_sha256": "9be0e04e3dadf5e85be7ced0ac26f8237d6d5baf9abdc06e5d3917f0ad76c502",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitMerge.class",
+    "member_sha256": "97762550b2c6c4a42ba16803c2a9b72452ccec9ba4ba909505ca4fff62cab8c5",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.actions.GitPull.txt",
+    "output_sha256": "b65a63ff44e7f345b6d8dc23e876f0a4131f82f710837b49533877d6142583ae",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitPull.class",
+    "member_sha256": "37a9d2ad40e778761017ad8926609f21fdf50218104809e9b16d8977fe4a09f5",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.branch.GitBranchWorker.txt",
+    "output_sha256": "a536b30f8279d7589428ead9222d07cde12b5321f68d1c2bf0a7fc45fd64e585",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/branch/GitBranchWorker.class",
+    "member_sha256": "bc419581cc0de4c1b17f1ab1ee8ef9609ffb2112ed7cdd938cc0be377b2294c4",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.branch.GitCheckoutOperation.txt",
+    "output_sha256": "26484b611cf706481e0be96bb3fe0eb5067cbb0f1811903b70e3b585c1d58ca1",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/branch/GitCheckoutOperation.class",
+    "member_sha256": "5ed70d41bcaf5be79f4adddff13d35889a8fd782e797bbcad000e16214fcbe01",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.branch.GitCreateBranchOperation.txt",
+    "output_sha256": "611fa480b018d0696565c125f355f4fcfe68cc8212574cf12b5c1e1aa37381db",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/branch/GitCreateBranchOperation.class",
+    "member_sha256": "a1fcd025903676865bf99d71d63e1408168b9a7af4d9bf303f4ab816011165e8",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.branch.GitDeleteBranchOperation.txt",
+    "output_sha256": "5e87d03bfa079d1d435ba8dd522b6fc640d1b2b56afcbf7b2c5984e12d6ae2b7",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/branch/GitDeleteBranchOperation.class",
+    "member_sha256": "c57f65daacafb0daed1b2fe61cfcb740971249dc8f8ba268d3a5293a2004c539",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.checkin.GitCheckinEnvironment$Companion.txt",
+    "output_sha256": "f4df2fe6442f2b968fff3239c04dd6061da258036b6184e5c373d078092c6243",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/checkin/GitCheckinEnvironment$Companion.class",
+    "member_sha256": "650751df34e7611f9d9495d9114db2bf8f1937a74732f95c1ebcc769161ba4a3",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.checkin.GitCheckinEnvironment.txt",
+    "output_sha256": "e723181774bb846f9f6e30dbc2e352fcabe7d9229d99253a9113eae1aeb7515e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/checkin/GitCheckinEnvironment.class",
+    "member_sha256": "f2a8d7f53672f6bd4a0576b5c382c7a9f069538dbe24cf42bb2d93d6c2610137",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.checkin.GitRepositoryCommitter.txt",
+    "output_sha256": "720e92e4efdefa334564773394a58618d5522e558903279b60f2a65972354fb8",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/checkin/GitRepositoryCommitter.class",
+    "member_sha256": "584ebcc60749f36c75a23bcae4d7131094d4bde9cc9d30caf8b612d1aaa19f6a",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.checkin.GitRepositoryCommitterKt.txt",
+    "output_sha256": "2aeba3e83cd81156f223787d04d531a430cba3c13ea734c57aa2e0be41b98748",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/checkin/GitRepositoryCommitterKt.class",
+    "member_sha256": "2419595058e21d80dda7797ac304ed247fed0174d18c0724d3ab31a3cc798b69",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.checkout.GitCheckoutProvider$1.txt",
+    "output_sha256": "c8b3afa6b2f274b95356414550702024c3fa99c99344f76ce60ac7c91b4f8989",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/checkout/GitCheckoutProvider$1.class",
+    "member_sha256": "6e073f886670fb7929d36424f64d3ec49f2f29e61997ad9018a74a9c66bd59b3",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.checkout.GitCheckoutProvider.txt",
+    "output_sha256": "b0c68623d3d1e0b65732422f66496d7cff33dc0cc1b4de461a29ac2f585759fc",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/checkout/GitCheckoutProvider.class",
+    "member_sha256": "97b82491b288f18fffb8b07ccba755c26efc51067798aa0ac67d76f49df0f702",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.checkout.GitCloneUtils.txt",
+    "output_sha256": "77e1e5d1f39b1eaac574328e75dc560bb780a3399f49e52edd7643973fc6f8b3",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/checkout/GitCloneUtils.class",
+    "member_sha256": "dffaeeba908fdde62fafa1192b1854b59b2c09aa34bf7251627bfa8169676939",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.commands.GitHandler.txt",
+    "output_sha256": "ca241d46b05d3a09d1cd378786b0dc3ab5ab598a9beee2aa9442cec0243612c0",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/commands/GitHandler.class",
+    "member_sha256": "ffc241fab748eafe6181b715cb12bbaf74ba0aa66f43f264ac55e323eaa1b411",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.commands.GitImpl.txt",
+    "output_sha256": "b623ce7d894f3bbddd512c0c8335d57add6a882e2c94bc4a048847d630e95372",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/commands/GitImpl.class",
+    "member_sha256": "1ad755d372fec89eba7e8bf7fc930e2a4a71798e4836893954d8a36a3341df41",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.commands.GitImplBase.txt",
+    "output_sha256": "d0645ee31e75e7fe919580bdba35d9d8545bf768ffd18d85f0503d0b683d1c36",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/commands/GitImplBase.class",
+    "member_sha256": "a67bf6b38ad44ca96b054423d393b68ae4c8077aa4e026842f6ed1d9899ccb90",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.config.GitExecutableManager.txt",
+    "output_sha256": "bcbfd9adfa8abaa8f2aca7e6a826d7485a095cd046af50bd196833c523ca44b9",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/config/GitExecutableManager.class",
+    "member_sha256": "ee2d3029154830802ed0e011597fcbc3241cf74a6e67dc9d76dcd81e432242b9",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.config.GitVcsApplicationSettings.verbose.txt",
+    "output_sha256": "fbea9cb553df64ed1346852e835ebd150d1f77dbfd1e216a4becdd4141dc23d6",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/config/GitVcsApplicationSettings.class",
+    "member_sha256": "23615e3e44817f8909c17586be7d68d3d5e058db0e40c64394b839eb203df5bf",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-v",
+      "-p"
+    ]
+  },
+  {
+    "output": "javap/git4idea.GitContentRevision.txt",
+    "output_sha256": "9c0ae3700dabe1386ac1a3aaa2da737f8145580b311ac812aa8885668a1a65ab",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/GitContentRevision.class",
+    "member_sha256": "2638cb87f512b3a761c3fb232bf7d1a6b47d819a59bef3f810787c47e5509570",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.GitVcs.txt",
+    "output_sha256": "4230c334e7c89fe5454905c0d9e9e6f5a63f73e279cf9a52632b4a7214eafa0c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/GitVcs.class",
+    "member_sha256": "6c5b47122258f16e9b8242849a38c9368ab702cc9b9eeaa11ac6b261f990a3b3",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.history.GitHistoryUtils.txt",
+    "output_sha256": "e01852f56cdc320bc53efbc8ea4d0e76d7df2be8707b42d71a1faab2f29eea3c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/history/GitHistoryUtils.class",
+    "member_sha256": "76ed4f77da61bd728a06c8f5bb98bf60ef40604e9a31f6ec15918a44681f4b54",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.history.GitLogUtil.txt",
+    "output_sha256": "05a56ab5714197f8a5257a7fc488d16970761518526bc416eede980d220e1822",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/history/GitLogUtil.class",
+    "member_sha256": "cc24343ac53c5f0417854590c051b8618bafc4e48af9cf8781a859b6f952b426",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitAddAction.txt",
+    "output_sha256": "296fd00d64d4afa54e9de015ba9755cd072c4154923909e3adcef23353e4f62b",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitAddAction.class",
+    "member_sha256": "30a5c528592eac5ef44b87fbae62352ce91daebdbb768229c81b1f8effa52aa6",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitAddOperation.txt",
+    "output_sha256": "571f2eafb232ff88b286968524a3327ca7c41ebbd3241dd1dc824a353f8fd737",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitAddOperation.class",
+    "member_sha256": "b534fc8f8b7ef00028b4c7927ef645d7f5a939d6de132e0f83e581f7f1f2dc28",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitResetAction.txt",
+    "output_sha256": "bd15c68c9dd9d2a24db6a82ecd3bf9d5bf83b79351f1f430222b23c3c969e936",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitResetAction.class",
+    "member_sha256": "8b9cbcdb36be0b7f50ae856914765837f0bb3691820e830fff6cf18c8d65d1e0",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitResetOperation.txt",
+    "output_sha256": "5b53850cf57357f2898e098701c04a580169d68ce129362c82904d8af4ab7759",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitResetOperation.class",
+    "member_sha256": "b1f2d2eb7da0cccafc13e02bd4b6e3face232f3461d5828af890e4713f23702f",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitStageAcceptConflictSideAction.txt",
+    "output_sha256": "f6115a7b08c2663006209ee91ddab70949f52aaeef30f6bbd95b4c0abcc30621",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitStageAcceptConflictSideAction.class",
+    "member_sha256": "5812139d3a2300d8f90be0c385aee7aa163d15aac9605a49fab9355c71a53e16",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitStageMergeConflictAction.txt",
+    "output_sha256": "61b0425b2d560504e9eeadf94cf17e3246e78629413ac1723c3d364939b6a9d2",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitStageMergeConflictAction.class",
+    "member_sha256": "5cbce4fb1070c84415a268206aa31e9a33c84c97bdf59f962c6c5697ea2f3ee8",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.actions.StagingAreaOperationActionKt.txt",
+    "output_sha256": "ddb5ddde4bbfe30bb94afaa2a20be25b7bce390647c1b52929afe74ff5af436e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/StagingAreaOperationActionKt.class",
+    "member_sha256": "3c7d37724cc1123bf517f5a3f71f9aa198a042953480a781fdad9ae67bd44f2e",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.ContentVersion.txt",
+    "output_sha256": "112091509ab3e2255683d1288d95e6c0a194213742504e42c6cb2281b93630bc",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/ContentVersion.class",
+    "member_sha256": "99a826dbadd11c42ec21e709695bb9acb8dab8a188475a73825e6a53ddbcdbde",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitFileStatus.txt",
+    "output_sha256": "2b0b7bce0745e9cec3d3700ee4005328da8a2f4b997cf0615c6fbff25990caea",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitFileStatus.class",
+    "member_sha256": "75f4b4877c8bb33f1c21effabc4bbfc1f395eb8462dc59aa4fa09b6bc4243746",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitIndexStatusUtilKt.txt",
+    "output_sha256": "5afb7cea0ddb6594b100862aa197245dc1489732bef00546697ae6fd759a2dad",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitIndexStatusUtilKt.class",
+    "member_sha256": "3812f7f4669abd5413c1ae65b143a6d12888b83d470e2e69d0a944f554c75507",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitIndexUtil.txt",
+    "output_sha256": "8290abfb1354c44a5135f56b526644f6cf064e93db1a4dcd8d22d57cf2632a94",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitIndexUtil.class",
+    "member_sha256": "7626fdb5ab8286218404c5416f903b253bc3f7d7ea9c73d88eddfb5c45a70d05",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitStageCommitter.txt",
+    "output_sha256": "6daea48708a24e3c980025c6fdfe74b9e7840812328fe7f5a8085075d74654b0",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitStageCommitter.class",
+    "member_sha256": "880f31184720644f4bd9271cb4fd8eef4ca3a7ecbb6790a19836f440db01b5a6",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitStageCommitWorkflow.txt",
+    "output_sha256": "cd58994b3a70b32678933d6138957f3d0995614a7cb9bddb8a8f84f5dbdde555",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitStageCommitWorkflow.class",
+    "member_sha256": "3cfa58ec35cf27599c65747b58d34654c7bfedae490b69b40ba3bfdb424d335b",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitStageCommitWorkflowHandler.txt",
+    "output_sha256": "ef6780be8b845e8a940ac22586948985c7871fb615be8e36f559ffc2f6cfed5f",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitStageCommitWorkflowHandler.class",
+    "member_sha256": "5f60db80ffc7b2e36c5297d1c3862bb46040a6d1ce0be89e90db668d10bde0c0",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitStageDiffUtilKt.txt",
+    "output_sha256": "62a42b5670bf5f7dfd55a844dc4ed0658b5b889743343c787ab6b57d5d433e52",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitStageDiffUtilKt.class",
+    "member_sha256": "c7098f013f91facd635f6072b33a3d516ec30694a26fc5fd9b43507f6dd3a7b3",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.GitStageTracker.txt",
+    "output_sha256": "f62708acf699e8d2264ee1e99fa14a40925141ed3171c408c9e1abb1f6a2510c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitStageTracker.class",
+    "member_sha256": "51f027fe2fe24e3a8b6308a66538bdd03c866ac0ff5d1922d0f0050213534b47",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.ui.GitStageCommitPanel.txt",
+    "output_sha256": "75b077d98808333c65558c578b5f2d21934ad4821fe487da41757c180f60d93c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/ui/GitStageCommitPanel.class",
+    "member_sha256": "858a0176daff3b5568f9036934acb522585e808655aa33e91ae10a93dd043099",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.ui.GitStageDiffRequestProcessor.txt",
+    "output_sha256": "39f989aebf0241581bf0d822bd0b217792d21455dd7901d0b505ecabc6e8694a",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/ui/GitStageDiffRequestProcessor.class",
+    "member_sha256": "5fc8b8d7762b1b9d52f0e15eeb21033304ddd4030ff6e22c8809ffbb3d03b94c",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.ui.GitStagePanel.txt",
+    "output_sha256": "d9c8a2d9a02ecd2bdb7e648fbeef1e6350b3ea22fdcfbba957addae50f88b137",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/ui/GitStagePanel.class",
+    "member_sha256": "00a55d89641171a175e682da8e8ea1fa60a6847e449cc5d3856526b41caa75db",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.index.ui.GitStageTree.txt",
+    "output_sha256": "95cb10c995b3f6a2760a0fa887ed2ade824c55c6bb9922739c6ca55198817984",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/ui/GitStageTree.class",
+    "member_sha256": "c33c3f587a5385485a0313da9fe6d5bb182e4382d1884fef7c5df8efeab044f7",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.log.GitLogDiffHandler.txt",
+    "output_sha256": "2a6e7e5b9fa332f6ebb3f2540c77391b761c7cf37cf5e5ef447cb3db80ea13ac",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/log/GitLogDiffHandler.class",
+    "member_sha256": "53428cd9abcfb48c787de8ef449dc80e2a7a75901896a9a18bbb54fe15047778",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.log.GitLogProvider.txt",
+    "output_sha256": "0b875f16444827a5e624b7b4c5328e8b700449309fab3f39d842b23c72d18fd3",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/log/GitLogProvider.class",
+    "member_sha256": "ea44cdddf7af721933a764619e9f33265ec4d7c3d6dd3f12253b16f8afc38eff",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.merge.GitConflictResolver.txt",
+    "output_sha256": "a23998efae17b55b67fc76e5a1c365915b94fb865b829352870de2988ff7e214",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/merge/GitConflictResolver.class",
+    "member_sha256": "c8ca3836b15237124b397b5d67aa4ba292eb3134472c3b77f33007b17bd1c895",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.merge.GitMergeProvider$MyMergeSession.txt",
+    "output_sha256": "b63deb968f0d40dbea457ac9244dbdd8a198066cf3aa80ef1fb8685e504ae63e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/merge/GitMergeProvider$MyMergeSession.class",
+    "member_sha256": "63d6c5f1edac9eb08a31a878d4f32cc4bda8ee3b116c7393acedf6cdab65d23c",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.merge.GitMergeProvider.txt",
+    "output_sha256": "350abc65a60003d45431eff85a232b74d5ca339908443895270ef4db6cf9a999",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/merge/GitMergeProvider.class",
+    "member_sha256": "b702849c35505b8d4883e3e17e7ec53d15ffe60d6f81f1c802f16b739ff81495",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.merge.GitMergeUtil.txt",
+    "output_sha256": "2bea21244b5a6a47cf37a4b76d81a8f89cca1a9d80c0d385176caa97b7db089f",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/merge/GitMergeUtil.class",
+    "member_sha256": "a84bf5c7a907ae21d8a34dc06e49c94eeb2fbe70c9822dd0cbeabc7c19c1f7ec",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.push.GitPushOperation.txt",
+    "output_sha256": "cc2612d82121d6340f12d7bf4c65c5589aa52f2616683a7c8468042e9478612c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/push/GitPushOperation.class",
+    "member_sha256": "1eb8d95e06c57449609587a462a328cb978bdfcedd7f718b9e8e766f47622467",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.repo.GitRepositoryCreator.txt",
+    "output_sha256": "1771433fe9171c459c5766899ed53e47209cd2259dffc333edb3d54547cf84ab",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/repo/GitRepositoryCreator.class",
+    "member_sha256": "7848db822422da1f6fc95b9c0c8fcf41decee87ef29e15f257a717c138336dde",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.repo.GitRepositoryImpl.txt",
+    "output_sha256": "76ac4e197a545057357ecf121bbb8c48aa27c6a4628958984ef8ff1568aaf593",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/repo/GitRepositoryImpl.class",
+    "member_sha256": "c1b32c7d1c78dba1b4233c2a10b20ddfdb0793c37fcaa23a7c88c6215a79b065",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.repo.GitRepositoryInitializerImpl.txt",
+    "output_sha256": "881408b36b5acd663631baa13f43e6727bbc7245074a694bf922f5d3181d5c4a",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/repo/GitRepositoryInitializerImpl.class",
+    "member_sha256": "cdb19a164fa86bcc86909e62294c091da4db3be506a8554773b94ba4851ad4ac",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.repo.GitRepositoryReader.txt",
+    "output_sha256": "768ae0a6f6870f283fc54a7493931c075f61f4c78d24ca544d9a2a8af78ae840",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/repo/GitRepositoryReader.class",
+    "member_sha256": "e6444488263a51fe8e9b80d15e28915db60ac26231dd09c281551fa59cbea164",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.roots.GitRootChecker.txt",
+    "output_sha256": "a4afb09a08b5bd1b711abce5cc00541594bd1507ff28547916032d1026ae8a0a",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/roots/GitRootChecker.class",
+    "member_sha256": "6c2679d394283b21054f62c121edda9f79173a5694df4a79bddf264bf8f9d197",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.status.GitChangeProvider.txt",
+    "output_sha256": "fea7119a704651805c1797f26d3a61904fe9e41110344e80c3fac0f8f7ffaba5",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/status/GitChangeProvider.class",
+    "member_sha256": "06e230fa410105ca68372f62dddac2997c43166263ea5f2ba9925049c9800538",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.status.GitChangesCollector.txt",
+    "output_sha256": "e88b90ed7ee59ffc58d0630c7283fd490d3d030f8d9f60361a8869f8d2e61206",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/status/GitChangesCollector.class",
+    "member_sha256": "5e1f82edbc060a49ce944f5bed6f5125c6ff37e83a4e479be99993701b980cf0",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.status.GitStagingAreaHolder.txt",
+    "output_sha256": "552edaa8cadbe36ca9a4dc9341244666baa08ba06bb23f1e8eda6fcdeebd9c8e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/status/GitStagingAreaHolder.class",
+    "member_sha256": "13e39eb32d9c27037fc8be98f075aaaef218ba7598ef01dc135833e477b0936e",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.update.GitFetcher.txt",
+    "output_sha256": "e01ff7f0c50f2dbd20470af0bb0baf8f986208740a06e27108a3ed0b1e47f236",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/update/GitFetcher.class",
+    "member_sha256": "5492743bd9f3ef5e4e7f2fd1fab4790f62852b4f0b2e5aea3eee3e290ce539a4",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  },
+  {
+    "output": "javap/git4idea.util.GitFileUtils.txt",
+    "output_sha256": "f1aa5b41a35b69a008f9c3500ae43d39862953ab58643cd97d7dee2bf27ceeec",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/util/GitFileUtils.class",
+    "member_sha256": "012586545c68d22b707f2cdca40e57f931e404a35d23734253f17a13e366704c",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ]
+  }
+]

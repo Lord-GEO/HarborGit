@@ -1,0 +1,50 @@
+Compiled from "GitStageConflictActions.kt"
+public final class git4idea.index.actions.GitStageMergeConflictAction extends git4idea.index.actions.GitStageConflictAction {
+  public git4idea.index.actions.GitStageMergeConflictAction();
+    Code:
+       0: aload_0
+       1: ldc           #8                  // String action.Git.Merge.text
+       3: iconst_0
+       4: anewarray     #10                 // class java/lang/Object
+       7: invokestatic  #16                 // Method git4idea/i18n/GitBundle.messagePointer:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/function/Supplier;
+      10: dup
+      11: ldc           #18                 // String messagePointer(...)
+      13: invokestatic  #24                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      16: invokespecial #27                 // Method git4idea/index/actions/GitStageConflictAction."<init>":(Ljava/util/function/Supplier;)V
+      19: return
+
+  protected boolean isEnabled(com.intellij.openapi.project.Project, kotlin.sequences.Sequence<? extends git4idea.repo.GitConflict>);
+    Code:
+       0: aload_1
+       1: ldc           #35                 // String project
+       3: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #40                 // String conflicts
+       9: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_1
+      13: invokestatic  #46                 // Method git4idea/index/ui/GitStagePanelKt.createMergeHandler:(Lcom/intellij/openapi/project/Project;)Lgit4idea/conflicts/GitMergeHandler;
+      16: astore_3
+      17: aload_1
+      18: aload_3
+      19: aload_2
+      20: invokestatic  #52                 // Method git4idea/index/actions/GitStageConflictActionsKt.access$canShowMergeWindow:(Lcom/intellij/openapi/project/Project;Lgit4idea/conflicts/GitMergeHandler;Lkotlin/sequences/Sequence;)Z
+      23: ireturn
+
+  protected void perform(com.intellij.openapi.project.Project, git4idea.conflicts.GitMergeHandler, java.util.List<? extends git4idea.repo.GitConflict>);
+    Code:
+       0: aload_1
+       1: ldc           #35                 // String project
+       3: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #60                 // String handler
+       9: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #40                 // String conflicts
+      15: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: getstatic     #66                 // Field git4idea/conflicts/GitConflictsUtil.INSTANCE:Lgit4idea/conflicts/GitConflictsUtil;
+      21: aload_1
+      22: aload_2
+      23: aload_3
+      24: invokevirtual #69                 // Method git4idea/conflicts/GitConflictsUtil.showMergeWindow$intellij_vcs_git:(Lcom/intellij/openapi/project/Project;Lgit4idea/conflicts/GitMergeHandler;Ljava/util/List;)V
+      27: return
+}

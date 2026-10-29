@@ -1,0 +1,53 @@
+
+> harbor-git@1.0.0 test:ui
+> playwright test
+
+
+Running 3 tests using 1 worker
+
+(node:17908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\electron.spec.ts:87:1 › desktop UI: open → diff → stage → unstage → commit → history; create/switch/delete branch (35.8s)
+(node:32784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 tests\electron.spec.ts:135:1 › desktop UI: clone local bare remote → fetch → pull → stage/commit → push (31.4s)
+  ok 3 tests\electron.spec.ts:164:1 › desktop UI: merge conflicting branch → compare base/ours/theirs → manual resolution → merge commit (24.6s)
+
+
+  1) tests\electron.spec.ts:87:1 › desktop UI: open → diff → stage → unstage → commit → history; create/switch/delete branch 
+
+    TimeoutError: page.screenshot: Timeout 30000ms exceeded.
+    Call log:
+      - taking page screenshot
+      - waiting for fonts to load...
+      - fonts loaded
+
+
+      101 |   await expect(page.getByLabel('差异内容', { exact: true })).toContainText('欢迎靠岸');
+      102 |   expect(await page.locator('.diff-table .added').count()).toBeGreaterThan(2);
+    > 103 |   await page.screenshot({ path: path.join(screenshots, 'changes.png') });
+          |              ^
+      104 |   await page.getByRole('button', { name: '暂存 src/欢迎.ts', exact: true }).click();
+      105 |   await expect(page.getByRole('button', { name: '暂存区 src/欢迎.ts', exact: true })).toBeVisible(); await idle(page);
+      106 |   await page.getByRole('button', { name: '取消暂存 src/欢迎.ts', exact: true }).click();
+        at C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\tests\electron.spec.ts:103:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\electron-desktop-UI-open-→-e6e73-create-switch-delete-branch\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\electron-desktop-UI-open-→-e6e73-create-switch-delete-branch\error-context.md
+
+    Error Context: test-results\electron-desktop-UI-open-→-e6e73-create-switch-delete-branch\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\electron-desktop-UI-open-→-e6e73-create-switch-delete-branch\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\electron-desktop-UI-open-→-e6e73-create-switch-delete-branch\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\electron.spec.ts:87:1 › desktop UI: open → diff → stage → unstage → commit → history; create/switch/delete branch 
+  2 passed (1.5m)

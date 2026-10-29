@@ -1,0 +1,22 @@
+
+> harbor-git@1.0.0 test
+> tsx --test tests/git.test.ts
+
+✔ unborn repository: literal Unicode/space/leading-dash/pathspec names, stage and unstage, initial history (2336.3447ms)
+✔ workspace and index diffs remain distinct; deleting, renaming, and binary content are represented (3171.3288ms)
+✔ branches: create, switch, reject unsafe deletion, safe deletion and invalid names (2891.8033ms)
+✔ clone and local bare remote: fetch/push/fast-forward pull; divergent pull rejects without merge (7009.5138ms)
+✔ merge conflict: read base/ours/theirs, resolve ours, finish merge, inspect merge commit files/diff (2801.4612ms)
+✔ merge conflict: manual resolution and theirs resolution are staged, abort restores original head (3501.4801ms)
+✔ modify/delete conflict: choosing deleted side removes the file and stages resolution (2089.1148ms)
+✔ validation rejects escapes/options/invalid payloads, errors retain useful Git output, previous repo survives bad open (932.4228ms)
+✔ operation log reports commands and completion; a slow commit hook can be cancelled (1756.956ms)
+✔ slow commit hook times out with a recoverable failure (3596.9694ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30296.0254
