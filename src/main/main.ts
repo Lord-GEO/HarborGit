@@ -1,14 +1,15 @@
 import { app, BrowserWindow, dialog, ipcMain, type IpcMainInvokeEvent } from 'electron';
 import path from 'node:path';
 import * as fs from 'node:fs/promises';
-import { GitService, GitError } from './git-service';
-import type { HarborAPI, Requests, Result } from '../shared/types';
+import { GitError } from './git-service';
+import { Workspaces } from './workspaces';
+import type { Requests, Result } from '../shared/types';
 
 if (process.env.HARBOR_USER_DATA && path.isAbsolute(process.env.HARBOR_USER_DATA)) app.setPath('userData', process.env.HARBOR_USER_DATA);
 app.setName('HarborGit');
 let win: BrowserWindow | null = null;
 let recentPaths: string[] = [];
-const service = new GitService({ onActivity: event => { if (win && !win.isDestroyed()) win.webContents.send('harbor:activity', event); } });
+const service = new Workspaces({ mergeWorkspaceRoot: path.join(app.getPath('userData'), 'merge-workspaces'), onActivity: event => { if (win && !win.isDestroyed()) win.webContents.send('harbor:activity', event); } });
 const recentFile = () => path.join(app.getPath('userData'), 'recent.json');
 function verifySender(event: IpcMainInvokeEvent) {
   if (!win || event.sender !== win.webContents || event.senderFrame !== win.webContents.mainFrame) throw new Error('Invalid IPC sender');
@@ -19,15 +20,21 @@ async function remember(root: string) {
 }
 app.whenReady().then(async () => {
   try { const value: unknown = JSON.parse(await fs.readFile(recentFile(), 'utf8')); if (Array.isArray(value)) recentPaths = value.filter((p): p is string => typeof p === 'string' && path.isAbsolute(p)).slice(0, 12); } catch { /* First launch. */ }
-  ipcMain.handle('harbor:request', async (event, operation: keyof Requests, payload: unknown): Promise<Result<unknown>> => {
+  ipcMain.handle('harbor:request', async (event, operation: keyof Requests, payload: unknown, sessionId?: string): Promise<Result<unknown>> => {
     verifySender(event);
     try {
-      const data = await service.request(operation, payload as never);
+      const data = await service.request(operation, payload as never, sessionId);
       if ((operation === 'open' || operation === 'clone') && data && 'root' in Object(data)) await remember((data as { root: string }).root);
+      if (operation === 'mergeInto' && data && 'mergeRepository' in Object(data)) { const recovery = (data as { mergeRepository?: { root: string } }).mergeRepository; if (recovery) await remember(recovery.root); }
       return { ok: true, data };
     } catch (e) {
       return { ok: false, error: e instanceof GitError ? e.details : { message: e instanceof Error ? e.message : String(e) } };
     }
+  });
+  ipcMain.handle('harbor:close-repository', (event, sessionId: string): Result<boolean> => {
+    verifySender(event);
+    try { return { ok: true, data: service.close(sessionId) }; }
+    catch (e) { return { ok: false, error: e instanceof GitError ? e.details : { message: String(e) } }; }
   });
   ipcMain.handle('harbor:pick-directory', async event => { verifySender(event); const result = await dialog.showOpenDialog(win!, { title: '选择仓库或父目录', properties: ['openDirectory', 'createDirectory'] }); return result.canceled ? null : result.filePaths[0]; });
   ipcMain.handle('harbor:cancel', (event, id: string) => { verifySender(event); return typeof id === 'string' && service.cancel(id); });

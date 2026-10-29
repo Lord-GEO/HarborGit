@@ -1,0 +1,17 @@
+
+> harbor-git@1.1.0 test:ui
+> playwright test
+
+
+Running 6 tests using 1 worker
+
+(node:9280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\electron.spec.ts:110:1 › desktop UI: open → diff → stage → unstage → commit → history; create/switch/delete branch (14.5s)
+  ok 2 tests\electron.spec.ts:158:1 › desktop UI: clone local bare remote → fetch → pull → stage/commit → push (31.8s)
+  ok 3 tests\electron.spec.ts:187:1 › desktop UI: merge conflicting branch → compare base/ours/theirs → manual resolution → merge commit (16.7s)
+  ok 4 tests\electron.spec.ts:218:1 › desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists (23.1s)
+  ok 5 tests\electron.spec.ts:262:1 › desktop UI: merge committed dev into master with staged/unstaged/untracked source changes (11.3s)
+  ok 6 tests\electron.spec.ts:285:1 › desktop UI: isolated merge conflict opens new tab; resolve and finish without changing dev WIP (22.7s)
+
+  6 passed (2.0m)

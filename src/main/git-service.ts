@@ -2,13 +2,13 @@ import { spawn, type ChildProcess } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
-import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, Remote, Repository, Requests, Responses } from '../shared/types';
+import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, Remote, Repository, Requests, Responses, MergeWorkspace, MergeIntoResult } from '../shared/types';
 
 export class GitError extends Error {
   readonly details: Failure;
   constructor(details: Failure) { super(details.message); this.name = 'GitError'; this.details = details; }
 }
-interface Options { onActivity?: (event: Activity) => void; gitPath?: string; timeoutMs?: number; outputLimit?: number; }
+export interface GitOptions { onActivity?: (event: Activity) => void; gitPath?: string; timeoutMs?: number; outputLimit?: number; mergeWorkspaceRoot?: string; }
 interface CommandResult { stdout: string; stderr: string; code: number; truncated: boolean; }
 interface RunOptions { accepted?: number[]; input?: string; limit?: number; timeout?: number; }
 const MAX_TEXT = 2 * 1024 * 1024;
@@ -58,13 +58,16 @@ export class GitService {
   private root = '';
   private queue: Promise<unknown> = Promise.resolve();
   private running = new Map<string, { child: ChildProcess; stop: (reason: string) => void }>();
-  constructor(private options: Options = {}) {}
+  pendingCount = 0;
+  get repositoryRoot() { return this.root; }
+  constructor(private options: GitOptions = {}) {}
   cancel(id: string): boolean { const job = this.running.get(id); if (!job) return false; job.stop('操作已取消，请刷新状态确认已完成的部分'); return true; }
   cancelAll() { for (const id of this.running.keys()) this.cancel(id); }
   request<K extends keyof Requests>(operation: K, payload: Requests[K]): Promise<Responses[K]> {
+    this.pendingCount++;
     const task = this.queue.then(() => this.dispatch(operation, payload));
     this.queue = task.catch(() => undefined);
-    return task as Promise<Responses[K]>;
+    return task.finally(() => { this.pendingCount--; }) as Promise<Responses[K]>;
   }
   private emit(e: Activity) { this.options.onActivity?.(e); }
   private run(cwd: string, args: string[], opts: RunOptions = {}): Promise<CommandResult> {
@@ -136,7 +139,60 @@ export class GitService {
     const mergeInProgress = await fs.access(path.resolve(this.root, mergePath)).then(() => true, () => false);
     const userName = (await this.git(['config', '--get', 'user.name'], { accepted: [0, 1] })).stdout.trim();
     const userEmail = (await this.git(['config', '--get', 'user.email'], { accepted: [0, 1] })).stdout.trim();
-    return { root: this.root, ...status, mergeInProgress, userName, userEmail };
+    return { root: this.root, ...status, mergeInProgress, userName, userEmail, mergeWorkspace: await this.mergeMetadata() };
+  }
+  private async mergeMetadata(): Promise<MergeWorkspace | undefined> {
+    const dir = (await this.git(['rev-parse', '--absolute-git-dir'])).stdout.trim();
+    try {
+      const v = JSON.parse(await fs.readFile(path.join(dir, 'harborgit-merge.json'), 'utf8'));
+      if (v && typeof v.sourceRoot === 'string' && path.isAbsolute(v.sourceRoot) && typeof v.sourceBranch === 'string' && typeof v.targetBranch === 'string') return { sourceRoot: v.sourceRoot, sourceBranch: ref(v.sourceBranch), targetBranch: ref(v.targetBranch) };
+    } catch { /* Ordinary repository or invalid metadata. */ }
+    return undefined;
+  }
+  private async mergeInto(target: string): Promise<MergeIntoResult> {
+    ref(target); await this.branchExists(target, true);
+    const original = await this.snapshot();
+    if (original.unborn || original.detached || original.mergeInProgress || original.entries.some(e => e.conflict) || original.mergeWorkspace) throw new GitError({ message: '请从正常的已提交分支发起合并，先结束正在进行的合并' });
+    if (original.branch === target) throw new GitError({ message: '目标分支必须与当前分支不同' });
+    const trees = (await this.git(['worktree', 'list', '--porcelain', '-z'])).stdout.split('\0\0');
+    for (const record of trees) if (record.split('\0').includes(`branch refs/heads/${target}`)) {
+      const location = record.split('\0').find(l => l.startsWith('worktree '))?.slice(9) || '';
+      throw new GitError({ message: `目标分支 ${target} 已在另一个工作区打开：${location}。请先在该工作区切换到其他分支，再从当前分支发起合并。` });
+    }
+    const common = (await this.git(['rev-parse', '--path-format=absolute', '--git-common-dir'])).stdout.trim();
+    const base = this.options.mergeWorkspaceRoot ?? path.join(common, 'harborgit', 'merge-workspaces');
+    await fs.mkdir(base, { recursive: true });
+    const workspace = path.join(base, `merge-${randomUUID()}`);
+    // A separate index and working tree keep every byte of source WIP intact.
+    await this.git(['worktree', 'add', '--', workspace, target]);
+    const metadata: MergeWorkspace = { sourceRoot: this.root, sourceBranch: original.branch, targetBranch: target };
+    const dir = (await this.run(workspace, ['rev-parse', '--absolute-git-dir'])).stdout.trim();
+    await fs.writeFile(path.join(dir, 'harborgit-merge.json'), JSON.stringify(metadata));
+    let failure: unknown;
+    try {
+      await this.run(workspace, ['merge', '--no-edit', '--', original.head]);
+    } catch (e) { failure = e; }
+    const recovery = new GitService(this.options);
+    const result = await recovery.request('open', { path: workspace });
+    if (!failure && !result.mergeInProgress && !result.entries.length) {
+      try {
+        await this.git(['worktree', 'remove', '--', workspace]);
+        return { repository: await this.snapshot(), mergeRepository: null, status: 'merged', message: `已将 ${original.branch} 的已提交内容合并到 ${target}，当前未提交改动完整保留` };
+      } catch (e) { failure = e; }
+    }
+    const reason = failure instanceof Error ? failure.message : '请检查合并结果';
+    return { repository: await this.snapshot(), mergeRepository: result, status: 'attention', message: `合并工作区已保留：${reason}。请在新标签页解决冲突或中止；原 ${original.branch} 的未提交改动保持原样。` };
+  }
+  private async finishMergeWorkspace(): Promise<{ sourceRoot: string }> {
+    const state = await this.snapshot(), meta = state.mergeWorkspace;
+    if (!meta) throw new GitError({ message: '这不是 HarborGit 创建的合并工作区' });
+    if (state.mergeInProgress || state.entries.length) throw new GitError({ message: '请先完成合并提交或中止合并，并处理此合并工作区中的改动' });
+    // Validate shared Git identity, then let Git refuse any unsafe worktree removal.
+    const here = (await this.git(['rev-parse', '--path-format=absolute', '--git-common-dir'])).stdout.trim();
+    const there = (await this.run(meta.sourceRoot, ['rev-parse', '--path-format=absolute', '--git-common-dir'])).stdout.trim();
+    if (path.resolve(here).toLowerCase() !== path.resolve(there).toLowerCase()) throw new GitError({ message: '合并工作区的原仓库身份不匹配，未清理任何内容' });
+    await this.run(meta.sourceRoot, ['worktree', 'remove', '--', this.root]);
+    return { sourceRoot: meta.sourceRoot };
   }
   private async open(p: string) {
     if (!path.isAbsolute(p)) throw new GitError({ message: '仓库目录必须为绝对路径' });
@@ -331,7 +387,9 @@ export class GitService {
         } else throw new GitError({ message: '未知远程操作' });
         return this.snapshot();
       }
-      case 'merge': { const name = ref(p.branch); await this.branchExists(name); const status = await this.snapshot(); if (status.entries.length) throw new GitError({ message: '合并前请提交或处理当前改动' }); await this.git(['merge', '--no-edit', '--', name]); return this.snapshot(); }
+      case 'merge': { const name = ref(p.branch); await this.branchExists(name); await this.git(['merge', '--no-edit', '--', name]); return this.snapshot(); }
+      case 'mergeInto': return this.mergeInto(text(p.target, '目标分支'));
+      case 'finishMergeWorkspace': return this.finishMergeWorkspace();
       case 'conflict': return this.conflict(text(p.path, '文件路径'));
       case 'resolve': return this.resolve(text(p.path, '文件路径'), text(p.choice, '解决方式'), p.content as string | undefined);
       case 'abortMerge': { if (!(await this.snapshot()).mergeInProgress) throw new GitError({ message: '没有进行中的合并' }); await this.git(['merge', '--abort']); return this.snapshot(); }

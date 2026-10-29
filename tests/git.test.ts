@@ -6,6 +6,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GitService } from '../src/main/git-service.js';
+import { Workspaces } from '../src/main/workspaces.js';
 import type { Activity, Repository } from '../src/shared/types.js';
 
 // Every command in this file targets a freshly-created, dedicated test directory.
@@ -54,6 +55,119 @@ async function conflicting() {
   return { ...result, service };
 }
 const entry = (repo: Repository, file: string) => repo.entries.find(row => row.path === file);
+
+test('project sessions isolate concurrent reads/writes, deduplicate paths, and reject closed sessions', async () => {
+  const a = await fixture('project A 中文'), b = await fixture('project B');
+  await seed(a.repo); await seed(b.repo);
+  await writeFile(path.join(a.repo, 'only-A.txt'), 'A\n');
+  await writeFile(path.join(b.repo, 'only-B.txt'), 'B\n');
+  const manager = new Workspaces();
+  const ra = await manager.request('open', { path: a.repo }, 'session-A');
+  const rb = await manager.request('open', { path: b.repo }, 'session-B');
+  assert.equal(ra.sessionId, 'session-A'); assert.equal(rb.sessionId, 'session-B');
+  const results = await Promise.all([manager.request('stage', { paths: ['only-A.txt'] }, 'session-A'), manager.request('refresh', {}, 'session-B')]);
+  assert.equal(entry(results[0], 'only-A.txt')?.index, 'A');
+  assert.equal(entry(results[1], 'only-B.txt')?.worktree, '?');
+  assert.equal(entry(results[1], 'only-A.txt'), undefined);
+  assert.equal(git(b.repo, ['diff', '--cached', '--name-only']).trim(), '');
+  const duplicate = await manager.request('open', { path: path.join(a.repo, '.git', '..') }, 'duplicate-A');
+  assert.equal(duplicate.sessionId, 'session-A');
+  manager.close('session-A');
+  await assert.rejects(manager.request('refresh', {}, 'session-A'), /已关闭/);
+  assert.equal((await manager.request('refresh', {}, 'session-B')).root, rb.root);
+});
+
+test('smart merge dev committed changes into master preserves source index, worktree, untracked files and branch', async () => {
+  const { repo, root } = await fixture('dirty dev 中文'); await seed(repo, 'base\n');
+  git(repo, ['branch', 'master']); git(repo, ['switch', '-c', 'dev']);
+  await writeFile(path.join(repo, 'shared.txt'), 'committed dev\n'); git(repo, ['commit', '-am', 'dev committed']);
+  const devHead = git(repo, ['rev-parse', 'HEAD']).trim();
+  await writeFile(path.join(repo, 'shared.txt'), 'staged dev WIP\n'); git(repo, ['add', 'shared.txt']);
+  await writeFile(path.join(repo, 'shared.txt'), 'unstaged dev WIP 中文\n');
+  await writeFile(path.join(repo, 'untracked 中文 file.txt'), 'keep untracked\n');
+  const before = { status: git(repo, ['status', '--porcelain=v2', '-z']), index: git(repo, ['diff', '--cached', '--binary']), worktree: git(repo, ['diff', '--binary']) };
+  const service = new GitService({ mergeWorkspaceRoot: path.join(root, 'merge-workspaces') });
+  await service.request('open', { path: repo });
+  const result = await service.request('mergeInto', { target: 'master' });
+  assert.equal(result.status, 'merged'); assert.equal(result.mergeRepository, null);
+  assert.equal(git(repo, ['rev-parse', 'master']).trim(), devHead);
+  assert.equal(git(repo, ['show', 'master:shared.txt']), 'committed dev\n');
+  assert.equal(git(repo, ['branch', '--show-current']).trim(), 'dev');
+  assert.equal(git(repo, ['status', '--porcelain=v2', '-z']), before.status);
+  assert.equal(git(repo, ['diff', '--cached', '--binary']), before.index);
+  assert.equal(git(repo, ['diff', '--binary']), before.worktree);
+  assert.equal(await readFile(path.join(repo, 'untracked 中文 file.txt'), 'utf8'), 'keep untracked\n');
+  assert.equal(git(repo, ['worktree', 'list', '--porcelain']).match(/^worktree /gm)?.length, 1);
+});
+
+test('smart merge conflicts recover in another session; source WIP survives resolve/commit/cleanup', async () => {
+  const { repo, root } = await fixture('conflicting dev'); await seed(repo);
+  git(repo, ['branch', 'master']); git(repo, ['switch', 'master']);
+  await writeFile(path.join(repo, 'shared.txt'), 'master commit\n'); git(repo, ['commit', '-am', 'master change']);
+  git(repo, ['switch', '-c', 'dev', 'main']);
+  await writeFile(path.join(repo, 'shared.txt'), 'dev commit\n'); git(repo, ['commit', '-am', 'dev change']);
+  await writeFile(path.join(repo, 'shared.txt'), 'uncommitted dev must survive\n');
+  const before = git(repo, ['status', '--porcelain=v2', '-z']);
+  const manager = new Workspaces({ mergeWorkspaceRoot: path.join(root, 'merge-workspaces') });
+  await manager.request('open', { path: repo }, 'dev-session');
+  const result = await manager.request('mergeInto', { target: 'master' }, 'dev-session');
+  assert.equal(result.status, 'attention');
+  const recovery = result.mergeRepository!;
+  assert.ok(recovery.sessionId); assert.equal(recovery.branch, 'master'); assert.equal(recovery.mergeInProgress, true);
+  assert.equal(recovery.mergeWorkspace?.sourceBranch, 'dev');
+  assert.equal(git(repo, ['status', '--porcelain=v2', '-z']), before);
+  assert.equal(await readFile(path.join(repo, 'shared.txt'), 'utf8'), 'uncommitted dev must survive\n');
+  await assert.rejects(manager.request('finishMergeWorkspace', {}, recovery.sessionId), /先完成/);
+  const conflict = await manager.request('conflict', { path: 'shared.txt' }, recovery.sessionId);
+  assert.equal(conflict.ours, 'master commit\n'); assert.equal(conflict.theirs, 'dev commit\n');
+  await manager.request('resolve', { path: 'shared.txt', choice: 'manual', content: 'merged commits only\n' }, recovery.sessionId);
+  await manager.request('commit', { message: 'merge dev into master' }, recovery.sessionId);
+  assert.equal(git(repo, ['show', 'master:shared.txt']), 'merged commits only\n');
+  await manager.request('finishMergeWorkspace', {}, recovery.sessionId); manager.close(recovery.sessionId!);
+  assert.equal(existsSync(recovery.root), false);
+  assert.equal(git(repo, ['status', '--porcelain=v2', '-z']), before);
+});
+
+test('smart merge conflict survives reopen; abort/cleanup leaves target and source unchanged', async () => {
+  const { repo, root } = await conflicting();
+  await writeFile(path.join(repo, 'untracked.txt'), 'preserved\n');
+  const targetHead = git(repo, ['rev-parse', 'topic']).trim(), sourceHead = git(repo, ['rev-parse', 'HEAD']).trim();
+  const service = new GitService({ mergeWorkspaceRoot: path.join(root, 'merge-workspaces') }); await service.request('open', { path: repo });
+  const result = await service.request('mergeInto', { target: 'topic' });
+  assert.ok(result.mergeRepository);
+  const reopened = new GitService();
+  const recovery = await reopened.request('open', { path: result.mergeRepository!.root });
+  assert.equal(recovery.mergeWorkspace?.targetBranch, 'topic');
+  await reopened.request('abortMerge', {}); await reopened.request('finishMergeWorkspace', {});
+  assert.equal(git(repo, ['rev-parse', 'topic']).trim(), targetHead);
+  assert.equal(git(repo, ['rev-parse', 'HEAD']).trim(), sourceHead);
+  assert.equal(await readFile(path.join(repo, 'untracked.txt'), 'utf8'), 'preserved\n');
+});
+
+test('smart merge refuses target checked out in another worktree without modifying either tree', async () => {
+  const { repo, root } = await fixture(); await seed(repo);
+  git(repo, ['branch', 'master']); git(repo, ['switch', '-c', 'dev']);
+  const other = path.join(root, 'master existing worktree'); git(repo, ['worktree', 'add', other, 'master']);
+  await writeFile(path.join(other, 'shared.txt'), 'master WIP\n');
+  const service = new GitService(); await service.request('open', { path: repo });
+  await assert.rejects(service.request('mergeInto', { target: 'master' }), /另一个工作区/);
+  assert.equal(await readFile(path.join(other, 'shared.txt'), 'utf8'), 'master WIP\n');
+  assert.equal(git(repo, ['branch', '--show-current']).trim(), 'dev');
+  git(repo, ['worktree', 'remove', '--force', other]); // Only this disposable fixture.
+});
+
+test('ordinary merge allows non-overlapping worktree changes and lets Git protect overlapping edits', async () => {
+  const { repo } = await fixture(); await seed(repo); await writeFile(path.join(repo, 'local.txt'), 'base local\n'); git(repo, ['add', '.']); git(repo, ['commit', '-m', 'add local file']);
+  git(repo, ['switch', '-c', 'dev']); await writeFile(path.join(repo, 'shared.txt'), 'dev commit\n'); git(repo, ['commit', '-am', 'dev']); git(repo, ['switch', 'main']);
+  await writeFile(path.join(repo, 'local.txt'), 'my unsaved work\n');
+  const service = new GitService(); await service.request('open', { path: repo });
+  await service.request('merge', { branch: 'dev' });
+  assert.equal(await readFile(path.join(repo, 'local.txt'), 'utf8'), 'my unsaved work\n');
+  git(repo, ['switch', 'dev']); await writeFile(path.join(repo, 'shared.txt'), 'next dev\n'); git(repo, ['add', 'shared.txt']); git(repo, ['commit', '-m', 'next dev']); git(repo, ['switch', 'main']);
+  await writeFile(path.join(repo, 'shared.txt'), 'overlapping local WIP\n');
+  await assert.rejects(service.request('merge', { branch: 'dev' }));
+  assert.equal(await readFile(path.join(repo, 'shared.txt'), 'utf8'), 'overlapping local WIP\n');
+});
 
 test.after(async () => {
   for (const root of temporaryRoots) {

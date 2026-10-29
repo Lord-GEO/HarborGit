@@ -1,0 +1,28 @@
+
+> harbor-git@1.0.0 test
+> tsx --test tests/git.test.ts
+
+✔ project sessions isolate concurrent reads/writes, deduplicate paths, and reject closed sessions (3198.7836ms)
+✔ smart merge dev committed changes into master preserves source index, worktree, untracked files and branch (3009.1598ms)
+✔ smart merge conflicts recover in another session; source WIP survives resolve/commit/cleanup (5293.2129ms)
+✔ smart merge conflict survives reopen; abort/cleanup leaves target and source unchanged (3879.179ms)
+✔ smart merge refuses target checked out in another worktree without modifying either tree (1384.1271ms)
+✔ ordinary merge allows non-overlapping worktree changes and lets Git protect overlapping edits (2359.9106ms)
+✔ unborn repository: literal Unicode/space/leading-dash/pathspec names, stage and unstage, initial history (3428.2687ms)
+✔ workspace and index diffs remain distinct; deleting, renaming, and binary content are represented (4730.0936ms)
+✔ branches: create, switch, reject unsafe deletion, safe deletion and invalid names (4169.4671ms)
+✔ clone and local bare remote: fetch/push/fast-forward pull; divergent pull rejects without merge (10282.9213ms)
+✔ merge conflict: read base/ours/theirs, resolve ours, finish merge, inspect merge commit files/diff (3647.2335ms)
+✔ merge conflict: manual resolution and theirs resolution are staged, abort restores original head (4683.6693ms)
+✔ modify/delete conflict: choosing deleted side removes the file and stages resolution (2837.5846ms)
+✔ validation rejects escapes/options/invalid payloads, errors retain useful Git output, previous repo survives bad open (1092.6965ms)
+✔ operation log reports commands and completion; a slow commit hook can be cancelled (2506.8167ms)
+✔ slow commit hook times out with a recoverable failure (4529.6637ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61320.2396

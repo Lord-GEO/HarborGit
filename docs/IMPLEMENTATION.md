@@ -6,7 +6,7 @@
 flowchart LR
   UI[React 操作入口] --> API[隔离的 preload API]
   API --> IPC[主进程 IPC 校验与错误封套]
-  IPC --> Queue[GitService 串行请求队列]
+  IPC --> Queue[按项目会话选择独立 GitService 队列]
   Queue --> CLI[spawn Git + 参数数组]
   CLI --> Parse[退出码 / NUL 格式解析]
   Parse --> Snapshot[重新读取仓库状态]
@@ -16,6 +16,7 @@ flowchart LR
 ```
 
 - `src/shared/types.ts`：类型化请求 / 响应、仓库快照与活动事件。
+- `src/main/workspaces.ts`：标签会话路由、重复项目定位、独立任务与日志、关闭保护。
 - `src/main/git-service.ts`：Git 调用的唯一边界、输入校验、任务生命周期和业务操作。
 - `src/main/main.ts`：Windows 窗口、IPC、目录对话框与最近仓库。
 - `src/main/preload.ts`：有限的桥接接口，不暴露 ipcRenderer 本身。
@@ -42,7 +43,8 @@ flowchart LR
 | Fetch | `fetch --progress --prune -- remote` | 更新 refs，再取快照 |
 | Pull | `pull --ff-only --no-rebase --progress -- remote branch` | 分叉时拒绝，不自动 rebase / merge |
 | Push | `push --progress --set-upstream -- remote HEAD:refs/heads/branch` | 明确只推送当前 HEAD，不依赖 push.default 批量推分支 |
-| Merge | `merge --no-edit -- branch`，要求当前干净 | 冲突返回错误后仍刷新，显示进行中合并 |
+| Merge | `merge --no-edit -- branch`，由 Git 检查与本地修改是否兼容 | 不再一律拦截未提交改动；冲突返回错误后刷新 |
+| 合并到其他分支 | `worktree add -- PATH TARGET` → 临时工作区 `merge --no-edit -- SOURCE_HASH` | 原项目 HEAD / index / working tree 不变；成功清理，冲突保留并打开新标签 |
 | 冲突内容 | `show :1:path` / `:2:path` / `:3:path`，不存在一侧为 null | Base / Ours / Theirs 与工作区文本 |
 | 完整采用一侧 | `ls-files --unmerged -z` 判定一侧存在；`checkout --ours/--theirs -- path` + `add`；删除一侧用 `rm` | 保留原始文件字节并标记解决 |
 | 手工解决 | 文件边界检查；写入 UTF-8；`add -- path` | 拒绝二进制、截断及冲突标记；已暂存后提交 |
@@ -64,3 +66,12 @@ Windows 取消使用参数数组启动 `taskkill /PID /T /F`。MSYS 子进程可
 官方 [Git status 文档](https://git-scm.com/docs/git-status) 说明 NUL 分隔与 index / worktree 状态。HarborGit 采用可机器解析的 porcelain v2；IDEA 被选定的字节码使用的具体 status 参数另见调查报告，二者不混同。
 
 Electron 的隔离、sandbox、有限 IPC 与禁止新窗口遵循 [Electron security 文档](https://www.electronjs.org/docs/latest/tutorial/security)。这里是自主工程设计依据，不是 IDEA 分析证据。
+
+
+## 1.1 多项目与合并工作区
+
+IPC 请求增加 sessionId；Workspaces 根据会话选择 GitService，服务不再共用可变的 root。重复的规范化根目录定位到已有会话。每个 React RepositoryView 持续挂载，隐藏标签保留提交草稿、选择、Diff 和日志。活跃标签才响应刷新快捷键和窗口聚焦。关闭运行中会话被拒绝；关闭标签不会删除仓库文件。
+
+`mergeInto` 解析并固定源 HEAD，只在目标分支的独立 worktree 执行 merge。因此不需要 stash，也不会把本地未提交内容混入目标提交。目标分支已被其他 worktree 检出时明确拒绝，不强制改变该工作区。冲突或其他失败保留 worktree，元信息写入其 Git 管理目录的 `harborgit-merge.json`，应用重开该路径仍能识别；最近仓库保存恢复路径。完成/中止后，“结束并关闭合并标签”先核验同一个 Git common directory，再调用非强制 `git worktree remove`，有未提交内容时拒绝清理。
+
+主题以 `data-theme` 和独立 CSS 调色样式实现，选择保存在应用本地存储；不使用图像反色。官方行为依据：[Git worktree](https://git-scm.com/docs/git-worktree)、[Git merge 本地修改检查](https://git-scm.com/docs/git-merge)。这是自行设计的 1.1 功能，不属于 IDEA 反编译结论。

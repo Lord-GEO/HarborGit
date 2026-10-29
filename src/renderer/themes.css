@@ -1,0 +1,102 @@
+.desktop-shell{height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.project-strip{height:39px;display:flex;align-items:center;gap:6px;padding:0 10px;background:var(--panel);border-bottom:1px solid var(--line);flex-shrink:0}
+.project-tabs{display:flex;align-items:stretch;height:100%;gap:3px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:thin}
+.project-tab{display:flex;align-items:center;max-width:270px;flex-shrink:0;border-left:1px solid transparent;border-right:1px solid transparent;color:var(--muted)}
+.project-tab.active{background:var(--bg);border-color:var(--line);border-top:2px solid var(--accent);color:var(--text)}
+.project-tab>[role=tab]{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:11px;max-width:235px;min-width:85px;height:100%}
+.project-tab>[role=tab] span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tab-close{display:grid;place-items:center;padding:5px;margin-right:5px;border-radius:4px;color:var(--muted)}
+.tab-close:hover{background:var(--raised);color:var(--text)}
+.theme-toggle{font-size:11px;padding:6px 12px;color:var(--text);border:1px solid var(--line);border-radius:5px;white-space:nowrap}
+.theme-toggle:hover{background:var(--raised)}
+.tab-panels,.tab-panel{flex:1;min-height:0;display:flex;flex-direction:column}
+.tab-panel[hidden]{display:none}
+.tab-panel>.app-shell{height:100%;min-height:0}
+.tab-error{padding:9px 18px;display:flex;justify-content:space-between;background:var(--panel);color:var(--red);font-size:12px;border-bottom:1px solid var(--line)}
+.tab-error button{font-size:17px;color:inherit}
+.merge-direction{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 18px}
+.merge-direction span{font-size:11px;color:var(--muted)}
+.merge-summary{padding:15px;border:1px solid var(--line);border-radius:8px;margin-top:20px;background:var(--bg);color:var(--text)}
+.merge-summary strong{font-size:15px;color:var(--accent)}
+.merge-summary p{line-height:1.9;font-size:11px;color:var(--muted);margin-top:10px}
+.merge-workspace-banner{display:flex;align-items:center;gap:12px;padding:12px 20px;background:var(--accent-dark);border-bottom:1px solid var(--line);color:var(--accent);flex-shrink:0}
+.merge-workspace-banner>div{flex:1;min-width:0}.merge-workspace-banner strong{font-size:12px}.merge-workspace-banner span{display:block;font-size:11px;margin-top:5px;line-height:1.5}
+
+:root[data-theme=light]{color-scheme:light;color:#243545;background:#f5f7fa;--bg:#f5f7fa;--panel:#fff;--raised:#e7edf3;--line:#d3dde5;--muted:#566b7c;--text:#243545;--accent:#137859;--accent-dark:#e5f4ed;--red:#ad3540;--amber:#966010}
+:root[data-theme=light] .app-header,:root[data-theme=light] .sidebar,:root[data-theme=light] .status-bar{background:#eef3f7;color:#4e6678;border-color:var(--line)}
+:root[data-theme=light] .brand>strong,:root[data-theme=light] .sidebar-top h2,:root[data-theme=light] .workspace-toolbar h1,:root[data-theme=light] .welcome h1,:root[data-theme=light] .commit-detail-header h2,:root[data-theme=light] .modal-header h2{color:#23394b}
+:root[data-theme=light] .brand>strong>span,:root[data-theme=light] .brand-caption,:root[data-theme=light] .repo-location,:root[data-theme=light] .eyebrow,:root[data-theme=light] .toolbar-subtitle,:root[data-theme=light] .sidebar-bottom>small{color:#536c7f}
+:root[data-theme=light] input,:root[data-theme=light] select,:root[data-theme=light] textarea{background:#fff;color:#263b4c;border-color:#bfcdd8}
+:root[data-theme=light] input::placeholder,:root[data-theme=light] textarea::placeholder{color:#6c7e8b}
+:root[data-theme=light] .primary-button{background:#197b5b;color:#fff;border-color:#197b5b}
+:root[data-theme=light] .primary-button:hover:not(:disabled){background:#126446;color:#fff}
+:root[data-theme=light] .secondary-button,:root[data-theme=light] .icon-button,:root[data-theme=light] .quiet-button{color:#3b576b}
+:root[data-theme=light] .secondary-button{background:#fff;border-color:#bfced9}
+:root[data-theme=light] .secondary-button:hover:not(:disabled),:root[data-theme=light] .quiet-button:hover:not(:disabled),:root[data-theme=light] .icon-button:hover:not(:disabled){background:#e2ebeF;color:#244655}
+:root[data-theme=light] .text-button{color:#176a58}
+:root[data-theme=light] .danger-text{color:#a52f40}
+:root[data-theme=light] .danger-button{background:#a93443;color:#fff;border-color:#a93443}
+:root[data-theme=light] .nav-item{color:#486376}
+:root[data-theme=light] .nav-item.active{background:#ddefe7;color:#10674c}
+:root[data-theme=light] .nav-item:hover:not(:disabled){background:#dfe9ed}
+:root[data-theme=light] .nav-item b,:root[data-theme=light] .tag{background:#d3ebde;color:#176448}
+:root[data-theme=light] .sync-summary,:root[data-theme=light] .recent-list{border-color:var(--line)}
+:root[data-theme=light] .sync-summary>div,:root[data-theme=light] .sync-summary b,:root[data-theme=light] .sync-summary>small,:root[data-theme=light] .welcome>p,:root[data-theme=light] .recent-list small{color:#526d7e}
+:root[data-theme=light] .welcome{background:radial-gradient(ellipse at 50% 28%,#deefe7 0,transparent 60%)}
+:root[data-theme=light] .welcome-mark{background:linear-gradient(140deg,#e7f6ee,#d1e9df);color:#196b50;border-color:#a0c9b8;box-shadow:0 10px 30px #24453616}
+:root[data-theme=light] .welcome>.eyebrow,:root[data-theme=light] .recent-list>.eyebrow,:root[data-theme=light] .recent-list b{color:#276951}
+:root[data-theme=light] .recent-list>button:hover:not(:disabled){background:#e0eee6}
+:root[data-theme=light] .changes-list,:root[data-theme=light] .history-list,:root[data-theme=light] .branch-list{background:#fff;border-color:var(--line)}
+:root[data-theme=light] .list-search,:root[data-theme=light] .commit-box,:root[data-theme=light] .panel-top,:root[data-theme=light] .history-list>.group-heading,:root[data-theme=light] .commit-detail-header,:root[data-theme=light] .history-files{background:#edf3f7;border-color:var(--line)}
+:root[data-theme=light] .file-name,:root[data-theme=light] .group-heading,:root[data-theme=light] .commit-box-heading strong,:root[data-theme=light] .diff-heading strong,:root[data-theme=light] .branch-heading h2,:root[data-theme=light] .branch-info>strong,:root[data-theme=light] .commit-row strong{color:#2b4658}
+:root[data-theme=light] .file-name small,:root[data-theme=light] .list-empty,:root[data-theme=light] .commit-box-heading small,:root[data-theme=light] .commit-identity,:root[data-theme=light] .diff-heading small,:root[data-theme=light] .branch-heading p,:root[data-theme=light] .branch-info small,:root[data-theme=light] .branch-info>span{color:#5a7183}
+:root[data-theme=light] .file-row:hover,:root[data-theme=light] .commit-row:hover{background:#edf4f6}
+:root[data-theme=light] .file-row.selected,:root[data-theme=light] .commit-row.selected{background:#e2f1e9}
+:root[data-theme=light] .file-row.selected .file-name{color:#205d48}
+:root[data-theme=light] .status-M{background:#fff0cb;color:#825a12}
+:root[data-theme=light] .status-A,:root[data-theme=light] .status-\?{background:#def2e7;color:#246d49}
+:root[data-theme=light] .status-D{background:#fbe5e6;color:#a03a47}
+:root[data-theme=light] .status-R,:root[data-theme=light] .status-C{background:#e1edf9;color:#30638d}
+:root[data-theme=light] .status-U{background:#ffe9d9;color:#985221}
+:root[data-theme=light] .diff-panel,:root[data-theme=light] .diff-scroll{background:#fff;color:#263d4b}
+:root[data-theme=light] .diff-table .line-number{background:#f0f4f7;color:#6e8190;border-color:#dee6ec}
+:root[data-theme=light] .diff-table .added{background:#e5f4e9;color:#28573b}
+:root[data-theme=light] .diff-table .added .line-number{background:#d7ecdf;color:#4c755d;border-color:#cadfd3}
+:root[data-theme=light] .diff-table .removed{background:#fce9e9;color:#873e46}
+:root[data-theme=light] .diff-table .removed .line-number{background:#f1dede;color:#a1676e;border-color:#e7cdd0}
+:root[data-theme=light] .diff-table .hunk{background:#e9f0f8;color:#3c6486}
+:root[data-theme=light] .diff-table .hunk .line-number{background:#e1eaf3;color:#617b91}
+:root[data-theme=light] .diff-table .metadata{color:#5d768c}
+:root[data-theme=light] .center-message h3{color:#344f60}
+:root[data-theme=light] .center-message p,:root[data-theme=light] .center-message{color:#617988}
+:root[data-theme=light] .empty-icon{background:#e6eef2;color:#7c9b97}
+:root[data-theme=light] .commit-row small,:root[data-theme=light] .commit-row small>span,:root[data-theme=light] .commit-row code,:root[data-theme=light] .commit-detail-header span,:root[data-theme=light] .commit-detail-header>small,:root[data-theme=light] .commit-detail-header pre{color:#546e80}
+:root[data-theme=light] .commit-ref,:root[data-theme=light] .commit-detail-header code{background:#e2f0e5;color:#326e4a;border-color:#b9d5c3}
+:root[data-theme=light] .history-files button{color:#466779}
+:root[data-theme=light] .history-files button.selected{background:#d9ebe1;color:#23634b}
+:root[data-theme=light] .load-more{color:#316e77;border-color:var(--line)}
+:root[data-theme=light] .load-more:hover:not(:disabled){background:#e6f0f1}
+:root[data-theme=light] .branch-row{border-color:var(--line)}
+:root[data-theme=light] .branch-row.current{background:#e7f3ec}
+:root[data-theme=light] .branch-symbol{background:#deeee5;color:#36765a}
+:root[data-theme=light] .remote-symbol{background:#e3edf4;color:#406984}
+:root[data-theme=light] .error-banner,:root[data-theme=light] .modal-error{background:#fff0f0;border-color:#e6bec3;color:#8d3442}
+:root[data-theme=light] .error-banner code{color:#8a5660}
+:root[data-theme=light] .success-banner{background:#e6f4ec;border-color:#c3dfce;color:#256846}
+:root[data-theme=light] .merge-banner,:root[data-theme=light] .inline-notice{background:#fff4d9;border-color:#e2d3a6;color:#785c21}
+:root[data-theme=light] .merge-banner span{color:#806b40}
+:root[data-theme=light] .modal-backdrop{background:#1b2d3b66}
+:root[data-theme=light] .modal,:root[data-theme=light] .conflict-dialog{background:#f8fafc;border-color:#b8cad7;box-shadow:0 24px 90px #23384a30}
+:root[data-theme=light] .modal label,:root[data-theme=light] .confirmation-copy,:root[data-theme=light] .form-help,:root[data-theme=light] .conflict-intro{color:#536c7e}
+:root[data-theme=light] .modal-actions{border-color:var(--line)}
+:root[data-theme=light] .remote-address{background:#eaf0f5;border-color:#d0dce5;color:#536f83}
+:root[data-theme=light] .conflict-columns>section{background:#edf3f7;border-color:#c3d2dd}
+:root[data-theme=light] .conflict-columns>section:nth-child(2){background:#e6f2eb;border-color:#9cc5af}
+:root[data-theme=light] .conflict-columns h3,:root[data-theme=light] .conflict-columns>section:nth-child(2) h3{color:#34604e}
+:root[data-theme=light] .conflict-columns pre,:root[data-theme=light] .conflict-columns textarea,:root[data-theme=light] .base-version pre{background:#fff;color:#314e60;border-color:#cbd9e2}
+:root[data-theme=light] .activity-drawer{background:#f4f7fa;border-color:var(--line)}
+:root[data-theme=light] .activity-drawer .group-heading{border-color:var(--line)}
+:root[data-theme=light] .activity-row pre{color:#426174}
+:root[data-theme=light] .activity-row.failed pre{color:#a53a48}
+:root[data-theme=light] ::-webkit-scrollbar-thumb{background:#b5c4cf;border-color:#edf2f6}
+:root[data-theme=light] ::-webkit-scrollbar-track{background:#edf2f6}

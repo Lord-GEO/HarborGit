@@ -1,0 +1,57 @@
+
+> harbor-git@1.0.0 test:ui
+> playwright test
+
+
+Running 6 tests using 1 worker
+
+(node:19300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\electron.spec.ts:110:1 › desktop UI: open → diff → stage → unstage → commit → history; create/switch/delete branch (17.3s)
+  ok 2 tests\electron.spec.ts:158:1 › desktop UI: clone local bare remote → fetch → pull → stage/commit → push (27.7s)
+  ok 3 tests\electron.spec.ts:187:1 › desktop UI: merge conflicting branch → compare base/ours/theirs → manual resolution → merge commit (19.7s)
+  x  4 tests\electron.spec.ts:218:1 › desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists (11.5s)
+(node:29956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 tests\electron.spec.ts:260:1 › desktop UI: merge committed dev into master with staged/unstaged/untracked source changes (16.1s)
+  ok 6 tests\electron.spec.ts:283:1 › desktop UI: isolated merge conflict opens new tab; resolve and finish without changing dev WIP (19.7s)
+
+
+  1) tests\electron.spec.ts:218:1 › desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('提交信息', { exact: true }) resolved to 2 elements:
+        1) <textarea rows="4" aria-label="提交信息" placeholder="描述这次改动…">A draft remains in this tab</textarea> aka getByText('A draft remains in this tab')
+        2) <textarea rows="4" aria-label="提交信息" placeholder="描述这次改动…"></textarea> aka getByRole('textbox', { name: '提交信息' })
+
+    Call log:
+      - waiting for getByLabel('提交信息', { exact: true })
+
+
+      227 |   await openAdditional(page, b.repo);
+      228 |   await expect(page.getByRole('tab')).toHaveCount(2);
+    > 229 |   await page.getByLabel('提交信息', { exact: true }).fill('B independent draft');
+          |                                                  ^
+      230 |   await page.getByRole('button', { name: '工作区 shared.txt', exact: true }).click();
+      231 |   await expect(page.getByLabel('差异内容', { exact: true })).toContainText('project B change');
+      232 |   await page.getByRole('button', { name: '切换为亮色主题', exact: true }).click();
+        at C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\tests\electron.spec.ts:229:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\electron-desktop-UI-multip-1d6a8-g-light-dark-theme-persists\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\electron-desktop-UI-multip-1d6a8-g-light-dark-theme-persists\error-context.md
+
+    Error Context: test-results\electron-desktop-UI-multip-1d6a8-g-light-dark-theme-persists\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\electron-desktop-UI-multip-1d6a8-g-light-dark-theme-persists\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\electron-desktop-UI-multip-1d6a8-g-light-dark-theme-persists\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\electron.spec.ts:218:1 › desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists 
+  5 passed (1.9m)

@@ -78,6 +78,12 @@ async function open(page: Page, repo: string) {
   await expect(dialog).toBeHidden(); await idle(page);
   await expect.poll(async () => (await page.locator('.repo-location').textContent())?.replaceAll('\\', '/').toLowerCase()).toBe(repo.replaceAll('\\', '/').toLowerCase());
 }
+async function openAdditional(page: Page, repo: string) {
+  await page.getByRole('button', { name: '打开仓库', exact: true }).click();
+  const dialog = page.getByRole('dialog'); await dialog.getByLabel('仓库目录', { exact: true }).fill(repo);
+  await dialog.getByRole('button', { name: '打开仓库', exact: true }).click();
+  await expect(dialog).toBeHidden(); await idle(page);
+}
 async function navigate(page: Page, name: string) { await idle(page); await page.getByRole('navigation', { name: '主导航' }).getByRole('button', { name: name === '工作区' ? /^工作区/ : name, exact: name !== '工作区' }).click(); }
 async function remote(page: Page, action: 'Fetch' | 'Pull' | 'Push') {
   await idle(page);
@@ -87,7 +93,7 @@ async function remote(page: Page, action: 'Fetch' | 'Pull' | 'Push') {
   await expect(page.getByRole('status')).toContainText('远程操作完成');
 }
 async function commit(page: Page, message: string) {
-  await page.getByLabel('提交信息', { exact: true }).fill(message);
+  await page.getByRole('textbox', { name: '提交信息', exact: true }).fill(message);
   await page.getByRole('button', { name: /^提交到 / }).click();
   await expect(page.getByRole('status')).toContainText('提交成功'); await idle(page);
 }
@@ -115,7 +121,7 @@ test('desktop UI: open → diff → stage → unstage → commit → history; cr
   const { app, page, errors } = await launch(root);
   await open(page, repo);
   await page.getByRole('button', { name: '工作区 src/欢迎.ts', exact: true }).click();
-  await expect(page.getByLabel('差异内容', { exact: true })).toContainText('欢迎靠岸');
+  await expect(page.locator('.tab-panel:not([hidden])').getByLabel('差异内容', { exact: true })).toContainText('欢迎靠岸');
   expect(await page.locator('.diff-table .added').count()).toBeGreaterThan(2);
   await capture(app, 'changes.png');
   await page.getByRole('button', { name: '暂存 src/欢迎.ts', exact: true }).click();
@@ -129,7 +135,7 @@ test('desktop UI: open → diff → stage → unstage → commit → history; cr
   await navigate(page, '提交历史');
   await page.getByRole('button', { name: `查看提交 ${message}`, exact: true }).click();
   await expect(page.locator('.history-files')).toContainText('src/欢迎.ts');
-  await expect(page.getByLabel('差异内容', { exact: true })).toContainText('欢迎靠岸');
+  await expect(page.locator('.tab-panel:not([hidden])').getByLabel('差异内容', { exact: true })).toContainText('欢迎靠岸');
   await capture(app, 'history.png');
   await navigate(page, '分支管理');
   await page.getByRole('button', { name: '创建分支', exact: true }).click();
@@ -208,3 +214,105 @@ test('desktop UI: merge conflicting branch → compare base/ours/theirs → manu
   await expect(page.locator('.merge-banner')).toHaveCount(0); await expect(page.getByRole('alert')).toHaveCount(0);
   await close(app, errors);
 });
+
+test('desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists', async () => {
+  const a = await fixture('Project A 中文'), b = await fixture('Project B');
+  await initial(a.repo); await initial(b.repo);
+  await writeFile(path.join(a.repo, 'shared.txt'), 'project A change\n');
+  await writeFile(path.join(b.repo, 'shared.txt'), 'project B change\n');
+  const { app, page, errors } = await launch(a.root); await open(page, a.repo);
+  await page.getByRole('button', { name: '工作区 shared.txt', exact: true }).click();
+  await page.getByRole('button', { name: '暂存 shared.txt', exact: true }).click(); await idle(page);
+  await page.getByRole('textbox', { name: '提交信息', exact: true }).fill('A draft remains in this tab');
+  await openAdditional(page, b.repo);
+  await expect(page.getByRole('tab')).toHaveCount(2);
+  await page.getByRole('textbox', { name: '提交信息', exact: true }).fill('B independent draft');
+  await page.getByRole('button', { name: '工作区 shared.txt', exact: true }).click();
+  await expect(page.locator('.tab-panel:not([hidden])').getByLabel('差异内容', { exact: true })).toContainText('project B change');
+  await page.getByRole('button', { name: '切换为亮色主题', exact: true }).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await capture(app, 'v1.1-light-tabs.png');
+  await page.getByRole('tab', { name: 'Project A 中文', exact: true }).click(); await idle(page);
+  await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('A draft remains in this tab');
+  await expect(page.getByRole('button', { name: '暂存区 shared.txt', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '切换为暗色主题', exact: true }).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.getByRole('button', { name: '暂存区 shared.txt', exact: true }).click();
+  await expect(page.locator('.tab-panel:not([hidden])').getByLabel('差异内容', { exact: true })).toContainText('project A change');
+  await idle(page);
+  await capture(app, 'v1.1-dark-tabs.png');
+  await commit(page, 'A committed from its own tab');
+  expect(git(a.repo, ['log', '-1', '--format=%s'])).toBe('A committed from its own tab');
+  expect(git(b.repo, ['log', '-1', '--format=%s'])).toBe('chore: initialize repository');
+  expect(git(b.repo, ['diff', '--cached', '--name-only'])).toBe('');
+  await page.getByRole('tab', { name: 'Project B', exact: true }).click(); await idle(page);
+  await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('B independent draft');
+  await openAdditional(page, a.repo); await expect(page.getByRole('tab')).toHaveCount(2);
+  await expect(page.getByRole('tab', { name: 'Project A 中文', exact: true })).toHaveAttribute('aria-selected', 'true');
+  await page.getByRole('button', { name: '关闭项目 Project A 中文', exact: true }).click();
+  await expect(page.getByRole('tab')).toHaveCount(1); await idle(page);
+  await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('B independent draft');
+  await page.getByRole('button', { name: '切换为亮色主题', exact: true }).click();
+  await close(app, errors);
+  const reopened = await launch(a.root);
+  await expect(reopened.page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await close(reopened.app, reopened.errors);
+});
+
+test('desktop UI: merge committed dev into master with staged/unstaged/untracked source changes', async () => {
+  const { root, repo } = await fixture('Dev working project'); await initial(repo);
+  git(repo, ['branch', 'master']); git(repo, ['switch', '-c', 'dev']);
+  await writeFile(path.join(repo, 'shared.txt'), 'committed dev content\n'); git(repo, ['commit', '-am', 'dev committed']);
+  await writeFile(path.join(repo, 'shared.txt'), 'staged local changes\n'); git(repo, ['add', 'shared.txt']);
+  await writeFile(path.join(repo, 'shared.txt'), 'unstaged dev changes 中文\n');
+  await writeFile(path.join(repo, 'untracked.txt'), 'do not merge me\n');
+  const before = git(repo, ['status', '--porcelain=v2', '-z']);
+  const { app, page, errors } = await launch(root); await open(page, repo); await navigate(page, '分支管理');
+  await page.getByRole('button', { name: '将当前分支合并到…', exact: true }).click();
+  const dialog = page.getByRole('dialog'); await dialog.getByLabel('合并目标分支', { exact: true }).selectOption('master');
+  await dialog.getByRole('button', { name: '合并已提交内容', exact: true }).click();
+  await expect(dialog).toBeHidden(); await idle(page);
+  await expect(page.getByRole('status')).toContainText('已提交内容合并到 master');
+  await expect(page.locator('.current-branch')).toContainText('dev');
+  expect(git(repo, ['show', 'master:shared.txt'])).toBe('committed dev content');
+  expect(git(repo, ['status', '--porcelain=v2', '-z'])).toBe(before);
+  expect(await readFile(path.join(repo, 'shared.txt'), 'utf8')).toBe('unstaged dev changes 中文\n');
+  expect(await readFile(path.join(repo, 'untracked.txt'), 'utf8')).toBe('do not merge me\n');
+  await capture(app, 'v1.1-smart-merge.png');
+  await close(app, errors);
+});
+
+test('desktop UI: isolated merge conflict opens new tab; resolve and finish without changing dev WIP', async () => {
+  const { root, repo } = await fixture('Dev conflict project'); await initial(repo);
+  git(repo, ['branch', 'master']); git(repo, ['switch', 'master']);
+  await writeFile(path.join(repo, 'shared.txt'), 'master committed\n'); git(repo, ['commit', '-am', 'master']);
+  git(repo, ['switch', '-c', 'dev', 'main']);
+  await writeFile(path.join(repo, 'shared.txt'), 'dev committed\n'); git(repo, ['commit', '-am', 'dev']);
+  await writeFile(path.join(repo, 'shared.txt'), 'dev original uncommitted\n');
+  const { app, page, errors } = await launch(root); await open(page, repo);
+  await page.getByRole('textbox', { name: '提交信息', exact: true }).fill('source draft stays');
+  await navigate(page, '分支管理');
+  await page.getByRole('button', { name: '将当前分支合并到…', exact: true }).click();
+  const dialog = page.getByRole('dialog'); await dialog.getByLabel('合并目标分支', { exact: true }).selectOption('master');
+  await dialog.getByRole('button', { name: '合并已提交内容', exact: true }).click();
+  await expect(page.getByRole('tab')).toHaveCount(2); await idle(page);
+  await expect(page.getByRole('tab', { name: '合并 → master', exact: true })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('.merge-workspace-banner')).toContainText('dev → master');
+  await page.getByRole('button', { name: '解决冲突 shared.txt', exact: true }).click();
+  const editor = page.getByRole('dialog');
+  await expect(editor.locator('.conflict-columns')).toContainText('master committed');
+  await expect(editor.locator('.conflict-columns')).toContainText('dev committed');
+  await editor.getByLabel('冲突合并结果', { exact: true }).fill('resolved committed versions\n');
+  await editor.getByRole('button', { name: '保存合并结果并暂存', exact: true }).click(); await expect(editor).toBeHidden(); await idle(page);
+  await commit(page, 'merge dev committed into master');
+  await page.getByRole('button', { name: '结束并关闭合并标签', exact: true }).click();
+  await expect(page.getByRole('tab')).toHaveCount(1); await idle(page);
+  await navigate(page, '工作区');
+  await expect(page.getByRole('textbox', { name: '提交信息', exact: true })).toHaveValue('source draft stays');
+  expect(git(repo, ['branch', '--show-current'])).toBe('dev');
+  expect(await readFile(path.join(repo, 'shared.txt'), 'utf8')).toBe('dev original uncommitted\n');
+  expect(git(repo, ['show', 'master:shared.txt'])).toBe('resolved committed versions');
+  expect(git(repo, ['rev-list', '--parents', '-n', '1', 'master']).split(' ')).toHaveLength(3);
+  await close(app, errors);
+});
+

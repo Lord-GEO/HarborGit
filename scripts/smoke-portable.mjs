@@ -10,7 +10,8 @@ const project = fileURLToPath(new URL('..', import.meta.url));
 const parent = path.resolve(project, '../../work/portable-smoke');
 await mkdir(parent, { recursive: true });
 const root = await mkdtemp(path.join(parent, 'harborgit-portable-'));
-const executable = path.join(project, 'release/HarborGit-1.0.0-Windows-x64.exe');
+const packageInfo = JSON.parse(await readFile(path.join(project, 'package.json'), 'utf8'));
+const executable = path.join(project, `release/HarborGit-${packageInfo.version}-Windows-x64.exe`);
 const env = { ...process.env, HARBOR_USER_DATA: path.join(root, 'profile'), HARBOR_TEST_HIDDEN: '1' };
 delete env.ELECTRON_RUN_AS_NODE;
 let browser, child;
@@ -36,12 +37,12 @@ try {
   const page = browser.contexts()[0].pages()[0];
   await page.getByRole('button', { name: '打开本地仓库', exact: true }).waitFor({ state: 'visible' });
   const version = await page.evaluate(() => window.harbor.version());
-  assert.equal(version, '1.0.0');
+  assert.equal(version, packageInfo.version);
   const renderer = await page.evaluate(() => ({ title: document.title, node: typeof window.require, bridge: typeof window.harbor.request }));
   assert.equal(renderer.title, 'HarborGit'); assert.equal(renderer.node, 'undefined'); assert.equal(renderer.bridge, 'function');
   const sha256 = createHash('sha256').update(await readFile(executable)).digest('hex');
   const result = { status: 'passed', time: new Date().toISOString(), executable, sha256, version, renderer, note: 'Launched the self-extracting portable EXE and attached to the extracted app over loopback CDP with a dedicated empty profile; no repository was opened or modified.' };
-  await writeFile(path.join(project, 'docs/verification-portable.json'), JSON.stringify(result, null, 2));
+  await writeFile(path.join(project, 'docs/verification-v1.1-portable.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));
 } finally {
   if (browser) {

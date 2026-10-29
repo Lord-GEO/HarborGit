@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "time": "2026-10-29T03:57:12.519Z",
+  "executable": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\outputs\\HarborGit\\release\\HarborGit-1.1.0-Windows-x64.exe",
+  "sha256": "196b788196a0116205764aadb7315c8da1436271ae1c83f102fb7ed0da77ba9e",
+  "version": "1.1.0",
+  "renderer": {
+    "title": "HarborGit",
+    "node": "undefined",
+    "bridge": "function"
+  },
+  "note": "Launched the self-extracting portable EXE and attached to the extracted app over loopback CDP with a dedicated empty profile; no repository was opened or modified."
+}

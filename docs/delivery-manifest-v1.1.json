@@ -1,0 +1,673 @@
+{
+  "generated_utc": "2026-10-29T03:58:38.052874+00:00",
+  "product": "HarborGit",
+  "version": "1.1.0",
+  "artifacts": [
+    {
+      "path": "release/HarborGit-1.1.0-Windows-x64.exe",
+      "bytes": 110794949,
+      "sha256": "196b788196a0116205764aadb7315c8da1436271ae1c83f102fb7ed0da77ba9e"
+    },
+    {
+      "path": "release/win-unpacked/resources/app.asar",
+      "bytes": 9909172,
+      "sha256": "97f45ab401c1a2b9db013497fa2e899691c903bf0dac149348970819c97c4c2d"
+    }
+  ],
+  "source_files": [
+    {
+      "path": ".gitignore",
+      "bytes": 83,
+      "sha256": "e9f5298a21ec66cfd806291978ac90c92243f2b2a24919c425ff7cc33288f763"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "b146d0ebf3b21b083e0bda33b77f7bc0356d1c325fefbcf661523d46f57c57d8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8822,
+      "sha256": "caf67f60ac7d0a1f0376c582894e9d59dae779bb2085e30ac61fa1c85bd2e7ca"
+    },
+    {
+      "path": "docs/IDEA-ANALYSIS.md",
+      "bytes": 25610,
+      "sha256": "7763d89bd0f466c3e93059a789da31b0ec1d77b003635644b5c7a970f1f3bb65"
+    },
+    {
+      "path": "docs/IMPLEMENTATION.md",
+      "bytes": 7448,
+      "sha256": "9af0f61f01bb4112c72d8bb7324f3d2db473eaa5eca16dbf3c578ea9c82fcda7"
+    },
+    {
+      "path": "docs/RELEASE-1.1.md",
+      "bytes": 4760,
+      "sha256": "7df3b74c1904738c1e2c5f6d9eef71580c76f499bdde2388ea958638726cf272"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "bytes": 6210,
+      "sha256": "6a79996f2cf09b605910b14494a3805c4c3a44de0b7cec8af136d793bfc636e3"
+    },
+    {
+      "path": "docs/delivery-manifest.json",
+      "bytes": 22022,
+      "sha256": "937ed64bcf9ac7651949dcd90866369ca24c06dead9878953dc4b75cb8f836c0"
+    },
+    {
+      "path": "docs/evidence/artifact-identities.json",
+      "bytes": 2337,
+      "sha256": "ea3ab3a2e2eed0156c82f1bfd1756cbd88d61d155e08c6e153b4526149e4efdb"
+    },
+    {
+      "path": "docs/evidence/backend-members.txt",
+      "bytes": 173839,
+      "sha256": "b5a990544456a9aeb16d5b3dea61a21cccc177a27bf135b33a167857513909a1"
+    },
+    {
+      "path": "docs/evidence/backend-selected-members.txt",
+      "bytes": 60636,
+      "sha256": "7be4281aee44790b9a2dad0494f6d546bf989542be5d26251dcbf8d50d5ea649"
+    },
+    {
+      "path": "docs/evidence/evidence-file-manifest.json",
+      "bytes": 13586,
+      "sha256": "93b1b08d132fa8f9f7cbecfd958bd52ea72cfd2b497a12fab57efd35930d1525"
+    },
+    {
+      "path": "docs/evidence/frontend-members.txt",
+      "bytes": 19388,
+      "sha256": "f33b76301287765671cede4bb087bc457cd36d4794be9082051b146e1de15417"
+    },
+    {
+      "path": "docs/evidence/frontend-selected-members.txt",
+      "bytes": 9437,
+      "sha256": "ae17a98b46291fd7275b04fcd13245e9d8f147d93c4f89bfc1a1eefa2e28030b"
+    },
+    {
+      "path": "docs/evidence/javap-probe-corrections.json",
+      "bytes": 985,
+      "sha256": "0105e98ca529b11ce1b8420f53fe0ec7418a203e953ff6279351af9ca14b7387"
+    },
+    {
+      "path": "docs/evidence/javap-provenance.json",
+      "bytes": 31423,
+      "sha256": "c34404812e034eecd9e50457b1e9efbbad3ef1cc317b37e80a61daf708a2b049"
+    },
+    {
+      "path": "docs/evidence/javap/com.intellij.ide.actions.OpenFileAction.txt",
+      "bytes": 71939,
+      "sha256": "b5ed519aba0b9178737fa44eea4035927374d3e2d7642d8e3d491c9fcb250521"
+    },
+    {
+      "path": "docs/evidence/javap/com.intellij.ide.impl.ProjectUtil.txt",
+      "bytes": 220773,
+      "sha256": "777eac752705c6b37d7b3c581ee3834599a8b5128aabfb97f56d5e9250f069b5"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.GitContentRevision.txt",
+      "bytes": 34597,
+      "sha256": "9c0ae3700dabe1386ac1a3aaa2da737f8145580b311ac812aa8885668a1a65ab"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.GitVcs.txt",
+      "bytes": 46013,
+      "sha256": "4230c334e7c89fe5454905c0d9e9e6f5a63f73e279cf9a52632b4a7214eafa0c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.actions.GitCloneAction.txt",
+      "bytes": 7120,
+      "sha256": "77b92479c0f20407bc033c5b9151c7bb1a5f3e7c1cddb13526754ceab9f5d2e9"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.actions.GitMerge.txt",
+      "bytes": 17021,
+      "sha256": "9be0e04e3dadf5e85be7ced0ac26f8237d6d5baf9abdc06e5d3917f0ad76c502"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.actions.GitPull.txt",
+      "bytes": 23221,
+      "sha256": "b65a63ff44e7f345b6d8dc23e876f0a4131f82f710837b49533877d6142583ae"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitBranchWorker.txt",
+      "bytes": 54551,
+      "sha256": "a536b30f8279d7589428ead9222d07cde12b5321f68d1c2bf0a7fc45fd64e585"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitCheckoutOperation.txt",
+      "bytes": 75447,
+      "sha256": "26484b611cf706481e0be96bb3fe0eb5067cbb0f1811903b70e3b585c1d58ca1"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitCreateBranchOperation.txt",
+      "bytes": 15915,
+      "sha256": "611fa480b018d0696565c125f355f4fcfe68cc8212574cf12b5c1e1aa37381db"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitDeleteBranchOperation.txt",
+      "bytes": 67162,
+      "sha256": "5e87d03bfa079d1d435ba8dd522b6fc640d1b2b56afcbf7b2c5984e12d6ae2b7"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitCheckinEnvironment$Companion.txt",
+      "bytes": 185167,
+      "sha256": "f4df2fe6442f2b968fff3239c04dd6061da258036b6184e5c373d078092c6243"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitCheckinEnvironment.txt",
+      "bytes": 52491,
+      "sha256": "e723181774bb846f9f6e30dbc2e352fcabe7d9229d99253a9113eae1aeb7515e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitRepositoryCommitter.txt",
+      "bytes": 15241,
+      "sha256": "720e92e4efdefa334564773394a58618d5522e558903279b60f2a65972354fb8"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitRepositoryCommitterKt.txt",
+      "bytes": 6537,
+      "sha256": "2aeba3e83cd81156f223787d04d531a430cba3c13ea734c57aa2e0be41b98748"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkout.GitCheckoutProvider$1.txt",
+      "bytes": 16737,
+      "sha256": "c8b3afa6b2f274b95356414550702024c3fa99c99344f76ce60ac7c91b4f8989"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkout.GitCheckoutProvider.txt",
+      "bytes": 28910,
+      "sha256": "b0c68623d3d1e0b65732422f66496d7cff33dc0cc1b4de461a29ac2f585759fc"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkout.GitCloneUtils.txt",
+      "bytes": 11861,
+      "sha256": "77e1e5d1f39b1eaac574328e75dc560bb780a3399f49e52edd7643973fc6f8b3"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.commands.GitHandler.txt",
+      "bytes": 76967,
+      "sha256": "ca241d46b05d3a09d1cd378786b0dc3ab5ab598a9beee2aa9442cec0243612c0"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.commands.GitImpl.txt",
+      "bytes": 234787,
+      "sha256": "b623ce7d894f3bbddd512c0c8335d57add6a882e2c94bc4a048847d630e95372"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.commands.GitImplBase.txt",
+      "bytes": 71386,
+      "sha256": "d0645ee31e75e7fe919580bdba35d9d8545bf768ffd18d85f0503d0b683d1c36"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.config.GitExecutableManager.txt",
+      "bytes": 42027,
+      "sha256": "bcbfd9adfa8abaa8f2aca7e6a826d7485a095cd046af50bd196833c523ca44b9"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.config.GitVcsApplicationSettings.verbose.txt",
+      "bytes": 43535,
+      "sha256": "fbea9cb553df64ed1346852e835ebd150d1f77dbfd1e216a4becdd4141dc23d6"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.history.GitHistoryUtils.txt",
+      "bytes": 57231,
+      "sha256": "e01852f56cdc320bc53efbc8ea4d0e76d7df2be8707b42d71a1faab2f29eea3c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.history.GitLogUtil.txt",
+      "bytes": 82107,
+      "sha256": "05a56ab5714197f8a5257a7fc488d16970761518526bc416eede980d220e1822"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ContentVersion.txt",
+      "bytes": 4103,
+      "sha256": "112091509ab3e2255683d1288d95e6c0a194213742504e42c6cb2281b93630bc"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitFileStatus.txt",
+      "bytes": 16097,
+      "sha256": "2b0b7bce0745e9cec3d3700ee4005328da8a2f4b997cf0615c6fbff25990caea"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitIndexStatusUtilKt.txt",
+      "bytes": 44098,
+      "sha256": "5afb7cea0ddb6594b100862aa197245dc1489732bef00546697ae6fd759a2dad"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitIndexUtil.txt",
+      "bytes": 69315,
+      "sha256": "8290abfb1354c44a5135f56b526644f6cf064e93db1a4dcd8d22d57cf2632a94"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageCommitWorkflow.txt",
+      "bytes": 15525,
+      "sha256": "cd58994b3a70b32678933d6138957f3d0995614a7cb9bddb8a8f84f5dbdde555"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageCommitWorkflowHandler.txt",
+      "bytes": 28044,
+      "sha256": "ef6780be8b845e8a940ac22586948985c7871fb615be8e36f559ffc2f6cfed5f"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageCommitter.txt",
+      "bytes": 19906,
+      "sha256": "6daea48708a24e3c980025c6fdfe74b9e7840812328fe7f5a8085075d74654b0"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageDiffUtilKt.txt",
+      "bytes": 76640,
+      "sha256": "62a42b5670bf5f7dfd55a844dc4ed0658b5b889743343c787ab6b57d5d433e52"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageTracker.txt",
+      "bytes": 52354,
+      "sha256": "f62708acf699e8d2264ee1e99fa14a40925141ed3171c408c9e1abb1f6a2510c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitAddAction.txt",
+      "bytes": 667,
+      "sha256": "296fd00d64d4afa54e9de015ba9755cd072c4154923909e3adcef23353e4f62b"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitAddOperation.txt",
+      "bytes": 8170,
+      "sha256": "571f2eafb232ff88b286968524a3327ca7c41ebbd3241dd1dc824a353f8fd737"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitResetAction.txt",
+      "bytes": 675,
+      "sha256": "bd15c68c9dd9d2a24db6a82ecd3bf9d5bf83b79351f1f430222b23c3c969e936"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitResetOperation.txt",
+      "bytes": 7876,
+      "sha256": "5b53850cf57357f2898e098701c04a580169d68ce129362c82904d8af4ab7759"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitStageAcceptConflictSideAction.txt",
+      "bytes": 2265,
+      "sha256": "f6115a7b08c2663006209ee91ddab70949f52aaeef30f6bbd95b4c0abcc30621"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitStageMergeConflictAction.txt",
+      "bytes": 3437,
+      "sha256": "61b0425b2d560504e9eeadf94cf17e3246e78629413ac1723c3d364939b6a9d2"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.StagingAreaOperationActionKt.txt",
+      "bytes": 2746,
+      "sha256": "ddb5ddde4bbfe30bb94afaa2a20be25b7bce390647c1b52929afe74ff5af436e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStageCommitPanel.txt",
+      "bytes": 15359,
+      "sha256": "75b077d98808333c65558c578b5f2d21934ad4821fe487da41757c180f60d93c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStageDiffRequestProcessor.txt",
+      "bytes": 7599,
+      "sha256": "39f989aebf0241581bf0d822bd0b217792d21455dd7901d0b505ecabc6e8694a"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStagePanel.txt",
+      "bytes": 72415,
+      "sha256": "d9c8a2d9a02ecd2bdb7e648fbeef1e6350b3ea22fdcfbba957addae50f88b137"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStageTree.txt",
+      "bytes": 45049,
+      "sha256": "95cb10c995b3f6a2760a0fa887ed2ade824c55c6bb9922739c6ca55198817984"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.log.GitLogDiffHandler.txt",
+      "bytes": 41354,
+      "sha256": "2a6e7e5b9fa332f6ebb3f2540c77391b761c7cf37cf5e5ef447cb3db80ea13ac"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.log.GitLogProvider.txt",
+      "bytes": 107861,
+      "sha256": "0b875f16444827a5e624b7b4c5328e8b700449309fab3f39d842b23c72d18fd3"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitConflictResolver.txt",
+      "bytes": 32108,
+      "sha256": "a23998efae17b55b67fc76e5a1c365915b94fb865b829352870de2988ff7e214"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitMergeProvider$MyMergeSession.txt",
+      "bytes": 38258,
+      "sha256": "b63deb968f0d40dbea457ac9244dbdd8a198066cf3aa80ef1fb8685e504ae63e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitMergeProvider.txt",
+      "bytes": 24280,
+      "sha256": "350abc65a60003d45431eff85a232b74d5ca339908443895270ef4db6cf9a999"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitMergeUtil.txt",
+      "bytes": 81260,
+      "sha256": "2bea21244b5a6a47cf37a4b76d81a8f89cca1a9d80c0d385176caa97b7db089f"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.push.GitPushOperation.txt",
+      "bytes": 112302,
+      "sha256": "cc2612d82121d6340f12d7bf4c65c5589aa52f2616683a7c8468042e9478612c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryCreator.txt",
+      "bytes": 5637,
+      "sha256": "1771433fe9171c459c5766899ed53e47209cd2259dffc333edb3d54547cf84ab"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryImpl.txt",
+      "bytes": 38548,
+      "sha256": "76ac4e197a545057357ecf121bbb8c48aa27c6a4628958984ef8ff1568aaf593"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryInitializerImpl.txt",
+      "bytes": 7534,
+      "sha256": "881408b36b5acd663631baa13f43e6727bbc7245074a694bf922f5d3181d5c4a"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryReader.txt",
+      "bytes": 54756,
+      "sha256": "768ae0a6f6870f283fc54a7493931c075f61f4c78d24ca544d9a2a8af78ae840"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.roots.GitRootChecker.txt",
+      "bytes": 13417,
+      "sha256": "a4afb09a08b5bd1b711abce5cc00541594bd1507ff28547916032d1026ae8a0a"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.status.GitChangeProvider.txt",
+      "bytes": 27359,
+      "sha256": "fea7119a704651805c1797f26d3a61904fe9e41110344e80c3fac0f8f7ffaba5"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.status.GitChangesCollector.txt",
+      "bytes": 36309,
+      "sha256": "e88b90ed7ee59ffc58d0630c7283fd490d3d030f8d9f60361a8869f8d2e61206"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.status.GitStagingAreaHolder.txt",
+      "bytes": 43918,
+      "sha256": "552edaa8cadbe36ca9a4dc9341244666baa08ba06bb23f1e8eda6fcdeebd9c8e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.update.GitFetcher.txt",
+      "bytes": 42816,
+      "sha256": "e01ff7f0c50f2dbd20470af0bb0baf8f986208740a06e27108a3ed0b1e47f236"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.util.GitFileUtils.txt",
+      "bytes": 83931,
+      "sha256": "f1aa5b41a35b69a008f9c3500ae43d39862953ab58643cd97d7dee2bf27ceeec"
+    },
+    {
+      "path": "docs/evidence/local-config-schema-only.json",
+      "bytes": 1398,
+      "sha256": "103ce1488f485dc3c2deef6f42468cf0b3f19abcf26eee8d7a675beef20c64ab"
+    },
+    {
+      "path": "docs/evidence/platform-class-locations.json",
+      "bytes": 544,
+      "sha256": "451b2ca2943b53bfc4713f46eaf08e103d4160ea85d8f6cafef5da2546b554a8"
+    },
+    {
+      "path": "docs/evidence/product-identity.json",
+      "bytes": 196,
+      "sha256": "5760247c684cc59785aa700be3fce4667f855a3fac46737b9a6637a1be0fb521"
+    },
+    {
+      "path": "docs/evidence/rea-class-format-limitation.json",
+      "bytes": 1108,
+      "sha256": "a6dbfa69c64bd860a6ac853c30c59891d7f27e5cbe9e529caf9afa4d3d796f5f"
+    },
+    {
+      "path": "docs/evidence/rea-evidence-bundle.json",
+      "bytes": 6710141,
+      "sha256": "6b55653766dd75fd4fa0a0b6eef6b4ce73671462da40a63b3bb08c432f399c03"
+    },
+    {
+      "path": "docs/evidence/rea-inventory-summary.json",
+      "bytes": 4556,
+      "sha256": "907c13d4c39f7324057b1d156eac1df95f771d8c2b6427f444235fcae9855e0d"
+    },
+    {
+      "path": "docs/evidence/resources/backend/META-INF/git-performance-plugin-support.xml",
+      "bytes": 199,
+      "sha256": "d1bc0f51d6d22c7ae255bad02fac59c5b81942e9a6937326589b8a427f9b795d"
+    },
+    {
+      "path": "docs/evidence/resources/backend/META-INF/plugin.xml",
+      "bytes": 70594,
+      "sha256": "f4dd7ea93591d794a2ff5280d61a9f78c1eb336d0fe4bf78710b5ac29052bb35"
+    },
+    {
+      "path": "docs/evidence/resources/frontend/messages/GitBundle.properties",
+      "bytes": 124689,
+      "sha256": "fd0ea596360606b36bc8bad904e27caebb617b8fcbcc54a0615999891c33bcd1"
+    },
+    {
+      "path": "docs/evidence/runtime-observations.md",
+      "bytes": 1896,
+      "sha256": "9fb6cf40722e1ee8d51eecec0f32af53723cfc668ad0ec30b624e19c4f76811e"
+    },
+    {
+      "path": "docs/screenshots/branches.png",
+      "bytes": 185366,
+      "sha256": "15cc3a8391cd106e9404c0d56ed02f4609f408e13ecd02dea7ca954f8f91ea5b"
+    },
+    {
+      "path": "docs/screenshots/changes.png",
+      "bytes": 223879,
+      "sha256": "91e57c53072eb18bbd7a219b276036bd8f9ee1d8a14fe2e03ca0b1001dc5d8d9"
+    },
+    {
+      "path": "docs/screenshots/conflict.png",
+      "bytes": 193075,
+      "sha256": "25a802da9959a67993b4d8582f9c6fc5db0873a3dfe4abdf22a90a79d3f6f212"
+    },
+    {
+      "path": "docs/screenshots/history.png",
+      "bytes": 238768,
+      "sha256": "be61623528a912b7552cf184bc15af33cbe57f3f5de7da363ae13a6385bc66e2"
+    },
+    {
+      "path": "docs/screenshots/v1.1-dark-tabs.png",
+      "bytes": 170077,
+      "sha256": "ee6c7f19f3a0b5e99405c422ddf096d2f813cb0d00581ae0e958fc1f081fa265"
+    },
+    {
+      "path": "docs/screenshots/v1.1-light-tabs.png",
+      "bytes": 169415,
+      "sha256": "73c7f731fb8bc805a7d506a8685f6af6f2de65af174bc09f2de46b698fecc4a9"
+    },
+    {
+      "path": "docs/screenshots/v1.1-smart-merge.png",
+      "bytes": 204829,
+      "sha256": "29e769a1edbd984a189a132069568eab0875552c18a21eed4abc968216675bcf"
+    },
+    {
+      "path": "docs/verification-backend.txt",
+      "bytes": 1291,
+      "sha256": "389bdb16556bb08d3075ec3ca8bf5b773daf7e2d8bfe0e01f85b4caf600e206d"
+    },
+    {
+      "path": "docs/verification-packaged-ui-final.txt",
+      "bytes": 3697,
+      "sha256": "490eebb4590626a0b8bcc9f8cc764d05f4401d2c2a5ca59c6e843a62d281472c"
+    },
+    {
+      "path": "docs/verification-packaged-ui-recheck.txt",
+      "bytes": 446,
+      "sha256": "8de3a217c9b53d361413fd503bf74ae6cee530a2ec2ee77b21f575a404d49971"
+    },
+    {
+      "path": "docs/verification-packaged-ui-rendered.txt",
+      "bytes": 447,
+      "sha256": "a16fccf1bf7f8c5337e617e1b5ab8e64dcf3ceff5d76556f6952c629d621bd8b"
+    },
+    {
+      "path": "docs/verification-packaged-ui.txt",
+      "bytes": 3696,
+      "sha256": "549cb1323eb2acba50ef22e269fa0bdc1c0b2e5937e95d0fb33814f22ba6b7c9"
+    },
+    {
+      "path": "docs/verification-portable.json",
+      "bytes": 576,
+      "sha256": "67142848461f3a80cac46c414401ff0f7ce45af0d1edeefd4a8497b30f8012bc"
+    },
+    {
+      "path": "docs/verification-ui.txt",
+      "bytes": 706,
+      "sha256": "2cd26a244392f08cdf16a71a7300bcb23b62597e893d73cc5007654cc74fbbc7"
+    },
+    {
+      "path": "docs/verification-v1.1-backend.txt",
+      "bytes": 1973,
+      "sha256": "32e21de6ea1f0d522385e099341032bc75ccde9d00254afac9211fc3ee4dde8c"
+    },
+    {
+      "path": "docs/verification-v1.1-build.txt",
+      "bytes": 2202,
+      "sha256": "b758217a2b07ec4693b341c561b2483f40ce6213d62c0de3542a772b55448453"
+    },
+    {
+      "path": "docs/verification-v1.1-packaged-ui.txt",
+      "bytes": 1126,
+      "sha256": "3af0d3a1ff27ac6eac042028ece4c747f2d1b32a966bb64e44e44a3e1e5d5837"
+    },
+    {
+      "path": "docs/verification-v1.1-portable.json",
+      "bytes": 576,
+      "sha256": "ac3fbf317a0a364657b3ca793a7d5cc414e9b206c035aeadbe39e8e40cc520c7"
+    },
+    {
+      "path": "docs/verification-v1.1-portable.txt",
+      "bytes": 663,
+      "sha256": "4510e2e2d12c69ca97e4d24ed3b3d185649c42dcbee3e6e70c2e2174555bc7af"
+    },
+    {
+      "path": "docs/verification-v1.1-ui-tabs-recheck.txt",
+      "bytes": 440,
+      "sha256": "d8819de9e2b016171480543068a0f680bb81718a8076553738fe68a622339517"
+    },
+    {
+      "path": "docs/verification-v1.1-ui.txt",
+      "bytes": 4392,
+      "sha256": "58e39820cb3ed58505543c462cd6d8664af8b834d509e5a9fcb59489a88feb76"
+    },
+    {
+      "path": "index.html",
+      "bytes": 547,
+      "sha256": "b791fba9f4af06a552424c63029d294275b3275332bd7cabdb68cd8d9f938fee"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 190982,
+      "sha256": "3e6833d8760f124f55c46b54ae4aa2e2c3e438de0a5cec485142f33adfbf5a4c"
+    },
+    {
+      "path": "package.json",
+      "bytes": 1732,
+      "sha256": "e522eebb9baf3042d7a2484abc5a81d80df741829b0e7d66c062e85472ea5846"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 351,
+      "sha256": "30dce4f4db645da93a38778db85c491641d76ed99d35f57a6b690a53c27eb273"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "bytes": 563,
+      "sha256": "d33a20ad4fdb66c8cd13d96e2a4f24a4366aaef6673772b8539741aa08186fbd"
+    },
+    {
+      "path": "scripts/dev.mjs",
+      "bytes": 831,
+      "sha256": "a2fb4ceb1622648759ba7e7c14ad51aefd08cb5b3f8438ee9aa9afa7a56380c1"
+    },
+    {
+      "path": "scripts/smoke-portable.mjs",
+      "bytes": 4035,
+      "sha256": "4fdc0035732455e2447e3d090231d12f119fe4bcc5df74a7bc7f3696947297b1"
+    },
+    {
+      "path": "src/main/git-service.ts",
+      "bytes": 29475,
+      "sha256": "182a141e3145fb908a7629194e8b71b1fa13a63084221e6c6b8ee662225c3ffa"
+    },
+    {
+      "path": "src/main/main.ts",
+      "bytes": 4495,
+      "sha256": "b3e78da0c618e1d087812b2695874aaa7534180666bed47d5726e8ab7d7b994f"
+    },
+    {
+      "path": "src/main/preload.ts",
+      "bytes": 838,
+      "sha256": "580cfe5c76b2dfe9e5cc403d5504f6b6937a1945345c71981886640c6f55b934"
+    },
+    {
+      "path": "src/main/workspaces.ts",
+      "bytes": 2982,
+      "sha256": "741d4e66f4f94b97fb2a92e61d5486ea661bcef0efb6dcbd5d25d3af97ec1924"
+    },
+    {
+      "path": "src/renderer/App.tsx",
+      "bytes": 49971,
+      "sha256": "5dee9c50494a887dd7d89e5e37d9bc4c02e44dbe32772e4a3da97c5d86335469"
+    },
+    {
+      "path": "src/renderer/main.tsx",
+      "bytes": 245,
+      "sha256": "555ae3c27c6aad2d4e9ba56626bfd03cf7e5d2a278be855e591ad3aab8ef8912"
+    },
+    {
+      "path": "src/renderer/styles.css",
+      "bytes": 26360,
+      "sha256": "b2fba185b1fd6e85461f4d90e5694213819caccc19faedd1365e239b2f21556c"
+    },
+    {
+      "path": "src/renderer/themes.css",
+      "bytes": 11316,
+      "sha256": "13ab3913d4b87a3fa11cdf3c66728007276aad12db241623224e6279fa113226"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "bytes": 3733,
+      "sha256": "73c4976c08c5efa80414dc2051e56fc897ca87f10d5e0c380dcfdcf34e7db4c3"
+    },
+    {
+      "path": "tests/electron.spec.ts",
+      "bytes": 24498,
+      "sha256": "3ae8956cef66e7ee60866188c02bcd0d065cdb2dd169508865c3821ae1502992"
+    },
+    {
+      "path": "tests/git.test.ts",
+      "bytes": 27442,
+      "sha256": "792155123575511f63c17a73c4013e9f241f91d3bd0592af3e42f46e459d5380"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 359,
+      "sha256": "a7ce4643f5ac523749797079bf96fefa97f6e75e6adef0cf7bbd584ad5a2c721"
+    },
+    {
+      "path": "vite.config.ts",
+      "bytes": 171,
+      "sha256": "632b2ce7c011d57c06fddbac3e7242758e2fec4f34162ee100e328ffbc503dbc"
+    }
+  ],
+  "source_archive_excludes": [
+    ".git",
+    "dist",
+    "dist-electron",
+    "node_modules",
+    "playwright-report",
+    "release",
+    "test-results"
+  ]
+}
