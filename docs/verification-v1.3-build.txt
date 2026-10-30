@@ -1,0 +1,19 @@
+
+> harbor-git@1.3.0 build
+> npm run typecheck && node scripts/build.mjs
+
+
+> harbor-git@1.3.0 typecheck
+> tsc --noEmit
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 23 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                       0.72 kB │ gzip:  0.42 kB
+dist/assets/harborgit-CcpJQ1co.svg    1.11 kB │ gzip:  0.49 kB
+dist/assets/index-BHQeIAvw.css       44.20 kB │ gzip:  9.76 kB
+dist/assets/index-BEmBS4Eo.js       286.31 kB │ gzip: 87.65 kB │ map: 1,207.06 kB
+
+✓ built in 129ms

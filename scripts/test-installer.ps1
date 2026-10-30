@@ -27,6 +27,7 @@ if (Test-Path -LiteralPath $installDir) { throw 'QA installation directory alrea
 $originalMain = @(Get-CimInstance Win32_Process -Filter "Name='HarborGit.exe'" | Where-Object { $_.CommandLine -notmatch '--type=' } | Select-Object ProcessId,ExecutablePath)
 $result = [ordered]@{ version = $context.version; qaIdentity = $context.qaName; installDir = $installDir; originalHarborGitBefore = $originalMain; checks = @() }
 $oldExecutable = $env:HARBOR_EXECUTABLE
+$oldExpectInstaller = $env:HARBOR_EXPECT_INSTALLER
 $installed = $false
 try {
   $process = Start-Process -FilePath $setup -ArgumentList @('/S','/currentuser',"/D=$installDir") -WindowStyle Hidden -Wait -PassThru
@@ -44,22 +45,27 @@ try {
   }
   $expectedHash = (Get-FileHash -LiteralPath (Join-Path $project 'release\win-unpacked\HarborGit.exe') -Algorithm SHA256).Hash
   if ((Get-FileHash -LiteralPath $installedExe -Algorithm SHA256).Hash -ne $expectedHash) { throw 'Installed QA executable differs from the exact shipped payload' }
+  $asarHash = (Get-FileHash -LiteralPath (Join-Path $project 'release\win-unpacked\resources\app.asar') -Algorithm SHA256).Hash
+  if ((Get-FileHash -LiteralPath (Join-Path $installDir 'resources\app.asar') -Algorithm SHA256).Hash -ne $asarHash) { throw 'Installed QA application archive differs from the shipped payload' }
+  $result.payloadHashes = @{ exe = $expectedHash; asar = $asarHash }
   $result.checks += 'Custom install path containing spaces and Chinese characters accepted'
   $result.checks += 'Start menu/desktop shortcuts and uninstall registry entry created'
   $result.checks += 'Installed executable is byte-identical to shipped HarborGit.exe (only filename differs)'
   $env:HARBOR_EXECUTABLE = $installedExe
-  $uiLog = Join-Path $project 'docs\verification-v1.2.1-installed-ui.txt'
+  $env:HARBOR_EXPECT_INSTALLER = '1'
+  $uiLog = Join-Path $project ("docs\verification-v" + $context.version + '-installed-ui.txt')
   # Windows PowerShell 5 treats native stderr warnings as errors when Stop is set.
   # Check the child exit code instead; a harmless Node color warning is not a failed test.
   $ErrorActionPreference = 'Continue'
   try {
-    & npm.cmd run test:ui -- --grep 'desktop UI: open' *> $uiLog
+    & npm.cmd run test:ui -- --grep 'desktop UI: open|software updates: installed' *> $uiLog
     $uiExitCode = $LASTEXITCODE
   } finally { $ErrorActionPreference = 'Stop' }
   if ($uiExitCode -ne 0) { throw "Installed app UI test failed; see $uiLog" }
-  $result.checks += 'Installed application passed open/diff/stage/unstage/commit/history/branch UI flow'
+  $result.checks += 'Installed application passed core Git UI flow and real installed updater detection/IPC/preference checks'
 } finally {
   if ($oldExecutable) { $env:HARBOR_EXECUTABLE = $oldExecutable } else { Remove-Item Env:HARBOR_EXECUTABLE -ErrorAction SilentlyContinue }
+  if ($oldExpectInstaller) { $env:HARBOR_EXPECT_INSTALLER = $oldExpectInstaller } else { Remove-Item Env:HARBOR_EXPECT_INSTALLER -ErrorAction SilentlyContinue }
   if ($installed) {
     $uninstaller = @(Get-ChildItem -LiteralPath $installDir -File -Filter 'Uninstall*.exe')
     if ($uninstaller.Count -ne 1) { throw 'QA uninstaller missing or ambiguous' }
@@ -73,7 +79,7 @@ try {
   }
   $result.originalHarborGitAfter = @(Get-CimInstance Win32_Process -Filter "Name='HarborGit.exe'" | Where-Object { $_.CommandLine -notmatch '--type=' } | Select-Object ProcessId,ExecutablePath)
   $result.status = if ($result.checks.Count -eq 5) { 'passed' } else { 'incomplete' }
-  $result | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $project 'docs\verification-v1.2.1-installer.json') -Encoding utf8
+  $result | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $project ("docs\verification-v" + $context.version + '-installer.json')) -Encoding utf8
 }
 $result | ConvertTo-Json -Depth 6
 # Remove only the freshly-created QA tree after all uninstall checks succeeded.

@@ -3,6 +3,7 @@ import type { Activity, Area, Branch, Commit, CommitFile, Conflict, Diff, Failur
 import { CommitHistory } from './CommitHistory';
 import { AiSettingsDialog } from './AiSettingsDialog';
 import { RemoteSettingsDialog } from './RemoteSettingsDialog';
+import { SoftwareUpdates } from './SoftwareUpdates';
 
 type View = 'changes' | 'history' | 'branches';
 type Selection = { path: string; area: Area; commit?: string; oldPath?: string };
@@ -92,7 +93,7 @@ export default function App() {
     <div className="project-strip"><div className="project-tabs" role="tablist" aria-label="项目标签页">{tabs.map(tab => <div className={`project-tab ${tab.id === activeId ? 'active' : ''}`} key={tab.id}>
       <button role="tab" id={`tab-${tab.id}`} aria-controls={`panel-${tab.id}`} aria-selected={tab.id === activeId} title={tab.initialRepo?.root || '新项目'} onClick={() => { setActive(tab.id); setTabError(''); }}><Icon name={tab.initialRepo?.mergeWorkspace ? 'merge' : 'folder'} size={14} /><span>{tab.initialRepo?.mergeWorkspace ? `合并 → ${tab.initialRepo.mergeWorkspace.targetBranch}` : tab.initialRepo ? basename(tab.initialRepo.root) : '新项目'}</span></button>
       <button className="tab-close" aria-label={`关闭项目 ${tab.initialRepo ? basename(tab.initialRepo.root) : '新项目'}`} onClick={() => void closeTab(tab.id)}><Icon name="close" size={13} /></button>
-    </div>)}</div><button className="icon-button" aria-label="新建项目标签" title="新建项目标签" onClick={addTab}><Icon name="plus" size={16} /></button><button className="theme-toggle" aria-label="AI 设置" onClick={showAiSettings}>✦ AI 设置</button><button className="theme-toggle" aria-label={theme === 'dark' ? '切换为亮色主题' : '切换为暗色主题'} onClick={() => setTheme(current => current === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? '☀ 亮色' : '☾ 暗色'}</button></div>
+    </div>)}</div><button className="icon-button" aria-label="新建项目标签" title="新建项目标签" onClick={addTab}><Icon name="plus" size={16} /></button><SoftwareUpdates /><button className="theme-toggle" aria-label="AI 设置" onClick={showAiSettings}>✦ AI 设置</button><button className="theme-toggle" aria-label={theme === 'dark' ? '切换为亮色主题' : '切换为暗色主题'} onClick={() => setTheme(current => current === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? '☀ 亮色' : '☾ 暗色'}</button></div>
     {tabError && <div className="tab-error" role="alert">{tabError}<button aria-label="关闭项目提示" onClick={() => setTabError('')}>×</button></div>}
     {aiSettingsOpen && <AiSettingsDialog onClose={() => setAiSettingsOpen(false)} />}
     <div className="tab-panels">{tabs.map(tab => <div className="tab-panel" key={tab.id} role="tabpanel" id={`panel-${tab.id}`} aria-labelledby={`tab-${tab.id}`} hidden={tab.id !== activeId}><RepositoryView id={tab.id} active={tab.id === activeId} initialRepo={tab.initialRepo} onOpened={opened} onClose={closeTab} onAiSettings={showAiSettings} /></div>)}</div>

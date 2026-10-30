@@ -4,12 +4,93 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'node:http';
+import { build as buildFixture } from 'esbuild';
 
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const testRoot = path.resolve(project, '../../work/ui-integration');
 const screenshots = path.join(project, 'docs/screenshots');
 const roots: string[] = [];
 const apps = new Set<ElectronApplication>();
+
+test('software updates: installed Setup enables the real update entry and preserves preferences', async () => {
+  test.skip(!process.env.HARBOR_EXPECT_INSTALLER, 'Only run against the dedicated QA installation');
+  const { root } = await fixture('installed-update-ipc');
+  const { app, page, errors } = await launch(root);
+  expect((await page.evaluate(() => window.harbor.updateStatus())).mode).toBe('installer');
+  await page.getByRole('button', { name: '软件更新', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: '软件更新', exact: true });
+  await expect(dialog.getByRole('button', { name: '检查更新', exact: true })).toBeEnabled();
+  await dialog.getByRole('checkbox', { name: '启动后自动检查更新', exact: true }).uncheck();
+  await expect.poll(async () => JSON.parse(await readFile(path.join(root, 'fresh-profile/update-settings.json'), 'utf8')).autoCheck).toBe(false);
+  const install = await page.evaluate(() => window.harbor.updateAction('install')); expect(install.ok).toBe(false);
+  await capture(app, 'v1.3-update-installed.png'); await close(app, errors);
+  const next = await launch(root);
+  expect((await next.page.evaluate(() => window.harbor.updateStatus())).autoCheck).toBe(false);
+  await close(next.app, next.errors);
+});
+
+test('software updates: real IPC rejects unsupported actions in a development or directory build', async () => {
+  const { root } = await fixture('update-ipc');
+  const { app, page, errors } = await launch(root);
+  await page.getByRole('button', { name: '软件更新', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: '软件更新', exact: true });
+  await expect(dialog).toContainText('Lord-GEO / HarborGit');
+  await expect(dialog.getByRole('button', { name: '检查更新', exact: true })).toHaveCount(0);
+  const results = await page.evaluate(async () => ({
+    status: await window.harbor.updateStatus(),
+    check: await window.harbor.updateAction('check'),
+    install: await window.harbor.updateAction('install'),
+    invalid: await window.harbor.updateAction('arbitrary' as 'check'),
+    settings: await window.harbor.saveUpdateAutoCheck(false),
+  }));
+  expect(['development', 'manual']).toContain(results.status.mode);
+  expect(results.check.ok).toBe(false); expect(results.install.ok).toBe(false); expect(results.invalid.ok).toBe(false);
+  expect(results.settings.ok).toBe(true);
+  expect(JSON.parse(await readFile(path.join(root, 'fresh-profile/update-settings.json'), 'utf8')).autoCheck).toBe(false);
+  await capture(app, 'v1.3-update-manual.png');
+  await dialog.getByRole('button', { name: '关闭软件更新', exact: true }).click();
+  await close(app, errors);
+});
+
+test('software updates UI: release notes, progress, cancel, retry, theme and busy installation guard', async () => {
+  const { root } = await fixture('update-ui');
+  const entry = path.join(root, 'update-ui.cjs');
+  await buildFixture({ entryPoints: [path.join(project, 'tests/update-ui.fixture.ts')], outfile: entry, platform: 'node', format: 'cjs', bundle: true, external: ['electron'] });
+  const env: Record<string, string> = { HARBOR_FIXTURE_PROJECT: project, HARBOR_USER_DATA: path.join(root, 'fixture-profile') };
+  for (const [key, value] of Object.entries(process.env)) if (value !== undefined && key !== 'ELECTRON_RUN_AS_NODE' && !(key in env)) env[key] = value;
+  const app = await electron.launch({ args: [entry], env, timeout: 45000 }); apps.add(app);
+  const page = await app.firstWindow(); const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].webContents.setBackgroundThrottling(false));
+  const control = (value: { busy?: boolean; checkError?: boolean }) => app.evaluate(({ ipcMain }, input) => { ipcMain.emit('fixture:control', null, input); }, value);
+  await page.getByRole('button', { name: '软件更新', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: '软件更新', exact: true });
+  await dialog.getByRole('checkbox', { name: '启动后自动检查更新', exact: true }).uncheck();
+  await expect.poll(async () => JSON.parse(await readFile(path.join(root, 'fixture-profile/update-settings.json'), 'utf8')).autoCheck).toBe(false);
+  await control({ checkError: true }); await dialog.getByRole('button', { name: '检查更新', exact: true }).click();
+  await expect(dialog.getByRole('alert')).toContainText('latest.yml');
+  await control({}); await dialog.getByRole('button', { name: '检查更新', exact: true }).click();
+  await expect(dialog).toContainText('发现新版本 1.3.1');
+  expect(await page.evaluate(() => (window as unknown as { untrusted?: boolean }).untrusted)).toBeUndefined();
+  await dialog.getByRole('button', { name: '下载更新', exact: true }).click();
+  await expect(dialog.getByRole('progressbar', { name: '更新下载进度', exact: true })).toBeVisible();
+  await capture(app, 'v1.3-update-download.png');
+  await dialog.getByRole('button', { name: '取消下载', exact: true }).click();
+  await expect(dialog).toContainText('下载已取消');
+  await dialog.getByRole('button', { name: '下载更新', exact: true }).click();
+  await dialog.getByRole('button', { name: '关闭软件更新', exact: true }).click();
+  await page.getByRole('button', { name: /更新已下载，查看安装/ }).click();
+  await expect(dialog.getByRole('button', { name: '退出并安装', exact: true })).toBeEnabled();
+  await dialog.getByRole('button', { name: '关闭软件更新', exact: true }).click();
+  await page.getByRole('button', { name: '切换为亮色主题', exact: true }).click();
+  await page.getByRole('button', { name: '软件更新', exact: true }).click();
+  await capture(app, 'v1.3-update-ready-light.png');
+  await control({ busy: true }); await dialog.getByRole('button', { name: '退出并安装', exact: true }).click();
+  await expect(dialog.getByRole('alert')).toContainText('任务运行');
+  await control({}); await dialog.getByRole('button', { name: '退出并安装', exact: true }).click();
+  await expect(dialog).toContainText('正在退出并启动安装程序');
+  // Fixture engine records install requests; it cannot launch any executable.
+  await close(app, errors);
+});
 
 function git(cwd: string, args: string[]) {
   const result = spawnSync('git', args, { cwd, encoding: 'utf8', shell: false, windowsHide: true, env: {

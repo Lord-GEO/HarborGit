@@ -54,7 +54,10 @@ jobs:
           - name: Windows-x64
             os: windows-latest
             script: dist:setup
-            files: release/*-Setup-x64.exe
+            files: |
+              release/*-Setup-x64.exe
+              release/*-Setup-x64.exe.blockmap
+              release/latest.yml
           - name: macOS-arm64
             os: macos-latest
             script: dist:mac:arm64
@@ -79,6 +82,9 @@ jobs:
         run: npm ci
       - name: Package application
         run: npm run ${{ matrix.script }}
+      - name: Verify Windows update metadata
+        if: runner.os == 'Windows'
+        run: npm run verify:updates
       - name: Upload packages
         uses: actions/upload-artifact@v7
         with:
@@ -114,6 +120,7 @@ jobs:
           set -euo pipefail
           expected=(
             "HarborGit-${RELEASE_VERSION}-Setup-x64.exe"
+            "HarborGit-${RELEASE_VERSION}-Setup-x64.exe.blockmap"
             "HarborGit-${RELEASE_VERSION}-macOS-arm64.dmg"
             "HarborGit-${RELEASE_VERSION}-macOS-arm64.zip"
             "HarborGit-${RELEASE_VERSION}-macOS-x64.dmg"
@@ -128,6 +135,12 @@ jobs:
             fi
             assets+=("$file")
           done
+          metadata="release-assets/latest.yml"
+          if [[ ! -s "$metadata" ]]; then
+            printf 'Missing update metadata: %s\n' "$metadata" >&2
+            exit 1
+          fi
+          assets+=("$metadata")
           flags=(--repo "$GH_REPO" --verify-tag --title "HarborGit ${RELEASE_VERSION}" --generate-notes)
           if [[ "$RELEASE_VERSION" == *-* ]]; then
             flags+=(--prerelease)

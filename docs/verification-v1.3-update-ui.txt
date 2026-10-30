@@ -1,0 +1,13 @@
+
+> harbor-git@1.3.0 test:ui
+> playwright test --grep software updates
+
+
+Running 2 tests using 1 worker
+
+(node:18720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\electron.spec.ts:15:1 › software updates: real IPC rejects unsupported actions in a development or directory build (6.8s)
+  ok 2 tests\electron.spec.ts:38:1 › software updates UI: release notes, progress, cancel, retry, theme and busy installation guard (15.3s)
+
+  2 passed (22.6s)

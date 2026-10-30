@@ -16,6 +16,14 @@ export interface Conflict { path: string; base: string | null; ours: string | nu
 export interface Activity { id: string; sessionId?: string; command: string; kind: 'start' | 'progress' | 'finish'; text: string; time: string; exitCode?: number; }
 export interface Failure { message: string; code?: number | string; command?: string; stderr?: string; stdout?: string; cancelled?: boolean; }
 export type Result<T> = { ok: true; data: T } | { ok: false; error: Failure };
+export type UpdateAction = 'check' | 'download' | 'cancel' | 'install' | 'open-release';
+export interface UpdateProgress { percent: number; transferred: number; total: number; bytesPerSecond: number; }
+export interface UpdateRelease { version: string; notes?: string; date?: string; }
+export interface UpdateState {
+  currentVersion: string; mode: 'installer' | 'manual' | 'development';
+  phase: 'idle' | 'checking' | 'available' | 'downloading' | 'downloaded' | 'installing' | 'error';
+  autoCheck: boolean; message: string; checkedAt?: string; release?: UpdateRelease; progress?: UpdateProgress; error?: string;
+}
 export interface Requests {
   open: { path: string }; clone: { url: string; destination: string }; refresh: Record<string, never>;
   diff: { path: string; area: Area; commit?: string; oldPath?: string }; stage: { paths: string[] }; unstage: { paths: string[] }; commit: { message: string };
@@ -44,5 +52,9 @@ export interface HarborAPI {
   version(): Promise<string>;
   aiSettings(): Promise<Result<AiSettings>>;
   saveAiSettings(settings: AiSettingsInput): Promise<Result<AiSettings>>;
+  updateStatus(): Promise<UpdateState>;
+  updateAction(action: UpdateAction): Promise<Result<UpdateState>>;
+  saveUpdateAutoCheck(enabled: boolean): Promise<Result<UpdateState>>;
+  onUpdate(listener: (state: UpdateState) => void): () => void;
 }
 declare global { interface Window { harbor: HarborAPI; } }

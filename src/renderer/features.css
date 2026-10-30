@@ -52,3 +52,19 @@
 .remote-settings-row .inline-actions{flex-shrink:0}
 .remote-settings-modal .add-remote{margin-top:14px}
 .remote-config-link{margin-top:12px;font-size:11px}
+.software-update-button{white-space:nowrap}
+.software-update-button.has-update{color:var(--accent);border-color:var(--accent)}
+.software-update-modal{width:590px}
+.update-version{font-size:13px;display:flex;align-items:center;gap:12px;margin:22px 0 7px}
+.update-version>span{color:var(--accent)}
+.update-source{color:var(--muted);font-size:11px;margin:0 0 18px}
+.update-status{display:flex;align-items:center;gap:10px;padding:14px;background:var(--accent-dark);border:1px solid var(--line);border-radius:7px;font-size:12px;line-height:1.8;white-space:normal}
+.update-download{margin:16px 0}
+.update-download progress{width:100%;height:8px;accent-color:var(--accent)}
+.update-download>div{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--muted)}
+.update-release-notes{margin:18px 0;font-size:12px}
+.update-release-notes summary{color:var(--muted);cursor:pointer}
+.update-release-notes pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;font:inherit;line-height:1.8;color:var(--text)}
+.update-release-link{margin-right:auto}
+.update-notice{position:fixed;top:58px;right:24px;z-index:15;border:1px solid var(--accent);background:var(--panel);color:var(--accent);padding:12px 16px;border-radius:8px;box-shadow:0 8px 30px #0003;font-size:12px;cursor:pointer}
+.update-notice span{margin-left:12px}

@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "checks": [
+    "Real NSIS updater reads local metadata; checking does not download or auto-install",
+    "Real download caches only in the dedicated test directory, validates SHA-512 and reports progress",
+    "Corrupted payload rejected by actual electron-updater SHA-512 validation",
+    "Actual HTTP download cancellation followed by a successful retry",
+    "Equal version correctly reports no available update",
+    "Missing update manifest displays an actionable release publishing error"
+  ],
+  "payload": "Inert 3 MiB fixture bytes, never executed",
+  "feed": "Loopback HTTP only",
+  "installed": false,
+  "requests": [
+    "/latest.yml?noCache=1k65fg0me",
+    "/HarborGit-Fixture-Setup.exe",
+    "/latest.yml?noCache=1k65fg0sc",
+    "/HarborGit-Fixture-Setup.exe",
+    "/latest.yml?noCache=1k65fg0ud",
+    "/HarborGit-Fixture-Setup.exe",
+    "/HarborGit-Fixture-Setup.exe",
+    "/latest.yml?noCache=1k65fg11e",
+    "/latest.yml?noCache=1k65fg129"
+  ]
+}

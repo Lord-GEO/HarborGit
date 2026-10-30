@@ -17,14 +17,17 @@ const qaName = 'HarborGit Installer QA', exeName = 'HarborGit-Installer-QA.exe';
 await rename(path.join(payload, 'HarborGit.exe'), path.join(payload, exeName));
 const pkg = JSON.parse(await readFile(path.join(project, 'package.json'), 'utf8'));
 const config = structuredClone(pkg.build);
-config.appId = 'dev.harborgit.installer.qa'; config.productName = qaName;
+config.appId = 'dev.harborgit.installer.qa';
+// Keep the product branding. NSIS derives its uninstaller name from the unique
+// executable filename; installed-app detection must support this pair as well.
+// Unique appId, executable filename, shortcuts and registration isolate QA.
 config.directories.output = artifacts;
 config.win.executableName = 'HarborGit-Installer-QA';
 config.nsis.shortcutName = qaName; config.nsis.uninstallDisplayName = qaName;
 config.nsis.artifactName = 'HarborGit-Installer-QA-Setup.exe';
 const configPath = path.join(root, 'builder-qa.json'); await writeFile(configPath, JSON.stringify(config, null, 2));
 await new Promise((resolve, reject) => {
-  const child = spawn(process.execPath, [path.join(project, 'node_modules/electron-builder/cli.js'), '--win', 'nsis', '--x64', '--prepackaged', payload, '--config', configPath], { cwd: project, shell: false, windowsHide: true, stdio: 'inherit' });
+  const child = spawn(process.execPath, [path.join(project, 'node_modules/electron-builder/cli.js'), '--win', 'nsis', '--x64', '--prepackaged', payload, '--config', configPath, '--publish', 'never'], { cwd: project, shell: false, windowsHide: true, stdio: 'inherit' });
   child.on('error', reject); child.on('exit', code => code === 0 ? resolve() : reject(new Error(`QA packaging failed (${code})`)));
 });
 const context = { root, project, version: pkg.version, setup: path.join(artifacts, 'HarborGit-Installer-QA-Setup.exe'), installDir: path.join(root, 'installed 中文 path'), exeName, qaName, contextFile: path.join(root, 'context.json') };

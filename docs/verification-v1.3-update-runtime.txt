@@ -1,0 +1,16 @@
+
+> harbor-git@1.3.0 test:updates:runtime
+> node scripts/test-update-runtime.mjs
+
+
+{
+  "status": "passed",
+  "checks": [
+    "Real NSIS updater reads local metadata; checking does not download or auto-install",
+    "Real download caches only in the dedicated test directory, validates SHA-512 and reports progress",
+    "Corrupted payload rejected by actual electron-updater SHA-512 validation",
+    "Actual HTTP download cancellation followed by a successful retry",
+    "Equal version correctly reports no available update",
+    "Missing update manifest displays an actionable release publishing error"
+  ]
+}

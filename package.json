@@ -1,6 +1,6 @@
 {
   "name": "harbor-git",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "An independent desktop Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",
@@ -13,7 +13,10 @@
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && node scripts/build.mjs",
     "icons": "electron scripts/render-icons.cjs",
-    "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts tests/remotes.test.ts",
+    "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts tests/remotes.test.ts tests/updates.test.ts",
+    "test:updates": "tsx --test tests/updates.test.ts",
+    "test:updates:runtime": "node scripts/test-update-runtime.mjs",
+    "verify:updates": "node scripts/verify-update-metadata.mjs",
     "test:ui": "playwright test",
     "test:portable": "node scripts/smoke-portable.mjs",
     "pack": "npm run build && node -e \"require('electron')\" && electron-builder --win --dir --x64 -c.electronDist=node_modules/electron/dist",
@@ -25,6 +28,8 @@
     "dist:mac:x64": "npm run build && electron-builder --mac --x64 --publish never"
   },
   "dependencies": {
+    "builder-util-runtime": "9.7.0",
+    "electron-updater": "6.8.11",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
@@ -54,7 +59,9 @@
       "LICENSE"
     ],
     "asar": true,
+    "releaseInfo": { "releaseNotesFile": "release-notes.md" },
     "mac": {
+      "publish": null,
       "target": [
         "dmg",
         "zip"
@@ -67,6 +74,7 @@
       "notarize": false
     },
     "win": {
+      "publish": [{ "provider": "github", "owner": "Lord-GEO", "repo": "HarborGit", "releaseType": "release", "channel": "latest" }],
       "target": [
         "nsis"
       ],

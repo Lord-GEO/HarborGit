@@ -48,4 +48,5 @@ export class Workspaces {
   }
   cancel(id: string) { for (const service of this.services.values()) if (service.cancel(id)) return true; return false; }
   cancelAll() { for (const service of this.services.values()) service.cancelAll(); }
+  get pendingCount() { return [...this.services.values()].reduce((count, service) => count + service.pendingCount, 0); }
 }

@@ -10,6 +10,15 @@ HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户�
 - 管理远程仓库地址，执行 Fetch、Pull 和 Push。
 - 配置 AI 接口，根据暂存区改动生成提交消息。
 - 支持多项目标签页、明暗主题和操作日志。
+- Windows Setup 安装版支持检查 GitHub 正式版更新、下载进度、取消重试和确认安装；其他分发形式提供发布页入口。
+
+## 软件更新（v1.3.0）
+
+安装后点击顶部 **软件更新**。默认启动 15 秒后检查新版本，也可手动检查；只检查，不自动下载或安装。下载后校验文件，由你确认退出并安装。Git 或 AI 任务运行时阻止安装，仓库未提交修改和应用配置保留；安装前请保存尚未保存的编辑内容及提交消息草稿。
+
+旧版本需要先手动安装 v1.3.0，后续更高正式版本才可通过应用内更新获取。便携版、目录版及当前未签名 macOS 版通过发布页手动更新。更新使用公开仓库 `Lord-GEO/HarborGit`，无需在客户端填写 GitHub Token。
+
+发布新版本时必须把 Setup、对应 `.exe.blockmap` 和 **`latest.yml`** 放入同一个 GitHub Release。工作流已补齐这三项；操作、校验命令及验证范围见 [更新与发布指南](docs/UPDATES.md)。
 
 ## 源码安装与运行
 
@@ -52,6 +61,7 @@ npm run pack           # 未封装的应用目录
 - 安装版：`HarborGit-*-Setup-x64.exe`。
 - 便携版：`HarborGit-*-Windows-x64.exe`。
 - 目录版：`win-unpacked/`，运行其中的 `HarborGit.exe`。
+- 更新附件：`latest.yml`、Setup 对应的 `.exe.blockmap`，与安装包一起上传 Release。
 
 ### macOS
 
