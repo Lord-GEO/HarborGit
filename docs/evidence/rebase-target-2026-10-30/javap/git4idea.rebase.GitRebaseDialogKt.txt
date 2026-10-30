@@ -1,0 +1,24 @@
+Compiled from "GitRebaseDialog.kt"
+public final class git4idea.rebase.GitRebaseDialogKt {
+  private static final com.intellij.ui.MutableCollectionComboBoxModel<java.lang.String> getMutableModel(javax.swing.JComboBox<java.lang.String>);
+    Code:
+       0: aload_0
+       1: invokevirtual #13                 // Method javax/swing/JComboBox.getModel:()Ljavax/swing/ComboBoxModel;
+       4: astore_1
+       5: iconst_0
+       6: istore_2
+       7: aload_1
+       8: dup
+       9: instanceof    #15                 // class com/intellij/ui/MutableCollectionComboBoxModel
+      12: ifne          17
+      15: pop
+      16: aconst_null
+      17: checkcast     #15                 // class com/intellij/ui/MutableCollectionComboBoxModel
+      20: areturn
+
+  public static final com.intellij.ui.MutableCollectionComboBoxModel access$getMutableModel(javax.swing.JComboBox);
+    Code:
+       0: aload_0
+       1: invokestatic  #26                 // Method getMutableModel:(Ljavax/swing/JComboBox;)Lcom/intellij/ui/MutableCollectionComboBoxModel;
+       4: areturn
+}

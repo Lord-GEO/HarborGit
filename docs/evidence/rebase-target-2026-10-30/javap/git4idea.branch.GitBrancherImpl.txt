@@ -1,0 +1,1682 @@
+Compiled from "GitBrancherImpl.java"
+class git4idea.branch.GitBrancherImpl implements git4idea.branch.GitBrancher {
+  private final com.intellij.openapi.project.Project myProject;
+
+  git4idea.branch.GitBrancherImpl(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: invokespecial #1                  // Method java/lang/Object."<init>":()V
+      12: aload_0
+      13: aload_1
+      14: putfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      17: return
+
+  public void checkoutNewBranch(java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_2
+      13: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      16: new           #13                 // class git4idea/branch/GitBrancherImpl$1
+      19: dup
+      20: aload_0
+      21: aload_0
+      22: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      25: ldc           #15                 // String branch.checking.out.new.branch.process
+      27: iconst_1
+      28: anewarray     #2                  // class java/lang/Object
+      31: dup
+      32: iconst_0
+      33: aload_1
+      34: aastore
+      35: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      38: aconst_null
+      39: aload_1
+      40: aload_2
+      41: invokespecial #23                 // Method git4idea/branch/GitBrancherImpl$1."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;Ljava/util/List;)V
+      44: invokevirtual #26                 // Method git4idea/branch/GitBrancherImpl$1.runInBackground:()V
+      47: return
+
+  public void createBranch(java.lang.String, java.util.Map<git4idea.repo.GitRepository, java.lang.String>);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_3
+       5: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_4
+      13: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: aload_1
+      18: aload_2
+      19: aconst_null
+      20: invokevirtual #29                 // Method createBranch:(Ljava/lang/String;Ljava/util/Map;Ljava/lang/Runnable;)V
+      23: return
+
+  private git4idea.branch.GitBranchWorker newWorker(git4idea.branch.GitBranchUiHandler);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_5
+       5: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       8: new           #33                 // class git4idea/branch/GitBranchWorker
+      11: dup
+      12: aload_0
+      13: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      16: invokestatic  #35                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      19: aload_1
+      20: invokespecial #41                 // Method git4idea/branch/GitBranchWorker."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Lgit4idea/branch/GitBranchUiHandler;)V
+      23: areturn
+
+  private git4idea.branch.GitBranchWorker newWorker(com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: new           #44                 // class git4idea/branch/GitBranchUiHandlerImpl
+      13: dup
+      14: aload_0
+      15: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      18: aload_1
+      19: invokespecial #46                 // Method git4idea/branch/GitBranchUiHandlerImpl."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/progress/ProgressIndicator;)V
+      22: invokevirtual #49                 // Method newWorker:(Lgit4idea/branch/GitBranchUiHandler;)Lgit4idea/branch/GitBranchWorker;
+      25: areturn
+
+  public void createBranch(java.lang.String, java.util.Map<git4idea.repo.GitRepository, java.lang.String>, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        7
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        8
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: iconst_0
+      22: aload_3
+      23: invokevirtual #53                 // Method createBranch:(Ljava/lang/String;Ljava/util/Map;ZLjava/lang/Runnable;)V
+      26: return
+
+  public void createBranch(java.lang.String, java.util.Map<git4idea.repo.GitRepository, java.lang.String>, boolean);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        9
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        10
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: iload_3
+      22: aconst_null
+      23: invokevirtual #53                 // Method createBranch:(Ljava/lang/String;Ljava/util/Map;ZLjava/lang/Runnable;)V
+      26: return
+
+  public void createBranch(java.lang.String, java.util.Map<git4idea.repo.GitRepository, java.lang.String>, boolean, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        11
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        12
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: new           #56                 // class git4idea/branch/GitBrancherImpl$2
+      21: dup
+      22: aload_0
+      23: aload_0
+      24: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      27: ldc           #58                 // String branch.creating.branch.process
+      29: iconst_1
+      30: anewarray     #2                  // class java/lang/Object
+      33: dup
+      34: iconst_0
+      35: aload_1
+      36: aastore
+      37: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      40: aload         4
+      42: aload_1
+      43: aload_2
+      44: iload_3
+      45: invokespecial #60                 // Method git4idea/branch/GitBrancherImpl$2."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;Ljava/util/Map;Z)V
+      48: invokevirtual #63                 // Method git4idea/branch/GitBrancherImpl$2.runInBackground:()V
+      51: return
+
+  public void createNewTag(java.lang.String, java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        13
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        14
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        15
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: new           #64                 // class git4idea/branch/GitBrancherImpl$3
+      30: dup
+      31: aload_0
+      32: aload_0
+      33: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      36: ldc           #15                 // String branch.checking.out.new.branch.process
+      38: iconst_1
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_1
+      45: aastore
+      46: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      49: aload         4
+      51: aload_1
+      52: aload_2
+      53: aload_3
+      54: invokespecial #66                 // Method git4idea/branch/GitBrancherImpl$3."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+      57: invokevirtual #69                 // Method git4idea/branch/GitBrancherImpl$3.runInBackground:()V
+      60: return
+
+  public void checkout(java.lang.String, boolean, java.util.List<? extends git4idea.repo.GitRepository>, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        16
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_3
+      10: ifnonnull     18
+      13: bipush        17
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: new           #70                 // class git4idea/branch/GitBrancherImpl$4
+      21: dup
+      22: aload_0
+      23: aload_0
+      24: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      27: ldc           #72                 // String branch.checking.out.process
+      29: iconst_1
+      30: anewarray     #2                  // class java/lang/Object
+      33: dup
+      34: iconst_0
+      35: aload_1
+      36: aastore
+      37: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      40: aload         4
+      42: aload_1
+      43: iload_2
+      44: aload_3
+      45: invokespecial #74                 // Method git4idea/branch/GitBrancherImpl$4."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;ZLjava/util/List;)V
+      48: invokevirtual #77                 // Method git4idea/branch/GitBrancherImpl$4.runInBackground:()V
+      51: return
+
+  public void checkoutNewBranchStartingFrom(java.lang.String, java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        18
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        19
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        20
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: aload_1
+      29: aload_2
+      30: iconst_0
+      31: aload_3
+      32: aload         4
+      34: invokevirtual #78                 // Method checkoutNewBranchStartingFrom:(Ljava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/Runnable;)V
+      37: return
+
+  public void checkoutNewBranchStartingFrom(java.lang.String, java.lang.String, boolean, java.util.List<? extends git4idea.repo.GitRepository>, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        21
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        22
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload         4
+      20: ifnonnull     28
+      23: bipush        23
+      25: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      28: aload_0
+      29: aload_1
+      30: aload_2
+      31: iload_3
+      32: iconst_0
+      33: aload         4
+      35: aload         5
+      37: invokevirtual #82                 // Method checkoutNewBranchStartingFrom:(Ljava/lang/String;Ljava/lang/String;ZZLjava/util/List;Ljava/lang/Runnable;)V
+      40: return
+
+  public void checkoutNewBranchStartingFrom(java.lang.String, java.lang.String, boolean, boolean, java.util.List<? extends git4idea.repo.GitRepository>, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        24
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        25
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload         5
+      20: ifnonnull     28
+      23: bipush        26
+      25: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      28: new           #85                 // class git4idea/branch/GitBrancherImpl$5
+      31: dup
+      32: aload_0
+      33: aload_0
+      34: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      37: ldc           #87                 // String branch.checking.out.branch.from.process
+      39: iconst_2
+      40: anewarray     #2                  // class java/lang/Object
+      43: dup
+      44: iconst_0
+      45: aload_1
+      46: aastore
+      47: dup
+      48: iconst_1
+      49: aload_2
+      50: aastore
+      51: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      54: aload         6
+      56: iload         4
+      58: aload_1
+      59: aload_2
+      60: iload_3
+      61: aload         5
+      63: invokespecial #89                 // Method git4idea/branch/GitBrancherImpl$5."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;)V
+      66: invokevirtual #92                 // Method git4idea/branch/GitBrancherImpl$5.runInBackground:()V
+      69: return
+
+  public void deleteBranch(java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        27
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        28
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: invokestatic  #93                 // Method java/util/Collections.singletonMap:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+      24: aconst_null
+      25: invokevirtual #99                 // Method deleteBranches:(Ljava/util/Map;Ljava/lang/Runnable;)V
+      28: return
+
+  public void deleteBranches(java.util.Map<java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>>, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        29
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #103,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+      15: ifeq          19
+      18: return
+      19: aload_1
+      20: invokeinterface #109,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      25: astore_3
+      26: new           #113                // class git4idea/branch/GitBrancherImpl$6
+      29: dup
+      30: aload_0
+      31: aload_0
+      32: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      35: aload_3
+      36: invokestatic  #115                // Method getRefsDeletionProgressMessage:(Ljava/util/Collection;)Ljava/lang/String;
+      39: aload_2
+      40: aload_3
+      41: aload_1
+      42: invokespecial #119                // Method git4idea/branch/GitBrancherImpl$6."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/util/Set;Ljava/util/Map;)V
+      45: invokevirtual #122                // Method git4idea/branch/GitBrancherImpl$6.runInBackground:()V
+      48: return
+
+  public void deleteRemoteBranch(java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        30
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        31
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: invokestatic  #123                // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+      23: aload_2
+      24: invokevirtual #127                // Method deleteRemoteBranches:(Ljava/util/List;Ljava/util/List;)V
+      27: return
+
+  public void deleteRemoteBranches(java.util.List<java.lang.String>, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        32
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        33
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_1
+      19: invokeinterface #131,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      24: ifeq          28
+      27: return
+      28: new           #134                // class git4idea/branch/GitBrancherImpl$7
+      31: dup
+      32: aload_0
+      33: aload_0
+      34: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      37: aload_1
+      38: invokestatic  #115                // Method getRefsDeletionProgressMessage:(Ljava/util/Collection;)Ljava/lang/String;
+      41: aconst_null
+      42: aload_1
+      43: aload_2
+      44: invokespecial #136                // Method git4idea/branch/GitBrancherImpl$7."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/util/List;Ljava/util/List;)V
+      47: invokevirtual #139                // Method git4idea/branch/GitBrancherImpl$7.runInBackground:()V
+      50: return
+
+  public void compare(java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        34
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        35
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      22: ldc           #140                // class git4idea/branch/GitBranchesUIHandler
+      24: invokeinterface #142,  2          // InterfaceMethod com/intellij/openapi/project/Project.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+      29: checkcast     #140                // class git4idea/branch/GitBranchesUIHandler
+      32: aload_2
+      33: aload_1
+      34: invokeinterface #148,  3          // InterfaceMethod git4idea/branch/GitBranchesUIHandler.compareWithCurrent:(Ljava/util/List;Ljava/lang/String;)V
+      39: return
+
+  public void compareAny(java.lang.String, java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        36
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        37
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        38
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      31: ldc           #140                // class git4idea/branch/GitBranchesUIHandler
+      33: invokeinterface #142,  2          // InterfaceMethod com/intellij/openapi/project/Project.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+      38: checkcast     #140                // class git4idea/branch/GitBranchesUIHandler
+      41: aload_3
+      42: aload_1
+      43: aload_2
+      44: invokeinterface #152,  4          // InterfaceMethod git4idea/branch/GitBranchesUIHandler.compare:(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+      49: return
+
+  public void showDiffWithLocal(java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        39
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        40
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: new           #156                // class git4idea/branch/GitShowDiffWithBranchPanel
+      21: dup
+      22: aload_0
+      23: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      26: aload_1
+      27: aload_2
+      28: aload_2
+      29: invokestatic  #158                // Method git4idea/branch/GitBranchUtil.getCurrentBranchOrRev:(Ljava/util/Collection;)Ljava/lang/String;
+      32: invokespecial #163                // Method git4idea/branch/GitShowDiffWithBranchPanel."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
+      35: invokevirtual #166                // Method git4idea/branch/GitShowDiffWithBranchPanel.showAsTab:()V
+      38: return
+
+  public void showDiff(java.lang.String, java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        41
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        42
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        43
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: ldc           #169                // String git.log.diff.handler.changes.between.revisions.title
+      29: iconst_2
+      30: anewarray     #2                  // class java/lang/Object
+      33: dup
+      34: iconst_0
+      35: aload_1
+      36: aastore
+      37: dup
+      38: iconst_1
+      39: aload_2
+      40: aastore
+      41: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      44: astore        4
+      46: aload_0
+      47: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      50: aload         4
+      52: getstatic     #171                // Field com/intellij/vcs/CompareWithLocalDialog$LocalContent.NONE:Lcom/intellij/vcs/CompareWithLocalDialog$LocalContent;
+      55: aload_0
+      56: aload_3
+      57: aload_1
+      58: aload_2
+      59: invokedynamic #177,  0            // InvokeDynamic #0:compute:(Lgit4idea/branch/GitBrancherImpl;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/openapi/util/ThrowableComputable;
+      64: invokestatic  #181                // Method com/intellij/vcs/CompareWithLocalDialog.showChanges:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/vcs/CompareWithLocalDialog$LocalContent;Lcom/intellij/openapi/util/ThrowableComputable;)V
+      67: return
+
+  public void merge(git4idea.GitReference, git4idea.branch.GitBrancher$DeleteOnMergeOption, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        44
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        45
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        46
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: aload_1
+      29: aload_2
+      30: aload_3
+      31: iconst_1
+      32: invokevirtual #187                // Method merge:(Lgit4idea/GitReference;Lgit4idea/branch/GitBrancher$DeleteOnMergeOption;Ljava/util/List;Z)V
+      35: return
+
+  public void merge(git4idea.GitReference, git4idea.branch.GitBrancher$DeleteOnMergeOption, java.util.List<? extends git4idea.repo.GitRepository>, boolean);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        47
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        48
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        49
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: new           #191                // class git4idea/branch/GitBrancherImpl$8
+      30: dup
+      31: aload_0
+      32: aload_0
+      33: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      36: ldc           #193                // String branch.merging.process
+      38: iconst_1
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_1
+      45: invokevirtual #195                // Method git4idea/GitReference.getName:()Ljava/lang/String;
+      48: aastore
+      49: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      52: aconst_null
+      53: iload         4
+      55: aload_1
+      56: aload_2
+      57: aload_3
+      58: invokespecial #201                // Method git4idea/branch/GitBrancherImpl$8."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;ZLgit4idea/GitReference;Lgit4idea/branch/GitBrancher$DeleteOnMergeOption;Ljava/util/List;)V
+      61: invokevirtual #204                // Method git4idea/branch/GitBrancherImpl$8.runInBackground:()V
+      64: return
+
+  public void merge(java.lang.String, git4idea.branch.GitBrancher$DeleteOnMergeOption, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        50
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        51
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        52
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: new           #205                // class git4idea/branch/GitBrancherImpl$9
+      30: dup
+      31: aload_0
+      32: aload_0
+      33: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      36: ldc           #193                // String branch.merging.process
+      38: iconst_1
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_1
+      45: aastore
+      46: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      49: aconst_null
+      50: aload_1
+      51: aload_2
+      52: aload_3
+      53: invokespecial #207                // Method git4idea/branch/GitBrancherImpl$9."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;Lgit4idea/branch/GitBrancher$DeleteOnMergeOption;Ljava/util/List;)V
+      56: invokevirtual #210                // Method git4idea/branch/GitBrancherImpl$9.runInBackground:()V
+      59: return
+
+  public void rebase(java.util.List<? extends git4idea.repo.GitRepository>, git4idea.GitReference);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        53
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        54
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: invokevirtual #211                // Method git4idea/GitReference.getFullName:()Ljava/lang/String;
+      24: aload_2
+      25: invokevirtual #195                // Method git4idea/GitReference.getName:()Ljava/lang/String;
+      28: invokevirtual #214                // Method doRebase:(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+      31: return
+
+  public void rebase(java.util.List<? extends git4idea.repo.GitRepository>, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        55
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        56
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: aload_2
+      22: invokevirtual #214                // Method doRebase:(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+      25: return
+
+  private void doRebase(java.util.List<? extends git4idea.repo.GitRepository>, java.lang.String, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        57
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        58
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        59
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: new           #217                // class git4idea/branch/GitBrancherImpl$10
+      30: dup
+      31: aload_0
+      32: aload_0
+      33: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      36: ldc           #219                // String branch.rebasing.onto.process
+      38: iconst_1
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_3
+      45: aastore
+      46: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      49: aconst_null
+      50: aload_1
+      51: aload_2
+      52: invokespecial #221                // Method git4idea/branch/GitBrancherImpl$10."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/util/List;Ljava/lang/String;)V
+      55: invokevirtual #224                // Method git4idea/branch/GitBrancherImpl$10.runInBackground:()V
+      58: return
+
+  public void rebaseOnCurrent(java.util.List<? extends git4idea.repo.GitRepository>, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        60
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        61
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: ldc           #225                // String HEAD
+      22: aload_2
+      23: invokevirtual #227                // Method rebase:(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+      26: return
+
+  public void rebase(java.util.List<? extends git4idea.repo.GitRepository>, java.lang.String, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        62
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        63
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        64
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: new           #230                // class git4idea/branch/GitBrancherImpl$11
+      30: dup
+      31: aload_0
+      32: aload_0
+      33: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      36: ldc           #232                // String branch.rebasing.process
+      38: iconst_1
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_3
+      45: aastore
+      46: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      49: aconst_null
+      50: aload_1
+      51: aload_2
+      52: aload_3
+      53: invokespecial #234                // Method git4idea/branch/GitBrancherImpl$11."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+      56: invokevirtual #237                // Method git4idea/branch/GitBrancherImpl$11.runInBackground:()V
+      59: return
+
+  public void renameBranch(java.lang.String, java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        65
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        66
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        67
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: new           #238                // class git4idea/branch/GitBrancherImpl$12
+      30: dup
+      31: aload_0
+      32: aload_0
+      33: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      36: ldc           #240                // String branch.renaming.branch.process
+      38: iconst_2
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_1
+      45: aastore
+      46: dup
+      47: iconst_1
+      48: aload_2
+      49: aastore
+      50: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      53: aconst_null
+      54: aload_1
+      55: aload_2
+      56: aload_3
+      57: invokespecial #242                // Method git4idea/branch/GitBrancherImpl$12."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+      60: invokevirtual #243                // Method git4idea/branch/GitBrancherImpl$12.runInBackground:()V
+      63: return
+
+  public void renameBranchAndUnsetUpstream(java.lang.String, java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        68
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        69
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        70
+      24: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      27: new           #244                // class git4idea/branch/GitBrancherImpl$13
+      30: dup
+      31: aload_0
+      32: aload_0
+      33: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      36: ldc           #240                // String branch.renaming.branch.process
+      38: iconst_2
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_1
+      45: aastore
+      46: dup
+      47: iconst_1
+      48: aload_2
+      49: aastore
+      50: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      53: aconst_null
+      54: aload_1
+      55: aload_2
+      56: aload_3
+      57: invokespecial #246                // Method git4idea/branch/GitBrancherImpl$13."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+      60: invokevirtual #247                // Method git4idea/branch/GitBrancherImpl$13.runInBackground:()V
+      63: return
+
+  public void deleteTag(java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        71
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        72
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: invokestatic  #93                 // Method java/util/Collections.singletonMap:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+      24: invokevirtual #248                // Method deleteTags:(Ljava/util/Map;)V
+      27: return
+
+  public void deleteTags(java.util.Map<java.lang.String, java.util.List<? extends git4idea.repo.GitRepository>>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        73
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #103,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+      15: ifeq          19
+      18: return
+      19: new           #252                // class git4idea/branch/GitBrancherImpl$14
+      22: dup
+      23: aload_0
+      24: aload_0
+      25: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      28: aload_1
+      29: invokeinterface #109,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      34: invokestatic  #115                // Method getRefsDeletionProgressMessage:(Ljava/util/Collection;)Ljava/lang/String;
+      37: aconst_null
+      38: aload_1
+      39: invokespecial #254                // Method git4idea/branch/GitBrancherImpl$14."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/util/Map;)V
+      42: invokevirtual #257                // Method git4idea/branch/GitBrancherImpl$14.runInBackground:()V
+      45: return
+
+  public void deleteRemoteTag(java.lang.String, java.util.Map<git4idea.repo.GitRepository, java.lang.String>);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        74
+       6: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        75
+      15: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      18: new           #258                // class git4idea/branch/GitBrancherImpl$15
+      21: dup
+      22: aload_0
+      23: aload_0
+      24: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      27: ldc_w         #260                // String branch.deleting.tag.on.remote.process
+      30: iconst_1
+      31: anewarray     #2                  // class java/lang/Object
+      34: dup
+      35: iconst_0
+      36: aload_1
+      37: aastore
+      38: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      41: aconst_null
+      42: aload_1
+      43: aload_2
+      44: invokespecial #262                // Method git4idea/branch/GitBrancherImpl$15."<init>":(Lgit4idea/branch/GitBrancherImpl;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/String;Ljava/util/Map;)V
+      47: invokevirtual #265                // Method git4idea/branch/GitBrancherImpl$15.runInBackground:()V
+      50: return
+
+  private static java.lang.String getRefsDeletionProgressMessage(java.util.Collection<java.lang.String>);
+    Code:
+       0: aload_0
+       1: invokeinterface #266,  1          // InterfaceMethod java/util/Collection.size:()I
+       6: iconst_1
+       7: if_icmpne     27
+      10: aload_0
+      11: invokeinterface #272,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      16: invokeinterface #276,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      21: checkcast     #282                // class java/lang/String
+      24: goto          34
+      27: aload_0
+      28: ldc_w         #284                // String ,
+      31: invokestatic  #286                // Method com/intellij/openapi/util/text/StringUtil.join:(Ljava/util/Collection;Ljava/lang/String;)Ljava/lang/String;
+      34: astore_1
+      35: ldc_w         #292                // String branch.deleting.branch.process
+      38: iconst_1
+      39: anewarray     #2                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: aload_1
+      45: aastore
+      46: invokestatic  #17                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      49: dup
+      50: ifnonnull     58
+      53: bipush        76
+      55: invokestatic  #481                // Method $$$reportNull$$$0:(I)V
+      58: areturn
+
+  private java.util.Collection lambda$showDiff$0(java.util.List, java.lang.String, java.lang.String) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: new           #294                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #296                // Method java/util/ArrayList."<init>":()V
+       7: astore        4
+       9: aload_1
+      10: invokeinterface #297,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      15: astore        5
+      17: aload         5
+      19: invokeinterface #298,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          78
+      27: aload         5
+      29: invokeinterface #276,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      34: checkcast     #301                // class git4idea/repo/GitRepository
+      37: astore        6
+      39: aload         6
+      41: invokeinterface #303,  1          // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      46: astore        7
+      48: aload         4
+      50: aload_0
+      51: getfield      #7                  // Field myProject:Lcom/intellij/openapi/project/Project;
+      54: aload         7
+      56: aload_2
+      57: aload_3
+      58: aload         7
+      60: invokestatic  #307                // Method com/intellij/vcsUtil/VcsUtil.getFilePath:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/openapi/vcs/FilePath;
+      63: invokestatic  #313                // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      66: invokestatic  #317                // Method git4idea/changes/GitChangeUtils.getDiff:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/lang/String;Ljava/util/Collection;)Ljava/util/Collection;
+      69: invokeinterface #323,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      74: pop
+      75: goto          17
+      78: aload         4
+      80: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 76
+                     0: 324
+                     1: 324
+                     2: 324
+                     3: 324
+                     4: 324
+                     5: 324
+                     6: 324
+                     7: 324
+                     8: 324
+                     9: 324
+                    10: 324
+                    11: 324
+                    12: 324
+                    13: 324
+                    14: 324
+                    15: 324
+                    16: 324
+                    17: 324
+                    18: 324
+                    19: 324
+                    20: 324
+                    21: 324
+                    22: 324
+                    23: 324
+                    24: 324
+                    25: 324
+                    26: 324
+                    27: 324
+                    28: 324
+                    29: 324
+                    30: 324
+                    31: 324
+                    32: 324
+                    33: 324
+                    34: 324
+                    35: 324
+                    36: 324
+                    37: 324
+                    38: 324
+                    39: 324
+                    40: 324
+                    41: 324
+                    42: 324
+                    43: 324
+                    44: 324
+                    45: 324
+                    46: 324
+                    47: 324
+                    48: 324
+                    49: 324
+                    50: 324
+                    51: 324
+                    52: 324
+                    53: 324
+                    54: 324
+                    55: 324
+                    56: 324
+                    57: 324
+                    58: 324
+                    59: 324
+                    60: 324
+                    61: 324
+                    62: 324
+                    63: 324
+                    64: 324
+                    65: 324
+                    66: 324
+                    67: 324
+                    68: 324
+                    69: 324
+                    70: 324
+                    71: 324
+                    72: 324
+                    73: 324
+                    74: 324
+                    75: 324
+                    76: 330
+               default: 324
+          }
+     324: ldc_w         #483                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     327: goto          336
+     330: ldc_w         #485                // String @NotNull method %s.%s must not return null
+     333: goto          336
+     336: iload_0
+     337: tableswitch   { // 0 to 76
+                     0: 660
+                     1: 660
+                     2: 660
+                     3: 660
+                     4: 660
+                     5: 660
+                     6: 660
+                     7: 660
+                     8: 660
+                     9: 660
+                    10: 660
+                    11: 660
+                    12: 660
+                    13: 660
+                    14: 660
+                    15: 660
+                    16: 660
+                    17: 660
+                    18: 660
+                    19: 660
+                    20: 660
+                    21: 660
+                    22: 660
+                    23: 660
+                    24: 660
+                    25: 660
+                    26: 660
+                    27: 660
+                    28: 660
+                    29: 660
+                    30: 660
+                    31: 660
+                    32: 660
+                    33: 660
+                    34: 660
+                    35: 660
+                    36: 660
+                    37: 660
+                    38: 660
+                    39: 660
+                    40: 660
+                    41: 660
+                    42: 660
+                    43: 660
+                    44: 660
+                    45: 660
+                    46: 660
+                    47: 660
+                    48: 660
+                    49: 660
+                    50: 660
+                    51: 660
+                    52: 660
+                    53: 660
+                    54: 660
+                    55: 660
+                    56: 660
+                    57: 660
+                    58: 660
+                    59: 660
+                    60: 660
+                    61: 660
+                    62: 660
+                    63: 660
+                    64: 660
+                    65: 660
+                    66: 660
+                    67: 660
+                    68: 660
+                    69: 660
+                    70: 660
+                    71: 660
+                    72: 660
+                    73: 660
+                    74: 660
+                    75: 660
+                    76: 664
+               default: 660
+          }
+     660: iconst_3
+     661: goto          668
+     664: iconst_2
+     665: goto          668
+     668: anewarray     #2                  // class java/lang/Object
+     671: iload_0
+     672: tableswitch   { // 0 to 76
+                     0: 996
+                     1: 1005
+                     2: 1014
+                     3: 1005
+                     4: 1023
+                     5: 1032
+                     6: 1041
+                     7: 1005
+                     8: 1023
+                     9: 1005
+                    10: 1023
+                    11: 1005
+                    12: 1023
+                    13: 1005
+                    14: 1050
+                    15: 1014
+                    16: 1050
+                    17: 1014
+                    18: 1059
+                    19: 1068
+                    20: 1014
+                    21: 1059
+                    22: 1068
+                    23: 1014
+                    24: 1059
+                    25: 1068
+                    26: 1014
+                    27: 1077
+                    28: 1014
+                    29: 1086
+                    30: 1077
+                    31: 1014
+                    32: 1095
+                    33: 1014
+                    34: 1077
+                    35: 1014
+                    36: 1077
+                    37: 1104
+                    38: 1014
+                    39: 1077
+                    40: 1014
+                    41: 1077
+                    42: 1104
+                    43: 1014
+                    44: 1050
+                    45: 1113
+                    46: 1014
+                    47: 1050
+                    48: 1113
+                    49: 1014
+                    50: 1077
+                    51: 1113
+                    52: 1014
+                    53: 1014
+                    54: 1050
+                    55: 1014
+                    56: 1050
+                    57: 1014
+                    58: 1050
+                    59: 1122
+                    60: 1014
+                    61: 1077
+                    62: 1014
+                    63: 1131
+                    64: 1077
+                    65: 1140
+                    66: 1149
+                    67: 1014
+                    68: 1140
+                    69: 1149
+                    70: 1014
+                    71: 1005
+                    72: 1014
+                    73: 1158
+                    74: 1005
+                    75: 1014
+                    76: 1167
+               default: 996
+          }
+     996: dup
+     997: iconst_0
+     998: ldc_w         #486                // String project
+    1001: aastore
+    1002: goto          1176
+    1005: dup
+    1006: iconst_0
+    1007: ldc_w         #487                // String name
+    1010: aastore
+    1011: goto          1176
+    1014: dup
+    1015: iconst_0
+    1016: ldc_w         #488                // String repositories
+    1019: aastore
+    1020: goto          1176
+    1023: dup
+    1024: iconst_0
+    1025: ldc_w         #489                // String startPoints
+    1028: aastore
+    1029: goto          1176
+    1032: dup
+    1033: iconst_0
+    1034: ldc_w         #490                // String uiHandler
+    1037: aastore
+    1038: goto          1176
+    1041: dup
+    1042: iconst_0
+    1043: ldc_w         #491                // String indicator
+    1046: aastore
+    1047: goto          1176
+    1050: dup
+    1051: iconst_0
+    1052: ldc_w         #492                // String reference
+    1055: aastore
+    1056: goto          1176
+    1059: dup
+    1060: iconst_0
+    1061: ldc_w         #493                // String newBranchName
+    1064: aastore
+    1065: goto          1176
+    1068: dup
+    1069: iconst_0
+    1070: ldc_w         #494                // String startPoint
+    1073: aastore
+    1074: goto          1176
+    1077: dup
+    1078: iconst_0
+    1079: ldc_w         #495                // String branchName
+    1082: aastore
+    1083: goto          1176
+    1086: dup
+    1087: iconst_0
+    1088: ldc_w         #496                // String branchesToContainingRepositories
+    1091: aastore
+    1092: goto          1176
+    1095: dup
+    1096: iconst_0
+    1097: ldc_w         #497                // String branchNames
+    1100: aastore
+    1101: goto          1176
+    1104: dup
+    1105: iconst_0
+    1106: ldc_w         #498                // String otherBranchName
+    1109: aastore
+    1110: goto          1176
+    1113: dup
+    1114: iconst_0
+    1115: ldc_w         #499                // String deleteOnMerge
+    1118: aastore
+    1119: goto          1176
+    1122: dup
+    1123: iconst_0
+    1124: ldc_w         #500                // String displayName
+    1127: aastore
+    1128: goto          1176
+    1131: dup
+    1132: iconst_0
+    1133: ldc_w         #501                // String upstream
+    1136: aastore
+    1137: goto          1176
+    1140: dup
+    1141: iconst_0
+    1142: ldc_w         #502                // String currentName
+    1145: aastore
+    1146: goto          1176
+    1149: dup
+    1150: iconst_0
+    1151: ldc_w         #503                // String newName
+    1154: aastore
+    1155: goto          1176
+    1158: dup
+    1159: iconst_0
+    1160: ldc_w         #504                // String tagsToContainingRepositories
+    1163: aastore
+    1164: goto          1176
+    1167: dup
+    1168: iconst_0
+    1169: ldc_w         #505                // String git4idea/branch/GitBrancherImpl
+    1172: aastore
+    1173: goto          1176
+    1176: iload_0
+    1177: tableswitch   { // 0 to 76
+                     0: 1500
+                     1: 1500
+                     2: 1500
+                     3: 1500
+                     4: 1500
+                     5: 1500
+                     6: 1500
+                     7: 1500
+                     8: 1500
+                     9: 1500
+                    10: 1500
+                    11: 1500
+                    12: 1500
+                    13: 1500
+                    14: 1500
+                    15: 1500
+                    16: 1500
+                    17: 1500
+                    18: 1500
+                    19: 1500
+                    20: 1500
+                    21: 1500
+                    22: 1500
+                    23: 1500
+                    24: 1500
+                    25: 1500
+                    26: 1500
+                    27: 1500
+                    28: 1500
+                    29: 1500
+                    30: 1500
+                    31: 1500
+                    32: 1500
+                    33: 1500
+                    34: 1500
+                    35: 1500
+                    36: 1500
+                    37: 1500
+                    38: 1500
+                    39: 1500
+                    40: 1500
+                    41: 1500
+                    42: 1500
+                    43: 1500
+                    44: 1500
+                    45: 1500
+                    46: 1500
+                    47: 1500
+                    48: 1500
+                    49: 1500
+                    50: 1500
+                    51: 1500
+                    52: 1500
+                    53: 1500
+                    54: 1500
+                    55: 1500
+                    56: 1500
+                    57: 1500
+                    58: 1500
+                    59: 1500
+                    60: 1500
+                    61: 1500
+                    62: 1500
+                    63: 1500
+                    64: 1500
+                    65: 1500
+                    66: 1500
+                    67: 1500
+                    68: 1500
+                    69: 1500
+                    70: 1500
+                    71: 1500
+                    72: 1500
+                    73: 1500
+                    74: 1500
+                    75: 1500
+                    76: 1509
+               default: 1500
+          }
+    1500: dup
+    1501: iconst_1
+    1502: ldc_w         #505                // String git4idea/branch/GitBrancherImpl
+    1505: aastore
+    1506: goto          1518
+    1509: dup
+    1510: iconst_1
+    1511: ldc_w         #506                // String getRefsDeletionProgressMessage
+    1514: aastore
+    1515: goto          1518
+    1518: iload_0
+    1519: tableswitch   { // 0 to 76
+                     0: 1840
+                     1: 1849
+                     2: 1849
+                     3: 1858
+                     4: 1858
+                     5: 1867
+                     6: 1867
+                     7: 1858
+                     8: 1858
+                     9: 1858
+                    10: 1858
+                    11: 1858
+                    12: 1858
+                    13: 1876
+                    14: 1876
+                    15: 1876
+                    16: 1885
+                    17: 1885
+                    18: 1894
+                    19: 1894
+                    20: 1894
+                    21: 1894
+                    22: 1894
+                    23: 1894
+                    24: 1894
+                    25: 1894
+                    26: 1894
+                    27: 1903
+                    28: 1903
+                    29: 1912
+                    30: 1921
+                    31: 1921
+                    32: 1930
+                    33: 1930
+                    34: 1939
+                    35: 1939
+                    36: 1948
+                    37: 1948
+                    38: 1948
+                    39: 1957
+                    40: 1957
+                    41: 1966
+                    42: 1966
+                    43: 1966
+                    44: 1975
+                    45: 1975
+                    46: 1975
+                    47: 1975
+                    48: 1975
+                    49: 1975
+                    50: 1975
+                    51: 1975
+                    52: 1975
+                    53: 1984
+                    54: 1984
+                    55: 1984
+                    56: 1984
+                    57: 1993
+                    58: 1993
+                    59: 1993
+                    60: 2002
+                    61: 2002
+                    62: 1984
+                    63: 1984
+                    64: 1984
+                    65: 2011
+                    66: 2011
+                    67: 2011
+                    68: 2020
+                    69: 2020
+                    70: 2020
+                    71: 2029
+                    72: 2029
+                    73: 2038
+                    74: 2047
+                    75: 2047
+                    76: 2056
+               default: 1840
+          }
+    1840: dup
+    1841: iconst_2
+    1842: ldc_w         #507                // String <init>
+    1845: aastore
+    1846: goto          2059
+    1849: dup
+    1850: iconst_2
+    1851: ldc_w         #508                // String checkoutNewBranch
+    1854: aastore
+    1855: goto          2059
+    1858: dup
+    1859: iconst_2
+    1860: ldc_w         #509                // String createBranch
+    1863: aastore
+    1864: goto          2059
+    1867: dup
+    1868: iconst_2
+    1869: ldc_w         #510                // String newWorker
+    1872: aastore
+    1873: goto          2059
+    1876: dup
+    1877: iconst_2
+    1878: ldc_w         #511                // String createNewTag
+    1881: aastore
+    1882: goto          2059
+    1885: dup
+    1886: iconst_2
+    1887: ldc_w         #512                // String checkout
+    1890: aastore
+    1891: goto          2059
+    1894: dup
+    1895: iconst_2
+    1896: ldc_w         #513                // String checkoutNewBranchStartingFrom
+    1899: aastore
+    1900: goto          2059
+    1903: dup
+    1904: iconst_2
+    1905: ldc_w         #514                // String deleteBranch
+    1908: aastore
+    1909: goto          2059
+    1912: dup
+    1913: iconst_2
+    1914: ldc_w         #515                // String deleteBranches
+    1917: aastore
+    1918: goto          2059
+    1921: dup
+    1922: iconst_2
+    1923: ldc_w         #516                // String deleteRemoteBranch
+    1926: aastore
+    1927: goto          2059
+    1930: dup
+    1931: iconst_2
+    1932: ldc_w         #517                // String deleteRemoteBranches
+    1935: aastore
+    1936: goto          2059
+    1939: dup
+    1940: iconst_2
+    1941: ldc_w         #518                // String compare
+    1944: aastore
+    1945: goto          2059
+    1948: dup
+    1949: iconst_2
+    1950: ldc_w         #519                // String compareAny
+    1953: aastore
+    1954: goto          2059
+    1957: dup
+    1958: iconst_2
+    1959: ldc_w         #520                // String showDiffWithLocal
+    1962: aastore
+    1963: goto          2059
+    1966: dup
+    1967: iconst_2
+    1968: ldc_w         #521                // String showDiff
+    1971: aastore
+    1972: goto          2059
+    1975: dup
+    1976: iconst_2
+    1977: ldc_w         #522                // String merge
+    1980: aastore
+    1981: goto          2059
+    1984: dup
+    1985: iconst_2
+    1986: ldc_w         #523                // String rebase
+    1989: aastore
+    1990: goto          2059
+    1993: dup
+    1994: iconst_2
+    1995: ldc_w         #524                // String doRebase
+    1998: aastore
+    1999: goto          2059
+    2002: dup
+    2003: iconst_2
+    2004: ldc_w         #525                // String rebaseOnCurrent
+    2007: aastore
+    2008: goto          2059
+    2011: dup
+    2012: iconst_2
+    2013: ldc_w         #526                // String renameBranch
+    2016: aastore
+    2017: goto          2059
+    2020: dup
+    2021: iconst_2
+    2022: ldc_w         #527                // String renameBranchAndUnsetUpstream
+    2025: aastore
+    2026: goto          2059
+    2029: dup
+    2030: iconst_2
+    2031: ldc_w         #528                // String deleteTag
+    2034: aastore
+    2035: goto          2059
+    2038: dup
+    2039: iconst_2
+    2040: ldc_w         #529                // String deleteTags
+    2043: aastore
+    2044: goto          2059
+    2047: dup
+    2048: iconst_2
+    2049: ldc_w         #530                // String deleteRemoteTag
+    2052: aastore
+    2053: goto          2059
+    2056: goto          2059
+    2059: invokestatic  #533                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    2062: iload_0
+    2063: tableswitch   { // 0 to 76
+                     0: 2384
+                     1: 2384
+                     2: 2384
+                     3: 2384
+                     4: 2384
+                     5: 2384
+                     6: 2384
+                     7: 2384
+                     8: 2384
+                     9: 2384
+                    10: 2384
+                    11: 2384
+                    12: 2384
+                    13: 2384
+                    14: 2384
+                    15: 2384
+                    16: 2384
+                    17: 2384
+                    18: 2384
+                    19: 2384
+                    20: 2384
+                    21: 2384
+                    22: 2384
+                    23: 2384
+                    24: 2384
+                    25: 2384
+                    26: 2384
+                    27: 2384
+                    28: 2384
+                    29: 2384
+                    30: 2384
+                    31: 2384
+                    32: 2384
+                    33: 2384
+                    34: 2384
+                    35: 2384
+                    36: 2384
+                    37: 2384
+                    38: 2384
+                    39: 2384
+                    40: 2384
+                    41: 2384
+                    42: 2384
+                    43: 2384
+                    44: 2384
+                    45: 2384
+                    46: 2384
+                    47: 2384
+                    48: 2384
+                    49: 2384
+                    50: 2384
+                    51: 2384
+                    52: 2384
+                    53: 2384
+                    54: 2384
+                    55: 2384
+                    56: 2384
+                    57: 2384
+                    58: 2384
+                    59: 2384
+                    60: 2384
+                    61: 2384
+                    62: 2384
+                    63: 2384
+                    64: 2384
+                    65: 2384
+                    66: 2384
+                    67: 2384
+                    68: 2384
+                    69: 2384
+                    70: 2384
+                    71: 2384
+                    72: 2384
+                    73: 2384
+                    74: 2384
+                    75: 2384
+                    76: 2395
+               default: 2384
+          }
+    2384: new           #535                // class java/lang/IllegalArgumentException
+    2387: dup_x1
+    2388: swap
+    2389: invokespecial #538                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+    2392: goto          2406
+    2395: new           #540                // class java/lang/IllegalStateException
+    2398: dup_x1
+    2399: swap
+    2400: invokespecial #541                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+    2403: goto          2406
+    2406: athrow
+}

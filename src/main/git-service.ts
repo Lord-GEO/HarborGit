@@ -215,7 +215,7 @@ export class GitService {
     // This ref preserves committed history only. It is deliberately not called a WIP backup.
     await this.git(['update-ref', '--create-reflog', '-m', `HarborGit before ${operation}`, reference, state.head]);
     const target = path.join(gitDir, 'harborgit-history-backup.json'), temporary = `${target}.${randomUUID()}.tmp`;
-    try { await fs.writeFile(temporary, JSON.stringify({ ref: reference, head: state.head, operation, createdAt: new Date().toISOString() }), 'utf8'); await fs.rename(temporary, target); }
+    try { await fs.writeFile(temporary, JSON.stringify({ ref: reference, head: state.head, sourceBranch: state.branch, operation, createdAt: new Date().toISOString() }), 'utf8'); await fs.rename(temporary, target); }
     finally { await fs.rm(temporary, { force: true }).catch(() => {}); }
     return reference;
   }
@@ -327,18 +327,50 @@ export class GitService {
     return this.snapshot();
   }
   private async startRebase(p: Record<string, unknown>) {
-    const target = ref(p.branch), state = await this.snapshot();
+    const byBranch = p.branch !== undefined, byCommit = p.targetCommit !== undefined;
+    if (byBranch === byCommit) throw new GitError({ message: '请选择且仅选择一个变基目标：分支或指定提交' });
+    const state = await this.snapshot();
     await this.expectedHead(p.expectedHead, state); await this.requireNoOperation(state);
     if (state.entries.length) throw new GitError({ message: '变基前请提交或妥善处理暂存区、工作区及未跟踪改动' });
     if (p.preserveMerges !== undefined && typeof p.preserveMerges !== 'boolean') throw new GitError({ message: '保留合并结构选项无效' });
-    const selected = (await this.branches()).find(branch => branch.name === target);
-    if (!selected) throw new GitError({ message: '目标分支不存在，请刷新后重试' });
-    if (!selected.remote && selected.name === state.branch) throw new GitError({ message: '请选择不同于当前分支的变基目标' });
-    const fullRef = `refs/${selected.remote ? 'remotes' : 'heads'}/${target}`;
-    const onto = (await this.git(['rev-parse', '--verify', `${fullRef}^{commit}`])).stdout.trim();
-    await this.safeTreeWrites([state.head, onto], 'sequencer', await this.replayCommits(onto, state.head)); await this.expectedHead(p.expectedHead, state);
-    await this.saveHistoryBackup(state, 'rebase');
-    return this.sequencerCommand('rebase', ['-c', 'rebase.updateRefs=false', '-c', 'rebase.autoStash=false', '-c', 'rebase.autoSquash=false', '-c', 'submodule.recurse=false', 'rebase', '--no-update-refs', '--no-autostash', '--no-autosquash', p.preserveMerges ? '--rebase-merges' : '--no-rebase-merges', '--', onto]);
+    const branches = await this.branches(), source = p.sourceBranch === undefined ? state.branch : ref(p.sourceBranch, '源分支名称');
+    if (!branches.some(branch => !branch.remote && branch.name === source)) throw new GitError({ message: '请选择已存在的本地源分支，不能直接变基远程分支' });
+    const sourceRef = `refs/heads/${source}`, currentSource = source === state.branch;
+    const sourceHead = (await this.git(['rev-parse', '--verify', `${sourceRef}^{commit}`])).stdout.trim();
+    if (!currentSource || p.expectedSourceHead !== undefined) {
+      if (typeof p.expectedSourceHead !== 'string' || !/^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(p.expectedSourceHead) || p.expectedSourceHead.toLowerCase() !== sourceHead.toLowerCase()) throw new GitError({ message: '源分支已变化或确认版本无效，请刷新后重新确认源分支' });
+    }
+    let onto: string;
+    if (byCommit) onto = await this.commitHash(p.targetCommit);
+    else {
+      const target = ref(p.branch, '目标分支名称'), selected = branches.find(branch => branch.name === target);
+      if (!selected) throw new GitError({ message: '目标分支不存在，请刷新后重试' });
+      if (!selected.remote && selected.name === source) throw new GitError({ message: '请选择不同于源分支的变基目标' });
+      const fullRef = `refs/${selected.remote ? 'remotes' : 'heads'}/${target}`;
+      onto = (await this.git(['rev-parse', '--verify', `${fullRef}^{commit}`])).stdout.trim();
+    }
+    const verifyReferences = async () => {
+      await this.expectedHead(p.expectedHead, state);
+      const latest = (await this.git(['rev-parse', '--verify', `${sourceRef}^{commit}`])).stdout.trim();
+      if (latest.toLowerCase() !== sourceHead.toLowerCase()) throw new GitError({ message: '源分支已变化，请刷新后重新确认，未开始变基' });
+      const activeRef = (await this.git(['symbolic-ref', '--quiet', 'HEAD'], { accepted: [0, 1] })).stdout.trim();
+      if (activeRef !== `refs/heads/${state.branch}`) throw new GitError({ message: '当前工作区分支已变化，请刷新后重新确认，未开始变基' });
+      const trees = await this.git(['worktree', 'list', '--porcelain', '-z']);
+      if (trees.truncated) throw new GitError({ message: '工作区列表过大，无法确认源分支是否安全可用' });
+      const normalize = (value: string) => process.platform === 'win32' ? path.resolve(value).toLowerCase() : path.resolve(value);
+      for (const record of trees.stdout.split('\0\0')) if (record.split('\0').includes(`branch ${sourceRef}`)) {
+        const location = record.split('\0').find(line => line.startsWith('worktree '))?.slice(9);
+        if (!location || normalize(await fs.realpath(location).catch(() => location)) !== normalize(this.root)) throw new GitError({ message: `源分支 ${source} 已在另一个工作区检出：${location || '未知目录'}。请先结束该工作区的占用，未开始变基。` });
+      }
+    };
+    await verifyReferences();
+    // A non-current source is checked out by Git itself. Protect both that tree
+    // transition and every source commit to be replayed, including deleted paths.
+    await this.safeTreeWrites([state.head, sourceHead, onto], 'sequencer', await this.replayCommits(onto, sourceHead));
+    await verifyReferences();
+    await this.saveHistoryBackup({ ...state, head: sourceHead, branch: source }, 'rebase');
+    await verifyReferences();
+    return this.sequencerCommand('rebase', ['-c', 'rebase.updateRefs=false', '-c', 'rebase.autoStash=false', '-c', 'rebase.autoSquash=false', '-c', 'submodule.recurse=false', 'rebase', '--no-update-refs', '--no-autostash', '--no-autosquash', p.preserveMerges ? '--rebase-merges' : '--no-rebase-merges', '--', onto, ...(currentSource ? [] : [source])]);
   }
   private async rebaseAction(action: unknown) {
     if (!['continue', 'skip', 'abort'].includes(action as string)) throw new GitError({ message: '变基操作无效' });

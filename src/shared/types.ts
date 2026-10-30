@@ -35,7 +35,7 @@ export interface Requests {
   saveRemote: { name: string; url: string; pushUrl?: string; create: boolean }; removeRemote: { name: string };
   merge: { branch: string }; mergeInto: { target: string }; finishMergeWorkspace: Record<string, never>; conflict: { path: string }; resolve: { path: string; choice: 'ours' | 'theirs' | 'manual'; content?: string };
   abortMerge: Record<string, never>; identity: { name: string; email: string };
-  rebase: { branch: string; preserveMerges?: boolean; expectedHead: string };
+  rebase: { branch?: string; targetCommit?: string; sourceBranch?: string; expectedSourceHead?: string; preserveMerges?: boolean; expectedHead: string };
   rebaseAction: { action: 'continue' | 'skip' | 'abort' };
   revert: { hash: string; mainline?: number; expectedHead: string };
   revertAction: { action: 'continue' | 'abort' };

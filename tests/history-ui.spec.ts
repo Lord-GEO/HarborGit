@@ -131,3 +131,40 @@ test('history actions UI: paused rebase survives restart, labels both sides corr
   expect(git(repo, ['branch', '--show-current'])).toBe('dev'); expect(git(repo, ['rev-parse', 'HEAD'])).not.toBe(original);
   expect(await readFile(path.join(repo, '冲突.txt'), 'utf8')).toBe('master + dev\n'); await close(app, errors);
 });
+
+test('history actions UI: selected commit rebase moves master to dev second commit and leaves its later tip unchanged', async () => {
+  const { root, repo } = await fixture(); const originalMaster = await commit(repo, 'base.txt', 'base\n', 'base');
+  git(repo, ['switch', '-c', 'dev']); await commit(repo, 'first.txt', 'first\n', 'dev first');
+  const second = await commit(repo, 'second.txt', 'second\n', 'dev second'); const devTip = await commit(repo, 'third.txt', 'third\n', 'dev third');
+  const { app, page, errors } = await launch(root); await open(page, repo); await navigate(page, '提交历史');
+  await page.getByRole('button', { name: '查看提交 dev second', exact: true }).click();
+  await page.getByRole('button', { name: '将分支变基到所选提交', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: '将分支变基到指定提交', exact: true });
+  await expect(dialog.getByLabel('变基目标提交', { exact: true })).toContainText(second);
+  await expect(dialog.getByLabel('要变基的分支', { exact: true })).toHaveValue('dev');
+  await dialog.getByLabel('要变基的分支', { exact: true }).selectOption('master');
+  await expect(dialog).toContainText('master'); await expect(dialog).toContainText('切换');
+  await capture(app, 'v1.5-rebase-selected-commit.png');
+  await dialog.getByRole('button', { name: '开始变基', exact: true }).click(); await expect(dialog).toBeHidden(); await idle(page);
+  expect(git(repo, ['branch', '--show-current'])).toBe('master'); expect(git(repo, ['rev-parse', 'master'])).toBe(second);
+  expect(git(repo, ['rev-parse', 'dev'])).toBe(devTip); expect(git(repo, ['ls-tree', '--name-only', 'HEAD'])).not.toContain('third.txt');
+  const backup = await page.evaluate(async () => { const tabs = document.querySelectorAll('[role=tab]'); const tab = Array.from(tabs).find(tab => tab.getAttribute('aria-selected') === 'true'); const session = tab?.id.replace(/^tab-/, ''); const result = await window.harbor.request('refresh', {}, session); if (!result.ok) throw new Error(result.error.message); return result.data.historyBackup; });
+  expect(backup).toMatch(/^refs\/harborgit\/backups\//); expect(git(repo, ['rev-parse', backup!])).toBe(originalMaster);
+  await capture(app, 'v1.5-rebase-selected-result.png'); await close(app, errors);
+});
+
+test('history actions UI: selected commit rebase rejects a stale source reference without switching branches', async () => {
+  const { root, repo } = await fixture(); const originalMaster = await commit(repo, 'base.txt', 'base\n', 'base');
+  git(repo, ['switch', '-c', 'dev']); const first = await commit(repo, 'first.txt', 'first\n', 'dev first'); const second = await commit(repo, 'second.txt', 'second\n', 'dev second');
+  const { app, page, errors } = await launch(root); await open(page, repo); await navigate(page, '提交历史');
+  await page.getByRole('button', { name: '查看提交 dev second', exact: true }).click();
+  await page.getByRole('button', { name: '将分支变基到所选提交', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: '将分支变基到指定提交', exact: true });
+  await dialog.getByLabel('要变基的分支', { exact: true }).selectOption('master');
+  // Simulate an external ref update only inside this dedicated test repository.
+  git(repo, ['update-ref', 'refs/heads/master', first, originalMaster]);
+  await dialog.getByRole('button', { name: '开始变基', exact: true }).click();
+  await expect(dialog.getByRole('alert')).toBeVisible(); await expect(dialog).toBeVisible();
+  expect(git(repo, ['branch', '--show-current'])).toBe('dev'); expect(git(repo, ['rev-parse', 'master'])).toBe(first); expect(git(repo, ['rev-parse', 'dev'])).toBe(second);
+  await dialog.getByRole('button', { name: '取消', exact: true }).click(); await close(app, errors);
+});

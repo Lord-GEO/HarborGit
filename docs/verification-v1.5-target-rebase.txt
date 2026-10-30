@@ -1,0 +1,14 @@
+✔ selected commit rebase: another local branch can advance to a middle commit without moving dev (6208.9731ms)
+✔ selected commit rebase: source-only commits replay onto the selected hash rather than the target branch tip (4366.4689ms)
+✔ selected commit rebase: non-current source conflict can abort or reopen and continue (10268.8984ms)
+✔ selected commit rebase: stale source and source checked out in another worktree are rejected before switching (2998.0768ms)
+✔ selected commit rebase: validation and dirty worktree protect both branch tips (5907.1312ms)
+✔ selected commit rebase: existing branch target also accepts an explicitly selected local source (4387.5649ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34955.6162

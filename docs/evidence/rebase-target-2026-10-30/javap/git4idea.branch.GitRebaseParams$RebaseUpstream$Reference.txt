@@ -1,0 +1,22 @@
+Compiled from "GitRebaseParams.kt"
+public class git4idea.branch.GitRebaseParams$RebaseUpstream$Reference implements git4idea.branch.GitRebaseParams$RebaseUpstream {
+  private final java.lang.String ref;
+
+  public git4idea.branch.GitRebaseParams$RebaseUpstream$Reference(java.lang.String);
+    Code:
+       0: aload_1
+       1: ldc           #11                 // String ref
+       3: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: invokespecial #20                 // Method java/lang/Object."<init>":()V
+      10: aload_0
+      11: aload_1
+      12: putfield      #23                 // Field ref:Ljava/lang/String;
+      15: return
+
+  public final java.lang.String getRef();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field ref:Ljava/lang/String;
+       4: areturn
+}

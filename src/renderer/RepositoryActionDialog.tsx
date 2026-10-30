@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import type { Branch, Commit, Failure, Repository, Requests } from '../shared/types';
 
 export type RepositoryActionIntent =
-  | { kind: 'rebase'; repository: Repository; target: string }
+  | { kind: 'rebase'; repository: Repository; target: string; targetCommit?: Commit }
   | { kind: 'revert'; repository: Repository; commit: Commit }
   | { kind: 'reset'; repository: Repository; commit: Commit }
   | { kind: 'rollback'; repository: Repository; paths: string[]; displayPaths: string[]; scope: 'worktree' | 'all'; unavailable?: string }
@@ -20,6 +20,8 @@ export function RepositoryActionDialog({ intent, branches, busy, error, onClose,
   intent: RepositoryActionIntent; branches: Branch[]; busy: boolean; error: Failure | null; onClose(): void; onExecute(request: RepositoryActionRequest): Promise<void>;
 }) {
   const repository = intent.repository;
+  const [branchSnapshot] = useState(() => branches.map(branch => ({ ...branch })));
+  const [sourceBranch, setSourceBranch] = useState(repository.branch);
   const [target, setTarget] = useState(intent.kind === 'rebase' ? intent.target : '');
   const [preserveMerges, setPreserveMerges] = useState(false);
   const [mode, setMode] = useState<'soft' | 'mixed' | 'hard'>('mixed');
@@ -28,8 +30,11 @@ export function RepositoryActionDialog({ intent, branches, busy, error, onClose,
   const isHistory = intent.kind === 'rebase' || intent.kind === 'revert' || intent.kind === 'reset';
   const requiresClean = intent.kind === 'rebase' || intent.kind === 'revert';
   const dirty = repository.entries.length > 0;
-  const invalid = (requiresClean && dirty) || (intent.kind === 'rebase' && !target) || (intent.kind === 'reset' && mode === 'hard' && !discard) || (intent.kind === 'rollback' && (!!intent.unavailable || !discard));
-  const title = intent.kind === 'rebase' ? '将当前分支变基到目标分支'
+  const targetCommit = intent.kind === 'rebase' ? intent.targetCommit : undefined;
+  const sourceSnapshot = branchSnapshot.find(branch => !branch.remote && branch.name === sourceBranch);
+  const missingSource = !sourceSnapshot || !/^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(sourceSnapshot.hash);
+  const invalid = (requiresClean && dirty) || (intent.kind === 'rebase' && (missingSource || (!targetCommit && (!target || target === sourceBranch)))) || (intent.kind === 'reset' && mode === 'hard' && !discard) || (intent.kind === 'rollback' && (!!intent.unavailable || !discard));
+  const title = intent.kind === 'rebase' ? targetCommit ? '将分支变基到指定提交' : sourceBranch === repository.branch ? '将当前分支变基到目标分支' : '将指定分支变基到目标分支'
     : intent.kind === 'revert' ? '反向提交 · Revert'
     : intent.kind === 'reset' ? '重置当前分支 · Reset'
     : intent.kind === 'rollback' ? intent.scope === 'worktree' ? '撤销未暂存修改' : '撤销暂存及工作区修改'
@@ -40,7 +45,7 @@ export function RepositoryActionDialog({ intent, branches, busy, error, onClose,
     event.preventDefault();
     if (busy || invalid) return;
     switch (intent.kind) {
-      case 'rebase': return onExecute({ operation: 'rebase', payload: { branch: target, preserveMerges, expectedHead: repository.head } });
+      case 'rebase': return onExecute({ operation: 'rebase', payload: { ...(targetCommit ? { targetCommit: targetCommit.hash } : { branch: target }), sourceBranch, expectedSourceHead: sourceSnapshot!.hash, preserveMerges, expectedHead: repository.head } });
       case 'revert': return onExecute({ operation: 'revert', payload: { hash: intent.commit.hash, expectedHead: repository.head, ...(intent.commit.parents.length > 1 ? { mainline } : {}) } });
       case 'reset': return onExecute({ operation: 'reset', payload: { hash: intent.commit.hash, mode, expectedHead: repository.head, ...(mode === 'hard' ? { discard: true } : {}) } });
       case 'rollback': return onExecute({ operation: 'rollback', payload: { paths: intent.paths, scope: intent.scope, expectedHead: repository.head, discard: true } });
@@ -52,7 +57,7 @@ export function RepositoryActionDialog({ intent, branches, busy, error, onClose,
     <div className="modal-header"><div><span className="eyebrow">REPOSITORY ACTION</span><h2 id="repository-action-title">{title}</h2></div><button className="icon-button" aria-label="关闭仓库操作对话框" disabled={busy} onClick={onClose}>×</button></div>
     <form onSubmit={event => void submit(event)}>
       <div className="action-repository"><strong>{repository.operation?.branch || repository.branch}</strong><small title={repository.root}>{repository.root}</small><code>HEAD {repository.head.slice(0, 12) || '尚无提交'}</code></div>
-      {intent.kind === 'rebase' && <><label>目标基底分支<select autoFocus aria-label="变基目标分支" value={target} onChange={event => setTarget(event.target.value)} disabled={busy} required><option value="">请选择目标分支</option>{branches.filter(branch => !branch.current).map(branch => <option key={branch.name} value={branch.name}>{branch.name}{branch.remote ? ' · 远程' : ''}</option>)}</select></label><div className="history-action-explanation"><strong>{repository.branch} → {target || '目标分支'}</strong><p>把当前分支独有的提交，依次重放到目标分支之上。重放的提交 ID 会改变。</p><p>请先提交或处理所有未提交改动。此操作不会自动暂存或隐藏工作区内容。</p></div><label className="action-checkbox"><input type="checkbox" aria-label="保留合并结构" checked={preserveMerges} onChange={event => setPreserveMerges(event.target.checked)} disabled={busy} /><span>保留合并结构（--rebase-merges）<small>尝试重建原有合并提交，可能需要再次解决合并冲突。</small></span></label></>}
+      {intent.kind === 'rebase' && <><label>要变基的本地分支<select autoFocus aria-label="要变基的分支" value={sourceBranch} onChange={event => { const next = event.target.value; setSourceBranch(next); if (next === target) setTarget(''); }} disabled={busy} required><option value="">请选择本地分支</option>{branchSnapshot.filter(branch => !branch.remote).map(branch => <option key={branch.name} value={branch.name}>{branch.name}{branch.name === repository.branch ? ' · 当前' : ''}</option>)}</select></label>{sourceSnapshot && <p className="form-help">源分支快照 <code>{sourceSnapshot.hash.slice(0, 12)}</code> · 执行时会核对这个提交。</p>}{targetCommit ? <div className="action-selected-commit" aria-label="变基目标提交"><code>{targetCommit.shortHash}</code><strong>{targetCommit.subject}</strong><small>{targetCommit.hash}</small></div> : <label>目标基底分支<select aria-label="变基目标分支" value={target} onChange={event => setTarget(event.target.value)} disabled={busy} required><option value="">请选择目标分支</option>{branchSnapshot.filter(branch => branch.remote || branch.name !== sourceBranch).map(branch => <option key={`${branch.remote ? 'remote' : 'local'}:${branch.name}`} value={branch.name}>{branch.name}{branch.remote ? ' · 远程' : ''}</option>)}</select></label>}<div className="history-action-explanation"><strong>{sourceBranch || '选择本地分支'} → {targetCommit ? targetCommit.shortHash : target || '目标分支'}</strong><p>将所选源分支独有的提交，依次重放到目标{targetCommit ? '提交' : '分支'}之上；需要重放时，提交 ID 会改变。源分支没有独有提交时，将直接前进到目标。</p><p>{sourceBranch === repository.branch ? `当前项目保持在 ${sourceBranch}，并修改这个本地分支。` : `当前项目将从 ${repository.branch} 切换到 ${sourceBranch || '所选分支'}，并修改所选本地分支。`}目标提交所在的其他分支保持不变。</p><p>请先处理当前工作区的所有未提交改动。此操作不会自动暂存或隐藏改动。</p></div>{missingSource && <p className="action-danger-note" role="status">缺少所选本地分支的提交快照。请关闭对话框并刷新分支列表，再重新打开。</p>}<label className="action-checkbox"><input type="checkbox" aria-label="保留合并结构" checked={preserveMerges} onChange={event => setPreserveMerges(event.target.checked)} disabled={busy} /><span>保留合并结构（--rebase-merges）<small>尝试重建原有合并提交，可能需要再次解决合并冲突。</small></span></label></>}
       {(intent.kind === 'revert' || intent.kind === 'reset') && <div className="action-selected-commit"><code>{intent.commit.shortHash}</code><strong>{intent.commit.subject}</strong><small>{intent.commit.hash}</small></div>}
       {intent.kind === 'revert' && <><p className="confirmation-copy">确认后立即创建新的反向提交，撤销所选提交的改动，不删除已有历史。工作区需要干净；仅支持撤销当前分支历史中的提交。</p>{intent.commit.parents.length > 1 && <><label>合并提交的主线父提交<select aria-label="Revert 主线父提交" value={mainline} onChange={event => setMainline(Number(event.target.value))} disabled={busy}>{intent.commit.parents.map((parent, index) => <option key={parent} value={index + 1}>父提交 {index + 1} · {parent.slice(0, 12)}{index === 0 ? '（默认）' : ''}</option>)}</select></label><p className="form-help">把所选父提交作为保留的主线，反向应用“该父提交 → 合并提交”的差异。父提交 1 通常是执行合并时所在分支，请核对后再继续。</p></>}</>}
       {intent.kind === 'reset' && <><p className="confirmation-copy">将当前分支指向所选祖先提交。选择工作区与暂存区的处理方式：</p><div className="reset-modes" role="radiogroup" aria-label="Reset 模式">{([
@@ -64,7 +69,7 @@ export function RepositoryActionDialog({ intent, branches, busy, error, onClose,
       {intent.kind === 'rebaseAction' && <p className="confirmation-copy">{intent.action === 'skip' ? '跳过正在重放的当前提交，丢弃这一步的冲突解决编辑，并继续重放后续提交。该提交的改动将不包含在变基结果中。' : '中止变基并恢复到变基前的分支与提交。这次变基期间的冲突解决编辑会丢失。'}{repository.operation?.commit && <code className="operation-current-commit">当前提交 {repository.operation.commit}</code>}</p>}
       {intent.kind === 'revertAction' && <p className="confirmation-copy">中止正在进行的反向提交并恢复操作前的状态。这次操作期间的冲突解决编辑会丢失。</p>}
       {requiresClean && dirty && <p className="action-danger-note" role="status">当前有 {repository.entries.length} 个文件存在未提交改动。请关闭对话框并先处理这些改动。</p>}
-      {isHistory && <p className="form-help">{intent.kind === 'revert' ? '将创建普通新提交，可正常推送。' : '操作前的提交会保存为本地恢复引用。修改已推送的历史后，普通 Push 可能被远程拒绝。'}执行时会核对打开此对话框时的 HEAD，防止覆盖外部切换。</p>}
+      {isHistory && <p className="form-help">{intent.kind === 'revert' ? '将创建普通新提交，可正常推送。' : `${intent.kind === 'rebase' ? '操作前的源分支' : '操作前的'}提交会保存为本地恢复引用。修改已推送的历史后，普通 Push 可能被远程拒绝。`}执行时会核对打开此对话框时的 HEAD，防止覆盖外部切换。</p>}
       {error && <div className="modal-error" role="alert"><strong>{error.message}</strong>{error.stderr && <pre>{error.stderr}</pre>}</div>}
       <div className="modal-actions"><button type="button" className="secondary-button" disabled={busy} onClick={onClose}>取消</button><button type="submit" className={`primary-button ${intent.kind === 'rollback' || (intent.kind === 'reset' && mode === 'hard') || intent.kind.endsWith('Action') ? 'danger-button' : ''}`} disabled={busy || invalid}>{busy ? '正在执行…' : button}</button></div>
     </form>

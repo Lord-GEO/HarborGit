@@ -1,0 +1,43 @@
+Compiled from "GitRebaseOption.kt"
+public final class git4idea.rebase.GitRebaseOptionKt {
+  private static final java.util.Set<git4idea.rebase.GitRebaseOption> REBASE_FLAGS;
+
+  public static final java.util.Set<git4idea.rebase.GitRebaseOption> getREBASE_FLAGS();
+    Code:
+       0: getstatic     #12                 // Field REBASE_FLAGS:Ljava/util/Set;
+       3: areturn
+
+  static {};
+    Code:
+       0: bipush        6
+       2: anewarray     #16                 // class git4idea/rebase/GitRebaseOption
+       5: astore_0
+       6: aload_0
+       7: iconst_0
+       8: getstatic     #20                 // Field git4idea/rebase/GitRebaseOption.INTERACTIVE:Lgit4idea/rebase/GitRebaseOption;
+      11: aastore
+      12: aload_0
+      13: iconst_1
+      14: getstatic     #23                 // Field git4idea/rebase/GitRebaseOption.REBASE_MERGES:Lgit4idea/rebase/GitRebaseOption;
+      17: aastore
+      18: aload_0
+      19: iconst_2
+      20: getstatic     #26                 // Field git4idea/rebase/GitRebaseOption.KEEP_EMPTY:Lgit4idea/rebase/GitRebaseOption;
+      23: aastore
+      24: aload_0
+      25: iconst_3
+      26: getstatic     #29                 // Field git4idea/rebase/GitRebaseOption.ROOT:Lgit4idea/rebase/GitRebaseOption;
+      29: aastore
+      30: aload_0
+      31: iconst_4
+      32: getstatic     #32                 // Field git4idea/rebase/GitRebaseOption.UPDATE_REFS:Lgit4idea/rebase/GitRebaseOption;
+      35: aastore
+      36: aload_0
+      37: iconst_5
+      38: getstatic     #35                 // Field git4idea/rebase/GitRebaseOption.AUTOSQUASH:Lgit4idea/rebase/GitRebaseOption;
+      41: aastore
+      42: aload_0
+      43: invokestatic  #41                 // Method kotlin/collections/SetsKt.setOf:([Ljava/lang/Object;)Ljava/util/Set;
+      46: putstatic     #12                 // Field REBASE_FLAGS:Ljava/util/Set;
+      49: return
+}

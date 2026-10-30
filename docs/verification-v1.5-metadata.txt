@@ -1,0 +1,35 @@
+
+> harbor-git@1.5.0 verify:updates
+> node scripts/verify-update-metadata.mjs
+
+{
+  "status": "passed",
+  "version": "1.5.0",
+  "setup": "HarborGit-1.5.0-Setup-x64.exe",
+  "bytes": 124497759,
+  "sha256": "a2f8b81ccde9e344d28d01149fb55be90eb7d2fc78e7f0dc96e8d4523b1b762a",
+  "sha512": "t2Ir/xi5k1tfIoXDY+KdybQQYa+vQd0nKzKQXcFl+/k6licmvJ6oEqyS3ytGP/ovX8Na3GdgYuNYJ4JtPizqJQ==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.5.0",
+    "files": [
+      {
+        "url": "HarborGit-1.5.0-Setup-x64.exe",
+        "sha512": "t2Ir/xi5k1tfIoXDY+KdybQQYa+vQd0nKzKQXcFl+/k6licmvJ6oEqyS3ytGP/ovX8Na3GdgYuNYJ4JtPizqJQ==",
+        "size": 124497759
+      }
+    ],
+    "path": "HarborGit-1.5.0-Setup-x64.exe",
+    "sha512": "t2Ir/xi5k1tfIoXDY+KdybQQYa+vQd0nKzKQXcFl+/k6licmvJ6oEqyS3ytGP/ovX8Na3GdgYuNYJ4JtPizqJQ==",
+    "releaseNotes": "# HarborGit v1.5.0\n\n- 历史新增“变基到此提交”：所选提交直接作为目标基底，不必使用分支最新 tip。\n- 新增“要变基的分支”选择，可在 dev 项目中指定 master 变基到 dev 的某次提交；执行时切换并修改 master，dev 分支保持不变。\n- master 没有独有提交时可前进到所选提交；有独有提交时，将其重放到该位置之后。\n- 同时核对当前工作区 HEAD 和源分支确认时的提交，拒绝过期确认及其他 worktree 占用。\n- 原提交恢复引用指向被修改源分支的原 tip，保留原有继续/跳过/中止与路径保护。\n- 保留 v1.4 的文件恢复、Revert、三种 Reset，以及其他 Git、AI、多项目和主题功能。\n\n选中第二个提交作为基底时，结果包含它之前的祖先提交；这不是只复制第二个提交补丁的 cherry-pick。当前仍需先处理工作区未提交改动，不自动 stash/shelf；高级 --onto 范围移植和交互式变基尚未提供。\n\nWindows 下载 Setup 安装版；已安装带更新功能的旧版用户，可在本版本正式发布后通过“软件更新”获取。发布附件仍需同时包含 Setup、blockmap 与 latest.yml。\n",
+    "releaseDate": "2026-10-30T09:00:11.256Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

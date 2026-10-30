@@ -1,0 +1,97 @@
+[
+  {
+    "path": "collect_rebase_target.py",
+    "bytes": 3995,
+    "sha256": "5a09767890791c8f962235746084ed84402268c9d61b149756ace65fcd757cbf"
+  },
+  {
+    "path": "javap/git4idea.actions.branch.GitRebaseBranchAction.txt",
+    "bytes": 11841,
+    "sha256": "7a1a1afb1ffaffffc980ff12a2e3a75880b80e705d99884367ad7e2b0f0acf3a"
+  },
+  {
+    "path": "javap/git4idea.branch.GitBrancherImpl$10.txt",
+    "bytes": 3127,
+    "sha256": "69a35c0e8119b0a48895a86a28dd881a378d4a21833e967d843c59a8a09f0248"
+  },
+  {
+    "path": "javap/git4idea.branch.GitBrancherImpl$11.txt",
+    "bytes": 3445,
+    "sha256": "5bb3de6c1ee1b66291ff91cd1a0e0dc3fd52b5475f35a357418f9135ee57e301"
+  },
+  {
+    "path": "javap/git4idea.branch.GitBrancherImpl.txt",
+    "bytes": 68201,
+    "sha256": "3c561d7b9385a219d775275975d4717485d73de7bb7b974a766dc9bbbdbdeae6"
+  },
+  {
+    "path": "javap/git4idea.branch.GitRebaseParams$RebaseUpstream$Commit.txt",
+    "bytes": 1444,
+    "sha256": "f1e9ec623de054df91ddab4294f07c2e41e06b24482c79414d79f1f43ef7f5e5"
+  },
+  {
+    "path": "javap/git4idea.branch.GitRebaseParams$RebaseUpstream$Companion.txt",
+    "bytes": 4528,
+    "sha256": "73082a766a793916819723409d101952d4d66218d039c63578ec59e93d9a2703"
+  },
+  {
+    "path": "javap/git4idea.branch.GitRebaseParams$RebaseUpstream$Reference.txt",
+    "bytes": 942,
+    "sha256": "e63a8432daa6e339d5ac1b35182f4af35ea2e312fe547f9faeccfe8f0277b8eb"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseDialogKt.txt",
+    "bytes": 1082,
+    "sha256": "07a89ad27335f91a5114bb1769596382bd1285d279d065b61c7ad6a88b8464a2"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseOptionKt.txt",
+    "bytes": 1921,
+    "sha256": "a6c3156f4169565743d0b62863f5d5fa39b0e37d47ec373fac242eaffda2543e"
+  },
+  {
+    "path": "javap/git4idea.ui.branch.GitLogBranchOperationsActionGroup.txt",
+    "bytes": 41739,
+    "sha256": "20058c08b46e93fe5e7b056df459cbd6b539ca8a40542a4b57430c4656175fc2"
+  },
+  {
+    "path": "javap/git4idea.ui.branch.GitRebaseOntoCommitAction.txt",
+    "bytes": 14175,
+    "sha256": "7f0ddd2b8d8d5f039f698d677c15f2019cf6351b8b459c604265c20b74b4442a"
+  },
+  {
+    "path": "javap-provenance.json",
+    "bytes": 8225,
+    "sha256": "702fee8e32f042ec3c75d48f580fa3c403c99052d557ac8eb6755a777a588cb0"
+  },
+  {
+    "path": "rea-selected-occurrences.json",
+    "bytes": 7791,
+    "sha256": "fd38a3d9a54f22c6b65126d646ee6068ed28886467ae0325b1be111a96f8bed0"
+  },
+  {
+    "path": "rea-view-bundle.json",
+    "bytes": 18426,
+    "sha256": "c5fe4408370ef71bb102b01b0100ff00ef63760346c8579c264c5a57a7dd475c"
+  },
+  {
+    "path": "resource-excerpts.json",
+    "bytes": 3945,
+    "sha256": "dfe36055de7886488363ce0cf07f02bf360d60409940f3b49b3026dc4c287dd8"
+  },
+  {
+    "path": "reused-bytecode.json",
+    "bytes": 4860,
+    "sha256": "2fc19af791dea9587258a0acaa04aa02ded53df1cd42e50a56569f286b7546af"
+  },
+  {
+    "path": "session-and-scope.json",
+    "bytes": 657,
+    "sha256": "a17b7ce467e0b4eb3ca472f0802654b122fdc5378c2d68b84177c7985b36f018"
+  },
+  {
+    "path": "source-identities.json",
+    "bytes": 455,
+    "sha256": "6452687e2c545951812fa35549e3cab3ca85453b8c172626ac12e182ecf3e72f"
+  }
+]

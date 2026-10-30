@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-30 Asia/Shanghai",
+  "target": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+  "start": {
+    "open": false,
+    "cleanup_pending": false,
+    "version": "6.8.0"
+  },
+  "finish": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "new_target_opened": false,
+  "scope": "Authenticated retained evidence-file inventory views and installed JDK javap only; no IDEA UI actions or Git repository writes.",
+  "jvm_format_boundary": "Reused ../rea-class-format-limitation.json; unsupported class probe was not repeated.",
+  "close_binary": "No target opened; final session checked closed."
+}

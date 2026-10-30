@@ -1,0 +1,229 @@
+Compiled from "GitRebaseOntoCommitAction.kt"
+public final class git4idea.ui.branch.GitRebaseOntoCommitAction extends com.intellij.openapi.project.DumbAwareAction {
+  private final com.intellij.openapi.project.Project myProject;
+
+  private final git4idea.repo.GitRepository repository;
+
+  private final com.intellij.vcs.log.CommitId commitId;
+
+  public git4idea.ui.branch.GitRebaseOntoCommitAction(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, com.intellij.vcs.log.CommitId);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String myProject
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #17                 // String repository
+       9: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #19                 // String commitId
+      15: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_0
+      19: invokespecial #22                 // Method com/intellij/openapi/project/DumbAwareAction."<init>":()V
+      22: aload_0
+      23: aload_1
+      24: putfield      #25                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      27: aload_0
+      28: aload_2
+      29: putfield      #28                 // Field repository:Lgit4idea/repo/GitRepository;
+      32: aload_0
+      33: aload_3
+      34: putfield      #31                 // Field commitId:Lcom/intellij/vcs/log/CommitId;
+      37: return
+
+  private final com.intellij.openapi.vfs.VirtualFile getRoot();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field commitId:Lcom/intellij/vcs/log/CommitId;
+       4: invokevirtual #39                 // Method com/intellij/vcs/log/CommitId.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+       7: dup
+       8: ldc           #41                 // String getRoot(...)
+      10: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: areturn
+
+  private final com.intellij.vcs.log.Hash getHash();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field commitId:Lcom/intellij/vcs/log/CommitId;
+       4: invokevirtual #48                 // Method com/intellij/vcs/log/CommitId.getHash:()Lcom/intellij/vcs/log/Hash;
+       7: dup
+       8: ldc           #50                 // String getHash(...)
+      10: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: areturn
+
+  public com.intellij.openapi.actionSystem.ActionUpdateThread getActionUpdateThread();
+    Code:
+       0: getstatic     #58                 // Field com/intellij/openapi/actionSystem/ActionUpdateThread.BGT:Lcom/intellij/openapi/actionSystem/ActionUpdateThread;
+       3: areturn
+
+  public void update(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ldc           #62                 // String e
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: invokespecial #63                 // Method getHash:()Lcom/intellij/vcs/log/Hash;
+      10: invokeinterface #69,  1           // InterfaceMethod com/intellij/vcs/log/Hash.toShortString:()Ljava/lang/String;
+      15: dup
+      16: ldc           #71                 // String toShortString(...)
+      18: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      21: astore_2
+      22: aload_1
+      23: invokevirtual #77                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+      26: dup
+      27: ldc           #79                 // String getPresentation(...)
+      29: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      32: astore_3
+      33: aload_0
+      34: getfield      #25                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      37: aload_0
+      38: getfield      #28                 // Field repository:Lgit4idea/repo/GitRepository;
+      41: invokestatic  #85                 // Method kotlin/collections/CollectionsKt.listOf:(Ljava/lang/Object;)Ljava/util/List;
+      44: checkcast     #87                 // class java/util/Collection
+      47: invokestatic  #93                 // Method git4idea/ui/branch/GitBranchPopupActions.getCurrentBranchTruncatedPresentation:(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;)Ljava/lang/String;
+      50: dup
+      51: ldc           #95                 // String getCurrentBranchTruncatedPresentation(...)
+      53: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      56: astore        4
+      58: ldc           #97                 // String branches.rebase.onto.selected.commit
+      60: iconst_1
+      61: anewarray     #99                 // class java/lang/Object
+      64: astore        7
+      66: aload         7
+      68: iconst_0
+      69: aload         4
+      71: aastore
+      72: aload         7
+      74: invokestatic  #105                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      77: dup
+      78: ldc           #107                // String message(...)
+      80: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      83: astore        5
+      85: aload_3
+      86: aload         5
+      88: invokevirtual #113                // Method com/intellij/openapi/actionSystem/Presentation.setText:(Ljava/lang/String;)V
+      91: aload_0
+      92: getfield      #28                 // Field repository:Lgit4idea/repo/GitRepository;
+      95: invokeinterface #119,  1          // InterfaceMethod git4idea/repo/GitRepository.isOnBranch:()Z
+     100: istore        6
+     102: iload         6
+     104: ifne          131
+     107: aload_3
+     108: ldc           #121                // String branches.rebase.is.not.possible.in.the.detached.head.state
+     110: iconst_0
+     111: anewarray     #99                 // class java/lang/Object
+     114: invokestatic  #105                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     117: invokevirtual #124                // Method com/intellij/openapi/actionSystem/Presentation.setDescription:(Ljava/lang/String;)V
+     120: aload_3
+     121: iconst_1
+     122: invokevirtual #128                // Method com/intellij/openapi/actionSystem/Presentation.setVisible:(Z)V
+     125: aload_3
+     126: iconst_0
+     127: invokevirtual #131                // Method com/intellij/openapi/actionSystem/Presentation.setEnabled:(Z)V
+     130: return
+     131: aload_3
+     132: ldc           #133                // String branches.rebase.onto
+     134: iconst_2
+     135: anewarray     #99                 // class java/lang/Object
+     138: astore        7
+     140: aload         7
+     142: iconst_0
+     143: aload         4
+     145: aastore
+     146: aload         7
+     148: iconst_1
+     149: aload_2
+     150: aastore
+     151: aload         7
+     153: invokestatic  #105                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     156: invokevirtual #124                // Method com/intellij/openapi/actionSystem/Presentation.setDescription:(Ljava/lang/String;)V
+     159: aload_3
+     160: iconst_1
+     161: invokevirtual #136                // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+     164: getstatic     #142                // Field com/intellij/vcs/log/ui/VcsLogInternalDataKeys.LOG_DATA:Lcom/intellij/openapi/actionSystem/DataKey;
+     167: aload_1
+     168: invokevirtual #146                // Method com/intellij/openapi/actionSystem/AnActionEvent.getDataContext:()Lcom/intellij/openapi/actionSystem/DataContext;
+     171: dup
+     172: ldc           #148                // String getDataContext(...)
+     174: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     177: invokevirtual #154                // Method com/intellij/openapi/actionSystem/DataKey.getData:(Lcom/intellij/openapi/actionSystem/DataContext;)Ljava/lang/Object;
+     180: checkcast     #156                // class com/intellij/vcs/log/data/VcsLogData
+     183: dup
+     184: ifnonnull     189
+     187: pop
+     188: return
+     189: astore        7
+     191: aload         7
+     193: invokevirtual #160                // Method com/intellij/vcs/log/data/VcsLogData.getContainingBranchesGetter:()Lcom/intellij/vcs/log/data/ContainingBranchesGetter;
+     196: aload_0
+     197: invokespecial #161                // Method getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     200: invokevirtual #167                // Method com/intellij/vcs/log/data/ContainingBranchesGetter.getContainedInCurrentBranchCondition:(Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/function/Predicate;
+     203: astore        8
+     205: aload         7
+     207: aload_0
+     208: invokespecial #63                 // Method getHash:()Lcom/intellij/vcs/log/Hash;
+     211: aload_0
+     212: invokespecial #161                // Method getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     215: invokevirtual #171                // Method com/intellij/vcs/log/data/VcsLogData.getCommitIndex:(Lcom/intellij/vcs/log/Hash;Lcom/intellij/openapi/vfs/VirtualFile;)I
+     218: istore        9
+     220: aload         8
+     222: iload         9
+     224: invokestatic  #177                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     227: invokeinterface #183,  2          // InterfaceMethod java/util/function/Predicate.test:(Ljava/lang/Object;)Z
+     232: istore        10
+     234: aload         7
+     236: invokevirtual #187                // Method com/intellij/vcs/log/data/VcsLogData.getMiniDetailsGetter:()Lcom/intellij/vcs/log/data/MiniDetailsGetter;
+     239: iload         9
+     241: iload         9
+     243: invokestatic  #177                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     246: invokestatic  #193                // Method kotlin/collections/SetsKt.setOf:(Ljava/lang/Object;)Ljava/util/Set;
+     249: checkcast     #195                // class java/lang/Iterable
+     252: invokevirtual #201                // Method com/intellij/vcs/log/data/MiniDetailsGetter.getCommitData:(ILjava/lang/Iterable;)Lcom/intellij/vcs/log/VcsCommitMetadata;
+     255: invokeinterface #206,  1          // InterfaceMethod com/intellij/vcs/log/VcsCommitMetadata.getSubject:()Ljava/lang/String;
+     260: dup
+     261: ldc           #208                // String getSubject(...)
+     263: invokestatic  #44                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     266: astore        11
+     268: aload_3
+     269: ldc           #133                // String branches.rebase.onto
+     271: iconst_2
+     272: anewarray     #99                 // class java/lang/Object
+     275: astore        12
+     277: aload         12
+     279: iconst_0
+     280: aload         4
+     282: aastore
+     283: aload         12
+     285: iconst_1
+     286: aload_2
+     287: aload         11
+     289: invokedynamic #220,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     294: aastore
+     295: aload         12
+     297: invokestatic  #105                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     300: invokevirtual #124                // Method com/intellij/openapi/actionSystem/Presentation.setDescription:(Ljava/lang/String;)V
+     303: aload_3
+     304: iload         10
+     306: ifne          313
+     309: iconst_1
+     310: goto          314
+     313: iconst_0
+     314: invokevirtual #136                // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+     317: return
+
+  public void actionPerformed(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ldc           #62                 // String e
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #25                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      10: invokestatic  #247                // InterfaceMethod git4idea/branch/GitBrancher.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/branch/GitBrancher;
+      13: aload_0
+      14: getfield      #28                 // Field repository:Lgit4idea/repo/GitRepository;
+      17: invokestatic  #85                 // Method kotlin/collections/CollectionsKt.listOf:(Ljava/lang/Object;)Ljava/util/List;
+      20: aload_0
+      21: invokespecial #63                 // Method getHash:()Lcom/intellij/vcs/log/Hash;
+      24: invokeinterface #250,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      29: invokeinterface #254,  3          // InterfaceMethod git4idea/branch/GitBrancher.rebase:(Ljava/util/List;Ljava/lang/String;)V
+      34: return
+}

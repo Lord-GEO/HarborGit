@@ -2,7 +2,7 @@
 
 HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户端，通过本机 Git 管理代码仓库，提供 Windows 和 macOS 打包配置。
 
-**v1.4.0 新增变基与回滚**：普通 Rebase、保留合并结构、冲突后继续/跳过/中止，文件恢复、历史 Revert、Soft/Mixed/Hard Reset。用法和验证见 [历史操作说明](docs/HISTORY-ACTIONS.md)，本机 IDEA 增量逆向证据见 [IDEA 变基与回滚调查](docs/IDEA-HISTORY-ANALYSIS.md)。
+**v1.5.0 新增指定分支与提交的变基**：在历史中选择 dev 的某次提交，再选择 master 作为要变基的分支；可停在中间提交，dev 的后续提交和分支引用保持不变。见 [指定提交变基](docs/REBASE-TO-COMMIT.md) 与 [IDEA 增量证据](docs/IDEA-REBASE-TARGET-ANALYSIS.md)。原有变基恢复、文件回滚、Revert 和 Reset 功能继续保留，见 [历史操作说明](docs/HISTORY-ACTIONS.md)。
 
 ## 项目功能
 

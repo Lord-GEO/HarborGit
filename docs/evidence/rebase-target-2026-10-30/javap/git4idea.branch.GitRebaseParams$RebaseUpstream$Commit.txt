@@ -1,0 +1,27 @@
+Compiled from "GitRebaseParams.kt"
+public final class git4idea.branch.GitRebaseParams$RebaseUpstream$Commit extends git4idea.branch.GitRebaseParams$RebaseUpstream$Reference {
+  private final com.intellij.vcs.log.Hash commit;
+
+  public git4idea.branch.GitRebaseParams$RebaseUpstream$Commit(com.intellij.vcs.log.Hash);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String commit
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: invokeinterface #21,  1           // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      13: dup
+      14: ldc           #23                 // String asString(...)
+      16: invokestatic  #26                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: invokespecial #29                 // Method git4idea/branch/GitRebaseParams$RebaseUpstream$Reference."<init>":(Ljava/lang/String;)V
+      22: aload_0
+      23: aload_1
+      24: putfield      #32                 // Field commit:Lcom/intellij/vcs/log/Hash;
+      27: return
+
+  public final com.intellij.vcs.log.Hash getCommit();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field commit:Lcom/intellij/vcs/log/Hash;
+       4: areturn
+}

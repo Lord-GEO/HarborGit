@@ -62,6 +62,87 @@ test('rebase changes only current branch, preserves all requested commits and an
   await backup(repo, result, original);
 });
 
+test('selected commit rebase: another local branch can advance to a middle commit without moving dev', async () => {
+  const { repo } = await fixture(); const originalMaster = await commit(repo, 'base.txt', 'base\n', 'base');
+  git(repo, ['switch', '-c', 'dev']); const first = await commit(repo, 'first.txt', 'first\n', 'dev first');
+  const second = await commit(repo, 'second 中文.txt', 'second\n', 'dev second');
+  const devTip = await commit(repo, 'third.txt', 'third\n', 'dev third'); const { service } = await open(repo);
+  const result = await service.request('rebase', { targetCommit: second, sourceBranch: 'master', expectedHead: devTip, expectedSourceHead: originalMaster });
+  assert.equal(result.branch, 'master'); assert.equal(result.head, second); assert.equal(result.operation, undefined);
+  assert.equal(git(repo, ['rev-parse', 'dev']), devTip); assert.equal(git(repo, ['rev-parse', 'HEAD^']), first);
+  assert.doesNotMatch(git(repo, ['ls-tree', '--name-only', 'HEAD']), /third.txt/); await backup(repo, result, originalMaster);
+  // The default source remains current, allowing a later explicitly selected tip.
+  const advanced = await service.request('rebase', { targetCommit: devTip, expectedHead: second });
+  assert.equal(advanced.branch, 'master'); assert.equal(advanced.head, devTip); await backup(repo, advanced, second);
+});
+
+test('selected commit rebase: source-only commits replay onto the selected hash rather than the target branch tip', async () => {
+  const { repo } = await fixture(); await commit(repo, 'base.txt', 'base\n', 'base'); git(repo, ['switch', '-c', 'dev']);
+  await commit(repo, 'first.txt', 'first\n', 'dev first'); const second = await commit(repo, 'second.txt', 'second\n', 'dev second');
+  const devTip = await commit(repo, 'third.txt', 'third\n', 'dev third'); git(repo, ['switch', 'master']);
+  const masterTip = await commit(repo, 'master.txt', 'master\n', 'master independent'); git(repo, ['switch', 'dev']);
+  const { service } = await open(repo); const result = await service.request('rebase', { targetCommit: second, sourceBranch: 'master', expectedHead: devTip, expectedSourceHead: masterTip });
+  assert.equal(result.branch, 'master'); assert.notEqual(result.head, masterTip); assert.equal(git(repo, ['rev-parse', 'HEAD^']), second);
+  assert.equal(await readFile(path.join(repo, 'master.txt'), 'utf8'), 'master\n'); assert.doesNotMatch(git(repo, ['ls-tree', '--name-only', 'HEAD']), /third.txt/);
+  assert.equal(git(repo, ['rev-parse', 'dev']), devTip); await backup(repo, result, masterTip);
+});
+
+test('selected commit rebase: non-current source conflict can abort or reopen and continue', async () => {
+  const { repo } = await fixture(); await commit(repo, 'shared.txt', 'base\n', 'base'); git(repo, ['switch', '-c', 'dev']);
+  const target = await commit(repo, 'shared.txt', 'dev\n', 'dev first'); const devTip = await commit(repo, 'later.txt', 'later\n', 'dev later');
+  git(repo, ['switch', 'master']); const masterTip = await commit(repo, 'shared.txt', 'master\n', 'master independent'); git(repo, ['switch', 'dev']);
+  const { service } = await open(repo); const stopped = await service.request('rebase', { targetCommit: target, sourceBranch: 'master', expectedHead: devTip, expectedSourceHead: masterTip });
+  assert.equal(stopped.operation?.branch, 'master'); assert.equal(stopped.operation?.kind, 'rebase'); assert.equal(git(repo, ['rev-parse', 'dev']), devTip);
+  await backup(repo, stopped, masterTip);
+  const aborted = await service.request('rebaseAction', { action: 'abort' });
+  assert.equal(aborted.branch, 'master'); assert.equal(aborted.head, masterTip); assert.equal(git(repo, ['rev-parse', 'dev']), devTip);
+  await service.request('rebase', { targetCommit: target, expectedHead: masterTip });
+  const reopened = await open(repo); assert.equal(reopened.state.operation?.branch, 'master');
+  await reopened.service.request('resolve', { path: 'shared.txt', choice: 'manual', content: 'dev and master\n' });
+  const complete = await reopened.service.request('rebaseAction', { action: 'continue' });
+  assert.equal(complete.branch, 'master'); assert.equal(complete.operation, undefined); assert.equal(git(repo, ['rev-parse', 'HEAD^']), target);
+  assert.equal(git(repo, ['rev-parse', 'dev']), devTip); assert.equal(await readFile(path.join(repo, 'shared.txt'), 'utf8'), 'dev and master\n');
+});
+
+test('selected commit rebase: stale source and source checked out in another worktree are rejected before switching', async () => {
+  const { root, repo } = await fixture(); const baseHead = await commit(repo, 'base.txt', 'base\n', 'base');
+  git(repo, ['switch', '-c', 'dev']); const devTip = await commit(repo, 'dev.txt', 'dev\n', 'dev');
+  git(repo, ['switch', 'master']); const masterTip = await commit(repo, 'master.txt', 'master\n', 'master'); git(repo, ['switch', 'dev']);
+  const { service } = await open(repo);
+  await assert.rejects(service.request('rebase', { targetCommit: devTip, sourceBranch: 'master', expectedHead: devTip, expectedSourceHead: baseHead }));
+  assert.equal(git(repo, ['branch', '--show-current']), 'dev'); assert.equal(git(repo, ['rev-parse', 'master']), masterTip);
+  const linked = path.join(root, 'master 工作区'); git(repo, ['worktree', 'add', linked, 'master']);
+  await assert.rejects(service.request('rebase', { targetCommit: devTip, sourceBranch: 'master', expectedHead: devTip, expectedSourceHead: masterTip }));
+  assert.equal(git(repo, ['branch', '--show-current']), 'dev'); assert.equal(git(linked, ['rev-parse', 'HEAD']), masterTip);
+});
+
+test('selected commit rebase: validation and dirty worktree protect both branch tips', async () => {
+  const { repo } = await fixture(); const masterTip = await commit(repo, 'base.txt', 'base\n', 'base'); git(repo, ['switch', '-c', 'dev']);
+  const devTip = await commit(repo, 'dev.txt', 'dev\n', 'dev'); git(repo, ['update-ref', 'refs/remotes/origin/master', masterTip]);
+  const { service } = await open(repo);
+  const invalid = [
+    { expectedHead: devTip },
+    { branch: 'master', targetCommit: devTip, expectedHead: devTip },
+    { targetCommit: '--exec=bad', expectedHead: devTip },
+    { targetCommit: '0'.repeat(40), expectedHead: devTip },
+    { targetCommit: devTip, sourceBranch: '--exec=bad', expectedSourceHead: masterTip, expectedHead: devTip },
+    { targetCommit: devTip, sourceBranch: 'origin/master', expectedSourceHead: masterTip, expectedHead: devTip },
+    { targetCommit: devTip, sourceBranch: 'master', expectedHead: devTip },
+  ];
+  for (const payload of invalid) await assert.rejects(service.request('rebase', payload));
+  await writeFile(path.join(repo, 'dev.txt'), 'uncommitted private\n');
+  await assert.rejects(service.request('rebase', { targetCommit: devTip, sourceBranch: 'master', expectedSourceHead: masterTip, expectedHead: devTip }));
+  assert.equal(git(repo, ['branch', '--show-current']), 'dev'); assert.equal(git(repo, ['rev-parse', 'master']), masterTip); assert.equal(git(repo, ['rev-parse', 'dev']), devTip);
+  assert.equal(await readFile(path.join(repo, 'dev.txt'), 'utf8'), 'uncommitted private\n');
+});
+
+test('selected commit rebase: existing branch target also accepts an explicitly selected local source', async () => {
+  const { repo } = await fixture(); const masterTip = await commit(repo, 'base.txt', 'base\n', 'base'); git(repo, ['switch', '-c', 'dev']);
+  const devTip = await commit(repo, 'dev.txt', 'dev\n', 'dev'); const { service } = await open(repo);
+  const result = await service.request('rebase', { branch: 'dev', sourceBranch: 'master', expectedHead: devTip, expectedSourceHead: masterTip });
+  assert.equal(result.branch, 'master'); assert.equal(result.head, devTip); assert.equal(git(repo, ['rev-parse', 'dev']), devTip); await backup(repo, result, masterTip);
+});
+
 test('rebase conflict survives reopening, exposes correct ours/theirs, continues without a terminal editor', async () => {
   const { repo, service, original } = await conflictFixture();
   const stopped = await service.request('rebase', { branch: 'master', expectedHead: original });
