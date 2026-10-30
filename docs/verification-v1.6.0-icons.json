@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "version": "1.6.0",
+  "icoSha256": "27d26204a60b918829342abe8314dd8e3e232671c2c67eb4890448869b3cceda",
+  "icoSizes": [
+    16,
+    20,
+    24,
+    32,
+    40,
+    48,
+    64,
+    128,
+    256
+  ],
+  "artifacts": [
+    {
+      "path": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\outputs\\HarborGit\\release\\win-unpacked\\HarborGit.exe",
+      "bytes": 249876480,
+      "sha256": "74042873c4f9750a0f533530dbd7a6f0bcbede6864358fa07984879efb07b2bd",
+      "groups": 1,
+      "iconImages": 9,
+      "matchingHarborGitImages": 9,
+      "matchedSizes": [
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64,
+        128,
+        256
+      ],
+      "versionResources": 1
+    },
+    {
+      "path": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\outputs\\HarborGit\\release\\HarborGit-1.6.0-Setup-x64.exe",
+      "bytes": 124509379,
+      "sha256": "df668d64e2a317e241958b81911545e061161dbe98f7ad940909991a539741ed",
+      "groups": 1,
+      "iconImages": 9,
+      "matchingHarborGitImages": 9,
+      "matchedSizes": [
+        256,
+        128,
+        64,
+        48,
+        40,
+        32,
+        24,
+        20,
+        16
+      ],
+      "versionResources": 1
+    }
+  ]
+}

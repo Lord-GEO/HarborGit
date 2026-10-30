@@ -1,0 +1,406 @@
+Compiled from "GitPreservingProcess.kt"
+public final class git4idea.util.GitPreservingProcess {
+  public static final git4idea.util.GitPreservingProcess$Companion Companion;
+
+  private final com.intellij.openapi.project.Project project;
+
+  private final git4idea.commands.Git git;
+
+  private final java.util.Collection<com.intellij.openapi.vfs.VirtualFile> rootsToSave;
+
+  private final java.lang.String operationTitle;
+
+  private final java.lang.String destinationName;
+
+  private final com.intellij.openapi.progress.ProgressIndicator progressIndicator;
+
+  private final java.lang.Runnable operation;
+
+  private final java.lang.String stashMessage;
+
+  private final git4idea.stash.GitChangesSaver saver;
+
+  private final java.util.concurrent.atomic.AtomicBoolean isLoaded;
+
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  public git4idea.util.GitPreservingProcess(com.intellij.openapi.project.Project, git4idea.commands.Git, java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>, java.lang.String, java.lang.String, git4idea.config.GitSaveChangesPolicy, com.intellij.openapi.progress.ProgressIndicator, boolean, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ldc           #11                 // String project
+       3: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #19                 // String git
+       9: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #21                 // String rootsToSave
+      15: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         4
+      20: ldc           #23                 // String operationTitle
+      22: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload         5
+      27: ldc           #25                 // String destinationName
+      29: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      32: aload         6
+      34: ldc           #27                 // String saveMethod
+      36: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      39: aload         7
+      41: ldc           #29                 // String progressIndicator
+      43: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      46: aload         9
+      48: ldc           #31                 // String operation
+      50: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      53: aload_0
+      54: invokespecial #34                 // Method java/lang/Object."<init>":()V
+      57: aload_0
+      58: aload_1
+      59: putfield      #37                 // Field project:Lcom/intellij/openapi/project/Project;
+      62: aload_0
+      63: aload_2
+      64: putfield      #40                 // Field git:Lgit4idea/commands/Git;
+      67: aload_0
+      68: aload_3
+      69: putfield      #43                 // Field rootsToSave:Ljava/util/Collection;
+      72: aload_0
+      73: aload         4
+      75: putfield      #46                 // Field operationTitle:Ljava/lang/String;
+      78: aload_0
+      79: aload         5
+      81: putfield      #48                 // Field destinationName:Ljava/lang/String;
+      84: aload_0
+      85: aload         7
+      87: putfield      #51                 // Field progressIndicator:Lcom/intellij/openapi/progress/ProgressIndicator;
+      90: aload_0
+      91: aload         9
+      93: putfield      #54                 // Field operation:Ljava/lang/Runnable;
+      96: aload_0
+      97: ldc           #56                 // String stash.changes.message.with.date
+      99: iconst_2
+     100: anewarray     #4                  // class java/lang/Object
+     103: astore        10
+     105: aload         10
+     107: iconst_0
+     108: aload_0
+     109: getfield      #46                 // Field operationTitle:Ljava/lang/String;
+     112: invokestatic  #62                 // Method com/intellij/openapi/util/text/StringUtil.capitalize:(Ljava/lang/String;)Ljava/lang/String;
+     115: aastore
+     116: aload         10
+     118: iconst_1
+     119: invokestatic  #68                 // Method com/intellij/openapi/util/Clock.getTime:()J
+     122: invokestatic  #74                 // Method com/intellij/util/text/DateFormatUtil.formatDateTime:(J)Ljava/lang/String;
+     125: aastore
+     126: aload         10
+     128: invokestatic  #80                 // Method com/intellij/openapi/vcs/VcsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     131: dup
+     132: ldc           #82                 // String message(...)
+     134: invokestatic  #85                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     137: putfield      #88                 // Field stashMessage:Ljava/lang/String;
+     140: aload_0
+     141: aload_0
+     142: aload         6
+     144: iload         8
+     146: invokespecial #92                 // Method configureSaver:(Lgit4idea/config/GitSaveChangesPolicy;Z)Lgit4idea/stash/GitChangesSaver;
+     149: putfield      #96                 // Field saver:Lgit4idea/stash/GitChangesSaver;
+     152: aload_0
+     153: new           #98                 // class java/util/concurrent/atomic/AtomicBoolean
+     156: dup
+     157: invokespecial #99                 // Method java/util/concurrent/atomic/AtomicBoolean."<init>":()V
+     160: putfield      #103                // Field isLoaded:Ljava/util/concurrent/atomic/AtomicBoolean;
+     163: return
+
+  public git4idea.util.GitPreservingProcess(com.intellij.openapi.project.Project, git4idea.commands.Git, java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>, java.lang.String, java.lang.String, git4idea.config.GitSaveChangesPolicy, com.intellij.openapi.progress.ProgressIndicator, java.lang.Runnable);
+    Code:
+       0: aload_1
+       1: ldc           #11                 // String project
+       3: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #19                 // String git
+       9: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #21                 // String rootsToSave
+      15: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         4
+      20: ldc           #23                 // String operationTitle
+      22: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload         5
+      27: ldc           #25                 // String destinationName
+      29: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      32: aload         6
+      34: ldc           #27                 // String saveMethod
+      36: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      39: aload         7
+      41: ldc           #112                // String indicator
+      43: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      46: aload         8
+      48: ldc           #31                 // String operation
+      50: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      53: aload_0
+      54: aload_1
+      55: aload_2
+      56: aload_3
+      57: aload         4
+      59: aload         5
+      61: aload         6
+      63: aload         7
+      65: iconst_1
+      66: aload         8
+      68: invokespecial #114                // Method "<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;Lgit4idea/config/GitSaveChangesPolicy;Lcom/intellij/openapi/progress/ProgressIndicator;ZLjava/lang/Runnable;)V
+      71: return
+
+  public final void execute(com.intellij.openapi.util.Computable<java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #136,  0            // InvokeDynamic #0:run:(Lgit4idea/util/GitPreservingProcess;Lcom/intellij/openapi/util/Computable;)Ljava/lang/Runnable;
+       7: astore_2
+       8: new           #138                // class git4idea/util/GitFreezingProcess
+      11: dup
+      12: aload_0
+      13: getfield      #37                 // Field project:Lcom/intellij/openapi/project/Project;
+      16: aload_0
+      17: getfield      #46                 // Field operationTitle:Ljava/lang/String;
+      20: aload_2
+      21: invokespecial #141                // Method git4idea/util/GitFreezingProcess."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;)V
+      24: invokevirtual #143                // Method git4idea/util/GitFreezingProcess.execute:()V
+      27: return
+
+  public static void execute$default(git4idea.util.GitPreservingProcess, com.intellij.openapi.util.Computable, int, java.lang.Object);
+    Code:
+       0: iload_2
+       1: iconst_1
+       2: iand
+       3: ifeq          8
+       6: aconst_null
+       7: astore_1
+       8: aload_0
+       9: aload_1
+      10: invokevirtual #149                // Method execute:(Lcom/intellij/openapi/util/Computable;)V
+      13: return
+
+  private final git4idea.stash.GitChangesSaver configureSaver(git4idea.config.GitSaveChangesPolicy, boolean);
+    Code:
+       0: aload_0
+       1: getfield      #37                 // Field project:Lcom/intellij/openapi/project/Project;
+       4: aload_0
+       5: getfield      #40                 // Field git:Lgit4idea/commands/Git;
+       8: aload_0
+       9: getfield      #51                 // Field progressIndicator:Lcom/intellij/openapi/progress/ProgressIndicator;
+      12: aload_0
+      13: getfield      #88                 // Field stashMessage:Ljava/lang/String;
+      16: aload_1
+      17: iload_2
+      18: invokestatic  #155                // Method git4idea/stash/GitChangesSaver.getSaver:(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Lcom/intellij/openapi/progress/ProgressIndicator;Ljava/lang/String;Lgit4idea/config/GitSaveChangesPolicy;Z)Lgit4idea/stash/GitChangesSaver;
+      21: dup
+      22: ldc           #157                // String getSaver(...)
+      24: invokestatic  #85                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      27: astore_3
+      28: new           #159                // class git4idea/util/GitPreservingProcess$configureSaver$mergeDialogCustomizer$1
+      31: dup
+      32: aload_0
+      33: aload_1
+      34: invokespecial #162                // Method git4idea/util/GitPreservingProcess$configureSaver$mergeDialogCustomizer$1."<init>":(Lgit4idea/util/GitPreservingProcess;Lgit4idea/config/GitSaveChangesPolicy;)V
+      37: checkcast     #164                // class com/intellij/openapi/vcs/merge/MergeDialogCustomizer
+      40: astore        4
+      42: new           #166                // class git4idea/merge/GitConflictResolver$Params
+      45: dup
+      46: aload_0
+      47: getfield      #37                 // Field project:Lcom/intellij/openapi/project/Project;
+      50: invokespecial #169                // Method git4idea/merge/GitConflictResolver$Params."<init>":(Lcom/intellij/openapi/project/Project;)V
+      53: iconst_1
+      54: invokevirtual #173                // Method git4idea/merge/GitConflictResolver$Params.setReverse:(Z)Lgit4idea/merge/GitConflictResolver$Params;
+      57: aload         4
+      59: invokevirtual #177                // Method git4idea/merge/GitConflictResolver$Params.setMergeDialogCustomizer:(Lcom/intellij/openapi/vcs/merge/MergeDialogCustomizer;)Lgit4idea/merge/GitConflictResolver$Params;
+      62: ldc           #179                // String preserving.process.local.changes.not.restored.error.title
+      64: iconst_0
+      65: anewarray     #4                  // class java/lang/Object
+      68: invokestatic  #182                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      71: invokevirtual #186                // Method git4idea/merge/GitConflictResolver$Params.setErrorNotificationTitle:(Ljava/lang/String;)Lgit4idea/merge/GitConflictResolver$Params;
+      74: astore        5
+      76: aload_3
+      77: aload         5
+      79: invokevirtual #190                // Method git4idea/stash/GitChangesSaver.setConflictResolverParams:(Lgit4idea/merge/GitConflictResolver$Params;)V
+      82: aload_3
+      83: areturn
+
+  private final boolean save();
+    Code:
+       0: aload_0
+       1: getfield      #96                 // Field saver:Lgit4idea/stash/GitChangesSaver;
+       4: aload_0
+       5: getfield      #43                 // Field rootsToSave:Ljava/util/Collection;
+       8: invokevirtual #200                // Method git4idea/stash/GitChangesSaver.saveLocalChangesOrError:(Ljava/util/Collection;)Ljava/lang/String;
+      11: astore_1
+      12: aload_1
+      13: ifnonnull     18
+      16: iconst_1
+      17: ireturn
+      18: aload_0
+      19: getfield      #37                 // Field project:Lcom/intellij/openapi/project/Project;
+      22: invokestatic  #206                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+      25: ldc           #208                // String git.could.not.save.uncommitted.changes
+      27: ldc           #210                // String save.notification.failed.title
+      29: iconst_1
+      30: anewarray     #4                  // class java/lang/Object
+      33: astore_2
+      34: aload_2
+      35: iconst_0
+      36: aload_0
+      37: getfield      #46                 // Field operationTitle:Ljava/lang/String;
+      40: aastore
+      41: aload_2
+      42: invokestatic  #182                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      45: aload_1
+      46: invokevirtual #214                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/notification/Notification;
+      49: pop
+      50: iconst_0
+      51: ireturn
+
+  public final void load();
+    Code:
+       0: aload_0
+       1: getfield      #103                // Field isLoaded:Ljava/util/concurrent/atomic/AtomicBoolean;
+       4: iconst_0
+       5: iconst_1
+       6: invokevirtual #222                // Method java/util/concurrent/atomic/AtomicBoolean.compareAndSet:(ZZ)Z
+       9: ifeq          22
+      12: aload_0
+      13: getfield      #96                 // Field saver:Lgit4idea/stash/GitChangesSaver;
+      16: invokevirtual #224                // Method git4idea/stash/GitChangesSaver.load:()V
+      19: goto          30
+      22: getstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      25: ldc           #230                // String The changes were already loaded
+      27: invokevirtual #236                // Method com/intellij/openapi/diagnostic/Logger.info:(Ljava/lang/String;)V
+      30: return
+
+  public final void execute();
+    Code:
+       0: aload_0
+       1: aconst_null
+       2: iconst_1
+       3: aconst_null
+       4: invokestatic  #238                // Method execute$default:(Lgit4idea/util/GitPreservingProcess;Lcom/intellij/openapi/util/Computable;ILjava/lang/Object;)V
+       7: return
+
+  private static final java.lang.Boolean execute$lambda$0$0(git4idea.util.GitPreservingProcess);
+    Code:
+       0: aload_0
+       1: invokespecial #242                // Method save:()Z
+       4: invokestatic  #248                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       7: areturn
+
+  private static final void execute$lambda$0$1(git4idea.util.GitPreservingProcess);
+    Code:
+       0: aload_0
+       1: invokevirtual #252                // Method load:()V
+       4: return
+
+  private static final void execute$lambda$0(git4idea.util.GitPreservingProcess, com.intellij.openapi.util.Computable);
+    Code:
+       0: invokestatic  #257                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+       3: aload_0
+       4: invokedynamic #268,  0            // InvokeDynamic #1:compute:(Lgit4idea/util/GitPreservingProcess;)Lcom/intellij/openapi/util/ThrowableComputable;
+       9: invokevirtual #272                // Method com/intellij/openapi/progress/ProgressManager.computeInNonCancelableSection:(Lcom/intellij/openapi/util/ThrowableComputable;)Ljava/lang/Object;
+      12: dup
+      13: ldc_w         #274                // String computeInNonCancelableSection(...)
+      16: invokestatic  #85                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: checkcast     #244                // class java/lang/Boolean
+      22: invokevirtual #277                // Method java/lang/Boolean.booleanValue:()Z
+      25: istore_2
+      26: getstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      29: iload_2
+      30: invokedynamic #289,  0            // InvokeDynamic #2:makeConcatWithConstants:(Z)Ljava/lang/String;
+      35: invokevirtual #292                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+      38: iload_2
+      39: ifeq          184
+      42: nop
+      43: getstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      46: ldc_w         #294                // String running operation
+      49: invokevirtual #292                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+      52: aload_0
+      53: getfield      #54                 // Field operation:Ljava/lang/Runnable;
+      56: invokeinterface #298,  1          // InterfaceMethod java/lang/Runnable.run:()V
+      61: getstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      64: ldc_w         #300                // String operation completed.
+      67: invokevirtual #292                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+      70: aload_1
+      71: ifnull        89
+      74: aload_1
+      75: invokeinterface #304,  1          // InterfaceMethod com/intellij/openapi/util/Computable.compute:()Ljava/lang/Object;
+      80: checkcast     #244                // class java/lang/Boolean
+      83: invokevirtual #277                // Method java/lang/Boolean.booleanValue:()Z
+      86: ifeq          113
+      89: getstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      92: ldc_w         #306                // String loading
+      95: invokevirtual #292                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+      98: invokestatic  #257                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+     101: aload_0
+     102: invokedynamic #312,  0            // InvokeDynamic #3:run:(Lgit4idea/util/GitPreservingProcess;)Ljava/lang/Runnable;
+     107: invokevirtual #316                // Method com/intellij/openapi/progress/ProgressManager.executeNonCancelableSection:(Ljava/lang/Runnable;)V
+     110: goto          124
+     113: aload_0
+     114: getfield      #96                 // Field saver:Lgit4idea/stash/GitChangesSaver;
+     117: aload_0
+     118: getfield      #46                 // Field operationTitle:Ljava/lang/String;
+     121: invokevirtual #319                // Method git4idea/stash/GitChangesSaver.notifyLocalChangesAreNotRestored:(Ljava/lang/String;)V
+     124: goto          184
+     127: astore_3
+     128: aload_1
+     129: ifnull        147
+     132: aload_1
+     133: invokeinterface #304,  1          // InterfaceMethod com/intellij/openapi/util/Computable.compute:()Ljava/lang/Object;
+     138: checkcast     #244                // class java/lang/Boolean
+     141: invokevirtual #277                // Method java/lang/Boolean.booleanValue:()Z
+     144: ifeq          171
+     147: getstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     150: ldc_w         #306                // String loading
+     153: invokevirtual #292                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     156: invokestatic  #257                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+     159: aload_0
+     160: invokedynamic #312,  0            // InvokeDynamic #3:run:(Lgit4idea/util/GitPreservingProcess;)Ljava/lang/Runnable;
+     165: invokevirtual #316                // Method com/intellij/openapi/progress/ProgressManager.executeNonCancelableSection:(Ljava/lang/Runnable;)V
+     168: goto          182
+     171: aload_0
+     172: getfield      #96                 // Field saver:Lgit4idea/stash/GitChangesSaver;
+     175: aload_0
+     176: getfield      #46                 // Field operationTitle:Ljava/lang/String;
+     179: invokevirtual #319                // Method git4idea/stash/GitChangesSaver.notifyLocalChangesAreNotRestored:(Ljava/lang/String;)V
+     182: aload_3
+     183: athrow
+     184: getstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     187: ldc_w         #321                // String finished.
+     190: invokevirtual #292                // Method com/intellij/openapi/diagnostic/Logger.debug:(Ljava/lang/String;)V
+     193: return
+    Exception table:
+       from    to  target type
+          42    70   127   any
+         127   128   127   any
+
+  public static final java.lang.String access$getOperationTitle$p(git4idea.util.GitPreservingProcess);
+    Code:
+       0: aload_0
+       1: getfield      #46                 // Field operationTitle:Ljava/lang/String;
+       4: areturn
+
+  public static final java.lang.String access$getDestinationName$p(git4idea.util.GitPreservingProcess);
+    Code:
+       0: aload_0
+       1: getfield      #48                 // Field destinationName:Ljava/lang/String;
+       4: areturn
+
+  static {};
+    Code:
+       0: new           #332                // class git4idea/util/GitPreservingProcess$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #335                // Method git4idea/util/GitPreservingProcess$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #339                // Field Companion:Lgit4idea/util/GitPreservingProcess$Companion;
+      11: iconst_0
+      12: istore_0
+      13: ldc           #2                  // class git4idea/util/GitPreservingProcess
+      15: invokestatic  #342                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+      18: dup
+      19: ldc_w         #344                // String getInstance(...)
+      22: invokestatic  #85                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: putstatic     #228                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      28: return
+}

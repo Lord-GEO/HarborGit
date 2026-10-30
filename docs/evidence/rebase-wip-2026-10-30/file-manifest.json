@@ -1,0 +1,107 @@
+[
+  {
+    "path": "collect_rebase_wip.py",
+    "bytes": 4116,
+    "sha256": "726c1449fa74892715105004b98c7d3326e5ee02bd0a4a5f2d7dbf412532b497"
+  },
+  {
+    "path": "javap/com.intellij.openapi.vcs.changes.VcsShelveChangesSaver.txt",
+    "bytes": 27876,
+    "sha256": "da66a39e1f6033029bb724fa4aa07bfec1ca3355990bc7547a019c21b2398aba"
+  },
+  {
+    "path": "javap/git4idea.config.GitSaveChangesPolicy.txt",
+    "bytes": 7222,
+    "sha256": "c8d89cdc33efe644e961014a6c3b475736db28d3166ad3dbffa259c161ab9b2c"
+  },
+  {
+    "path": "javap/git4idea.config.GitVcsOptions.txt",
+    "bytes": 107866,
+    "sha256": "aa305df05d76161e1219c6907e8df7a6060ff87b1655c2a5672a3ff65138aa8c"
+  },
+  {
+    "path": "javap/git4idea.config.GitVcsSettings.txt",
+    "bytes": 48379,
+    "sha256": "b621149745ff2cf4759085b7ec5ca046aea4e009b7f3763a45f4911c1b6e89de"
+  },
+  {
+    "path": "javap/git4idea.index.GitStageManagerKt.txt",
+    "bytes": 3237,
+    "sha256": "3b872de02f83c4cb4a228304fb26d4ebf55bc52db891a339b28fc83e4ed9cdaf"
+  },
+  {
+    "path": "javap/git4idea.stash.GitChangesSaver.txt",
+    "bytes": 26053,
+    "sha256": "21236978c205f048284b46d6dd036ef62d6e25c02c304ba679372f2e93abcf88"
+  },
+  {
+    "path": "javap/git4idea.stash.GitShelveChangesSaver$1.txt",
+    "bytes": 3069,
+    "sha256": "80532e6f58a138c001495b39c3f48c01e69eeaf0d8d18b245e371b267e9b2882"
+  },
+  {
+    "path": "javap/git4idea.stash.GitShelveChangesSaver.txt",
+    "bytes": 27920,
+    "sha256": "a13657f59e030beff61d2026f4ab925f386926580c3337042eee18ee4e3f2e7f"
+  },
+  {
+    "path": "javap/git4idea.stash.GitStashChangesSaver$UnstashConflictResolver.txt",
+    "bytes": 10958,
+    "sha256": "792ba4884da18ce625920340ae826482fc9159b9ad711aa5faa9700f2862685f"
+  },
+  {
+    "path": "javap/git4idea.stash.GitStashChangesSaver.txt",
+    "bytes": 24736,
+    "sha256": "75650fe2808987597afe4fda1f7119933241535af076432a36c8f8373ff19a44"
+  },
+  {
+    "path": "javap/git4idea.stash.GitStashOperations.txt",
+    "bytes": 68712,
+    "sha256": "6eebef840920b93b1f6a1ef0a90d06b520407dfd70974e2955c1ab9ff38ac920"
+  },
+  {
+    "path": "javap/git4idea.stash.GitStashUtils.txt",
+    "bytes": 37275,
+    "sha256": "96501690806ecf001ee394ca189f3678173010735d09fea0d78d0e2c8b2e3f4d"
+  },
+  {
+    "path": "javap/git4idea.util.GitPreservingProcess.txt",
+    "bytes": 24640,
+    "sha256": "5533ed0dc0c81422dc1b1b0368b25b5e248d29753027e687be8c3dc98ca39a63"
+  },
+  {
+    "path": "javap-provenance.json",
+    "bytes": 9528,
+    "sha256": "d817f13755e7b55d9d2fa16bbc4894151fdb881d5517a8cb69da89ac4b4f96fb"
+  },
+  {
+    "path": "rea-selected-occurrences.json",
+    "bytes": 7646,
+    "sha256": "fb7f1593e10798833ca13991ed3ce6524253b05b83404610a7d98a5c32210c1e"
+  },
+  {
+    "path": "rea-view-bundle.json",
+    "bytes": 24626,
+    "sha256": "acdf517eb0b78e223ea7350d2cdf6d4be78870d65f9a18d9c6a087dc7f1a96de"
+  },
+  {
+    "path": "resource-excerpts.json",
+    "bytes": 18066,
+    "sha256": "7efa6b8d1e883a73bff0634f97e5eebb53dc05df9a446ffedc345c0bda64f006"
+  },
+  {
+    "path": "reused-bytecode.json",
+    "bytes": 4105,
+    "sha256": "ae5024d7138d6133150ff29fd73692c586932c93d0eeabd7eaccba8c54996c62"
+  },
+  {
+    "path": "session-and-scope.json",
+    "bytes": 657,
+    "sha256": "d9315ff5185471688be80d05a8873f1c573a308d3afcf84edf7ecd565945e9b8"
+  },
+  {
+    "path": "source-identities.json",
+    "bytes": 678,
+    "sha256": "655d0924489c90f4a8fe90d81c42eda872d182bcca76173f7de61059ce51ccde"
+  }
+]

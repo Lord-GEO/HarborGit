@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.6.0",
+  "setup": "HarborGit-1.6.0-Setup-x64.exe",
+  "bytes": 124509379,
+  "sha256": "df668d64e2a317e241958b81911545e061161dbe98f7ad940909991a539741ed",
+  "sha512": "CIkiMbJ3mSsluPJC7HZ5eGZ90WDPfVJo4VB6DOxs9y3Yy0TLytKafMxnVNV/zFZYyB/wP0qVpxzMhOEW0qtb+w==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.6.0",
+    "files": [
+      {
+        "url": "HarborGit-1.6.0-Setup-x64.exe",
+        "sha512": "CIkiMbJ3mSsluPJC7HZ5eGZ90WDPfVJo4VB6DOxs9y3Yy0TLytKafMxnVNV/zFZYyB/wP0qVpxzMhOEW0qtb+w==",
+        "size": 124509379
+      }
+    ],
+    "path": "HarborGit-1.6.0-Setup-x64.exe",
+    "sha512": "CIkiMbJ3mSsluPJC7HZ5eGZ90WDPfVJo4VB6DOxs9y3Yy0TLytKafMxnVNV/zFZYyB/wP0qVpxzMhOEW0qtb+w==",
+    "releaseNotes": "# HarborGit v1.6.0\n\n- 有未提交改动也可尝试变基：新增“自动保存未提交改动后变基”，无需先创建临时提交。\n- 保存暂存区、工作区和普通未跟踪文件；完成或中止变基后尝试恢复，并保留原暂存状态。\n- 在 dev 有未提交修改时，可选择对 master 变基；结束后切回 dev 恢复原改动，避免将它们带到 master。\n- 区分变基冲突与改动恢复冲突；恢复失败时展示备份和处理入口，禁止重复应用可能已写入的内容。\n- 新增持久 WIP 引用与恢复记录；取消任务或重新打开项目后可继续检查处理，Stash 和专用备份均不自动删除。\n- 保留指定提交变基、文件回滚、Revert、Reset，以及已有 Git、AI、多项目和主题功能。\n\n自动恢复可能遇到冲突；忽略文件不收进备份，同名文件、特殊文件模式及外部分支变化会受到保护。保留暂存状态恢复失败且确认未产生部分写入时，可明确选择“恢复为未暂存修改”；原暂存版本仍保存在备份中。高级 --onto 范围移植、交互式变基和 Shelf 尚未提供。\n\nWindows 下载 Setup 安装版。正式发布时，请同时上传 Setup、对应 `.exe.blockmap` 和 `latest.yml`，以供旧版软件更新获取。\n",
+    "releaseDate": "2026-10-30T13:42:11.356Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

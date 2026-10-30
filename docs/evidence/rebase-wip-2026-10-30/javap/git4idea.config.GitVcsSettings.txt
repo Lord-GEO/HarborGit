@@ -1,0 +1,1023 @@
+Compiled from "GitVcsSettings.java"
+public final class git4idea.config.GitVcsSettings extends com.intellij.openapi.components.SimplePersistentStateComponent<git4idea.config.GitVcsOptions> implements com.intellij.dvcs.branch.DvcsSyncSettings, com.intellij.dvcs.branch.DvcsCompareSettings {
+  public static final java.lang.String SETTINGS_KEY;
+
+  private static final int PREVIOUS_COMMIT_AUTHORS_LIMIT;
+
+  private final com.intellij.openapi.project.Project project;
+
+  public git4idea.config.GitVcsSettings(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: new           #1                  // class git4idea/config/GitVcsOptions
+       4: dup
+       5: invokespecial #3                  // Method git4idea/config/GitVcsOptions."<init>":()V
+       8: invokespecial #7                  // Method com/intellij/openapi/components/SimplePersistentStateComponent."<init>":(Lcom/intellij/openapi/components/BaseState;)V
+      11: aload_0
+      12: aload_1
+      13: putfield      #12                 // Field project:Lcom/intellij/openapi/project/Project;
+      16: return
+
+  public static git4idea.config.GitVcsSettings getInstance(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: ldc           #13                 // class git4idea/config/GitVcsSettings
+       3: invokeinterface #18,  2           // InterfaceMethod com/intellij/openapi/project/Project.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+       8: checkcast     #13                 // class git4idea/config/GitVcsSettings
+      11: areturn
+
+  public void loadState(git4idea.config.GitVcsOptions);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: aload_1
+      10: invokespecial #24                 // Method com/intellij/openapi/components/SimplePersistentStateComponent.loadState:(Lcom/intellij/openapi/components/BaseState;)V
+      13: aload_1
+      14: invokevirtual #27                 // Method git4idea/config/GitVcsOptions.getIncomingCheckStrategy:()Lgit4idea/config/GitIncomingCheckStrategy;
+      17: getstatic     #31                 // Field git4idea/config/GitIncomingCheckStrategy.Never:Lgit4idea/config/GitIncomingCheckStrategy;
+      20: if_acmpne     37
+      23: aload_1
+      24: getstatic     #37                 // Field git4idea/config/GitIncomingRemoteCheckStrategy.NONE:Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+      27: invokevirtual #43                 // Method git4idea/config/GitVcsOptions.setIncomingCommitsCheckStrategy:(Lgit4idea/config/GitIncomingRemoteCheckStrategy;)V
+      30: aload_1
+      31: getstatic     #47                 // Field git4idea/config/GitIncomingCheckStrategy.Auto:Lgit4idea/config/GitIncomingCheckStrategy;
+      34: invokevirtual #50                 // Method git4idea/config/GitVcsOptions.setIncomingCheckStrategy:(Lgit4idea/config/GitIncomingCheckStrategy;)V
+      37: return
+
+  public git4idea.config.UpdateMethod getUpdateMethod();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #58                 // Method git4idea/config/GitVcsOptions.getUpdateMethod:()Lgit4idea/config/UpdateMethod;
+      10: dup
+      11: ifnonnull     18
+      14: iconst_1
+      15: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      18: areturn
+
+  public void setUpdateMethod(git4idea.config.UpdateMethod);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: aload_1
+       8: invokevirtual #62                 // Method git4idea/config/GitVcsOptions.setUpdateMethod:(Lgit4idea/config/UpdateMethod;)V
+      11: return
+
+  public git4idea.config.GitSaveChangesPolicy getSaveChangesPolicy();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #66                 // Method git4idea/config/GitVcsOptions.getSaveChangesPolicy:()Lgit4idea/config/GitSaveChangesPolicy;
+      10: dup
+      11: ifnonnull     18
+      14: iconst_2
+      15: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      18: areturn
+
+  public void setSaveChangesPolicy(git4idea.config.GitSaveChangesPolicy);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: aload_1
+       8: invokevirtual #70                 // Method git4idea/config/GitVcsOptions.setSaveChangesPolicy:(Lgit4idea/config/GitSaveChangesPolicy;)V
+      11: return
+
+  public void saveCommitAuthor(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_3
+       5: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+      12: checkcast     #1                  // class git4idea/config/GitVcsOptions
+      15: invokevirtual #74                 // Method git4idea/config/GitVcsOptions.getPreviousCommitAuthors:()Ljava/util/List;
+      18: astore_2
+      19: aload_2
+      20: aload_1
+      21: invokeinterface #78,  2           // InterfaceMethod java/util/List.remove:(Ljava/lang/Object;)Z
+      26: pop
+      27: aload_2
+      28: invokeinterface #84,  1           // InterfaceMethod java/util/List.size:()I
+      33: bipush        16
+      35: if_icmplt     56
+      38: aload_2
+      39: aload_2
+      40: invokeinterface #84,  1           // InterfaceMethod java/util/List.size:()I
+      45: iconst_1
+      46: isub
+      47: invokeinterface #88,  2           // InterfaceMethod java/util/List.remove:(I)Ljava/lang/Object;
+      52: pop
+      53: goto          27
+      56: aload_2
+      57: iconst_0
+      58: aload_1
+      59: invokeinterface #91,  3           // InterfaceMethod java/util/List.add:(ILjava/lang/Object;)V
+      64: return
+
+  public java.lang.String[] getCommitAuthors();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #74                 // Method git4idea/config/GitVcsOptions.getPreviousCommitAuthors:()Ljava/util/List;
+      10: invokestatic  #95                 // Method com/intellij/util/ArrayUtilRt.toStringArray:(Ljava/util/Collection;)[Ljava/lang/String;
+      13: areturn
+
+  public java.lang.String getPathToGit();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #101                // Method git4idea/config/GitVcsOptions.getPathToGit:()Ljava/lang/String;
+      10: areturn
+
+  public void setPathToGit(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: aload_1
+       8: invokevirtual #105                // Method git4idea/config/GitVcsOptions.setPathToGit:(Ljava/lang/String;)V
+      11: aload_0
+      12: getfield      #12                 // Field project:Lcom/intellij/openapi/project/Project;
+      15: invokeinterface #109,  1          // InterfaceMethod com/intellij/openapi/project/Project.getMessageBus:()Lcom/intellij/util/messages/MessageBus;
+      20: getstatic     #113                // Field git4idea/config/GitVcsSettings$GitVcsSettingsListener.TOPIC:Lcom/intellij/util/messages/Topic;
+      23: invokeinterface #119,  2          // InterfaceMethod com/intellij/util/messages/MessageBus.syncPublisher:(Lcom/intellij/util/messages/Topic;)Ljava/lang/Object;
+      28: checkcast     #114                // class git4idea/config/GitVcsSettings$GitVcsSettingsListener
+      31: invokeinterface #125,  1          // InterfaceMethod git4idea/config/GitVcsSettings$GitVcsSettingsListener.pathToGitChanged:()V
+      36: return
+
+  public boolean autoUpdateIfPushRejected();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #128                // Method git4idea/config/GitVcsOptions.isPushAutoUpdate:()Z
+      10: ireturn
+
+  public void setAutoUpdateIfPushRejected(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #132                // Method git4idea/config/GitVcsOptions.setPushAutoUpdate:(Z)V
+      11: return
+
+  public com.intellij.dvcs.branch.DvcsSyncSettings$Value getSyncSetting();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #136                // Method git4idea/config/GitVcsOptions.getRootSync:()Lcom/intellij/dvcs/branch/DvcsSyncSettings$Value;
+      10: dup
+      11: ifnonnull     18
+      14: iconst_4
+      15: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      18: areturn
+
+  public boolean shouldExecuteOperationsOnAllRoots();
+    Code:
+       0: aload_0
+       1: invokevirtual #140                // Method getSyncSetting:()Lcom/intellij/dvcs/branch/DvcsSyncSettings$Value;
+       4: getstatic     #143                // Field com/intellij/dvcs/branch/DvcsSyncSettings$Value.DONT_SYNC:Lcom/intellij/dvcs/branch/DvcsSyncSettings$Value;
+       7: if_acmpeq     14
+      10: iconst_1
+      11: goto          15
+      14: iconst_0
+      15: ireturn
+
+  public void setSyncSetting(com.intellij.dvcs.branch.DvcsSyncSettings$Value);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_5
+       5: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+      12: checkcast     #1                  // class git4idea/config/GitVcsOptions
+      15: aload_1
+      16: invokevirtual #149                // Method git4idea/config/GitVcsOptions.setRootSync:(Lcom/intellij/dvcs/branch/DvcsSyncSettings$Value;)V
+      19: return
+
+  public java.lang.String getRecentRootPath();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #153                // Method git4idea/config/GitVcsOptions.getRecentGitRootPath:()Ljava/lang/String;
+      10: areturn
+
+  public void setRecentRoot(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+      13: checkcast     #1                  // class git4idea/config/GitVcsOptions
+      16: aload_1
+      17: invokevirtual #156                // Method git4idea/config/GitVcsOptions.setRecentGitRootPath:(Ljava/lang/String;)V
+      20: return
+
+  public java.util.Map<java.lang.String, java.lang.String> getRecentBranchesByRepository();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #159                // Method git4idea/config/GitVcsOptions.getRecentBranchByRepository:()Ljava/util/Map;
+      10: dup
+      11: ifnonnull     19
+      14: bipush        7
+      16: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      19: areturn
+
+  public void setRecentBranchOfRepository(java.lang.String, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        8
+       6: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        9
+      15: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+      22: checkcast     #1                  // class git4idea/config/GitVcsOptions
+      25: invokevirtual #159                // Method git4idea/config/GitVcsOptions.getRecentBranchByRepository:()Ljava/util/Map;
+      28: aload_1
+      29: aload_2
+      30: invokeinterface #163,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      35: pop
+      36: return
+
+  public java.lang.String getRecentCommonBranch();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #169                // Method git4idea/config/GitVcsOptions.getRecentCommonBranch:()Ljava/lang/String;
+      10: areturn
+
+  public void setRecentCommonBranch(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        10
+       6: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+      13: checkcast     #1                  // class git4idea/config/GitVcsOptions
+      16: aload_1
+      17: invokevirtual #172                // Method git4idea/config/GitVcsOptions.setRecentCommonBranch:(Ljava/lang/String;)V
+      20: return
+
+  public boolean showRecentBranches();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #175                // Method git4idea/config/GitVcsOptions.getShowRecentBranches:()Z
+      10: ireturn
+
+  public void setShowRecentBranches(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #178                // Method git4idea/config/GitVcsOptions.setShowRecentBranches:(Z)V
+      11: return
+
+  public boolean showTags();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #181                // Method git4idea/config/GitVcsOptions.getShowTags:()Z
+      10: ireturn
+
+  public void setShowTags(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #184                // Method git4idea/config/GitVcsOptions.setShowTags:(Z)V
+      11: aload_0
+      12: getfield      #12                 // Field project:Lcom/intellij/openapi/project/Project;
+      15: invokeinterface #109,  1          // InterfaceMethod com/intellij/openapi/project/Project.getMessageBus:()Lcom/intellij/util/messages/MessageBus;
+      20: getstatic     #113                // Field git4idea/config/GitVcsSettings$GitVcsSettingsListener.TOPIC:Lcom/intellij/util/messages/Topic;
+      23: invokeinterface #119,  2          // InterfaceMethod com/intellij/util/messages/MessageBus.syncPublisher:(Lcom/intellij/util/messages/Topic;)Ljava/lang/Object;
+      28: checkcast     #114                // class git4idea/config/GitVcsSettings$GitVcsSettingsListener
+      31: iload_1
+      32: invokeinterface #187,  2          // InterfaceMethod git4idea/config/GitVcsSettings$GitVcsSettingsListener.showTagsChanged:(Z)V
+      37: return
+
+  public boolean filterByActionInPopup();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #190                // Method git4idea/config/GitVcsOptions.getFilterByActionInPopup:()Z
+      10: ireturn
+
+  public void setFilterByActionInPopup(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #193                // Method git4idea/config/GitVcsOptions.setFilterByActionInPopup:(Z)V
+      11: return
+
+  public boolean filterByRepositoryInPopup();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #196                // Method git4idea/config/GitVcsOptions.getFilterByRepositoryInPopup:()Z
+      10: ireturn
+
+  public void setFilterByRepositoryInPopup(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #199                // Method git4idea/config/GitVcsOptions.setFilterByRepositoryInPopup:(Z)V
+      11: return
+
+  public boolean warnAboutCrlf();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #202                // Method git4idea/config/GitVcsOptions.getWarnAboutCrlf:()Z
+      10: ireturn
+
+  public void setWarnAboutCrlf(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #205                // Method git4idea/config/GitVcsOptions.setWarnAboutCrlf:(Z)V
+      11: return
+
+  public boolean warnAboutDetachedHead();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #208                // Method git4idea/config/GitVcsOptions.isWarnAboutDetachedHead:()Z
+      10: ireturn
+
+  public void setWarnAboutDetachedHead(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #211                // Method git4idea/config/GitVcsOptions.setWarnAboutDetachedHead:(Z)V
+      11: return
+
+  public boolean warnAboutLargeFiles();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #214                // Method git4idea/config/GitVcsOptions.isWarnAboutLargeFiles:()Z
+      10: ireturn
+
+  public void setWarnAboutLargeFiles(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #217                // Method git4idea/config/GitVcsOptions.setWarnAboutLargeFiles:(Z)V
+      11: return
+
+  public boolean warnAboutBadFileNames();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #220                // Method git4idea/config/GitVcsOptions.isWarnAboutBadFileNames:()Z
+      10: ireturn
+
+  public void setWarnAboutLargeFilesLimitMb(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #223                // Method git4idea/config/GitVcsOptions.setWarnAboutLargeFilesLimitMb:(I)V
+      11: return
+
+  public int getWarnAboutLargeFilesLimitMb();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #227                // Method git4idea/config/GitVcsOptions.getWarnAboutLargeFilesLimitMb:()I
+      10: ireturn
+
+  public void setWarnAboutBadFileNames(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #230                // Method git4idea/config/GitVcsOptions.setWarnAboutBadFileNames:(Z)V
+      11: return
+
+  public git4idea.reset.GitResetMode getResetMode();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #233                // Method git4idea/config/GitVcsOptions.getResetMode:()Lgit4idea/reset/GitResetMode;
+      10: areturn
+
+  public void setResetMode(git4idea.reset.GitResetMode);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        11
+       6: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+      13: checkcast     #1                  // class git4idea/config/GitVcsOptions
+      16: aload_1
+      17: invokevirtual #237                // Method git4idea/config/GitVcsOptions.setResetMode:(Lgit4idea/reset/GitResetMode;)V
+      20: return
+
+  public git4idea.push.GitPushTagMode getPushTagMode();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #241                // Method git4idea/config/GitVcsOptions.getPushTags:()Lgit4idea/push/GitPushTagMode;
+      10: areturn
+
+  public void setPushTagMode(git4idea.push.GitPushTagMode);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: aload_1
+       8: invokevirtual #245                // Method git4idea/config/GitVcsOptions.setPushTags:(Lgit4idea/push/GitPushTagMode;)V
+      11: return
+
+  public git4idea.fetch.GitFetchTagsMode getFetchTagsMode();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #249                // Method git4idea/config/GitVcsOptions.getFetchTagsMode:()Lgit4idea/fetch/GitFetchTagsMode;
+      10: dup
+      11: ifnonnull     19
+      14: bipush        12
+      16: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      19: areturn
+
+  public void setFetchTagsMode(git4idea.fetch.GitFetchTagsMode);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: aload_1
+       8: ifnonnull     17
+      11: getstatic     #253                // Field git4idea/fetch/GitFetchTagsMode.DEFAULT:Lgit4idea/fetch/GitFetchTagsMode;
+      14: goto          18
+      17: aload_1
+      18: invokevirtual #259                // Method git4idea/config/GitVcsOptions.setFetchTagsMode:(Lgit4idea/fetch/GitFetchTagsMode;)V
+      21: return
+
+  public boolean shouldSignOffCommit();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #263                // Method git4idea/config/GitVcsOptions.isSignOffCommit:()Z
+      10: ireturn
+
+  public void setSignOffCommit(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #266                // Method git4idea/config/GitVcsOptions.setSignOffCommit:(Z)V
+      11: return
+
+  public git4idea.config.GitIncomingRemoteCheckStrategy getIncomingCommitsCheckStrategy();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #269                // Method git4idea/config/GitVcsOptions.getIncomingCommitsCheckStrategy:()Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+      10: dup
+      11: ifnonnull     19
+      14: bipush        13
+      16: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      19: areturn
+
+  public void setAutoFetch(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: ifeq          11
+       5: getstatic     #273                // Field git4idea/config/GitIncomingRemoteCheckStrategy.FETCH:Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+       8: goto          14
+      11: getstatic     #276                // Field git4idea/config/GitIncomingRemoteCheckStrategy.LS_REMOTE:Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+      14: invokevirtual #279                // Method setIncomingCommitsCheckStrategy:(Lgit4idea/config/GitIncomingRemoteCheckStrategy;)V
+      17: return
+
+  public void setCheckRemote(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: ifeq          11
+       5: getstatic     #276                // Field git4idea/config/GitIncomingRemoteCheckStrategy.LS_REMOTE:Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+       8: goto          14
+      11: getstatic     #37                 // Field git4idea/config/GitIncomingRemoteCheckStrategy.NONE:Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+      14: invokevirtual #279                // Method setIncomingCommitsCheckStrategy:(Lgit4idea/config/GitIncomingRemoteCheckStrategy;)V
+      17: return
+
+  public void setIncomingCommitsCheckStrategy(git4idea.config.GitIncomingRemoteCheckStrategy);
+    Code:
+       0: aload_1
+       1: ifnull        8
+       4: aload_1
+       5: goto          11
+       8: getstatic     #276                // Field git4idea/config/GitIncomingRemoteCheckStrategy.LS_REMOTE:Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+      11: astore_2
+      12: aload_0
+      13: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+      16: checkcast     #1                  // class git4idea/config/GitVcsOptions
+      19: aload_2
+      20: invokevirtual #43                 // Method git4idea/config/GitVcsOptions.setIncomingCommitsCheckStrategy:(Lgit4idea/config/GitIncomingRemoteCheckStrategy;)V
+      23: aload_0
+      24: getfield      #12                 // Field project:Lcom/intellij/openapi/project/Project;
+      27: invokeinterface #109,  1          // InterfaceMethod com/intellij/openapi/project/Project.getMessageBus:()Lcom/intellij/util/messages/MessageBus;
+      32: getstatic     #113                // Field git4idea/config/GitVcsSettings$GitVcsSettingsListener.TOPIC:Lcom/intellij/util/messages/Topic;
+      35: invokeinterface #119,  2          // InterfaceMethod com/intellij/util/messages/MessageBus.syncPublisher:(Lcom/intellij/util/messages/Topic;)Ljava/lang/Object;
+      40: checkcast     #114                // class git4idea/config/GitVcsSettings$GitVcsSettingsListener
+      43: aload_2
+      44: invokeinterface #280,  2          // InterfaceMethod git4idea/config/GitVcsSettings$GitVcsSettingsListener.incomingCommitsCheckStrategyChanged:(Lgit4idea/config/GitIncomingRemoteCheckStrategy;)V
+      49: return
+
+  public boolean shouldPreviewPushOnCommitAndPush();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #283                // Method git4idea/config/GitVcsOptions.isPreviewPushOnCommitAndPush:()Z
+      10: ireturn
+
+  public void setPreviewPushOnCommitAndPush(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #286                // Method git4idea/config/GitVcsOptions.setPreviewPushOnCommitAndPush:(Z)V
+      11: return
+
+  public boolean isPreviewPushProtectedOnly();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #289                // Method git4idea/config/GitVcsOptions.isPreviewPushProtectedOnly:()Z
+      10: ireturn
+
+  public void setPreviewPushProtectedOnly(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #292                // Method git4idea/config/GitVcsOptions.setPreviewPushProtectedOnly:(Z)V
+      11: return
+
+  public boolean isCommitRenamesSeparately();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #295                // Method git4idea/config/GitVcsOptions.isCommitRenamesSeparately:()Z
+      10: ireturn
+
+  public void setCommitRenamesSeparately(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #298                // Method git4idea/config/GitVcsOptions.setCommitRenamesSeparately:(Z)V
+      11: return
+
+  public com.intellij.dvcs.branch.DvcsBranchSettings getBranchSettings();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #301                // Method git4idea/config/GitVcsOptions.getBranchSettings:()Lcom/intellij/dvcs/branch/DvcsBranchSettings;
+      10: dup
+      11: ifnonnull     19
+      14: bipush        14
+      16: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+      19: areturn
+
+  public void setBranchGroupingSettings(com.intellij.dvcs.branch.GroupingKey, boolean);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        15
+       6: invokestatic  #460                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: invokevirtual #305                // Method getBranchSettings:()Lcom/intellij/dvcs/branch/DvcsBranchSettings;
+      13: astore_3
+      14: iload_2
+      15: ifeq          35
+      18: aload_3
+      19: invokevirtual #306                // Method com/intellij/dvcs/branch/DvcsBranchSettings.getGroupingKeyIds:()Ljava/util/Set;
+      22: aload_1
+      23: invokevirtual #312                // Method com/intellij/dvcs/branch/GroupingKey.getId:()Ljava/lang/String;
+      26: invokeinterface #317,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      31: pop
+      32: goto          49
+      35: aload_3
+      36: invokevirtual #306                // Method com/intellij/dvcs/branch/DvcsBranchSettings.getGroupingKeyIds:()Ljava/util/Set;
+      39: aload_1
+      40: invokevirtual #312                // Method com/intellij/dvcs/branch/GroupingKey.getId:()Ljava/lang/String;
+      43: invokeinterface #321,  2          // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+      48: pop
+      49: aload_3
+      50: invokevirtual #322                // Method com/intellij/dvcs/branch/DvcsBranchSettings.intIncrementModificationCount:()V
+      53: aload_0
+      54: getfield      #12                 // Field project:Lcom/intellij/openapi/project/Project;
+      57: invokeinterface #109,  1          // InterfaceMethod com/intellij/openapi/project/Project.getMessageBus:()Lcom/intellij/util/messages/MessageBus;
+      62: getstatic     #113                // Field git4idea/config/GitVcsSettings$GitVcsSettingsListener.TOPIC:Lcom/intellij/util/messages/Topic;
+      65: invokeinterface #119,  2          // InterfaceMethod com/intellij/util/messages/MessageBus.syncPublisher:(Lcom/intellij/util/messages/Topic;)Ljava/lang/Object;
+      70: checkcast     #114                // class git4idea/config/GitVcsSettings$GitVcsSettingsListener
+      73: aload_1
+      74: iload_2
+      75: invokeinterface #325,  3          // InterfaceMethod git4idea/config/GitVcsSettings$GitVcsSettingsListener.branchGroupingSettingsChanged:(Lcom/intellij/dvcs/branch/GroupingKey;Z)V
+      80: return
+
+  public boolean shouldSetUserNameGlobally();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #329                // Method git4idea/config/GitVcsOptions.isSetUserNameGlobally:()Z
+      10: ireturn
+
+  public void setUserNameGlobally(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #332                // Method git4idea/config/GitVcsOptions.setSetUserNameGlobally:(Z)V
+      11: return
+
+  public boolean shouldSwapSidesInCompareBranches();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #335                // Method git4idea/config/GitVcsOptions.isSwapSidesInCompareBranches:()Z
+      10: ireturn
+
+  public void setSwapSidesInCompareBranches(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #338                // Method git4idea/config/GitVcsOptions.setSwapSidesInCompareBranches:(Z)V
+      11: return
+
+  public boolean shouldAddSuffixToCherryPicksOfPublishedCommits();
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: invokevirtual #341                // Method git4idea/config/GitVcsOptions.isAddSuffixToCherryPicksOfPublishedCommits:()Z
+      10: ireturn
+
+  public void setAddSuffixToCherryPicks(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #54                 // Method getState:()Lcom/intellij/openapi/components/BaseState;
+       4: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       7: iload_1
+       8: invokevirtual #344                // Method git4idea/config/GitVcsOptions.setAddSuffixToCherryPicksOfPublishedCommits:(Z)V
+      11: return
+
+  public void noStateLoaded();
+    Code:
+       0: aload_0
+       1: new           #1                  // class git4idea/config/GitVcsOptions
+       4: dup
+       5: invokespecial #3                  // Method git4idea/config/GitVcsOptions."<init>":()V
+       8: invokevirtual #347                // Method loadState:(Lgit4idea/config/GitVcsOptions;)V
+      11: return
+
+  public void loadState(com.intellij.openapi.components.BaseState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       5: invokevirtual #347                // Method loadState:(Lgit4idea/config/GitVcsOptions;)V
+       8: return
+
+  public void loadState(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #1                  // class git4idea/config/GitVcsOptions
+       5: invokevirtual #347                // Method loadState:(Lgit4idea/config/GitVcsOptions;)V
+       8: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 15
+                     0: 80
+                     1: 86
+                     2: 86
+                     3: 80
+                     4: 86
+                     5: 80
+                     6: 80
+                     7: 86
+                     8: 80
+                     9: 80
+                    10: 80
+                    11: 80
+                    12: 86
+                    13: 86
+                    14: 86
+                    15: 80
+               default: 80
+          }
+      80: ldc_w         #466                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      83: goto          92
+      86: ldc_w         #468                // String @NotNull method %s.%s must not return null
+      89: goto          92
+      92: iload_0
+      93: tableswitch   { // 0 to 15
+                     0: 172
+                     1: 176
+                     2: 176
+                     3: 172
+                     4: 176
+                     5: 172
+                     6: 172
+                     7: 176
+                     8: 172
+                     9: 172
+                    10: 172
+                    11: 172
+                    12: 176
+                    13: 176
+                    14: 176
+                    15: 172
+               default: 172
+          }
+     172: iconst_3
+     173: goto          180
+     176: iconst_2
+     177: goto          180
+     180: anewarray     #470                // class java/lang/Object
+     183: iload_0
+     184: tableswitch   { // 0 to 15
+                     0: 264
+                     1: 273
+                     2: 273
+                     3: 282
+                     4: 273
+                     5: 291
+                     6: 291
+                     7: 273
+                     8: 300
+                     9: 309
+                    10: 291
+                    11: 318
+                    12: 273
+                    13: 273
+                    14: 273
+                    15: 327
+               default: 264
+          }
+     264: dup
+     265: iconst_0
+     266: ldc_w         #471                // String state
+     269: aastore
+     270: goto          336
+     273: dup
+     274: iconst_0
+     275: ldc_w         #472                // String git4idea/config/GitVcsSettings
+     278: aastore
+     279: goto          336
+     282: dup
+     283: iconst_0
+     284: ldc_w         #473                // String authorAsString
+     287: aastore
+     288: goto          336
+     291: dup
+     292: iconst_0
+     293: ldc_w         #474                // String value
+     296: aastore
+     297: goto          336
+     300: dup
+     301: iconst_0
+     302: ldc_w         #475                // String repositoryPath
+     305: aastore
+     306: goto          336
+     309: dup
+     310: iconst_0
+     311: ldc_w         #476                // String branch
+     314: aastore
+     315: goto          336
+     318: dup
+     319: iconst_0
+     320: ldc_w         #477                // String mode
+     323: aastore
+     324: goto          336
+     327: dup
+     328: iconst_0
+     329: ldc_w         #478                // String key
+     332: aastore
+     333: goto          336
+     336: iload_0
+     337: tableswitch   { // 0 to 15
+                     0: 416
+                     1: 425
+                     2: 434
+                     3: 416
+                     4: 443
+                     5: 416
+                     6: 416
+                     7: 452
+                     8: 416
+                     9: 416
+                    10: 416
+                    11: 416
+                    12: 461
+                    13: 470
+                    14: 479
+                    15: 416
+               default: 416
+          }
+     416: dup
+     417: iconst_1
+     418: ldc_w         #472                // String git4idea/config/GitVcsSettings
+     421: aastore
+     422: goto          488
+     425: dup
+     426: iconst_1
+     427: ldc_w         #479                // String getUpdateMethod
+     430: aastore
+     431: goto          488
+     434: dup
+     435: iconst_1
+     436: ldc_w         #480                // String getSaveChangesPolicy
+     439: aastore
+     440: goto          488
+     443: dup
+     444: iconst_1
+     445: ldc_w         #481                // String getSyncSetting
+     448: aastore
+     449: goto          488
+     452: dup
+     453: iconst_1
+     454: ldc_w         #482                // String getRecentBranchesByRepository
+     457: aastore
+     458: goto          488
+     461: dup
+     462: iconst_1
+     463: ldc_w         #483                // String getFetchTagsMode
+     466: aastore
+     467: goto          488
+     470: dup
+     471: iconst_1
+     472: ldc_w         #484                // String getIncomingCommitsCheckStrategy
+     475: aastore
+     476: goto          488
+     479: dup
+     480: iconst_1
+     481: ldc_w         #485                // String getBranchSettings
+     484: aastore
+     485: goto          488
+     488: iload_0
+     489: tableswitch   { // 0 to 15
+                     0: 568
+                     1: 577
+                     2: 577
+                     3: 580
+                     4: 577
+                     5: 589
+                     6: 598
+                     7: 577
+                     8: 607
+                     9: 607
+                    10: 616
+                    11: 625
+                    12: 577
+                    13: 577
+                    14: 577
+                    15: 634
+               default: 568
+          }
+     568: dup
+     569: iconst_2
+     570: ldc_w         #486                // String loadState
+     573: aastore
+     574: goto          643
+     577: goto          643
+     580: dup
+     581: iconst_2
+     582: ldc_w         #487                // String saveCommitAuthor
+     585: aastore
+     586: goto          643
+     589: dup
+     590: iconst_2
+     591: ldc_w         #488                // String setSyncSetting
+     594: aastore
+     595: goto          643
+     598: dup
+     599: iconst_2
+     600: ldc_w         #489                // String setRecentRoot
+     603: aastore
+     604: goto          643
+     607: dup
+     608: iconst_2
+     609: ldc_w         #490                // String setRecentBranchOfRepository
+     612: aastore
+     613: goto          643
+     616: dup
+     617: iconst_2
+     618: ldc_w         #491                // String setRecentCommonBranch
+     621: aastore
+     622: goto          643
+     625: dup
+     626: iconst_2
+     627: ldc_w         #492                // String setResetMode
+     630: aastore
+     631: goto          643
+     634: dup
+     635: iconst_2
+     636: ldc_w         #493                // String setBranchGroupingSettings
+     639: aastore
+     640: goto          643
+     643: invokestatic  #499                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     646: iload_0
+     647: tableswitch   { // 0 to 15
+                     0: 724
+                     1: 735
+                     2: 735
+                     3: 724
+                     4: 735
+                     5: 724
+                     6: 724
+                     7: 735
+                     8: 724
+                     9: 724
+                    10: 724
+                    11: 724
+                    12: 735
+                    13: 735
+                    14: 735
+                    15: 724
+               default: 724
+          }
+     724: new           #501                // class java/lang/IllegalArgumentException
+     727: dup_x1
+     728: swap
+     729: invokespecial #503                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     732: goto          746
+     735: new           #505                // class java/lang/IllegalStateException
+     738: dup_x1
+     739: swap
+     740: invokespecial #506                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     743: goto          746
+     746: athrow
+}

@@ -1,0 +1,175 @@
+Compiled from "GitSaveChangesPolicy.java"
+public abstract class git4idea.config.GitSaveChangesPolicy extends java.lang.Enum<git4idea.config.GitSaveChangesPolicy> {
+  public static final git4idea.config.GitSaveChangesPolicy STASH;
+
+  public static final git4idea.config.GitSaveChangesPolicy SHELVE;
+
+  private final java.lang.String myTextKey;
+
+  private static final git4idea.config.GitSaveChangesPolicy[] $VALUES;
+
+  public static git4idea.config.GitSaveChangesPolicy[] values();
+    Code:
+       0: getstatic     #10                 // Field $VALUES:[Lgit4idea/config/GitSaveChangesPolicy;
+       3: invokevirtual #14                 // Method "[Lgit4idea/config/GitSaveChangesPolicy;".clone:()Ljava/lang/Object;
+       6: checkcast     #15                 // class "[Lgit4idea/config/GitSaveChangesPolicy;"
+       9: areturn
+
+  public static git4idea.config.GitSaveChangesPolicy valueOf(java.lang.String);
+    Code:
+       0: ldc           #1                  // class git4idea/config/GitSaveChangesPolicy
+       2: aload_0
+       3: invokestatic  #19                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #1                  // class git4idea/config/GitSaveChangesPolicy
+       9: areturn
+
+  private git4idea.config.GitSaveChangesPolicy(java.lang.String);
+    Code:
+       0: aload_3
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #93                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: aload_1
+      10: iload_2
+      11: invokespecial #25                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+      14: aload_0
+      15: aload_3
+      16: putfield      #29                 // Field myTextKey:Ljava/lang/String;
+      19: return
+
+  public java.lang.String getText();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field myTextKey:Ljava/lang/String;
+       4: iconst_0
+       5: anewarray     #33                 // class java/lang/Object
+       8: invokestatic  #35                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      11: dup
+      12: ifnonnull     19
+      15: iconst_1
+      16: invokestatic  #93                 // Method $$$reportNull$$$0:(I)V
+      19: areturn
+
+  public abstract java.lang.String selectBundleMessage(java.lang.String, java.lang.String);
+
+  private static git4idea.config.GitSaveChangesPolicy[] $values();
+    Code:
+       0: iconst_2
+       1: anewarray     #1                  // class git4idea/config/GitSaveChangesPolicy
+       4: dup
+       5: iconst_0
+       6: getstatic     #3                  // Field STASH:Lgit4idea/config/GitSaveChangesPolicy;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #7                  // Field SHELVE:Lgit4idea/config/GitSaveChangesPolicy;
+      15: aastore
+      16: areturn
+
+  static {};
+    Code:
+       0: new           #41                 // class git4idea/config/GitSaveChangesPolicy$1
+       3: dup
+       4: ldc           #43                 // String STASH
+       6: iconst_0
+       7: ldc           #44                 // String local.changes.save.policy.stash
+       9: invokespecial #46                 // Method git4idea/config/GitSaveChangesPolicy$1."<init>":(Ljava/lang/String;ILjava/lang/String;)V
+      12: putstatic     #3                  // Field STASH:Lgit4idea/config/GitSaveChangesPolicy;
+      15: new           #49                 // class git4idea/config/GitSaveChangesPolicy$2
+      18: dup
+      19: ldc           #51                 // String SHELVE
+      21: iconst_1
+      22: ldc           #52                 // String local.changes.save.policy.shelve
+      24: invokespecial #54                 // Method git4idea/config/GitSaveChangesPolicy$2."<init>":(Ljava/lang/String;ILjava/lang/String;)V
+      27: putstatic     #7                  // Field SHELVE:Lgit4idea/config/GitSaveChangesPolicy;
+      30: invokestatic  #55                 // Method $values:()[Lgit4idea/config/GitSaveChangesPolicy;
+      33: putstatic     #10                 // Field $VALUES:[Lgit4idea/config/GitSaveChangesPolicy;
+      36: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 1
+                     0: 24
+                     1: 29
+               default: 24
+          }
+      24: ldc           #97                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      26: goto          34
+      29: ldc           #99                 // String @NotNull method %s.%s must not return null
+      31: goto          34
+      34: iload_0
+      35: tableswitch   { // 0 to 1
+                     0: 56
+                     1: 60
+               default: 56
+          }
+      56: iconst_3
+      57: goto          64
+      60: iconst_2
+      61: goto          64
+      64: anewarray     #33                 // class java/lang/Object
+      67: iload_0
+      68: tableswitch   { // 0 to 1
+                     0: 92
+                     1: 100
+               default: 92
+          }
+      92: dup
+      93: iconst_0
+      94: ldc           #100                // String textKey
+      96: aastore
+      97: goto          108
+     100: dup
+     101: iconst_0
+     102: ldc           #101                // String git4idea/config/GitSaveChangesPolicy
+     104: aastore
+     105: goto          108
+     108: iload_0
+     109: tableswitch   { // 0 to 1
+                     0: 132
+                     1: 140
+               default: 132
+          }
+     132: dup
+     133: iconst_1
+     134: ldc           #101                // String git4idea/config/GitSaveChangesPolicy
+     136: aastore
+     137: goto          148
+     140: dup
+     141: iconst_1
+     142: ldc           #102                // String getText
+     144: aastore
+     145: goto          148
+     148: iload_0
+     149: tableswitch   { // 0 to 1
+                     0: 172
+                     1: 180
+               default: 172
+          }
+     172: dup
+     173: iconst_2
+     174: ldc           #103                // String <init>
+     176: aastore
+     177: goto          183
+     180: goto          183
+     183: invokestatic  #106                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     186: iload_0
+     187: tableswitch   { // 0 to 1
+                     0: 208
+                     1: 219
+               default: 208
+          }
+     208: new           #108                // class java/lang/IllegalArgumentException
+     211: dup_x1
+     212: swap
+     213: invokespecial #110                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     216: goto          230
+     219: new           #112                // class java/lang/IllegalStateException
+     222: dup_x1
+     223: swap
+     224: invokespecial #113                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     227: goto          230
+     230: athrow
+}

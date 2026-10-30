@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-30 Asia/Shanghai",
+  "target": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+  "initial": {
+    "open": false,
+    "cleanup_pending": false,
+    "version": "6.8.0"
+  },
+  "final": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "new_target_opened": false,
+  "scope": "Authenticated artifact inventory view from prior evidence bundle, installed JDK javap and ZIP resources; no IDEA UI input, no Git repository writes.",
+  "reused_class_format_limit": "../rea-class-format-limitation.json",
+  "resource_cleanup": "No opened binary target to close; final session confirmed closed."
+}

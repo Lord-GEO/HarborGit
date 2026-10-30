@@ -1,0 +1,670 @@
+Compiled from "GitStashUtils.kt"
+public final class git4idea.stash.GitStashUtils {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  public static final java.util.List<git4idea.ui.StashInfo> loadStashStack(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: ldc           #12                 // String project
+       3: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: ldc           #20                 // String root
+       9: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: iconst_5
+      13: anewarray     #22                 // class git4idea/history/GitLogParser$GitLogOption
+      16: astore_3
+      17: aload_3
+      18: iconst_0
+      19: getstatic     #26                 // Field git4idea/history/GitLogParser$GitLogOption.HASH:Lgit4idea/history/GitLogParser$GitLogOption;
+      22: aastore
+      23: aload_3
+      24: iconst_1
+      25: getstatic     #29                 // Field git4idea/history/GitLogParser$GitLogOption.PARENTS:Lgit4idea/history/GitLogParser$GitLogOption;
+      28: aastore
+      29: aload_3
+      30: iconst_2
+      31: getstatic     #32                 // Field git4idea/history/GitLogParser$GitLogOption.AUTHOR_TIME:Lgit4idea/history/GitLogParser$GitLogOption;
+      34: aastore
+      35: aload_3
+      36: iconst_3
+      37: getstatic     #35                 // Field git4idea/history/GitLogParser$GitLogOption.SHORT_REF_LOG_SELECTOR:Lgit4idea/history/GitLogParser$GitLogOption;
+      40: aastore
+      41: aload_3
+      42: iconst_4
+      43: getstatic     #38                 // Field git4idea/history/GitLogParser$GitLogOption.SUBJECT:Lgit4idea/history/GitLogParser$GitLogOption;
+      46: aastore
+      47: aload_3
+      48: astore_2
+      49: aload_2
+      50: invokestatic  #44                 // Method kotlin/collections/ArraysKt.withIndex:([Ljava/lang/Object;)Ljava/lang/Iterable;
+      53: astore        4
+      55: iconst_0
+      56: istore        5
+      58: aload         4
+      60: bipush        10
+      62: invokestatic  #50                 // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+      65: invokestatic  #56                 // Method kotlin/collections/MapsKt.mapCapacity:(I)I
+      68: bipush        16
+      70: invokestatic  #62                 // Method kotlin/ranges/RangesKt.coerceAtLeast:(II)I
+      73: istore        6
+      75: aload         4
+      77: astore        7
+      79: new           #64                 // class java/util/LinkedHashMap
+      82: dup
+      83: iload         6
+      85: invokespecial #68                 // Method java/util/LinkedHashMap."<init>":(I)V
+      88: checkcast     #70                 // class java/util/Map
+      91: astore        8
+      93: iconst_0
+      94: istore        9
+      96: aload         7
+      98: invokeinterface #76,  1           // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     103: astore        10
+     105: aload         10
+     107: invokeinterface #82,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+     112: ifeq          181
+     115: aload         10
+     117: invokeinterface #86,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     122: astore        11
+     124: aload         8
+     126: astore        12
+     128: aload         11
+     130: checkcast     #88                 // class kotlin/collections/IndexedValue
+     133: astore        13
+     135: iconst_0
+     136: istore        14
+     138: new           #90                 // class kotlin/Pair
+     141: dup
+     142: aload         13
+     144: invokevirtual #93                 // Method kotlin/collections/IndexedValue.getValue:()Ljava/lang/Object;
+     147: aload         13
+     149: invokevirtual #97                 // Method kotlin/collections/IndexedValue.getIndex:()I
+     152: invokestatic  #103                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     155: invokespecial #106                // Method kotlin/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     158: astore        13
+     160: aload         12
+     162: aload         13
+     164: invokevirtual #109                // Method kotlin/Pair.getFirst:()Ljava/lang/Object;
+     167: aload         13
+     169: invokevirtual #112                // Method kotlin/Pair.getSecond:()Ljava/lang/Object;
+     172: invokeinterface #116,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     177: pop
+     178: goto          105
+     181: aload         8
+     183: nop
+     184: astore_3
+     185: aload_0
+     186: aload_1
+     187: invokestatic  #122                // Method git4idea/config/GitConfigUtil.getLogEncodingCharset:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/nio/charset/Charset;
+     190: dup
+     191: ldc           #124                // String getLogEncodingCharset(...)
+     193: invokestatic  #127                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     196: astore        4
+     198: new           #129                // class git4idea/commands/GitLineHandler
+     201: dup
+     202: aload_0
+     203: aload_1
+     204: getstatic     #135                // Field git4idea/commands/GitCommand.STASH:Lgit4idea/commands/GitCommand;
+     207: invokevirtual #139                // Method git4idea/commands/GitCommand.readLockingCommand:()Lgit4idea/commands/GitCommand;
+     210: invokespecial #142                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+     213: astore        5
+     215: aload         5
+     217: iconst_1
+     218: invokevirtual #146                // Method git4idea/commands/GitLineHandler.setSilent:(Z)V
+     221: aload         5
+     223: iconst_2
+     224: anewarray     #148                // class java/lang/String
+     227: astore        6
+     229: aload         6
+     231: iconst_0
+     232: ldc           #150                // String list
+     234: aastore
+     235: aload         6
+     237: iconst_1
+     238: aload_2
+     239: ldc           #152                // String :
+     241: invokestatic  #158                // Method git4idea/history/GitLogParser.makeFormatFromOptions:([Lgit4idea/history/GitLogParser$GitLogOption;Ljava/lang/String;)Ljava/lang/String;
+     244: invokedynamic #170,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     249: aastore
+     250: aload         6
+     252: invokevirtual #174                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     255: aload         5
+     257: aload         4
+     259: invokevirtual #178                // Method git4idea/commands/GitLineHandler.setCharset:(Ljava/nio/charset/Charset;)V
+     262: invokestatic  #184                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     265: aload         5
+     267: invokeinterface #188,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     272: dup
+     273: ldc           #190                // String runCommand(...)
+     275: invokestatic  #127                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     278: astore        6
+     280: aload         6
+     282: iconst_0
+     283: newarray       int
+     285: invokevirtual #196                // Method git4idea/commands/GitCommandResult.throwOnError:([I)V
+     288: new           #198                // class java/util/ArrayList
+     291: dup
+     292: invokespecial #201                // Method java/util/ArrayList."<init>":()V
+     295: checkcast     #203                // class java/util/List
+     298: astore        7
+     300: aload         6
+     302: invokevirtual #207                // Method git4idea/commands/GitCommandResult.getOutput:()Ljava/util/List;
+     305: invokeinterface #208,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     310: astore        8
+     312: aload         8
+     314: invokeinterface #82,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+     319: ifeq          796
+     322: aload         8
+     324: invokeinterface #86,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     329: checkcast     #148                // class java/lang/String
+     332: astore        9
+     334: aload         9
+     336: invokestatic  #212                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     339: aload         9
+     341: checkcast     #214                // class java/lang/CharSequence
+     344: iconst_1
+     345: newarray       char
+     347: astore        11
+     349: aload         11
+     351: iconst_0
+     352: bipush        58
+     354: castore
+     355: aload         11
+     357: iconst_0
+     358: aload_2
+     359: arraylength
+     360: iconst_1
+     361: iadd
+     362: iconst_2
+     363: aconst_null
+     364: invokestatic  #220                // Method kotlin/text/StringsKt.split$default:(Ljava/lang/CharSequence;[CZIILjava/lang/Object;)Ljava/util/List;
+     367: astore        10
+     369: aload         10
+     371: invokeinterface #223,  1          // InterfaceMethod java/util/List.size:()I
+     376: aload_2
+     377: arraylength
+     378: if_icmpge     408
+     381: iconst_0
+     382: istore        11
+     384: ldc           #225                // class git4idea/GitUtil
+     386: invokestatic  #230                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+     389: dup
+     390: ldc           #232                // String getInstance(...)
+     392: invokestatic  #127                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     395: aload         9
+     397: invokedynamic #235,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     402: invokevirtual #239                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+     405: goto          312
+     408: aload         10
+     410: aload_3
+     411: getstatic     #29                 // Field git4idea/history/GitLogParser$GitLogOption.PARENTS:Lgit4idea/history/GitLogParser$GitLogOption;
+     414: invokestatic  #242                // Method kotlin/collections/MapsKt.getValue:(Ljava/util/Map;Ljava/lang/Object;)Ljava/lang/Object;
+     417: checkcast     #244                // class java/lang/Number
+     420: invokevirtual #247                // Method java/lang/Number.intValue:()I
+     423: invokeinterface #251,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     428: checkcast     #214                // class java/lang/CharSequence
+     431: iconst_1
+     432: anewarray     #148                // class java/lang/String
+     435: astore        12
+     437: aload         12
+     439: iconst_0
+     440: ldc           #253                // String
+     442: aastore
+     443: aload         12
+     445: iconst_0
+     446: iconst_0
+     447: bipush        6
+     449: aconst_null
+     450: invokestatic  #256                // Method kotlin/text/StringsKt.split$default:(Ljava/lang/CharSequence;[Ljava/lang/String;ZIILjava/lang/Object;)Ljava/util/List;
+     453: astore        11
+     455: aload         11
+     457: invokeinterface #259,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     462: ifeq          492
+     465: iconst_0
+     466: istore        12
+     468: ldc           #225                // class git4idea/GitUtil
+     470: invokestatic  #230                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+     473: dup
+     474: ldc           #232                // String getInstance(...)
+     476: invokestatic  #127                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     479: aload         9
+     481: invokedynamic #262,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     486: invokevirtual #239                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+     489: goto          312
+     492: aload         10
+     494: aload_3
+     495: getstatic     #26                 // Field git4idea/history/GitLogParser$GitLogOption.HASH:Lgit4idea/history/GitLogParser$GitLogOption;
+     498: invokestatic  #242                // Method kotlin/collections/MapsKt.getValue:(Ljava/util/Map;Ljava/lang/Object;)Ljava/lang/Object;
+     501: checkcast     #244                // class java/lang/Number
+     504: invokevirtual #247                // Method java/lang/Number.intValue:()I
+     507: invokeinterface #251,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     512: checkcast     #148                // class java/lang/String
+     515: invokestatic  #268                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+     518: dup
+     519: ldc_w         #270                // String build(...)
+     522: invokestatic  #127                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     525: astore        12
+     527: aload         11
+     529: iconst_1
+     530: aload         11
+     532: invokeinterface #223,  1          // InterfaceMethod java/util/List.size:()I
+     537: invokeinterface #274,  3          // InterfaceMethod java/util/List.subList:(II)Ljava/util/List;
+     542: checkcast     #72                 // class java/lang/Iterable
+     545: astore        14
+     547: iconst_0
+     548: istore        15
+     550: aload         14
+     552: astore        16
+     554: new           #198                // class java/util/ArrayList
+     557: dup
+     558: aload         14
+     560: bipush        10
+     562: invokestatic  #50                 // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+     565: invokespecial #275                // Method java/util/ArrayList."<init>":(I)V
+     568: checkcast     #277                // class java/util/Collection
+     571: astore        17
+     573: iconst_0
+     574: istore        18
+     576: aload         16
+     578: invokeinterface #76,  1           // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     583: astore        19
+     585: aload         19
+     587: invokeinterface #82,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+     592: ifeq          635
+     595: aload         19
+     597: invokeinterface #86,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     602: astore        20
+     604: aload         17
+     606: aload         20
+     608: checkcast     #148                // class java/lang/String
+     611: astore        21
+     613: astore        23
+     615: iconst_0
+     616: istore        22
+     618: aload         21
+     620: invokestatic  #268                // Method com/intellij/vcs/log/impl/HashImpl.build:(Ljava/lang/String;)Lcom/intellij/vcs/log/Hash;
+     623: aload         23
+     625: swap
+     626: invokeinterface #281,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     631: pop
+     632: goto          585
+     635: aload         17
+     637: checkcast     #203                // class java/util/List
+     640: nop
+     641: astore        13
+     643: aload         10
+     645: aload_3
+     646: getstatic     #32                 // Field git4idea/history/GitLogParser$GitLogOption.AUTHOR_TIME:Lgit4idea/history/GitLogParser$GitLogOption;
+     649: invokestatic  #242                // Method kotlin/collections/MapsKt.getValue:(Ljava/util/Map;Ljava/lang/Object;)Ljava/lang/Object;
+     652: checkcast     #244                // class java/lang/Number
+     655: invokevirtual #247                // Method java/lang/Number.intValue:()I
+     658: invokeinterface #251,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     663: checkcast     #148                // class java/lang/String
+     666: invokestatic  #287                // Method git4idea/history/GitLogUtil.parseTime:(Ljava/lang/String;)J
+     669: lstore        14
+     671: aload         10
+     673: aload_3
+     674: getstatic     #35                 // Field git4idea/history/GitLogParser$GitLogOption.SHORT_REF_LOG_SELECTOR:Lgit4idea/history/GitLogParser$GitLogOption;
+     677: invokestatic  #242                // Method kotlin/collections/MapsKt.getValue:(Ljava/util/Map;Ljava/lang/Object;)Ljava/lang/Object;
+     680: checkcast     #244                // class java/lang/Number
+     683: invokevirtual #247                // Method java/lang/Number.intValue:()I
+     686: invokeinterface #251,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     691: checkcast     #148                // class java/lang/String
+     694: astore        16
+     696: aload         10
+     698: invokeinterface #223,  1          // InterfaceMethod java/util/List.size:()I
+     703: aload_2
+     704: arraylength
+     705: if_icmpne     712
+     708: aconst_null
+     709: goto          744
+     712: aload         10
+     714: aload_3
+     715: getstatic     #38                 // Field git4idea/history/GitLogParser$GitLogOption.SUBJECT:Lgit4idea/history/GitLogParser$GitLogOption;
+     718: invokestatic  #242                // Method kotlin/collections/MapsKt.getValue:(Ljava/util/Map;Ljava/lang/Object;)Ljava/lang/Object;
+     721: checkcast     #244                // class java/lang/Number
+     724: invokevirtual #247                // Method java/lang/Number.intValue:()I
+     727: invokeinterface #251,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     732: checkcast     #148                // class java/lang/String
+     735: checkcast     #214                // class java/lang/CharSequence
+     738: invokestatic  #291                // Method kotlin/text/StringsKt.trim:(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+     741: invokevirtual #295                // Method java/lang/Object.toString:()Ljava/lang/String;
+     744: astore        17
+     746: aload         10
+     748: invokestatic  #299                // Method kotlin/collections/CollectionsKt.last:(Ljava/util/List;)Ljava/lang/Object;
+     751: checkcast     #148                // class java/lang/String
+     754: checkcast     #214                // class java/lang/CharSequence
+     757: invokestatic  #291                // Method kotlin/text/StringsKt.trim:(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+     760: invokevirtual #295                // Method java/lang/Object.toString:()Ljava/lang/String;
+     763: astore        18
+     765: aload         7
+     767: new           #301                // class git4idea/ui/StashInfo
+     770: dup
+     771: aload_1
+     772: aload         12
+     774: aload         13
+     776: lload         14
+     778: aload         16
+     780: aload         17
+     782: aload         18
+     784: invokespecial #304                // Method git4idea/ui/StashInfo."<init>":(Lcom/intellij/openapi/vfs/VirtualFile;Lcom/intellij/vcs/log/Hash;Ljava/util/List;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+     787: invokeinterface #305,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     792: pop
+     793: goto          312
+     796: aload         7
+     798: areturn
+
+  private static final git4idea.commands.GitLineHandler createUnstashHandler(com.intellij.openapi.project.Project, git4idea.ui.StashInfo, java.lang.String, boolean, boolean);
+    Code:
+       0: new           #129                // class git4idea/commands/GitLineHandler
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #371                // Method git4idea/ui/StashInfo.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+       9: getstatic     #135                // Field git4idea/commands/GitCommand.STASH:Lgit4idea/commands/GitCommand;
+      12: invokespecial #142                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      15: astore        5
+      17: aload_2
+      18: checkcast     #214                // class java/lang/CharSequence
+      21: astore        6
+      23: aload         6
+      25: ifnull        36
+      28: aload         6
+      30: invokestatic  #375                // Method kotlin/text/StringsKt.isBlank:(Ljava/lang/CharSequence;)Z
+      33: ifeq          40
+      36: iconst_1
+      37: goto          41
+      40: iconst_0
+      41: ifeq          102
+      44: aload         5
+      46: iconst_1
+      47: anewarray     #148                // class java/lang/String
+      50: astore        6
+      52: aload         6
+      54: iconst_0
+      55: iload_3
+      56: ifeq          65
+      59: ldc_w         #377                // String pop
+      62: goto          68
+      65: ldc_w         #379                // String apply
+      68: aastore
+      69: aload         6
+      71: invokevirtual #174                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      74: iload         4
+      76: ifeq          127
+      79: aload         5
+      81: iconst_1
+      82: anewarray     #148                // class java/lang/String
+      85: astore        6
+      87: aload         6
+      89: iconst_0
+      90: ldc_w         #381                // String --index
+      93: aastore
+      94: aload         6
+      96: invokevirtual #174                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      99: goto          127
+     102: aload         5
+     104: iconst_2
+     105: anewarray     #148                // class java/lang/String
+     108: astore        6
+     110: aload         6
+     112: iconst_0
+     113: ldc_w         #382                // String branch
+     116: aastore
+     117: aload         6
+     119: iconst_1
+     120: aload_2
+     121: aastore
+     122: aload         6
+     124: invokevirtual #174                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     127: aload         5
+     129: iconst_1
+     130: anewarray     #148                // class java/lang/String
+     133: astore        6
+     135: aload         6
+     137: iconst_0
+     138: aload_1
+     139: invokevirtual #385                // Method git4idea/ui/StashInfo.getStash:()Ljava/lang/String;
+     142: aastore
+     143: aload         6
+     145: invokevirtual #174                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     148: aload         5
+     150: areturn
+
+  public static final git4idea.commands.GitLineHandler createStashHandler(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, boolean, java.lang.String);
+    Code:
+       0: aload_0
+       1: ldc           #12                 // String project
+       3: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: ldc           #20                 // String root
+       9: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc_w         #392                // String message
+      16: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: aload_0
+      20: aload_1
+      21: invokestatic  #395                // Method kotlin/collections/CollectionsKt.emptyList:()Ljava/util/List;
+      24: checkcast     #277                // class java/util/Collection
+      27: invokestatic  #398                // Method kotlin/collections/CollectionsKt.createListBuilder:()Ljava/util/List;
+      30: astore        4
+      32: aload         4
+      34: astore        5
+      36: astore        10
+      38: astore        9
+      40: astore        8
+      42: iconst_0
+      43: istore        6
+      45: iload_2
+      46: ifeq          60
+      49: aload         5
+      51: ldc_w         #400                // String --keep-index
+      54: invokeinterface #305,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      59: pop
+      60: aload_3
+      61: checkcast     #214                // class java/lang/CharSequence
+      64: invokestatic  #291                // Method kotlin/text/StringsKt.trim:(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+      67: invokevirtual #295                // Method java/lang/Object.toString:()Ljava/lang/String;
+      70: astore        7
+      72: aload         7
+      74: checkcast     #214                // class java/lang/CharSequence
+      77: invokeinterface #403,  1          // InterfaceMethod java/lang/CharSequence.length:()I
+      82: ifle          89
+      85: iconst_1
+      86: goto          90
+      89: iconst_0
+      90: ifeq          114
+      93: aload         5
+      95: ldc_w         #405                // String --message
+      98: invokeinterface #305,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     103: pop
+     104: aload         5
+     106: aload         7
+     108: invokeinterface #305,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     113: pop
+     114: nop
+     115: getstatic     #411                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     118: astore        11
+     120: aload         8
+     122: aload         9
+     124: aload         10
+     126: aload         4
+     128: invokestatic  #414                // Method kotlin/collections/CollectionsKt.build:(Ljava/util/List;)Ljava/util/List;
+     131: invokestatic  #417                // Method createStashHandler:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Ljava/util/List;)Lgit4idea/commands/GitLineHandler;
+     134: areturn
+
+  public static git4idea.commands.GitLineHandler createStashHandler$default(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, boolean, java.lang.String, int, java.lang.Object);
+    Code:
+       0: iload         4
+       2: iconst_4
+       3: iand
+       4: ifeq          9
+       7: iconst_0
+       8: istore_2
+       9: iload         4
+      11: bipush        8
+      13: iand
+      14: ifeq          21
+      17: ldc_w         #425                // String
+      20: astore_3
+      21: aload_0
+      22: aload_1
+      23: iload_2
+      24: aload_3
+      25: invokestatic  #427                // Method createStashHandler:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;ZLjava/lang/String;)Lgit4idea/commands/GitLineHandler;
+      28: areturn
+
+  public static final git4idea.commands.GitLineHandler createStashHandler(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>, java.lang.String...);
+    Code:
+       0: aload_0
+       1: ldc           #12                 // String project
+       3: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: ldc           #20                 // String root
+       9: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_2
+      13: ldc_w         #431                // String files
+      16: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: aload_3
+      20: ldc_w         #433                // String parameters
+      23: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      26: aload_0
+      27: aload_1
+      28: aload_2
+      29: aload_3
+      30: invokestatic  #437                // Method kotlin/collections/ArraysKt.toList:([Ljava/lang/Object;)Ljava/util/List;
+      33: invokestatic  #417                // Method createStashHandler:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Ljava/util/List;)Lgit4idea/commands/GitLineHandler;
+      36: areturn
+
+  private static final git4idea.commands.GitLineHandler createStashHandler(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.Collection<? extends com.intellij.openapi.vcs.FilePath>, java.util.List<java.lang.String>);
+    Code:
+       0: new           #129                // class git4idea/commands/GitLineHandler
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: getstatic     #135                // Field git4idea/commands/GitCommand.STASH:Lgit4idea/commands/GitCommand;
+       9: invokespecial #142                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      12: astore        4
+      14: aload         4
+      16: iconst_1
+      17: anewarray     #148                // class java/lang/String
+      20: astore        5
+      22: aload         5
+      24: iconst_0
+      25: ldc_w         #440                // String push
+      28: aastore
+      29: aload         5
+      31: invokevirtual #174                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      34: aload         4
+      36: aload_3
+      37: invokevirtual #443                // Method git4idea/commands/GitLineHandler.addParameters:(Ljava/util/List;)V
+      40: aload_2
+      41: invokeinterface #444,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+      46: ifne          53
+      49: iconst_1
+      50: goto          54
+      53: iconst_0
+      54: ifeq          139
+      57: getstatic     #450                // Field git4idea/config/GitVersionSpecialty.STASH_PUSH_PATHSPEC_FROM_FILE_SUPPORTED:Lgit4idea/config/GitVersionSpecialty;
+      60: invokestatic  #455                // Method git4idea/config/GitExecutableManager.getInstance:()Lgit4idea/config/GitExecutableManager;
+      63: aload_0
+      64: invokevirtual #459                // Method git4idea/config/GitExecutableManager.getVersion:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitVersion;
+      67: dup
+      68: ldc_w         #461                // String getVersion(...)
+      71: invokestatic  #127                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      74: invokevirtual #465                // Method git4idea/config/GitVersionSpecialty.existsIn:(Lgit4idea/config/GitVersion;)Z
+      77: ifeq          128
+      80: aload         4
+      82: iconst_1
+      83: anewarray     #148                // class java/lang/String
+      86: astore        5
+      88: aload         5
+      90: iconst_0
+      91: ldc_w         #467                // String --pathspec-from-file=-
+      94: aastore
+      95: aload         5
+      97: invokevirtual #174                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     100: aload         4
+     102: aload_1
+     103: aload_2
+     104: invokestatic  #473                // Method com/intellij/vcsUtil/VcsFileUtil.toRelativePaths:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;)Ljava/util/List;
+     107: checkcast     #277                // class java/util/Collection
+     110: ldc_w         #475                // String \n
+     113: aload         4
+     115: invokevirtual #479                // Method git4idea/commands/GitLineHandler.getCharset:()Ljava/nio/charset/Charset;
+     118: iconst_0
+     119: invokestatic  #485                // Method git4idea/commands/GitHandlerInputProcessorUtil.writeLines:(Ljava/util/Collection;Ljava/lang/String;Ljava/nio/charset/Charset;Z)Lcom/intellij/util/ThrowableConsumer;
+     122: invokevirtual #489                // Method git4idea/commands/GitLineHandler.setInputProcessor:(Lcom/intellij/util/ThrowableConsumer;)V
+     125: goto          139
+     128: aload         4
+     130: invokevirtual #492                // Method git4idea/commands/GitLineHandler.endOptions:()V
+     133: aload         4
+     135: aload_2
+     136: invokevirtual #496                // Method git4idea/commands/GitLineHandler.addRelativePaths:(Ljava/util/Collection;)V
+     139: aload         4
+     141: areturn
+
+  public static final void refreshStash(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: ldc           #12                 // String project
+       3: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: ldc           #20                 // String root
+       9: invokestatic  #18                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: invokestatic  #504                // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      16: aload_1
+      17: invokevirtual #508                // Method git4idea/repo/GitRepositoryManager.getRepositoryForFileQuick:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      20: checkcast     #510                // class git4idea/repo/GitRepository
+      23: dup
+      24: ifnull        42
+      27: invokeinterface #514,  1          // InterfaceMethod git4idea/repo/GitRepository.getRepositoryFiles:()Lgit4idea/repo/GitRepositoryFiles;
+      32: dup
+      33: ifnull        42
+      36: invokevirtual #520                // Method git4idea/repo/GitRepositoryFiles.getStashReflogFile:()Ljava/io/File;
+      39: goto          44
+      42: pop
+      43: aconst_null
+      44: astore_2
+      45: aload_2
+      46: ifnull        65
+      49: iconst_1
+      50: iconst_0
+      51: iconst_0
+      52: iconst_1
+      53: anewarray     #522                // class java/io/File
+      56: astore_3
+      57: aload_3
+      58: iconst_0
+      59: aload_2
+      60: aastore
+      61: aload_3
+      62: invokestatic  #528                // Method com/intellij/openapi/vfs/VfsUtil.markDirtyAndRefresh:(ZZZ[Ljava/io/File;)V
+      65: return
+
+  public static final com.intellij.openapi.diagnostic.Logger access$getLOG$p();
+    Code:
+       0: getstatic     #536                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       3: areturn
+
+  public static final git4idea.commands.GitLineHandler access$createUnstashHandler(com.intellij.openapi.project.Project, git4idea.ui.StashInfo, java.lang.String, boolean, boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iload_3
+       4: iload         4
+       6: invokestatic  #539                // Method createUnstashHandler:(Lcom/intellij/openapi/project/Project;Lgit4idea/ui/StashInfo;Ljava/lang/String;ZZ)Lgit4idea/commands/GitLineHandler;
+       9: areturn
+
+  static {};
+    Code:
+       0: ldc_w         #542                // String #git4idea.stash.GitStashUtils
+       3: invokestatic  #545                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/String;)Lcom/intellij/openapi/diagnostic/Logger;
+       6: dup
+       7: ldc           #232                // String getInstance(...)
+       9: invokestatic  #127                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: putstatic     #536                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      15: return
+}

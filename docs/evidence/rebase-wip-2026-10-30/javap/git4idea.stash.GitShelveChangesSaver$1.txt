@@ -1,0 +1,69 @@
+Compiled from "GitShelveChangesSaver.java"
+class git4idea.stash.GitShelveChangesSaver$1 extends com.intellij.openapi.vcs.changes.VcsShelveChangesSaver {
+  final git4idea.stash.GitShelveChangesSaver this$0;
+
+  git4idea.stash.GitShelveChangesSaver$1(git4idea.stash.GitShelveChangesSaver, com.intellij.openapi.project.Project, com.intellij.openapi.progress.ProgressIndicator, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field this$0:Lgit4idea/stash/GitShelveChangesSaver;
+       5: aload_0
+       6: aload_2
+       7: aload_3
+       8: aload         4
+      10: invokespecial #7                  // Method com/intellij/openapi/vcs/changes/VcsShelveChangesSaver."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/progress/ProgressIndicator;Ljava/lang/String;)V
+      13: return
+
+  protected void doRollback(java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>, java.util.Collection<com.intellij.openapi.vcs.changes.Change>);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #54                 // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #54                 // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: getfield      #1                  // Field this$0:Lgit4idea/stash/GitShelveChangesSaver;
+      20: aload_1
+      21: aload_2
+      22: invokevirtual #13                 // Method git4idea/stash/GitShelveChangesSaver.rollbackChanges:(Ljava/util/Collection;Ljava/util/Collection;)V
+      25: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #56                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #58                 // class java/lang/Object
+       6: iload_0
+       7: tableswitch   { // 0 to 1
+                     0: 28
+                     1: 36
+               default: 28
+          }
+      28: dup
+      29: iconst_0
+      30: ldc           #59                 // String rootsToSave
+      32: aastore
+      33: goto          44
+      36: dup
+      37: iconst_0
+      38: ldc           #60                 // String shelvedChanges
+      40: aastore
+      41: goto          44
+      44: dup
+      45: iconst_1
+      46: ldc           #61                 // String git4idea/stash/GitShelveChangesSaver$1
+      48: aastore
+      49: dup
+      50: iconst_2
+      51: ldc           #62                 // String doRollback
+      53: aastore
+      54: invokestatic  #68                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      57: new           #70                 // class java/lang/IllegalArgumentException
+      60: dup_x1
+      61: swap
+      62: invokespecial #73                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      65: athrow
+}

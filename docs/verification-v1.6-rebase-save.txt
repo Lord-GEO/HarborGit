@@ -1,0 +1,20 @@
+
+> harbor-git@1.6.0 test:rebase-save
+> tsx --test tests/rebase-save.test.ts
+
+✔ saved changes rebase: staged, unstaged, Unicode untracked and binary content restore without touching existing stash (7625.9481ms)
+✔ saved changes rebase: another source branch changes while original dev WIP and index return exactly (8283.1335ms)
+✔ saved changes rebase: suspended operation survives reopen and abort restores every original change (9376.6679ms)
+✔ saved changes rebase: conflict resolution and continue restore saved WIP after the rewritten commit (11593.4266ms)
+✔ saved changes rebase: restoration conflict retains saved bytes, blocks duplicate apply and supports manual completion (14007.6558ms)
+✔ saved changes rebase: untracked restoration collision never overwrites the new committed file (7240.7569ms)
+✔ saved changes rebase: explicit consent and valid snapshots are required before saving (3370.8346ms)
+✔ saved changes rebase: cancellation after saving is recoverable from a new service instance (8704.1617ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 70487.2107

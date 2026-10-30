@@ -1,0 +1,599 @@
+{
+  "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+  "member": "messages/GitBundle.properties",
+  "member_sha256": "fd0ea596360606b36bc8bad904e27caebb617b8fcbcc54a0615999891c33bcd1",
+  "selected_lines": [
+    {
+      "line": 34,
+      "text": "apply.changes.restore.notification.description=Local changes were saved before {0}"
+    },
+    {
+      "line": 35,
+      "text": "apply.changes.restore.notification.title=Restore local changes"
+    },
+    {
+      "line": 95,
+      "text": "local.changes.freeze.message.git.operation.prefix=Git {0}"
+    },
+    {
+      "line": 341,
+      "text": "rebase.notification.action.view.stash.text=View Stash\\u2026"
+    },
+    {
+      "line": 346,
+      "text": "save.notification.failed.shelf.text=Could not shelve local uncommitted changes:"
+    },
+    {
+      "line": 347,
+      "text": "save.notification.failed.stash.text=Could not stash local uncommitted changes:"
+    },
+    {
+      "line": 363,
+      "text": "rebase.notification.saved.local.changes.part.shelf.text=Local changes were shelved before rebase."
+    },
+    {
+      "line": 364,
+      "text": "rebase.notification.saved.local.changes.part.stash.text=Local changes were stashed before rebase."
+    },
+    {
+      "line": 383,
+      "text": "rebase.update.project.conflict.error.notification.description=Then you may <b>continue rebase</b>. <br/> You also may <b>abort rebase</b> to restore the original branch and stop rebasing."
+    },
+    {
+      "line": 408,
+      "text": "restore.conflict.dialog.description.label.text=Uncommitted changes that were saved before {0} have conflicts with files from {1}"
+    },
+    {
+      "line": 409,
+      "text": "restore.conflict.diff.dialog.left.shelf.title=Uncommitted changes from the shelf"
+    },
+    {
+      "line": 410,
+      "text": "restore.conflict.diff.dialog.left.stash.title=Uncommitted changes from the stash"
+    },
+    {
+      "line": 411,
+      "text": "restore.conflict.diff.dialog.right.title=Changes from {0}"
+    },
+    {
+      "line": 412,
+      "text": "preserving.process.local.changes.not.restored.error.title=Local changes were not restored"
+    },
+    {
+      "line": 413,
+      "text": "restore.notification.failed.shelf.message=Before {0} your uncommitted changes were saved to shelf."
+    },
+    {
+      "line": 414,
+      "text": "restore.notification.failed.stash.message=Before {0} your uncommitted changes were saved to stash."
+    },
+    {
+      "line": 415,
+      "text": "restore.notification.failed.title=Local changes were not restored"
+    },
+    {
+      "line": 416,
+      "text": "restore.notification.failed.show.changes.action=View saved changes\\u2026"
+    },
+    {
+      "line": 426,
+      "text": "smart.operation.dialog.north.panel.label.shelf.text=<html>Your local changes to the following files would be overwritten by {0}.<br/> {1} can shelve the changes, {0} and unshelve them after that.</html>"
+    },
+    {
+      "line": 427,
+      "text": "smart.operation.dialog.north.panel.label.stash.text=<html>Your local changes to the following files would be overwritten by {0}.<br/> {1} can stash the changes, {0} and unstash them after that.</html>"
+    },
+    {
+      "line": 428,
+      "text": "smart.operation.dialog.ok.action.shelf.description=Shelve local changes, {0}, unshelve"
+    },
+    {
+      "line": 429,
+      "text": "smart.operation.dialog.ok.action.stash.description=Stash local changes, {0}, unstash"
+    },
+    {
+      "line": 430,
+      "text": "smart.operation.dialog.operation.name.and.overwrite.local.changes={0} and overwrite local changes"
+    },
+    {
+      "line": 436,
+      "text": "stash.action.name=Stash"
+    },
+    {
+      "line": 437,
+      "text": "stash.button=Create Stash"
+    },
+    {
+      "line": 438,
+      "text": "stash.error.can.not.stash.changes.now=Cannot Stash Changes Now"
+    },
+    {
+      "line": 439,
+      "text": "stash.keep.index.tooltip=If this checkbox is selected, all changes already added to the index are left intact"
+    },
+    {
+      "line": 440,
+      "text": "stash.keep.index=Keep &index"
+    },
+    {
+      "line": 441,
+      "text": "stash.message.tooltip=Enter stash message here"
+    },
+    {
+      "line": 442,
+      "text": "stash.message=&Message:"
+    },
+    {
+      "line": 443,
+      "text": "stash.progress.indicator.title=Stashing changes from ''{0}''\\u2026"
+    },
+    {
+      "line": 444,
+      "text": "stash.title=Stash"
+    },
+    {
+      "line": 445,
+      "text": "stash.unstash.conflict.dialog.description.label.text=Uncommitted changes that were stashed before update have conflicts with updated files."
+    },
+    {
+      "line": 446,
+      "text": "stash.unstash.progress.indicator.title=Popping changes to ''{0}''\\u2026"
+    },
+    {
+      "line": 447,
+      "text": "stash.unstash.unresolved.conflict.warning.notification.message=Your uncommitted changes were saved to stash.<br/>Unstash is not complete, you have unresolved merges in your working tree<br/>Resolve conflicts and drop the stash."
+    },
+    {
+      "line": 448,
+      "text": "stash.unstash.unresolved.conflict.warning.notification.show.stash.action=View saved changes\\u2026"
+    },
+    {
+      "line": 449,
+      "text": "stash.unstash.unresolved.conflict.warning.notification.resolve.conflicts.action=Resolve conflicts\\u2026"
+    },
+    {
+      "line": 450,
+      "text": "stash.unstash.unresolved.conflict.warning.notification.title=Local changes were restored with conflicts"
+    },
+    {
+      "line": 451,
+      "text": "stash.error=Failed to stash {0}"
+    },
+    {
+      "line": 453,
+      "text": "stashing.title=Stashing Changes\\u2026"
+    },
+    {
+      "line": 454,
+      "text": "stashing.progress.title=Stashing changes\\u2026"
+    },
+    {
+      "line": 455,
+      "text": "stash.editor.diff.preview.id.change.title={0}: {1}"
+    },
+    {
+      "line": 456,
+      "text": "stash.editor.diff.preview.empty.title=Stash"
+    },
+    {
+      "line": 457,
+      "text": "stashes.and.shelves.tab.name=Stashes and Shelves"
+    },
+    {
+      "line": 458,
+      "text": "stash.tab.name=Stash"
+    },
+    {
+      "line": 459,
+      "text": "stash.root.node.title=Stashes"
+    },
+    {
+      "line": 460,
+      "text": "stash.empty.text.help.link=Getting started with Stash and Shelf"
+    },
+    {
+      "line": 462,
+      "text": "action.Git.Stash.Pop.text=&Pop"
+    },
+    {
+      "line": 463,
+      "text": "action.Git.Stash.Pop.description=Pop selected stash"
+    },
+    {
+      "line": 464,
+      "text": "action.Git.Stash.Apply.text=&Apply"
+    },
+    {
+      "line": 465,
+      "text": "action.Git.Stash.Apply.description=Apply selected stash"
+    },
+    {
+      "line": 466,
+      "text": "action.Git.Stash.UnstashAs.text=&Unstash\\u2026"
+    },
+    {
+      "line": 467,
+      "text": "action.Git.Stash.UnstashAs.description=Pop or apply selected stash as new branch with or without index"
+    },
+    {
+      "line": 468,
+      "text": "action.Git.Stash.Drop.text=&Drop"
+    },
+    {
+      "line": 469,
+      "text": "action.Git.Stash.Drop.description=Drop selected stash"
+    },
+    {
+      "line": 470,
+      "text": "action.Git.Stash.Clear.text=&Clear"
+    },
+    {
+      "line": 471,
+      "text": "action.Git.Stash.Clear.description=Clear all stashes"
+    },
+    {
+      "line": 472,
+      "text": "action.Git.Stash.Clear.in.root.text=&Clear Stashes in {0}"
+    },
+    {
+      "line": 473,
+      "text": "action.Git.Stash.Clear.in.root.description=Clear all stashes in the selected root"
+    },
+    {
+      "line": 474,
+      "text": "action.Git.Show.Stash.text=Show Git Stash"
+    },
+    {
+      "line": 475,
+      "text": "action.Git.Show.Stash.description=Open the Git Stash tab"
+    },
+    {
+      "line": 476,
+      "text": "action.Git.Show.Stash.With.Shelf.text=Show Stashes and Shelves"
+    },
+    {
+      "line": 477,
+      "text": "action.Git.Show.Stash.With.Shelf.description=Open the Stashes and Shelves tab"
+    },
+    {
+      "line": 478,
+      "text": "action.Git.Stash.Refresh.text=Refresh Stashes"
+    },
+    {
+      "line": 479,
+      "text": "action.Git.Stash.Refresh.description=Refresh the List of Stashes"
+    },
+    {
+      "line": 480,
+      "text": "action.Git.Stash.Toggle.Split.Preview.text=Preview Diff"
+    },
+    {
+      "line": 482,
+      "text": "stash.unstash.changes.in.root.dialog.title=Unstash Changes in {0}"
+    },
+    {
+      "line": 483,
+      "text": "stash.unstash.changes.current.branch.label=Current branch:"
+    },
+    {
+      "line": 485,
+      "text": "stash.files.action.text=Stash Files"
+    },
+    {
+      "line": 486,
+      "text": "stash.files.progress.title=Stashing Files"
+    },
+    {
+      "line": 487,
+      "text": "stash.files.error.message=Failed to Stash Files"
+    },
+    {
+      "line": 488,
+      "text": "stash.files.success=Files stashed successfully"
+    },
+    {
+      "line": 489,
+      "text": "stash.files.in.roots.success=Files in {0} stashed successfully"
+    },
+    {
+      "line": 490,
+      "text": "stash.view.stashes.link=View Git stashes"
+    },
+    {
+      "line": 491,
+      "text": "stash.enable.stashes.link=Enable and view Git stashes"
+    },
+    {
+      "line": 493,
+      "text": "stash.changes.non.empty.index.for.roots.notification.text=Staging area in {0} contains modifications to other files that were saved to the stash"
+    },
+    {
+      "line": 494,
+      "text": "stash.changes.non.empty.index.notification.action=Don't show again"
+    },
+    {
+      "line": 496,
+      "text": "unstash.action.name=Unstash"
+    },
+    {
+      "line": 497,
+      "text": "unstash.branch.label=As new &branch:"
+    },
+    {
+      "line": 498,
+      "text": "unstash.branch.tooltip=If non-empty name is entered, the stash is checked out as a new branch"
+    },
+    {
+      "line": 499,
+      "text": "unstash.button.apply=Apply Stash"
+    },
+    {
+      "line": 500,
+      "text": "unstash.button.branch=Branch"
+    },
+    {
+      "line": 501,
+      "text": "unstash.button.pop=Pop Stash"
+    },
+    {
+      "line": 502,
+      "text": "unstash.clear.tooltip=Delete all stashes in the repository"
+    },
+    {
+      "line": 503,
+      "text": "unstash.clear=&Clear"
+    },
+    {
+      "line": 504,
+      "text": "unstash.clearing.stashes=Clearing stashes\\u2026"
+    },
+    {
+      "line": 505,
+      "text": "unstash.drop.tooltip=Delete selected stash"
+    },
+    {
+      "line": 506,
+      "text": "unstash.drop=&Drop"
+    },
+    {
+      "line": 507,
+      "text": "unstash.conflict.dialog.description.label.text=Conflicts during unstashing {0}"
+    },
+    {
+      "line": 508,
+      "text": "unstash.conflict.diff.dialog.left.title=Local changes"
+    },
+    {
+      "line": 509,
+      "text": "unstash.conflict.diff.dialog.right.title=Changes from stash"
+    },
+    {
+      "line": 510,
+      "text": "unstash.dialog.remove.stash.progress.indicator.title=Removing Stash {0}\\u2026"
+    },
+    {
+      "line": 511,
+      "text": "unstash.dialog.show.stashes.error.dialog.title=Could not Show the List of Stashes"
+    },
+    {
+      "line": 512,
+      "text": "unstash.dialog.stash.list.load.progress.indicator.title=Loading list of stashes\\u2026"
+    },
+    {
+      "line": 513,
+      "text": "unstash.dialog.unresolved.conflict.warning.notification.message=Unstash is not complete, you have unresolved merges in your working tree."
+    },
+    {
+      "line": 514,
+      "text": "unstash.dialog.unresolved.conflict.warning.resolve.conflicts.action=Resolve conflicts\\u2026"
+    },
+    {
+      "line": 515,
+      "text": "unstash.dialog.unresolved.conflict.warning.notification.title=Conflicts were not resolved during unstash"
+    },
+    {
+      "line": 516,
+      "text": "unstash.pop.stash.tooltip=If selected the stash is dropped after it is applied"
+    },
+    {
+      "line": 517,
+      "text": "unstash.pop.stash=&Pop stash"
+    },
+    {
+      "line": 518,
+      "text": "unstash.reinstate.index.tooltip=Attempt to reinstate index as well as working tree changes"
+    },
+    {
+      "line": 519,
+      "text": "unstash.reinstate.index=Reinstate &index"
+    },
+    {
+      "line": 520,
+      "text": "unstash.stashes=&Stashes:"
+    },
+    {
+      "line": 521,
+      "text": "unstash.title=Unstash Changes"
+    },
+    {
+      "line": 522,
+      "text": "unstash.unstashing=Unstashing\\u2026"
+    },
+    {
+      "line": 523,
+      "text": "unstash.view.tooltip=View selected stash"
+    },
+    {
+      "line": 524,
+      "text": "unstash.view=&View"
+    },
+    {
+      "line": 525,
+      "text": "unstash.view.dialog.title=Paths Affected by {0}"
+    },
+    {
+      "line": 526,
+      "text": "unstash.error.can.not.unstash.changes.now=Cannot Unstash Changes Now"
+    },
+    {
+      "line": 527,
+      "text": "unstash.unstashed.with.conflicts.error.title=Unstashed with conflicts"
+    },
+    {
+      "line": 528,
+      "text": "unstash.stash.applied=Stash successfully applied"
+    },
+    {
+      "line": 529,
+      "text": "stash.load.changes.error=Could not load changes in root {0} in stash resolved to {1}"
+    },
+    {
+      "line": 531,
+      "text": "unstash.clear.confirmation.message=Remove all stashes? This cannot be undone."
+    },
+    {
+      "line": 532,
+      "text": "unstash.clear.confirmation.title=Remove All Stashes?"
+    },
+    {
+      "line": 533,
+      "text": "unstash.drop.confirmation.message=<html>Do you want to remove {0}?<br/>\"{1}\"</html>"
+    },
+    {
+      "line": 534,
+      "text": "unstash.drop.confirmation.title=Remove Stash {0}?"
+    },
+    {
+      "line": 540,
+      "text": "notification.title.unstash.failed=Unstash failed"
+    },
+    {
+      "line": 541,
+      "text": "notification.title.unstash.failed.index.conflict=Unstash failed due to an index conflict"
+    },
+    {
+      "line": 542,
+      "text": "exception.message.could.not.stash.root.error=Cannot stash {0}: {1}"
+    },
+    {
+      "line": 651,
+      "text": "action.Git.Unstash.text=Unstash Changes\\u2026"
+    },
+    {
+      "line": 652,
+      "text": "action.Git.Stash.text=Stash Changes\\u2026"
+    },
+    {
+      "line": 653,
+      "text": "action.Git.Stash.Silently.text=Stash Silently"
+    },
+    {
+      "line": 666,
+      "text": "action.Git.Squash.Into.Commit.description=Commit local changes with the intent to squash them into the selected commit"
+    },
+    {
+      "line": 769,
+      "text": "action.NotificationAction.GitDeleteBranchOperation.text.restore=Restore"
+    },
+    {
+      "line": 772,
+      "text": "action.NotificationAction.GitDeleteTagOperation.text.restore=Restore"
+    },
+    {
+      "line": 829,
+      "text": "settings.stash=Stash"
+    },
+    {
+      "line": 830,
+      "text": "settings.enable.stashes.and.shelves=Combine stashes and shelves in one tab"
+    },
+    {
+      "line": 831,
+      "text": "settings.stash.show.diff.group=When \"Show Diff\" is called, compare stashed changes:"
+    },
+    {
+      "line": 832,
+      "text": "settings.stash.show.diff.with.local=With the local version of a file"
+    },
+    {
+      "line": 833,
+      "text": "settings.stash.show.diff.with.head=With the parent commit"
+    },
+    {
+      "line": 1074,
+      "text": "group.Git.Stage.Configure.text=Configure Local Changes"
+    },
+    {
+      "line": 1189,
+      "text": "git.reset.mode.hard.description=<nobr>Files will be reverted to the state of the selected commit.<nobr/><br><nobr>Warning: any local changes will be lost.<nobr/>"
+    },
+    {
+      "line": 1191,
+      "text": "git.reset.mode.keep.description=<nobr>Files will be reverted to the state of the selected commit,<nobr/><br><nobr>but local changes will be kept intact.<nobr/>"
+    },
+    {
+      "line": 1326,
+      "text": "update.process.error.additional.description.unfinished.rebase=Then you may <b>continue rebase</b>. <br/> You also may <b>abort rebase</b> to restore the original branch and stop rebasing."
+    },
+    {
+      "line": 1347,
+      "text": "delete.branch.operation.restoring.branch.process=Restoring Branch {0}\\u2026"
+    },
+    {
+      "line": 1349,
+      "text": "delete.branch.operation.could.not.restore.branch.error=Could not Restore {0}"
+    },
+    {
+      "line": 1387,
+      "text": "merge.dialog.diff.left.title.cherry.pick.label.text=Local Changes"
+    },
+    {
+      "line": 1400,
+      "text": "unstash.operation.name=unstash"
+    },
+    {
+      "line": 1437,
+      "text": "delete.tag.operation.could.not.restore.tag=Could not Restore {0}"
+    },
+    {
+      "line": 1439,
+      "text": "delete.tag.operation.restored.tag=Restored tag {0}"
+    },
+    {
+      "line": 1441,
+      "text": "delete.tag.operation.restoring.tag.process=Restoring Tag {0}\\u2026"
+    },
+    {
+      "line": 1464,
+      "text": "branch.not.fully.merged.dialog.restore.button=&Restore"
+    },
+    {
+      "line": 1561,
+      "text": "local.changes.save.policy.stash=Stash"
+    },
+    {
+      "line": 1562,
+      "text": "local.changes.save.policy.shelve=Shelve"
+    },
+    {
+      "line": 1632,
+      "text": "warning.your.local.changes.would.be.overwritten.by=Your local changes will be overwritten by {0}.\\n\\"
+    },
+    {
+      "line": 1634,
+      "text": "local.changes.would.be.overwritten.by.merge.view.them.action=View them"
+    },
+    {
+      "line": 1635,
+      "text": "dialog.title.local.changes.prevent.from.operation=Local Changes Prevent from {0}"
+    },
+    {
+      "line": 1753,
+      "text": "activity.name.stash=Git stash"
+    },
+    {
+      "line": 1754,
+      "text": "activity.name.unstash=Git unstash"
+    }
+  ]
+}

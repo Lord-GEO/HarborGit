@@ -1,0 +1,100 @@
+[
+  {
+    "output": "javap/git4idea.commands.GitHandler.txt",
+    "output_sha256": "ca241d46b05d3a09d1cd378786b0dc3ab5ab598a9beee2aa9442cec0243612c0",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/commands/GitHandler.class",
+    "member_sha256": "ffc241fab748eafe6181b715cb12bbaf74ba0aa66f43f264ac55e323eaa1b411",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ],
+    "evidence_directory": "."
+  },
+  {
+    "output": "javap/git4idea.commands.GitImpl.txt",
+    "output_sha256": "b623ce7d894f3bbddd512c0c8335d57add6a882e2c94bc4a048847d630e95372",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/commands/GitImpl.class",
+    "member_sha256": "1ad755d372fec89eba7e8bf7fc930e2a4a71798e4836893954d8a36a3341df41",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ],
+    "evidence_directory": "."
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseUtils.txt",
+    "output_sha256": "cbaf5159c4855210526cbdccaa8f38d4778bc84f4352d5a0f8b7d4de32c896cc",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseUtils.class",
+    "member_sha256": "29973cc35d1afc3da50a6af0bab6cf723878fca727afeb269a24f4e4a761968d",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseUtils"
+    ],
+    "stderr": "",
+    "evidence_directory": "history-2026-10-30"
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseProcess.txt",
+    "output_sha256": "7d16b742bd763b231065ef615596ab022c54e55cb35ece7e5124514b93ce22ef",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseProcess.class",
+    "member_sha256": "94a3c0cd01e322a551b6429be8aa96b4d82de06c1b1bf816018031a04af216b4",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseProcess"
+    ],
+    "stderr": "",
+    "evidence_directory": "history-2026-10-30"
+  },
+  {
+    "output": "javap/git4idea.rebase.GitAbortRebaseProcess.txt",
+    "output_sha256": "72514f835c4779eca0cc690b44ab3e995f95815a467e70b7b53c4af775ed43e3",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitAbortRebaseProcess.class",
+    "member_sha256": "d26314d60b32a8de8f4657a8a2f77044348f77db35ca8ffe8537769b9581d1de",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitAbortRebaseProcess"
+    ],
+    "stderr": "",
+    "evidence_directory": "history-2026-10-30"
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseSpec.txt",
+    "output_sha256": "5624e14c558412c530f542cb5c9165d36e742daf76f4767c73aec319cdf9baef",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseSpec.class",
+    "member_sha256": "397dc615455035c0135c2dbc9b13aae5ebb243c24f1c41ab0717727243453b56",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseSpec"
+    ],
+    "stderr": "",
+    "evidence_directory": "history-2026-10-30"
+  }
+]

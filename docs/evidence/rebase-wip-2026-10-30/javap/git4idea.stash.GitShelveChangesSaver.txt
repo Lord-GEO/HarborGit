@@ -1,0 +1,532 @@
+Compiled from "GitShelveChangesSaver.java"
+public final class git4idea.stash.GitShelveChangesSaver extends git4idea.stash.GitChangesSaver {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  private final com.intellij.openapi.vcs.changes.VcsShelveChangesSaver myVcsShelveChangesSaver;
+
+  public git4idea.stash.GitShelveChangesSaver(com.intellij.openapi.project.Project, git4idea.commands.Git, com.intellij.openapi.progress.ProgressIndicator, java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     24
+      20: iconst_2
+      21: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      24: aload         4
+      26: ifnonnull     33
+      29: iconst_3
+      30: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      33: aload_0
+      34: aload_1
+      35: aload_2
+      36: aload_3
+      37: getstatic     #1                  // Field git4idea/config/GitSaveChangesPolicy.SHELVE:Lgit4idea/config/GitSaveChangesPolicy;
+      40: aload         4
+      42: invokespecial #7                  // Method git4idea/stash/GitChangesSaver."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/commands/Git;Lcom/intellij/openapi/progress/ProgressIndicator;Lgit4idea/config/GitSaveChangesPolicy;Ljava/lang/String;)V
+      45: aload_0
+      46: new           #13                 // class git4idea/stash/GitShelveChangesSaver$1
+      49: dup
+      50: aload_0
+      51: aload_1
+      52: aload_3
+      53: aload         4
+      55: invokespecial #15                 // Method git4idea/stash/GitShelveChangesSaver$1."<init>":(Lgit4idea/stash/GitShelveChangesSaver;Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/progress/ProgressIndicator;Ljava/lang/String;)V
+      58: putfield      #18                 // Field myVcsShelveChangesSaver:Lcom/intellij/openapi/vcs/changes/VcsShelveChangesSaver;
+      61: return
+
+  protected void save(java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>) throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #18                 // Field myVcsShelveChangesSaver:Lcom/intellij/openapi/vcs/changes/VcsShelveChangesSaver;
+      12: aload_1
+      13: invokevirtual #24                 // Method com/intellij/openapi/vcs/changes/VcsShelveChangesSaver.save:(Ljava/util/Collection;)V
+      16: return
+
+  public void load();
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field myVcsShelveChangesSaver:Lcom/intellij/openapi/vcs/changes/VcsShelveChangesSaver;
+       4: invokevirtual #30                 // Method com/intellij/openapi/vcs/changes/VcsShelveChangesSaver.load:()V
+       7: return
+
+  public boolean wereChangesSaved();
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field myVcsShelveChangesSaver:Lcom/intellij/openapi/vcs/changes/VcsShelveChangesSaver;
+       4: invokevirtual #34                 // Method com/intellij/openapi/vcs/changes/VcsShelveChangesSaver.getShelvedLists:()Ljava/util/List;
+       7: astore_1
+       8: aload_1
+       9: invokeinterface #38,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+      14: ifne          21
+      17: iconst_1
+      18: goto          22
+      21: iconst_0
+      22: ireturn
+
+  public void showSavedChanges();
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field myVcsShelveChangesSaver:Lcom/intellij/openapi/vcs/changes/VcsShelveChangesSaver;
+       4: invokevirtual #34                 // Method com/intellij/openapi/vcs/changes/VcsShelveChangesSaver.getShelvedLists:()Ljava/util/List;
+       7: astore_1
+       8: aload_1
+       9: invokeinterface #38,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+      14: ifne          55
+      17: invokedynamic #44,  0             // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+      22: getstatic     #48                 // Field java/lang/String.CASE_INSENSITIVE_ORDER:Ljava/util/Comparator;
+      25: invokestatic  #54                 // InterfaceMethod java/util/Comparator.comparing:(Ljava/util/function/Function;Ljava/util/Comparator;)Ljava/util/Comparator;
+      28: astore_2
+      29: aload_1
+      30: aload_2
+      31: invokestatic  #60                 // Method com/intellij/util/containers/ContainerUtil.sorted:(Ljava/util/Collection;Ljava/util/Comparator;)Ljava/util/List;
+      34: astore_3
+      35: aload_0
+      36: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      39: invokestatic  #70                 // Method com/intellij/openapi/vcs/changes/shelf/ShelvedChangesViewManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/shelf/ShelvedChangesViewManager;
+      42: aload_3
+      43: iconst_0
+      44: invokeinterface #76,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      49: checkcast     #80                 // class com/intellij/openapi/vcs/changes/shelf/ShelvedChangeList
+      52: invokevirtual #82                 // Method com/intellij/openapi/vcs/changes/shelf/ShelvedChangesViewManager.activateView:(Lcom/intellij/openapi/vcs/changes/shelf/ShelvedChangeList;)V
+      55: return
+
+  private void rollbackChanges(java.util.Collection<? extends com.intellij.openapi.vfs.VirtualFile>, java.util.Collection<com.intellij.openapi.vcs.changes.Change>);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_5
+       5: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     17
+      12: bipush        6
+      14: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      17: getstatic     #86                 // Field git4idea/config/GitVersionSpecialty.RESTORE_SUPPORTED:Lgit4idea/config/GitVersionSpecialty;
+      20: aload_0
+      21: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      24: invokevirtual #92                 // Method git4idea/config/GitVersionSpecialty.existsIn:(Lcom/intellij/openapi/project/Project;)Z
+      27: ifeq          270
+      30: aload_2
+      31: invokestatic  #96                 // Method com/intellij/openapi/vcs/changes/ChangesUtil.getPaths:(Ljava/util/Collection;)Ljava/util/List;
+      34: astore_3
+      35: aload_0
+      36: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      39: aload_3
+      40: invokestatic  #102                // Method git4idea/GitUtil.sortFilePathsByGitRootIgnoringMissing:(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;)Ljava/util/Map;
+      43: astore        4
+      45: aload_1
+      46: invokeinterface #108,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      51: astore        5
+      53: aload         5
+      55: invokeinterface #114,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      60: ifeq          267
+      63: aload         5
+      65: invokeinterface #119,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      70: checkcast     #123                // class com/intellij/openapi/vfs/VirtualFile
+      73: astore        6
+      75: aload         4
+      77: aload         6
+      79: invokeinterface #125,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      84: checkcast     #39                 // class java/util/List
+      87: invokestatic  #130                // Method com/intellij/util/containers/ContainerUtil.notNullize:(Ljava/util/List;)Ljava/util/List;
+      90: astore        7
+      92: aload_0
+      93: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+      96: invokestatic  #134                // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      99: aload         6
+     101: invokevirtual #139                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+     104: checkcast     #143                // class git4idea/repo/GitRepository
+     107: astore        8
+     109: aload         8
+     111: ifnull        124
+     114: aload         8
+     116: invokeinterface #145,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentRevision:()Ljava/lang/String;
+     121: ifnonnull     136
+     124: aload_0
+     125: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     128: aload         6
+     130: invokestatic  #149                // Method resetHardLocal:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     133: goto          264
+     136: new           #153                // class java/util/HashSet
+     139: dup
+     140: aload         7
+     142: invokespecial #155                // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+     145: astore        9
+     147: new           #157                // class java/util/ArrayList
+     150: dup
+     151: invokespecial #159                // Method java/util/ArrayList."<init>":()V
+     154: astore        10
+     156: aload         8
+     158: invokeinterface #161,  1          // InterfaceMethod git4idea/repo/GitRepository.getStagingAreaHolder:()Lgit4idea/status/GitStagingAreaHolder;
+     163: invokevirtual #165                // Method git4idea/status/GitStagingAreaHolder.getAllRecords:()Ljava/util/List;
+     166: invokeinterface #170,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     171: astore        11
+     173: aload         11
+     175: invokeinterface #114,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     180: ifeq          242
+     183: aload         11
+     185: invokeinterface #119,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     190: checkcast     #171                // class git4idea/index/GitFileStatus
+     193: astore        12
+     195: aload         12
+     197: invokevirtual #173                // Method git4idea/index/GitFileStatus.isTracked:()Z
+     200: ifeq          239
+     203: aload         12
+     205: invokevirtual #176                // Method git4idea/index/GitFileStatus.getStagedStatus:()Lcom/intellij/openapi/vcs/FileStatus;
+     208: ifnull        239
+     211: aload         9
+     213: aload         12
+     215: invokevirtual #180                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+     218: invokeinterface #184,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+     223: ifne          239
+     226: aload         10
+     228: aload         12
+     230: invokevirtual #180                // Method git4idea/index/GitFileStatus.getPath:()Lcom/intellij/openapi/vcs/FilePath;
+     233: invokeinterface #190,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     238: pop
+     239: goto          173
+     242: aload_0
+     243: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     246: aload         6
+     248: aload         7
+     250: invokestatic  #193                // Method restoreStagedAndWorktree:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;)V
+     253: aload_0
+     254: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     257: aload         6
+     259: aload         10
+     261: invokestatic  #197                // Method restoreStaged:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;)V
+     264: goto          53
+     267: goto          309
+     270: aload_1
+     271: invokeinterface #108,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     276: astore_3
+     277: aload_3
+     278: invokeinterface #114,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     283: ifeq          309
+     286: aload_3
+     287: invokeinterface #119,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     292: checkcast     #123                // class com/intellij/openapi/vfs/VirtualFile
+     295: astore        4
+     297: aload_0
+     298: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     301: aload         4
+     303: invokestatic  #149                // Method resetHardLocal:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     306: goto          277
+     309: aload_1
+     310: invokeinterface #108,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     315: astore_3
+     316: aload_3
+     317: invokeinterface #114,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     322: ifeq          351
+     325: aload_3
+     326: invokeinterface #119,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     331: checkcast     #123                // class com/intellij/openapi/vfs/VirtualFile
+     334: astore        4
+     336: aload_0
+     337: getfield      #66                 // Field myProject:Lcom/intellij/openapi/project/Project;
+     340: invokestatic  #200                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/changes/VcsDirtyScopeManager;
+     343: aload         4
+     345: invokevirtual #205                // Method com/intellij/openapi/vcs/changes/VcsDirtyScopeManager.rootDirty:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+     348: goto          316
+     351: return
+
+  private static void resetHardLocal(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        7
+       6: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        8
+      15: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      18: new           #209                // class git4idea/commands/GitLineHandler
+      21: dup
+      22: aload_0
+      23: aload_1
+      24: getstatic     #211                // Field git4idea/commands/GitCommand.RESET:Lgit4idea/commands/GitCommand;
+      27: invokespecial #217                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      30: astore_2
+      31: aload_2
+      32: iconst_1
+      33: anewarray     #49                 // class java/lang/String
+      36: dup
+      37: iconst_0
+      38: ldc           #220                // String --hard
+      40: aastore
+      41: invokevirtual #222                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      44: aload_2
+      45: invokevirtual #226                // Method git4idea/commands/GitLineHandler.endOptions:()V
+      48: invokestatic  #229                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      51: aload_2
+      52: invokeinterface #234,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+      57: astore_3
+      58: aload_3
+      59: invokevirtual #238                // Method git4idea/commands/GitCommandResult.success:()Z
+      62: ifne          80
+      65: getstatic     #243                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      68: aload_3
+      69: invokevirtual #247                // Method git4idea/commands/GitCommandResult.getErrorOutputAsJoinedString:()Ljava/lang/String;
+      72: invokedynamic #250,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      77: invokevirtual #254                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+      80: return
+
+  private static void restoreStagedAndWorktree(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<com.intellij.openapi.vcs.FilePath>);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        9
+       6: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        10
+      15: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        11
+      24: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: aload_1
+      29: aload_2
+      30: ldc_w         #260                // String HEAD
+      33: invokestatic  #262                // Method git4idea/util/GitFileUtils.restoreStagedAndWorktree:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/List;Ljava/lang/String;)V
+      36: goto          55
+      39: astore_3
+      40: getstatic     #243                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      43: aload_3
+      44: invokevirtual #269                // Method com/intellij/openapi/vcs/VcsException.getMessage:()Ljava/lang/String;
+      47: invokedynamic #272,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      52: invokevirtual #254                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+      55: return
+    Exception table:
+       from    to  target type
+          27    36    39   Class com/intellij/openapi/vcs/VcsException
+
+  private static void restoreStaged(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, java.util.List<com.intellij.openapi.vcs.FilePath>);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        12
+       6: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        13
+      15: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        14
+      24: invokestatic  #413                // Method $$$reportNull$$$0:(I)V
+      27: aload_1
+      28: aload_2
+      29: invokestatic  #273                // Method com/intellij/vcsUtil/VcsFileUtil.chunkPaths:(Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;)Ljava/util/List;
+      32: invokeinterface #170,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      37: astore_3
+      38: aload_3
+      39: invokeinterface #114,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      44: ifeq          144
+      47: aload_3
+      48: invokeinterface #119,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      53: checkcast     #39                 // class java/util/List
+      56: astore        4
+      58: new           #209                // class git4idea/commands/GitLineHandler
+      61: dup
+      62: aload_0
+      63: aload_1
+      64: getstatic     #279                // Field git4idea/commands/GitCommand.RESTORE:Lgit4idea/commands/GitCommand;
+      67: invokespecial #217                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+      70: astore        5
+      72: aload         5
+      74: iconst_2
+      75: anewarray     #49                 // class java/lang/String
+      78: dup
+      79: iconst_0
+      80: ldc_w         #282                // String --staged
+      83: aastore
+      84: dup
+      85: iconst_1
+      86: ldc_w         #284                // String --source=HEAD
+      89: aastore
+      90: invokevirtual #222                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+      93: aload         5
+      95: invokevirtual #226                // Method git4idea/commands/GitLineHandler.endOptions:()V
+      98: aload         5
+     100: aload         4
+     102: invokevirtual #286                // Method git4idea/commands/GitLineHandler.addParameters:(Ljava/util/List;)V
+     105: invokestatic  #229                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     108: aload         5
+     110: invokeinterface #234,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     115: astore        6
+     117: aload         6
+     119: invokevirtual #238                // Method git4idea/commands/GitCommandResult.success:()Z
+     122: ifne          141
+     125: getstatic     #243                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     128: aload         6
+     130: invokevirtual #247                // Method git4idea/commands/GitCommandResult.getErrorOutputAsJoinedString:()Ljava/lang/String;
+     133: invokedynamic #272,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     138: invokevirtual #254                // Method com/intellij/openapi/diagnostic/Logger.warn:(Ljava/lang/String;)V
+     141: goto          38
+     144: return
+
+  void setReportLocalHistoryActivity(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field myVcsShelveChangesSaver:Lcom/intellij/openapi/vcs/changes/VcsShelveChangesSaver;
+       4: iload_1
+       5: invokevirtual #289                // Method com/intellij/openapi/vcs/changes/VcsShelveChangesSaver.setReportLocalHistoryActivity:(Z)V
+       8: return
+
+  public java.lang.String toString();
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field myVcsShelveChangesSaver:Lcom/intellij/openapi/vcs/changes/VcsShelveChangesSaver;
+       4: invokevirtual #34                 // Method com/intellij/openapi/vcs/changes/VcsShelveChangesSaver.getShelvedLists:()Ljava/util/List;
+       7: invokestatic  #293                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      10: invokedynamic #297,  0            // InvokeDynamic #3:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      15: areturn
+
+  private static java.lang.String lambda$showSavedChanges$0(com.intellij.openapi.vcs.changes.shelf.ShelvedChangeList);
+    Code:
+       0: aload_0
+       1: invokevirtual #298                // Method com/intellij/openapi/vcs/changes/shelf/ShelvedChangeList.getDisplayName:()Ljava/lang/String;
+       4: areturn
+
+  static {};
+    Code:
+       0: ldc           #19                 // class git4idea/stash/GitShelveChangesSaver
+       2: invokestatic  #301                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #243                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc_w         #417                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       3: iconst_3
+       4: anewarray     #415                // class java/lang/Object
+       7: iload_0
+       8: tableswitch   { // 0 to 14
+                     0: 84
+                     1: 93
+                     2: 102
+                     3: 111
+                     4: 120
+                     5: 120
+                     6: 129
+                     7: 84
+                     8: 138
+                     9: 84
+                    10: 138
+                    11: 147
+                    12: 84
+                    13: 138
+                    14: 147
+               default: 84
+          }
+      84: dup
+      85: iconst_0
+      86: ldc_w         #418                // String project
+      89: aastore
+      90: goto          156
+      93: dup
+      94: iconst_0
+      95: ldc_w         #419                // String git
+      98: aastore
+      99: goto          156
+     102: dup
+     103: iconst_0
+     104: ldc_w         #420                // String indicator
+     107: aastore
+     108: goto          156
+     111: dup
+     112: iconst_0
+     113: ldc_w         #421                // String stashMessage
+     116: aastore
+     117: goto          156
+     120: dup
+     121: iconst_0
+     122: ldc_w         #422                // String rootsToSave
+     125: aastore
+     126: goto          156
+     129: dup
+     130: iconst_0
+     131: ldc_w         #423                // String shelvedChanges
+     134: aastore
+     135: goto          156
+     138: dup
+     139: iconst_0
+     140: ldc_w         #424                // String root
+     143: aastore
+     144: goto          156
+     147: dup
+     148: iconst_0
+     149: ldc_w         #425                // String filePaths
+     152: aastore
+     153: goto          156
+     156: dup
+     157: iconst_1
+     158: ldc_w         #426                // String git4idea/stash/GitShelveChangesSaver
+     161: aastore
+     162: iload_0
+     163: tableswitch   { // 0 to 14
+                     0: 236
+                     1: 236
+                     2: 236
+                     3: 236
+                     4: 245
+                     5: 254
+                     6: 254
+                     7: 263
+                     8: 263
+                     9: 272
+                    10: 272
+                    11: 272
+                    12: 281
+                    13: 281
+                    14: 281
+               default: 236
+          }
+     236: dup
+     237: iconst_2
+     238: ldc_w         #427                // String <init>
+     241: aastore
+     242: goto          290
+     245: dup
+     246: iconst_2
+     247: ldc_w         #428                // String save
+     250: aastore
+     251: goto          290
+     254: dup
+     255: iconst_2
+     256: ldc_w         #429                // String rollbackChanges
+     259: aastore
+     260: goto          290
+     263: dup
+     264: iconst_2
+     265: ldc_w         #430                // String resetHardLocal
+     268: aastore
+     269: goto          290
+     272: dup
+     273: iconst_2
+     274: ldc_w         #431                // String restoreStagedAndWorktree
+     277: aastore
+     278: goto          290
+     281: dup
+     282: iconst_2
+     283: ldc_w         #432                // String restoreStaged
+     286: aastore
+     287: goto          290
+     290: invokestatic  #436                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     293: new           #438                // class java/lang/IllegalArgumentException
+     296: dup_x1
+     297: swap
+     298: invokespecial #440                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     301: athrow
+}

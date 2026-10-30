@@ -1,0 +1,176 @@
+Compiled from "GitStashChangesSaver.java"
+class git4idea.stash.GitStashChangesSaver$UnstashConflictResolver extends git4idea.merge.GitConflictResolver {
+  private final java.util.Set<? extends com.intellij.openapi.vfs.VirtualFile> myStashedRoots;
+
+  git4idea.stash.GitStashChangesSaver$UnstashConflictResolver(com.intellij.openapi.project.Project, git4idea.commands.Git, java.util.Set<? extends com.intellij.openapi.vfs.VirtualFile>, git4idea.merge.GitConflictResolver$Params);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #210                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #210                // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     24
+      20: iconst_2
+      21: invokestatic  #210                // Method $$$reportNull$$$0:(I)V
+      24: aload_0
+      25: aload_1
+      26: aload_3
+      27: aload         4
+      29: aload_1
+      30: invokestatic  #3                  // Method makeParamsOrUse:(Lgit4idea/merge/GitConflictResolver$Params;Lcom/intellij/openapi/project/Project;)Lgit4idea/merge/GitConflictResolver$Params;
+      33: invokespecial #9                  // Method git4idea/merge/GitConflictResolver."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;Lgit4idea/merge/GitConflictResolver$Params;)V
+      36: aload_0
+      37: aload_3
+      38: putfield      #15                 // Field myStashedRoots:Ljava/util/Set;
+      41: return
+
+  private static git4idea.merge.GitConflictResolver$Params makeParamsOrUse(git4idea.merge.GitConflictResolver$Params, com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: ifnull        6
+       4: aload_0
+       5: areturn
+       6: new           #19                 // class git4idea/merge/GitConflictResolver$Params
+       9: dup
+      10: aload_1
+      11: invokespecial #21                 // Method git4idea/merge/GitConflictResolver$Params."<init>":(Lcom/intellij/openapi/project/Project;)V
+      14: astore_2
+      15: aload_2
+      16: ldc           #24                 // String preserving.process.local.changes.not.restored.error.title
+      18: iconst_0
+      19: anewarray     #26                 // class java/lang/Object
+      22: invokestatic  #28                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      25: invokevirtual #34                 // Method git4idea/merge/GitConflictResolver$Params.setErrorNotificationTitle:(Ljava/lang/String;)Lgit4idea/merge/GitConflictResolver$Params;
+      28: pop
+      29: aload_2
+      30: new           #38                 // class git4idea/stash/GitStashChangesSaver$UnstashMergeDialogCustomizer
+      33: dup
+      34: invokespecial #40                 // Method git4idea/stash/GitStashChangesSaver$UnstashMergeDialogCustomizer."<init>":()V
+      37: invokevirtual #43                 // Method git4idea/merge/GitConflictResolver$Params.setMergeDialogCustomizer:(Lcom/intellij/openapi/vcs/merge/MergeDialogCustomizer;)Lgit4idea/merge/GitConflictResolver$Params;
+      40: pop
+      41: aload_2
+      42: iconst_1
+      43: invokevirtual #47                 // Method git4idea/merge/GitConflictResolver$Params.setReverse:(Z)Lgit4idea/merge/GitConflictResolver$Params;
+      46: pop
+      47: aload_2
+      48: areturn
+
+  protected void notifyUnresolvedRemain();
+    Code:
+       0: invokestatic  #51                 // Method com/intellij/openapi/vcs/VcsNotifier.importantNotification:()Lcom/intellij/notification/NotificationGroup;
+       3: ldc           #57                 // String stash.unstash.unresolved.conflict.warning.notification.title
+       5: iconst_0
+       6: anewarray     #26                 // class java/lang/Object
+       9: invokestatic  #28                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      12: ldc           #59                 // String stash.unstash.unresolved.conflict.warning.notification.message
+      14: iconst_0
+      15: anewarray     #26                 // class java/lang/Object
+      18: invokestatic  #28                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      21: getstatic     #61                 // Field com/intellij/notification/NotificationType.WARNING:Lcom/intellij/notification/NotificationType;
+      24: invokevirtual #67                 // Method com/intellij/notification/NotificationGroup.createNotification:(Ljava/lang/String;Ljava/lang/String;Lcom/intellij/notification/NotificationType;)Lcom/intellij/notification/Notification;
+      27: ldc           #73                 // String git.unstash.with.conflicts
+      29: invokevirtual #75                 // Method com/intellij/notification/Notification.setDisplayId:(Ljava/lang/String;)Lcom/intellij/notification/Notification;
+      32: ldc           #81                 // String stash.unstash.unresolved.conflict.warning.notification.show.stash.action
+      34: iconst_0
+      35: anewarray     #26                 // class java/lang/Object
+      38: invokestatic  #83                 // Method git4idea/i18n/GitBundle.messagePointer:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/function/Supplier;
+      41: aload_0
+      42: invokedynamic #87,  0             // InvokeDynamic #0:run:(Lgit4idea/stash/GitStashChangesSaver$UnstashConflictResolver;)Ljava/lang/Runnable;
+      47: invokestatic  #91                 // Method com/intellij/notification/NotificationAction.createSimple:(Ljava/util/function/Supplier;Ljava/lang/Runnable;)Lcom/intellij/notification/NotificationAction;
+      50: invokevirtual #97                 // Method com/intellij/notification/Notification.addAction:(Lcom/intellij/openapi/actionSystem/AnAction;)Lcom/intellij/notification/Notification;
+      53: ldc           #101                // String stash.unstash.unresolved.conflict.warning.notification.resolve.conflicts.action
+      55: iconst_0
+      56: anewarray     #26                 // class java/lang/Object
+      59: invokestatic  #83                 // Method git4idea/i18n/GitBundle.messagePointer:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/function/Supplier;
+      62: aload_0
+      63: invokedynamic #103,  0            // InvokeDynamic #1:run:(Lgit4idea/stash/GitStashChangesSaver$UnstashConflictResolver;)Ljava/lang/Runnable;
+      68: invokestatic  #91                 // Method com/intellij/notification/NotificationAction.createSimple:(Ljava/util/function/Supplier;Ljava/lang/Runnable;)Lcom/intellij/notification/NotificationAction;
+      71: invokevirtual #97                 // Method com/intellij/notification/Notification.addAction:(Lcom/intellij/openapi/actionSystem/AnAction;)Lcom/intellij/notification/Notification;
+      74: aload_0
+      75: getfield      #104                // Field myProject:Lcom/intellij/openapi/project/Project;
+      78: invokevirtual #108                // Method com/intellij/notification/Notification.notify:(Lcom/intellij/openapi/project/Project;)V
+      81: return
+
+  private void lambda$notifyUnresolvedRemain$1();
+    Code:
+       0: aload_0
+       1: invokevirtual #111                // Method mergeNoProceedInBackground:()V
+       4: return
+
+  private void lambda$notifyUnresolvedRemain$0();
+    Code:
+       0: aload_0
+       1: getfield      #15                 // Field myStashedRoots:Ljava/util/Set;
+       4: invokestatic  #114                // Method com/intellij/util/containers/ContainerUtil.getFirstItem:(Ljava/util/Collection;)Ljava/lang/Object;
+       7: checkcast     #120                // class com/intellij/openapi/vfs/VirtualFile
+      10: astore_1
+      11: aload_0
+      12: getfield      #104                // Field myProject:Lcom/intellij/openapi/project/Project;
+      15: ldc           #122                // class git4idea/stash/ui/GitStashUIHandler
+      17: invokeinterface #124,  2          // InterfaceMethod com/intellij/openapi/project/Project.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+      22: checkcast     #122                // class git4idea/stash/ui/GitStashUIHandler
+      25: astore_2
+      26: aload_2
+      27: invokeinterface #130,  1          // InterfaceMethod git4idea/stash/ui/GitStashUIHandler.isStashTabAvailable:()Z
+      32: ifeq          45
+      35: aload_2
+      36: aload_1
+      37: invokeinterface #134,  2          // InterfaceMethod git4idea/stash/ui/GitStashUIHandler.showStashes:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+      42: goto          64
+      45: aload_0
+      46: getfield      #104                // Field myProject:Lcom/intellij/openapi/project/Project;
+      49: new           #138                // class java/util/ArrayList
+      52: dup
+      53: aload_0
+      54: getfield      #15                 // Field myStashedRoots:Ljava/util/Set;
+      57: invokespecial #140                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      60: aload_1
+      61: invokestatic  #143                // Method git4idea/ui/GitUnstashDialog.showUnstashDialog:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      64: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #212                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #26                 // class java/lang/Object
+       6: iload_0
+       7: tableswitch   { // 0 to 2
+                     0: 32
+                     1: 40
+                     2: 48
+               default: 32
+          }
+      32: dup
+      33: iconst_0
+      34: ldc           #213                // String project
+      36: aastore
+      37: goto          56
+      40: dup
+      41: iconst_0
+      42: ldc           #214                // String git
+      44: aastore
+      45: goto          56
+      48: dup
+      49: iconst_0
+      50: ldc           #215                // String stashedRoots
+      52: aastore
+      53: goto          56
+      56: dup
+      57: iconst_1
+      58: ldc           #216                // String git4idea/stash/GitStashChangesSaver$UnstashConflictResolver
+      60: aastore
+      61: dup
+      62: iconst_2
+      63: ldc           #217                // String <init>
+      65: aastore
+      66: invokestatic  #222                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      69: new           #224                // class java/lang/IllegalArgumentException
+      72: dup_x1
+      73: swap
+      74: invokespecial #227                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      77: athrow
+}

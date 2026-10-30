@@ -1,0 +1,43 @@
+Compiled from "GitStageManager.kt"
+public final class git4idea.index.GitStageManagerKt {
+  public static final com.intellij.openapi.util.registry.RegistryValue stageLineStatusTrackerRegistryOption();
+    Code:
+       0: getstatic     #13                 // Field com/intellij/openapi/util/registry/Registry.Companion:Lcom/intellij/openapi/util/registry/Registry$Companion;
+       3: ldc           #15                 // String git.enable.stage.line.status.tracker
+       5: invokevirtual #21                 // Method com/intellij/openapi/util/registry/Registry$Companion.get:(Ljava/lang/String;)Lcom/intellij/openapi/util/registry/RegistryValue;
+       8: areturn
+
+  public static final void enableStagingArea(boolean);
+    Code:
+       0: invokestatic  #29                 // Method git4idea/config/GitVcsApplicationSettings.getInstance:()Lgit4idea/config/GitVcsApplicationSettings;
+       3: astore_1
+       4: iload_0
+       5: aload_1
+       6: invokevirtual #33                 // Method git4idea/config/GitVcsApplicationSettings.isStagingAreaEnabled:()Z
+       9: if_icmpne     13
+      12: return
+      13: aload_1
+      14: iload_0
+      15: invokevirtual #36                 // Method git4idea/config/GitVcsApplicationSettings.setStagingAreaEnabled:(Z)V
+      18: invokestatic  #42                 // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+      21: invokeinterface #48,  1           // InterfaceMethod com/intellij/openapi/application/Application.getMessageBus:()Lcom/intellij/util/messages/MessageBus;
+      26: getstatic     #54                 // Field com/intellij/vcs/commit/CommitModeManager.SETTINGS:Lcom/intellij/util/messages/Topic;
+      29: invokeinterface #60,  2           // InterfaceMethod com/intellij/util/messages/MessageBus.syncPublisher:(Lcom/intellij/util/messages/Topic;)Ljava/lang/Object;
+      34: checkcast     #62                 // class com/intellij/vcs/commit/CommitModeManager$SettingsListener
+      37: invokeinterface #66,  1           // InterfaceMethod com/intellij/vcs/commit/CommitModeManager$SettingsListener.settingsChanged:()V
+      42: return
+
+  public static final boolean isStagingAreaAvailable(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_0
+       1: ldc           #74                 // String project
+       3: invokestatic  #80                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: getstatic     #83                 // Field com/intellij/vcs/commit/CommitModeManager.Companion:Lcom/intellij/vcs/commit/CommitModeManager$Companion;
+       9: aload_0
+      10: invokevirtual #88                 // Method com/intellij/vcs/commit/CommitModeManager$Companion.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/vcs/commit/CommitModeManager;
+      13: invokevirtual #92                 // Method com/intellij/vcs/commit/CommitModeManager.getCurrentCommitMode:()Lcom/intellij/vcs/commit/CommitMode;
+      16: astore_1
+      17: aload_1
+      18: instanceof    #94                 // class git4idea/commit/GitStagingAreaCommitMode
+      21: ireturn
+}

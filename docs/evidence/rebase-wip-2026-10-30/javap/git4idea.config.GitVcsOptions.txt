@@ -1,0 +1,1836 @@
+Compiled from "GitVcsOptions.kt"
+public final class git4idea.config.GitVcsOptions extends com.intellij.openapi.components.BaseState {
+  static final kotlin.reflect.KProperty<java.lang.Object>[] $$delegatedProperties;
+
+  private final kotlin.properties.ReadWriteProperty pathToGit$delegate;
+
+  private final kotlin.properties.ReadWriteProperty previousCommitAuthors$delegate;
+
+  private final kotlin.properties.ReadWriteProperty saveChangesPolicy$delegate;
+
+  private final kotlin.properties.ReadWriteProperty updateMethod$delegate;
+
+  private final kotlin.properties.ReadWriteProperty gcAuto$delegate;
+
+  private final kotlin.properties.ReadWriteProperty coreLongpaths$delegate;
+
+  private final kotlin.properties.ReadWriteProperty coreUntrackedCache$delegate;
+
+  private final kotlin.properties.ReadWriteProperty coreFsMonitor$delegate;
+
+  private final kotlin.properties.ReadWriteProperty featureManyFiles$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isPushAutoUpdate$delegate;
+
+  private final kotlin.properties.ReadWriteProperty rootSync$delegate;
+
+  private final kotlin.properties.ReadWriteProperty recentGitRootPath$delegate;
+
+  private final kotlin.properties.ReadWriteProperty recentBranchByRepository$delegate;
+
+  private final kotlin.properties.ReadWriteProperty recentCommonBranch$delegate;
+
+  private final kotlin.properties.ReadWriteProperty showRecentBranches$delegate;
+
+  private final kotlin.properties.ReadWriteProperty showTags$delegate;
+
+  private final kotlin.properties.ReadWriteProperty filterByActionInPopup$delegate;
+
+  private final kotlin.properties.ReadWriteProperty filterByRepositoryInPopup$delegate;
+
+  private final kotlin.properties.ReadWriteProperty warnAboutCrlf$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isWarnAboutDetachedHead$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isWarnAboutLargeFiles$delegate;
+
+  private final kotlin.properties.ReadWriteProperty warnAboutLargeFilesLimitMb$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isWarnAboutBadFileNames$delegate;
+
+  private final kotlin.properties.ReadWriteProperty resetMode$delegate;
+
+  private final kotlin.properties.ReadWriteProperty pushTags$delegate;
+
+  private final kotlin.properties.ReadWriteProperty fetchTagsMode$delegate;
+
+  private final kotlin.properties.ReadWriteProperty incomingCheckStrategy$delegate;
+
+  private final kotlin.properties.ReadWriteProperty incomingCommitsCheckStrategy$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isSignOffCommit$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isSetUserNameGlobally$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isSwapSidesInCompareBranches$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isPreviewPushOnCommitAndPush$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isPreviewPushProtectedOnly$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isCommitRenamesSeparately$delegate;
+
+  private final kotlin.properties.ReadWriteProperty isAddSuffixToCherryPicksOfPublishedCommits$delegate;
+
+  private final kotlin.properties.ReadWriteProperty branchSettings$delegate;
+
+  public git4idea.config.GitVcsOptions();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method com/intellij/openapi/components/BaseState."<init>":()V
+       4: aload_0
+       5: aload_0
+       6: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+       9: aconst_null
+      10: iconst_1
+      11: aconst_null
+      12: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+      15: aload_0
+      16: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      19: iconst_0
+      20: aaload
+      21: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+      24: putfield      #26                 // Field pathToGit$delegate:Lkotlin/properties/ReadWriteProperty;
+      27: aload_0
+      28: aload_0
+      29: invokevirtual #30                 // Method list:()Lcom/intellij/openapi/components/StoredPropertyBase;
+      32: aload_0
+      33: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      36: iconst_1
+      37: aaload
+      38: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+      41: putfield      #33                 // Field previousCommitAuthors$delegate:Lkotlin/properties/ReadWriteProperty;
+      44: aload_0
+      45: aload_0
+      46: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+      49: astore_1
+      50: getstatic     #39                 // Field git4idea/config/GitSaveChangesPolicy.SHELVE:Lgit4idea/config/GitSaveChangesPolicy;
+      53: checkcast     #41                 // class java/lang/Enum
+      56: astore_2
+      57: iconst_0
+      58: istore_3
+      59: aload_1
+      60: aload_2
+      61: ldc           #35                 // class git4idea/config/GitSaveChangesPolicy
+      63: invokevirtual #45                 // Method com/intellij/openapi/components/BaseState.doEnum:(Ljava/lang/Enum;Ljava/lang/Class;)Lcom/intellij/openapi/components/StoredPropertyBase;
+      66: dup
+      67: ldc           #47                 // String null cannot be cast to non-null type com.intellij.openapi.components.StoredPropertyBase<T of com.intellij.openapi.components.BaseState.enum>
+      69: invokestatic  #53                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+      72: aload_0
+      73: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      76: iconst_2
+      77: aaload
+      78: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+      81: putfield      #56                 // Field saveChangesPolicy$delegate:Lkotlin/properties/ReadWriteProperty;
+      84: aload_0
+      85: aload_0
+      86: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+      89: astore_1
+      90: getstatic     #62                 // Field git4idea/config/UpdateMethod.MERGE:Lgit4idea/config/UpdateMethod;
+      93: checkcast     #41                 // class java/lang/Enum
+      96: astore_2
+      97: iconst_0
+      98: istore_3
+      99: aload_1
+     100: aload_2
+     101: ldc           #58                 // class git4idea/config/UpdateMethod
+     103: invokevirtual #45                 // Method com/intellij/openapi/components/BaseState.doEnum:(Ljava/lang/Enum;Ljava/lang/Class;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     106: dup
+     107: ldc           #47                 // String null cannot be cast to non-null type com.intellij.openapi.components.StoredPropertyBase<T of com.intellij.openapi.components.BaseState.enum>
+     109: invokestatic  #53                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+     112: aload_0
+     113: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     116: iconst_3
+     117: aaload
+     118: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     121: putfield      #65                 // Field updateMethod$delegate:Lkotlin/properties/ReadWriteProperty;
+     124: aload_0
+     125: aload_0
+     126: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     129: aconst_null
+     130: iconst_1
+     131: aconst_null
+     132: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     135: aload_0
+     136: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     139: iconst_4
+     140: aaload
+     141: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     144: putfield      #68                 // Field gcAuto$delegate:Lkotlin/properties/ReadWriteProperty;
+     147: aload_0
+     148: aload_0
+     149: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     152: aconst_null
+     153: iconst_1
+     154: aconst_null
+     155: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     158: aload_0
+     159: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     162: iconst_5
+     163: aaload
+     164: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     167: putfield      #71                 // Field coreLongpaths$delegate:Lkotlin/properties/ReadWriteProperty;
+     170: aload_0
+     171: aload_0
+     172: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     175: aconst_null
+     176: iconst_1
+     177: aconst_null
+     178: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     181: aload_0
+     182: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     185: bipush        6
+     187: aaload
+     188: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     191: putfield      #74                 // Field coreUntrackedCache$delegate:Lkotlin/properties/ReadWriteProperty;
+     194: aload_0
+     195: aload_0
+     196: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     199: aconst_null
+     200: iconst_1
+     201: aconst_null
+     202: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     205: aload_0
+     206: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     209: bipush        7
+     211: aaload
+     212: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     215: putfield      #77                 // Field coreFsMonitor$delegate:Lkotlin/properties/ReadWriteProperty;
+     218: aload_0
+     219: aload_0
+     220: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     223: aconst_null
+     224: iconst_1
+     225: aconst_null
+     226: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     229: aload_0
+     230: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     233: bipush        8
+     235: aaload
+     236: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     239: putfield      #80                 // Field featureManyFiles$delegate:Lkotlin/properties/ReadWriteProperty;
+     242: aload_0
+     243: aload_0
+     244: iconst_0
+     245: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     248: aload_0
+     249: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     252: bipush        9
+     254: aaload
+     255: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     258: putfield      #87                 // Field isPushAutoUpdate$delegate:Lkotlin/properties/ReadWriteProperty;
+     261: aload_0
+     262: aload_0
+     263: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     266: astore_1
+     267: getstatic     #93                 // Field com/intellij/dvcs/branch/DvcsSyncSettings$Value.NOT_DECIDED:Lcom/intellij/dvcs/branch/DvcsSyncSettings$Value;
+     270: checkcast     #41                 // class java/lang/Enum
+     273: astore_2
+     274: iconst_0
+     275: istore_3
+     276: aload_1
+     277: aload_2
+     278: ldc           #89                 // class com/intellij/dvcs/branch/DvcsSyncSettings$Value
+     280: invokevirtual #45                 // Method com/intellij/openapi/components/BaseState.doEnum:(Ljava/lang/Enum;Ljava/lang/Class;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     283: dup
+     284: ldc           #47                 // String null cannot be cast to non-null type com.intellij.openapi.components.StoredPropertyBase<T of com.intellij.openapi.components.BaseState.enum>
+     286: invokestatic  #53                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+     289: aload_0
+     290: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     293: bipush        10
+     295: aaload
+     296: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     299: putfield      #96                 // Field rootSync$delegate:Lkotlin/properties/ReadWriteProperty;
+     302: aload_0
+     303: aload_0
+     304: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     307: aconst_null
+     308: iconst_1
+     309: aconst_null
+     310: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     313: aload_0
+     314: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     317: bipush        11
+     319: aaload
+     320: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     323: putfield      #99                 // Field recentGitRootPath$delegate:Lkotlin/properties/ReadWriteProperty;
+     326: aload_0
+     327: aload_0
+     328: invokevirtual #102                // Method map:()Lcom/intellij/openapi/components/StoredPropertyBase;
+     331: aload_0
+     332: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     335: bipush        12
+     337: aaload
+     338: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     341: putfield      #105                // Field recentBranchByRepository$delegate:Lkotlin/properties/ReadWriteProperty;
+     344: aload_0
+     345: aload_0
+     346: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     349: aconst_null
+     350: iconst_1
+     351: aconst_null
+     352: invokestatic  #12                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     355: aload_0
+     356: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     359: bipush        13
+     361: aaload
+     362: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     365: putfield      #108                // Field recentCommonBranch$delegate:Lkotlin/properties/ReadWriteProperty;
+     368: aload_0
+     369: aload_0
+     370: iconst_1
+     371: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     374: aload_0
+     375: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     378: bipush        14
+     380: aaload
+     381: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     384: putfield      #111                // Field showRecentBranches$delegate:Lkotlin/properties/ReadWriteProperty;
+     387: aload_0
+     388: aload_0
+     389: iconst_1
+     390: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     393: aload_0
+     394: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     397: bipush        15
+     399: aaload
+     400: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     403: putfield      #114                // Field showTags$delegate:Lkotlin/properties/ReadWriteProperty;
+     406: aload_0
+     407: aload_0
+     408: iconst_1
+     409: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     412: aload_0
+     413: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     416: bipush        16
+     418: aaload
+     419: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     422: putfield      #117                // Field filterByActionInPopup$delegate:Lkotlin/properties/ReadWriteProperty;
+     425: aload_0
+     426: aload_0
+     427: iconst_1
+     428: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     431: aload_0
+     432: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     435: bipush        17
+     437: aaload
+     438: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     441: putfield      #120                // Field filterByRepositoryInPopup$delegate:Lkotlin/properties/ReadWriteProperty;
+     444: aload_0
+     445: aload_0
+     446: iconst_1
+     447: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     450: aload_0
+     451: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     454: bipush        18
+     456: aaload
+     457: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     460: putfield      #123                // Field warnAboutCrlf$delegate:Lkotlin/properties/ReadWriteProperty;
+     463: aload_0
+     464: aload_0
+     465: iconst_1
+     466: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     469: aload_0
+     470: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     473: bipush        19
+     475: aaload
+     476: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     479: putfield      #126                // Field isWarnAboutDetachedHead$delegate:Lkotlin/properties/ReadWriteProperty;
+     482: aload_0
+     483: aload_0
+     484: iconst_1
+     485: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     488: aload_0
+     489: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     492: bipush        20
+     494: aaload
+     495: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     498: putfield      #129                // Field isWarnAboutLargeFiles$delegate:Lkotlin/properties/ReadWriteProperty;
+     501: aload_0
+     502: aload_0
+     503: bipush        50
+     505: invokevirtual #132                // Method property:(I)Lcom/intellij/openapi/components/StoredPropertyBase;
+     508: aload_0
+     509: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     512: bipush        21
+     514: aaload
+     515: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     518: putfield      #135                // Field warnAboutLargeFilesLimitMb$delegate:Lkotlin/properties/ReadWriteProperty;
+     521: aload_0
+     522: aload_0
+     523: iconst_1
+     524: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     527: aload_0
+     528: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     531: bipush        22
+     533: aaload
+     534: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     537: putfield      #138                // Field isWarnAboutBadFileNames$delegate:Lkotlin/properties/ReadWriteProperty;
+     540: aload_0
+     541: aload_0
+     542: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     545: astore_1
+     546: iconst_0
+     547: istore_2
+     548: aload_1
+     549: aconst_null
+     550: ldc           #140                // class git4idea/reset/GitResetMode
+     552: invokevirtual #45                 // Method com/intellij/openapi/components/BaseState.doEnum:(Ljava/lang/Enum;Ljava/lang/Class;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     555: aload_0
+     556: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     559: bipush        23
+     561: aaload
+     562: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     565: putfield      #143                // Field resetMode$delegate:Lkotlin/properties/ReadWriteProperty;
+     568: aload_0
+     569: aload_0
+     570: invokevirtual #145                // Method property:()Lcom/intellij/openapi/components/StoredPropertyBase;
+     573: aload_0
+     574: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     577: bipush        24
+     579: aaload
+     580: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     583: putfield      #148                // Field pushTags$delegate:Lkotlin/properties/ReadWriteProperty;
+     586: aload_0
+     587: aload_0
+     588: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     591: astore_1
+     592: getstatic     #154                // Field git4idea/fetch/GitFetchTagsMode.DEFAULT:Lgit4idea/fetch/GitFetchTagsMode;
+     595: checkcast     #41                 // class java/lang/Enum
+     598: astore_2
+     599: iconst_0
+     600: istore_3
+     601: aload_1
+     602: aload_2
+     603: ldc           #150                // class git4idea/fetch/GitFetchTagsMode
+     605: invokevirtual #45                 // Method com/intellij/openapi/components/BaseState.doEnum:(Ljava/lang/Enum;Ljava/lang/Class;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     608: dup
+     609: ldc           #47                 // String null cannot be cast to non-null type com.intellij.openapi.components.StoredPropertyBase<T of com.intellij.openapi.components.BaseState.enum>
+     611: invokestatic  #53                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+     614: aload_0
+     615: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     618: bipush        25
+     620: aaload
+     621: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     624: putfield      #157                // Field fetchTagsMode$delegate:Lkotlin/properties/ReadWriteProperty;
+     627: aload_0
+     628: aload_0
+     629: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     632: astore_1
+     633: getstatic     #163                // Field git4idea/config/GitIncomingCheckStrategy.Auto:Lgit4idea/config/GitIncomingCheckStrategy;
+     636: checkcast     #41                 // class java/lang/Enum
+     639: astore_2
+     640: iconst_0
+     641: istore_3
+     642: aload_1
+     643: aload_2
+     644: ldc           #159                // class git4idea/config/GitIncomingCheckStrategy
+     646: invokevirtual #45                 // Method com/intellij/openapi/components/BaseState.doEnum:(Ljava/lang/Enum;Ljava/lang/Class;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     649: dup
+     650: ldc           #47                 // String null cannot be cast to non-null type com.intellij.openapi.components.StoredPropertyBase<T of com.intellij.openapi.components.BaseState.enum>
+     652: invokestatic  #53                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+     655: aload_0
+     656: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     659: bipush        26
+     661: aaload
+     662: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     665: putfield      #166                // Field incomingCheckStrategy$delegate:Lkotlin/properties/ReadWriteProperty;
+     668: aload_0
+     669: aload_0
+     670: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     673: astore_1
+     674: getstatic     #172                // Field git4idea/config/GitIncomingRemoteCheckStrategy.LS_REMOTE:Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+     677: checkcast     #41                 // class java/lang/Enum
+     680: astore_2
+     681: iconst_0
+     682: istore_3
+     683: aload_1
+     684: aload_2
+     685: ldc           #168                // class git4idea/config/GitIncomingRemoteCheckStrategy
+     687: invokevirtual #45                 // Method com/intellij/openapi/components/BaseState.doEnum:(Ljava/lang/Enum;Ljava/lang/Class;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     690: dup
+     691: ldc           #47                 // String null cannot be cast to non-null type com.intellij.openapi.components.StoredPropertyBase<T of com.intellij.openapi.components.BaseState.enum>
+     693: invokestatic  #53                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+     696: aload_0
+     697: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     700: bipush        27
+     702: aaload
+     703: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     706: putfield      #175                // Field incomingCommitsCheckStrategy$delegate:Lkotlin/properties/ReadWriteProperty;
+     709: aload_0
+     710: aload_0
+     711: iconst_0
+     712: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     715: aload_0
+     716: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     719: bipush        28
+     721: aaload
+     722: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     725: putfield      #178                // Field isSignOffCommit$delegate:Lkotlin/properties/ReadWriteProperty;
+     728: aload_0
+     729: aload_0
+     730: iconst_1
+     731: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     734: aload_0
+     735: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     738: bipush        29
+     740: aaload
+     741: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     744: putfield      #181                // Field isSetUserNameGlobally$delegate:Lkotlin/properties/ReadWriteProperty;
+     747: aload_0
+     748: aload_0
+     749: iconst_0
+     750: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     753: aload_0
+     754: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     757: bipush        30
+     759: aaload
+     760: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     763: putfield      #184                // Field isSwapSidesInCompareBranches$delegate:Lkotlin/properties/ReadWriteProperty;
+     766: aload_0
+     767: aload_0
+     768: iconst_1
+     769: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     772: aload_0
+     773: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     776: bipush        31
+     778: aaload
+     779: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     782: putfield      #187                // Field isPreviewPushOnCommitAndPush$delegate:Lkotlin/properties/ReadWriteProperty;
+     785: aload_0
+     786: aload_0
+     787: iconst_0
+     788: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     791: aload_0
+     792: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     795: bipush        32
+     797: aaload
+     798: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     801: putfield      #190                // Field isPreviewPushProtectedOnly$delegate:Lkotlin/properties/ReadWriteProperty;
+     804: aload_0
+     805: aload_0
+     806: iconst_1
+     807: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     810: aload_0
+     811: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     814: bipush        33
+     816: aaload
+     817: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     820: putfield      #193                // Field isCommitRenamesSeparately$delegate:Lkotlin/properties/ReadWriteProperty;
+     823: aload_0
+     824: aload_0
+     825: iconst_1
+     826: invokevirtual #84                 // Method property:(Z)Lcom/intellij/openapi/components/StoredPropertyBase;
+     829: aload_0
+     830: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     833: bipush        34
+     835: aaload
+     836: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     839: putfield      #196                // Field isAddSuffixToCherryPicksOfPublishedCommits$delegate:Lkotlin/properties/ReadWriteProperty;
+     842: aload_0
+     843: aload_0
+     844: new           #198                // class com/intellij/dvcs/branch/DvcsBranchSettings
+     847: dup
+     848: invokespecial #199                // Method com/intellij/dvcs/branch/DvcsBranchSettings."<init>":()V
+     851: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+     854: invokevirtual #202                // Method property:(Lcom/intellij/openapi/components/BaseState;)Lcom/intellij/openapi/components/StoredPropertyBase;
+     857: aload_0
+     858: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     861: bipush        35
+     863: aaload
+     864: invokevirtual #22                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+     867: putfield      #205                // Field branchSettings$delegate:Lkotlin/properties/ReadWriteProperty;
+     870: return
+
+  public final java.lang.String getPathToGit();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field pathToGit$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_0
+       9: aaload
+      10: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #227                // class java/lang/String
+      18: areturn
+
+  public final void setPathToGit(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field pathToGit$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_0
+       9: aaload
+      10: aload_1
+      11: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      16: return
+
+  public final java.util.List<java.lang.String> getPreviousCommitAuthors();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field previousCommitAuthors$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_1
+       9: aaload
+      10: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #242                // class java/util/List
+      18: areturn
+
+  public final git4idea.config.GitSaveChangesPolicy getSaveChangesPolicy();
+    Code:
+       0: aload_0
+       1: getfield      #56                 // Field saveChangesPolicy$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_2
+       9: aaload
+      10: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #35                 // class git4idea/config/GitSaveChangesPolicy
+      18: areturn
+
+  public final void setSaveChangesPolicy(git4idea.config.GitSaveChangesPolicy);
+    Code:
+       0: aload_1
+       1: ldc           #248                // String <set-?>
+       3: invokestatic  #251                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #56                 // Field saveChangesPolicy$delegate:Lkotlin/properties/ReadWriteProperty;
+      10: aload_0
+      11: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      14: iconst_2
+      15: aaload
+      16: aload_1
+      17: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      22: return
+
+  public final git4idea.config.UpdateMethod getUpdateMethod();
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field updateMethod$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_3
+       9: aaload
+      10: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #58                 // class git4idea/config/UpdateMethod
+      18: areturn
+
+  public final void setUpdateMethod(git4idea.config.UpdateMethod);
+    Code:
+       0: aload_1
+       1: ldc           #248                // String <set-?>
+       3: invokestatic  #251                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #65                 // Field updateMethod$delegate:Lkotlin/properties/ReadWriteProperty;
+      10: aload_0
+      11: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      14: iconst_3
+      15: aaload
+      16: aload_1
+      17: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      22: return
+
+  public static void getUpdateMethod$annotations();
+    Code:
+       0: return
+
+  public final java.lang.String getGcAuto();
+    Code:
+       0: aload_0
+       1: getfield      #68                 // Field gcAuto$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_4
+       9: aaload
+      10: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #227                // class java/lang/String
+      18: areturn
+
+  public final void setGcAuto(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #68                 // Field gcAuto$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_4
+       9: aaload
+      10: aload_1
+      11: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      16: return
+
+  public static void getGcAuto$annotations();
+    Code:
+       0: return
+
+  public final java.lang.String getCoreLongpaths();
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field coreLongpaths$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_5
+       9: aaload
+      10: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #227                // class java/lang/String
+      18: areturn
+
+  public final void setCoreLongpaths(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field coreLongpaths$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_5
+       9: aaload
+      10: aload_1
+      11: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      16: return
+
+  public static void getCoreLongpaths$annotations();
+    Code:
+       0: return
+
+  public final java.lang.String getCoreUntrackedCache();
+    Code:
+       0: aload_0
+       1: getfield      #74                 // Field coreUntrackedCache$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        6
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #227                // class java/lang/String
+      19: areturn
+
+  public final void setCoreUntrackedCache(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #74                 // Field coreUntrackedCache$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        6
+      10: aaload
+      11: aload_1
+      12: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      17: return
+
+  public static void getCoreUntrackedCache$annotations();
+    Code:
+       0: return
+
+  public final java.lang.String getCoreFsMonitor();
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field coreFsMonitor$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        7
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #227                // class java/lang/String
+      19: areturn
+
+  public final void setCoreFsMonitor(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field coreFsMonitor$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        7
+      10: aaload
+      11: aload_1
+      12: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      17: return
+
+  public static void getCoreFsMonitor$annotations();
+    Code:
+       0: return
+
+  public final java.lang.String getFeatureManyFiles();
+    Code:
+       0: aload_0
+       1: getfield      #80                 // Field featureManyFiles$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        8
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #227                // class java/lang/String
+      19: areturn
+
+  public final void setFeatureManyFiles(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #80                 // Field featureManyFiles$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        8
+      10: aaload
+      11: aload_1
+      12: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      17: return
+
+  public static void getFeatureManyFiles$annotations();
+    Code:
+       0: return
+
+  public final boolean isPushAutoUpdate();
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field isPushAutoUpdate$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        9
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setPushAutoUpdate(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field isPushAutoUpdate$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        9
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final com.intellij.dvcs.branch.DvcsSyncSettings$Value getRootSync();
+    Code:
+       0: aload_0
+       1: getfield      #96                 // Field rootSync$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        10
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #89                 // class com/intellij/dvcs/branch/DvcsSyncSettings$Value
+      19: areturn
+
+  public final void setRootSync(com.intellij.dvcs.branch.DvcsSyncSettings$Value);
+    Code:
+       0: aload_1
+       1: ldc           #248                // String <set-?>
+       3: invokestatic  #251                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #96                 // Field rootSync$delegate:Lkotlin/properties/ReadWriteProperty;
+      10: aload_0
+      11: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      14: bipush        10
+      16: aaload
+      17: aload_1
+      18: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      23: return
+
+  public final java.lang.String getRecentGitRootPath();
+    Code:
+       0: aload_0
+       1: getfield      #99                 // Field recentGitRootPath$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        11
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #227                // class java/lang/String
+      19: areturn
+
+  public final void setRecentGitRootPath(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #99                 // Field recentGitRootPath$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        11
+      10: aaload
+      11: aload_1
+      12: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      17: return
+
+  public final java.util.Map<java.lang.String, java.lang.String> getRecentBranchByRepository();
+    Code:
+       0: aload_0
+       1: getfield      #105                // Field recentBranchByRepository$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        12
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #309                // class java/util/Map
+      19: areturn
+
+  public final java.lang.String getRecentCommonBranch();
+    Code:
+       0: aload_0
+       1: getfield      #108                // Field recentCommonBranch$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        13
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #227                // class java/lang/String
+      19: areturn
+
+  public final void setRecentCommonBranch(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #108                // Field recentCommonBranch$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        13
+      10: aaload
+      11: aload_1
+      12: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      17: return
+
+  public final boolean getShowRecentBranches();
+    Code:
+       0: aload_0
+       1: getfield      #111                // Field showRecentBranches$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        14
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setShowRecentBranches(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #111                // Field showRecentBranches$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        14
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean getShowTags();
+    Code:
+       0: aload_0
+       1: getfield      #114                // Field showTags$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        15
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setShowTags(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #114                // Field showTags$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        15
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean getFilterByActionInPopup();
+    Code:
+       0: aload_0
+       1: getfield      #117                // Field filterByActionInPopup$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        16
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setFilterByActionInPopup(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #117                // Field filterByActionInPopup$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        16
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean getFilterByRepositoryInPopup();
+    Code:
+       0: aload_0
+       1: getfield      #120                // Field filterByRepositoryInPopup$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        17
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setFilterByRepositoryInPopup(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #120                // Field filterByRepositoryInPopup$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        17
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean getWarnAboutCrlf();
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field warnAboutCrlf$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        18
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setWarnAboutCrlf(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field warnAboutCrlf$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        18
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isWarnAboutDetachedHead();
+    Code:
+       0: aload_0
+       1: getfield      #126                // Field isWarnAboutDetachedHead$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        19
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setWarnAboutDetachedHead(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #126                // Field isWarnAboutDetachedHead$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        19
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isWarnAboutLargeFiles();
+    Code:
+       0: aload_0
+       1: getfield      #129                // Field isWarnAboutLargeFiles$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        20
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setWarnAboutLargeFiles(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #129                // Field isWarnAboutLargeFiles$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        20
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final int getWarnAboutLargeFilesLimitMb();
+    Code:
+       0: aload_0
+       1: getfield      #135                // Field warnAboutLargeFilesLimitMb$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        21
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #338                // class java/lang/Number
+      19: invokevirtual #341                // Method java/lang/Number.intValue:()I
+      22: ireturn
+
+  public final void setWarnAboutLargeFilesLimitMb(int);
+    Code:
+       0: aload_0
+       1: getfield      #135                // Field warnAboutLargeFilesLimitMb$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        21
+      10: aaload
+      11: iload_1
+      12: invokestatic  #348                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isWarnAboutBadFileNames();
+    Code:
+       0: aload_0
+       1: getfield      #138                // Field isWarnAboutBadFileNames$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        22
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setWarnAboutBadFileNames(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #138                // Field isWarnAboutBadFileNames$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        22
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final git4idea.reset.GitResetMode getResetMode();
+    Code:
+       0: aload_0
+       1: getfield      #143                // Field resetMode$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        23
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #140                // class git4idea/reset/GitResetMode
+      19: areturn
+
+  public final void setResetMode(git4idea.reset.GitResetMode);
+    Code:
+       0: aload_0
+       1: getfield      #143                // Field resetMode$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        23
+      10: aaload
+      11: aload_1
+      12: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      17: return
+
+  public final git4idea.push.GitPushTagMode getPushTags();
+    Code:
+       0: aload_0
+       1: getfield      #148                // Field pushTags$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        24
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #362                // class git4idea/push/GitPushTagMode
+      19: areturn
+
+  public final void setPushTags(git4idea.push.GitPushTagMode);
+    Code:
+       0: aload_0
+       1: getfield      #148                // Field pushTags$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        24
+      10: aaload
+      11: aload_1
+      12: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      17: return
+
+  public final git4idea.fetch.GitFetchTagsMode getFetchTagsMode();
+    Code:
+       0: aload_0
+       1: getfield      #157                // Field fetchTagsMode$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        25
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #150                // class git4idea/fetch/GitFetchTagsMode
+      19: areturn
+
+  public final void setFetchTagsMode(git4idea.fetch.GitFetchTagsMode);
+    Code:
+       0: aload_1
+       1: ldc           #248                // String <set-?>
+       3: invokestatic  #251                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #157                // Field fetchTagsMode$delegate:Lkotlin/properties/ReadWriteProperty;
+      10: aload_0
+      11: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      14: bipush        25
+      16: aaload
+      17: aload_1
+      18: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      23: return
+
+  public final git4idea.config.GitIncomingCheckStrategy getIncomingCheckStrategy();
+    Code:
+       0: aload_0
+       1: getfield      #166                // Field incomingCheckStrategy$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        26
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #159                // class git4idea/config/GitIncomingCheckStrategy
+      19: areturn
+
+  public final void setIncomingCheckStrategy(git4idea.config.GitIncomingCheckStrategy);
+    Code:
+       0: aload_1
+       1: ldc           #248                // String <set-?>
+       3: invokestatic  #251                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #166                // Field incomingCheckStrategy$delegate:Lkotlin/properties/ReadWriteProperty;
+      10: aload_0
+      11: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      14: bipush        26
+      16: aaload
+      17: aload_1
+      18: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      23: return
+
+  public static void getIncomingCheckStrategy$annotations();
+    Code:
+       0: return
+
+  public final git4idea.config.GitIncomingRemoteCheckStrategy getIncomingCommitsCheckStrategy();
+    Code:
+       0: aload_0
+       1: getfield      #175                // Field incomingCommitsCheckStrategy$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        27
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #168                // class git4idea/config/GitIncomingRemoteCheckStrategy
+      19: areturn
+
+  public final void setIncomingCommitsCheckStrategy(git4idea.config.GitIncomingRemoteCheckStrategy);
+    Code:
+       0: aload_1
+       1: ldc           #248                // String <set-?>
+       3: invokestatic  #251                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #175                // Field incomingCommitsCheckStrategy$delegate:Lkotlin/properties/ReadWriteProperty;
+      10: aload_0
+      11: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      14: bipush        27
+      16: aaload
+      17: aload_1
+      18: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      23: return
+
+  public final boolean isSignOffCommit();
+    Code:
+       0: aload_0
+       1: getfield      #178                // Field isSignOffCommit$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        28
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setSignOffCommit(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #178                // Field isSignOffCommit$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        28
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isSetUserNameGlobally();
+    Code:
+       0: aload_0
+       1: getfield      #181                // Field isSetUserNameGlobally$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        29
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setSetUserNameGlobally(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #181                // Field isSetUserNameGlobally$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        29
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isSwapSidesInCompareBranches();
+    Code:
+       0: aload_0
+       1: getfield      #184                // Field isSwapSidesInCompareBranches$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        30
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setSwapSidesInCompareBranches(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #184                // Field isSwapSidesInCompareBranches$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        30
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isPreviewPushOnCommitAndPush();
+    Code:
+       0: aload_0
+       1: getfield      #187                // Field isPreviewPushOnCommitAndPush$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        31
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setPreviewPushOnCommitAndPush(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #187                // Field isPreviewPushOnCommitAndPush$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        31
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isPreviewPushProtectedOnly();
+    Code:
+       0: aload_0
+       1: getfield      #190                // Field isPreviewPushProtectedOnly$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        32
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setPreviewPushProtectedOnly(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #190                // Field isPreviewPushProtectedOnly$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        32
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isCommitRenamesSeparately();
+    Code:
+       0: aload_0
+       1: getfield      #193                // Field isCommitRenamesSeparately$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        33
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setCommitRenamesSeparately(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #193                // Field isCommitRenamesSeparately$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        33
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final boolean isAddSuffixToCherryPicksOfPublishedCommits();
+    Code:
+       0: aload_0
+       1: getfield      #196                // Field isAddSuffixToCherryPicksOfPublishedCommits$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        34
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #285                // class java/lang/Boolean
+      19: invokevirtual #288                // Method java/lang/Boolean.booleanValue:()Z
+      22: ireturn
+
+  public final void setAddSuffixToCherryPicksOfPublishedCommits(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #196                // Field isAddSuffixToCherryPicksOfPublishedCommits$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        34
+      10: aaload
+      11: iload_1
+      12: invokestatic  #294                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      20: return
+
+  public final com.intellij.dvcs.branch.DvcsBranchSettings getBranchSettings();
+    Code:
+       0: aload_0
+       1: getfield      #205                // Field branchSettings$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: bipush        35
+      10: aaload
+      11: invokeinterface #225,  3          // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      16: checkcast     #198                // class com/intellij/dvcs/branch/DvcsBranchSettings
+      19: areturn
+
+  public final void setBranchSettings(com.intellij.dvcs.branch.DvcsBranchSettings);
+    Code:
+       0: aload_1
+       1: ldc           #248                // String <set-?>
+       3: invokestatic  #251                // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getfield      #205                // Field branchSettings$delegate:Lkotlin/properties/ReadWriteProperty;
+      10: aload_0
+      11: getstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      14: bipush        35
+      16: aaload
+      17: aload_1
+      18: invokeinterface #233,  4          // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      23: return
+
+  static {};
+    Code:
+       0: bipush        36
+       2: anewarray     #421                // class kotlin/reflect/KProperty
+       5: astore_0
+       6: aload_0
+       7: iconst_0
+       8: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+      11: dup
+      12: ldc           #2                  // class git4idea/config/GitVcsOptions
+      14: ldc_w         #425                // String pathToGit
+      17: ldc_w         #427                // String getPathToGit()Ljava/lang/String;
+      20: iconst_0
+      21: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+      24: aastore
+      25: aload_0
+      26: iconst_1
+      27: new           #432                // class kotlin/jvm/internal/PropertyReference1Impl
+      30: dup
+      31: ldc           #2                  // class git4idea/config/GitVcsOptions
+      33: ldc_w         #434                // String previousCommitAuthors
+      36: ldc_w         #436                // String getPreviousCommitAuthors()Ljava/util/List;
+      39: iconst_0
+      40: invokespecial #437                // Method kotlin/jvm/internal/PropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+      43: aastore
+      44: aload_0
+      45: iconst_2
+      46: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+      49: dup
+      50: ldc           #2                  // class git4idea/config/GitVcsOptions
+      52: ldc_w         #439                // String saveChangesPolicy
+      55: ldc_w         #441                // String getSaveChangesPolicy()Lgit4idea/config/GitSaveChangesPolicy;
+      58: iconst_0
+      59: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+      62: aastore
+      63: aload_0
+      64: iconst_3
+      65: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+      68: dup
+      69: ldc           #2                  // class git4idea/config/GitVcsOptions
+      71: ldc_w         #443                // String updateMethod
+      74: ldc_w         #445                // String getUpdateMethod()Lgit4idea/config/UpdateMethod;
+      77: iconst_0
+      78: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+      81: aastore
+      82: aload_0
+      83: iconst_4
+      84: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+      87: dup
+      88: ldc           #2                  // class git4idea/config/GitVcsOptions
+      90: ldc_w         #447                // String gcAuto
+      93: ldc_w         #449                // String getGcAuto()Ljava/lang/String;
+      96: iconst_0
+      97: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     100: aastore
+     101: aload_0
+     102: iconst_5
+     103: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     106: dup
+     107: ldc           #2                  // class git4idea/config/GitVcsOptions
+     109: ldc_w         #451                // String coreLongpaths
+     112: ldc_w         #453                // String getCoreLongpaths()Ljava/lang/String;
+     115: iconst_0
+     116: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     119: aastore
+     120: aload_0
+     121: bipush        6
+     123: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     126: dup
+     127: ldc           #2                  // class git4idea/config/GitVcsOptions
+     129: ldc_w         #455                // String coreUntrackedCache
+     132: ldc_w         #457                // String getCoreUntrackedCache()Ljava/lang/String;
+     135: iconst_0
+     136: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     139: aastore
+     140: aload_0
+     141: bipush        7
+     143: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     146: dup
+     147: ldc           #2                  // class git4idea/config/GitVcsOptions
+     149: ldc_w         #459                // String coreFsMonitor
+     152: ldc_w         #461                // String getCoreFsMonitor()Ljava/lang/String;
+     155: iconst_0
+     156: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     159: aastore
+     160: aload_0
+     161: bipush        8
+     163: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     166: dup
+     167: ldc           #2                  // class git4idea/config/GitVcsOptions
+     169: ldc_w         #463                // String featureManyFiles
+     172: ldc_w         #465                // String getFeatureManyFiles()Ljava/lang/String;
+     175: iconst_0
+     176: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     179: aastore
+     180: aload_0
+     181: bipush        9
+     183: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     186: dup
+     187: ldc           #2                  // class git4idea/config/GitVcsOptions
+     189: ldc_w         #466                // String isPushAutoUpdate
+     192: ldc_w         #468                // String isPushAutoUpdate()Z
+     195: iconst_0
+     196: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     199: aastore
+     200: aload_0
+     201: bipush        10
+     203: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     206: dup
+     207: ldc           #2                  // class git4idea/config/GitVcsOptions
+     209: ldc_w         #470                // String rootSync
+     212: ldc_w         #472                // String getRootSync()Lcom/intellij/dvcs/branch/DvcsSyncSettings$Value;
+     215: iconst_0
+     216: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     219: aastore
+     220: aload_0
+     221: bipush        11
+     223: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     226: dup
+     227: ldc           #2                  // class git4idea/config/GitVcsOptions
+     229: ldc_w         #474                // String recentGitRootPath
+     232: ldc_w         #476                // String getRecentGitRootPath()Ljava/lang/String;
+     235: iconst_0
+     236: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     239: aastore
+     240: aload_0
+     241: bipush        12
+     243: new           #432                // class kotlin/jvm/internal/PropertyReference1Impl
+     246: dup
+     247: ldc           #2                  // class git4idea/config/GitVcsOptions
+     249: ldc_w         #478                // String recentBranchByRepository
+     252: ldc_w         #480                // String getRecentBranchByRepository()Ljava/util/Map;
+     255: iconst_0
+     256: invokespecial #437                // Method kotlin/jvm/internal/PropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     259: aastore
+     260: aload_0
+     261: bipush        13
+     263: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     266: dup
+     267: ldc           #2                  // class git4idea/config/GitVcsOptions
+     269: ldc_w         #482                // String recentCommonBranch
+     272: ldc_w         #484                // String getRecentCommonBranch()Ljava/lang/String;
+     275: iconst_0
+     276: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     279: aastore
+     280: aload_0
+     281: bipush        14
+     283: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     286: dup
+     287: ldc           #2                  // class git4idea/config/GitVcsOptions
+     289: ldc_w         #486                // String showRecentBranches
+     292: ldc_w         #488                // String getShowRecentBranches()Z
+     295: iconst_0
+     296: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     299: aastore
+     300: aload_0
+     301: bipush        15
+     303: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     306: dup
+     307: ldc           #2                  // class git4idea/config/GitVcsOptions
+     309: ldc_w         #490                // String showTags
+     312: ldc_w         #492                // String getShowTags()Z
+     315: iconst_0
+     316: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     319: aastore
+     320: aload_0
+     321: bipush        16
+     323: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     326: dup
+     327: ldc           #2                  // class git4idea/config/GitVcsOptions
+     329: ldc_w         #494                // String filterByActionInPopup
+     332: ldc_w         #496                // String getFilterByActionInPopup()Z
+     335: iconst_0
+     336: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     339: aastore
+     340: aload_0
+     341: bipush        17
+     343: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     346: dup
+     347: ldc           #2                  // class git4idea/config/GitVcsOptions
+     349: ldc_w         #498                // String filterByRepositoryInPopup
+     352: ldc_w         #500                // String getFilterByRepositoryInPopup()Z
+     355: iconst_0
+     356: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     359: aastore
+     360: aload_0
+     361: bipush        18
+     363: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     366: dup
+     367: ldc           #2                  // class git4idea/config/GitVcsOptions
+     369: ldc_w         #502                // String warnAboutCrlf
+     372: ldc_w         #504                // String getWarnAboutCrlf()Z
+     375: iconst_0
+     376: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     379: aastore
+     380: aload_0
+     381: bipush        19
+     383: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     386: dup
+     387: ldc           #2                  // class git4idea/config/GitVcsOptions
+     389: ldc_w         #505                // String isWarnAboutDetachedHead
+     392: ldc_w         #507                // String isWarnAboutDetachedHead()Z
+     395: iconst_0
+     396: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     399: aastore
+     400: aload_0
+     401: bipush        20
+     403: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     406: dup
+     407: ldc           #2                  // class git4idea/config/GitVcsOptions
+     409: ldc_w         #508                // String isWarnAboutLargeFiles
+     412: ldc_w         #510                // String isWarnAboutLargeFiles()Z
+     415: iconst_0
+     416: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     419: aastore
+     420: aload_0
+     421: bipush        21
+     423: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     426: dup
+     427: ldc           #2                  // class git4idea/config/GitVcsOptions
+     429: ldc_w         #512                // String warnAboutLargeFilesLimitMb
+     432: ldc_w         #514                // String getWarnAboutLargeFilesLimitMb()I
+     435: iconst_0
+     436: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     439: aastore
+     440: aload_0
+     441: bipush        22
+     443: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     446: dup
+     447: ldc           #2                  // class git4idea/config/GitVcsOptions
+     449: ldc_w         #515                // String isWarnAboutBadFileNames
+     452: ldc_w         #517                // String isWarnAboutBadFileNames()Z
+     455: iconst_0
+     456: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     459: aastore
+     460: aload_0
+     461: bipush        23
+     463: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     466: dup
+     467: ldc           #2                  // class git4idea/config/GitVcsOptions
+     469: ldc_w         #519                // String resetMode
+     472: ldc_w         #521                // String getResetMode()Lgit4idea/reset/GitResetMode;
+     475: iconst_0
+     476: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     479: aastore
+     480: aload_0
+     481: bipush        24
+     483: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     486: dup
+     487: ldc           #2                  // class git4idea/config/GitVcsOptions
+     489: ldc_w         #523                // String pushTags
+     492: ldc_w         #525                // String getPushTags()Lgit4idea/push/GitPushTagMode;
+     495: iconst_0
+     496: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     499: aastore
+     500: aload_0
+     501: bipush        25
+     503: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     506: dup
+     507: ldc           #2                  // class git4idea/config/GitVcsOptions
+     509: ldc_w         #527                // String fetchTagsMode
+     512: ldc_w         #529                // String getFetchTagsMode()Lgit4idea/fetch/GitFetchTagsMode;
+     515: iconst_0
+     516: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     519: aastore
+     520: aload_0
+     521: bipush        26
+     523: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     526: dup
+     527: ldc           #2                  // class git4idea/config/GitVcsOptions
+     529: ldc_w         #531                // String incomingCheckStrategy
+     532: ldc_w         #533                // String getIncomingCheckStrategy()Lgit4idea/config/GitIncomingCheckStrategy;
+     535: iconst_0
+     536: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     539: aastore
+     540: aload_0
+     541: bipush        27
+     543: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     546: dup
+     547: ldc           #2                  // class git4idea/config/GitVcsOptions
+     549: ldc_w         #535                // String incomingCommitsCheckStrategy
+     552: ldc_w         #537                // String getIncomingCommitsCheckStrategy()Lgit4idea/config/GitIncomingRemoteCheckStrategy;
+     555: iconst_0
+     556: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     559: aastore
+     560: aload_0
+     561: bipush        28
+     563: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     566: dup
+     567: ldc           #2                  // class git4idea/config/GitVcsOptions
+     569: ldc_w         #538                // String isSignOffCommit
+     572: ldc_w         #540                // String isSignOffCommit()Z
+     575: iconst_0
+     576: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     579: aastore
+     580: aload_0
+     581: bipush        29
+     583: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     586: dup
+     587: ldc           #2                  // class git4idea/config/GitVcsOptions
+     589: ldc_w         #541                // String isSetUserNameGlobally
+     592: ldc_w         #543                // String isSetUserNameGlobally()Z
+     595: iconst_0
+     596: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     599: aastore
+     600: aload_0
+     601: bipush        30
+     603: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     606: dup
+     607: ldc           #2                  // class git4idea/config/GitVcsOptions
+     609: ldc_w         #544                // String isSwapSidesInCompareBranches
+     612: ldc_w         #546                // String isSwapSidesInCompareBranches()Z
+     615: iconst_0
+     616: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     619: aastore
+     620: aload_0
+     621: bipush        31
+     623: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     626: dup
+     627: ldc           #2                  // class git4idea/config/GitVcsOptions
+     629: ldc_w         #547                // String isPreviewPushOnCommitAndPush
+     632: ldc_w         #549                // String isPreviewPushOnCommitAndPush()Z
+     635: iconst_0
+     636: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     639: aastore
+     640: aload_0
+     641: bipush        32
+     643: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     646: dup
+     647: ldc           #2                  // class git4idea/config/GitVcsOptions
+     649: ldc_w         #550                // String isPreviewPushProtectedOnly
+     652: ldc_w         #552                // String isPreviewPushProtectedOnly()Z
+     655: iconst_0
+     656: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     659: aastore
+     660: aload_0
+     661: bipush        33
+     663: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     666: dup
+     667: ldc           #2                  // class git4idea/config/GitVcsOptions
+     669: ldc_w         #553                // String isCommitRenamesSeparately
+     672: ldc_w         #555                // String isCommitRenamesSeparately()Z
+     675: iconst_0
+     676: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     679: aastore
+     680: aload_0
+     681: bipush        34
+     683: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     686: dup
+     687: ldc           #2                  // class git4idea/config/GitVcsOptions
+     689: ldc_w         #556                // String isAddSuffixToCherryPicksOfPublishedCommits
+     692: ldc_w         #558                // String isAddSuffixToCherryPicksOfPublishedCommits()Z
+     695: iconst_0
+     696: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     699: aastore
+     700: aload_0
+     701: bipush        35
+     703: new           #423                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+     706: dup
+     707: ldc           #2                  // class git4idea/config/GitVcsOptions
+     709: ldc_w         #560                // String branchSettings
+     712: ldc_w         #562                // String getBranchSettings()Lcom/intellij/dvcs/branch/DvcsBranchSettings;
+     715: iconst_0
+     716: invokespecial #430                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+     719: aastore
+     720: aload_0
+     721: putstatic     #16                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+     724: return
+}

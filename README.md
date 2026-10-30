@@ -2,7 +2,9 @@
 
 HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户端，通过本机 Git 管理代码仓库，提供 Windows 和 macOS 打包配置。
 
-**v1.5.0 新增指定分支与提交的变基**：在历史中选择 dev 的某次提交，再选择 master 作为要变基的分支；可停在中间提交，dev 的后续提交和分支引用保持不变。见 [指定提交变基](docs/REBASE-TO-COMMIT.md) 与 [IDEA 增量证据](docs/IDEA-REBASE-TARGET-ANALYSIS.md)。原有变基恢复、文件回滚、Revert 和 Reset 功能继续保留，见 [历史操作说明](docs/HISTORY-ACTIONS.md)。
+**v1.6.0 支持有未提交改动时尝试变基**：勾选“自动保存未提交改动后变基”，先保存暂存、未暂存和未跟踪文件，完成或中止后尝试恢复。若在 dev 上选择对 master 变基，会切回 dev 恢复其原改动；恢复冲突时保留备份并等待处理。见 [自动保存与恢复说明](docs/REBASE-SAVED-CHANGES.md) 和 [IDEA 静态证据](docs/IDEA-REBASE-WIP-ANALYSIS.md)。
+
+保留 v1.5 的 [指定分支与提交变基](docs/REBASE-TO-COMMIT.md)，以及 [文件回滚、Revert、Reset](docs/HISTORY-ACTIONS.md)。旧版文档中的“变基必须先处理全部改动”限制由本版的显式自动保存选项补充；Revert 等操作的限制不变。
 
 ## 项目功能
 
@@ -13,6 +15,7 @@ HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户�
 - 配置 AI 接口，根据暂存区改动生成提交消息。
 - 支持多项目标签页、明暗主题和操作日志。
 - 变基与冲突恢复；撤销文件修改、历史反向提交及三种 Reset 模式，操作前记录原提交恢复引用。
+- 变基前可选择保存未提交改动；专用 WIP 引用和恢复记录持久保留，支持恢复冲突、重新打开后处理和显式放弃原暂存划分的恢复。
 - Windows Setup 安装版支持检查 GitHub 正式版更新、下载进度、取消重试和确认安装；其他分发形式提供发布页入口。
 
 ## 软件更新（v1.3.0）

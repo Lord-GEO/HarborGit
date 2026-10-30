@@ -1,0 +1,223 @@
+[
+  {
+    "output": "javap/git4idea.stash.GitChangesSaver.txt",
+    "output_sha256": "21236978c205f048284b46d6dd036ef62d6e25c02c304ba679372f2e93abcf88",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/stash/GitChangesSaver.class",
+    "member_sha256": "9fa996d1285464a64fe5b90757742fd704336a508281a86e6f8160a51b9137fe",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.stash.GitChangesSaver"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.stash.GitStashChangesSaver.txt",
+    "output_sha256": "75650fe2808987597afe4fda1f7119933241535af076432a36c8f8373ff19a44",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/stash/GitStashChangesSaver.class",
+    "member_sha256": "dcbf7baf74df3a95164571ba26f02df2cf82f6bbbafa18358e22514334f57a80",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.stash.GitStashChangesSaver"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.stash.GitStashChangesSaver$UnstashConflictResolver.txt",
+    "output_sha256": "792ba4884da18ce625920340ae826482fc9159b9ad711aa5faa9700f2862685f",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/stash/GitStashChangesSaver$UnstashConflictResolver.class",
+    "member_sha256": "398fbc18cf31e9df5f9f75ecf801b35351d26cae26fa24a9c7b17fab98f0b2bf",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.stash.GitStashChangesSaver$UnstashConflictResolver"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.stash.GitShelveChangesSaver.txt",
+    "output_sha256": "a13657f59e030beff61d2026f4ab925f386926580c3337042eee18ee4e3f2e7f",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/stash/GitShelveChangesSaver.class",
+    "member_sha256": "fb8eaf3d02418808e11c8a8afbd8507349f9c74145e8f53890fd866d38a019a8",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.stash.GitShelveChangesSaver"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.stash.GitStashUtils.txt",
+    "output_sha256": "96501690806ecf001ee394ca189f3678173010735d09fea0d78d0e2c8b2e3f4d",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/stash/GitStashUtils.class",
+    "member_sha256": "b8f090efde8858cce16a07682c6043cca66058cd2dca6e926526944cf8f2814e",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.stash.GitStashUtils"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.util.GitPreservingProcess.txt",
+    "output_sha256": "5533ed0dc0c81422dc1b1b0368b25b5e248d29753027e687be8c3dc98ca39a63",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/util/GitPreservingProcess.class",
+    "member_sha256": "5825e6574676d4e3324ba480d87cbd9885e2d4b0ceb1b3d7080bcd96b18ec6ec",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.util.GitPreservingProcess"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.config.GitSaveChangesPolicy.txt",
+    "output_sha256": "c8d89cdc33efe644e961014a6c3b475736db28d3166ad3dbffa259c161ab9b2c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/config/GitSaveChangesPolicy.class",
+    "member_sha256": "e32589a2cfaca0af3df50689be619aab09444d9c9b5a523bb00ed29d3862e48a",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.config.GitSaveChangesPolicy"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.config.GitVcsSettings.txt",
+    "output_sha256": "b621149745ff2cf4759085b7ec5ca046aea4e009b7f3763a45f4911c1b6e89de",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/config/GitVcsSettings.class",
+    "member_sha256": "837f0d1384f08b5695caeeee88c435206ddc60273ce34831479d518b1e5c3dfa",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.config.GitVcsSettings"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.stash.GitStashOperations.txt",
+    "output_sha256": "6eebef840920b93b1f6a1ef0a90d06b520407dfd70974e2955c1ab9ff38ac920",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/stash/GitStashOperations.class",
+    "member_sha256": "db0219d388e490d59f411f03e369f1b0c20564108fde9411e94e07090a368321",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.stash.GitStashOperations"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.stash.GitShelveChangesSaver$1.txt",
+    "output_sha256": "80532e6f58a138c001495b39c3f48c01e69eeaf0d8d18b245e371b267e9b2882",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/stash/GitShelveChangesSaver$1.class",
+    "member_sha256": "eda1d423f7ec81581b46e4dfc31012fd06b7eb9bb9a38f756eb92bac470eb73b",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.stash.GitShelveChangesSaver$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.config.GitVcsOptions.txt",
+    "output_sha256": "aa305df05d76161e1219c6907e8df7a6060ff87b1655c2a5672a3ff65138aa8c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/config/GitVcsOptions.class",
+    "member_sha256": "f6de21f2ba2c9ab9ef7a3db7f14546045dc6dc736eb7d87a745e05fa8e693675",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.config.GitVcsOptions"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.index.GitStageManagerKt.txt",
+    "output_sha256": "3b872de02f83c4cb4a228304fb26d4ebf55bc52db891a339b28fc83e4ed9cdaf",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/GitStageManagerKt.class",
+    "member_sha256": "37f2770bfd477eca7bd6745729bf5f0dd0773c7dc7fe624868aeda460076f8e0",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.index.GitStageManagerKt"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/com.intellij.openapi.vcs.changes.VcsShelveChangesSaver.txt",
+    "output_sha256": "da66a39e1f6033029bb724fa4aa07bfec1ca3355990bc7547a019c21b2398aba",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.vcs.impl.jar",
+    "member": "com/intellij/openapi/vcs/changes/VcsShelveChangesSaver.class",
+    "member_sha256": "6d55db6b8e88deb86f0a8b3469c44e214bbe7dc041a45788250cb863b6be6839",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.vcs.impl.jar",
+      "com.intellij.openapi.vcs.changes.VcsShelveChangesSaver"
+    ],
+    "stderr": ""
+  }
+]

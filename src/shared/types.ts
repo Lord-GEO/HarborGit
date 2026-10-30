@@ -2,7 +2,8 @@ export type Area = 'worktree' | 'index' | 'commit';
 export interface FileChange { path: string; originalPath?: string; index: string; worktree: string; conflict: boolean; }
 export interface MergeWorkspace { sourceRoot: string; sourceBranch: string; targetBranch: string; }
 export interface RepositoryOperation { kind: 'rebase' | 'revert'; branch?: string; onto?: string; commit?: string; step?: number; total?: number; }
-export interface Repository { sessionId?: string; mergeWorkspace?: MergeWorkspace; root: string; branch: string; head: string; unborn: boolean; detached: boolean; upstream: string; ahead: number; behind: number; entries: FileChange[]; mergeInProgress: boolean; operation?: RepositoryOperation; historyBackup?: string; userName: string; userEmail: string; }
+export interface RebaseSavedChanges { ref: string; originalBranch: string; sourceBranch: string; status: 'saving' | 'saved' | 'restore-pending' | 'restore-conflicts' | 'restored'; message: string; }
+export interface Repository { sessionId?: string; mergeWorkspace?: MergeWorkspace; root: string; branch: string; head: string; unborn: boolean; detached: boolean; upstream: string; ahead: number; behind: number; entries: FileChange[]; mergeInProgress: boolean; operation?: RepositoryOperation; historyBackup?: string; rebaseSavedChanges?: RebaseSavedChanges; userName: string; userEmail: string; }
 export interface MergeIntoResult { repository: Repository; mergeRepository: Repository | null; status: 'merged' | 'attention'; message: string; }
 export interface Commit { hash: string; shortHash: string; parents: string[]; author: string; email: string; date: string; subject: string; body: string; refs: string; }
 export interface StagedSnapshot { tree: string; files: CommitFile[]; diff: string; truncated: boolean; }
@@ -35,8 +36,9 @@ export interface Requests {
   saveRemote: { name: string; url: string; pushUrl?: string; create: boolean }; removeRemote: { name: string };
   merge: { branch: string }; mergeInto: { target: string }; finishMergeWorkspace: Record<string, never>; conflict: { path: string }; resolve: { path: string; choice: 'ours' | 'theirs' | 'manual'; content?: string };
   abortMerge: Record<string, never>; identity: { name: string; email: string };
-  rebase: { branch?: string; targetCommit?: string; sourceBranch?: string; expectedSourceHead?: string; preserveMerges?: boolean; expectedHead: string };
+  rebase: { branch?: string; targetCommit?: string; sourceBranch?: string; expectedSourceHead?: string; preserveMerges?: boolean; autoSaveChanges?: boolean; expectedHead: string };
   rebaseAction: { action: 'continue' | 'skip' | 'abort' };
+  rebaseSavedAction: { action: 'restore' | 'restore-unstaged' | 'finish' };
   revert: { hash: string; mainline?: number; expectedHead: string };
   revertAction: { action: 'continue' | 'abort' };
   reset: { hash: string; mode: 'soft' | 'mixed' | 'hard'; expectedHead: string; discard?: boolean };
@@ -48,7 +50,7 @@ export interface Responses {
   stagedSnapshot: StagedSnapshot; stagedTree: string; generateCommit: AiSuggestion;
   remotes: Remote[]; remote: Repository; merge: Repository; mergeInto: MergeIntoResult; finishMergeWorkspace: { sourceRoot: string }; conflict: Conflict; resolve: Repository; abortMerge: Repository; identity: Repository;
   saveRemote: Repository; removeRemote: Repository;
-  rebase: Repository; rebaseAction: Repository; revert: Repository; revertAction: Repository; reset: Repository; rollback: Repository;
+  rebase: Repository; rebaseAction: Repository; rebaseSavedAction: Repository; revert: Repository; revertAction: Repository; reset: Repository; rollback: Repository;
 }
 export interface HarborAPI {
   request<K extends keyof Requests>(operation: K, payload: Requests[K], sessionId?: string): Promise<Result<Responses[K]>>;

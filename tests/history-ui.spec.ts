@@ -168,3 +168,50 @@ test('history actions UI: selected commit rebase rejects a stale source referenc
   expect(git(repo, ['branch', '--show-current'])).toBe('dev'); expect(git(repo, ['rev-parse', 'master'])).toBe(first); expect(git(repo, ['rev-parse', 'dev'])).toBe(second);
   await dialog.getByRole('button', { name: '取消', exact: true }).click(); await close(app, errors);
 });
+
+test('history actions UI: saved changes rebase of master returns to dev with its index and private files', async () => {
+  const { root, repo } = await fixture(); await commit(repo, 'dirty.txt', 'base\n', 'base');
+  git(repo, ['switch', '-c', 'dev']); await commit(repo, 'first.txt', 'first\n', 'dev first');
+  const tip = await commit(repo, 'second.txt', 'second\n', 'dev second');
+  await writeFile(path.join(repo, 'dirty.txt'), 'STAGED\n'); git(repo, ['add', '--', 'dirty.txt']);
+  await writeFile(path.join(repo, 'dirty.txt'), 'PRIVATE_UNSTAGED\n'); await writeFile(path.join(repo, '未跟踪.txt'), 'PRIVATE_UNTRACKED\n');
+  const tree = git(repo, ['write-tree']); const { app, page, errors } = await launch(root); await open(page, repo); await navigate(page, '提交历史');
+  await page.getByRole('button', { name: '查看提交 dev second', exact: true }).click();
+  await page.getByRole('button', { name: '将分支变基到所选提交', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: '将分支变基到指定提交', exact: true });
+  await dialog.getByLabel('要变基的分支', { exact: true }).selectOption('master');
+  await expect(dialog.getByRole('button', { name: '开始变基', exact: true })).toBeDisabled();
+  await dialog.getByLabel('自动保存未提交改动后变基', { exact: true }).check(); await capture(app, 'v1.6-rebase-save-confirm.png');
+  await dialog.getByRole('button', { name: '开始变基', exact: true }).click(); await expect(dialog).toBeHidden(); await idle(page);
+  const banner = page.getByLabel('变基未提交改动备份', { exact: true }); await expect(banner).toContainText('已恢复原改动及暂存状态');
+  expect(git(repo, ['branch', '--show-current'])).toBe('dev'); expect(git(repo, ['rev-parse', 'master'])).toBe(tip); expect(git(repo, ['rev-parse', 'dev'])).toBe(tip);
+  expect(git(repo, ['write-tree'])).toBe(tree); expect(git(repo, ['show', ':dirty.txt'])).toBe('STAGED');
+  expect(await readFile(path.join(repo, 'dirty.txt'), 'utf8')).toBe('PRIVATE_UNSTAGED\n'); expect(await readFile(path.join(repo, '未跟踪.txt'), 'utf8')).toBe('PRIVATE_UNTRACKED\n');
+  const backup = await banner.locator('code').innerText(); expect(git(repo, ['rev-parse', `${backup}^1`])).toBe(tip);
+  await capture(app, 'v1.6-rebase-save-result.png'); await close(app, errors);
+});
+
+test('history actions UI: saved changes restoration conflict keeps backup and requires manual completion', async () => {
+  const { root, repo } = await fixture(); await commit(repo, 'dirty.txt', 'base\n', 'base');
+  git(repo, ['switch', '-c', 'dev']); await commit(repo, 'dev.txt', 'dev\n', 'dev feature');
+  git(repo, ['switch', 'master']); await commit(repo, 'dirty.txt', 'UPSTREAM\n', 'upstream change'); git(repo, ['switch', 'dev']);
+  await writeFile(path.join(repo, 'dirty.txt'), 'PRIVATE_WIP\n');
+  const { app, page, errors } = await launch(root); await open(page, repo); await navigate(page, '分支管理');
+  await page.getByRole('button', { name: /变基/ }).first().click();
+  const dialog = page.getByRole('dialog', { name: '将当前分支变基到目标分支', exact: true });
+  await dialog.getByLabel('变基目标分支', { exact: true }).selectOption('master'); await dialog.getByLabel('自动保存未提交改动后变基', { exact: true }).check();
+  await dialog.getByRole('button', { name: '开始变基', exact: true }).click(); await expect(dialog).toBeHidden(); await idle(page);
+  const banner = page.getByLabel('变基未提交改动备份', { exact: true }); await expect(banner).toContainText('恢复时出现冲突');
+  await expect(banner.getByRole('button', { name: '恢复保存的改动', exact: true })).toBeDisabled();
+  await page.getByRole('navigation', { name: '主导航' }).getByRole('button', { name: /^工作区/ }).click(); await page.getByRole('button', { name: '解决冲突 dirty.txt', exact: true }).click();
+  const editor = page.getByRole('dialog'); await expect(editor).toContainText('变基后的内容（Ours）'); await expect(editor).toContainText('保存的未提交修改（Theirs）');
+  await editor.getByLabel('冲突合并结果', { exact: true }).fill('UPSTREAM and PRIVATE_WIP\n'); await capture(app, 'v1.6-rebase-restore-conflict.png');
+  await editor.getByRole('button', { name: '保存合并结果并暂存', exact: true }).click(); await expect(editor).toBeHidden(); await idle(page);
+  const head = git(repo, ['rev-parse', 'HEAD']); const backup = await banner.locator('code').innerText();
+  await banner.getByRole('button', { name: '结束恢复并保留备份', exact: true }).click();
+  const finish = page.getByRole('dialog', { name: '结束改动恢复并保留备份', exact: true });
+  await expect(finish.getByRole('button', { name: '确认结束恢复并保留备份', exact: true })).toBeDisabled();
+  await finish.getByLabel('已检查并处理恢复的改动', { exact: true }).check(); await finish.getByRole('button', { name: '确认结束恢复并保留备份', exact: true }).click();
+  await expect(finish).toBeHidden(); await idle(page); expect(git(repo, ['rev-parse', 'HEAD'])).toBe(head); expect(git(repo, ['show', 'HEAD:dirty.txt'])).toBe('UPSTREAM');
+  expect(await readFile(path.join(repo, 'dirty.txt'), 'utf8')).toBe('UPSTREAM and PRIVATE_WIP\n'); expect(git(repo, ['show', `${backup}:dirty.txt`])).toBe('PRIVATE_WIP'); await close(app, errors);
+});
