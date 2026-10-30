@@ -1,0 +1,9 @@
+Compiled from "GitRepositoryStateActionGroup.kt"
+public final class git4idea.actions.GitRepositoryStateActionGroup$Rebase extends git4idea.actions.GitRepositoryStateActionGroup {
+  public git4idea.actions.GitRepositoryStateActionGroup$Rebase();
+    Code:
+       0: aload_0
+       1: getstatic     #12                 // Field com/intellij/dvcs/repo/Repository$State.REBASING:Lcom/intellij/dvcs/repo/Repository$State;
+       4: invokespecial #15                 // Method git4idea/actions/GitRepositoryStateActionGroup."<init>":(Lcom/intellij/dvcs/repo/Repository$State;)V
+       7: return
+}

@@ -1,0 +1,156 @@
+Compiled from "GitOneCommitPerRepoLogAction.java"
+public abstract class git4idea.reset.GitOneCommitPerRepoLogAction extends com.intellij.dvcs.ui.VcsLogOneCommitPerRepoAction<git4idea.repo.GitRepository> {
+  public git4idea.reset.GitOneCommitPerRepoLogAction();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method com/intellij/dvcs/ui/VcsLogOneCommitPerRepoAction."<init>":()V
+       4: return
+
+  protected com.intellij.dvcs.repo.AbstractRepositoryManager<git4idea.repo.GitRepository> getRepositoryManager(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: invokestatic  #7                  // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      12: dup
+      13: ifnonnull     20
+      16: iconst_1
+      17: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+      20: areturn
+
+  protected git4idea.repo.GitRepository getRepositoryForRoot(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_2
+       5: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_3
+      13: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: aload_1
+      18: invokevirtual #13                 // Method getRepositoryManager:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/dvcs/repo/AbstractRepositoryManager;
+      21: aload_2
+      22: invokevirtual #19                 // Method com/intellij/dvcs/repo/AbstractRepositoryManager.getRepositoryForRootQuick:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      25: checkcast     #25                 // class git4idea/repo/GitRepository
+      28: areturn
+
+  protected com.intellij.dvcs.repo.Repository getRepositoryForRoot(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #27                 // Method getRepositoryForRoot:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Lgit4idea/repo/GitRepository;
+       6: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 3
+                     0: 32
+                     1: 37
+                     2: 32
+                     3: 32
+               default: 32
+          }
+      32: ldc           #57                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      34: goto          42
+      37: ldc           #59                 // String @NotNull method %s.%s must not return null
+      39: goto          42
+      42: iload_0
+      43: tableswitch   { // 0 to 3
+                     0: 72
+                     1: 76
+                     2: 72
+                     3: 72
+               default: 72
+          }
+      72: iconst_3
+      73: goto          80
+      76: iconst_2
+      77: goto          80
+      80: anewarray     #61                 // class java/lang/Object
+      83: iload_0
+      84: tableswitch   { // 0 to 3
+                     0: 116
+                     1: 124
+                     2: 116
+                     3: 132
+               default: 116
+          }
+     116: dup
+     117: iconst_0
+     118: ldc           #62                 // String project
+     120: aastore
+     121: goto          140
+     124: dup
+     125: iconst_0
+     126: ldc           #63                 // String git4idea/reset/GitOneCommitPerRepoLogAction
+     128: aastore
+     129: goto          140
+     132: dup
+     133: iconst_0
+     134: ldc           #64                 // String root
+     136: aastore
+     137: goto          140
+     140: iload_0
+     141: tableswitch   { // 0 to 3
+                     0: 172
+                     1: 180
+                     2: 172
+                     3: 172
+               default: 172
+          }
+     172: dup
+     173: iconst_1
+     174: ldc           #63                 // String git4idea/reset/GitOneCommitPerRepoLogAction
+     176: aastore
+     177: goto          188
+     180: dup
+     181: iconst_1
+     182: ldc           #65                 // String getRepositoryManager
+     184: aastore
+     185: goto          188
+     188: iload_0
+     189: tableswitch   { // 0 to 3
+                     0: 220
+                     1: 228
+                     2: 231
+                     3: 231
+               default: 220
+          }
+     220: dup
+     221: iconst_2
+     222: ldc           #65                 // String getRepositoryManager
+     224: aastore
+     225: goto          239
+     228: goto          239
+     231: dup
+     232: iconst_2
+     233: ldc           #66                 // String getRepositoryForRoot
+     235: aastore
+     236: goto          239
+     239: invokestatic  #72                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     242: iload_0
+     243: tableswitch   { // 0 to 3
+                     0: 272
+                     1: 283
+                     2: 272
+                     3: 272
+               default: 272
+          }
+     272: new           #74                 // class java/lang/IllegalArgumentException
+     275: dup_x1
+     276: swap
+     277: invokespecial #77                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     280: goto          294
+     283: new           #79                 // class java/lang/IllegalStateException
+     286: dup_x1
+     287: swap
+     288: invokespecial #80                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     291: goto          294
+     294: athrow
+}

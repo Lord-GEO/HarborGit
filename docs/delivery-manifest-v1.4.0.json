@@ -1,0 +1,1468 @@
+{
+  "generated_utc": "2026-10-30T07:23:21.932981+00:00",
+  "product": "HarborGit",
+  "version": "1.4.0",
+  "artifacts": [
+    {
+      "path": "release/HarborGit-1.4.0-Setup-x64.exe",
+      "bytes": 124495225,
+      "sha256": "7701ff1c91d64537504665e3c1c22195f20fa36ef75a649ffb6c483ac3bb956d"
+    },
+    {
+      "path": "release/HarborGit-1.4.0-Setup-x64.exe.blockmap",
+      "bytes": 131514,
+      "sha256": "7e9cc1a968190e21d8cf66070ff63d1bd57f1fbd31c0fdf6b11c80c448c54a3a"
+    },
+    {
+      "path": "release/latest.yml",
+      "bytes": 1513,
+      "sha256": "d9dc7da57eb491614dd77bcbaa1f97e52dcf67f4ae1340f606fd5b177e219f49"
+    },
+    {
+      "path": "release/win-unpacked/resources/app-update.yml",
+      "bytes": 126,
+      "sha256": "12809b2f20b319a2b3834b1b4135423e3d25d3dbf99bb3b209787ff2397f0ff5"
+    },
+    {
+      "path": "release/win-unpacked/resources/app.asar",
+      "bytes": 15353943,
+      "sha256": "bf65865ce60012e716ddcc9a72172ef5ab9119a306ca303827f231ba59683d03"
+    },
+    {
+      "path": "assets/harborgit.ico",
+      "bytes": 114241,
+      "sha256": "27d26204a60b918829342abe8314dd8e3e232671c2c67eb4890448869b3cceda"
+    }
+  ],
+  "source_files": [
+    {
+      "path": ".github/workflows/build-desktop.yml",
+      "bytes": 4997,
+      "sha256": "eacf3d6a2649ae7c137706ae004cd663938aa4853ec3a346755f424f20fcee89"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 83,
+      "sha256": "e9f5298a21ec66cfd806291978ac90c92243f2b2a24919c425ff7cc33288f763"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "b146d0ebf3b21b083e0bda33b77f7bc0356d1c325fefbcf661523d46f57c57d8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4396,
+      "sha256": "68de69c8a71928670afd7a2b18776dd2c2e5c6362fa121fa1ef30368a04ea67a"
+    },
+    {
+      "path": "assets/harborgit-1024.png",
+      "bytes": 870644,
+      "sha256": "77d957eda8d410f37679b8823623c6dd25e08ffeb6963e275bc621acaf476a96"
+    },
+    {
+      "path": "assets/harborgit-128.png",
+      "bytes": 21660,
+      "sha256": "a5f7fa683b36857044003dc4169269294ee025680df602dea673bef662b73e94"
+    },
+    {
+      "path": "assets/harborgit-16.png",
+      "bytes": 761,
+      "sha256": "9a85b814ccc04abb733d991731711e198c63c25cc0faf2791a14a640a8ea1950"
+    },
+    {
+      "path": "assets/harborgit-20.png",
+      "bytes": 1050,
+      "sha256": "1ebb3b62cd827fcecadcf0ad9195cf72cd80a01bb36d1238606be3b1a51e1395"
+    },
+    {
+      "path": "assets/harborgit-24.png",
+      "bytes": 1405,
+      "sha256": "f43bfc6489be04fb8db80eeb8ef6396f75c5361f31e2e24b775c3b1d8b964ed3"
+    },
+    {
+      "path": "assets/harborgit-256.png",
+      "bytes": 73949,
+      "sha256": "2918efdb830ee82cd5a0775192bf7679923d3fb89c2265a908ef8fa3659b38f8"
+    },
+    {
+      "path": "assets/harborgit-32.png",
+      "bytes": 2068,
+      "sha256": "362eba09e79f897d225c32452d6b96486cc0c932973512d800cfdd1a5c40f875"
+    },
+    {
+      "path": "assets/harborgit-40.png",
+      "bytes": 2833,
+      "sha256": "f97d2500831ed47beca72fce916bf05a35f306db5cd58d80c1ef4686e0d378cc"
+    },
+    {
+      "path": "assets/harborgit-48.png",
+      "bytes": 3890,
+      "sha256": "1ccc064f61aa54b54b120cc5d351af0d5441deca0a493b0ce3e749dfe53eda1f"
+    },
+    {
+      "path": "assets/harborgit-512.png",
+      "bytes": 259779,
+      "sha256": "34b7a61746b387bdbcaca7db5ab0aa7bab826450da882a8196aebabe5b64be0f"
+    },
+    {
+      "path": "assets/harborgit-64.png",
+      "bytes": 6475,
+      "sha256": "36c8376378a21f20fd6054e3a556c1931af31764e814e0cacb4c884d819a447b"
+    },
+    {
+      "path": "assets/harborgit.ico",
+      "bytes": 114241,
+      "sha256": "27d26204a60b918829342abe8314dd8e3e232671c2c67eb4890448869b3cceda"
+    },
+    {
+      "path": "assets/harborgit.svg",
+      "bytes": 1110,
+      "sha256": "1e65d9dce3fb4c4c9b38a873463944f0e56f5001c8f6bcd5fc87ab317fa61113"
+    },
+    {
+      "path": "docs/HISTORY-ACTIONS.md",
+      "bytes": 12040,
+      "sha256": "348b6751f7d11bf0b24acd4aa6601e6483b169f60a1185374504d76b9f1168a1"
+    },
+    {
+      "path": "docs/IDEA-ANALYSIS.md",
+      "bytes": 25610,
+      "sha256": "7763d89bd0f466c3e93059a789da31b0ec1d77b003635644b5c7a970f1f3bb65"
+    },
+    {
+      "path": "docs/IDEA-HISTORY-ANALYSIS.md",
+      "bytes": 21900,
+      "sha256": "84ac276474bcafd413e6d33910ccc85b6dacd84f6285eb33337b413c8c07deea"
+    },
+    {
+      "path": "docs/IMPLEMENTATION.md",
+      "bytes": 9888,
+      "sha256": "63d3435d8922b378a7805a38094371b301632ae49790db0bc70491313640b1c1"
+    },
+    {
+      "path": "docs/RELEASE-1.1.md",
+      "bytes": 4760,
+      "sha256": "7df3b74c1904738c1e2c5f6d9eef71580c76f499bdde2388ea958638726cf272"
+    },
+    {
+      "path": "docs/RELEASE-1.2.1.md",
+      "bytes": 3900,
+      "sha256": "b41049e330d4f6cc3b0bb3517cb17ec8bdffac6b8eebc6ca4270af13dcb30331"
+    },
+    {
+      "path": "docs/RELEASE-1.2.md",
+      "bytes": 5902,
+      "sha256": "5d3b900e035137237066baf5210f475f4558024d49c770a01b670898472e7171"
+    },
+    {
+      "path": "docs/RELEASE-1.3.0.md",
+      "bytes": 973,
+      "sha256": "bc19a5af8721043d902430d02bb05006b867b376af46ae44a4c40a85e2405507"
+    },
+    {
+      "path": "docs/RELEASE-1.4.0.md",
+      "bytes": 1604,
+      "sha256": "914faada362ddda15e105de9a338c8fe2be6f98bf234d669eb01ce8d939ba773"
+    },
+    {
+      "path": "docs/UPDATES.md",
+      "bytes": 7590,
+      "sha256": "580a019b00265a9b020c70b69ed07e3e3b0870d7f00c5be8bfdeaa117d7d5751"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "bytes": 6210,
+      "sha256": "6a79996f2cf09b605910b14494a3805c4c3a44de0b7cec8af136d793bfc636e3"
+    },
+    {
+      "path": "docs/delivery-manifest-v1.1.json",
+      "bytes": 24432,
+      "sha256": "240415065caa34885e6ad67e2d9e53febc6d5d8d33f538bea6756ea2851e4783"
+    },
+    {
+      "path": "docs/delivery-manifest-v1.2.1.json",
+      "bytes": 32925,
+      "sha256": "a8959d31a38905f97c71aa469a5e0aef0d491edfee6a2570ec35a5a0c3a70144"
+    },
+    {
+      "path": "docs/delivery-manifest-v1.2.json",
+      "bytes": 28055,
+      "sha256": "64a16764158509900d4c1326663ffe4edd869c0424e87b09b8b7d13831f917ad"
+    },
+    {
+      "path": "docs/delivery-manifest-v1.3.0.json",
+      "bytes": 38981,
+      "sha256": "aacf3115b0b4a7db5d8b495f7e2e783a2790a0b5dc60cd681aeaa8bd3e376d3c"
+    },
+    {
+      "path": "docs/delivery-manifest.json",
+      "bytes": 22022,
+      "sha256": "937ed64bcf9ac7651949dcd90866369ca24c06dead9878953dc4b75cb8f836c0"
+    },
+    {
+      "path": "docs/evidence/artifact-identities.json",
+      "bytes": 2337,
+      "sha256": "ea3ab3a2e2eed0156c82f1bfd1756cbd88d61d155e08c6e153b4526149e4efdb"
+    },
+    {
+      "path": "docs/evidence/backend-members.txt",
+      "bytes": 173839,
+      "sha256": "b5a990544456a9aeb16d5b3dea61a21cccc177a27bf135b33a167857513909a1"
+    },
+    {
+      "path": "docs/evidence/backend-selected-members.txt",
+      "bytes": 60636,
+      "sha256": "7be4281aee44790b9a2dad0494f6d546bf989542be5d26251dcbf8d50d5ea649"
+    },
+    {
+      "path": "docs/evidence/evidence-file-manifest.json",
+      "bytes": 13586,
+      "sha256": "93b1b08d132fa8f9f7cbecfd958bd52ea72cfd2b497a12fab57efd35930d1525"
+    },
+    {
+      "path": "docs/evidence/frontend-members.txt",
+      "bytes": 19388,
+      "sha256": "f33b76301287765671cede4bb087bc457cd36d4794be9082051b146e1de15417"
+    },
+    {
+      "path": "docs/evidence/frontend-selected-members.txt",
+      "bytes": 9437,
+      "sha256": "ae17a98b46291fd7275b04fcd13245e9d8f147d93c4f89bfc1a1eefa2e28030b"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/collect_history_evidence.py",
+      "bytes": 5043,
+      "sha256": "09a19515c33851259ea84bda32624dd887aa981b8ebb88d8a0276e5534a07ec3"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-file-manifest.json",
+      "bytes": 8136,
+      "sha256": "851c7905bb7af2386439f4a9b685d248adc618daf131e4051ca740f71cdc18e4"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-javap-provenance.json",
+      "bytes": 27602,
+      "sha256": "6d26872a5b4cacf069fb27a3a27bc92474ca364353a22fdad02558576cc87da4"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-rea-evidence-bundle.json",
+      "bytes": 12081,
+      "sha256": "628fe0cf959de3373f5b1bbda7a315c1a89314b7bf7472b757fbbb6cd6ac82ee"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-rea-reused-summary.json",
+      "bytes": 4556,
+      "sha256": "907c13d4c39f7324057b1d156eac1df95f771d8c2b6427f444235fcae9855e0d"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-rea-selected-occurrences.json",
+      "bytes": 10020,
+      "sha256": "45f794bf0cc00a71a066e5420f7df4aa8210b7de6876dca05661cf32bf137ba3"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-resource-excerpts.json",
+      "bytes": 62555,
+      "sha256": "c2e2776d849a2a19e2a2fa46685cb66c19f46567d0189d10d0e310a281a31b3c"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-reused-bytecode.json",
+      "bytes": 2939,
+      "sha256": "21ab12b24918d87b629cb2ab44a57fed6b13e4f52f7baef32c3ffbb7b33a096f"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-session-check.json",
+      "bytes": 826,
+      "sha256": "29b17ae9a5d1727d5c6bef2981a837a5f53019633fe3c52f3776e93e6bdfc4a1"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/history-source-identities.json",
+      "bytes": 455,
+      "sha256": "6452687e2c545951812fa35549e3cab3ca85453b8c172626ac12e182ecf3e72f"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitAbortOperationAction$Revert.txt",
+      "bytes": 2488,
+      "sha256": "a8393f6e09df70135c665e664e8d037410d591f2cd4fd8ea351673b274e86032"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitAbortOperationAction.txt",
+      "bytes": 25916,
+      "sha256": "a8412b8d4658a651869f3b503c442b63d8d3df7eca2b2f383436d7705ac183fb"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitAbstractRebaseAction.txt",
+      "bytes": 8344,
+      "sha256": "6e6b445312f367997cfaf0257b1c9d414f12e80091e4459cb1773955d7b1dbda"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitRebase$1.txt",
+      "bytes": 3292,
+      "sha256": "cb8e964482e2b63a87d2fad7bb3260b4ca4b4b310417268260adea1c98f4516d"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitRebase.txt",
+      "bytes": 11978,
+      "sha256": "4f4e35a15b0e293162243cf552498919a9f6afd766f0d66cc27c36d21f54770f"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitRebaseAbort.txt",
+      "bytes": 7279,
+      "sha256": "44f953f2e14ecc9bcbee5a6bb468482203a988098efafdd5fc1853c10eba135b"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitRebaseContinue.txt",
+      "bytes": 7242,
+      "sha256": "a18395e3048ccef6bd3cedf6541f9bc4ca03960bfd6bcc2557ab4503b2e6d62a"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitRebaseSkip.txt",
+      "bytes": 7206,
+      "sha256": "87443c10fb12ddb509e98ca505b434bc634b80686d088ca99439280b819c07a8"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitRepositoryStateActionGroup$Rebase.txt",
+      "bytes": 600,
+      "sha256": "770838e963cac5d65e562fbff3b82bd795b6d9046fed835c0d0e1e9b43b5bf30"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.actions.GitResetHead.txt",
+      "bytes": 6476,
+      "sha256": "0a24298410ee2597faeda8a74cc7ce73d5a24fa0d3957e1739a29cdbd3ef78c2"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.applyChanges.GitApplyChangesProcess.txt",
+      "bytes": 77197,
+      "sha256": "a81447eafd58babd365435ea90c40dbeb20b26a91e339966ba87f7aa616db400"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.branch.GitRebaseParams.txt",
+      "bytes": 22583,
+      "sha256": "08ecc08b606f29b06ca21941269e6d0bf3c1c062a7fe7987d8ec67a46b3c40d8"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.index.actions.GitRevertAction.txt",
+      "bytes": 679,
+      "sha256": "01f36dc6e1472658bfb05d62a4f7f911b76d718747fe43b9dffac7d9da1dc527"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.index.actions.GitRevertOperation.txt",
+      "bytes": 9658,
+      "sha256": "6d0ea75c0ad9f36f53aa8a6cda72dd740ea3047856057474f6ce2925637107d4"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitAbortRebaseProcess.txt",
+      "bytes": 41372,
+      "sha256": "72514f835c4779eca0cc690b44ab3e995f95815a467e70b7b53c4af775ed43e3"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseDialog.txt",
+      "bytes": 150019,
+      "sha256": "f10c34dfcbc3137394c43358eae1464e349ce5851bda065eef5b604713ec934e"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseOption.txt",
+      "bytes": 14155,
+      "sha256": "dd7c8cd07e910cbc42449c39041e486364e84a9e320e5609e0eb4c8beb51d118"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseProcess$RebaseConflictResolver.txt",
+      "bytes": 4579,
+      "sha256": "d3d0e0a7cda6a0e9f0946123c803667305e3bc24ee65d5bfcc4172bbbfe03102"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseProcess.txt",
+      "bytes": 130714,
+      "sha256": "7d16b742bd763b231065ef615596ab022c54e55cb35ece7e5124514b93ce22ef"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseResumeMode.txt",
+      "bytes": 6802,
+      "sha256": "33158a8e0c62ba62cd285e21a2bccf6c1197caaf72d3b5f005ab665b6b20863e"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseSpec.txt",
+      "bytes": 45843,
+      "sha256": "5624e14c558412c530f542cb5c9165d36e742daf76f4767c73aec319cdf9baef"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseStatus$Type.txt",
+      "bytes": 4224,
+      "sha256": "2c81199b5472a7611a76f7176294ad16bbb2aa98e039e9fa54047d3d3d06450e"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseStatus.txt",
+      "bytes": 4666,
+      "sha256": "cd8703005e71e03c4e9fc3d35b09a9735362fbde65a10f9cdebc6e8276fa188d"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rebase.GitRebaseUtils.txt",
+      "bytes": 70835,
+      "sha256": "cbaf5159c4855210526cbdccaa8f38d4778bc84f4352d5a0f8b7d4de32c896cc"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.reset.GitNewResetDialog$Companion.txt",
+      "bytes": 13078,
+      "sha256": "bcea7968391112bd7bc351eb8ebbf5f4c9d68629475ee3b176a5416d0f7da9ac"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.reset.GitNewResetDialog.txt",
+      "bytes": 14834,
+      "sha256": "749b430038a27289be681097e07226acc1b7c3490eafbdcda70c86af67443c84"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.reset.GitOneCommitPerRepoLogAction.txt",
+      "bytes": 6142,
+      "sha256": "24f063247e5865a3726e07b494f97e7ae193640a15e3b8dd812025042b624478"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.reset.GitResetAction$1.txt",
+      "bytes": 4923,
+      "sha256": "caadd204fce0b6e0ac2c112ae3e230d2275d3a341f3d3dd8b76f711d33f474c7"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.reset.GitResetAction.txt",
+      "bytes": 4745,
+      "sha256": "c7ec70c9fa35beaea07386f49cdbb862aa50f93fbed5f9f02f9da9282edeb493"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.reset.GitResetMode.txt",
+      "bytes": 12361,
+      "sha256": "77d541ab766f7bd169ad21d24f0ac48b4edfbaa39e595bae8ea8a22225af97c5"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.reset.GitResetOperation.txt",
+      "bytes": 53381,
+      "sha256": "00f3cadcfbb143392b04408dcdfe2a1f0b54660baae14b77fcba89ca76a84094"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.revert.GitRevertAction$actionPerformed$1$3.txt",
+      "bytes": 2095,
+      "sha256": "8e67f60b927b1a673c718eb3d6d21f4cae7e46f56769f5fbfa0506a9c7067a83"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.revert.GitRevertAction.txt",
+      "bytes": 18439,
+      "sha256": "508eff92194a7642803166c7805920bb0f5b86d3518b851b1b43a06468209ef5"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.revert.GitRevertProcess.txt",
+      "bytes": 11967,
+      "sha256": "44a6ae2fa1292b1abf8e54a53efefd60baaa8446047cac37c7a5ba25dc6040bc"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rollback.GitRollbackEnvironment$1.txt",
+      "bytes": 2708,
+      "sha256": "5bf20dea37117a879657705454a74d226a7c0fce284517d52d699f3fed886a4f"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.rollback.GitRollbackEnvironment.txt",
+      "bytes": 36953,
+      "sha256": "aebbce6ae98c01c7c0057c150b79e2de2d272a1506cc4efa6f2ba3a0eb0d65f5"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.ui.GitResetDialog$ResetMode.txt",
+      "bytes": 5618,
+      "sha256": "da4f96bc3a8ccfba41b97865712c4271f8152ee6147d8cd6c3a196431d166054"
+    },
+    {
+      "path": "docs/evidence/history-2026-10-30/javap/git4idea.ui.GitResetDialog.txt",
+      "bytes": 42375,
+      "sha256": "5e2123d75f42fec9f1e9a2234454753ab3006b2b332c3a2ae1b7fd3b8b58207c"
+    },
+    {
+      "path": "docs/evidence/javap-probe-corrections.json",
+      "bytes": 985,
+      "sha256": "0105e98ca529b11ce1b8420f53fe0ec7418a203e953ff6279351af9ca14b7387"
+    },
+    {
+      "path": "docs/evidence/javap-provenance.json",
+      "bytes": 31423,
+      "sha256": "c34404812e034eecd9e50457b1e9efbbad3ef1cc317b37e80a61daf708a2b049"
+    },
+    {
+      "path": "docs/evidence/javap/com.intellij.ide.actions.OpenFileAction.txt",
+      "bytes": 71939,
+      "sha256": "b5ed519aba0b9178737fa44eea4035927374d3e2d7642d8e3d491c9fcb250521"
+    },
+    {
+      "path": "docs/evidence/javap/com.intellij.ide.impl.ProjectUtil.txt",
+      "bytes": 220773,
+      "sha256": "777eac752705c6b37d7b3c581ee3834599a8b5128aabfb97f56d5e9250f069b5"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.GitContentRevision.txt",
+      "bytes": 34597,
+      "sha256": "9c0ae3700dabe1386ac1a3aaa2da737f8145580b311ac812aa8885668a1a65ab"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.GitVcs.txt",
+      "bytes": 46013,
+      "sha256": "4230c334e7c89fe5454905c0d9e9e6f5a63f73e279cf9a52632b4a7214eafa0c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.actions.GitCloneAction.txt",
+      "bytes": 7120,
+      "sha256": "77b92479c0f20407bc033c5b9151c7bb1a5f3e7c1cddb13526754ceab9f5d2e9"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.actions.GitMerge.txt",
+      "bytes": 17021,
+      "sha256": "9be0e04e3dadf5e85be7ced0ac26f8237d6d5baf9abdc06e5d3917f0ad76c502"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.actions.GitPull.txt",
+      "bytes": 23221,
+      "sha256": "b65a63ff44e7f345b6d8dc23e876f0a4131f82f710837b49533877d6142583ae"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitBranchWorker.txt",
+      "bytes": 54551,
+      "sha256": "a536b30f8279d7589428ead9222d07cde12b5321f68d1c2bf0a7fc45fd64e585"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitCheckoutOperation.txt",
+      "bytes": 75447,
+      "sha256": "26484b611cf706481e0be96bb3fe0eb5067cbb0f1811903b70e3b585c1d58ca1"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitCreateBranchOperation.txt",
+      "bytes": 15915,
+      "sha256": "611fa480b018d0696565c125f355f4fcfe68cc8212574cf12b5c1e1aa37381db"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.branch.GitDeleteBranchOperation.txt",
+      "bytes": 67162,
+      "sha256": "5e87d03bfa079d1d435ba8dd522b6fc640d1b2b56afcbf7b2c5984e12d6ae2b7"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitCheckinEnvironment$Companion.txt",
+      "bytes": 185167,
+      "sha256": "f4df2fe6442f2b968fff3239c04dd6061da258036b6184e5c373d078092c6243"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitCheckinEnvironment.txt",
+      "bytes": 52491,
+      "sha256": "e723181774bb846f9f6e30dbc2e352fcabe7d9229d99253a9113eae1aeb7515e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitRepositoryCommitter.txt",
+      "bytes": 15241,
+      "sha256": "720e92e4efdefa334564773394a58618d5522e558903279b60f2a65972354fb8"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkin.GitRepositoryCommitterKt.txt",
+      "bytes": 6537,
+      "sha256": "2aeba3e83cd81156f223787d04d531a430cba3c13ea734c57aa2e0be41b98748"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkout.GitCheckoutProvider$1.txt",
+      "bytes": 16737,
+      "sha256": "c8b3afa6b2f274b95356414550702024c3fa99c99344f76ce60ac7c91b4f8989"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkout.GitCheckoutProvider.txt",
+      "bytes": 28910,
+      "sha256": "b0c68623d3d1e0b65732422f66496d7cff33dc0cc1b4de461a29ac2f585759fc"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.checkout.GitCloneUtils.txt",
+      "bytes": 11861,
+      "sha256": "77e1e5d1f39b1eaac574328e75dc560bb780a3399f49e52edd7643973fc6f8b3"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.commands.GitHandler.txt",
+      "bytes": 76967,
+      "sha256": "ca241d46b05d3a09d1cd378786b0dc3ab5ab598a9beee2aa9442cec0243612c0"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.commands.GitImpl.txt",
+      "bytes": 234787,
+      "sha256": "b623ce7d894f3bbddd512c0c8335d57add6a882e2c94bc4a048847d630e95372"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.commands.GitImplBase.txt",
+      "bytes": 71386,
+      "sha256": "d0645ee31e75e7fe919580bdba35d9d8545bf768ffd18d85f0503d0b683d1c36"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.config.GitExecutableManager.txt",
+      "bytes": 42027,
+      "sha256": "bcbfd9adfa8abaa8f2aca7e6a826d7485a095cd046af50bd196833c523ca44b9"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.config.GitVcsApplicationSettings.verbose.txt",
+      "bytes": 43535,
+      "sha256": "fbea9cb553df64ed1346852e835ebd150d1f77dbfd1e216a4becdd4141dc23d6"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.history.GitHistoryUtils.txt",
+      "bytes": 57231,
+      "sha256": "e01852f56cdc320bc53efbc8ea4d0e76d7df2be8707b42d71a1faab2f29eea3c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.history.GitLogUtil.txt",
+      "bytes": 82107,
+      "sha256": "05a56ab5714197f8a5257a7fc488d16970761518526bc416eede980d220e1822"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ContentVersion.txt",
+      "bytes": 4103,
+      "sha256": "112091509ab3e2255683d1288d95e6c0a194213742504e42c6cb2281b93630bc"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitFileStatus.txt",
+      "bytes": 16097,
+      "sha256": "2b0b7bce0745e9cec3d3700ee4005328da8a2f4b997cf0615c6fbff25990caea"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitIndexStatusUtilKt.txt",
+      "bytes": 44098,
+      "sha256": "5afb7cea0ddb6594b100862aa197245dc1489732bef00546697ae6fd759a2dad"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitIndexUtil.txt",
+      "bytes": 69315,
+      "sha256": "8290abfb1354c44a5135f56b526644f6cf064e93db1a4dcd8d22d57cf2632a94"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageCommitWorkflow.txt",
+      "bytes": 15525,
+      "sha256": "cd58994b3a70b32678933d6138957f3d0995614a7cb9bddb8a8f84f5dbdde555"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageCommitWorkflowHandler.txt",
+      "bytes": 28044,
+      "sha256": "ef6780be8b845e8a940ac22586948985c7871fb615be8e36f559ffc2f6cfed5f"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageCommitter.txt",
+      "bytes": 19906,
+      "sha256": "6daea48708a24e3c980025c6fdfe74b9e7840812328fe7f5a8085075d74654b0"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageDiffUtilKt.txt",
+      "bytes": 76640,
+      "sha256": "62a42b5670bf5f7dfd55a844dc4ed0658b5b889743343c787ab6b57d5d433e52"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.GitStageTracker.txt",
+      "bytes": 52354,
+      "sha256": "f62708acf699e8d2264ee1e99fa14a40925141ed3171c408c9e1abb1f6a2510c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitAddAction.txt",
+      "bytes": 667,
+      "sha256": "296fd00d64d4afa54e9de015ba9755cd072c4154923909e3adcef23353e4f62b"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitAddOperation.txt",
+      "bytes": 8170,
+      "sha256": "571f2eafb232ff88b286968524a3327ca7c41ebbd3241dd1dc824a353f8fd737"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitResetAction.txt",
+      "bytes": 675,
+      "sha256": "bd15c68c9dd9d2a24db6a82ecd3bf9d5bf83b79351f1f430222b23c3c969e936"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitResetOperation.txt",
+      "bytes": 7876,
+      "sha256": "5b53850cf57357f2898e098701c04a580169d68ce129362c82904d8af4ab7759"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitStageAcceptConflictSideAction.txt",
+      "bytes": 2265,
+      "sha256": "f6115a7b08c2663006209ee91ddab70949f52aaeef30f6bbd95b4c0abcc30621"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.GitStageMergeConflictAction.txt",
+      "bytes": 3437,
+      "sha256": "61b0425b2d560504e9eeadf94cf17e3246e78629413ac1723c3d364939b6a9d2"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.actions.StagingAreaOperationActionKt.txt",
+      "bytes": 2746,
+      "sha256": "ddb5ddde4bbfe30bb94afaa2a20be25b7bce390647c1b52929afe74ff5af436e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStageCommitPanel.txt",
+      "bytes": 15359,
+      "sha256": "75b077d98808333c65558c578b5f2d21934ad4821fe487da41757c180f60d93c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStageDiffRequestProcessor.txt",
+      "bytes": 7599,
+      "sha256": "39f989aebf0241581bf0d822bd0b217792d21455dd7901d0b505ecabc6e8694a"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStagePanel.txt",
+      "bytes": 72415,
+      "sha256": "d9c8a2d9a02ecd2bdb7e648fbeef1e6350b3ea22fdcfbba957addae50f88b137"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.index.ui.GitStageTree.txt",
+      "bytes": 45049,
+      "sha256": "95cb10c995b3f6a2760a0fa887ed2ade824c55c6bb9922739c6ca55198817984"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.log.GitLogDiffHandler.txt",
+      "bytes": 41354,
+      "sha256": "2a6e7e5b9fa332f6ebb3f2540c77391b761c7cf37cf5e5ef447cb3db80ea13ac"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.log.GitLogProvider.txt",
+      "bytes": 107861,
+      "sha256": "0b875f16444827a5e624b7b4c5328e8b700449309fab3f39d842b23c72d18fd3"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitConflictResolver.txt",
+      "bytes": 32108,
+      "sha256": "a23998efae17b55b67fc76e5a1c365915b94fb865b829352870de2988ff7e214"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitMergeProvider$MyMergeSession.txt",
+      "bytes": 38258,
+      "sha256": "b63deb968f0d40dbea457ac9244dbdd8a198066cf3aa80ef1fb8685e504ae63e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitMergeProvider.txt",
+      "bytes": 24280,
+      "sha256": "350abc65a60003d45431eff85a232b74d5ca339908443895270ef4db6cf9a999"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.merge.GitMergeUtil.txt",
+      "bytes": 81260,
+      "sha256": "2bea21244b5a6a47cf37a4b76d81a8f89cca1a9d80c0d385176caa97b7db089f"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.push.GitPushOperation.txt",
+      "bytes": 112302,
+      "sha256": "cc2612d82121d6340f12d7bf4c65c5589aa52f2616683a7c8468042e9478612c"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryCreator.txt",
+      "bytes": 5637,
+      "sha256": "1771433fe9171c459c5766899ed53e47209cd2259dffc333edb3d54547cf84ab"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryImpl.txt",
+      "bytes": 38548,
+      "sha256": "76ac4e197a545057357ecf121bbb8c48aa27c6a4628958984ef8ff1568aaf593"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryInitializerImpl.txt",
+      "bytes": 7534,
+      "sha256": "881408b36b5acd663631baa13f43e6727bbc7245074a694bf922f5d3181d5c4a"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.repo.GitRepositoryReader.txt",
+      "bytes": 54756,
+      "sha256": "768ae0a6f6870f283fc54a7493931c075f61f4c78d24ca544d9a2a8af78ae840"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.roots.GitRootChecker.txt",
+      "bytes": 13417,
+      "sha256": "a4afb09a08b5bd1b711abce5cc00541594bd1507ff28547916032d1026ae8a0a"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.status.GitChangeProvider.txt",
+      "bytes": 27359,
+      "sha256": "fea7119a704651805c1797f26d3a61904fe9e41110344e80c3fac0f8f7ffaba5"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.status.GitChangesCollector.txt",
+      "bytes": 36309,
+      "sha256": "e88b90ed7ee59ffc58d0630c7283fd490d3d030f8d9f60361a8869f8d2e61206"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.status.GitStagingAreaHolder.txt",
+      "bytes": 43918,
+      "sha256": "552edaa8cadbe36ca9a4dc9341244666baa08ba06bb23f1e8eda6fcdeebd9c8e"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.update.GitFetcher.txt",
+      "bytes": 42816,
+      "sha256": "e01ff7f0c50f2dbd20470af0bb0baf8f986208740a06e27108a3ed0b1e47f236"
+    },
+    {
+      "path": "docs/evidence/javap/git4idea.util.GitFileUtils.txt",
+      "bytes": 83931,
+      "sha256": "f1aa5b41a35b69a008f9c3500ae43d39862953ab58643cd97d7dee2bf27ceeec"
+    },
+    {
+      "path": "docs/evidence/local-config-schema-only.json",
+      "bytes": 1398,
+      "sha256": "103ce1488f485dc3c2deef6f42468cf0b3f19abcf26eee8d7a675beef20c64ab"
+    },
+    {
+      "path": "docs/evidence/platform-class-locations.json",
+      "bytes": 544,
+      "sha256": "451b2ca2943b53bfc4713f46eaf08e103d4160ea85d8f6cafef5da2546b554a8"
+    },
+    {
+      "path": "docs/evidence/product-identity.json",
+      "bytes": 196,
+      "sha256": "5760247c684cc59785aa700be3fce4667f855a3fac46737b9a6637a1be0fb521"
+    },
+    {
+      "path": "docs/evidence/rea-class-format-limitation.json",
+      "bytes": 1108,
+      "sha256": "a6dbfa69c64bd860a6ac853c30c59891d7f27e5cbe9e529caf9afa4d3d796f5f"
+    },
+    {
+      "path": "docs/evidence/rea-evidence-bundle.json",
+      "bytes": 6710141,
+      "sha256": "6b55653766dd75fd4fa0a0b6eef6b4ce73671462da40a63b3bb08c432f399c03"
+    },
+    {
+      "path": "docs/evidence/rea-inventory-summary.json",
+      "bytes": 4556,
+      "sha256": "907c13d4c39f7324057b1d156eac1df95f771d8c2b6427f444235fcae9855e0d"
+    },
+    {
+      "path": "docs/evidence/resources/backend/META-INF/git-performance-plugin-support.xml",
+      "bytes": 199,
+      "sha256": "d1bc0f51d6d22c7ae255bad02fac59c5b81942e9a6937326589b8a427f9b795d"
+    },
+    {
+      "path": "docs/evidence/resources/backend/META-INF/plugin.xml",
+      "bytes": 70594,
+      "sha256": "f4dd7ea93591d794a2ff5280d61a9f78c1eb336d0fe4bf78710b5ac29052bb35"
+    },
+    {
+      "path": "docs/evidence/resources/frontend/messages/GitBundle.properties",
+      "bytes": 124689,
+      "sha256": "fd0ea596360606b36bc8bad904e27caebb617b8fcbcc54a0615999891c33bcd1"
+    },
+    {
+      "path": "docs/evidence/runtime-observations.md",
+      "bytes": 1896,
+      "sha256": "9fb6cf40722e1ee8d51eecec0f32af53723cfc668ad0ec30b624e19c4f76811e"
+    },
+    {
+      "path": "docs/installer-qa-context.json",
+      "bytes": 804,
+      "sha256": "ca0533c8a1837aa4688c64c15d73dc700ac0ee94acc27e2f5824fbea39c2396a"
+    },
+    {
+      "path": "docs/screenshots/app-exe-icon.png",
+      "bytes": 73949,
+      "sha256": "2918efdb830ee82cd5a0775192bf7679923d3fb89c2265a908ef8fa3659b38f8"
+    },
+    {
+      "path": "docs/screenshots/branches.png",
+      "bytes": 193603,
+      "sha256": "94f52798ef6c61f0b5eba4587d5fe262d8ac7b583cd12b09163e145e36a455c9"
+    },
+    {
+      "path": "docs/screenshots/changes.png",
+      "bytes": 231124,
+      "sha256": "e3961e0f5a706d589f2f886edc210a88983831e75a86159eb979446d6fd1574a"
+    },
+    {
+      "path": "docs/screenshots/conflict.png",
+      "bytes": 195404,
+      "sha256": "27ccb6d8f20f6051fd8d0689d47f007f3406f0ff82d42569fdac4b308c69065e"
+    },
+    {
+      "path": "docs/screenshots/history.png",
+      "bytes": 257820,
+      "sha256": "5a0141ec94be6f832fa8069136f67798d0316ae660c01563a90f046f3c708d34"
+    },
+    {
+      "path": "docs/screenshots/setup-exe-icon.png",
+      "bytes": 73949,
+      "sha256": "2918efdb830ee82cd5a0775192bf7679923d3fb89c2265a908ef8fa3659b38f8"
+    },
+    {
+      "path": "docs/screenshots/v1.1-dark-tabs.png",
+      "bytes": 180543,
+      "sha256": "8cba2e17bbf8fb32ad50939a1ddab2e925ec10e8cc660b2c5ff293ee0fadb26b"
+    },
+    {
+      "path": "docs/screenshots/v1.1-light-tabs.png",
+      "bytes": 180066,
+      "sha256": "dab67992544418af7360e235528d67d2343deb3e918ebdf805dc9eb7d6317a9b"
+    },
+    {
+      "path": "docs/screenshots/v1.1-smart-merge.png",
+      "bytes": 207247,
+      "sha256": "3e51feead28a477a2a47b5b1868aca53c05a82341a7a921ba7e9f0073c9974ce"
+    },
+    {
+      "path": "docs/screenshots/v1.2-ai-candidate.png",
+      "bytes": 189521,
+      "sha256": "ac7952c40eb0d5e91f674c48091023055c43f709890f76670ab4d40781ae2295"
+    },
+    {
+      "path": "docs/screenshots/v1.2-graph-dark.png",
+      "bytes": 220800,
+      "sha256": "c1764e0c7043f4efdd29c304a4cf0b491e678cc7788a77c84ad9721f5c6bd336"
+    },
+    {
+      "path": "docs/screenshots/v1.2-graph-light.png",
+      "bytes": 223160,
+      "sha256": "e82d9e8bb51270a67acac01b8d34720d7f618023f6323c63f76ffc236ae3cc60"
+    },
+    {
+      "path": "docs/screenshots/v1.3-update-download.png",
+      "bytes": 182731,
+      "sha256": "d7db017e63e99cc8c56645875a9ce3da19013114a7d048581d97f0f072cb0efa"
+    },
+    {
+      "path": "docs/screenshots/v1.3-update-installed.png",
+      "bytes": 163112,
+      "sha256": "651700ea3e2dd2166b2c93985183f4e2aab5a5620594427b07e182aab61e2159"
+    },
+    {
+      "path": "docs/screenshots/v1.3-update-manual.png",
+      "bytes": 158843,
+      "sha256": "8ee713e41e5772f7eca46a22a3a781ce1aab4b35fde1ce4d2f513987ef9f0a76"
+    },
+    {
+      "path": "docs/screenshots/v1.3-update-ready-light.png",
+      "bytes": 272557,
+      "sha256": "7887e13641037fdfadfafb9d9bfa7861b58b672bf8dda41f11d09374e0628fa8"
+    },
+    {
+      "path": "docs/screenshots/v1.4-rebase-conflict.png",
+      "bytes": 183003,
+      "sha256": "a4d09970cc651f9f29db0a91aeeceb9d8c49dfe30f665517c2d7ae4be8597b1b"
+    },
+    {
+      "path": "docs/screenshots/v1.4-reset-hard.png",
+      "bytes": 429815,
+      "sha256": "d793c7de27f101ab59404eb9534c14869fc519428536821775feafa96fc8b36d"
+    },
+    {
+      "path": "docs/screenshots/v1.4-rollback-confirm.png",
+      "bytes": 277227,
+      "sha256": "c10a38334202bec2712337143929a4f4ac9d57c5a901c46469acd0a2539a597d"
+    },
+    {
+      "path": "docs/verification-backend.txt",
+      "bytes": 1291,
+      "sha256": "389bdb16556bb08d3075ec3ca8bf5b773daf7e2d8bfe0e01f85b4caf600e206d"
+    },
+    {
+      "path": "docs/verification-packaged-ui-final.txt",
+      "bytes": 3697,
+      "sha256": "490eebb4590626a0b8bcc9f8cc764d05f4401d2c2a5ca59c6e843a62d281472c"
+    },
+    {
+      "path": "docs/verification-packaged-ui-recheck.txt",
+      "bytes": 446,
+      "sha256": "8de3a217c9b53d361413fd503bf74ae6cee530a2ec2ee77b21f575a404d49971"
+    },
+    {
+      "path": "docs/verification-packaged-ui-rendered.txt",
+      "bytes": 447,
+      "sha256": "a16fccf1bf7f8c5337e617e1b5ab8e64dcf3ceff5d76556f6952c629d621bd8b"
+    },
+    {
+      "path": "docs/verification-packaged-ui.txt",
+      "bytes": 3696,
+      "sha256": "549cb1323eb2acba50ef22e269fa0bdc1c0b2e5937e95d0fb33814f22ba6b7c9"
+    },
+    {
+      "path": "docs/verification-portable.json",
+      "bytes": 576,
+      "sha256": "67142848461f3a80cac46c414401ff0f7ce45af0d1edeefd4a8497b30f8012bc"
+    },
+    {
+      "path": "docs/verification-ui.txt",
+      "bytes": 706,
+      "sha256": "2cd26a244392f08cdf16a71a7300bcb23b62597e893d73cc5007654cc74fbbc7"
+    },
+    {
+      "path": "docs/verification-v1.1-backend.txt",
+      "bytes": 1973,
+      "sha256": "32e21de6ea1f0d522385e099341032bc75ccde9d00254afac9211fc3ee4dde8c"
+    },
+    {
+      "path": "docs/verification-v1.1-build.txt",
+      "bytes": 2202,
+      "sha256": "b758217a2b07ec4693b341c561b2483f40ce6213d62c0de3542a772b55448453"
+    },
+    {
+      "path": "docs/verification-v1.1-packaged-ui.txt",
+      "bytes": 1126,
+      "sha256": "3af0d3a1ff27ac6eac042028ece4c747f2d1b32a966bb64e44e44a3e1e5d5837"
+    },
+    {
+      "path": "docs/verification-v1.1-portable.json",
+      "bytes": 576,
+      "sha256": "ac3fbf317a0a364657b3ca793a7d5cc414e9b206c035aeadbe39e8e40cc520c7"
+    },
+    {
+      "path": "docs/verification-v1.1-portable.txt",
+      "bytes": 663,
+      "sha256": "4510e2e2d12c69ca97e4d24ed3b3d185649c42dcbee3e6e70c2e2174555bc7af"
+    },
+    {
+      "path": "docs/verification-v1.1-ui-tabs-recheck.txt",
+      "bytes": 440,
+      "sha256": "d8819de9e2b016171480543068a0f680bb81718a8076553738fe68a622339517"
+    },
+    {
+      "path": "docs/verification-v1.1-ui.txt",
+      "bytes": 4392,
+      "sha256": "58e39820cb3ed58505543c462cd6d8664af8b834d509e5a9fcb59489a88feb76"
+    },
+    {
+      "path": "docs/verification-v1.2-ai-ui-recheck.txt",
+      "bytes": 452,
+      "sha256": "5510ae0f644c353e9f61c6fd97ff67648aee3e4ea8e08947c9283af5a99d6a1a"
+    },
+    {
+      "path": "docs/verification-v1.2-backend-final.txt",
+      "bytes": 2811,
+      "sha256": "b7504e21a1231d4f6171061a9ac237687350d767c0cba350fd2c55160bef97c2"
+    },
+    {
+      "path": "docs/verification-v1.2-backend.txt",
+      "bytes": 4169,
+      "sha256": "db5bc946a31e94876f15fa4e360124955b274ac04ea382b88a5d1428f4edb8e5"
+    },
+    {
+      "path": "docs/verification-v1.2-build.txt",
+      "bytes": 2202,
+      "sha256": "1f404b0a402fdae9ef75fadab61a7486cc54987f0f26c19f7e67f217fa8adfa6"
+    },
+    {
+      "path": "docs/verification-v1.2-graph-ai-final.txt",
+      "bytes": 937,
+      "sha256": "8c5404b85b775780677edd1fc61e5f6a124bf947768c9c2f1f15b825197ead73"
+    },
+    {
+      "path": "docs/verification-v1.2-graph-ai-recheck.txt",
+      "bytes": 938,
+      "sha256": "eec4acca42cf5f270fe1e5ae1c0bf793d9d4ae28d97e067828969e08ef37c51f"
+    },
+    {
+      "path": "docs/verification-v1.2-packaged-ui.txt",
+      "bytes": 1426,
+      "sha256": "1c24a05c56100b22519c8196bfbaf5d14f852beeace21d2402f557a98ae7b5d7"
+    },
+    {
+      "path": "docs/verification-v1.2-portable.json",
+      "bytes": 576,
+      "sha256": "f0a92e02701872f96260a73fa0ea06d206c9d4c45324a260f25d0776255361ef"
+    },
+    {
+      "path": "docs/verification-v1.2-portable.txt",
+      "bytes": 663,
+      "sha256": "22bd5d9d81d6ef9be6fa17087f5b0f85f3c264521f3a0d85cadc9bf506d08ae8"
+    },
+    {
+      "path": "docs/verification-v1.2-ui.txt",
+      "bytes": 4235,
+      "sha256": "2fe6af7a23612789ae4a19b655f1527bfc8890f51a8798f4300f354411cfa421"
+    },
+    {
+      "path": "docs/verification-v1.2.1-build.txt",
+      "bytes": 2298,
+      "sha256": "adc90b4ae4c921daf44f0eec7acf59e9f90d51f5a5bebaabb67d91e4e00c2c62"
+    },
+    {
+      "path": "docs/verification-v1.2.1-icons.json",
+      "bytes": 1252,
+      "sha256": "75aff3679b5d99efa6e253f3933474121a1a328344ef2f1428d4079798f636c9"
+    },
+    {
+      "path": "docs/verification-v1.2.1-installed-ui.txt",
+      "bytes": 1706,
+      "sha256": "7f6e043ef193a29f7f8fa05fb273ad44fa49484017a2872bb425dcc7fb4b6163"
+    },
+    {
+      "path": "docs/verification-v1.2.1-installer.json",
+      "bytes": 1986,
+      "sha256": "74db36759ee27947e61d98726b353f9fc39d5d82cb40198e53c3c8ba3e48d6c5"
+    },
+    {
+      "path": "docs/verification-v1.2.1-installer.txt",
+      "bytes": 1983,
+      "sha256": "b3fe5802e9ae72a882cae6ab433880b30db8b3eb81cf1e72c0956dcda1a2064f"
+    },
+    {
+      "path": "docs/verification-v1.2.1-qa-build.txt",
+      "bytes": 1896,
+      "sha256": "b1c5b8002dd07d271409443870237fc0e6a34f8aa657eb1612274c7ccf2d50ba"
+    },
+    {
+      "path": "docs/verification-v1.3-backend.txt",
+      "bytes": 3947,
+      "sha256": "5a5ddf82890dfb42ac40e7e40d38bc19a19c18c09ca9f7220c38cb166b1a71bb"
+    },
+    {
+      "path": "docs/verification-v1.3-build.txt",
+      "bytes": 584,
+      "sha256": "7f9a45fa2ec2224d287d0ed859e6346360d3802733b20b11aa801ba395d67c35"
+    },
+    {
+      "path": "docs/verification-v1.3-installer.txt",
+      "bytes": 2170,
+      "sha256": "07afdf360e4bce55d5457ee96ed6926ebb956954f5e0ebfc5bdbf917cece929c"
+    },
+    {
+      "path": "docs/verification-v1.3-metadata.txt",
+      "bytes": 1978,
+      "sha256": "f47f1bf815b7097f6629ff083576391b4e2d1a9c9d197083c258d9adbad42693"
+    },
+    {
+      "path": "docs/verification-v1.3-qa-build.txt",
+      "bytes": 1896,
+      "sha256": "4c269e4667d1108640d83c00b2bb39eb73f3515c075c5741e1a89644b87bcc8e"
+    },
+    {
+      "path": "docs/verification-v1.3-setup-build.txt",
+      "bytes": 2441,
+      "sha256": "27f18a79a362b3b325d5f823bb687e3ceff0afc4ac6fbbf181b6677d84108713"
+    },
+    {
+      "path": "docs/verification-v1.3-update-metadata.json",
+      "bytes": 1864,
+      "sha256": "269981dd01fd52539bc1680f08a7b2e9b2556c8de4cd2a1c430c37d6c9b0acc3"
+    },
+    {
+      "path": "docs/verification-v1.3-update-runtime.json",
+      "bytes": 988,
+      "sha256": "1139fc7b0d92fe16d48111ddda4f87378d65a783278054d5db5ae13ae41faf14"
+    },
+    {
+      "path": "docs/verification-v1.3-update-runtime.txt",
+      "bytes": 626,
+      "sha256": "a03a8b99358e09a1cd1104d7bc1b2c874994ad4a24b33ffccbff762aab9a5278"
+    },
+    {
+      "path": "docs/verification-v1.3-update-ui.txt",
+      "bytes": 580,
+      "sha256": "1d2e7a31adcf276eecae908ebf267b341b3ffd96af9c55658ee6b52bc480ab1f"
+    },
+    {
+      "path": "docs/verification-v1.3.0-icons.json",
+      "bytes": 1252,
+      "sha256": "41921e1cb5d78a3093333d25bedaff97d29fba1d17ebca1a8198a1dd184c11de"
+    },
+    {
+      "path": "docs/verification-v1.3.0-installed-ui.txt",
+      "bytes": 2062,
+      "sha256": "900068c04dd42d1c84ca41ebab50d7e05b72e84f0929114710ecc71d44a8c09b"
+    },
+    {
+      "path": "docs/verification-v1.3.0-installer.json",
+      "bytes": 2173,
+      "sha256": "f8c4550c82213aa15de28a7260329b785a48f5723daa73bab55fc75e74489ac5"
+    },
+    {
+      "path": "docs/verification-v1.4-backend-final.txt",
+      "bytes": 5734,
+      "sha256": "7c2abdeca1360acf96e88b46ee0f3dde45c2e53cfb2812b8292cf072fc7fcfce"
+    },
+    {
+      "path": "docs/verification-v1.4-backend.txt",
+      "bytes": 7440,
+      "sha256": "2b29db08277551f21ca2a31ff40870ce27345c1675fedd48e77d0d51a6da484f"
+    },
+    {
+      "path": "docs/verification-v1.4-build.txt",
+      "bytes": 584,
+      "sha256": "de4399ff9c06c4a7ae0f66bdbd6917ee65666bfffe5c588f9db980ec2727fc45"
+    },
+    {
+      "path": "docs/verification-v1.4-history-ui-revert.txt",
+      "bytes": 455,
+      "sha256": "cc0f14b82b9d967958a987ff87dbd3627d046c7bdb7e1711b70f6a5db53f7abe"
+    },
+    {
+      "path": "docs/verification-v1.4-history-ui.txt",
+      "bytes": 5389,
+      "sha256": "dacde5584369e101707cc9965993137b4ae58ce70be8be01bd31dc342ba5d0b2"
+    },
+    {
+      "path": "docs/verification-v1.4-history.txt",
+      "bytes": 1673,
+      "sha256": "4abe6d34465db1db787546b3c6dd8464f7b7c8486d1265b6cd7bea9e313c0116"
+    },
+    {
+      "path": "docs/verification-v1.4-installer.txt",
+      "bytes": 2178,
+      "sha256": "317c4803edf4eca7d6598708a0733857b12654d62fc80d57310046c08d7311a3"
+    },
+    {
+      "path": "docs/verification-v1.4-metadata.txt",
+      "bytes": 2323,
+      "sha256": "a2ffa21c69136b2511299c2eba07e928f1d9e9b7d75c9317d2f24f3e172c8b5d"
+    },
+    {
+      "path": "docs/verification-v1.4-qa-build.txt",
+      "bytes": 1896,
+      "sha256": "1e936049c6a4008b01dde0f74687eed0b38f12170dc4f25d2d228a6189527ce1"
+    },
+    {
+      "path": "docs/verification-v1.4-setup-build.txt",
+      "bytes": 2441,
+      "sha256": "911a4c2e21eea75f17e3ce84ec36e6583d5875ff06cb4627f78d39834112a24e"
+    },
+    {
+      "path": "docs/verification-v1.4-ui-final.txt",
+      "bytes": 2295,
+      "sha256": "4269259ab10637b70420e1115a7014029c201e3a8a6367825bdabcc8c89c2476"
+    },
+    {
+      "path": "docs/verification-v1.4.0-icons.json",
+      "bytes": 1252,
+      "sha256": "e33f6c13ff4fe274a72bd02020bc802c4d2f88b8e3b4dcdea52643befc564a70"
+    },
+    {
+      "path": "docs/verification-v1.4.0-installed-ui.txt",
+      "bytes": 2940,
+      "sha256": "7edda9024d7cdeff97850183381784b8867aba64a8876ae65ee8bbbb9b6edb0a"
+    },
+    {
+      "path": "docs/verification-v1.4.0-installer.json",
+      "bytes": 2181,
+      "sha256": "e4c1a85db02486753f51011715b6a1c4bb4c057be75d4043579a96cd95d045a9"
+    },
+    {
+      "path": "docs/verification-v1.4.0-update-metadata.json",
+      "bytes": 2209,
+      "sha256": "d03e58dc60d28acf8cfd35351c0390422fd1119f903c62ef2f922373460eb1b4"
+    },
+    {
+      "path": "index.html",
+      "bytes": 621,
+      "sha256": "1ae06437c2e305eb1073655fa209b4d0d740296767e98ef6515a0e17566fb951"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 192976,
+      "sha256": "9ac98a4f6e5fb6ab769fad1b7484572698603bffd52d2b8e0ceaee8bec00658e"
+    },
+    {
+      "path": "package.json",
+      "bytes": 4035,
+      "sha256": "4522957a9edfd80efd1a70b62fc6d50eb06b095a03faaf05689555d53180bb6a"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 375,
+      "sha256": "a336736f6deec79f46bf432781e87f12a359747e539c0b47da9989f3307ba47e"
+    },
+    {
+      "path": "release-notes.md",
+      "bytes": 1122,
+      "sha256": "ffe921a3fa5fc2635c2c1ed233a1d376b9f0911c6a91a2360879cd578d43cfb7"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "bytes": 563,
+      "sha256": "d33a20ad4fdb66c8cd13d96e2a4f24a4366aaef6673772b8539741aa08186fbd"
+    },
+    {
+      "path": "scripts/dev.mjs",
+      "bytes": 831,
+      "sha256": "a2fb4ceb1622648759ba7e7c14ad51aefd08cb5b3f8438ee9aa9afa7a56380c1"
+    },
+    {
+      "path": "scripts/prepare-installer-qa.mjs",
+      "bytes": 2795,
+      "sha256": "a1b191050b866acf77b86ddd029f65b929b6711c7f15668897f75d145367555b"
+    },
+    {
+      "path": "scripts/render-icons.cjs",
+      "bytes": 2661,
+      "sha256": "4ad0688bed78d3c6d6f47d868c3b019eb3938f1e944ecaa25340ad0b03b299dc"
+    },
+    {
+      "path": "scripts/smoke-portable.mjs",
+      "bytes": 4035,
+      "sha256": "f65a2094af2e99d6d2704e607ba9297caf8d259aed99e9ae4725bfdbde0b6ee1"
+    },
+    {
+      "path": "scripts/test-installer.ps1",
+      "bytes": 7200,
+      "sha256": "d85d17a7c8a7e3ddb266221050764fdc210c0241c3162f8282063700947390d4"
+    },
+    {
+      "path": "scripts/test-update-runtime.mjs",
+      "bytes": 1443,
+      "sha256": "1486df53f74151453f0fad3f372f99fb61ca40288f2fb805b8ca20f5a0db6ac2"
+    },
+    {
+      "path": "scripts/verify-icons.mjs",
+      "bytes": 2773,
+      "sha256": "8f9f38252e0a85bb4c95bda780e02a8c7ae96d07271f9ab5ab2570d3572ddcb7"
+    },
+    {
+      "path": "scripts/verify-update-metadata.mjs",
+      "bytes": 1731,
+      "sha256": "c6049ae6a12433ef8da6765ac1de7d42efb3f4eae3f4977d3f97b0bef6df1fb3"
+    },
+    {
+      "path": "src/main/ai.ts",
+      "bytes": 8784,
+      "sha256": "80dbd04071216bed65f3171053b0d763a59d9f97c118a14684411a9bb1ee4bca"
+    },
+    {
+      "path": "src/main/git-service.ts",
+      "bytes": 60830,
+      "sha256": "393c498820219b272e0cfa5194497a4c7bbe9d684f08c2373c21f6b8272b86dc"
+    },
+    {
+      "path": "src/main/main.ts",
+      "bytes": 9151,
+      "sha256": "841decbb4cf784d9bcc92cfa28edc14744c00528ec031d7d5b5b5e6f42d385f7"
+    },
+    {
+      "path": "src/main/preload.ts",
+      "bytes": 1442,
+      "sha256": "11b29d6a52bdac5c19f9f49ba3de5c93743334c9efd42778083887c6bf4b47df"
+    },
+    {
+      "path": "src/main/update-engine.ts",
+      "bytes": 1803,
+      "sha256": "7f07fc6edaf806f2f88199ff0fbd4e5d0b070ebc7f049cb47c2aa88a8256e120"
+    },
+    {
+      "path": "src/main/updates.ts",
+      "bytes": 8032,
+      "sha256": "6eed94e38e9df7eadb09d7d930b373e439d04d03b4c097e1d148b88a92d9a0b0"
+    },
+    {
+      "path": "src/main/workspaces.ts",
+      "bytes": 3103,
+      "sha256": "cfddf18bd726123e1539d61b35db7627142ff74c7b5c07bf64d21ee15837a684"
+    },
+    {
+      "path": "src/renderer/AiSettingsDialog.tsx",
+      "bytes": 4801,
+      "sha256": "033e2d61ceecdcd485df0002dd1a21dcfa6d57840e44c2b612f871a57daf86fa"
+    },
+    {
+      "path": "src/renderer/App.tsx",
+      "bytes": 62157,
+      "sha256": "ba100bf33a86f26a1cd3237cc3edfe31154c5ca027a7048fa848d7867d8788cb"
+    },
+    {
+      "path": "src/renderer/CommitHistory.tsx",
+      "bytes": 5017,
+      "sha256": "3ae0b074fed37750149bea1b6ce1d6cc5c0c63ea9029be9655c684ec60e017db"
+    },
+    {
+      "path": "src/renderer/RemoteSettingsDialog.tsx",
+      "bytes": 5468,
+      "sha256": "3a99d0888b300133f2e4e5825296451c8643ff69fbc08ccdd92e839bd44ec8e5"
+    },
+    {
+      "path": "src/renderer/RepositoryActionDialog.tsx",
+      "bytes": 11295,
+      "sha256": "b3d1abd87ca6372af70b964860d0b9af727827c5ff80135523855c9547359fa8"
+    },
+    {
+      "path": "src/renderer/SoftwareUpdates.tsx",
+      "bytes": 6292,
+      "sha256": "20d67e3ad89c30f8ad97adc0a6aff6c73bf1f054db870cf6566df488b1037fa3"
+    },
+    {
+      "path": "src/renderer/features.css",
+      "bytes": 6673,
+      "sha256": "df4ffad890160648630d696afe3565ce44725de5403bc7f7192a1b5dbb4bf66c"
+    },
+    {
+      "path": "src/renderer/history-actions.css",
+      "bytes": 4742,
+      "sha256": "77540a3e4f1383198537953a315ef77acffe2fa8c3b8706d372827d10ec5d208"
+    },
+    {
+      "path": "src/renderer/main.tsx",
+      "bytes": 302,
+      "sha256": "05ac28833cd378183015590ad9a5e67e224f907e17987c2d92683070169af82e"
+    },
+    {
+      "path": "src/renderer/styles.css",
+      "bytes": 26360,
+      "sha256": "b2fba185b1fd6e85461f4d90e5694213819caccc19faedd1365e239b2f21556c"
+    },
+    {
+      "path": "src/renderer/themes.css",
+      "bytes": 11316,
+      "sha256": "13ab3913d4b87a3fa11cdf3c66728007276aad12db241623224e6279fa113226"
+    },
+    {
+      "path": "src/shared/commit-graph.ts",
+      "bytes": 5153,
+      "sha256": "8598fab60f5756d781af7312ec4b5d49b2082d26e3dd15225e2d5faab3cf5f95"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "bytes": 6552,
+      "sha256": "a512da6aae7c963f67fb3c99fb8bfc5881671cc8262c2d3c73eb10b36621560c"
+    },
+    {
+      "path": "tests/electron.spec.ts",
+      "bytes": 40221,
+      "sha256": "3352ef32a50614d41152b4e056df90d2f02f65e8147e747979038babe35b7568"
+    },
+    {
+      "path": "tests/git.test.ts",
+      "bytes": 27442,
+      "sha256": "792155123575511f63c17a73c4013e9f241f91d3bd0592af3e42f46e459d5380"
+    },
+    {
+      "path": "tests/graph-ai.test.ts",
+      "bytes": 13841,
+      "sha256": "6e05a083de98aea10a5fd8ac20960fdc3c3bf9ca7d9a71a6a1dc3f1dbfb3eba3"
+    },
+    {
+      "path": "tests/history-actions.test.ts",
+      "bytes": 21728,
+      "sha256": "a5f5ff8eb8550376fc4b733ae2224ef278d15304e8ae86e6a1894a0e47f0cbca"
+    },
+    {
+      "path": "tests/history-ui.spec.ts",
+      "bytes": 12371,
+      "sha256": "716244fc5df17bcc7d4a89a2ac42fdcb3001530c68dbec17d373419aef7ff33d"
+    },
+    {
+      "path": "tests/remotes.test.ts",
+      "bytes": 6470,
+      "sha256": "031e58cf553edd4b56cde366fe477e9aebb47717222ba860b781fc9bc65488d1"
+    },
+    {
+      "path": "tests/update-runtime.ts",
+      "bytes": 7294,
+      "sha256": "635bb2428f7aed57fb4a7674b5513d5742c2c5b75da238df2e563ce2922d57aa"
+    },
+    {
+      "path": "tests/update-ui.fixture.ts",
+      "bytes": 3229,
+      "sha256": "1d578ab651f93b9e990340ca9d529f07e675ce5b1c6153e37d4b96a56630a1b5"
+    },
+    {
+      "path": "tests/updates.test.ts",
+      "bytes": 7955,
+      "sha256": "53ecb497860e5e198ecf36166a865b07da6f3cc753e1c9e6df0dbfe594d9418c"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 359,
+      "sha256": "a7ce4643f5ac523749797079bf96fefa97f6e75e6adef0cf7bbd584ad5a2c721"
+    },
+    {
+      "path": "vite.config.ts",
+      "bytes": 171,
+      "sha256": "632b2ce7c011d57c06fddbac3e7242758e2fec4f34162ee100e328ffbc503dbc"
+    }
+  ],
+  "source_archive_excludes": [
+    ".git",
+    "dist",
+    "dist-electron",
+    "node_modules",
+    "playwright-report",
+    "release",
+    "test-results"
+  ]
+}

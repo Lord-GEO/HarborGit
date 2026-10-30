@@ -1,0 +1,341 @@
+Compiled from "GitRevertAction.kt"
+public final class git4idea.revert.GitRevertAction extends com.intellij.openapi.project.DumbAwareAction {
+  public git4idea.revert.GitRevertAction();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method com/intellij/openapi/project/DumbAwareAction."<init>":()V
+       4: return
+
+  public com.intellij.openapi.actionSystem.ActionUpdateThread getActionUpdateThread();
+    Code:
+       0: getstatic     #19                 // Field com/intellij/openapi/actionSystem/ActionUpdateThread.BGT:Lcom/intellij/openapi/actionSystem/ActionUpdateThread;
+       3: areturn
+
+  public void update(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ldc           #23                 // String e
+       3: invokestatic  #29                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: invokespecial #31                 // Method com/intellij/openapi/project/DumbAwareAction.update:(Lcom/intellij/openapi/actionSystem/AnActionEvent;)V
+      11: aload_1
+      12: invokevirtual #37                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getProject:()Lcom/intellij/openapi/project/Project;
+      15: astore_2
+      16: aload_1
+      17: getstatic     #43                 // Field com/intellij/vcs/log/VcsLogDataKeys.VCS_LOG_COMMIT_SELECTION:Lcom/intellij/openapi/actionSystem/DataKey;
+      20: invokevirtual #47                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getData:(Lcom/intellij/openapi/actionSystem/DataKey;)Ljava/lang/Object;
+      23: checkcast     #49                 // class com/intellij/vcs/log/VcsLogCommitSelection
+      26: astore_3
+      27: aload_2
+      28: ifnull        35
+      31: aload_3
+      32: ifnonnull     44
+      35: aload_1
+      36: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+      39: iconst_0
+      40: invokevirtual #59                 // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+      43: return
+      44: aload_2
+      45: invokestatic  #65                 // Method git4idea/GitUtil.getRepositoryManager:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      48: dup
+      49: ldc           #67                 // String getRepositoryManager(...)
+      51: invokestatic  #70                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      54: astore        4
+      56: aload_3
+      57: invokeinterface #74,  1           // InterfaceMethod com/intellij/vcs/log/VcsLogCommitSelection.getCachedMetadata:()Ljava/util/List;
+      62: sipush        1000
+      65: invokestatic  #80                 // Method com/intellij/util/containers/ContainerUtil.getFirstItems:(Ljava/util/List;I)Ljava/util/List;
+      68: dup
+      69: ldc           #82                 // String getFirstItems(...)
+      71: invokestatic  #70                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      74: astore        5
+      76: aload_1
+      77: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+      80: ldc           #84                 // String action.Git.Revert.In.Log.template.text
+      82: iconst_1
+      83: anewarray     #86                 // class java/lang/Object
+      86: astore        6
+      88: aload         6
+      90: iconst_0
+      91: aload         5
+      93: invokeinterface #92,  1           // InterfaceMethod java/util/List.size:()I
+      98: invokestatic  #98                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     101: aastore
+     102: aload         6
+     104: invokestatic  #104                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     107: invokevirtual #108                // Method com/intellij/openapi/actionSystem/Presentation.setText:(Ljava/lang/String;)V
+     110: aload         5
+     112: invokeinterface #112,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     117: ifeq          129
+     120: aload_1
+     121: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+     124: iconst_0
+     125: invokevirtual #59                 // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+     128: return
+     129: aload         5
+     131: checkcast     #114                // class java/lang/Iterable
+     134: astore        6
+     136: iconst_0
+     137: istore        7
+     139: aload         6
+     141: instanceof    #116                // class java/util/Collection
+     144: ifeq          164
+     147: aload         6
+     149: checkcast     #116                // class java/util/Collection
+     152: invokeinterface #117,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     157: ifeq          164
+     160: iconst_0
+     161: goto          230
+     164: aload         6
+     166: invokeinterface #121,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     171: astore        8
+     173: aload         8
+     175: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     180: ifeq          229
+     183: aload         8
+     185: invokeinterface #130,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     190: astore        9
+     192: aload         9
+     194: checkcast     #132                // class com/intellij/vcs/log/VcsCommitMetadata
+     197: astore        10
+     199: iconst_0
+     200: istore        11
+     202: aload         4
+     204: aload         10
+     206: invokeinterface #136,  1          // InterfaceMethod com/intellij/vcs/log/VcsCommitMetadata.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     211: invokevirtual #142                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRootQuick:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+     214: ifnonnull     221
+     217: iconst_1
+     218: goto          222
+     221: iconst_0
+     222: ifeq          173
+     225: iconst_1
+     226: goto          230
+     229: iconst_0
+     230: ifeq          242
+     233: aload_1
+     234: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+     237: iconst_0
+     238: invokevirtual #59                 // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+     241: return
+     242: aload         5
+     244: checkcast     #114                // class java/lang/Iterable
+     247: astore        6
+     249: iconst_0
+     250: istore        7
+     252: aload         6
+     254: instanceof    #116                // class java/util/Collection
+     257: ifeq          277
+     260: aload         6
+     262: checkcast     #116                // class java/util/Collection
+     265: invokeinterface #117,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     270: ifeq          277
+     273: iconst_0
+     274: goto          344
+     277: aload         6
+     279: invokeinterface #121,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     284: astore        8
+     286: aload         8
+     288: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     293: ifeq          343
+     296: aload         8
+     298: invokeinterface #130,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     303: astore        9
+     305: aload         9
+     307: checkcast     #132                // class com/intellij/vcs/log/VcsCommitMetadata
+     310: astore        10
+     312: iconst_0
+     313: istore        11
+     315: aload         10
+     317: invokeinterface #145,  1          // InterfaceMethod com/intellij/vcs/log/VcsCommitMetadata.getParents:()Ljava/util/List;
+     322: invokeinterface #92,  1           // InterfaceMethod java/util/List.size:()I
+     327: iconst_1
+     328: if_icmple     335
+     331: iconst_1
+     332: goto          336
+     335: iconst_0
+     336: ifeq          286
+     339: iconst_1
+     340: goto          344
+     343: iconst_0
+     344: ifeq          380
+     347: aload_1
+     348: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+     351: iconst_1
+     352: invokevirtual #148                // Method com/intellij/openapi/actionSystem/Presentation.setVisible:(Z)V
+     355: aload_1
+     356: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+     359: iconst_0
+     360: invokevirtual #151                // Method com/intellij/openapi/actionSystem/Presentation.setEnabled:(Z)V
+     363: aload_1
+     364: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+     367: ldc           #153                // String action.description.cant.revert.merge.commit
+     369: iconst_0
+     370: anewarray     #86                 // class java/lang/Object
+     373: invokestatic  #104                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     376: invokevirtual #156                // Method com/intellij/openapi/actionSystem/Presentation.setDescription:(Ljava/lang/String;)V
+     379: return
+     380: aload_1
+     381: invokevirtual #53                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+     384: iconst_1
+     385: invokevirtual #59                 // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+     388: return
+
+  public void actionPerformed(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ldc           #23                 // String e
+       3: invokestatic  #29                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: invokevirtual #37                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getProject:()Lcom/intellij/openapi/project/Project;
+      10: dup
+      11: ifnonnull     16
+      14: pop
+      15: return
+      16: astore_2
+      17: aload_1
+      18: getstatic     #43                 // Field com/intellij/vcs/log/VcsLogDataKeys.VCS_LOG_COMMIT_SELECTION:Lcom/intellij/openapi/actionSystem/DataKey;
+      21: invokevirtual #47                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getData:(Lcom/intellij/openapi/actionSystem/DataKey;)Ljava/lang/Object;
+      24: checkcast     #49                 // class com/intellij/vcs/log/VcsLogCommitSelection
+      27: dup
+      28: ifnonnull     33
+      31: pop
+      32: return
+      33: astore_3
+      34: aload_2
+      35: invokestatic  #65                 // Method git4idea/GitUtil.getRepositoryManager:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      38: dup
+      39: ldc           #67                 // String getRepositoryManager(...)
+      41: invokestatic  #70                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      44: astore        4
+      46: aload_3
+      47: aload         4
+      49: aload_2
+      50: invokedynamic #200,  0            // InvokeDynamic #0:invoke:(Lgit4idea/repo/GitRepositoryManager;Lcom/intellij/openapi/project/Project;)Lkotlin/jvm/functions/Function1;
+      55: invokedynamic #211,  0            // InvokeDynamic #1:accept:(Lkotlin/jvm/functions/Function1;)Ljava/util/function/Consumer;
+      60: invokeinterface #215,  2          // InterfaceMethod com/intellij/vcs/log/VcsLogCommitSelection.requestFullDetails:(Ljava/util/function/Consumer;)V
+      65: return
+
+  private static final kotlin.Unit actionPerformed$lambda$0(git4idea.repo.GitRepositoryManager, com.intellij.openapi.project.Project, java.util.List);
+    Code:
+       0: aload_2
+       1: ldc           #216                // String commits
+       3: invokestatic  #29                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: checkcast     #114                // class java/lang/Iterable
+      10: astore_3
+      11: iconst_0
+      12: istore        4
+      14: aload_3
+      15: instanceof    #116                // class java/util/Collection
+      18: ifeq          37
+      21: aload_3
+      22: checkcast     #116                // class java/util/Collection
+      25: invokeinterface #117,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+      30: ifeq          37
+      33: iconst_0
+      34: goto          101
+      37: aload_3
+      38: invokeinterface #121,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      43: astore        5
+      45: aload         5
+      47: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      52: ifeq          100
+      55: aload         5
+      57: invokeinterface #130,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      62: astore        6
+      64: aload         6
+      66: checkcast     #218                // class com/intellij/vcs/log/VcsFullCommitDetails
+      69: astore        7
+      71: iconst_0
+      72: istore        8
+      74: aload_0
+      75: aload         7
+      77: invokeinterface #219,  1          // InterfaceMethod com/intellij/vcs/log/VcsFullCommitDetails.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      82: invokevirtual #142                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRootQuick:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      85: ifnonnull     92
+      88: iconst_1
+      89: goto          93
+      92: iconst_0
+      93: ifeq          45
+      96: iconst_1
+      97: goto          101
+     100: iconst_0
+     101: ifeq          108
+     104: getstatic     #225                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     107: areturn
+     108: aload_2
+     109: checkcast     #114                // class java/lang/Iterable
+     112: astore_3
+     113: iconst_0
+     114: istore        4
+     116: aload_3
+     117: instanceof    #116                // class java/util/Collection
+     120: ifeq          139
+     123: aload_3
+     124: checkcast     #116                // class java/util/Collection
+     127: invokeinterface #117,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+     132: ifeq          139
+     135: iconst_0
+     136: goto          205
+     139: aload_3
+     140: invokeinterface #121,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     145: astore        5
+     147: aload         5
+     149: invokeinterface #126,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     154: ifeq          204
+     157: aload         5
+     159: invokeinterface #130,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     164: astore        6
+     166: aload         6
+     168: checkcast     #218                // class com/intellij/vcs/log/VcsFullCommitDetails
+     171: astore        7
+     173: iconst_0
+     174: istore        8
+     176: aload         7
+     178: invokeinterface #226,  1          // InterfaceMethod com/intellij/vcs/log/VcsFullCommitDetails.getParents:()Ljava/util/List;
+     183: invokeinterface #92,  1           // InterfaceMethod java/util/List.size:()I
+     188: iconst_1
+     189: if_icmple     196
+     192: iconst_1
+     193: goto          197
+     196: iconst_0
+     197: ifeq          147
+     200: iconst_1
+     201: goto          205
+     204: iconst_0
+     205: ifeq          212
+     208: getstatic     #225                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     211: areturn
+     212: ldc           #228                // String progress.title.reverting.n.commits
+     214: iconst_1
+     215: anewarray     #86                 // class java/lang/Object
+     218: astore        4
+     220: aload         4
+     222: iconst_0
+     223: aload_2
+     224: invokeinterface #92,  1           // InterfaceMethod java/util/List.size:()I
+     229: invokestatic  #98                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     232: aastore
+     233: aload         4
+     235: invokestatic  #104                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     238: astore_3
+     239: new           #230                // class git4idea/revert/GitRevertAction$actionPerformed$1$3
+     242: dup
+     243: aload_1
+     244: aload_2
+     245: aload_3
+     246: invokespecial #233                // Method git4idea/revert/GitRevertAction$actionPerformed$1$3."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/List;Ljava/lang/String;)V
+     249: invokevirtual #236                // Method git4idea/revert/GitRevertAction$actionPerformed$1$3.queue:()V
+     252: getstatic     #225                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     255: areturn
+
+  private static final void actionPerformed$lambda$1(kotlin.jvm.functions.Function1, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #245,  2          // InterfaceMethod kotlin/jvm/functions/Function1.invoke:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: pop
+       8: return
+}

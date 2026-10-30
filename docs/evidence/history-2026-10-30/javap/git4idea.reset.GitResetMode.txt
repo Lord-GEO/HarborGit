@@ -1,0 +1,312 @@
+Compiled from "GitResetMode.java"
+public final class git4idea.reset.GitResetMode extends java.lang.Enum<git4idea.reset.GitResetMode> {
+  public static final git4idea.reset.GitResetMode SOFT;
+
+  public static final git4idea.reset.GitResetMode MIXED;
+
+  public static final git4idea.reset.GitResetMode HARD;
+
+  public static final git4idea.reset.GitResetMode KEEP;
+
+  private final java.lang.String myName;
+
+  private final java.lang.String myArgument;
+
+  private final java.lang.String myDescription;
+
+  private static final git4idea.reset.GitResetMode[] $VALUES;
+
+  public static git4idea.reset.GitResetMode[] values();
+    Code:
+       0: getstatic     #16                 // Field $VALUES:[Lgit4idea/reset/GitResetMode;
+       3: invokevirtual #20                 // Method "[Lgit4idea/reset/GitResetMode;".clone:()Ljava/lang/Object;
+       6: checkcast     #21                 // class "[Lgit4idea/reset/GitResetMode;"
+       9: areturn
+
+  public static git4idea.reset.GitResetMode valueOf(java.lang.String);
+    Code:
+       0: ldc           #1                  // class git4idea/reset/GitResetMode
+       2: aload_0
+       3: invokestatic  #25                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #1                  // class git4idea/reset/GitResetMode
+       9: areturn
+
+  private git4idea.reset.GitResetMode(java.lang.String, java.lang.String, java.lang.String);
+    Code:
+       0: aload_3
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+       8: aload         4
+      10: ifnonnull     17
+      13: iconst_1
+      14: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+      17: aload         5
+      19: ifnonnull     26
+      22: iconst_2
+      23: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+      26: aload_0
+      27: aload_1
+      28: iload_2
+      29: invokespecial #31                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+      32: aload_0
+      33: aload_3
+      34: putfield      #35                 // Field myName:Ljava/lang/String;
+      37: aload_0
+      38: aload         4
+      40: putfield      #39                 // Field myArgument:Ljava/lang/String;
+      43: aload_0
+      44: aload         5
+      46: putfield      #42                 // Field myDescription:Ljava/lang/String;
+      49: return
+
+  public static git4idea.reset.GitResetMode getDefault();
+    Code:
+       0: getstatic     #7                  // Field MIXED:Lgit4idea/reset/GitResetMode;
+       3: dup
+       4: ifnonnull     11
+       7: iconst_3
+       8: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+      11: areturn
+
+  public java.lang.String getName();
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field myName:Ljava/lang/String;
+       4: iconst_0
+       5: anewarray     #45                 // class java/lang/Object
+       8: invokestatic  #47                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      11: dup
+      12: ifnonnull     19
+      15: iconst_4
+      16: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+      19: areturn
+
+  public java.lang.String getArgument();
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field myArgument:Ljava/lang/String;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_5
+       9: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  public java.lang.String getDescription();
+    Code:
+       0: aload_0
+       1: getfield      #42                 // Field myDescription:Ljava/lang/String;
+       4: iconst_0
+       5: anewarray     #45                 // class java/lang/Object
+       8: invokestatic  #47                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      11: dup
+      12: ifnonnull     20
+      15: bipush        6
+      17: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+      20: areturn
+
+  private static git4idea.reset.GitResetMode[] $values();
+    Code:
+       0: iconst_4
+       1: anewarray     #1                  // class git4idea/reset/GitResetMode
+       4: dup
+       5: iconst_0
+       6: getstatic     #3                  // Field SOFT:Lgit4idea/reset/GitResetMode;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #7                  // Field MIXED:Lgit4idea/reset/GitResetMode;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #10                 // Field HARD:Lgit4idea/reset/GitResetMode;
+      21: aastore
+      22: dup
+      23: iconst_3
+      24: getstatic     #13                 // Field KEEP:Lgit4idea/reset/GitResetMode;
+      27: aastore
+      28: areturn
+
+  static {};
+    Code:
+       0: new           #1                  // class git4idea/reset/GitResetMode
+       3: dup
+       4: ldc           #53                 // String SOFT
+       6: iconst_0
+       7: ldc           #54                 // String git.reset.mode.soft
+       9: ldc           #56                 // String --soft
+      11: ldc           #58                 // String git.reset.mode.soft.description
+      13: invokespecial #60                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      16: putstatic     #3                  // Field SOFT:Lgit4idea/reset/GitResetMode;
+      19: new           #1                  // class git4idea/reset/GitResetMode
+      22: dup
+      23: ldc           #63                 // String MIXED
+      25: iconst_1
+      26: ldc           #64                 // String git.reset.mode.mixed
+      28: ldc           #66                 // String --mixed
+      30: ldc           #68                 // String git.reset.mode.mixed.description
+      32: invokespecial #60                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      35: putstatic     #7                  // Field MIXED:Lgit4idea/reset/GitResetMode;
+      38: new           #1                  // class git4idea/reset/GitResetMode
+      41: dup
+      42: ldc           #70                 // String HARD
+      44: iconst_2
+      45: ldc           #71                 // String git.reset.mode.hard
+      47: ldc           #73                 // String --hard
+      49: ldc           #75                 // String git.reset.mode.hard.description
+      51: invokespecial #60                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      54: putstatic     #10                 // Field HARD:Lgit4idea/reset/GitResetMode;
+      57: new           #1                  // class git4idea/reset/GitResetMode
+      60: dup
+      61: ldc           #77                 // String KEEP
+      63: iconst_3
+      64: ldc           #78                 // String git.reset.mode.keep
+      66: ldc           #80                 // String --keep
+      68: ldc           #82                 // String git.reset.mode.keep.description
+      70: invokespecial #60                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      73: putstatic     #13                 // Field KEEP:Lgit4idea/reset/GitResetMode;
+      76: invokestatic  #84                 // Method $values:()[Lgit4idea/reset/GitResetMode;
+      79: putstatic     #16                 // Field $VALUES:[Lgit4idea/reset/GitResetMode;
+      82: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 6
+                     0: 44
+                     1: 44
+                     2: 44
+                     3: 49
+                     4: 49
+                     5: 49
+                     6: 49
+               default: 44
+          }
+      44: ldc           #144                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      46: goto          54
+      49: ldc           #146                // String @NotNull method %s.%s must not return null
+      51: goto          54
+      54: iload_0
+      55: tableswitch   { // 0 to 6
+                     0: 96
+                     1: 96
+                     2: 96
+                     3: 100
+                     4: 100
+                     5: 100
+                     6: 100
+               default: 96
+          }
+      96: iconst_3
+      97: goto          104
+     100: iconst_2
+     101: goto          104
+     104: anewarray     #45                 // class java/lang/Object
+     107: iload_0
+     108: tableswitch   { // 0 to 6
+                     0: 152
+                     1: 160
+                     2: 168
+                     3: 176
+                     4: 176
+                     5: 176
+                     6: 176
+               default: 152
+          }
+     152: dup
+     153: iconst_0
+     154: ldc           #147                // String name
+     156: aastore
+     157: goto          184
+     160: dup
+     161: iconst_0
+     162: ldc           #148                // String argument
+     164: aastore
+     165: goto          184
+     168: dup
+     169: iconst_0
+     170: ldc           #149                // String description
+     172: aastore
+     173: goto          184
+     176: dup
+     177: iconst_0
+     178: ldc           #150                // String git4idea/reset/GitResetMode
+     180: aastore
+     181: goto          184
+     184: iload_0
+     185: tableswitch   { // 0 to 6
+                     0: 228
+                     1: 228
+                     2: 228
+                     3: 236
+                     4: 244
+                     5: 252
+                     6: 260
+               default: 228
+          }
+     228: dup
+     229: iconst_1
+     230: ldc           #150                // String git4idea/reset/GitResetMode
+     232: aastore
+     233: goto          268
+     236: dup
+     237: iconst_1
+     238: ldc           #151                // String getDefault
+     240: aastore
+     241: goto          268
+     244: dup
+     245: iconst_1
+     246: ldc           #152                // String getName
+     248: aastore
+     249: goto          268
+     252: dup
+     253: iconst_1
+     254: ldc           #153                // String getArgument
+     256: aastore
+     257: goto          268
+     260: dup
+     261: iconst_1
+     262: ldc           #154                // String getDescription
+     264: aastore
+     265: goto          268
+     268: iload_0
+     269: tableswitch   { // 0 to 6
+                     0: 312
+                     1: 312
+                     2: 312
+                     3: 320
+                     4: 320
+                     5: 320
+                     6: 320
+               default: 312
+          }
+     312: dup
+     313: iconst_2
+     314: ldc           #155                // String <init>
+     316: aastore
+     317: goto          323
+     320: goto          323
+     323: invokestatic  #158                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     326: iload_0
+     327: tableswitch   { // 0 to 6
+                     0: 368
+                     1: 368
+                     2: 368
+                     3: 379
+                     4: 379
+                     5: 379
+                     6: 379
+               default: 368
+          }
+     368: new           #160                // class java/lang/IllegalArgumentException
+     371: dup_x1
+     372: swap
+     373: invokespecial #163                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     376: goto          390
+     379: new           #165                // class java/lang/IllegalStateException
+     382: dup_x1
+     383: swap
+     384: invokespecial #166                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     387: goto          390
+     390: athrow
+}

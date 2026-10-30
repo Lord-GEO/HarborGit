@@ -1,0 +1,182 @@
+Compiled from "GitRevertProcess.kt"
+public final class git4idea.revert.GitRevertProcess extends git4idea.applyChanges.GitApplyChangesProcess {
+  public static final git4idea.revert.GitRevertProcess$Companion Companion;
+
+  private final git4idea.commands.Git git;
+
+  private static final boolean AUTO_COMMIT;
+
+  public git4idea.revert.GitRevertProcess(com.intellij.openapi.project.Project, java.util.List<? extends com.intellij.vcs.log.VcsFullCommitDetails>);
+    Code:
+       0: aload_1
+       1: ldc           #10                 // String project
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #18                 // String commits
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: aload_1
+      14: aload_2
+      15: ldc           #20                 // String revert.operation.name
+      17: iconst_0
+      18: anewarray     #22                 // class java/lang/Object
+      21: invokestatic  #28                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      24: dup
+      25: ldc           #30                 // String message(...)
+      27: invokestatic  #33                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      30: ldc           #35                 // String revert.operation.applied
+      32: iconst_0
+      33: anewarray     #22                 // class java/lang/Object
+      36: invokestatic  #28                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      39: dup
+      40: ldc           #30                 // String message(...)
+      42: invokestatic  #33                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      45: new           #37                 // class git4idea/actions/GitAbortOperationAction$Revert
+      48: dup
+      49: invokespecial #40                 // Method git4idea/actions/GitAbortOperationAction$Revert."<init>":()V
+      52: checkcast     #42                 // class git4idea/actions/GitAbortOperationAction
+      55: iconst_0
+      56: ldc           #44                 // String activity.name.revert
+      58: iconst_0
+      59: anewarray     #22                 // class java/lang/Object
+      62: invokestatic  #28                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      65: dup
+      66: ldc           #30                 // String message(...)
+      68: invokestatic  #33                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      71: getstatic     #50                 // Field git4idea/GitActivity.INSTANCE:Lgit4idea/GitActivity;
+      74: invokevirtual #54                 // Method git4idea/GitActivity.getRevert:()Lcom/intellij/history/ActivityId;
+      77: invokespecial #57                 // Method git4idea/applyChanges/GitApplyChangesProcess."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lgit4idea/actions/GitAbortOperationAction;ZLjava/lang/String;Lcom/intellij/history/ActivityId;)V
+      80: aload_0
+      81: invokestatic  #63                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      84: dup
+      85: ldc           #65                 // String getInstance(...)
+      87: invokestatic  #33                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      90: putfield      #69                 // Field git:Lgit4idea/commands/Git;
+      93: return
+
+  public void cleanupBeforeCommit(git4idea.repo.GitRepository);
+    Code:
+       0: aload_1
+       1: ldc           #77                 // String repository
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: return
+
+  protected java.lang.String generateDefaultMessage(git4idea.repo.GitRepository, com.intellij.vcs.log.VcsCommitMetadata);
+    Code:
+       0: aload_1
+       1: ldc           #77                 // String repository
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #82                 // String commit
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_2
+      13: invokeinterface #88,  1           // InterfaceMethod com/intellij/vcs/log/VcsCommitMetadata.getSubject:()Ljava/lang/String;
+      18: aload_2
+      19: invokeinterface #92,  1           // InterfaceMethod com/intellij/vcs/log/VcsCommitMetadata.getId:()Ljava/lang/Object;
+      24: checkcast     #94                 // class com/intellij/vcs/log/Hash
+      27: invokeinterface #97,  1           // InterfaceMethod com/intellij/vcs/log/Hash.toShortString:()Ljava/lang/String;
+      32: invokedynamic #109,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      37: areturn
+
+  protected com.intellij.vcs.log.VcsCommitMetadata findStoppedCommitInSequence(git4idea.repo.GitRepository, java.util.List<? extends com.intellij.vcs.log.VcsCommitMetadata>);
+    Code:
+       0: aload_1
+       1: ldc           #77                 // String repository
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #18                 // String commits
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_2
+      13: invokestatic  #119                // Method kotlin/collections/CollectionsKt.first:(Ljava/util/List;)Ljava/lang/Object;
+      16: checkcast     #84                 // class com/intellij/vcs/log/VcsCommitMetadata
+      19: areturn
+
+  protected git4idea.commands.GitCommandResult applyChanges(git4idea.repo.GitRepository, java.util.Collection<? extends com.intellij.vcs.log.VcsCommitMetadata>, java.util.List<? extends git4idea.commands.GitLineHandlerListener>);
+    Code:
+       0: aload_1
+       1: ldc           #77                 // String repository
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #18                 // String commits
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #124                // String listeners
+      15: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_0
+      19: getfield      #69                 // Field git:Lgit4idea/commands/Git;
+      22: aload_1
+      23: aload_2
+      24: checkcast     #126                // class java/lang/Iterable
+      27: invokestatic  #129                // Method kotlin/collections/CollectionsKt.first:(Ljava/lang/Iterable;)Ljava/lang/Object;
+      30: checkcast     #84                 // class com/intellij/vcs/log/VcsCommitMetadata
+      33: invokeinterface #92,  1           // InterfaceMethod com/intellij/vcs/log/VcsCommitMetadata.getId:()Ljava/lang/Object;
+      38: checkcast     #94                 // class com/intellij/vcs/log/Hash
+      41: invokeinterface #132,  1          // InterfaceMethod com/intellij/vcs/log/Hash.asString:()Ljava/lang/String;
+      46: iconst_1
+      47: aload_3
+      48: checkcast     #134                // class java/util/Collection
+      51: astore        5
+      53: iconst_0
+      54: istore        6
+      56: aload         5
+      58: astore        7
+      60: aload         7
+      62: iconst_0
+      63: anewarray     #136                // class git4idea/commands/GitLineHandlerListener
+      66: invokeinterface #140,  2          // InterfaceMethod java/util/Collection.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+      71: checkcast     #142                // class "[Lgit4idea/commands/GitLineHandlerListener;"
+      74: astore        4
+      76: aload         4
+      78: aload         4
+      80: arraylength
+      81: invokestatic  #148                // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+      84: checkcast     #142                // class "[Lgit4idea/commands/GitLineHandlerListener;"
+      87: invokeinterface #152,  5          // InterfaceMethod git4idea/commands/Git.revert:(Lgit4idea/repo/GitRepository;Ljava/lang/String;Z[Lgit4idea/commands/GitLineHandlerListener;)Lgit4idea/commands/GitCommandResult;
+      92: dup
+      93: ldc           #154                // String revert(...)
+      95: invokestatic  #33                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      98: areturn
+
+  protected boolean isEmptyCommit(git4idea.commands.GitCommandResult);
+    Code:
+       0: aload_1
+       1: ldc           #163                // String result
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: invokevirtual #168                // Method git4idea/commands/GitCommandResult.getOutputAsJoinedString:()Ljava/lang/String;
+      10: dup
+      11: ldc           #170                // String getOutputAsJoinedString(...)
+      13: invokestatic  #33                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      16: astore_2
+      17: aload_2
+      18: checkcast     #172                // class java/lang/CharSequence
+      21: ldc           #174                // String nothing to commit
+      23: checkcast     #172                // class java/lang/CharSequence
+      26: iconst_0
+      27: iconst_2
+      28: aconst_null
+      29: invokestatic  #180                // Method kotlin/text/StringsKt.contains$default:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;ZILjava/lang/Object;)Z
+      32: ifne          53
+      35: aload_2
+      36: checkcast     #172                // class java/lang/CharSequence
+      39: ldc           #182                // String nothing added to commit but untracked files present
+      41: checkcast     #172                // class java/lang/CharSequence
+      44: iconst_0
+      45: iconst_2
+      46: aconst_null
+      47: invokestatic  #180                // Method kotlin/text/StringsKt.contains$default:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;ZILjava/lang/Object;)Z
+      50: ifeq          57
+      53: iconst_1
+      54: goto          58
+      57: iconst_0
+      58: ireturn
+
+  static {};
+    Code:
+       0: new           #190                // class git4idea/revert/GitRevertProcess$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #193                // Method git4idea/revert/GitRevertProcess$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #197                // Field Companion:Lgit4idea/revert/GitRevertProcess$Companion;
+      11: return
+}

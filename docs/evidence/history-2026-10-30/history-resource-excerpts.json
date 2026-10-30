@@ -1,0 +1,1780 @@
+[
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "META-INF/plugin.xml",
+    "sha256": "f4dd7ea93591d794a2ff5280d61a9f78c1eb336d0fe4bf78710b5ac29052bb35",
+    "matches": [
+      {
+        "line": 41,
+        "text": "    <action id=\"Git.Reset.In.Log\" class=\"git4idea.reset.GitResetAction\" icon=\"AllIcons.Actions.Rollback\" />"
+      },
+      {
+        "line": 42,
+        "text": "    <action id=\"Git.Revert.In.Log\" class=\"git4idea.revert.GitRevertAction\" />"
+      },
+      {
+        "line": 43,
+        "text": "    <action id=\"Git.Uncommit\" class=\"git4idea.reset.GitUncommitAction\" />"
+      },
+      {
+        "line": 44,
+        "text": "    <action id=\"Git.Reword.Commit\" class=\"git4idea.rebase.GitRewordAction\" />"
+      },
+      {
+        "line": 45,
+        "text": "    <action id=\"Git.Squash.Commits\" class=\"git4idea.rebase.log.squash.GitSquashLogAction\" />"
+      },
+      {
+        "line": 46,
+        "text": "    <action id=\"Git.Drop.Commits\" class=\"git4idea.rebase.log.drop.GitDropLogAction\" />"
+      },
+      {
+        "line": 51,
+        "text": "    <action id=\"Git.Drop.Selected.Changes\" class=\"git4idea.rebase.log.changes.GitDropSelectedChangesAction\">"
+      },
+      {
+        "line": 54,
+        "text": "    <action id=\"Git.InMemory.Extract.Selected.Changes\" class=\"git4idea.inMemory.rebase.log.changes.GitExtractSelectedChangesAction\">"
+      },
+      {
+        "line": 77,
+        "text": "    <action id=\"Git.Fixup.To.Commit\" class=\"git4idea.rebase.GitCommitFixupBySubjectAction\" />"
+      },
+      {
+        "line": 78,
+        "text": "    <action id=\"Git.Squash.Into.Commit\" class=\"git4idea.rebase.GitCommitSquashBySubjectAction\" />"
+      },
+      {
+        "line": 79,
+        "text": "    <action id=\"Git.Interactive.Rebase\" class=\"git4idea.rebase.GitInteractiveRebaseAction\" />"
+      },
+      {
+        "line": 101,
+        "text": "    <group id=\"Git.MainMenu.RebaseActions\" class=\"git4idea.actions.GitRepositoryStateActionGroup$Rebase\" popup=\"true\">"
+      },
+      {
+        "line": 102,
+        "text": "      <action id=\"Git.Rebase.Abort\" class=\"git4idea.actions.GitRebaseAbort\" />"
+      },
+      {
+        "line": 103,
+        "text": "      <action id=\"Git.Rebase.Continue\" class=\"git4idea.actions.GitRebaseContinue\" />"
+      },
+      {
+        "line": 104,
+        "text": "      <action id=\"Git.Rebase.Skip\" class=\"git4idea.actions.GitRebaseSkip\" />"
+      },
+      {
+        "line": 114,
+        "text": "      <reference ref=\"ChangesView.Revert\" />"
+      },
+      {
+        "line": 127,
+        "text": "      <action id=\"Git.Rebase\" class=\"git4idea.actions.GitRebase\" />"
+      },
+      {
+        "line": 128,
+        "text": "      <reference ref=\"Git.MainMenu.RebaseActions\" />"
+      },
+      {
+        "line": 130,
+        "text": "      <action id=\"Git.RevertResolved\" class=\"git4idea.actions.GitRevertResolvedAction\" icon=\"AllIcons.Actions.Rollback\">"
+      },
+      {
+        "line": 141,
+        "text": "      <action id=\"Git.Reset\" class=\"git4idea.actions.GitResetHead\" />"
+      },
+      {
+        "line": 156,
+        "text": "      <action id=\"Git.Revert.Abort\" class=\"git4idea.actions.GitAbortOperationAction$Revert\" />"
+      },
+      {
+        "line": 168,
+        "text": "      <reference ref=\"Git.Rebase\" />"
+      },
+      {
+        "line": 169,
+        "text": "      <reference ref=\"Git.MainMenu.RebaseActions\" />"
+      },
+      {
+        "line": 174,
+        "text": "      <reference ref=\"Git.Reset\" />"
+      },
+      {
+        "line": 182,
+        "text": "      <reference ref=\"Git.Revert.Abort\" />"
+      },
+      {
+        "line": 188,
+        "text": "    <group id=\"Git.Ongoing.Rebase.Actions\" popup=\"false\">"
+      },
+      {
+        "line": 189,
+        "text": "      <reference ref=\"Git.Rebase.Abort\" />"
+      },
+      {
+        "line": 193,
+        "text": "      <reference ref=\"Git.Revert.Abort\" />"
+      },
+      {
+        "line": 194,
+        "text": "      <reference ref=\"Git.Rebase.Continue\" />"
+      },
+      {
+        "line": 195,
+        "text": "      <reference ref=\"Git.Rebase.Skip\" />"
+      },
+      {
+        "line": 204,
+        "text": "      <reference ref=\"Git.Ongoing.Rebase.Actions\" />"
+      },
+      {
+        "line": 212,
+        "text": "      <action class=\"git4idea.actions.branch.GitCheckoutWithRebaseAction\" />"
+      },
+      {
+        "line": 220,
+        "text": "      <action class=\"git4idea.actions.branch.GitRebaseBranchAction\" />"
+      },
+      {
+        "line": 228,
+        "text": "      <action class=\"git4idea.actions.branch.GitPullBranchAction$WithRebase\" />"
+      },
+      {
+        "line": 241,
+        "text": "      <reference ref=\"ChangesView.Revert\" />"
+      },
+      {
+        "line": 249,
+        "text": "      <reference ref=\"ChangesView.Revert\" />"
+      },
+      {
+        "line": 250,
+        "text": "      <reference ref=\"ChangesView.RevertFiles\" />"
+      },
+      {
+        "line": 253,
+        "text": "      <reference ref=\"Git.RevertResolved\" />"
+      },
+      {
+        "line": 267,
+        "text": "      <reference ref=\"Git.Revert.In.Log\" />"
+      },
+      {
+        "line": 281,
+        "text": "      <reference ref=\"Git.Reset.In.Log\" />"
+      },
+      {
+        "line": 282,
+        "text": "      <reference ref=\"Git.Revert.In.Log\" />"
+      },
+      {
+        "line": 290,
+        "text": "      <reference ref=\"Git.Interactive.Rebase\" />"
+      },
+      {
+        "line": 328,
+        "text": "    <action id=\"Git.Stage.Reset\" class=\"git4idea.index.actions.GitResetAction\" use-shortcut-of=\"ChangesView.Revert\" />"
+      },
+      {
+        "line": 329,
+        "text": "    <action id=\"Git.Stage.Revert\" class=\"git4idea.index.actions.GitRevertAction\" use-shortcut-of=\"ChangesView.Revert\" />"
+      },
+      {
+        "line": 378,
+        "text": "      <reference ref=\"Git.Stage.Reset\" />"
+      },
+      {
+        "line": 380,
+        "text": "      <reference ref=\"Git.Stage.Revert\" />"
+      },
+      {
+        "line": 397,
+        "text": "      <add-to-group group-id=\"Git.ContextMenu\" relative-to-action=\"ChangesView.RevertFiles\" anchor=\"after\" />"
+      },
+      {
+        "line": 446,
+        "text": "    <action id=\"main.toolbar.git.MergeRebase\" class=\"git4idea.ui.toolbar.GitMergeRebaseWidget\">"
+      },
+      {
+        "line": 449,
+        "text": "    <group id=\"GitMergeRebaseWidgetGroup\">"
+      },
+      {
+        "line": 451,
+        "text": "      <reference ref=\"Git.RevertResolved\" />"
+      },
+      {
+        "line": 452,
+        "text": "      <reference ref=\"Git.Rebase.Continue\" />"
+      },
+      {
+        "line": 453,
+        "text": "      <reference ref=\"Git.Rebase.Abort\" />"
+      },
+      {
+        "line": 457,
+        "text": "      <reference ref=\"Git.Revert.Abort\" />"
+      },
+      {
+        "line": 517,
+        "text": "    <registryKey key=\"git.use.no.optional.locks\" defaultValue=\"true\" description=\"Use 'GIT_OPTIONAL_LOCKS' env variable to avoid taking unnecessary locks in git. Ex: to avoid 'git status' to interfere with 'git rebase' process in terminal.\" />"
+      },
+      {
+        "line": 528,
+        "text": "    <registryKey key=\"git.can.use.restore.command\" defaultValue=\"true\" description=\"Use 'git restore --staged --worktree --source=HEAD -- paths' instead of 'git reset --hard' to speed up worktree cleanup.\" />"
+      },
+      {
+        "line": 534,
+        "text": "    <registryKey key=\"git.do.not.swap.merge.conflict.sides\" defaultValue=\"false\" description=\"Do not inverse 'ours' and 'theirs' conflict sides during rebase\" />"
+      },
+      {
+        "line": 541,
+        "text": "    <registryKey key=\"git.in.memory.commit.editing.operations.enabled\" defaultValue=\"true\" description=\"Starts in-memory variants of interactive rebase operations in suitable scenarios, leading to better performance\" />"
+      },
+      {
+        "line": 542,
+        "text": "    <registryKey key=\"git.in.memory.interactive.rebase.debug.notify.errors\" defaultValue=\"false\" description=\"Show notification when in-memory interactive rebase fails and fallbacks to the regular one\" />"
+      },
+      {
+        "line": 559,
+        "text": "    <vcsCheckinHandlerFactory implementation=\"git4idea.rebase.GitRebaseCheckinHandlerFactory\" />"
+      },
+      {
+        "line": 586,
+        "text": "    <generalVcsSettingsExtension instance=\"git4idea.rebase.log.GitLogCommitEditingConfigurable\" location=\"confirmations\" />"
+      },
+      {
+        "line": 588,
+        "text": "    <projectService serviceImplementation=\"git4idea.config.GitRebaseSettings\" />"
+      },
+      {
+        "line": 598,
+        "text": "    <httpRequestHandler implementation=\"git4idea.rebase.GitRebaseEditorExternalProcessRest\" />"
+      },
+      {
+        "line": 632,
+        "text": "    <registryKey key=\"git.interactive.rebase.collect.entries.using.log\" defaultValue=\"true\" description=\"Use Log to collect Rebase Entries\" />"
+      },
+      {
+        "line": 696,
+        "text": "    <vcs.commitSuccessNotificationActionProvider implementation=\"git4idea.rebase.log.GitCommitSuccessNotificationRewordProvider\" />"
+      },
+      {
+        "line": 825,
+        "text": "    <toolbarQuickAction implementationClass=\"com.intellij.vcs.git.frontend.RollbackQuickAction\" listGroupID=\"MainToolbarQuickActions.VCS\" />"
+      }
+    ]
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "messages/GitBundle.properties",
+    "sha256": "fd0ea596360606b36bc8bad904e27caebb617b8fcbcc54a0615999891c33bcd1",
+    "matches": [
+      {
+        "line": 12,
+        "text": "abort.operation.revert.name=revert"
+      },
+      {
+        "line": 13,
+        "text": "abort.operation.rebase.name=rebase"
+      },
+      {
+        "line": 46,
+        "text": "commit.action.commit.and.rebase.text=Commit and Rebase\\u2026"
+      },
+      {
+        "line": 154,
+        "text": "pull.option.rebase=Rebase the current branch on top of incoming changes"
+      },
+      {
+        "line": 162,
+        "text": "rebase.abort.and.rollback.dialog.message=Abort rebase in {0} only or also rollback rebase in {1}?"
+      },
+      {
+        "line": 163,
+        "text": "rebase.abort.and.rollback.dialog.no.button.text=Abort Only"
+      },
+      {
+        "line": 164,
+        "text": "rebase.abort.and.rollback.dialog.yes.button.text=Abort and Rollback"
+      },
+      {
+        "line": 165,
+        "text": "rebase.abort.dialog.message=Abort rebase in {0}?"
+      },
+      {
+        "line": 166,
+        "text": "rebase.abort.dialog.ok.button.text=Abort"
+      },
+      {
+        "line": 167,
+        "text": "rebase.abort.dialog.title=Abort Rebase"
+      },
+      {
+        "line": 168,
+        "text": "rebase.abort.notification.failed.title=Abort rebase failed"
+      },
+      {
+        "line": 169,
+        "text": "rebase.abort.notification.successful.message=Abort rebase succeeded"
+      },
+      {
+        "line": 170,
+        "text": "rebase.abort.notification.warning.rollback.failed.message=Rollback failed in {0}:{1}{2}"
+      },
+      {
+        "line": 171,
+        "text": "rebase.abort.notification.warning.rollback.failed.title=Rebase rollback failed"
+      },
+      {
+        "line": 172,
+        "text": "rebase.abort.notification.warning.rollback.failed.with.repo.message=Abort rebase was successful in {0}, but rollback failed in {1}:{2}{3}"
+      },
+      {
+        "line": 173,
+        "text": "rebase.abort.progress.indicator.command.in.repo.title={0} in {1}"
+      },
+      {
+        "line": 174,
+        "text": "rebase.abort.rollback.successful.rebase.dialog.message=Do you want to rollback the successful rebase in {0}?"
+      },
+      {
+        "line": 175,
+        "text": "rebase.abort.rollback.successful.rebase.dialog.ok.button.text=Rollback"
+      },
+      {
+        "line": 176,
+        "text": "rebase.confirmation.dialog.published.commits.button.cancel.text=Cancel"
+      },
+      {
+        "line": 177,
+        "text": "rebase.confirmation.dialog.published.commits.button.rebase.text=Rebase Anyway"
+      },
+      {
+        "line": 178,
+        "text": "rebase.confirmation.dialog.published.commits.message.first=You are trying to rebase some commits already pushed to a protected branch."
+      },
+      {
+        "line": 179,
+        "text": "rebase.confirmation.dialog.published.commits.message.second=Rebasing them would duplicate commits, which is not recommended and most likely unwanted."
+      },
+      {
+        "line": 180,
+        "text": "rebase.confirmation.dialog.published.commits.title=Rebasing Published Commit"
+      },
+      {
+        "line": 181,
+        "text": "rebase.conflict.diff.dialog.left.title=Rebasing {0} from {1}"
+      },
+      {
+        "line": 182,
+        "text": "rebase.conflict.diff.dialog.right.simple.title=Already rebased commits"
+      },
+      {
+        "line": 183,
+        "text": "rebase.conflict.diff.dialog.right.with.branch.title=Already rebased commits and commits from {0}"
+      },
+      {
+        "line": 184,
+        "text": "rebase.couldnt.resolve.file=Could not resolve {0}"
+      },
+      {
+        "line": 185,
+        "text": "rebase.dialog.error.upstream.not.selected=Select an upstream"
+      },
+      {
+        "line": 186,
+        "text": "rebase.dialog.error.base.not.selected=Select a new base"
+      },
+      {
+        "line": 187,
+        "text": "rebase.dialog.error.branch.or.tag.not.exist=There is no such branch or tag"
+      },
+      {
+        "line": 188,
+        "text": "rebase.dialog.error.branch.not.selected=Select a branch to switch to"
+      },
+      {
+        "line": 189,
+        "text": "rebase.dialog.error.branch.invalid=Branch ''{0}'' does not exist"
+      },
+      {
+        "line": 190,
+        "text": "rebase.dialog.error.rebase.in.progress=Interactive rebase is already in progress for this Git root"
+      },
+      {
+        "line": 191,
+        "text": "rebase.dialog.root.invalid.label.text=(invalid)"
+      },
+      {
+        "line": 192,
+        "text": "rebase.dialog.progress.loading.tags=Loading tags\\u2026"
+      },
+      {
+        "line": 193,
+        "text": "rebase.dialog.help=Show Git rebase help"
+      },
+      {
+        "line": 194,
+        "text": "rebase.dialog.start.rebase=Rebase"
+      },
+      {
+        "line": 195,
+        "text": "rebase.dialog.title=Rebase"
+      },
+      {
+        "line": 196,
+        "text": "rebase.dialog.target=branch or hash"
+      },
+      {
+        "line": 197,
+        "text": "rebase.dialog.new.base=new base (branch or hash)"
+      },
+      {
+        "line": 198,
+        "text": "rebase.dialog.old.base=old base (branch or hash)"
+      },
+      {
+        "line": 199,
+        "text": "rebase.dialog.branch.field=source branch"
+      },
+      {
+        "line": 200,
+        "text": "rebase.options.modify.dialog.title=Add Rebase Options"
+      },
+      {
+        "line": 201,
+        "text": "rebase.option.onto=Specify a new base for the rebased commits"
+      },
+      {
+        "line": 202,
+        "text": "rebase.option.interactive=Edit commits before rebasing"
+      },
+      {
+        "line": 203,
+        "text": "rebase.option.update.refs=Auto-update branches pointing to rebased commits"
+      },
+      {
+        "line": 204,
+        "text": "rebase.option.rebase.merges=Recreate commits topology"
+      },
+      {
+        "line": 205,
+        "text": "rebase.option.switch.to.branch=Select another branch to rebase"
+      },
+      {
+        "line": 206,
+        "text": "rebase.option.keep.empty=Do not remove empty commits during rebase"
+      },
+      {
+        "line": 207,
+        "text": "rebase.option.root=Rebase all commits in the branch"
+      },
+      {
+        "line": 208,
+        "text": "rebase.option.autosquash=Auto-squash commits marked for fixup or squash"
+      },
+      {
+        "line": 209,
+        "text": "rebase.help.popup.ad.text=Press Space to open external link"
+      },
+      {
+        "line": 210,
+        "text": "rebase.help.rebase.branch=Rebase a branch based on one branch to another:"
+      },
+      {
+        "line": 211,
+        "text": "rebase.help.link=git rebase on git-scm.com"
+      },
+      {
+        "line": 212,
+        "text": "rebase.entry.action.name.drop=Drop"
+      },
+      {
+        "line": 213,
+        "text": "rebase.entry.action.name.edit=Edit"
+      },
+      {
+        "line": 214,
+        "text": "rebase.entry.action.name.fixup=Fixup"
+      },
+      {
+        "line": 215,
+        "text": "rebase.entry.action.name.update.ref=Update Ref"
+      },
+      {
+        "line": 216,
+        "text": "rebase.entry.action.name.pick=Pick"
+      },
+      {
+        "line": 217,
+        "text": "rebase.entry.action.name.reword=Reword"
+      },
+      {
+        "line": 218,
+        "text": "rebase.entry.action.name.squash=Squash"
+      },
+      {
+        "line": 219,
+        "text": "rebase.entry.action.name.unknown=Unknown"
+      },
+      {
+        "line": 220,
+        "text": "rebase.git.operation.name=Rebase"
+      },
+      {
+        "line": 221,
+        "text": "rebase.interactive.dialog.discard.modifications.cancel=Cancel Rebase"
+      },
+      {
+        "line": 222,
+        "text": "rebase.interactive.dialog.discard.modifications.continue=Continue Rebasing"
+      },
+      {
+        "line": 223,
+        "text": "rebase.interactive.dialog.discard.modifications.discard=Discard"
+      },
+      {
+        "line": 224,
+        "text": "rebase.interactive.dialog.discard.modifications.message=Discard changes and cancel rebase?"
+      },
+      {
+        "line": 225,
+        "text": "rebase.interactive.dialog.git.commands.column.action=Action"
+      },
+      {
+        "line": 226,
+        "text": "rebase.interactive.dialog.git.commands.column.hash=Hash"
+      },
+      {
+        "line": 227,
+        "text": "rebase.interactive.dialog.git.commands.column.subject=Subject"
+      },
+      {
+        "line": 228,
+        "text": "rebase.interactive.dialog.git.commands=Git Commands"
+      },
+      {
+        "line": 229,
+        "text": "rebase.interactive.dialog.reset.link.text=Reset"
+      },
+      {
+        "line": 230,
+        "text": "rebase.interactive.dialog.reword.hint.text=Press {0} to apply changes"
+      },
+      {
+        "line": 231,
+        "text": "rebase.interactive.dialog.start.rebase=Start Rebasing"
+      },
+      {
+        "line": 232,
+        "text": "rebase.interactive.dialog.stop.to.edit.text=Stop to Edit"
+      },
+      {
+        "line": 233,
+        "text": "rebase.interactive.dialog.title=Rebasing Commits"
+      },
+      {
+        "line": 234,
+        "text": "rebase.interactive.dialog.view.git.commands.text=View Git Commands"
+      },
+      {
+        "line": 235,
+        "text": "rebase.interactive.dialog.cancel.reword.warning.title=Cancel Reword"
+      },
+      {
+        "line": 236,
+        "text": "rebase.interactive.dialog.cancel.reword.warning.body=Entered commit message will be lost"
+      },
+      {
+        "line": 237,
+        "text": "rebase.interactive.dialog.cancel.reword.warning.cancel=Cancel Reword"
+      },
+      {
+        "line": 238,
+        "text": "rebase.interactive.dialog.cancel.reword.warning.continue=Keep Editing"
+      },
+      {
+        "line": 239,
+        "text": "rebase.interactive.edit.commit.message.dialog.title=Git Commit Message"
+      },
+      {
+        "line": 240,
+        "text": "rebase.interactive.edit.commit.message.ok.action.title=Continue Rebasing"
+      },
+      {
+        "line": 241,
+        "text": "rebase.interactive.noop.dialog.text=There are no commits to rebase because the current branch is directly below the base branch, or they point to the same commit (the 'noop' situation).\\n Do you want to continue (this will reset the current branch to the base branch)?"
+      },
+      {
+        "line": 242,
+        "text": "rebase.interactive.noop.dialog.title=Git Rebase"
+      },
+      {
+        "line": 243,
+        "text": "rebase.interactive.unstructured.editor.dialog.root.label=Git Root: {0}"
+      },
+      {
+        "line": 244,
+        "text": "rebase.log.action.operation.rebase.name=rebase"
+      },
+      {
+        "line": 245,
+        "text": "rebase.log.action.operation.reword.name=reword"
+      },
+      {
+        "line": 246,
+        "text": "rebase.log.commit.editing.action.commit.not.in.head.error.text=The commit is not in the current branch"
+      },
+      {
+        "line": 247,
+        "text": "rebase.log.commit.editing.action.commit.pushed.to.protected.branch.error.text=The commit is already pushed to protected branch ''{0}''"
+      },
+      {
+        "line": 248,
+        "text": "rebase.log.commit.editing.action.initial.commit.dialog.title=Editing Initial Commit"
+      },
+      {
+        "line": 249,
+        "text": "rebase.log.commit.editing.action.initial.commit.dialog.text=Are you sure you want to edit the initial commit?"
+      },
+      {
+        "line": 250,
+        "text": "rebase.log.commit.editing.action.disabled.parents.description=Selected commit has {0} parents"
+      },
+      {
+        "line": 251,
+        "text": "rebase.log.multiple.commit.editing.action.disabled.external.repository.description=Selected {0,choice,1#commit|2#commits} {0,choice,1#is|2#are} from external repository"
+      },
+      {
+        "line": 252,
+        "text": "rebase.log.multiple.commit.editing.action.disabled.multiple.repository.description=Selected {0,choice,1#commit|2#commits} {0,choice,1#is|2#are} from different repositories"
+      },
+      {
+        "line": 253,
+        "text": "rebase.log.commit.editing.action.progress.containing.branches.title=Searching for branches containing the selected commit\\u2026"
+      },
+      {
+        "line": 254,
+        "text": "rebase.log.commit.editing.action.prohibit.state.grafting=Cannot {0} during cherry-pick"
+      },
+      {
+        "line": 255,
+        "text": "rebase.log.commit.editing.action.prohibit.state.merging=Cannot {0} during merge"
+      },
+      {
+        "line": 256,
+        "text": "rebase.log.commit.editing.action.prohibit.state.rebasing=Cannot {0} during rebase"
+      },
+      {
+        "line": 257,
+        "text": "rebase.log.commit.editing.action.prohibit.state.reverting=Cannot {0} during revert"
+      },
+      {
+        "line": 258,
+        "text": "rebase.log.commit.editing.action.prohibit.state=Cannot {0}"
+      },
+      {
+        "line": 259,
+        "text": "rebase.log.undo.impossible.pushed.to.protected.branch.notification.text=Commits from current branch have already been pushed to protected branch {0}"
+      },
+      {
+        "line": 261,
+        "text": "rebase.log.drop.action.confirmation.title=Drop {0,choice,1#Commit|2#Commits}"
+      },
+      {
+        "line": 262,
+        "text": "rebase.log.drop.action.confirmation.message=Do you want to drop {0} {0,choice,1#commit|2#commits} from the <b>{1}</b> branch?"
+      },
+      {
+        "line": 263,
+        "text": "rebase.log.drop.action.confirmation.message.detached.head=The repository is in the detached HEAD state. Do you want to drop {0} {0,choice,1#commit|2#commits}?"
+      },
+      {
+        "line": 264,
+        "text": "rebase.log.drop.action.custom.text=Drop {0,choice,1#Commit|2#Commits}"
+      },
+      {
+        "line": 265,
+        "text": "rebase.log.drop.action.failure.title=Could not Drop Commits"
+      },
+      {
+        "line": 266,
+        "text": "rebase.log.drop.progress.indicator.title=Dropping {0,choice,1#commit|2#commits}\\u2026"
+      },
+      {
+        "line": 267,
+        "text": "rebase.log.drop.success.notification.title=Dropped {0} {0,choice,1#commit|2#commits}"
+      },
+      {
+        "line": 268,
+        "text": "rebase.log.drop.undo.failed.title=Undo drop failed"
+      },
+      {
+        "line": 269,
+        "text": "rebase.log.drop.undo.impossible.title=Cannot undo drop"
+      },
+      {
+        "line": 270,
+        "text": "rebase.log.drop.undo.progress.title=Undoing drop\\u2026"
+      },
+      {
+        "line": 271,
+        "text": "rebase.log.multiple.commit.editing.action.cant.find.head=Could not find HEAD branch in repository which contains selected {0,choice,1#commit|2#commits}"
+      },
+      {
+        "line": 272,
+        "text": "rebase.log.multiple.commit.editing.action.progress.indicator.action.possibility.check=Checking if it is allowed to edit selected commits\\u2026"
+      },
+      {
+        "line": 273,
+        "text": "rebase.log.multiple.commit.editing.action.specific.commit.not.in.head=Commit {0} is not in the current branch"
+      },
+      {
+        "line": 274,
+        "text": "rebase.log.multiple.commit.editing.action.specific.commit.root.or.merge=Commit {0} has {1} parents"
+      },
+      {
+        "line": 275,
+        "text": "rebase.log.create.fixup.commit.action.failure.title=Cannot Create Fixup Commit"
+      },
+      {
+        "line": 276,
+        "text": "rebase.log.create.squash.commit.action.failure.title=Cannot Create Squash Commit"
+      },
+      {
+        "line": 277,
+        "text": "rebase.log.interactive.action.failure.title=Cannot Start Rebase"
+      },
+      {
+        "line": 278,
+        "text": "rebase.log.reword.action.failure.title=Could not Edit Commit Message"
+      },
+      {
+        "line": 279,
+        "text": "rebase.log.action.loading.commit.message.failed.message=Could not load changes of {0,choice,1#commit|2#commits}"
+      },
+      {
+        "line": 280,
+        "text": "rebase.log.reword.action.notification.successful.title=Commit Message Changed"
+      },
+      {
+        "line": 281,
+        "text": "rebase.log.reword.action.notification.undo.failed.title=Undo Commit Message Edit Failed"
+      },
+      {
+        "line": 282,
+        "text": "rebase.log.reword.action.notification.undo.not.allowed.repository.changed.message=Repository has already been changed"
+      },
+      {
+        "line": 283,
+        "text": "rebase.log.reword.action.notification.undo.not.allowed.title=Cannot Undo Commit Message Edit"
+      },
+      {
+        "line": 284,
+        "text": "rebase.log.action.progress.indicator.loading.commit.message.title=Loading {0,choice,1#commit|2#commits} details\\u2026"
+      },
+      {
+        "line": 285,
+        "text": "rebase.log.squash.action.failure.title=Could not Squash Commits"
+      },
+      {
+        "line": 286,
+        "text": "rebase.log.squash.new.message.dialog.label=Edit message for squashed commit"
+      },
+      {
+        "line": 287,
+        "text": "rebase.log.squash.new.message.dialog.title=Squashed Commit Message"
+      },
+      {
+        "line": 288,
+        "text": "rebase.log.squash.progress.indicator.title=Squashing\\u2026"
+      },
+      {
+        "line": 289,
+        "text": "rebase.log.squash.success.notification.title=Commits Squashed"
+      },
+      {
+        "line": 290,
+        "text": "rebase.log.squash.undo.failed.title=Undo Squash Failed"
+      },
+      {
+        "line": 291,
+        "text": "rebase.log.squash.undo.impossible.title=Cannot Undo Squash"
+      },
+      {
+        "line": 292,
+        "text": "rebase.log.squash.undo.progress.title=Undoing squash\\u2026"
+      },
+      {
+        "line": 293,
+        "text": "rebase.log.reword.action.progress.indicator.title=Rewording\\u2026"
+      },
+      {
+        "line": 294,
+        "text": "rebase.log.reword.action.progress.indicator.undo.title=Undoing reword\\u2026"
+      },
+      {
+        "line": 295,
+        "text": "rebase.log.reword.dialog.description.label=Edit message for {0,choice,1#commit|2#commits} {1} by {2}"
+      },
+      {
+        "line": 296,
+        "text": "rebase.log.reword.dialog.failed.pushed.to.protected.message=Cannot edit selected {0,choice,1#commit|2#commits}: commit {1} was pushed to protected branch ''{2}''"
+      },
+      {
+        "line": 297,
+        "text": "rebase.log.reword.dialog.failed.repository.changed.message=Cannot edit selected {0,choice,1#commit|2#commits}: repository state was changed"
+      },
+      {
+        "line": 298,
+        "text": "rebase.log.reword.dialog.title=Edit Commit Message"
+      },
+      {
+        "line": 299,
+        "text": "rebase.log.changes.action.operation.drop.name=drop selected changes"
+      },
+      {
+        "line": 300,
+        "text": "rebase.log.changes.drop.action.failure.title=Could Not Drop Selected Changes"
+      },
+      {
+        "line": 301,
+        "text": "rebase.log.changes.drop.action.progress.indicator.title=Dropping changes\\u2026"
+      },
+      {
+        "line": 302,
+        "text": "rebase.log.changes.drop.action.notification.successful.title=Changes dropped"
+      },
+      {
+        "line": 303,
+        "text": "rebase.log.changes.drop.action.progress.indicator.undo.title=Undoing drop changes\\u2026"
+      },
+      {
+        "line": 304,
+        "text": "rebase.log.changes.drop.action.notification.undo.not.allowed.title=Cannot undo drop changes"
+      },
+      {
+        "line": 305,
+        "text": "rebase.log.changes.drop.action.notification.undo.failed.title=Undo drop changes failed"
+      },
+      {
+        "line": 306,
+        "text": "rebase.log.changes.drop.action.description.all.changes.selected=Unable to drop all changes from the commit"
+      },
+      {
+        "line": 307,
+        "text": "rebase.log.changes.drop.action.detached.head.destination=detached HEAD"
+      },
+      {
+        "line": 308,
+        "text": "rebase.log.changes.drop.failed.title=Failed to drop selected changes"
+      },
+      {
+        "line": 309,
+        "text": "in.memory.rebase.log.reword.failed.title=Failed to reword"
+      },
+      {
+        "line": 310,
+        "text": "in.memory.rebase.log.squash.failed.title=Failed to squash"
+      },
+      {
+        "line": 311,
+        "text": "in.memory.rebase.log.changes.action.operation.extract.name=extract selected changes"
+      },
+      {
+        "line": 312,
+        "text": "in.memory.rebase.log.changes.extract.action.description.all.changes.selected=Unable to extract all changes from the commit"
+      },
+      {
+        "line": 313,
+        "text": "in.memory.rebase.log.changes.extract.action.failure.title=Could Not Extract Selected Changes"
+      },
+      {
+        "line": 314,
+        "text": "in.memory.rebase.log.changes.extract.dialog.title=New Commit Message"
+      },
+      {
+        "line": 315,
+        "text": "in.memory.rebase.log.changes.extract.dialog.description.label=Changes extracted from commit {0} by {1}"
+      },
+      {
+        "line": 316,
+        "text": "in.memory.rebase.log.change.extract.action.progress.indicator.title=Extracting changes\\u2026"
+      },
+      {
+        "line": 317,
+        "text": "in.memory.rebase.log.changes.extract.action.notification.successful.title=Changes extracted"
+      },
+      {
+        "line": 318,
+        "text": "in.memory.rebase.log.changes.extract.action.progress.indicator.undo.title=Undoing extract changes\\u2026"
+      },
+      {
+        "line": 319,
+        "text": "in.memory.rebase.log.changes.extract.action.notification.undo.not.allowed.title=Cannot undo extract changes"
+      },
+      {
+        "line": 320,
+        "text": "in.memory.rebase.log.changes.extract.action.notification.undo.failed.title=Undo extract changes failed"
+      },
+      {
+        "line": 321,
+        "text": "in.memory.rebase.log.changes.extract.failed.title=Failed to extract selected changes"
+      },
+      {
+        "line": 322,
+        "text": "in.memory.rebase.log.interactive.action.notification.successful=Rebase successful"
+      },
+      {
+        "line": 323,
+        "text": "in.memory.rebase.log.interactive.action.progress.indicator.undo.title=Undoing interactive rebase\\u2026"
+      },
+      {
+        "line": 324,
+        "text": "in.memory.rebase.log.interactive.action.notification.undo.not.allowed.title=Cannot undo interactive rebase"
+      },
+      {
+        "line": 325,
+        "text": "in.memory.rebase.log.interactive.action.notification.undo.failed.title=Undo interactive rebase failed"
+      },
+      {
+        "line": 326,
+        "text": "in.memory.rebase.log.interactive.failed.title=Interactive rebase failed"
+      },
+      {
+        "line": 329,
+        "text": "in.memory.rebase.interactive.failed.title=In-memory rebase failed"
+      },
+      {
+        "line": 330,
+        "text": "in.memory.rebase.interactive.failed.message=Falling back to regular rebase"
+      },
+      {
+        "line": 331,
+        "text": "in.memory.rebase.fail.head.move=HEAD moved during the commit editing operation"
+      },
+      {
+        "line": 332,
+        "text": "in.memory.rebase.failed.rebase.data=Failed to generate valid in-memory rebase data"
+      },
+      {
+        "line": 333,
+        "text": "in.memory.rebase.data.contains.entry.with.unsupported.action=In-memory rebase data contains entry with unsupported action: {0}"
+      },
+      {
+        "line": 334,
+        "text": "in.memory.rebase.data.contains.missing.reword.message.for.entry=In-memory rebase data contains missing reword message for entry: {0}"
+      },
+      {
+        "line": 335,
+        "text": "in.memory.rebase.data.contains.empty.reword.message.for.entry=In-memory rebase data contains empty reword message for entry: {0}"
+      },
+      {
+        "line": 336,
+        "text": "rebase.notification.action.abort.text=Abort"
+      },
+      {
+        "line": 337,
+        "text": "rebase.notification.action.continue.text=Continue"
+      },
+      {
+        "line": 338,
+        "text": "rebase.notification.action.retry.text=Retry"
+      },
+      {
+        "line": 339,
+        "text": "rebase.notification.action.stage.and.retry.text=Stage and Retry"
+      },
+      {
+        "line": 340,
+        "text": "rebase.notification.action.view.shelf.text=View Shelf\\u2026"
+      },
+      {
+        "line": 341,
+        "text": "rebase.notification.action.view.stash.text=View Stash\\u2026"
+      },
+      {
+        "line": 342,
+        "text": "rebase.notification.conflict.title=Rebase stopped due to conflicts"
+      },
+      {
+        "line": 343,
+        "text": "rebase.notification.editing.title=Rebase stopped for editing"
+      },
+      {
+        "line": 344,
+        "text": "rebase.notification.failed.continue.title=Continue rebase failed"
+      },
+      {
+        "line": 345,
+        "text": "rebase.notification.failed.rebase.title=Rebase failed"
+      },
+      {
+        "line": 348,
+        "text": "rebase.notification.no.rebase.in.progress.abort.title=Cannot abort rebase"
+      },
+      {
+        "line": 349,
+        "text": "rebase.notification.no.rebase.in.progress.continue.title=Cannot continue rebase"
+      },
+      {
+        "line": 350,
+        "text": "rebase.notification.no.rebase.in.progress.message=No rebase in progress"
+      },
+      {
+        "line": 351,
+        "text": "rebase.notification.not.allowed.empty.repository.message=Repository {0} is empty."
+      },
+      {
+        "line": 352,
+        "text": "rebase.notification.not.allowed.grafting.message.first=There is an unfinished cherry-pick process in {0}."
+      },
+      {
+        "line": 353,
+        "text": "rebase.notification.not.allowed.grafting.message.second=You should finish it before starting a rebase."
+      },
+      {
+        "line": 354,
+        "text": "rebase.notification.not.allowed.merging.message.first=There is an unfinished merge process in {0}."
+      },
+      {
+        "line": 355,
+        "text": "rebase.notification.not.allowed.merging.message.second=You should complete the merge before starting a rebase."
+      },
+      {
+        "line": 356,
+        "text": "rebase.notification.not.allowed.message=Rebase is not possible in {0}."
+      },
+      {
+        "line": 357,
+        "text": "rebase.notification.not.allowed.rebasing.message.first=There is an unfinished rebase process in {0}."
+      },
+      {
+        "line": 358,
+        "text": "rebase.notification.not.allowed.rebasing.message.second=You should complete it before starting another rebase."
+      },
+      {
+        "line": 359,
+        "text": "rebase.notification.not.allowed.reverting.message.first=There is an unfinished revert process in {0}."
+      },
+      {
+        "line": 360,
+        "text": "rebase.notification.not.allowed.reverting.message.second=You should finish it before starting a rebase."
+      },
+      {
+        "line": 361,
+        "text": "rebase.notification.not.allowed.title=Rebase not allowed"
+      },
+      {
+        "line": 362,
+        "text": "rebase.notification.not.started.title=Rebase not started"
+      },
+      {
+        "line": 363,
+        "text": "rebase.notification.saved.local.changes.part.shelf.text=Local changes were shelved before rebase."
+      },
+      {
+        "line": 364,
+        "text": "rebase.notification.saved.local.changes.part.stash.text=Local changes were stashed before rebase."
+      },
+      {
+        "line": 365,
+        "text": "rebase.notification.successful.rebased.checkout.message=Checked out{0,choice,0#|1# {1}} and rebased it{2,choice,0#|1# on {3}}"
+      },
+      {
+        "line": 366,
+        "text": "rebase.notification.successful.rebased.message=Rebased{0,choice,0#|1# {1}}{2,choice,0#|1# on {3}}"
+      },
+      {
+        "line": 367,
+        "text": "rebase.notification.successful.title=Rebase successful"
+      },
+      {
+        "line": 368,
+        "text": "rebase.notification.all.conflicts.resolved.title=Resolve Conflicts"
+      },
+      {
+        "line": 369,
+        "text": "rebase.notification.all.conflicts.resolved.text=All conflicts have been resolved. Do you want to continue rebase?"
+      },
+      {
+        "line": 370,
+        "text": "rebase.notification.all.conflicts.resolved.continue.rebase.action.text=Con&tinue Rebase"
+      },
+      {
+        "line": 371,
+        "text": "rebase.notification.continue.failed.unstaged.changes.text=There are unstaged changes in tracked files preventing rebase from continuing"
+      },
+      {
+        "line": 372,
+        "text": "rebase.notification.continue.failed.stage.changes.text=Failed to stage changes in tracked files"
+      },
+      {
+        "line": 373,
+        "text": "rebase.tracked.files.with.unstaged.changes.title=Tracked Files with Unstaged Changes"
+      },
+      {
+        "line": 374,
+        "text": "rebase.tracked.files.with.unstaged.changes.empty.text=No unstaged files"
+      },
+      {
+        "line": 375,
+        "text": "rebase.progress.indicator.aborting.title=Aborting rebase process\\u2026"
+      },
+      {
+        "line": 376,
+        "text": "rebase.progress.indicator.conflicts.collecting.title=Collecting conflicts to resolve\\u2026"
+      },
+      {
+        "line": 377,
+        "text": "rebase.progress.indicator.continue.title=Continuing rebase process\\u2026"
+      },
+      {
+        "line": 378,
+        "text": "rebase.progress.indicator.preparing.title=Preparing to rebase\\u2026"
+      },
+      {
+        "line": 379,
+        "text": "rebase.progress.indicator.retry.title=Retrying rebase process\\u2026"
+      },
+      {
+        "line": 380,
+        "text": "rebase.progress.indicator.title=Rebasing\\u2026"
+      },
+      {
+        "line": 381,
+        "text": "rebase.simple.editor.dialog.title=Git Editor"
+      },
+      {
+        "line": 382,
+        "text": "rebase.update.project.abort.task.title=Aborting rebase\\u2026"
+      },
+      {
+        "line": 383,
+        "text": "rebase.update.project.conflict.error.notification.description=Then you may <b>continue rebase</b>. <br/> You also may <b>abort rebase</b> to restore the original branch and stop rebasing."
+      },
+      {
+        "line": 384,
+        "text": "rebase.update.project.conflict.error.notification.title=Cannot continue rebase"
+      },
+      {
+        "line": 385,
+        "text": "rebase.update.project.conflict.merge.description.label=Merge conflicts detected. Resolve them before continuing rebase."
+      },
+      {
+        "line": 386,
+        "text": "rebase.update.project.notification.abort.error.message=Error aborting rebase"
+      },
+      {
+        "line": 387,
+        "text": "rebase.update.project.notification.abort.success.message=Rebase aborted"
+      },
+      {
+        "line": 388,
+        "text": "rebase.update.project.notification.failed.message=Could not proceed with rebase. {0}"
+      },
+      {
+        "line": 389,
+        "text": "rebase.update.project.notification.failed.title=Rebase Error"
+      },
+      {
+        "line": 390,
+        "text": "rebase.using.log.couldnt.start.error=Cannot perform the rebase because the IDE generated an invalid 'git-rebase-todo' file. Do you want to retry the rebase using Git native file generation?"
+      },
+      {
+        "line": 399,
+        "text": "reset.action.name=Reset Head\\u2026"
+      },
+      {
+        "line": 400,
+        "text": "reset.commit.invalid=The specified commit expression did not pass validation."
+      },
+      {
+        "line": 401,
+        "text": "reset.commit.label=To &Commit:"
+      },
+      {
+        "line": 402,
+        "text": "reset.commit.tooltip=The commit that will become the current HEAD\\n as result of reset operation."
+      },
+      {
+        "line": 403,
+        "text": "reset.title=Reset Head"
+      },
+      {
+        "line": 404,
+        "text": "reset.type.tooltip=<html>The reset type (see also <code>git reset</code> man page):<ul><li><b>Mixed</b> resets index but not working tree</li><li><b>Soft</b> leaves index and working tree, just moves head pointer</li><li><b>Hard</b> resets index and working tree.<em>Changes in the working tree will be lost</em></li></ul></html>"
+      },
+      {
+        "line": 405,
+        "text": "reset.type=Reset &Type:"
+      },
+      {
+        "line": 406,
+        "text": "reset.validate=&Validate"
+      },
+      {
+        "line": 407,
+        "text": "resetting.title=Resetting HEAD\\u2026"
+      },
+      {
+        "line": 582,
+        "text": "git.commit.amend.specific.commit.merge.conflict.error.message=Cannot amend commit due to conflicts. You can create an \\u201Camend!\\u201D commit and resolve conflicts manually during interactive rebase."
+      },
+      {
+        "line": 587,
+        "text": "git.commit.amend.specific.commit.reset.successful.notification.message=\\u201Camend!\\u201D commit created"
+      },
+      {
+        "line": 588,
+        "text": "git.commit.amend.specific.commit.reset.failed.notification.title=Failed to create an \\u201Camend!\\u201D commit"
+      },
+      {
+        "line": 633,
+        "text": "group.Git.MainMenu.RebaseActions.text=_Rebase"
+      },
+      {
+        "line": 637,
+        "text": "action.Git.Rebase.Skip.text=Skip Commit"
+      },
+      {
+        "line": 638,
+        "text": "action.Git.Rebase.Skip.progress.title=Skip commit during rebase\\u2026"
+      },
+      {
+        "line": 639,
+        "text": "action.Git.Rebase.Continue.text=Continue Rebase"
+      },
+      {
+        "line": 640,
+        "text": "action.Git.Revert.Abort.text=Abort Revert"
+      },
+      {
+        "line": 643,
+        "text": "action.Git.Rebase.Abort.text=Abort Rebase"
+      },
+      {
+        "line": 644,
+        "text": "action.Git.Rebase.text=Rebase\\u2026"
+      },
+      {
+        "line": 645,
+        "text": "action.Git.Rebase.operation.name=rebase"
+      },
+      {
+        "line": 650,
+        "text": "action.Git.Reset.text=Reset HEAD\\u2026"
+      },
+      {
+        "line": 662,
+        "text": "action.Git.Interactive.Rebase.text=Interactively Rebase from Here\\u2026"
+      },
+      {
+        "line": 663,
+        "text": "action.Git.Interactive.Rebase.description=Show the dialog for interactive rebase which allows to squash, fixup, reorder, remove and reword commits"
+      },
+      {
+        "line": 664,
+        "text": "action.Git.Interactive.Rebase.operation.name=interactive in-memory rebase"
+      },
+      {
+        "line": 677,
+        "text": "action.Git.Update.Reset.To.Remote.Branch.text=Reset to the Remote Branch"
+      },
+      {
+        "line": 678,
+        "text": "action.Git.Update.Reset.To.Remote.Branch.description=Checks out the corresponding remote branch"
+      },
+      {
+        "line": 679,
+        "text": "action.Git.Update.Reset.To.Remote.Branch.confirmation=Do you want to reset local branch {0} to {1}? Local commits will be dropped"
+      },
+      {
+        "line": 721,
+        "text": "action.Git.Reword.Commit.description=Change commit message via reword option of git rebase or amend"
+      },
+      {
+        "line": 727,
+        "text": "action.Git.Squash.Commits.description=Rebase interactively to combine selected commits into one"
+      },
+      {
+        "line": 732,
+        "text": "action.Git.Revert.In.Log.text=Revert Commit"
+      },
+      {
+        "line": 733,
+        "text": "action.Git.Revert.In.Log.template.text=Revert {0,choice,1#Commit|2#Commits}"
+      },
+      {
+        "line": 734,
+        "text": "action.Git.Revert.In.Log.description=Produce a new commit(s), which reverts the changes made in the original commit(s)"
+      },
+      {
+        "line": 735,
+        "text": "action.Git.Reset.In.Log.text=Reset Current Branch to Here\\u2026"
+      },
+      {
+        "line": 779,
+        "text": "action.main.toolbar.git.MergeRebase.text=VCS Merge/Rebase Widget"
+      },
+      {
+        "line": 792,
+        "text": "settings.detached.head=Warn when committing in detached HEAD or during rebase"
+      },
+      {
+        "line": 816,
+        "text": "settings.git.update.method.rebase.description=&Rebase the current branch on top of incoming changes"
+      },
+      {
+        "line": 817,
+        "text": "settings.git.update.method.rebase=Rebase"
+      },
+      {
+        "line": 834,
+        "text": "settings.show.rebase.log.drop.confirmation=Ask for confirmation to drop commits"
+      },
+      {
+        "line": 835,
+        "text": "settings.show.rebase.log.drop.confirmation.description=Applicable to Git"
+      },
+      {
+        "line": 952,
+        "text": "push.rejected.rebase.anyway=Rebase Anyway"
+      },
+      {
+        "line": 953,
+        "text": "push.rejected.rebase=&Rebase"
+      },
+      {
+        "line": 979,
+        "text": "git.status.bar.widget.text.revert=Reverting in {0}"
+      },
+      {
+        "line": 981,
+        "text": "git.status.bar.widget.text.rebase=Rebasing {0}"
+      },
+      {
+        "line": 983,
+        "text": "git.status.bar.widget.tooltip.rebasing=Git: Rebase in progress"
+      },
+      {
+        "line": 1023,
+        "text": "stage.reset.action.text=Unstage"
+      },
+      {
+        "line": 1024,
+        "text": "stage.reset.process=Unstaging Files\\u2026"
+      },
+      {
+        "line": 1025,
+        "text": "stage.reset.error.title=Failed to Unstage Files"
+      },
+      {
+        "line": 1026,
+        "text": "stage.revert.action.text=Rollback"
+      },
+      {
+        "line": 1027,
+        "text": "stage.revert.process=Rolling Back Files\\u2026"
+      },
+      {
+        "line": 1028,
+        "text": "stage.revert.error.title=Failed to Rollback Files"
+      },
+      {
+        "line": 1030,
+        "text": "stage.revert.unstaged.range.command.name=Rollback Unstaged Change"
+      },
+      {
+        "line": 1031,
+        "text": "stage.revert.staged.range.command.name=Rollback Staged Change"
+      },
+      {
+        "line": 1034,
+        "text": "action.label.reset.staged.range=Unstage"
+      },
+      {
+        "line": 1035,
+        "text": "action.label.reset.staged.range.tooltip=Remove changes from index"
+      },
+      {
+        "line": 1046,
+        "text": "changes.view.rollback.action.text=Rollback"
+      },
+      {
+        "line": 1047,
+        "text": "action.Git.RevertResolved.text=Revert Resolved"
+      },
+      {
+        "line": 1048,
+        "text": "action.Git.RevertResolved.progress=Reverting resolved conflicts\\u2026"
+      },
+      {
+        "line": 1049,
+        "text": "action.Git.RevertResolved.confirmation.title=Revert Resolved Files"
+      },
+      {
+        "line": 1050,
+        "text": "action.Git.RevertResolved.confirmation=Do you want to revert resolved {0,choice,1#file|2#files}: {1}?"
+      },
+      {
+        "line": 1105,
+        "text": "branches.checkout.and.rebase.failed=Checkout and Rebase failed"
+      },
+      {
+        "line": 1106,
+        "text": "branches.checkout.and.rebase.error.current.with.same.name=Cannot overwrite current branch {0}"
+      },
+      {
+        "line": 1107,
+        "text": "branches.checkout.and.rebase.onto.current.process=Checking out {0} out and rebasing onto current"
+      },
+      {
+        "line": 1108,
+        "text": "branches.checkout.and.rebase.onto.in.one.step=Checkout {0}, and rebase it onto {1} in one step (like `git rebase HEAD {2}`)"
+      },
+      {
+        "line": 1109,
+        "text": "branches.checkout.and.rebase.onto.current=Checkout and Rebase onto Current"
+      },
+      {
+        "line": 1110,
+        "text": "branches.checkout.and.rebase.onto.branch=Checkout and Rebase onto {0}"
+      },
+      {
+        "line": 1111,
+        "text": "branches.rebase.is.not.possible.in.the.detached.head.state=Rebase is not possible in the detached HEAD state"
+      },
+      {
+        "line": 1112,
+        "text": "branches.rebase.onto=Rebase {0} onto {1}"
+      },
+      {
+        "line": 1113,
+        "text": "branches.rebase.onto.selected.commit=Rebase {0} onto Selected Commit"
+      },
+      {
+        "line": 1114,
+        "text": "branches.rebase.onto.selected.commit.description=Rebase {0} onto {1}"
+      },
+      {
+        "line": 1115,
+        "text": "branches.rebase.current.onto.selected=Rebase Current onto Selected"
+      },
+      {
+        "line": 1127,
+        "text": "checkout.and.rebase=Rebase onto Remote"
+      },
+      {
+        "line": 1129,
+        "text": "branches.checkout.local.has.more.commits=Local branch ''{0}'' has commits that do not exist in ''{1}''. Rebase ''{0}'' onto ''{1}'', or checkout ''{0}''?"
+      },
+      {
+        "line": 1130,
+        "text": "branches.checkout.with.reset.local.has.more.commits=Local branch ''{0}'' has commits that do not exist in ''{1}''. Rebase ''{0}'' onto ''{1}'', or drop local commits?"
+      },
+      {
+        "line": 1132,
+        "text": "branches.create.with.reset.local.has.more.commits=Local branch ''{0}'' has commits that do not exist in ''{1}''. Do you want to drop local commits?"
+      },
+      {
+        "line": 1158,
+        "text": "branches.action.pull.into.branch.using.rebase=Pull into {0} Using Rebase"
+      },
+      {
+        "line": 1159,
+        "text": "branches.action.pull.into.branch.using.rebase.selected=Pull Into Selected Using Rebase"
+      },
+      {
+        "line": 1160,
+        "text": "branches.action.pull.into.branch.using.rebase.description=Pull into {0} Using Rebase"
+      },
+      {
+        "line": 1162,
+        "text": "git.rollback=&Rollback"
+      },
+      {
+        "line": 1184,
+        "text": "git.reset.mode.soft=Soft"
+      },
+      {
+        "line": 1185,
+        "text": "git.reset.mode.soft.description=Files won't change, differences will be staged for commit."
+      },
+      {
+        "line": 1186,
+        "text": "git.reset.mode.mixed=Mixed"
+      },
+      {
+        "line": 1187,
+        "text": "git.reset.mode.mixed.description=Files won't change, differences won't be staged."
+      },
+      {
+        "line": 1188,
+        "text": "git.reset.mode.hard=Hard"
+      },
+      {
+        "line": 1189,
+        "text": "git.reset.mode.hard.description=<nobr>Files will be reverted to the state of the selected commit.<nobr/><br><nobr>Warning: any local changes will be lost.<nobr/>"
+      },
+      {
+        "line": 1190,
+        "text": "git.reset.mode.keep=Keep"
+      },
+      {
+        "line": 1191,
+        "text": "git.reset.mode.keep.description=<nobr>Files will be reverted to the state of the selected commit,<nobr/><br><nobr>but local changes will be kept intact.<nobr/>"
+      },
+      {
+        "line": 1192,
+        "text": "git.reset.dialog.title=Git Reset"
+      },
+      {
+        "line": 1193,
+        "text": "git.reset.dialog.description=<nobr>This will reset the current branch head to the selected commit,<nobr/><br><nobr>and update the working tree and the index according to the selected mode:<nobr/>"
+      },
+      {
+        "line": 1194,
+        "text": "git.reset.dialog.description.commit.details.by.author={0} by {1}"
+      },
+      {
+        "line": 1195,
+        "text": "git.reset.dialog.description.source.in.repository={0} in {1}"
+      },
+      {
+        "line": 1196,
+        "text": "git.reset.process=Git Reset"
+      },
+      {
+        "line": 1197,
+        "text": "git.reset.operation=reset"
+      },
+      {
+        "line": 1198,
+        "text": "git.reset.button=Reset"
+      },
+      {
+        "line": 1199,
+        "text": "git.reset.hard.button=&Hard Reset"
+      },
+      {
+        "line": 1200,
+        "text": "git.reset.successful.notification.message=Reset successful"
+      },
+      {
+        "line": 1201,
+        "text": "git.reset.partially.failed.notification.title=Reset partially failed"
+      },
+      {
+        "line": 1202,
+        "text": "git.reset.partially.failed.notification.msg=Reset was successful for {0}\\n\\"
+      },
+      {
+        "line": 1205,
+        "text": "git.reset.failed.notification.title=Reset failed"
+      },
+      {
+        "line": 1312,
+        "text": "git.rename.branch.rollback.successful=Rollback successful"
+      },
+      {
+        "line": 1314,
+        "text": "git.rename.branch.rollback.failed=Rollback failed"
+      },
+      {
+        "line": 1318,
+        "text": "git.rename.branch.you.may.rename.branch.back=You may rollback (rename branch back to {0}) not to let branches diverge."
+      },
+      {
+        "line": 1325,
+        "text": "update.process.error.description.unfinished.rebase=You have unfinished rebase process. These conflicts must be resolved before update."
+      },
+      {
+        "line": 1326,
+        "text": "update.process.error.additional.description.unfinished.rebase=Then you may <b>continue rebase</b>. <br/> You also may <b>abort rebase</b> to restore the original branch and stop rebasing."
+      },
+      {
+        "line": 1332,
+        "text": "checkout.operation.rollback.action=Rollback"
+      },
+      {
+        "line": 1339,
+        "text": "checkout.operation.error.during.rollback=Error during rollback"
+      },
+      {
+        "line": 1342,
+        "text": "checkout.operation.you.may.rollback.not.to.let.branches.diverge=You may rollback (checkout back to {0}) not to let branches diverge."
+      },
+      {
+        "line": 1348,
+        "text": "delete.branch.operation.error.during.rollback.of.branch.deletion=Error during rollback of branch deletion"
+      },
+      {
+        "line": 1355,
+        "text": "delete.branch.operation.you.may.rollback.not.to.let.branches.diverge=You may rollback (recreate {0} in these roots) not to let branches diverge."
+      },
+      {
+        "line": 1361,
+        "text": "checkout.new.branch.operation.error.during.rollback=Error during rollback"
+      },
+      {
+        "line": 1364,
+        "text": "checkout.new.branch.operation.rollback.successful=Rollback successful"
+      },
+      {
+        "line": 1368,
+        "text": "checkout.new.branch.operation.you.may.rollback.not.to.let.branches.diverge=You may rollback (checkout previous branch back, and delete {0}) not to let branches diverge."
+      },
+      {
+        "line": 1383,
+        "text": "merge.dialog.description.rebase.with.hash.label.text=Rebasing{0,choice,0#|1# branch {1}} onto {2}"
+      },
+      {
+        "line": 1384,
+        "text": "merge.dialog.description.rebase.with.onto.branch.label.text=Rebasing{0,choice,0#|1# branch {1}} onto branch {2}{3,choice,0#|1#, revision {4}}"
+      },
+      {
+        "line": 1385,
+        "text": "merge.dialog.description.rebase.without.onto.info.label.text=Rebasing{0,choice,0#|1# branch {1}} onto diverging branches"
+      },
+      {
+        "line": 1386,
+        "text": "merge.dialog.description.rebase.conflict.current.commit=Current commit {0} made by {1}:"
+      },
+      {
+        "line": 1389,
+        "text": "merge.dialog.diff.left.title.rebase.label.text=Rebasing {0} from {1}"
+      },
+      {
+        "line": 1394,
+        "text": "merge.dialog.diff.right.title.rebase.with.branch.label.text=Already rebased commits and commits from {0}"
+      },
+      {
+        "line": 1395,
+        "text": "merge.dialog.diff.right.title.rebase.without.branch.label.text=Already rebased commits"
+      },
+      {
+        "line": 1399,
+        "text": "rebase.operation.name=rebase"
+      },
+      {
+        "line": 1401,
+        "text": "merge.operation.you.may.rollback.not.to.let.branches.diverge=You may rollback (reset to the commit before merging) not to let branches diverge."
+      },
+      {
+        "line": 1402,
+        "text": "merge.operation.error.during.rollback=Error during rollback"
+      },
+      {
+        "line": 1416,
+        "text": "create.branch.operation.rollback.successful=Rollback successful"
+      },
+      {
+        "line": 1418,
+        "text": "create.branch.operation.error.during.rollback=Error during rollback"
+      },
+      {
+        "line": 1421,
+        "text": "create.branch.operation.you.may.rollback.not.to.let.branches.diverge=You may rollback (delete {0}) not to let branches diverge."
+      },
+      {
+        "line": 1428,
+        "text": "branch.ui.handler.rollback=Rollback"
+      },
+      {
+        "line": 1429,
+        "text": "branch.ui.handler.do.not.rollback=Don't Rollback"
+      },
+      {
+        "line": 1438,
+        "text": "delete.tag.operation.error.during.rollback.of.tag.deletion=Error during rollback of tag deletion"
+      },
+      {
+        "line": 1440,
+        "text": "delete.tag.operation.rollback.successful=Rollback Successful"
+      },
+      {
+        "line": 1448,
+        "text": "delete.tag.operation.you.may.rollback.not.to.let.tags.diverge=You may rollback (recreate {0} in these roots) not to let tags diverge."
+      },
+      {
+        "line": 1591,
+        "text": "commit.check.warning.title.commit.during.rebase=Rebase in progress in the repository: {0}. Committing during rebase may lead to the commit loss."
+      },
+      {
+        "line": 1592,
+        "text": "commit.check.warning.title.commit.during.rebase.details=More about Git rebase"
+      },
+      {
+        "line": 1593,
+        "text": "warning.title.commit.with.unfinished.rebase=Unfinished Rebase Process"
+      },
+      {
+        "line": 1594,
+        "text": "warning.message.commit.with.unfinished.rebase=The Git repository at the following path has an <b>unfinished rebase</b> process:<br/>{0}<br/>You probably want to <b>continue rebase</b> instead of committing.<br/>Committing during rebase may lead to the commit loss."
+      },
+      {
+        "line": 1595,
+        "text": "link.label.commit.with.unfinished.rebase.read.more=Read more about Git rebase"
+      },
+      {
+        "line": 1617,
+        "text": "action.description.cant.revert.merge.commit=Reverting merge commits is not allowed"
+      },
+      {
+        "line": 1618,
+        "text": "progress.title.reverting.n.commits=Reverting {0,choice,1#commit|2#commits}"
+      },
+      {
+        "line": 1625,
+        "text": "revert.operation.name=revert"
+      },
+      {
+        "line": 1626,
+        "text": "revert.operation.applied=reverted"
+      },
+      {
+        "line": 1633,
+        "text": "  Commit, {1}, or revert them to proceed."
+      },
+      {
+        "line": 1642,
+        "text": "button.rollback=Rollback"
+      },
+      {
+        "line": 1643,
+        "text": "button.don.t.rollback=Don't Rollback"
+      },
+      {
+        "line": 1650,
+        "text": "notification.title.couldn.t.reset.merge=Failed to abort the merge operation"
+      },
+      {
+        "line": 1654,
+        "text": "dialog.message.rebasing.merge.commits=You are about to rebase a merge commit with conflicts.\\n\\nChoose 'Merge' if you don't want to resolve conflicts again, or you still can rebase if you want to linearize the history."
+      },
+      {
+        "line": 1656,
+        "text": "dialog.message.update.branch=You are about to update {0} from {1}.\\n\\nChoose ''Merge'' if you want to create a merge commit, ''Rebase'' if you want to rebase onto {1}."
+      },
+      {
+        "line": 1658,
+        "text": "rebasing.merge.commits.button.rebase=Rebase"
+      },
+      {
+        "line": 1750,
+        "text": "activity.name.rebase=Git rebase"
+      },
+      {
+        "line": 1751,
+        "text": "activity.name.reset=Git reset"
+      },
+      {
+        "line": 1764,
+        "text": "activity.name.revert=Git revert"
+      }
+    ]
+  }
+]

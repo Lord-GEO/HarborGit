@@ -1,0 +1,120 @@
+Compiled from "GitResetDialog.java"
+final class git4idea.ui.GitResetDialog$ResetMode extends java.lang.Enum<git4idea.ui.GitResetDialog$ResetMode> {
+  public static final git4idea.ui.GitResetDialog$ResetMode SOFT;
+
+  public static final git4idea.ui.GitResetDialog$ResetMode MIXED;
+
+  public static final git4idea.ui.GitResetDialog$ResetMode HARD;
+
+  private final java.lang.String myId;
+
+  private static final git4idea.ui.GitResetDialog$ResetMode[] $VALUES;
+
+  public static git4idea.ui.GitResetDialog$ResetMode[] values();
+    Code:
+       0: getstatic     #13                 // Field $VALUES:[Lgit4idea/ui/GitResetDialog$ResetMode;
+       3: invokevirtual #17                 // Method "[Lgit4idea/ui/GitResetDialog$ResetMode;".clone:()Ljava/lang/Object;
+       6: checkcast     #18                 // class "[Lgit4idea/ui/GitResetDialog$ResetMode;"
+       9: areturn
+
+  public static git4idea.ui.GitResetDialog$ResetMode valueOf(java.lang.String);
+    Code:
+       0: ldc           #1                  // class git4idea/ui/GitResetDialog$ResetMode
+       2: aload_0
+       3: invokestatic  #22                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #1                  // class git4idea/ui/GitResetDialog$ResetMode
+       9: areturn
+
+  private git4idea.ui.GitResetDialog$ResetMode(java.lang.String);
+    Code:
+       0: aload_3
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #92                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: aload_1
+      10: iload_2
+      11: invokespecial #28                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+      14: aload_0
+      15: aload_3
+      16: putfield      #32                 // Field myId:Ljava/lang/String;
+      19: return
+
+  public java.lang.String toString();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field myId:Ljava/lang/String;
+       4: iconst_0
+       5: anewarray     #36                 // class java/lang/Object
+       8: invokestatic  #38                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      11: areturn
+
+  private static git4idea.ui.GitResetDialog$ResetMode[] $values();
+    Code:
+       0: iconst_3
+       1: anewarray     #1                  // class git4idea/ui/GitResetDialog$ResetMode
+       4: dup
+       5: iconst_0
+       6: getstatic     #3                  // Field SOFT:Lgit4idea/ui/GitResetDialog$ResetMode;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #7                  // Field MIXED:Lgit4idea/ui/GitResetDialog$ResetMode;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #10                 // Field HARD:Lgit4idea/ui/GitResetDialog$ResetMode;
+      21: aastore
+      22: areturn
+
+  static {};
+    Code:
+       0: new           #1                  // class git4idea/ui/GitResetDialog$ResetMode
+       3: dup
+       4: ldc           #44                 // String SOFT
+       6: iconst_0
+       7: ldc           #45                 // String git.reset.mode.soft
+       9: invokespecial #47                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;)V
+      12: putstatic     #3                  // Field SOFT:Lgit4idea/ui/GitResetDialog$ResetMode;
+      15: new           #1                  // class git4idea/ui/GitResetDialog$ResetMode
+      18: dup
+      19: ldc           #50                 // String MIXED
+      21: iconst_1
+      22: ldc           #51                 // String git.reset.mode.mixed
+      24: invokespecial #47                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;)V
+      27: putstatic     #7                  // Field MIXED:Lgit4idea/ui/GitResetDialog$ResetMode;
+      30: new           #1                  // class git4idea/ui/GitResetDialog$ResetMode
+      33: dup
+      34: ldc           #53                 // String HARD
+      36: iconst_2
+      37: ldc           #54                 // String git.reset.mode.hard
+      39: invokespecial #47                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;)V
+      42: putstatic     #10                 // Field HARD:Lgit4idea/ui/GitResetDialog$ResetMode;
+      45: invokestatic  #56                 // Method $values:()[Lgit4idea/ui/GitResetDialog$ResetMode;
+      48: putstatic     #13                 // Field $VALUES:[Lgit4idea/ui/GitResetDialog$ResetMode;
+      51: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #94                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #36                 // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: ldc           #95                 // String id
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc           #96                 // String git4idea/ui/GitResetDialog$ResetMode
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: ldc           #97                 // String <init>
+      20: aastore
+      21: invokestatic  #102                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      24: new           #104                // class java/lang/IllegalArgumentException
+      27: dup_x1
+      28: swap
+      29: invokespecial #106                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      32: athrow
+}

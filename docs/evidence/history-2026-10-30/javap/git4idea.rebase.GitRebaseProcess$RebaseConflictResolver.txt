@@ -1,0 +1,107 @@
+Compiled from "GitRebaseProcess.java"
+class git4idea.rebase.GitRebaseProcess$RebaseConflictResolver extends git4idea.merge.GitConflictResolver {
+  private final boolean myCalledFromNotification;
+
+  private boolean myWasNothingToMerge;
+
+  final git4idea.rebase.GitRebaseProcess this$0;
+
+  git4idea.rebase.GitRebaseProcess$RebaseConflictResolver(git4idea.rebase.GitRebaseProcess, com.intellij.openapi.project.Project, git4idea.repo.GitRepository, git4idea.merge.GitConflictResolver$Params, boolean);
+    Code:
+       0: aload_2
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #89                 // Method $$$reportNull$$$0:(I)V
+       8: aload_3
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #89                 // Method $$$reportNull$$$0:(I)V
+      16: aload         4
+      18: ifnonnull     25
+      21: iconst_2
+      22: invokestatic  #89                 // Method $$$reportNull$$$0:(I)V
+      25: aload_0
+      26: aload_1
+      27: putfield      #1                  // Field this$0:Lgit4idea/rebase/GitRebaseProcess;
+      30: aload_0
+      31: aload_2
+      32: aload_3
+      33: invokeinterface #7,  1            // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      38: invokestatic  #13                 // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      41: aload         4
+      43: invokespecial #19                 // Method git4idea/merge/GitConflictResolver."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;Lgit4idea/merge/GitConflictResolver$Params;)V
+      46: aload_0
+      47: iload         5
+      49: putfield      #25                 // Field myCalledFromNotification:Z
+      52: return
+
+  protected void notifyUnresolvedRemain();
+    Code:
+       0: return
+
+  protected boolean proceedAfterAllMerged();
+    Code:
+       0: invokestatic  #85                 // Method com/intellij/util/concurrency/ThreadingAssertions.assertBackgroundThread:()V
+       3: aload_0
+       4: getfield      #25                 // Field myCalledFromNotification:Z
+       7: ifeq          26
+      10: aload_0
+      11: getfield      #1                  // Field this$0:Lgit4idea/rebase/GitRebaseProcess;
+      14: ldc           #29                 // String rebase.progress.indicator.continue.title
+      16: iconst_0
+      17: anewarray     #31                 // class java/lang/Object
+      20: invokestatic  #33                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      23: invokevirtual #39                 // Method git4idea/rebase/GitRebaseProcess.retry:(Ljava/lang/String;)V
+      26: iconst_1
+      27: ireturn
+
+  protected boolean proceedIfNothingToMerge();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #45                 // Field myWasNothingToMerge:Z
+       5: iconst_1
+       6: ireturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #91                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #31                 // class java/lang/Object
+       6: iload_0
+       7: tableswitch   { // 0 to 2
+                     0: 32
+                     1: 40
+                     2: 48
+               default: 32
+          }
+      32: dup
+      33: iconst_0
+      34: ldc           #92                 // String project
+      36: aastore
+      37: goto          56
+      40: dup
+      41: iconst_0
+      42: ldc           #93                 // String repository
+      44: aastore
+      45: goto          56
+      48: dup
+      49: iconst_0
+      50: ldc           #94                 // String params
+      52: aastore
+      53: goto          56
+      56: dup
+      57: iconst_1
+      58: ldc           #95                 // String git4idea/rebase/GitRebaseProcess$RebaseConflictResolver
+      60: aastore
+      61: dup
+      62: iconst_2
+      63: ldc           #96                 // String <init>
+      65: aastore
+      66: invokestatic  #101                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      69: new           #103                // class java/lang/IllegalArgumentException
+      72: dup_x1
+      73: swap
+      74: invokespecial #105                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      77: athrow
+}

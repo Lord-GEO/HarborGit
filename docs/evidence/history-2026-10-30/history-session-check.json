@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-30 Asia/Shanghai",
+  "open": false,
+  "cleanup_pending": false,
+  "analysis_activity": {
+    "status": "not_observed",
+    "providers": []
+  },
+  "server_identity": {
+    "name": "rea-agents",
+    "version": "6.8.0",
+    "root_path": "C:\\Users\\Admin\\AppData\\Local\\npm-cache\\_npx\\da7caeae9db9c589\\node_modules\\rea-agents",
+    "build_commit": null
+  },
+  "format_limit_reused_from": "../rea-class-format-limitation.json",
+  "format_limit_status": "Not retried: same JVM class unsupported; archive identity and bytecode evidence reused.",
+  "final_check": {
+    "open": false,
+    "cleanup_pending": false,
+    "new_target_opened": false,
+    "reason_no_close_binary_needed": "Only authenticated evidence-file views were used; no active binary target was created."
+  }
+}

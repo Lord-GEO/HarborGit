@@ -1,0 +1,42 @@
+Compiled from "GitAbortOperationAction.kt"
+public final class git4idea.actions.GitAbortOperationAction$Revert extends git4idea.actions.GitAbortOperationAction {
+  private final java.lang.String notificationSuccessDisplayId;
+
+  private final java.lang.String notificationErrorDisplayId;
+
+  public git4idea.actions.GitAbortOperationAction$Revert();
+    Code:
+       0: aload_0
+       1: getstatic     #12                 // Field com/intellij/dvcs/repo/Repository$State.REVERTING:Lcom/intellij/dvcs/repo/Repository$State;
+       4: ldc           #14                 // String abort.operation.revert.name
+       6: iconst_0
+       7: anewarray     #16                 // class java/lang/Object
+      10: invokestatic  #22                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      13: dup
+      14: ldc           #24                 // String message(...)
+      16: invokestatic  #30                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      19: getstatic     #36                 // Field git4idea/commands/GitCommand.REVERT:Lgit4idea/commands/GitCommand;
+      22: dup
+      23: ldc           #37                 // String REVERT
+      25: invokestatic  #30                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      28: invokespecial #40                 // Method git4idea/actions/GitAbortOperationAction."<init>":(Lcom/intellij/dvcs/repo/Repository$State;Ljava/lang/String;Lgit4idea/commands/GitCommand;)V
+      31: aload_0
+      32: ldc           #42                 // String git.revert.abort.success
+      34: putfield      #46                 // Field notificationSuccessDisplayId:Ljava/lang/String;
+      37: aload_0
+      38: ldc           #48                 // String git.revert.abort.failed
+      40: putfield      #51                 // Field notificationErrorDisplayId:Ljava/lang/String;
+      43: return
+
+  protected java.lang.String getNotificationSuccessDisplayId();
+    Code:
+       0: aload_0
+       1: getfield      #46                 // Field notificationSuccessDisplayId:Ljava/lang/String;
+       4: areturn
+
+  protected java.lang.String getNotificationErrorDisplayId();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field notificationErrorDisplayId:Ljava/lang/String;
+       4: areturn
+}

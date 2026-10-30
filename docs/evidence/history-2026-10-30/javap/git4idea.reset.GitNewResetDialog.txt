@@ -1,0 +1,250 @@
+Compiled from "GitNewResetDialog.kt"
+public final class git4idea.reset.GitNewResetDialog extends com.intellij.openapi.ui.DialogWrapper {
+  public static final git4idea.reset.GitNewResetDialog$Companion Companion;
+
+  private final com.intellij.openapi.project.Project project;
+
+  private final java.util.Map<git4idea.repo.GitRepository, com.intellij.vcs.log.VcsFullCommitDetails> commits;
+
+  private git4idea.reset.GitResetMode resetMode;
+
+  private static final java.lang.String DIALOG_ID;
+
+  public git4idea.reset.GitNewResetDialog(com.intellij.openapi.project.Project, java.util.Map<git4idea.repo.GitRepository, ? extends com.intellij.vcs.log.VcsFullCommitDetails>, git4idea.reset.GitResetMode);
+    Code:
+       0: aload_1
+       1: ldc           #10                 // String project
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #18                 // String commits
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #20                 // String defaultMode
+      15: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_0
+      19: aload_1
+      20: invokespecial #23                 // Method com/intellij/openapi/ui/DialogWrapper."<init>":(Lcom/intellij/openapi/project/Project;)V
+      23: aload_0
+      24: aload_1
+      25: putfield      #26                 // Field project:Lcom/intellij/openapi/project/Project;
+      28: aload_0
+      29: aload_2
+      30: putfield      #29                 // Field commits:Ljava/util/Map;
+      33: aload_0
+      34: aload_3
+      35: putfield      #33                 // Field resetMode:Lgit4idea/reset/GitResetMode;
+      38: nop
+      39: aload_0
+      40: invokevirtual #37                 // Method init:()V
+      43: aload_0
+      44: ldc           #39                 // String git.reset.dialog.title
+      46: iconst_0
+      47: anewarray     #41                 // class java/lang/Object
+      50: invokestatic  #47                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      53: invokevirtual #51                 // Method setTitle:(Ljava/lang/String;)V
+      56: aload_0
+      57: ldc           #53                 // String git.reset.button
+      59: iconst_0
+      60: anewarray     #41                 // class java/lang/Object
+      63: invokestatic  #47                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      66: invokevirtual #56                 // Method setOKButtonText:(Ljava/lang/String;)V
+      69: nop
+      70: return
+
+  public final git4idea.reset.GitResetMode getResetMode();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field resetMode:Lgit4idea/reset/GitResetMode;
+       4: areturn
+
+  protected javax.swing.JComponent createCenterPanel();
+    Code:
+       0: aload_0
+       1: invokedynamic #82,  0             // InvokeDynamic #0:invoke:(Lgit4idea/reset/GitNewResetDialog;)Lkotlin/jvm/functions/Function1;
+       6: invokestatic  #88                 // Method com/intellij/ui/dsl/builder/BuilderKt.panel:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/openapi/ui/DialogPanel;
+       9: checkcast     #90                 // class javax/swing/JComponent
+      12: areturn
+
+  protected java.lang.String getHelpId();
+    Code:
+       0: ldc           #94                 // String git.new.reset.dialog
+       2: areturn
+
+  private static final kotlin.Unit createCenterPanel$lambda$0$2$0$0(java.lang.String, com.intellij.ui.components.JBRadioButton);
+    Code:
+       0: aload_1
+       1: ldc           #98                 // String $this$applyToComponent
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: aload_0
+       8: iconst_0
+       9: invokevirtual #104                // Method java/lang/String.charAt:(I)C
+      12: invokevirtual #110                // Method com/intellij/ui/components/JBRadioButton.setMnemonic:(I)V
+      15: getstatic     #116                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      18: areturn
+
+  private static final kotlin.Unit createCenterPanel$lambda$0$2$0(java.lang.String, git4idea.reset.GitResetMode, com.intellij.ui.dsl.builder.Row);
+    Code:
+       0: aload_2
+       1: ldc           #123                // String $this$row
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: aload_0
+       8: aload_1
+       9: invokeinterface #129,  3          // InterfaceMethod com/intellij/ui/dsl/builder/Row.radioButton:(Ljava/lang/String;Ljava/lang/Object;)Lcom/intellij/ui/dsl/builder/Cell;
+      14: aload_0
+      15: invokedynamic #137,  0            // InvokeDynamic #1:invoke:(Ljava/lang/String;)Lkotlin/jvm/functions/Function1;
+      20: invokeinterface #143,  2          // InterfaceMethod com/intellij/ui/dsl/builder/Cell.applyToComponent:(Lkotlin/jvm/functions/Function1;)Lcom/intellij/ui/dsl/builder/Cell;
+      25: aload_1
+      26: invokevirtual #148                // Method git4idea/reset/GitResetMode.getDescription:()Ljava/lang/String;
+      29: iconst_0
+      30: aconst_null
+      31: bipush        6
+      33: aconst_null
+      34: invokestatic  #152                // InterfaceMethod com/intellij/ui/dsl/builder/Cell.comment$default:(Lcom/intellij/ui/dsl/builder/Cell;Ljava/lang/String;ILcom/intellij/ui/dsl/builder/HyperlinkEventAction;ILjava/lang/Object;)Lcom/intellij/ui/dsl/builder/Cell;
+      37: pop
+      38: getstatic     #116                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      41: areturn
+
+  private static final kotlin.Unit createCenterPanel$lambda$0$0(git4idea.reset.GitNewResetDialog, com.intellij.ui.dsl.builder.Row);
+    Code:
+       0: aload_1
+       1: ldc           #123                // String $this$row
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: getstatic     #160                // Field Companion:Lgit4idea/reset/GitNewResetDialog$Companion;
+      10: aload_0
+      11: getfield      #26                 // Field project:Lcom/intellij/openapi/project/Project;
+      14: aload_0
+      15: getfield      #29                 // Field commits:Ljava/util/Map;
+      18: invokestatic  #166                // Method git4idea/reset/GitNewResetDialog$Companion.access$prepareDescription:(Lgit4idea/reset/GitNewResetDialog$Companion;Lcom/intellij/openapi/project/Project;Ljava/util/Map;)Ljava/lang/String;
+      21: checkcast     #168                // class java/lang/CharSequence
+      24: invokestatic  #174                // Method com/intellij/xml/util/XmlStringUtil.wrapInHtml:(Ljava/lang/CharSequence;)Ljava/lang/String;
+      27: dup
+      28: ldc           #176                // String wrapInHtml(...)
+      30: invokestatic  #179                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      33: invokeinterface #183,  2          // InterfaceMethod com/intellij/ui/dsl/builder/Row.label:(Ljava/lang/String;)Lcom/intellij/ui/dsl/builder/Cell;
+      38: pop
+      39: getstatic     #116                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      42: areturn
+
+  private static final kotlin.Unit createCenterPanel$lambda$0$1(com.intellij.ui.dsl.builder.Row);
+    Code:
+       0: aload_0
+       1: ldc           #123                // String $this$row
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: ldc           #188                // String git.reset.dialog.description
+       9: iconst_0
+      10: anewarray     #41                 // class java/lang/Object
+      13: invokestatic  #47                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      16: checkcast     #168                // class java/lang/CharSequence
+      19: invokestatic  #174                // Method com/intellij/xml/util/XmlStringUtil.wrapInHtml:(Ljava/lang/CharSequence;)Ljava/lang/String;
+      22: dup
+      23: ldc           #176                // String wrapInHtml(...)
+      25: invokestatic  #179                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      28: invokeinterface #183,  2          // InterfaceMethod com/intellij/ui/dsl/builder/Row.label:(Ljava/lang/String;)Lcom/intellij/ui/dsl/builder/Cell;
+      33: pop
+      34: getstatic     #116                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      37: areturn
+
+  private static final kotlin.Unit createCenterPanel$lambda$0$2(com.intellij.ui.dsl.builder.Panel);
+    Code:
+       0: aload_0
+       1: ldc           #191                // String $this$buttonsGroup
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: invokestatic  #195                // Method git4idea/reset/GitResetMode.values:()[Lgit4idea/reset/GitResetMode;
+       9: astore_1
+      10: iconst_0
+      11: istore_2
+      12: aload_1
+      13: arraylength
+      14: istore_3
+      15: iload_2
+      16: iload_3
+      17: if_icmpge     61
+      20: aload_1
+      21: iload_2
+      22: aaload
+      23: astore        4
+      25: aload         4
+      27: invokevirtual #198                // Method git4idea/reset/GitResetMode.getName:()Ljava/lang/String;
+      30: dup
+      31: ldc           #200                // String getName(...)
+      33: invokestatic  #179                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      36: astore        5
+      38: aload_0
+      39: aconst_null
+      40: aload         5
+      42: aload         4
+      44: invokedynamic #207,  0            // InvokeDynamic #2:invoke:(Ljava/lang/String;Lgit4idea/reset/GitResetMode;)Lkotlin/jvm/functions/Function1;
+      49: iconst_1
+      50: aconst_null
+      51: invokestatic  #213                // InterfaceMethod com/intellij/ui/dsl/builder/Panel.row$default:(Lcom/intellij/ui/dsl/builder/Panel;Ljavax/swing/JLabel;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/intellij/ui/dsl/builder/Row;
+      54: pop
+      55: iinc          2, 1
+      58: goto          15
+      61: getstatic     #116                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      64: areturn
+
+  private static final kotlin.Unit createCenterPanel$lambda$0(git4idea.reset.GitNewResetDialog, com.intellij.ui.dsl.builder.Panel);
+    Code:
+       0: aload_1
+       1: ldc           #220                // String $this$panel
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: aconst_null
+       8: aload_0
+       9: invokedynamic #224,  0            // InvokeDynamic #3:invoke:(Lgit4idea/reset/GitNewResetDialog;)Lkotlin/jvm/functions/Function1;
+      14: iconst_1
+      15: aconst_null
+      16: invokestatic  #213                // InterfaceMethod com/intellij/ui/dsl/builder/Panel.row$default:(Lcom/intellij/ui/dsl/builder/Panel;Ljavax/swing/JLabel;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/intellij/ui/dsl/builder/Row;
+      19: pop
+      20: aload_1
+      21: aconst_null
+      22: invokedynamic #230,  0            // InvokeDynamic #4:invoke:()Lkotlin/jvm/functions/Function1;
+      27: iconst_1
+      28: aconst_null
+      29: invokestatic  #213                // InterfaceMethod com/intellij/ui/dsl/builder/Panel.row$default:(Lcom/intellij/ui/dsl/builder/Panel;Ljavax/swing/JLabel;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/intellij/ui/dsl/builder/Row;
+      32: pop
+      33: aload_1
+      34: aconst_null
+      35: iconst_0
+      36: invokedynamic #234,  0            // InvokeDynamic #5:invoke:()Lkotlin/jvm/functions/Function1;
+      41: iconst_3
+      42: aconst_null
+      43: invokestatic  #238                // InterfaceMethod com/intellij/ui/dsl/builder/Panel.buttonsGroup$default:(Lcom/intellij/ui/dsl/builder/Panel;Ljava/lang/String;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/intellij/ui/dsl/builder/ButtonsGroup;
+      46: astore_2
+      47: new           #240                // class git4idea/reset/GitNewResetDialog$createCenterPanel$1$4
+      50: dup
+      51: aload_0
+      52: invokespecial #243                // Method git4idea/reset/GitNewResetDialog$createCenterPanel$1$4."<init>":(Ljava/lang/Object;)V
+      55: checkcast     #245                // class kotlin/reflect/KMutableProperty0
+      58: astore_3
+      59: iconst_0
+      60: istore        4
+      62: aload_2
+      63: aload_3
+      64: invokestatic  #251                // Method com/intellij/ui/dsl/builder/MutablePropertyKt.toMutableProperty:(Lkotlin/reflect/KMutableProperty0;)Lcom/intellij/ui/dsl/builder/MutableProperty;
+      67: ldc           #145                // class git4idea/reset/GitResetMode
+      69: invokeinterface #257,  3          // InterfaceMethod com/intellij/ui/dsl/builder/ButtonsGroup.bind:(Lcom/intellij/ui/dsl/builder/MutableProperty;Ljava/lang/Class;)Lcom/intellij/ui/dsl/builder/ButtonsGroup;
+      74: pop
+      75: getstatic     #116                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      78: areturn
+
+  public static final void access$setResetMode$p(git4idea.reset.GitNewResetDialog, git4idea.reset.GitResetMode);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #33                 // Field resetMode:Lgit4idea/reset/GitResetMode;
+       5: return
+
+  static {};
+    Code:
+       0: new           #162                // class git4idea/reset/GitNewResetDialog$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #271                // Method git4idea/reset/GitNewResetDialog$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #160                // Field Companion:Lgit4idea/reset/GitNewResetDialog$Companion;
+      11: return
+}

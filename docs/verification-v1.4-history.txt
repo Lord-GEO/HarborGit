@@ -1,0 +1,26 @@
+
+> harbor-git@1.4.0 test:history
+> tsx --test tests/history-actions.test.ts
+
+✔ rebase changes only current branch, preserves all requested commits and an original-head backup (4548.6799ms)
+✔ rebase conflict survives reopening, exposes correct ours/theirs, continues without a terminal editor (7530.5536ms)
+✔ rebase skip omits only the conflicting commit and replays the following commit (4675.5524ms)
+✔ rebase abort restores branch tip, content and a clean index (5702.2031ms)
+✔ rebase honors --rebase-merges and works in a linked worktree without touching its sibling (7137.8458ms)
+✔ rebase rejects dirty or stale state and unsafe target syntax without modifying data (4543.2667ms)
+✔ revert adds a new inverse commit, retains original history, and supports a merge mainline (8448.3281ms)
+✔ revert conflict supports reopen, continue and abort without altering other commits (11512.7965ms)
+✔ reset soft and mixed preserve worktree bytes and follow distinct index semantics (8254.2602ms)
+✔ reset hard requires explicit discard, saves original tip and blocks unrelated commits (6106.2874ms)
+✔ reset hard refuses untracked or ignored data rather than silently removing blockers (3150.4617ms)
+✔ rollback uses literal selected paths, distinguishes worktree/index, and handles renamed files (8924.0559ms)
+✔ rollback refuses untracked, added-without-HEAD, path escapes and stale HEAD without data loss (3883.4776ms)
+✔ rollback does not follow a replacement directory junction into external files (2548.8278ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88213.9667

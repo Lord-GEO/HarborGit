@@ -2,6 +2,8 @@
 
 HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户端，通过本机 Git 管理代码仓库，提供 Windows 和 macOS 打包配置。
 
+**v1.4.0 新增变基与回滚**：普通 Rebase、保留合并结构、冲突后继续/跳过/中止，文件恢复、历史 Revert、Soft/Mixed/Hard Reset。用法和验证见 [历史操作说明](docs/HISTORY-ACTIONS.md)，本机 IDEA 增量逆向证据见 [IDEA 变基与回滚调查](docs/IDEA-HISTORY-ANALYSIS.md)。
+
 ## 项目功能
 
 - 查看工作区和暂存区状态、文件 Diff，完成暂存、取消暂存和提交。
@@ -10,6 +12,7 @@ HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户�
 - 管理远程仓库地址，执行 Fetch、Pull 和 Push。
 - 配置 AI 接口，根据暂存区改动生成提交消息。
 - 支持多项目标签页、明暗主题和操作日志。
+- 变基与冲突恢复；撤销文件修改、历史反向提交及三种 Reset 模式，操作前记录原提交恢复引用。
 - Windows Setup 安装版支持检查 GitHub 正式版更新、下载进度、取消重试和确认安装；其他分发形式提供发布页入口。
 
 ## 软件更新（v1.3.0）

@@ -1,0 +1,182 @@
+Compiled from "GitAbstractRebaseAction.java"
+public abstract class git4idea.actions.GitAbstractRebaseAction extends git4idea.actions.GitOperationActionBase {
+  protected git4idea.actions.GitAbstractRebaseAction();
+    Code:
+       0: aload_0
+       1: getstatic     #1                  // Field com/intellij/dvcs/repo/Repository$State.REBASING:Lcom/intellij/dvcs/repo/Repository$State;
+       4: invokespecial #7                  // Method git4idea/actions/GitOperationActionBase."<init>":(Lcom/intellij/dvcs/repo/Repository$State;)V
+       7: return
+
+  public final void actionPerformed(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #127                // Method $$$reportNull$$$0:(I)V
+       8: aload_1
+       9: getstatic     #13                 // Field com/intellij/openapi/actionSystem/CommonDataKeys.PROJECT:Lcom/intellij/openapi/actionSystem/DataKey;
+      12: invokevirtual #19                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getData:(Lcom/intellij/openapi/actionSystem/DataKey;)Ljava/lang/Object;
+      15: checkcast     #25                 // class com/intellij/openapi/project/Project
+      18: astore_2
+      19: aload_2
+      20: ifnonnull     24
+      23: return
+      24: aload_2
+      25: invokestatic  #27                 // Method git4idea/GitUtil.getRepositoryManager:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      28: invokevirtual #33                 // Method git4idea/repo/GitRepositoryManager.hasOngoingRebase:()Z
+      31: ifeq          57
+      34: invokestatic  #39                 // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+      37: new           #45                 // class git4idea/actions/GitAbstractRebaseAction$1
+      40: dup
+      41: aload_0
+      42: aload_2
+      43: aload_0
+      44: invokevirtual #47                 // Method getProgressTitle:()Ljava/lang/String;
+      47: aload_2
+      48: invokespecial #53                 // Method git4idea/actions/GitAbstractRebaseAction$1."<init>":(Lgit4idea/actions/GitAbstractRebaseAction;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/openapi/project/Project;)V
+      51: invokevirtual #56                 // Method com/intellij/openapi/progress/ProgressManager.run:(Lcom/intellij/openapi/progress/Task;)V
+      54: goto          62
+      57: aload_0
+      58: aload_1
+      59: invokespecial #60                 // Method git4idea/actions/GitOperationActionBase.actionPerformed:(Lcom/intellij/openapi/actionSystem/AnActionEvent;)V
+      62: return
+
+  public void performInBackground(git4idea.repo.GitRepository);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: invokestatic  #127                // Method $$$reportNull$$$0:(I)V
+       8: invokestatic  #39                 // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+      11: new           #64                 // class git4idea/actions/GitAbstractRebaseAction$2
+      14: dup
+      15: aload_0
+      16: aload_1
+      17: invokeinterface #66,  1           // InterfaceMethod git4idea/repo/GitRepository.getProject:()Lcom/intellij/openapi/project/Project;
+      22: aload_0
+      23: invokevirtual #47                 // Method getProgressTitle:()Ljava/lang/String;
+      26: aload_1
+      27: invokespecial #72                 // Method git4idea/actions/GitAbstractRebaseAction$2."<init>":(Lgit4idea/actions/GitAbstractRebaseAction;Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lgit4idea/repo/GitRepository;)V
+      30: invokevirtual #56                 // Method com/intellij/openapi/progress/ProgressManager.run:(Lcom/intellij/openapi/progress/Task;)V
+      33: return
+
+  protected java.lang.String getOperationName();
+    Code:
+       0: ldc           #75                 // String action.Git.Rebase.operation.name
+       2: iconst_0
+       3: anewarray     #77                 // class java/lang/Object
+       6: invokestatic  #79                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: dup
+      10: ifnonnull     17
+      13: iconst_2
+      14: invokestatic  #127                // Method $$$reportNull$$$0:(I)V
+      17: areturn
+
+  protected abstract java.lang.String getProgressTitle();
+
+  protected abstract void performActionForProject(com.intellij.openapi.project.Project, com.intellij.openapi.progress.ProgressIndicator);
+
+  protected abstract void performActionForRepository(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, com.intellij.openapi.progress.ProgressIndicator);
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 2
+                     0: 28
+                     1: 28
+                     2: 33
+               default: 28
+          }
+      28: ldc           #131                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      30: goto          38
+      33: ldc           #133                // String @NotNull method %s.%s must not return null
+      35: goto          38
+      38: iload_0
+      39: tableswitch   { // 0 to 2
+                     0: 64
+                     1: 64
+                     2: 68
+               default: 64
+          }
+      64: iconst_3
+      65: goto          72
+      68: iconst_2
+      69: goto          72
+      72: anewarray     #77                 // class java/lang/Object
+      75: iload_0
+      76: tableswitch   { // 0 to 2
+                     0: 104
+                     1: 112
+                     2: 120
+               default: 104
+          }
+     104: dup
+     105: iconst_0
+     106: ldc           #134                // String e
+     108: aastore
+     109: goto          128
+     112: dup
+     113: iconst_0
+     114: ldc           #135                // String repositoryToOperate
+     116: aastore
+     117: goto          128
+     120: dup
+     121: iconst_0
+     122: ldc           #136                // String git4idea/actions/GitAbstractRebaseAction
+     124: aastore
+     125: goto          128
+     128: iload_0
+     129: tableswitch   { // 0 to 2
+                     0: 156
+                     1: 156
+                     2: 164
+               default: 156
+          }
+     156: dup
+     157: iconst_1
+     158: ldc           #136                // String git4idea/actions/GitAbstractRebaseAction
+     160: aastore
+     161: goto          172
+     164: dup
+     165: iconst_1
+     166: ldc           #137                // String getOperationName
+     168: aastore
+     169: goto          172
+     172: iload_0
+     173: tableswitch   { // 0 to 2
+                     0: 200
+                     1: 208
+                     2: 216
+               default: 200
+          }
+     200: dup
+     201: iconst_2
+     202: ldc           #138                // String actionPerformed
+     204: aastore
+     205: goto          219
+     208: dup
+     209: iconst_2
+     210: ldc           #139                // String performInBackground
+     212: aastore
+     213: goto          219
+     216: goto          219
+     219: invokestatic  #142                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     222: iload_0
+     223: tableswitch   { // 0 to 2
+                     0: 248
+                     1: 248
+                     2: 259
+               default: 248
+          }
+     248: new           #144                // class java/lang/IllegalArgumentException
+     251: dup_x1
+     252: swap
+     253: invokespecial #147                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     256: goto          270
+     259: new           #149                // class java/lang/IllegalStateException
+     262: dup_x1
+     263: swap
+     264: invokespecial #150                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     267: goto          270
+     270: athrow
+}

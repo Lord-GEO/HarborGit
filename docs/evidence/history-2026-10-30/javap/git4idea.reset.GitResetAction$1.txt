@@ -1,0 +1,91 @@
+Compiled from "GitResetAction.java"
+class git4idea.reset.GitResetAction$1 extends com.intellij.openapi.progress.Task$Backgroundable {
+  final java.util.Map val$commits;
+
+  final com.intellij.openapi.project.Project val$project;
+
+  final git4idea.reset.GitResetMode val$selectedMode;
+
+  git4idea.reset.GitResetAction$1(git4idea.reset.GitResetAction, com.intellij.openapi.project.Project, java.lang.String, boolean, java.util.Map, com.intellij.openapi.project.Project, git4idea.reset.GitResetMode);
+    Code:
+       0: aload_0
+       1: aload         5
+       3: putfield      #1                  // Field val$commits:Ljava/util/Map;
+       6: aload_0
+       7: aload         6
+       9: putfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+      12: aload_0
+      13: aload         7
+      15: putfield      #11                 // Field val$selectedMode:Lgit4idea/reset/GitResetMode;
+      18: aload_0
+      19: aload_2
+      20: aload_3
+      21: iload         4
+      23: invokespecial #15                 // Method com/intellij/openapi/progress/Task$Backgroundable."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Z)V
+      26: return
+
+  public void run(com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #140                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #1                  // Field val$commits:Ljava/util/Map;
+      12: invokeinterface #21,  1           // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      17: invokeinterface #27,  1           // InterfaceMethod java/util/Set.stream:()Ljava/util/stream/Stream;
+      22: invokestatic  #33                 // InterfaceMethod java/util/function/Function.identity:()Ljava/util/function/Function;
+      25: aload_0
+      26: getfield      #1                  // Field val$commits:Ljava/util/Map;
+      29: invokedynamic #39,  0             // InvokeDynamic #0:apply:(Ljava/util/Map;)Ljava/util/function/Function;
+      34: invokestatic  #43                 // Method java/util/stream/Collectors.toMap:(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector;
+      37: invokeinterface #49,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      42: checkcast     #22                 // class java/util/Map
+      45: astore_2
+      46: new           #55                 // class git4idea/reset/GitResetOperation
+      49: dup
+      50: aload_0
+      51: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+      54: aload_2
+      55: aload_0
+      56: getfield      #11                 // Field val$selectedMode:Lgit4idea/reset/GitResetMode;
+      59: aload_1
+      60: invokespecial #57                 // Method git4idea/reset/GitResetOperation."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/Map;Lgit4idea/reset/GitResetMode;Lcom/intellij/openapi/progress/ProgressIndicator;)V
+      63: invokevirtual #60                 // Method git4idea/reset/GitResetOperation.execute:()Z
+      66: pop
+      67: return
+
+  private static com.intellij.vcs.log.Hash lambda$run$0(java.util.Map, git4idea.repo.GitRepository);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #64,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #68                 // class com/intellij/vcs/log/VcsFullCommitDetails
+      10: invokeinterface #70,  1           // InterfaceMethod com/intellij/vcs/log/VcsFullCommitDetails.getId:()Ljava/lang/Object;
+      15: checkcast     #74                 // class com/intellij/vcs/log/Hash
+      18: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #142                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #144                // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: ldc           #145                // String indicator
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc           #146                // String git4idea/reset/GitResetAction$1
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: ldc           #147                // String run
+      20: aastore
+      21: invokestatic  #153                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      24: new           #155                // class java/lang/IllegalArgumentException
+      27: dup_x1
+      28: swap
+      29: invokespecial #158                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      32: athrow
+}

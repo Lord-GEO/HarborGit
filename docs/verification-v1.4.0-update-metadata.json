@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.4.0",
+  "setup": "HarborGit-1.4.0-Setup-x64.exe",
+  "bytes": 124495225,
+  "sha256": "7701ff1c91d64537504665e3c1c22195f20fa36ef75a649ffb6c483ac3bb956d",
+  "sha512": "ZyseALdApgGGwNN1eKRSHtMVuYfmUEhl5r+QLH6l60Tu7A2GoI4xdxE6tjt4uQYNJz/HIY+2yXKlrX+SYrF9RQ==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.4.0",
+    "files": [
+      {
+        "url": "HarborGit-1.4.0-Setup-x64.exe",
+        "sha512": "ZyseALdApgGGwNN1eKRSHtMVuYfmUEhl5r+QLH6l60Tu7A2GoI4xdxE6tjt4uQYNJz/HIY+2yXKlrX+SYrF9RQ==",
+        "size": 124495225
+      }
+    ],
+    "path": "HarborGit-1.4.0-Setup-x64.exe",
+    "sha512": "ZyseALdApgGGwNN1eKRSHtMVuYfmUEhl5r+QLH6l60Tu7A2GoI4xdxE6tjt4uQYNJz/HIY+2yXKlrX+SYrF9RQ==",
+    "releaseNotes": "# HarborGit v1.4.0\n\n- 新增普通变基，可选择保留合并结构；冲突后支持继续、跳过当前提交和中止。\n- 新增工作区文件撤销与 HEAD 文件恢复，明确区分未暂存修改、暂存内容和取消暂存。\n- 历史新增 Revert 反向提交，支持合并提交的主线父提交选择，以及冲突后继续/中止。\n- 历史新增 Soft、Mixed、Hard Reset，默认 Mixed，Hard 要求明确确认。\n- 操作前保留原 HEAD 的本地恢复引用；它只保存已提交历史，不备份未提交内容。\n- 加入过期 HEAD、路径碰撞、联接目录和进行中 Git 操作保护；无关 ignored 目录可保留。\n- 保留多项目、明暗主题、彩色提交图、AI 提交消息、远程管理和 v1.3 应用更新功能。\n\n变基与 Revert 前需先处理未提交改动，本次不自动 stash/shelf。暂不提供交互式变基、Reset Keep、行级回滚或强制推送。\n\nWindows 下载 Setup 安装版；已安装 v1.3.0 的用户可在本版本正式发布后通过“软件更新”获取。发布附件仍需同时包含 Setup、blockmap 与 latest.yml。\n",
+    "releaseDate": "2026-10-30T07:18:12.463Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

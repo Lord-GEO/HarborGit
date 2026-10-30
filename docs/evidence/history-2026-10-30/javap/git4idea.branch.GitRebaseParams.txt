@@ -1,0 +1,476 @@
+Compiled from "GitRebaseParams.kt"
+public final class git4idea.branch.GitRebaseParams {
+  public static final git4idea.branch.GitRebaseParams$Companion Companion;
+
+  private final git4idea.config.GitVersion version;
+
+  private final git4idea.branch.GitRebaseParams$RebaseUpstream upstream;
+
+  private final java.util.Set<git4idea.rebase.GitRebaseOption> selectedOptions;
+
+  private final git4idea.rebase.GitRebaseEditorHandler editorHandler;
+
+  private final java.lang.String branch;
+
+  private final java.lang.String newBase;
+
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  public git4idea.branch.GitRebaseParams(git4idea.config.GitVersion, java.lang.String, java.lang.String, git4idea.branch.GitRebaseParams$RebaseUpstream, java.util.Set<? extends git4idea.rebase.GitRebaseOption>, git4idea.rebase.GitRebaseEditorHandler);
+    Code:
+       0: aload_1
+       1: ldc           #11                 // String version
+       3: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload         4
+       8: ldc           #19                 // String upstream
+      10: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload         5
+      15: ldc           #21                 // String selectedOptions
+      17: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      20: aload_0
+      21: invokespecial #24                 // Method java/lang/Object."<init>":()V
+      24: aload_0
+      25: aload_1
+      26: putfield      #27                 // Field version:Lgit4idea/config/GitVersion;
+      29: aload_0
+      30: aload         4
+      32: putfield      #30                 // Field upstream:Lgit4idea/branch/GitRebaseParams$RebaseUpstream;
+      35: aload_0
+      36: aload         5
+      38: putfield      #33                 // Field selectedOptions:Ljava/util/Set;
+      41: aload_0
+      42: aload         6
+      44: putfield      #37                 // Field editorHandler:Lgit4idea/rebase/GitRebaseEditorHandler;
+      47: aload_0
+      48: aload_2
+      49: dup
+      50: ifnull        99
+      53: astore        7
+      55: aload         7
+      57: astore        8
+      59: astore        10
+      61: iconst_0
+      62: istore        9
+      64: aload         8
+      66: checkcast     #39                 // class java/lang/CharSequence
+      69: invokestatic  #45                 // Method kotlin/text/StringsKt.isBlank:(Ljava/lang/CharSequence;)Z
+      72: ifne          79
+      75: iconst_1
+      76: goto          80
+      79: iconst_0
+      80: nop
+      81: istore        11
+      83: aload         10
+      85: iload         11
+      87: ifeq          95
+      90: aload         7
+      92: goto          101
+      95: aconst_null
+      96: goto          101
+      99: pop
+     100: aconst_null
+     101: putfield      #49                 // Field branch:Ljava/lang/String;
+     104: aload_0
+     105: aload_3
+     106: dup
+     107: ifnull        156
+     110: astore        7
+     112: aload         7
+     114: astore        8
+     116: astore        10
+     118: iconst_0
+     119: istore        9
+     121: aload         8
+     123: checkcast     #39                 // class java/lang/CharSequence
+     126: invokestatic  #45                 // Method kotlin/text/StringsKt.isBlank:(Ljava/lang/CharSequence;)Z
+     129: ifne          136
+     132: iconst_1
+     133: goto          137
+     136: iconst_0
+     137: nop
+     138: istore        11
+     140: aload         10
+     142: iload         11
+     144: ifeq          152
+     147: aload         7
+     149: goto          158
+     152: aconst_null
+     153: goto          158
+     156: pop
+     157: aconst_null
+     158: putfield      #52                 // Field newBase:Ljava/lang/String;
+     161: return
+
+  public git4idea.branch.GitRebaseParams(git4idea.config.GitVersion, java.lang.String, java.lang.String, git4idea.branch.GitRebaseParams$RebaseUpstream, java.util.Set, git4idea.rebase.GitRebaseEditorHandler, int, kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: iload         7
+       2: bipush        32
+       4: iand
+       5: ifeq          11
+       8: aconst_null
+       9: astore        6
+      11: aload_0
+      12: aload_1
+      13: aload_2
+      14: aload_3
+      15: aload         4
+      17: aload         5
+      19: aload         6
+      21: invokespecial #71                 // Method "<init>":(Lgit4idea/config/GitVersion;Ljava/lang/String;Ljava/lang/String;Lgit4idea/branch/GitRebaseParams$RebaseUpstream;Ljava/util/Set;Lgit4idea/rebase/GitRebaseEditorHandler;)V
+      24: return
+
+  public final git4idea.branch.GitRebaseParams$RebaseUpstream getUpstream();
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field upstream:Lgit4idea/branch/GitRebaseParams$RebaseUpstream;
+       4: areturn
+
+  public final git4idea.rebase.GitRebaseEditorHandler getEditorHandler();
+    Code:
+       0: aload_0
+       1: getfield      #37                 // Field editorHandler:Lgit4idea/rebase/GitRebaseEditorHandler;
+       4: areturn
+
+  public final java.lang.String getBranch();
+    Code:
+       0: aload_0
+       1: getfield      #49                 // Field branch:Ljava/lang/String;
+       4: areturn
+
+  public final java.lang.String getNewBase();
+    Code:
+       0: aload_0
+       1: getfield      #52                 // Field newBase:Ljava/lang/String;
+       4: areturn
+
+  public git4idea.branch.GitRebaseParams(git4idea.config.GitVersion, java.lang.String, java.lang.String, java.lang.String, java.util.Set<? extends git4idea.rebase.GitRebaseOption>, git4idea.rebase.GitRebaseEditorHandler);
+    Code:
+       0: aload_1
+       1: ldc           #11                 // String version
+       3: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload         5
+       8: ldc           #21                 // String selectedOptions
+      10: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_0
+      14: aload_1
+      15: aload_2
+      16: aload_3
+      17: getstatic     #84                 // Field git4idea/branch/GitRebaseParams$RebaseUpstream.Companion:Lgit4idea/branch/GitRebaseParams$RebaseUpstream$Companion;
+      20: aload         4
+      22: invokevirtual #90                 // Method git4idea/branch/GitRebaseParams$RebaseUpstream$Companion.fromNullableString:(Ljava/lang/String;)Lgit4idea/branch/GitRebaseParams$RebaseUpstream;
+      25: aload         5
+      27: aload         6
+      29: invokespecial #71                 // Method "<init>":(Lgit4idea/config/GitVersion;Ljava/lang/String;Ljava/lang/String;Lgit4idea/branch/GitRebaseParams$RebaseUpstream;Ljava/util/Set;Lgit4idea/rebase/GitRebaseEditorHandler;)V
+      32: return
+
+  public git4idea.branch.GitRebaseParams(git4idea.config.GitVersion, java.lang.String, java.lang.String, java.lang.String, java.util.Set, git4idea.rebase.GitRebaseEditorHandler, int, kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: iload         7
+       2: bipush        32
+       4: iand
+       5: ifeq          11
+       8: aconst_null
+       9: astore        6
+      11: aload_0
+      12: aload_1
+      13: aload_2
+      14: aload_3
+      15: aload         4
+      17: aload         5
+      19: aload         6
+      21: invokespecial #93                 // Method "<init>":(Lgit4idea/config/GitVersion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Lgit4idea/rebase/GitRebaseEditorHandler;)V
+      24: return
+
+  public git4idea.branch.GitRebaseParams(git4idea.config.GitVersion, java.lang.String);
+    Code:
+       0: aload_1
+       1: ldc           #11                 // String version
+       3: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #19                 // String upstream
+       9: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: aload_1
+      14: aconst_null
+      15: aconst_null
+      16: aload_2
+      17: iconst_0
+      18: iconst_0
+      19: invokespecial #97                 // Method "<init>":(Lgit4idea/config/GitVersion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZ)V
+      22: return
+
+  public git4idea.branch.GitRebaseParams(git4idea.config.GitVersion, java.lang.String, java.lang.String, java.lang.String, boolean, boolean);
+    Code:
+       0: aload_1
+       1: ldc           #11                 // String version
+       3: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload         4
+       8: ldc           #19                 // String upstream
+      10: invokestatic  #17                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_0
+      14: aload_1
+      15: aload_2
+      16: aload_3
+      17: new           #99                 // class git4idea/branch/GitRebaseParams$RebaseUpstream$Reference
+      20: dup
+      21: aload         4
+      23: invokespecial #102                // Method git4idea/branch/GitRebaseParams$RebaseUpstream$Reference."<init>":(Ljava/lang/String;)V
+      26: checkcast     #64                 // class git4idea/branch/GitRebaseParams$RebaseUpstream
+      29: getstatic     #105                // Field Companion:Lgit4idea/branch/GitRebaseParams$Companion;
+      32: iload         5
+      34: iload         6
+      36: invokestatic  #111                // Method git4idea/branch/GitRebaseParams$Companion.access$collectOptions:(Lgit4idea/branch/GitRebaseParams$Companion;ZZ)Ljava/util/Set;
+      39: aconst_null
+      40: bipush        32
+      42: aconst_null
+      43: invokespecial #113                // Method "<init>":(Lgit4idea/config/GitVersion;Ljava/lang/String;Ljava/lang/String;Lgit4idea/branch/GitRebaseParams$RebaseUpstream;Ljava/util/Set;Lgit4idea/rebase/GitRebaseEditorHandler;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+      46: return
+
+  public final java.util.List<java.lang.String> asCommandLineArguments();
+    Code:
+       0: new           #121                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #122                // Method java/util/ArrayList."<init>":()V
+       7: checkcast     #124                // class java/util/List
+      10: astore_1
+      11: aload_1
+      12: astore_2
+      13: iconst_0
+      14: istore_3
+      15: aload_0
+      16: getfield      #33                 // Field selectedOptions:Ljava/util/Set;
+      19: checkcast     #126                // class java/lang/Iterable
+      22: astore        4
+      24: iconst_0
+      25: istore        5
+      27: aload         4
+      29: astore        6
+      31: new           #121                // class java/util/ArrayList
+      34: dup
+      35: invokespecial #122                // Method java/util/ArrayList."<init>":()V
+      38: checkcast     #128                // class java/util/Collection
+      41: astore        7
+      43: iconst_0
+      44: istore        8
+      46: aload         6
+      48: astore        9
+      50: iconst_0
+      51: istore        10
+      53: aload         9
+      55: invokeinterface #132,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      60: astore        11
+      62: aload         11
+      64: invokeinterface #138,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      69: ifeq          215
+      72: aload         11
+      74: invokeinterface #142,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      79: astore        12
+      81: aload         12
+      83: astore        13
+      85: iconst_0
+      86: istore        14
+      88: aload         13
+      90: checkcast     #144                // class git4idea/rebase/GitRebaseOption
+      93: astore        15
+      95: iconst_0
+      96: istore        16
+      98: aload         15
+     100: getstatic     #150                // Field git4idea/branch/GitRebaseParams$WhenMappings.$EnumSwitchMapping$0:[I
+     103: swap
+     104: invokevirtual #154                // Method git4idea/rebase/GitRebaseOption.ordinal:()I
+     107: iaload
+     108: tableswitch   { // 1 to 8
+                     1: 156
+                     2: 163
+                     3: 167
+                     4: 167
+                     5: 167
+                     6: 167
+                     7: 167
+                     8: 167
+               default: 179
+          }
+     156: aload_0
+     157: invokespecial #157                // Method handleRebaseMergesOption:()Ljava/lang/String;
+     160: goto          187
+     163: aconst_null
+     164: goto          187
+     167: aload         15
+     169: aload_0
+     170: getfield      #27                 // Field version:Lgit4idea/config/GitVersion;
+     173: invokevirtual #161                // Method git4idea/rebase/GitRebaseOption.getOption:(Lgit4idea/config/GitVersion;)Ljava/lang/String;
+     176: goto          187
+     179: new           #163                // class kotlin/NoWhenBranchMatchedException
+     182: dup
+     183: invokespecial #164                // Method kotlin/NoWhenBranchMatchedException."<init>":()V
+     186: athrow
+     187: nop
+     188: dup
+     189: ifnull        210
+     192: astore        17
+     194: iconst_0
+     195: istore        18
+     197: aload         7
+     199: aload         17
+     201: invokeinterface #168,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     206: pop
+     207: goto          211
+     210: pop
+     211: nop
+     212: goto          62
+     215: nop
+     216: aload         7
+     218: checkcast     #124                // class java/util/List
+     221: nop
+     222: astore        4
+     224: aload         4
+     226: astore        5
+     228: iconst_0
+     229: istore        6
+     231: aload_2
+     232: aload         5
+     234: checkcast     #128                // class java/util/Collection
+     237: invokeinterface #172,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     242: pop
+     243: nop
+     244: aload_0
+     245: getfield      #52                 // Field newBase:Ljava/lang/String;
+     248: ifnull        286
+     251: aload_2
+     252: iconst_2
+     253: anewarray     #62                 // class java/lang/String
+     256: astore        4
+     258: aload         4
+     260: iconst_0
+     261: ldc           #174                // String --onto
+     263: aastore
+     264: aload         4
+     266: iconst_1
+     267: aload_0
+     268: getfield      #52                 // Field newBase:Ljava/lang/String;
+     271: aastore
+     272: aload         4
+     274: invokestatic  #180                // Method kotlin/collections/CollectionsKt.listOf:([Ljava/lang/Object;)Ljava/util/List;
+     277: checkcast     #128                // class java/util/Collection
+     280: invokeinterface #172,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+     285: pop
+     286: aload_0
+     287: getfield      #30                 // Field upstream:Lgit4idea/branch/GitRebaseParams$RebaseUpstream;
+     290: astore        4
+     292: aload         4
+     294: getstatic     #186                // Field git4idea/branch/GitRebaseParams$RebaseUpstream$Root.INSTANCE:Lgit4idea/branch/GitRebaseParams$RebaseUpstream$Root;
+     297: invokestatic  #190                // Method kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     300: ifeq          314
+     303: aload_2
+     304: ldc           #192                // String --root
+     306: invokeinterface #193,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     311: goto          349
+     314: aload         4
+     316: instanceof    #99                 // class git4idea/branch/GitRebaseParams$RebaseUpstream$Reference
+     319: ifeq          341
+     322: aload_2
+     323: aload_0
+     324: getfield      #30                 // Field upstream:Lgit4idea/branch/GitRebaseParams$RebaseUpstream;
+     327: checkcast     #99                 // class git4idea/branch/GitRebaseParams$RebaseUpstream$Reference
+     330: invokevirtual #196                // Method git4idea/branch/GitRebaseParams$RebaseUpstream$Reference.getRef:()Ljava/lang/String;
+     333: invokeinterface #193,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     338: goto          349
+     341: new           #163                // class kotlin/NoWhenBranchMatchedException
+     344: dup
+     345: invokespecial #164                // Method kotlin/NoWhenBranchMatchedException."<init>":()V
+     348: athrow
+     349: pop
+     350: aload_0
+     351: getfield      #49                 // Field branch:Ljava/lang/String;
+     354: ifnull        368
+     357: aload_2
+     358: aload_0
+     359: getfield      #49                 // Field branch:Ljava/lang/String;
+     362: invokeinterface #193,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     367: pop
+     368: nop
+     369: aload_1
+     370: areturn
+
+  public final boolean isInteractive();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field selectedOptions:Ljava/util/Set;
+       4: getstatic     #222                // Field git4idea/rebase/GitRebaseOption.INTERACTIVE:Lgit4idea/rebase/GitRebaseOption;
+       7: invokeinterface #225,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      12: ireturn
+
+  public final java.util.Set<git4idea.rebase.GitRebaseOption> getSelectedOptions();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field selectedOptions:Ljava/util/Set;
+       4: checkcast     #126                // class java/lang/Iterable
+       7: invokestatic  #232                // Method kotlin/collections/CollectionsKt.toSet:(Ljava/lang/Iterable;)Ljava/util/Set;
+      10: areturn
+
+  public java.lang.String toString();
+    Code:
+       0: aload_0
+       1: invokevirtual #235                // Method asCommandLineArguments:()Ljava/util/List;
+       4: checkcast     #126                // class java/lang/Iterable
+       7: ldc           #237                // String
+       9: checkcast     #39                 // class java/lang/CharSequence
+      12: aconst_null
+      13: aconst_null
+      14: iconst_0
+      15: aconst_null
+      16: aconst_null
+      17: bipush        62
+      19: aconst_null
+      20: invokestatic  #241                // Method kotlin/collections/CollectionsKt.joinToString$default:(Ljava/lang/Iterable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/String;
+      23: areturn
+
+  private final java.lang.String handleRebaseMergesOption();
+    Code:
+       0: aload_0
+       1: invokespecial #244                // Method rebaseMergesAvailable:()Z
+       4: ifne          26
+       7: aload_0
+       8: invokevirtual #246                // Method isInteractive:()Z
+      11: ifeq          26
+      14: getstatic     #250                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      17: ldc           #252                // String Git rebase --preserve-merges option is incompatible with --interactive and will be omitted
+      19: invokevirtual #257                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+      22: aconst_null
+      23: goto          36
+      26: getstatic     #260                // Field git4idea/rebase/GitRebaseOption.REBASE_MERGES:Lgit4idea/rebase/GitRebaseOption;
+      29: aload_0
+      30: getfield      #27                 // Field version:Lgit4idea/config/GitVersion;
+      33: invokevirtual #161                // Method git4idea/rebase/GitRebaseOption.getOption:(Lgit4idea/config/GitVersion;)Ljava/lang/String;
+      36: areturn
+
+  private final boolean rebaseMergesAvailable();
+    Code:
+       0: getstatic     #266                // Field git4idea/config/GitVersionSpecialty.REBASE_MERGES_REPLACES_PRESERVE_MERGES:Lgit4idea/config/GitVersionSpecialty;
+       3: aload_0
+       4: getfield      #27                 // Field version:Lgit4idea/config/GitVersion;
+       7: invokevirtual #270                // Method git4idea/config/GitVersionSpecialty.existsIn:(Lgit4idea/config/GitVersion;)Z
+      10: ireturn
+
+  public static final com.intellij.openapi.diagnostic.Logger access$getLOG$cp();
+    Code:
+       0: getstatic     #250                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       3: areturn
+
+  static {};
+    Code:
+       0: new           #107                // class git4idea/branch/GitRebaseParams$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #276                // Method git4idea/branch/GitRebaseParams$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #105                // Field Companion:Lgit4idea/branch/GitRebaseParams$Companion;
+      11: iconst_0
+      12: istore_0
+      13: ldc           #2                  // class git4idea/branch/GitRebaseParams
+      15: invokestatic  #280                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+      18: dup
+      19: ldc_w         #282                // String getInstance(...)
+      22: invokestatic  #285                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: putstatic     #250                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+      28: return
+}

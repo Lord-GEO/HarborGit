@@ -1,0 +1,12 @@
+
+> harbor-git@1.4.0 test:ui
+> playwright test --grep history actions UI: Revert
+
+
+Running 1 test using 1 worker
+
+(node:13436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\history-ui.spec.ts:80:1 › history actions UI: Revert creates history, Mixed preserves worktree, Hard requires confirmation (37.1s)
+
+  1 passed (40.5s)

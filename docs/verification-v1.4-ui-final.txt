@@ -1,0 +1,26 @@
+
+> harbor-git@1.4.0 test:ui
+> playwright test
+
+
+Running 14 tests using 1 worker
+
+(node:44728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -   1 tests\electron.spec.ts:15:1 › software updates: installed Setup enables the real update entry and preserves preferences
+  ok  2 tests\electron.spec.ts:32:1 › software updates: real IPC rejects unsupported actions in a development or directory build (6.8s)
+  ok  3 tests\electron.spec.ts:55:1 › software updates UI: release notes, progress, cancel, retry, theme and busy installation guard (14.4s)
+  ok  4 tests\electron.spec.ts:194:1 › desktop UI: open → diff → stage → unstage → commit → history; create/switch/delete branch (20.9s)
+  ok  5 tests\electron.spec.ts:242:1 › desktop UI: clone local bare remote → fetch → pull → stage/commit → push (33.2s)
+  ok  6 tests\electron.spec.ts:271:1 › desktop UI: merge conflicting branch → compare base/ours/theirs → manual resolution → merge commit (21.4s)
+  ok  7 tests\electron.spec.ts:302:1 › desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists (27.2s)
+  ok  8 tests\electron.spec.ts:346:1 › desktop UI: merge committed dev into master with staged/unstaged/untracked source changes (15.1s)
+  ok  9 tests\electron.spec.ts:369:1 › desktop UI: isolated merge conflict opens new tab; resolve and finish without changing dev WIP (21.8s)
+  ok 10 tests\electron.spec.ts:403:1 › desktop UI: colored all-branch graph shows real fork/merge edges and filters current history (14.3s)
+  ok 11 tests\electron.spec.ts:428:1 › desktop UI: configure AI, generate only from staged data, preview/apply, stale/error/cancel and encrypted key (23.1s)
+  ok 12 tests\history-ui.spec.ts:61:1 › history actions UI: rollback distinguishes index from HEAD and preserves other files (14.3s)
+  ok 13 tests\history-ui.spec.ts:80:1 › history actions UI: Revert creates history, Mixed preserves worktree, Hard requires confirmation (34.8s)
+  ok 14 tests\history-ui.spec.ts:107:1 › history actions UI: paused rebase survives restart, labels both sides correctly and continues (32.6s)
+
+  1 skipped
+  13 passed (4.7m)

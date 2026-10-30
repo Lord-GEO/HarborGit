@@ -1,0 +1,66 @@
+Compiled from "GitRebase.java"
+class git4idea.actions.GitRebase$1 extends com.intellij.openapi.progress.Task$Backgroundable {
+  final com.intellij.openapi.project.Project val$project;
+
+  final git4idea.repo.GitRepository val$selectedRepository;
+
+  final git4idea.branch.GitRebaseParams val$selectedParams;
+
+  git4idea.actions.GitRebase$1(git4idea.actions.GitRebase, com.intellij.openapi.project.Project, java.lang.String, com.intellij.openapi.project.Project, git4idea.repo.GitRepository, git4idea.branch.GitRebaseParams);
+    Code:
+       0: aload_0
+       1: aload         4
+       3: putfield      #1                  // Field val$project:Lcom/intellij/openapi/project/Project;
+       6: aload_0
+       7: aload         5
+       9: putfield      #7                  // Field val$selectedRepository:Lgit4idea/repo/GitRepository;
+      12: aload_0
+      13: aload         6
+      15: putfield      #11                 // Field val$selectedParams:Lgit4idea/branch/GitRebaseParams;
+      18: aload_0
+      19: aload_2
+      20: aload_3
+      21: invokespecial #15                 // Method com/intellij/openapi/progress/Task$Backgroundable."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)V
+      24: return
+
+  public void run(com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #68                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #1                  // Field val$project:Lcom/intellij/openapi/project/Project;
+      12: aload_0
+      13: getfield      #7                  // Field val$selectedRepository:Lgit4idea/repo/GitRepository;
+      16: invokestatic  #21                 // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+      19: aload_0
+      20: getfield      #11                 // Field val$selectedParams:Lgit4idea/branch/GitRebaseParams;
+      23: aload_1
+      24: invokestatic  #27                 // Method git4idea/rebase/GitRebaseUtils.rebase:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Lgit4idea/branch/GitRebaseParams;Lcom/intellij/openapi/progress/ProgressIndicator;)V
+      27: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #70                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #72                 // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: ldc           #73                 // String indicator
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc           #74                 // String git4idea/actions/GitRebase$1
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: ldc           #75                 // String run
+      20: aastore
+      21: invokestatic  #81                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      24: new           #83                 // class java/lang/IllegalArgumentException
+      27: dup_x1
+      28: swap
+      29: invokespecial #86                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      32: athrow
+}

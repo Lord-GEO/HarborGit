@@ -1,0 +1,248 @@
+Compiled from "GitRebaseOption.kt"
+public final class git4idea.rebase.GitRebaseOption extends java.lang.Enum<git4idea.rebase.GitRebaseOption> {
+  private final java.lang.String option;
+
+  private final java.lang.String description;
+
+  public static final git4idea.rebase.GitRebaseOption SWITCH_BRANCH;
+
+  public static final git4idea.rebase.GitRebaseOption ONTO;
+
+  public static final git4idea.rebase.GitRebaseOption REBASE_MERGES;
+
+  public static final git4idea.rebase.GitRebaseOption KEEP_EMPTY;
+
+  public static final git4idea.rebase.GitRebaseOption ROOT;
+
+  public static final git4idea.rebase.GitRebaseOption INTERACTIVE;
+
+  public static final git4idea.rebase.GitRebaseOption UPDATE_REFS;
+
+  public static final git4idea.rebase.GitRebaseOption AUTOSQUASH;
+
+  private static final git4idea.rebase.GitRebaseOption[] $VALUES;
+
+  private static final kotlin.enums.EnumEntries $ENTRIES;
+
+  private git4idea.rebase.GitRebaseOption(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #13                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: aload_0
+       7: aload_3
+       8: putfield      #17                 // Field option:Ljava/lang/String;
+      11: aload_0
+      12: aload         4
+      14: putfield      #20                 // Field description:Ljava/lang/String;
+      17: return
+
+  public final java.lang.String getDescription();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field description:Ljava/lang/String;
+       4: areturn
+
+  public final java.lang.String getOption(git4idea.config.GitVersion);
+    Code:
+       0: aload_1
+       1: ldc           #32                 // String gitVersion
+       3: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getstatic     #41                 // Field REBASE_MERGES:Lgit4idea/rebase/GitRebaseOption;
+      10: if_acmpeq     18
+      13: aload_0
+      14: getfield      #17                 // Field option:Ljava/lang/String;
+      17: areturn
+      18: getstatic     #47                 // Field git4idea/config/GitVersionSpecialty.REBASE_MERGES_REPLACES_PRESERVE_MERGES:Lgit4idea/config/GitVersionSpecialty;
+      21: aload_1
+      22: invokevirtual #51                 // Method git4idea/config/GitVersionSpecialty.existsIn:(Lgit4idea/config/GitVersion;)Z
+      25: ifeq          33
+      28: ldc           #53                 // String --rebase-merges
+      30: goto          35
+      33: ldc           #55                 // String --preserve-merges
+      35: areturn
+
+  public static git4idea.rebase.GitRebaseOption[] values();
+    Code:
+       0: getstatic     #64                 // Field $VALUES:[Lgit4idea/rebase/GitRebaseOption;
+       3: invokevirtual #70                 // Method java/lang/Object.clone:()Ljava/lang/Object;
+       6: checkcast     #71                 // class "[Lgit4idea/rebase/GitRebaseOption;"
+       9: areturn
+
+  public static git4idea.rebase.GitRebaseOption valueOf(java.lang.String);
+    Code:
+       0: ldc           #2                  // class git4idea/rebase/GitRebaseOption
+       2: aload_0
+       3: invokestatic  #76                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #2                  // class git4idea/rebase/GitRebaseOption
+       9: areturn
+
+  public static kotlin.enums.EnumEntries<git4idea.rebase.GitRebaseOption> getEntries();
+    Code:
+       0: getstatic     #84                 // Field $ENTRIES:Lkotlin/enums/EnumEntries;
+       3: areturn
+
+  private static final git4idea.rebase.GitRebaseOption[] $values();
+    Code:
+       0: bipush        8
+       2: anewarray     #2                  // class git4idea/rebase/GitRebaseOption
+       5: astore_0
+       6: aload_0
+       7: iconst_0
+       8: getstatic     #88                 // Field SWITCH_BRANCH:Lgit4idea/rebase/GitRebaseOption;
+      11: aastore
+      12: aload_0
+      13: iconst_1
+      14: getstatic     #91                 // Field ONTO:Lgit4idea/rebase/GitRebaseOption;
+      17: aastore
+      18: aload_0
+      19: iconst_2
+      20: getstatic     #41                 // Field REBASE_MERGES:Lgit4idea/rebase/GitRebaseOption;
+      23: aastore
+      24: aload_0
+      25: iconst_3
+      26: getstatic     #94                 // Field KEEP_EMPTY:Lgit4idea/rebase/GitRebaseOption;
+      29: aastore
+      30: aload_0
+      31: iconst_4
+      32: getstatic     #97                 // Field ROOT:Lgit4idea/rebase/GitRebaseOption;
+      35: aastore
+      36: aload_0
+      37: iconst_5
+      38: getstatic     #100                // Field INTERACTIVE:Lgit4idea/rebase/GitRebaseOption;
+      41: aastore
+      42: aload_0
+      43: bipush        6
+      45: getstatic     #103                // Field UPDATE_REFS:Lgit4idea/rebase/GitRebaseOption;
+      48: aastore
+      49: aload_0
+      50: bipush        7
+      52: getstatic     #106                // Field AUTOSQUASH:Lgit4idea/rebase/GitRebaseOption;
+      55: aastore
+      56: aload_0
+      57: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class git4idea/rebase/GitRebaseOption
+       3: dup
+       4: ldc           #109                // String SWITCH_BRANCH
+       6: iconst_0
+       7: ldc           #111                // String
+       9: ldc           #113                // String rebase.option.switch.to.branch
+      11: iconst_0
+      12: anewarray     #66                 // class java/lang/Object
+      15: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      18: dup
+      19: ldc           #121                // String message(...)
+      21: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      24: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      27: putstatic     #88                 // Field SWITCH_BRANCH:Lgit4idea/rebase/GitRebaseOption;
+      30: new           #2                  // class git4idea/rebase/GitRebaseOption
+      33: dup
+      34: ldc           #127                // String ONTO
+      36: iconst_1
+      37: ldc           #129                // String --onto
+      39: ldc           #131                // String rebase.option.onto
+      41: iconst_0
+      42: anewarray     #66                 // class java/lang/Object
+      45: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      48: dup
+      49: ldc           #121                // String message(...)
+      51: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      54: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      57: putstatic     #91                 // Field ONTO:Lgit4idea/rebase/GitRebaseOption;
+      60: new           #2                  // class git4idea/rebase/GitRebaseOption
+      63: dup
+      64: ldc           #132                // String REBASE_MERGES
+      66: iconst_2
+      67: ldc           #53                 // String --rebase-merges
+      69: ldc           #134                // String rebase.option.rebase.merges
+      71: iconst_0
+      72: anewarray     #66                 // class java/lang/Object
+      75: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      78: dup
+      79: ldc           #121                // String message(...)
+      81: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      84: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      87: putstatic     #41                 // Field REBASE_MERGES:Lgit4idea/rebase/GitRebaseOption;
+      90: new           #2                  // class git4idea/rebase/GitRebaseOption
+      93: dup
+      94: ldc           #135                // String KEEP_EMPTY
+      96: iconst_3
+      97: ldc           #137                // String --keep-empty
+      99: ldc           #139                // String rebase.option.keep.empty
+     101: iconst_0
+     102: anewarray     #66                 // class java/lang/Object
+     105: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     108: dup
+     109: ldc           #121                // String message(...)
+     111: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     114: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     117: putstatic     #94                 // Field KEEP_EMPTY:Lgit4idea/rebase/GitRebaseOption;
+     120: new           #2                  // class git4idea/rebase/GitRebaseOption
+     123: dup
+     124: ldc           #140                // String ROOT
+     126: iconst_4
+     127: ldc           #142                // String --root
+     129: ldc           #144                // String rebase.option.root
+     131: iconst_0
+     132: anewarray     #66                 // class java/lang/Object
+     135: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     138: dup
+     139: ldc           #121                // String message(...)
+     141: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     144: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     147: putstatic     #97                 // Field ROOT:Lgit4idea/rebase/GitRebaseOption;
+     150: new           #2                  // class git4idea/rebase/GitRebaseOption
+     153: dup
+     154: ldc           #145                // String INTERACTIVE
+     156: iconst_5
+     157: ldc           #147                // String --interactive
+     159: ldc           #149                // String rebase.option.interactive
+     161: iconst_0
+     162: anewarray     #66                 // class java/lang/Object
+     165: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     168: dup
+     169: ldc           #121                // String message(...)
+     171: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     174: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     177: putstatic     #100                // Field INTERACTIVE:Lgit4idea/rebase/GitRebaseOption;
+     180: new           #2                  // class git4idea/rebase/GitRebaseOption
+     183: dup
+     184: ldc           #150                // String UPDATE_REFS
+     186: bipush        6
+     188: ldc           #152                // String --update-refs
+     190: ldc           #154                // String rebase.option.update.refs
+     192: iconst_0
+     193: anewarray     #66                 // class java/lang/Object
+     196: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     199: dup
+     200: ldc           #121                // String message(...)
+     202: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     205: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     208: putstatic     #103                // Field UPDATE_REFS:Lgit4idea/rebase/GitRebaseOption;
+     211: new           #2                  // class git4idea/rebase/GitRebaseOption
+     214: dup
+     215: ldc           #155                // String AUTOSQUASH
+     217: bipush        7
+     219: ldc           #157                // String --autosquash
+     221: ldc           #159                // String rebase.option.autosquash
+     223: iconst_0
+     224: anewarray     #66                 // class java/lang/Object
+     227: invokestatic  #119                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     230: dup
+     231: ldc           #121                // String message(...)
+     233: invokestatic  #124                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     236: invokespecial #126                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     239: putstatic     #106                // Field AUTOSQUASH:Lgit4idea/rebase/GitRebaseOption;
+     242: invokestatic  #161                // Method $values:()[Lgit4idea/rebase/GitRebaseOption;
+     245: putstatic     #64                 // Field $VALUES:[Lgit4idea/rebase/GitRebaseOption;
+     248: getstatic     #64                 // Field $VALUES:[Lgit4idea/rebase/GitRebaseOption;
+     251: checkcast     #163                // class "[Ljava/lang/Enum;"
+     254: invokestatic  #169                // Method kotlin/enums/EnumEntriesKt.enumEntries:([Ljava/lang/Enum;)Lkotlin/enums/EnumEntries;
+     257: putstatic     #84                 // Field $ENTRIES:Lkotlin/enums/EnumEntries;
+     260: return
+}

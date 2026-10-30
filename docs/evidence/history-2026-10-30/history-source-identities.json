@@ -1,0 +1,12 @@
+[
+  {
+    "path": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "bytes": 14989928,
+    "sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0"
+  },
+  {
+    "path": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "bytes": 1475108,
+    "sha256": "0e5135d36bcb94fbf4f5773bb123bd2f964566b872988bee6d5cfc6a0de75a17"
+  }
+]

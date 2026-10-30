@@ -1,0 +1,46 @@
+Compiled from "GitRollbackEnvironment.java"
+class git4idea.rollback.GitRollbackEnvironment$1 {
+  static final int[] $SwitchMap$com$intellij$openapi$vcs$changes$Change$Type;
+
+  static {};
+    Code:
+       0: invokestatic  #1                  // Method com/intellij/openapi/vcs/changes/Change$Type.values:()[Lcom/intellij/openapi/vcs/changes/Change$Type;
+       3: arraylength
+       4: newarray       int
+       6: putstatic     #7                  // Field $SwitchMap$com$intellij$openapi$vcs$changes$Change$Type:[I
+       9: getstatic     #7                  // Field $SwitchMap$com$intellij$openapi$vcs$changes$Change$Type:[I
+      12: getstatic     #13                 // Field com/intellij/openapi/vcs/changes/Change$Type.NEW:Lcom/intellij/openapi/vcs/changes/Change$Type;
+      15: invokevirtual #17                 // Method com/intellij/openapi/vcs/changes/Change$Type.ordinal:()I
+      18: iconst_1
+      19: iastore
+      20: goto          24
+      23: astore_0
+      24: getstatic     #7                  // Field $SwitchMap$com$intellij$openapi$vcs$changes$Change$Type:[I
+      27: getstatic     #23                 // Field com/intellij/openapi/vcs/changes/Change$Type.MOVED:Lcom/intellij/openapi/vcs/changes/Change$Type;
+      30: invokevirtual #17                 // Method com/intellij/openapi/vcs/changes/Change$Type.ordinal:()I
+      33: iconst_2
+      34: iastore
+      35: goto          39
+      38: astore_0
+      39: getstatic     #7                  // Field $SwitchMap$com$intellij$openapi$vcs$changes$Change$Type:[I
+      42: getstatic     #26                 // Field com/intellij/openapi/vcs/changes/Change$Type.MODIFICATION:Lcom/intellij/openapi/vcs/changes/Change$Type;
+      45: invokevirtual #17                 // Method com/intellij/openapi/vcs/changes/Change$Type.ordinal:()I
+      48: iconst_3
+      49: iastore
+      50: goto          54
+      53: astore_0
+      54: getstatic     #7                  // Field $SwitchMap$com$intellij$openapi$vcs$changes$Change$Type:[I
+      57: getstatic     #29                 // Field com/intellij/openapi/vcs/changes/Change$Type.DELETED:Lcom/intellij/openapi/vcs/changes/Change$Type;
+      60: invokevirtual #17                 // Method com/intellij/openapi/vcs/changes/Change$Type.ordinal:()I
+      63: iconst_4
+      64: iastore
+      65: goto          69
+      68: astore_0
+      69: return
+    Exception table:
+       from    to  target type
+           9    20    23   Class java/lang/NoSuchFieldError
+          24    35    38   Class java/lang/NoSuchFieldError
+          39    50    53   Class java/lang/NoSuchFieldError
+          54    65    68   Class java/lang/NoSuchFieldError
+}

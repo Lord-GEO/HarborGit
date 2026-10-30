@@ -1,0 +1,199 @@
+Compiled from "GitRebaseContinue.java"
+final class git4idea.actions.GitRebaseContinue extends git4idea.actions.GitAbstractRebaseAction {
+  git4idea.actions.GitRebaseContinue();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method git4idea/actions/GitAbstractRebaseAction."<init>":()V
+       4: return
+
+  protected java.lang.String getProgressTitle();
+    Code:
+       0: ldc           #7                  // String rebase.progress.indicator.continue.title
+       2: iconst_0
+       3: anewarray     #9                  // class java/lang/Object
+       6: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: dup
+      10: ifnonnull     17
+      13: iconst_0
+      14: invokestatic  #62                 // Method $$$reportNull$$$0:(I)V
+      17: areturn
+
+  public javax.swing.Icon getMainToolbarIcon();
+    Code:
+       0: getstatic     #17                 // Field icons/DvcsImplIcons.ResolveContinue:Ljavax/swing/Icon;
+       3: dup
+       4: ifnonnull     11
+       7: iconst_1
+       8: invokestatic  #62                 // Method $$$reportNull$$$0:(I)V
+      11: areturn
+
+  protected void performActionForProject(com.intellij.openapi.project.Project, com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_2
+       5: invokestatic  #62                 // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_3
+      13: invokestatic  #62                 // Method $$$reportNull$$$0:(I)V
+      16: aload_1
+      17: invokestatic  #23                 // Method git4idea/rebase/GitRebaseUtils.continueRebase:(Lcom/intellij/openapi/project/Project;)V
+      20: return
+
+  protected void performActionForRepository(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #62                 // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #62                 // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     25
+      20: bipush        6
+      22: invokestatic  #62                 // Method $$$reportNull$$$0:(I)V
+      25: aload_1
+      26: aload_2
+      27: aload_3
+      28: invokestatic  #29                 // Method git4idea/rebase/GitRebaseUtils.continueRebase:(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Lcom/intellij/openapi/progress/ProgressIndicator;)V
+      31: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 6
+                     0: 44
+                     1: 44
+                     2: 49
+                     3: 49
+                     4: 49
+                     5: 49
+                     6: 49
+               default: 44
+          }
+      44: ldc           #68                 // String @NotNull method %s.%s must not return null
+      46: goto          54
+      49: ldc           #70                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      51: goto          54
+      54: iload_0
+      55: tableswitch   { // 0 to 6
+                     0: 96
+                     1: 96
+                     2: 100
+                     3: 100
+                     4: 100
+                     5: 100
+                     6: 100
+               default: 96
+          }
+      96: iconst_2
+      97: goto          104
+     100: iconst_3
+     101: goto          104
+     104: anewarray     #9                  // class java/lang/Object
+     107: iload_0
+     108: tableswitch   { // 0 to 6
+                     0: 152
+                     1: 152
+                     2: 160
+                     3: 168
+                     4: 160
+                     5: 176
+                     6: 168
+               default: 152
+          }
+     152: dup
+     153: iconst_0
+     154: ldc           #71                 // String git4idea/actions/GitRebaseContinue
+     156: aastore
+     157: goto          184
+     160: dup
+     161: iconst_0
+     162: ldc           #72                 // String project
+     164: aastore
+     165: goto          184
+     168: dup
+     169: iconst_0
+     170: ldc           #73                 // String indicator
+     172: aastore
+     173: goto          184
+     176: dup
+     177: iconst_0
+     178: ldc           #74                 // String repository
+     180: aastore
+     181: goto          184
+     184: iload_0
+     185: tableswitch   { // 0 to 6
+                     0: 228
+                     1: 236
+                     2: 244
+                     3: 244
+                     4: 244
+                     5: 244
+                     6: 244
+               default: 228
+          }
+     228: dup
+     229: iconst_1
+     230: ldc           #75                 // String getProgressTitle
+     232: aastore
+     233: goto          252
+     236: dup
+     237: iconst_1
+     238: ldc           #76                 // String getMainToolbarIcon
+     240: aastore
+     241: goto          252
+     244: dup
+     245: iconst_1
+     246: ldc           #71                 // String git4idea/actions/GitRebaseContinue
+     248: aastore
+     249: goto          252
+     252: iload_0
+     253: tableswitch   { // 0 to 6
+                     0: 296
+                     1: 296
+                     2: 299
+                     3: 299
+                     4: 307
+                     5: 307
+                     6: 307
+               default: 296
+          }
+     296: goto          315
+     299: dup
+     300: iconst_2
+     301: ldc           #77                 // String performActionForProject
+     303: aastore
+     304: goto          315
+     307: dup
+     308: iconst_2
+     309: ldc           #78                 // String performActionForRepository
+     311: aastore
+     312: goto          315
+     315: invokestatic  #81                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     318: iload_0
+     319: tableswitch   { // 0 to 6
+                     0: 360
+                     1: 360
+                     2: 371
+                     3: 371
+                     4: 371
+                     5: 371
+                     6: 371
+               default: 360
+          }
+     360: new           #83                 // class java/lang/IllegalStateException
+     363: dup_x1
+     364: swap
+     365: invokespecial #86                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     368: goto          382
+     371: new           #88                 // class java/lang/IllegalArgumentException
+     374: dup_x1
+     375: swap
+     376: invokespecial #89                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     379: goto          382
+     382: athrow
+}

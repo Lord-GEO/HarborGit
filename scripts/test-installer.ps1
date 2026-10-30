@@ -58,11 +58,11 @@ try {
   # Check the child exit code instead; a harmless Node color warning is not a failed test.
   $ErrorActionPreference = 'Continue'
   try {
-    & npm.cmd run test:ui -- --grep 'desktop UI: open|software updates: installed' *> $uiLog
+    & npm.cmd run test:ui -- --grep 'desktop UI: open|software updates: installed|history actions UI' *> $uiLog
     $uiExitCode = $LASTEXITCODE
   } finally { $ErrorActionPreference = 'Stop' }
   if ($uiExitCode -ne 0) { throw "Installed app UI test failed; see $uiLog" }
-  $result.checks += 'Installed application passed core Git UI flow and real installed updater detection/IPC/preference checks'
+  $result.checks += 'Installed application passed core Git, history actions, and installed updater detection/IPC/preference UI checks'
 } finally {
   if ($oldExecutable) { $env:HARBOR_EXECUTABLE = $oldExecutable } else { Remove-Item Env:HARBOR_EXECUTABLE -ErrorAction SilentlyContinue }
   if ($oldExpectInstaller) { $env:HARBOR_EXPECT_INSTALLER = $oldExpectInstaller } else { Remove-Item Env:HARBOR_EXPECT_INSTALLER -ErrorAction SilentlyContinue }

@@ -1,0 +1,237 @@
+[
+  {
+    "path": "collect_history_evidence.py",
+    "bytes": 5043,
+    "sha256": "09a19515c33851259ea84bda32624dd887aa981b8ebb88d8a0276e5534a07ec3"
+  },
+  {
+    "path": "history-javap-provenance.json",
+    "bytes": 27602,
+    "sha256": "6d26872a5b4cacf069fb27a3a27bc92474ca364353a22fdad02558576cc87da4"
+  },
+  {
+    "path": "history-rea-evidence-bundle.json",
+    "bytes": 12081,
+    "sha256": "628fe0cf959de3373f5b1bbda7a315c1a89314b7bf7472b757fbbb6cd6ac82ee"
+  },
+  {
+    "path": "history-rea-reused-summary.json",
+    "bytes": 4556,
+    "sha256": "907c13d4c39f7324057b1d156eac1df95f771d8c2b6427f444235fcae9855e0d"
+  },
+  {
+    "path": "history-rea-selected-occurrences.json",
+    "bytes": 10020,
+    "sha256": "45f794bf0cc00a71a066e5420f7df4aa8210b7de6876dca05661cf32bf137ba3"
+  },
+  {
+    "path": "history-resource-excerpts.json",
+    "bytes": 62555,
+    "sha256": "c2e2776d849a2a19e2a2fa46685cb66c19f46567d0189d10d0e310a281a31b3c"
+  },
+  {
+    "path": "history-reused-bytecode.json",
+    "bytes": 2939,
+    "sha256": "21ab12b24918d87b629cb2ab44a57fed6b13e4f52f7baef32c3ffbb7b33a096f"
+  },
+  {
+    "path": "history-session-check.json",
+    "bytes": 826,
+    "sha256": "29b17ae9a5d1727d5c6bef2981a837a5f53019633fe3c52f3776e93e6bdfc4a1"
+  },
+  {
+    "path": "history-source-identities.json",
+    "bytes": 455,
+    "sha256": "6452687e2c545951812fa35549e3cab3ca85453b8c172626ac12e182ecf3e72f"
+  },
+  {
+    "path": "javap/git4idea.actions.GitAbortOperationAction$Revert.txt",
+    "bytes": 2488,
+    "sha256": "a8393f6e09df70135c665e664e8d037410d591f2cd4fd8ea351673b274e86032"
+  },
+  {
+    "path": "javap/git4idea.actions.GitAbortOperationAction.txt",
+    "bytes": 25916,
+    "sha256": "a8412b8d4658a651869f3b503c442b63d8d3df7eca2b2f383436d7705ac183fb"
+  },
+  {
+    "path": "javap/git4idea.actions.GitAbstractRebaseAction.txt",
+    "bytes": 8344,
+    "sha256": "6e6b445312f367997cfaf0257b1c9d414f12e80091e4459cb1773955d7b1dbda"
+  },
+  {
+    "path": "javap/git4idea.actions.GitRebase$1.txt",
+    "bytes": 3292,
+    "sha256": "cb8e964482e2b63a87d2fad7bb3260b4ca4b4b310417268260adea1c98f4516d"
+  },
+  {
+    "path": "javap/git4idea.actions.GitRebase.txt",
+    "bytes": 11978,
+    "sha256": "4f4e35a15b0e293162243cf552498919a9f6afd766f0d66cc27c36d21f54770f"
+  },
+  {
+    "path": "javap/git4idea.actions.GitRebaseAbort.txt",
+    "bytes": 7279,
+    "sha256": "44f953f2e14ecc9bcbee5a6bb468482203a988098efafdd5fc1853c10eba135b"
+  },
+  {
+    "path": "javap/git4idea.actions.GitRebaseContinue.txt",
+    "bytes": 7242,
+    "sha256": "a18395e3048ccef6bd3cedf6541f9bc4ca03960bfd6bcc2557ab4503b2e6d62a"
+  },
+  {
+    "path": "javap/git4idea.actions.GitRebaseSkip.txt",
+    "bytes": 7206,
+    "sha256": "87443c10fb12ddb509e98ca505b434bc634b80686d088ca99439280b819c07a8"
+  },
+  {
+    "path": "javap/git4idea.actions.GitRepositoryStateActionGroup$Rebase.txt",
+    "bytes": 600,
+    "sha256": "770838e963cac5d65e562fbff3b82bd795b6d9046fed835c0d0e1e9b43b5bf30"
+  },
+  {
+    "path": "javap/git4idea.actions.GitResetHead.txt",
+    "bytes": 6476,
+    "sha256": "0a24298410ee2597faeda8a74cc7ce73d5a24fa0d3957e1739a29cdbd3ef78c2"
+  },
+  {
+    "path": "javap/git4idea.applyChanges.GitApplyChangesProcess.txt",
+    "bytes": 77197,
+    "sha256": "a81447eafd58babd365435ea90c40dbeb20b26a91e339966ba87f7aa616db400"
+  },
+  {
+    "path": "javap/git4idea.branch.GitRebaseParams.txt",
+    "bytes": 22583,
+    "sha256": "08ecc08b606f29b06ca21941269e6d0bf3c1c062a7fe7987d8ec67a46b3c40d8"
+  },
+  {
+    "path": "javap/git4idea.index.actions.GitRevertAction.txt",
+    "bytes": 679,
+    "sha256": "01f36dc6e1472658bfb05d62a4f7f911b76d718747fe43b9dffac7d9da1dc527"
+  },
+  {
+    "path": "javap/git4idea.index.actions.GitRevertOperation.txt",
+    "bytes": 9658,
+    "sha256": "6d0ea75c0ad9f36f53aa8a6cda72dd740ea3047856057474f6ce2925637107d4"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitAbortRebaseProcess.txt",
+    "bytes": 41372,
+    "sha256": "72514f835c4779eca0cc690b44ab3e995f95815a467e70b7b53c4af775ed43e3"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseDialog.txt",
+    "bytes": 150019,
+    "sha256": "f10c34dfcbc3137394c43358eae1464e349ce5851bda065eef5b604713ec934e"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseOption.txt",
+    "bytes": 14155,
+    "sha256": "dd7c8cd07e910cbc42449c39041e486364e84a9e320e5609e0eb4c8beb51d118"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseProcess$RebaseConflictResolver.txt",
+    "bytes": 4579,
+    "sha256": "d3d0e0a7cda6a0e9f0946123c803667305e3bc24ee65d5bfcc4172bbbfe03102"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseProcess.txt",
+    "bytes": 130714,
+    "sha256": "7d16b742bd763b231065ef615596ab022c54e55cb35ece7e5124514b93ce22ef"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseResumeMode.txt",
+    "bytes": 6802,
+    "sha256": "33158a8e0c62ba62cd285e21a2bccf6c1197caaf72d3b5f005ab665b6b20863e"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseSpec.txt",
+    "bytes": 45843,
+    "sha256": "5624e14c558412c530f542cb5c9165d36e742daf76f4767c73aec319cdf9baef"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseStatus$Type.txt",
+    "bytes": 4224,
+    "sha256": "2c81199b5472a7611a76f7176294ad16bbb2aa98e039e9fa54047d3d3d06450e"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseStatus.txt",
+    "bytes": 4666,
+    "sha256": "cd8703005e71e03c4e9fc3d35b09a9735362fbde65a10f9cdebc6e8276fa188d"
+  },
+  {
+    "path": "javap/git4idea.rebase.GitRebaseUtils.txt",
+    "bytes": 70835,
+    "sha256": "cbaf5159c4855210526cbdccaa8f38d4778bc84f4352d5a0f8b7d4de32c896cc"
+  },
+  {
+    "path": "javap/git4idea.reset.GitNewResetDialog$Companion.txt",
+    "bytes": 13078,
+    "sha256": "bcea7968391112bd7bc351eb8ebbf5f4c9d68629475ee3b176a5416d0f7da9ac"
+  },
+  {
+    "path": "javap/git4idea.reset.GitNewResetDialog.txt",
+    "bytes": 14834,
+    "sha256": "749b430038a27289be681097e07226acc1b7c3490eafbdcda70c86af67443c84"
+  },
+  {
+    "path": "javap/git4idea.reset.GitOneCommitPerRepoLogAction.txt",
+    "bytes": 6142,
+    "sha256": "24f063247e5865a3726e07b494f97e7ae193640a15e3b8dd812025042b624478"
+  },
+  {
+    "path": "javap/git4idea.reset.GitResetAction$1.txt",
+    "bytes": 4923,
+    "sha256": "caadd204fce0b6e0ac2c112ae3e230d2275d3a341f3d3dd8b76f711d33f474c7"
+  },
+  {
+    "path": "javap/git4idea.reset.GitResetAction.txt",
+    "bytes": 4745,
+    "sha256": "c7ec70c9fa35beaea07386f49cdbb862aa50f93fbed5f9f02f9da9282edeb493"
+  },
+  {
+    "path": "javap/git4idea.reset.GitResetMode.txt",
+    "bytes": 12361,
+    "sha256": "77d541ab766f7bd169ad21d24f0ac48b4edfbaa39e595bae8ea8a22225af97c5"
+  },
+  {
+    "path": "javap/git4idea.reset.GitResetOperation.txt",
+    "bytes": 53381,
+    "sha256": "00f3cadcfbb143392b04408dcdfe2a1f0b54660baae14b77fcba89ca76a84094"
+  },
+  {
+    "path": "javap/git4idea.revert.GitRevertAction$actionPerformed$1$3.txt",
+    "bytes": 2095,
+    "sha256": "8e67f60b927b1a673c718eb3d6d21f4cae7e46f56769f5fbfa0506a9c7067a83"
+  },
+  {
+    "path": "javap/git4idea.revert.GitRevertAction.txt",
+    "bytes": 18439,
+    "sha256": "508eff92194a7642803166c7805920bb0f5b86d3518b851b1b43a06468209ef5"
+  },
+  {
+    "path": "javap/git4idea.revert.GitRevertProcess.txt",
+    "bytes": 11967,
+    "sha256": "44a6ae2fa1292b1abf8e54a53efefd60baaa8446047cac37c7a5ba25dc6040bc"
+  },
+  {
+    "path": "javap/git4idea.rollback.GitRollbackEnvironment$1.txt",
+    "bytes": 2708,
+    "sha256": "5bf20dea37117a879657705454a74d226a7c0fce284517d52d699f3fed886a4f"
+  },
+  {
+    "path": "javap/git4idea.rollback.GitRollbackEnvironment.txt",
+    "bytes": 36953,
+    "sha256": "aebbce6ae98c01c7c0057c150b79e2de2d272a1506cc4efa6f2ba3a0eb0d65f5"
+  },
+  {
+    "path": "javap/git4idea.ui.GitResetDialog$ResetMode.txt",
+    "bytes": 5618,
+    "sha256": "da4f96bc3a8ccfba41b97865712c4271f8152ee6147d8cd6c3a196431d166054"
+  },
+  {
+    "path": "javap/git4idea.ui.GitResetDialog.txt",
+    "bytes": 42375,
+    "sha256": "5e2123d75f42fec9f1e9a2234454753ab3006b2b332c3a2ae1b7fd3b8b58207c"
+  }
+]

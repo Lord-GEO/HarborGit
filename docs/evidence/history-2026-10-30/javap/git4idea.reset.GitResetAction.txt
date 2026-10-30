@@ -1,0 +1,95 @@
+Compiled from "GitResetAction.java"
+public class git4idea.reset.GitResetAction extends git4idea.reset.GitOneCommitPerRepoLogAction {
+  public git4idea.reset.GitResetAction();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method git4idea/reset/GitOneCommitPerRepoLogAction."<init>":()V
+       4: return
+
+  protected void actionPerformed(com.intellij.openapi.project.Project, java.util.Map<git4idea.repo.GitRepository, com.intellij.vcs.log.VcsFullCommitDetails>);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #95                 // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #95                 // Method $$$reportNull$$$0:(I)V
+      16: aload_1
+      17: invokestatic  #7                  // Method git4idea/config/GitVcsSettings.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitVcsSettings;
+      20: astore_3
+      21: aload_3
+      22: invokevirtual #13                 // Method git4idea/config/GitVcsSettings.getResetMode:()Lgit4idea/reset/GitResetMode;
+      25: invokestatic  #17                 // Method git4idea/reset/GitResetMode.getDefault:()Lgit4idea/reset/GitResetMode;
+      28: invokestatic  #22                 // Method com/intellij/util/ObjectUtils.notNull:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      31: checkcast     #18                 // class git4idea/reset/GitResetMode
+      34: astore        4
+      36: new           #28                 // class git4idea/reset/GitNewResetDialog
+      39: dup
+      40: aload_1
+      41: aload_2
+      42: aload         4
+      44: invokespecial #30                 // Method git4idea/reset/GitNewResetDialog."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/Map;Lgit4idea/reset/GitResetMode;)V
+      47: astore        5
+      49: aload         5
+      51: invokevirtual #33                 // Method git4idea/reset/GitNewResetDialog.showAndGet:()Z
+      54: ifeq          96
+      57: aload         5
+      59: invokevirtual #37                 // Method git4idea/reset/GitNewResetDialog.getResetMode:()Lgit4idea/reset/GitResetMode;
+      62: astore        6
+      64: aload_3
+      65: aload         6
+      67: invokevirtual #38                 // Method git4idea/config/GitVcsSettings.setResetMode:(Lgit4idea/reset/GitResetMode;)V
+      70: new           #42                 // class git4idea/reset/GitResetAction$1
+      73: dup
+      74: aload_0
+      75: aload_1
+      76: ldc           #44                 // String git.reset.process
+      78: iconst_0
+      79: anewarray     #46                 // class java/lang/Object
+      82: invokestatic  #48                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      85: iconst_1
+      86: aload_2
+      87: aload_1
+      88: aload         6
+      90: invokespecial #54                 // Method git4idea/reset/GitResetAction$1."<init>":(Lgit4idea/reset/GitResetAction;Lcom/intellij/openapi/project/Project;Ljava/lang/String;ZLjava/util/Map;Lcom/intellij/openapi/project/Project;Lgit4idea/reset/GitResetMode;)V
+      93: invokevirtual #57                 // Method git4idea/reset/GitResetAction$1.queue:()V
+      96: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #97                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #46                 // class java/lang/Object
+       6: iload_0
+       7: tableswitch   { // 0 to 1
+                     0: 28
+                     1: 36
+               default: 28
+          }
+      28: dup
+      29: iconst_0
+      30: ldc           #98                 // String project
+      32: aastore
+      33: goto          44
+      36: dup
+      37: iconst_0
+      38: ldc           #99                 // String commits
+      40: aastore
+      41: goto          44
+      44: dup
+      45: iconst_1
+      46: ldc           #100                // String git4idea/reset/GitResetAction
+      48: aastore
+      49: dup
+      50: iconst_2
+      51: ldc           #101                // String actionPerformed
+      53: aastore
+      54: invokestatic  #106                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      57: new           #108                // class java/lang/IllegalArgumentException
+      60: dup_x1
+      61: swap
+      62: invokespecial #111                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      65: athrow
+}

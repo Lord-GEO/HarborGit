@@ -4,13 +4,16 @@ import { spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { GitError, GitService } from '../src/main/git-service';
 import type { Activity } from '../src/shared/types';
 
-const testRoot = path.resolve('test-results', 'remotes');
+// Playwright clears test-results on startup; repositories must live outside it.
+const testRoot = fileURLToPath(new URL('../../../work/remote-integration', import.meta.url));
 const git = (cwd: string, args: string[]) => {
-  const result = spawnSync('git', args, { cwd, encoding: 'utf8', windowsHide: true, env: { ...process.env, GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: path.join(cwd, 'empty-global') } });
-  assert.equal(result.status, 0, result.stderr); return result.stdout.trim();
+  const result = spawnSync('git', args, { cwd, shell: false, encoding: 'utf8', windowsHide: true, env: { ...process.env, GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: path.join(cwd, 'empty-global') } });
+  if (result.error) throw result.error;
+  assert.equal(result.status, 0, result.stderr || 'Git fixture command failed'); return result.stdout.trim();
 };
 async function fixture(t: test.TestContext) {
   await mkdir(testRoot, { recursive: true });

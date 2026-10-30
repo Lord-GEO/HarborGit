@@ -1,0 +1,168 @@
+Compiled from "GitResetHead.java"
+public class git4idea.actions.GitResetHead extends git4idea.actions.GitRepositoryAction {
+  public git4idea.actions.GitResetHead();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method git4idea/actions/GitRepositoryAction."<init>":()V
+       4: return
+
+  protected java.lang.String getActionName();
+    Code:
+       0: ldc           #7                  // String reset.action.name
+       2: iconst_0
+       3: anewarray     #9                  // class java/lang/Object
+       6: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: dup
+      10: ifnonnull     17
+      13: iconst_0
+      14: invokestatic  #70                 // Method $$$reportNull$$$0:(I)V
+      17: areturn
+
+  protected void perform(com.intellij.openapi.project.Project, java.util.List<com.intellij.openapi.vfs.VirtualFile>, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: invokestatic  #70                 // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_2
+      13: invokestatic  #70                 // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     24
+      20: iconst_3
+      21: invokestatic  #70                 // Method $$$reportNull$$$0:(I)V
+      24: new           #17                 // class git4idea/ui/GitResetDialog
+      27: dup
+      28: aload_1
+      29: aload_2
+      30: aload_3
+      31: invokespecial #19                 // Method git4idea/ui/GitResetDialog."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      34: astore        4
+      36: aload         4
+      38: invokevirtual #22                 // Method git4idea/ui/GitResetDialog.showAndGet:()Z
+      41: ifne          45
+      44: return
+      45: new           #26                 // class git4idea/actions/GitResetHead$1
+      48: dup
+      49: aload_0
+      50: aload_1
+      51: ldc           #28                 // String resetting.title
+      53: iconst_0
+      54: anewarray     #9                  // class java/lang/Object
+      57: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      60: iconst_1
+      61: aload_1
+      62: aload         4
+      64: invokespecial #30                 // Method git4idea/actions/GitResetHead$1."<init>":(Lgit4idea/actions/GitResetHead;Lcom/intellij/openapi/project/Project;Ljava/lang/String;ZLcom/intellij/openapi/project/Project;Lgit4idea/ui/GitResetDialog;)V
+      67: invokevirtual #33                 // Method git4idea/actions/GitResetHead$1.queue:()V
+      70: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 3
+                     0: 32
+                     1: 37
+                     2: 37
+                     3: 37
+               default: 32
+          }
+      32: ldc           #74                 // String @NotNull method %s.%s must not return null
+      34: goto          42
+      37: ldc           #76                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      39: goto          42
+      42: iload_0
+      43: tableswitch   { // 0 to 3
+                     0: 72
+                     1: 76
+                     2: 76
+                     3: 76
+               default: 72
+          }
+      72: iconst_2
+      73: goto          80
+      76: iconst_3
+      77: goto          80
+      80: anewarray     #9                  // class java/lang/Object
+      83: iload_0
+      84: tableswitch   { // 0 to 3
+                     0: 116
+                     1: 124
+                     2: 132
+                     3: 140
+               default: 116
+          }
+     116: dup
+     117: iconst_0
+     118: ldc           #77                 // String git4idea/actions/GitResetHead
+     120: aastore
+     121: goto          148
+     124: dup
+     125: iconst_0
+     126: ldc           #78                 // String project
+     128: aastore
+     129: goto          148
+     132: dup
+     133: iconst_0
+     134: ldc           #79                 // String gitRoots
+     136: aastore
+     137: goto          148
+     140: dup
+     141: iconst_0
+     142: ldc           #80                 // String defaultRoot
+     144: aastore
+     145: goto          148
+     148: iload_0
+     149: tableswitch   { // 0 to 3
+                     0: 180
+                     1: 188
+                     2: 188
+                     3: 188
+               default: 180
+          }
+     180: dup
+     181: iconst_1
+     182: ldc           #81                 // String getActionName
+     184: aastore
+     185: goto          196
+     188: dup
+     189: iconst_1
+     190: ldc           #77                 // String git4idea/actions/GitResetHead
+     192: aastore
+     193: goto          196
+     196: iload_0
+     197: tableswitch   { // 0 to 3
+                     0: 228
+                     1: 231
+                     2: 231
+                     3: 231
+               default: 228
+          }
+     228: goto          239
+     231: dup
+     232: iconst_2
+     233: ldc           #82                 // String perform
+     235: aastore
+     236: goto          239
+     239: invokestatic  #85                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     242: iload_0
+     243: tableswitch   { // 0 to 3
+                     0: 272
+                     1: 283
+                     2: 283
+                     3: 283
+               default: 272
+          }
+     272: new           #87                 // class java/lang/IllegalStateException
+     275: dup_x1
+     276: swap
+     277: invokespecial #90                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     280: goto          294
+     283: new           #92                 // class java/lang/IllegalArgumentException
+     286: dup_x1
+     287: swap
+     288: invokespecial #93                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     291: goto          294
+     294: athrow
+}

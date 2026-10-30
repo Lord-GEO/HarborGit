@@ -1,0 +1,170 @@
+Compiled from "GitRebaseResumeMode.java"
+public final class git4idea.rebase.GitRebaseResumeMode extends java.lang.Enum<git4idea.rebase.GitRebaseResumeMode> {
+  public static final git4idea.rebase.GitRebaseResumeMode CONTINUE;
+
+  public static final git4idea.rebase.GitRebaseResumeMode SKIP;
+
+  private final java.lang.String myCommandLineArgument;
+
+  private static final git4idea.rebase.GitRebaseResumeMode[] $VALUES;
+
+  public static git4idea.rebase.GitRebaseResumeMode[] values();
+    Code:
+       0: getstatic     #10                 // Field $VALUES:[Lgit4idea/rebase/GitRebaseResumeMode;
+       3: invokevirtual #14                 // Method "[Lgit4idea/rebase/GitRebaseResumeMode;".clone:()Ljava/lang/Object;
+       6: checkcast     #15                 // class "[Lgit4idea/rebase/GitRebaseResumeMode;"
+       9: areturn
+
+  public static git4idea.rebase.GitRebaseResumeMode valueOf(java.lang.String);
+    Code:
+       0: ldc           #1                  // class git4idea/rebase/GitRebaseResumeMode
+       2: aload_0
+       3: invokestatic  #19                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #1                  // class git4idea/rebase/GitRebaseResumeMode
+       9: areturn
+
+  private git4idea.rebase.GitRebaseResumeMode(java.lang.String);
+    Code:
+       0: aload_3
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #72                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: aload_1
+      10: iload_2
+      11: invokespecial #25                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+      14: aload_0
+      15: aload_3
+      16: putfield      #29                 // Field myCommandLineArgument:Ljava/lang/String;
+      19: return
+
+  public java.lang.String asCommandLineArgument();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field myCommandLineArgument:Ljava/lang/String;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_1
+       9: invokestatic  #72                 // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  private static git4idea.rebase.GitRebaseResumeMode[] $values();
+    Code:
+       0: iconst_2
+       1: anewarray     #1                  // class git4idea/rebase/GitRebaseResumeMode
+       4: dup
+       5: iconst_0
+       6: getstatic     #3                  // Field CONTINUE:Lgit4idea/rebase/GitRebaseResumeMode;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #7                  // Field SKIP:Lgit4idea/rebase/GitRebaseResumeMode;
+      15: aastore
+      16: areturn
+
+  static {};
+    Code:
+       0: new           #1                  // class git4idea/rebase/GitRebaseResumeMode
+       3: dup
+       4: ldc           #33                 // String CONTINUE
+       6: iconst_0
+       7: ldc           #34                 // String --continue
+       9: invokespecial #36                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;)V
+      12: putstatic     #3                  // Field CONTINUE:Lgit4idea/rebase/GitRebaseResumeMode;
+      15: new           #1                  // class git4idea/rebase/GitRebaseResumeMode
+      18: dup
+      19: ldc           #39                 // String SKIP
+      21: iconst_1
+      22: ldc           #40                 // String --skip
+      24: invokespecial #36                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;)V
+      27: putstatic     #7                  // Field SKIP:Lgit4idea/rebase/GitRebaseResumeMode;
+      30: invokestatic  #42                 // Method $values:()[Lgit4idea/rebase/GitRebaseResumeMode;
+      33: putstatic     #10                 // Field $VALUES:[Lgit4idea/rebase/GitRebaseResumeMode;
+      36: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 1
+                     0: 24
+                     1: 29
+               default: 24
+          }
+      24: ldc           #76                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      26: goto          34
+      29: ldc           #78                 // String @NotNull method %s.%s must not return null
+      31: goto          34
+      34: iload_0
+      35: tableswitch   { // 0 to 1
+                     0: 56
+                     1: 60
+               default: 56
+          }
+      56: iconst_3
+      57: goto          64
+      60: iconst_2
+      61: goto          64
+      64: anewarray     #80                 // class java/lang/Object
+      67: iload_0
+      68: tableswitch   { // 0 to 1
+                     0: 92
+                     1: 100
+               default: 92
+          }
+      92: dup
+      93: iconst_0
+      94: ldc           #81                 // String argument
+      96: aastore
+      97: goto          108
+     100: dup
+     101: iconst_0
+     102: ldc           #82                 // String git4idea/rebase/GitRebaseResumeMode
+     104: aastore
+     105: goto          108
+     108: iload_0
+     109: tableswitch   { // 0 to 1
+                     0: 132
+                     1: 140
+               default: 132
+          }
+     132: dup
+     133: iconst_1
+     134: ldc           #82                 // String git4idea/rebase/GitRebaseResumeMode
+     136: aastore
+     137: goto          148
+     140: dup
+     141: iconst_1
+     142: ldc           #83                 // String asCommandLineArgument
+     144: aastore
+     145: goto          148
+     148: iload_0
+     149: tableswitch   { // 0 to 1
+                     0: 172
+                     1: 180
+               default: 172
+          }
+     172: dup
+     173: iconst_2
+     174: ldc           #84                 // String <init>
+     176: aastore
+     177: goto          183
+     180: goto          183
+     183: invokestatic  #88                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     186: iload_0
+     187: tableswitch   { // 0 to 1
+                     0: 208
+                     1: 219
+               default: 208
+          }
+     208: new           #90                 // class java/lang/IllegalArgumentException
+     211: dup_x1
+     212: swap
+     213: invokespecial #92                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     216: goto          230
+     219: new           #94                 // class java/lang/IllegalStateException
+     222: dup_x1
+     223: swap
+     224: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     227: goto          230
+     230: athrow
+}

@@ -1,0 +1,648 @@
+[
+  {
+    "output": "javap/git4idea.actions.GitAbstractRebaseAction.txt",
+    "output_sha256": "6e6b445312f367997cfaf0257b1c9d414f12e80091e4459cb1773955d7b1dbda",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitAbstractRebaseAction.class",
+    "member_sha256": "c36b9a89d4e1b10911d6bf977bef70c8826cbd5370df084b03f868622dbcf34d",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitAbstractRebaseAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitRebase.txt",
+    "output_sha256": "4f4e35a15b0e293162243cf552498919a9f6afd766f0d66cc27c36d21f54770f",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitRebase.class",
+    "member_sha256": "0747c8b953ce5c40453e1419fd61eacc3ba11240cdc9532ba3dd56a5a2bacb8d",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitRebase"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitRebase$1.txt",
+    "output_sha256": "cb8e964482e2b63a87d2fad7bb3260b4ca4b4b310417268260adea1c98f4516d",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitRebase$1.class",
+    "member_sha256": "12bd5fef44b806ddd532f1dfda9b43298b1dbf379b2e68c94f92245f2d26bc52",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitRebase$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitRebaseContinue.txt",
+    "output_sha256": "a18395e3048ccef6bd3cedf6541f9bc4ca03960bfd6bcc2557ab4503b2e6d62a",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitRebaseContinue.class",
+    "member_sha256": "a04e5deeb87e63e443d321c39b987106d892bbe235ba16682bddd53402e15107",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitRebaseContinue"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitRebaseSkip.txt",
+    "output_sha256": "87443c10fb12ddb509e98ca505b434bc634b80686d088ca99439280b819c07a8",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitRebaseSkip.class",
+    "member_sha256": "4a8262705d14e9180b797159c550c9945427ee552e5c333d74797fbe88f246bf",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitRebaseSkip"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitRebaseAbort.txt",
+    "output_sha256": "44f953f2e14ecc9bcbee5a6bb468482203a988098efafdd5fc1853c10eba135b",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitRebaseAbort.class",
+    "member_sha256": "88bae780a750025fdfa6cf269ef1212019d563a287450a1768119f2cc449642f",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitRebaseAbort"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitRepositoryStateActionGroup$Rebase.txt",
+    "output_sha256": "770838e963cac5d65e562fbff3b82bd795b6d9046fed835c0d0e1e9b43b5bf30",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitRepositoryStateActionGroup$Rebase.class",
+    "member_sha256": "f1e826d8139efea35c5c6870576c2478e38cc294fef07bd51575896de374e5cc",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitRepositoryStateActionGroup$Rebase"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitResetHead.txt",
+    "output_sha256": "0a24298410ee2597faeda8a74cc7ce73d5a24fa0d3957e1739a29cdbd3ef78c2",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitResetHead.class",
+    "member_sha256": "7a5ac5d0d668861a675ae4ee29e97c8391d6a5e74c45e28119450e27eb4371e5",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitResetHead"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.branch.GitRebaseParams.txt",
+    "output_sha256": "08ecc08b606f29b06ca21941269e6d0bf3c1c062a7fe7987d8ec67a46b3c40d8",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/branch/GitRebaseParams.class",
+    "member_sha256": "90eb2bc22ec0d498bb9430611e8e31be85ce727a651829c72ece530bc9e1340d",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.branch.GitRebaseParams"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseDialog.txt",
+    "output_sha256": "f10c34dfcbc3137394c43358eae1464e349ce5851bda065eef5b604713ec934e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseDialog.class",
+    "member_sha256": "290cf52c02f19d8dcd7075a3c4fa9722159ccbb06b9c3506a0d420370670151a",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseDialog"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseUtils.txt",
+    "output_sha256": "cbaf5159c4855210526cbdccaa8f38d4778bc84f4352d5a0f8b7d4de32c896cc",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseUtils.class",
+    "member_sha256": "29973cc35d1afc3da50a6af0bab6cf723878fca727afeb269a24f4e4a761968d",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseUtils"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseProcess.txt",
+    "output_sha256": "7d16b742bd763b231065ef615596ab022c54e55cb35ece7e5124514b93ce22ef",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseProcess.class",
+    "member_sha256": "94a3c0cd01e322a551b6429be8aa96b4d82de06c1b1bf816018031a04af216b4",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseProcess"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseResumeMode.txt",
+    "output_sha256": "33158a8e0c62ba62cd285e21a2bccf6c1197caaf72d3b5f005ab665b6b20863e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseResumeMode.class",
+    "member_sha256": "22171346f11118accc4330f593506c49baa7540301d63d18170b68b72ea1ec8b",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseResumeMode"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseStatus.txt",
+    "output_sha256": "cd8703005e71e03c4e9fc3d35b09a9735362fbde65a10f9cdebc6e8276fa188d",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseStatus.class",
+    "member_sha256": "2e244810fd26d9a202746f157c5e126b6bf4d27c8a8d5efdef2286704ae8e841",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseStatus"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseStatus$Type.txt",
+    "output_sha256": "2c81199b5472a7611a76f7176294ad16bbb2aa98e039e9fa54047d3d3d06450e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseStatus$Type.class",
+    "member_sha256": "62bf79d86d99b2e3a188d28e8361cf53ff65fbfac7d47764cd9c00884f1e3363",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseStatus$Type"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitAbortRebaseProcess.txt",
+    "output_sha256": "72514f835c4779eca0cc690b44ab3e995f95815a467e70b7b53c4af775ed43e3",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitAbortRebaseProcess.class",
+    "member_sha256": "d26314d60b32a8de8f4657a8a2f77044348f77db35ca8ffe8537769b9581d1de",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitAbortRebaseProcess"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rollback.GitRollbackEnvironment.txt",
+    "output_sha256": "aebbce6ae98c01c7c0057c150b79e2de2d272a1506cc4efa6f2ba3a0eb0d65f5",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rollback/GitRollbackEnvironment.class",
+    "member_sha256": "e80f791233dadbca37c9bf23df31af9be023ab5df8063e2bb270361e4db25e20",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rollback.GitRollbackEnvironment"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rollback.GitRollbackEnvironment$1.txt",
+    "output_sha256": "5bf20dea37117a879657705454a74d226a7c0fce284517d52d699f3fed886a4f",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rollback/GitRollbackEnvironment$1.class",
+    "member_sha256": "a6b62ac9adeb193f5c6c56d4e83b140e2f074c1aca7a30c6f0bc3df45ad36609",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rollback.GitRollbackEnvironment$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitRevertAction.txt",
+    "output_sha256": "01f36dc6e1472658bfb05d62a4f7f911b76d718747fe43b9dffac7d9da1dc527",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitRevertAction.class",
+    "member_sha256": "ebac2643e6535c0e568fde186ee2636600ec725acbe48a9002afbdf4eba3f19d",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.index.actions.GitRevertAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.index.actions.GitRevertOperation.txt",
+    "output_sha256": "6d0ea75c0ad9f36f53aa8a6cda72dd740ea3047856057474f6ce2925637107d4",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/index/actions/GitRevertOperation.class",
+    "member_sha256": "d70ab06d31e13f7145053a197a90c14d1bf122dc6dde19bc604b0f3122e69438",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.index.actions.GitRevertOperation"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.reset.GitResetAction.txt",
+    "output_sha256": "c7ec70c9fa35beaea07386f49cdbb862aa50f93fbed5f9f02f9da9282edeb493",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/reset/GitResetAction.class",
+    "member_sha256": "ecce434e2d18f622a70f3d60f13ec2496417058a27bcf266abf3c82c521fa8a6",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.reset.GitResetAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.reset.GitResetAction$1.txt",
+    "output_sha256": "caadd204fce0b6e0ac2c112ae3e230d2275d3a341f3d3dd8b76f711d33f474c7",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/reset/GitResetAction$1.class",
+    "member_sha256": "7040f6c3e94fdad2fc878fa5604b58d780c8c11a2b7aac6a91e3cd7f85e79f4c",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.reset.GitResetAction$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.reset.GitResetOperation.txt",
+    "output_sha256": "00f3cadcfbb143392b04408dcdfe2a1f0b54660baae14b77fcba89ca76a84094",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/reset/GitResetOperation.class",
+    "member_sha256": "f759c9a5e8e626c06f94c5b5f79a09b1da09a3e84999dcca79209a92030551d6",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.reset.GitResetOperation"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.reset.GitNewResetDialog.txt",
+    "output_sha256": "749b430038a27289be681097e07226acc1b7c3490eafbdcda70c86af67443c84",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/reset/GitNewResetDialog.class",
+    "member_sha256": "bb8f7c6ad271bbce1fc1e8fed66cd266ebe27a9ffc24c8832461fe5b1a2e1dad",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.reset.GitNewResetDialog"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.reset.GitResetMode.txt",
+    "output_sha256": "77d541ab766f7bd169ad21d24f0ac48b4edfbaa39e595bae8ea8a22225af97c5",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/reset/GitResetMode.class",
+    "member_sha256": "06887620d6041b60689093a732c9d87fd7b08201060547f60ff1387515970005",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.reset.GitResetMode"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.ui.GitResetDialog.txt",
+    "output_sha256": "5e2123d75f42fec9f1e9a2234454753ab3006b2b332c3a2ae1b7fd3b8b58207c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/ui/GitResetDialog.class",
+    "member_sha256": "869ad538440a7315f3049c4b5afc04a19f94a06dd643bef063d2b1be33d1247b",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.ui.GitResetDialog"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.ui.GitResetDialog$ResetMode.txt",
+    "output_sha256": "da4f96bc3a8ccfba41b97865712c4271f8152ee6147d8cd6c3a196431d166054",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/ui/GitResetDialog$ResetMode.class",
+    "member_sha256": "2761c8ef67beecbe308611812ef9cd18b93548f615d2e5a856b4d94071048fe3",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.ui.GitResetDialog$ResetMode"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.revert.GitRevertAction.txt",
+    "output_sha256": "508eff92194a7642803166c7805920bb0f5b86d3518b851b1b43a06468209ef5",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/revert/GitRevertAction.class",
+    "member_sha256": "9e6c3a7f14f6973d70168ee421c5666a41d0cc290a7e741800031eb35e497f2b",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.revert.GitRevertAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.revert.GitRevertAction$actionPerformed$1$3.txt",
+    "output_sha256": "8e67f60b927b1a673c718eb3d6d21f4cae7e46f56769f5fbfa0506a9c7067a83",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/revert/GitRevertAction$actionPerformed$1$3.class",
+    "member_sha256": "62c6416a8595d1839661a19e6c1490ae454c226f6fcd0d9fd8ac603deb46fdfd",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.revert.GitRevertAction$actionPerformed$1$3"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.revert.GitRevertProcess.txt",
+    "output_sha256": "44a6ae2fa1292b1abf8e54a53efefd60baaa8446047cac37c7a5ba25dc6040bc",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/revert/GitRevertProcess.class",
+    "member_sha256": "c78ca49d22ced83b3450707fa9ae6fa9844432a37509abf80cd5b621fb5a3555",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.revert.GitRevertProcess"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.applyChanges.GitApplyChangesProcess.txt",
+    "output_sha256": "a81447eafd58babd365435ea90c40dbeb20b26a91e339966ba87f7aa616db400",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/applyChanges/GitApplyChangesProcess.class",
+    "member_sha256": "6dee8c7225c73947376f3d6f8f1c2b6a22a26a769eea8efe2a76d5b56b9f5d4f",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.applyChanges.GitApplyChangesProcess"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseProcess$RebaseConflictResolver.txt",
+    "output_sha256": "d3d0e0a7cda6a0e9f0946123c803667305e3bc24ee65d5bfcc4172bbbfe03102",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseProcess$RebaseConflictResolver.class",
+    "member_sha256": "34f7dea7f391e49991fe760fde3691c90c231a0ae3653dd0ae15770f2195e9aa",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseProcess$RebaseConflictResolver"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseSpec.txt",
+    "output_sha256": "5624e14c558412c530f542cb5c9165d36e742daf76f4767c73aec319cdf9baef",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseSpec.class",
+    "member_sha256": "397dc615455035c0135c2dbc9b13aae5ebb243c24f1c41ab0717727243453b56",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseSpec"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.rebase.GitRebaseOption.txt",
+    "output_sha256": "dd7c8cd07e910cbc42449c39041e486364e84a9e320e5609e0eb4c8beb51d118",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/rebase/GitRebaseOption.class",
+    "member_sha256": "312c8f9daa5648f4e13555b18193934b36c6324981ace64280edc6fc784c349a",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.rebase.GitRebaseOption"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.reset.GitNewResetDialog$Companion.txt",
+    "output_sha256": "bcea7968391112bd7bc351eb8ebbf5f4c9d68629475ee3b176a5416d0f7da9ac",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/reset/GitNewResetDialog$Companion.class",
+    "member_sha256": "3b7f61056da3e39342681e96e342d2cca89f55f794d1957a297e91d1c1cca2fc",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.reset.GitNewResetDialog$Companion"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.reset.GitOneCommitPerRepoLogAction.txt",
+    "output_sha256": "24f063247e5865a3726e07b494f97e7ae193640a15e3b8dd812025042b624478",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/reset/GitOneCommitPerRepoLogAction.class",
+    "member_sha256": "c285d4871affddc573520c595704121c09f098ac4e87ea6b78bd7c823d3e8c78",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.reset.GitOneCommitPerRepoLogAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitAbortOperationAction.txt",
+    "output_sha256": "a8412b8d4658a651869f3b503c442b63d8d3df7eca2b2f383436d7705ac183fb",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitAbortOperationAction.class",
+    "member_sha256": "f51529050ef5bb459c8fea041a5a57ffe1f4975ac7da3cb00830039f257ad858",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitAbortOperationAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitAbortOperationAction$Revert.txt",
+    "output_sha256": "a8393f6e09df70135c665e664e8d037410d591f2cd4fd8ea351673b274e86032",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitAbortOperationAction$Revert.class",
+    "member_sha256": "714568c386a3bdffaf2b061f4e6604fab3ce5d1ee8c4f8f4a5d4e9843c852596",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitAbortOperationAction$Revert"
+    ],
+    "stderr": ""
+  }
+]

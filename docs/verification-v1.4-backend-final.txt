@@ -1,0 +1,63 @@
+
+> harbor-git@1.4.0 test
+> tsx --test tests/git.test.ts tests/graph-ai.test.ts tests/remotes.test.ts tests/updates.test.ts tests/history-actions.test.ts
+
+✔ project sessions isolate concurrent reads/writes, deduplicate paths, and reject closed sessions (3495.9756ms)
+✔ smart merge dev committed changes into master preserves source index, worktree, untracked files and branch (3075.3142ms)
+✔ smart merge conflicts recover in another session; source WIP survives resolve/commit/cleanup (5280.6248ms)
+✔ smart merge conflict survives reopen; abort/cleanup leaves target and source unchanged (3713.5356ms)
+✔ smart merge refuses target checked out in another worktree without modifying either tree (1355.2002ms)
+✔ ordinary merge allows non-overlapping worktree changes and lets Git protect overlapping edits (2054.7167ms)
+✔ unborn repository: literal Unicode/space/leading-dash/pathspec names, stage and unstage, initial history (4072.0407ms)
+✔ workspace and index diffs remain distinct; deleting, renaming, and binary content are represented (5760.0416ms)
+✔ branches: create, switch, reject unsafe deletion, safe deletion and invalid names (5017.2938ms)
+✔ clone and local bare remote: fetch/push/fast-forward pull; divergent pull rejects without merge (12017.5512ms)
+✔ merge conflict: read base/ours/theirs, resolve ours, finish merge, inspect merge commit files/diff (12466.7888ms)
+✔ merge conflict: manual resolution and theirs resolution are staged, abort restores original head (5986.5775ms)
+✔ modify/delete conflict: choosing deleted side removes the file and stages resolution (3272.9628ms)
+✔ validation rejects escapes/options/invalid payloads, errors retain useful Git output, previous repo survives bad open (1576.0226ms)
+✔ operation log reports commands and completion; a slow commit hook can be cancelled (2846.8816ms)
+✔ slow commit hook times out with a recoverable failure (4947.4632ms)
+✔ all-branch history exposes real merge parents, unmerged tips, topo order, pagination and unborn HEAD (3225.1807ms)
+✔ graph preserves octopus parent edges and never joins unrelated roots (0.4668ms)
+✔ AI snapshot includes only immutable staged content, rename metadata and binary notice; preserves working state (2508.639ms)
+✔ Responses and Chat protocols use configured endpoint/model, parse text, and never transmit credentials in payload (44.7334ms)
+✔ AI provider reports HTTP/malformed/empty errors, redacts key, times out and supports cancellation (187.5256ms)
+✔ settings keep key out of public responses/plaintext disk, and endpoint changes clear old credentials (239.6615ms)
+✔ generation marks changed index stale and cancellation leaves both index and commit history intact (2264.3037ms)
+✔ rebase changes only current branch, preserves all requested commits and an original-head backup (3964.981ms)
+✔ rebase conflict survives reopening, exposes correct ours/theirs, continues without a terminal editor (7572.9843ms)
+✔ rebase skip omits only the conflicting commit and replays the following commit (3631.9788ms)
+✔ rebase abort restores branch tip, content and a clean index (3768.1206ms)
+✔ rebase honors --rebase-merges and works in a linked worktree without touching its sibling (4117.7916ms)
+✔ rebase rejects dirty or stale state and unsafe target syntax without modifying data (2750.0932ms)
+✔ ordinary ignored build artifacts do not prevent a clean rebase or revert (3955.4435ms)
+✔ ignored paths touched by intermediate replay commits or revert parents are protected (3378.9357ms)
+✔ revert adds a new inverse commit, retains original history, and supports a merge mainline (5295.2449ms)
+✔ revert conflict supports reopen, continue and abort without altering other commits (8616.3763ms)
+✔ reset soft and mixed preserve worktree bytes and follow distinct index semantics (13395.6798ms)
+✔ reset hard requires explicit discard, saves original tip and blocks unrelated commits (3863.3356ms)
+✔ reset hard refuses untracked or ignored data rather than silently removing blockers (1801.4433ms)
+✔ reset hard preserves unrelated untracked files and ignored build directories (2547.3371ms)
+✔ rollback uses literal selected paths, distinguishes worktree/index, and handles renamed files (5098.4582ms)
+✔ rollback refuses untracked, added-without-HEAD, path escapes and stale HEAD without data loss (2301.5949ms)
+✔ rollback does not follow a replacement directory junction into external files (1261.0344ms)
+✔ remote settings save offline, edit push URL, reject invalid input and remove only local configuration (5754.771ms)
+✔ fetch and clone allow helper GUI authentication without terminal prompts and retain diagnostic output (1511.7319ms)
+✔ check exposes a newer release without downloading or installing; latest clears previous release (6.6103ms)
+✔ duplicate checks are rejected; check timeout cannot be overwritten by a late response (16.834ms)
+✔ download progress, cancellation, retry and explicit installation (2.8135ms)
+✔ download checksum failure cannot install and permits retry (2.0871ms)
+✔ download timeout aborts the actual engine and remains retryable (29.1811ms)
+✔ running Git or AI work prevents installation and a launcher failure permits another attempt (2.082ms)
+✔ auto-check preference survives restart; snapshots are isolated and invalid values rejected (5.1698ms)
+✔ development and manual packages never check, download or install automatically (3.1886ms)
+✔ public feed errors are actionable without exposing raw response bodies (0.4167ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 51
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77682.942

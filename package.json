@@ -1,6 +1,6 @@
 {
   "name": "harbor-git",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "An independent desktop Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",
@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && node scripts/build.mjs",
     "icons": "electron scripts/render-icons.cjs",
-    "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts tests/remotes.test.ts tests/updates.test.ts",
+    "test": "tsx --test tests/git.test.ts tests/graph-ai.test.ts tests/remotes.test.ts tests/updates.test.ts tests/history-actions.test.ts",
+    "test:history": "tsx --test tests/history-actions.test.ts",
     "test:updates": "tsx --test tests/updates.test.ts",
     "test:updates:runtime": "node scripts/test-update-runtime.mjs",
     "verify:updates": "node scripts/verify-update-metadata.mjs",

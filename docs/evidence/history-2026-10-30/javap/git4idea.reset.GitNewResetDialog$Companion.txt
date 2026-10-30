@@ -1,0 +1,208 @@
+Compiled from "GitNewResetDialog.kt"
+public final class git4idea.reset.GitNewResetDialog$Companion {
+  private git4idea.reset.GitNewResetDialog$Companion();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  private final java.lang.String prepareDescription(com.intellij.openapi.project.Project, java.util.Map<git4idea.repo.GitRepository, ? extends com.intellij.vcs.log.VcsFullCommitDetails>);
+    Code:
+       0: aload_1
+       1: invokestatic  #19                 // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+       4: invokevirtual #23                 // Method git4idea/repo/GitRepositoryManager.moreThanOneRoot:()Z
+       7: istore_3
+       8: aload_2
+       9: invokeinterface #29,  1           // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      14: checkcast     #31                 // class java/lang/Iterable
+      17: invokestatic  #37                 // Method kotlin/collections/CollectionsKt.singleOrNull:(Ljava/lang/Iterable;)Ljava/lang/Object;
+      20: checkcast     #39                 // class java/util/Map$Entry
+      23: astore        4
+      25: aload         4
+      27: ifnull        80
+      30: iload_3
+      31: ifne          80
+      34: aload         4
+      36: astore        5
+      38: aload         5
+      40: invokeinterface #43,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      45: checkcast     #45                 // class git4idea/repo/GitRepository
+      48: astore        6
+      50: aload         5
+      52: invokeinterface #48,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      57: checkcast     #50                 // class com/intellij/vcs/log/VcsFullCommitDetails
+      60: astore        7
+      62: aload_0
+      63: aload         6
+      65: invokespecial #54                 // Method getSourceText:(Lgit4idea/repo/GitRepository;)Ljava/lang/String;
+      68: aload_0
+      69: aload         7
+      71: invokespecial #58                 // Method getTargetText:(Lcom/intellij/vcs/log/VcsFullCommitDetails;)Ljava/lang/String;
+      74: invokedynamic #70,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      79: areturn
+      80: new           #72                 // class java/lang/StringBuilder
+      83: dup
+      84: invokespecial #73                 // Method java/lang/StringBuilder."<init>":()V
+      87: astore        5
+      89: aload_2
+      90: invokeinterface #29,  1           // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      95: invokeinterface #79,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     100: astore        6
+     102: aload         6
+     104: invokeinterface #84,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+     109: ifeq          213
+     112: aload         6
+     114: invokeinterface #87,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     119: checkcast     #39                 // class java/util/Map$Entry
+     122: astore        7
+     124: aload         7
+     126: invokeinterface #43,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     131: checkcast     #45                 // class git4idea/repo/GitRepository
+     134: astore        8
+     136: aload         7
+     138: invokeinterface #48,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     143: checkcast     #50                 // class com/intellij/vcs/log/VcsFullCommitDetails
+     146: astore        9
+     148: ldc           #89                 // String git.reset.dialog.description.source.in.repository
+     150: iconst_2
+     151: anewarray     #4                  // class java/lang/Object
+     154: astore        11
+     156: aload         11
+     158: iconst_0
+     159: aload_0
+     160: aload         8
+     162: invokespecial #54                 // Method getSourceText:(Lgit4idea/repo/GitRepository;)Ljava/lang/String;
+     165: aastore
+     166: aload         11
+     168: iconst_1
+     169: aload         8
+     171: checkcast     #91                 // class com/intellij/dvcs/repo/Repository
+     174: invokestatic  #97                 // Method com/intellij/dvcs/DvcsUtil.getShortRepositoryName:(Lcom/intellij/dvcs/repo/Repository;)Ljava/lang/String;
+     177: aastore
+     178: aload         11
+     180: invokestatic  #103                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     183: dup
+     184: ldc           #105                // String message(...)
+     186: invokestatic  #111                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     189: astore        10
+     191: aload         5
+     193: aload         10
+     195: aload_0
+     196: aload         9
+     198: invokespecial #58                 // Method getTargetText:(Lcom/intellij/vcs/log/VcsFullCommitDetails;)Ljava/lang/String;
+     201: invokedynamic #114,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     206: invokevirtual #118                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     209: pop
+     210: goto          102
+     213: aload         5
+     215: invokevirtual #122                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     218: dup
+     219: ldc           #124                // String toString(...)
+     221: invokestatic  #111                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     224: areturn
+
+  private final java.lang.String getTargetText(com.intellij.vcs.log.VcsFullCommitDetails);
+    Code:
+       0: aload_1
+       1: invokeinterface #145,  1          // InterfaceMethod com/intellij/vcs/log/VcsFullCommitDetails.getSubject:()Ljava/lang/String;
+       6: bipush        40
+       8: iconst_0
+       9: invokestatic  #151                // Method com/intellij/openapi/util/text/StringUtil.shortenTextWithEllipsis:(Ljava/lang/String;II)Ljava/lang/String;
+      12: dup
+      13: ldc           #153                // String shortenTextWithEllipsis(...)
+      15: invokestatic  #111                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: astore_2
+      19: aload_1
+      20: invokeinterface #157,  1          // InterfaceMethod com/intellij/vcs/log/VcsFullCommitDetails.getAuthor:()Lcom/intellij/vcs/log/VcsUser;
+      25: invokestatic  #163                // Method com/intellij/vcs/log/util/VcsUserUtil.getShortPresentation:(Lcom/intellij/vcs/log/VcsUser;)Ljava/lang/String;
+      28: bipush        40
+      30: iconst_0
+      31: invokestatic  #151                // Method com/intellij/openapi/util/text/StringUtil.shortenTextWithEllipsis:(Ljava/lang/String;II)Ljava/lang/String;
+      34: dup
+      35: ldc           #153                // String shortenTextWithEllipsis(...)
+      37: invokestatic  #111                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      40: astore_3
+      41: ldc           #165                // String git.reset.dialog.description.commit.details.by.author
+      43: iconst_2
+      44: anewarray     #4                  // class java/lang/Object
+      47: astore        4
+      49: aload         4
+      51: iconst_0
+      52: new           #167                // class com/intellij/openapi/util/text/HtmlBuilder
+      55: dup
+      56: invokespecial #168                // Method com/intellij/openapi/util/text/HtmlBuilder."<init>":()V
+      59: aload_1
+      60: invokeinterface #171,  1          // InterfaceMethod com/intellij/vcs/log/VcsFullCommitDetails.getId:()Ljava/lang/Object;
+      65: checkcast     #173                // class com/intellij/vcs/log/Hash
+      68: invokeinterface #176,  1          // InterfaceMethod com/intellij/vcs/log/Hash.toShortString:()Ljava/lang/String;
+      73: invokestatic  #182                // Method com/intellij/openapi/util/text/HtmlChunk.text:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk;
+      76: invokevirtual #186                // Method com/intellij/openapi/util/text/HtmlChunk.bold:()Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+      79: checkcast     #178                // class com/intellij/openapi/util/text/HtmlChunk
+      82: invokevirtual #189                // Method com/intellij/openapi/util/text/HtmlBuilder.append:(Lcom/intellij/openapi/util/text/HtmlChunk;)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      85: aload_2
+      86: invokedynamic #194,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      91: invokestatic  #182                // Method com/intellij/openapi/util/text/HtmlChunk.text:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk;
+      94: invokevirtual #189                // Method com/intellij/openapi/util/text/HtmlBuilder.append:(Lcom/intellij/openapi/util/text/HtmlChunk;)Lcom/intellij/openapi/util/text/HtmlBuilder;
+      97: invokevirtual #195                // Method com/intellij/openapi/util/text/HtmlBuilder.toString:()Ljava/lang/String;
+     100: aastore
+     101: aload         4
+     103: iconst_1
+     104: ldc           #197                // String code
+     106: invokestatic  #201                // Method com/intellij/openapi/util/text/HtmlChunk.tag:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+     109: aload_3
+     110: invokevirtual #206                // Method com/intellij/openapi/util/text/HtmlChunk$Element.addText:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+     113: aastore
+     114: aload         4
+     116: invokestatic  #103                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     119: dup
+     120: ldc           #105                // String message(...)
+     122: invokestatic  #111                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     125: areturn
+
+  private final java.lang.String getSourceText(git4idea.repo.GitRepository);
+    Code:
+       0: aload_1
+       1: invokeinterface #212,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentBranch:()Lgit4idea/GitLocalBranch;
+       6: astore_2
+       7: aload_1
+       8: invokeinterface #215,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentRevision:()Ljava/lang/String;
+      13: astore_3
+      14: nop
+      15: aload_2
+      16: dup
+      17: ifnull        26
+      20: invokevirtual #220                // Method git4idea/GitLocalBranch.getName:()Ljava/lang/String;
+      23: goto          46
+      26: pop
+      27: aload_3
+      28: dup
+      29: ifnull        43
+      32: invokestatic  #223                // Method com/intellij/dvcs/DvcsUtil.getShortHash:(Ljava/lang/String;)Ljava/lang/String;
+      35: invokedynamic #226,  0            // InvokeDynamic #3:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      40: goto          46
+      43: pop
+      44: ldc           #228                // String HEAD
+      46: astore        4
+      48: aload         4
+      50: invokestatic  #182                // Method com/intellij/openapi/util/text/HtmlChunk.text:(Ljava/lang/String;)Lcom/intellij/openapi/util/text/HtmlChunk;
+      53: invokevirtual #186                // Method com/intellij/openapi/util/text/HtmlChunk.bold:()Lcom/intellij/openapi/util/text/HtmlChunk$Element;
+      56: invokevirtual #229                // Method com/intellij/openapi/util/text/HtmlChunk$Element.toString:()Ljava/lang/String;
+      59: dup
+      60: ldc           #124                // String toString(...)
+      62: invokestatic  #111                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      65: areturn
+
+  public static final java.lang.String access$prepareDescription(git4idea.reset.GitNewResetDialog$Companion, com.intellij.openapi.project.Project, java.util.Map);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #238                // Method prepareDescription:(Lcom/intellij/openapi/project/Project;Ljava/util/Map;)Ljava/lang/String;
+       6: areturn
+
+  public git4idea.reset.GitNewResetDialog$Companion(kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: aload_0
+       1: invokespecial #241                // Method "<init>":()V
+       4: return
+}

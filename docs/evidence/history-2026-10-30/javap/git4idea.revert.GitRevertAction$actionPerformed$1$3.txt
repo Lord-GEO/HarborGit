@@ -1,0 +1,39 @@
+Compiled from "GitRevertAction.kt"
+public final class git4idea.revert.GitRevertAction$actionPerformed$1$3 extends com.intellij.openapi.progress.Task$Backgroundable {
+  final com.intellij.openapi.project.Project $project;
+
+  final java.util.List<com.intellij.vcs.log.VcsFullCommitDetails> $commits;
+
+  git4idea.revert.GitRevertAction$actionPerformed$1$3(com.intellij.openapi.project.Project, java.util.List<? extends com.intellij.vcs.log.VcsFullCommitDetails>, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #11                 // Field $project:Lcom/intellij/openapi/project/Project;
+       5: aload_0
+       6: aload_2
+       7: putfield      #15                 // Field $commits:Ljava/util/List;
+      10: aload_0
+      11: aload_1
+      12: aload_3
+      13: invokespecial #18                 // Method com/intellij/openapi/progress/Task$Backgroundable."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)V
+      16: return
+
+  public void run(com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ldc           #26                 // String indicator
+       3: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: new           #34                 // class git4idea/revert/GitRevertProcess
+       9: dup
+      10: aload_0
+      11: getfield      #11                 // Field $project:Lcom/intellij/openapi/project/Project;
+      14: aload_0
+      15: getfield      #15                 // Field $commits:Ljava/util/List;
+      18: astore_2
+      19: aload_2
+      20: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      23: aload_2
+      24: invokespecial #41                 // Method git4idea/revert/GitRevertProcess."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/List;)V
+      27: invokevirtual #45                 // Method git4idea/revert/GitRevertProcess.execute:()V
+      30: return
+}

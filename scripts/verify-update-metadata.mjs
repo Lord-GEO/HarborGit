@@ -18,5 +18,5 @@ const sha512 = createHash('sha512').update(buffer).digest('base64');
 assert.equal(file.sha512, sha512); assert.equal(metadata.sha512, sha512); assert.equal(file.size, buffer.length);
 assert.ok((await stat(`${setup}.blockmap`)).size > 0);
 const result = { status: 'passed', version: pkg.version, setup: name, bytes: buffer.length, sha256: createHash('sha256').update(buffer).digest('hex'), sha512, feed, metadata, note: 'Verified actual installer bytes against published metadata; no upload performed.' };
-await writeFile(path.join(project, 'docs/verification-v1.3-update-metadata.json'), JSON.stringify(result, null, 2));
+await writeFile(path.join(project, `docs/verification-v${pkg.version}-update-metadata.json`), JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));

@@ -1,0 +1,60 @@
+
+> harbor-git@1.4.0 test:ui
+> playwright test --grep history actions UI
+
+
+Running 3 tests using 1 worker
+
+(node:41612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\history-ui.spec.ts:61:1 › history actions UI: rollback distinguishes index from HEAD and preserves other files (15.6s)
+  x  2 tests\history-ui.spec.ts:80:1 › history actions UI: Revert creates history, Mixed preserves worktree, Hard requires confirmation (24.5s)
+(node:50632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 tests\history-ui.spec.ts:107:1 › history actions UI: paused rebase survives restart, labels both sides correctly and continues (32.6s)
+
+
+  1) tests\history-ui.spec.ts:80:1 › history actions UI: Revert creates history, Mixed preserves worktree, Hard requires confirmation 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('dialog', { name: '反向提交 · Revert', exact: true })
+    Expected substring: "创建一个新提交"
+    Received string:    "REPOSITORY ACTION反向提交 · Revert×masterC:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\history-ui\\harborgit-history-ui-VHrNji\\仓库 中文 spaceHEAD 60366638a2316036663feature change60366638a231c4cef9cfb2db73d176d0b496a170确认后立即创建新的反向提交，撤销所选提交的改动，不删除已有历史。工作区需要干净；仅支持撤销当前分支历史中的提交。将创建普通新提交，可正常推送。执行时会核对打开此对话框时的 HEAD，防止覆盖外部切换。取消创建反向提交"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('dialog', { name: '反向提交 · Revert', exact: true }) with timeout 15000ms
+      - waiting for getByRole('dialog', { name: '反向提交 · Revert', exact: true })
+        33 × locator resolved to <section role="dialog" aria-modal="true" class="modal history-action-dialog" aria-labelledby="repository-action-title">…</section>
+           - unexpected value "REPOSITORY ACTION反向提交 · Revert×masterC:\Users\Admin\Documents\Codex\2026-10-29\new-chat\work\history-ui\harborgit-history-ui-VHrNji\仓库 中文 spaceHEAD 60366638a2316036663feature change60366638a231c4cef9cfb2db73d176d0b496a170确认后立即创建新的反向提交，撤销所选提交的改动，不删除已有历史。工作区需要干净；仅支持撤销当前分支历史中的提交。将创建普通新提交，可正常推送。执行时会核对打开此对话框时的 HEAD，防止覆盖外部切换。取消创建反向提交"
+
+
+      85 |   await page.getByRole('button', { name: 'Revert 所选提交', exact: true }).click();
+      86 |   let dialog = page.getByRole('dialog', { name: '反向提交 · Revert', exact: true });
+    > 87 |   await expect(dialog).toContainText('创建一个新提交'); await dialog.getByRole('button', { name: '创建反向提交', exact: true }).click();
+         |                        ^
+      88 |   await expect(dialog).toBeHidden(); await idle(page);
+      89 |   expect(git(repo, ['rev-parse', 'HEAD^'])).toBe(original); expect(await readFile(path.join(repo, 'file.txt'), 'utf8')).toBe('base\n');
+      90 |   await page.getByRole('button', { name: '查看提交 feature change', exact: true }).click();
+        at C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\tests\history-ui.spec.ts:87:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\history-ui-history-actions-82e88--Hard-requires-confirmation\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\history-ui-history-actions-82e88--Hard-requires-confirmation\error-context.md
+
+    Error Context: test-results\history-ui-history-actions-82e88--Hard-requires-confirmation\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\history-ui-history-actions-82e88--Hard-requires-confirmation\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\history-ui-history-actions-82e88--Hard-requires-confirmation\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\history-ui.spec.ts:80:1 › history actions UI: Revert creates history, Mixed preserves worktree, Hard requires confirmation 
+  2 passed (1.2m)

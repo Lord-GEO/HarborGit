@@ -2,7 +2,7 @@ import { spawn, type ChildProcess } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
-import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, Remote, Repository, Requests, Responses, MergeWorkspace, MergeIntoResult, StagedSnapshot, AiSuggestion } from '../shared/types';
+import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, Remote, Repository, RepositoryOperation, Requests, Responses, MergeWorkspace, MergeIntoResult, StagedSnapshot, AiSuggestion } from '../shared/types';
 
 export class GitError extends Error {
   readonly details: Failure;
@@ -11,6 +11,8 @@ export class GitError extends Error {
 export interface GitOptions { onActivity?: (event: Activity) => void; gitPath?: string; timeoutMs?: number; outputLimit?: number; mergeWorkspaceRoot?: string; generateMessage?: (snapshot: StagedSnapshot, signal: AbortSignal) => Promise<string>; }
 interface CommandResult { stdout: string; stderr: string; code: number; truncated: boolean; }
 interface RunOptions { accepted?: number[]; input?: string; limit?: number; timeout?: number; authenticate?: boolean; }
+interface OperationState { gitDir: string; operation?: RepositoryOperation; unsupported?: string; originalHead?: string; commits?: string[]; }
+interface TreePath { path: string; mode: string; }
 const MAX_TEXT = 2 * 1024 * 1024;
 const scrub = (s: string) => s.replace(/(https?:\/\/)[^\s/@]+(?::[^\s/@]*)?@/gi, '$1[redacted]@');
 const text = (v: unknown, label: string, max = 4096): string => {
@@ -97,7 +99,7 @@ export class GitService {
       const child = spawn(this.options.gitPath ?? 'git', ['--no-pager', '--literal-pathspecs', '-c', 'core.quotepath=false', '-c', 'color.ui=false', ...args], {
         cwd, shell: false, windowsHide: true,
         // Git has no terminal here. Network actions may use the helper's GUI/browser.
-        env: { ...process.env, GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: opts.authenticate ? 'auto' : 'Never', GCM_GUI_PROMPT: opts.authenticate ? 'true' : 'false', GIT_MERGE_AUTOEDIT: 'no', GIT_PAGER: 'cat', LC_ALL: 'C.UTF-8' },
+        env: { ...process.env, GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: opts.authenticate ? 'auto' : 'Never', GCM_GUI_PROMPT: opts.authenticate ? 'true' : 'false', GIT_MERGE_AUTOEDIT: 'no', GIT_EDITOR: 'true', GIT_SEQUENCE_EDITOR: 'true', GIT_PAGER: 'cat', LC_ALL: 'C.UTF-8' },
         stdio: ['pipe', 'pipe', 'pipe']
       });
       const stop = (reason: string) => {
@@ -157,7 +159,255 @@ export class GitService {
     const mergeInProgress = await fs.access(path.resolve(this.root, mergePath)).then(() => true, () => false);
     const userName = (await this.git(['config', '--get', 'user.name'], { accepted: [0, 1] })).stdout.trim();
     const userEmail = (await this.git(['config', '--get', 'user.email'], { accepted: [0, 1] })).stdout.trim();
-    return { root: this.root, ...status, mergeInProgress, userName, userEmail, mergeWorkspace: await this.mergeMetadata() };
+    const operationState = await this.operationState();
+    return { root: this.root, ...status, mergeInProgress, userName, userEmail, operation: operationState.operation, historyBackup: await this.historyBackup(operationState.gitDir), mergeWorkspace: await this.mergeMetadata() };
+  }
+  /** State belongs to a Git worktree, not necessarily root/.git (which can be a file). */
+  private async operationState(): Promise<OperationState> {
+    const gitDir = (await this.git(['rev-parse', '--absolute-git-dir'])).stdout.trim();
+    const read = async (...parts: string[]) => {
+      try { return (await fs.readFile(path.join(gitDir, ...parts), 'utf8')).trim(); }
+      catch (e) { if ((e as NodeJS.ErrnoException).code === 'ENOENT' || (e as NodeJS.ErrnoException).code === 'ENOTDIR') return ''; throw e; }
+    };
+    const exists = async (...parts: string[]) => fs.access(path.join(gitDir, ...parts)).then(() => true, (e: NodeJS.ErrnoException) => { if (e.code === 'ENOENT' || e.code === 'ENOTDIR') return false; throw e; });
+    const merge = await exists('rebase-merge'), apply = !merge && await exists('rebase-apply');
+    if (merge || apply) {
+      const dir = merge ? 'rebase-merge' : 'rebase-apply';
+      if (apply && !await exists(dir, 'rebasing') && !await exists(dir, 'head-name')) return { gitDir, unsupported: 'git am' };
+      const [branch, onto, original, oldOriginal, step, total, rebaseHead, stopped] = await Promise.all([
+        read(dir, 'head-name'), read(dir, 'onto'), read(dir, 'orig-head'), read(dir, 'orig_head'),
+        read(dir, merge ? 'msgnum' : 'next'), read(dir, merge ? 'end' : 'last'),
+        read('REBASE_HEAD'), read(dir, 'stopped-sha'),
+      ]);
+      const number = (value: string) => /^\d+$/.test(value) && Number.isSafeInteger(Number(value)) ? Number(value) : undefined;
+      const commit = rebaseHead || stopped;
+      return { gitDir, originalHead: original || oldOriginal || undefined, operation: { kind: 'rebase', branch: branch.replace(/^refs\/heads\//, '') || undefined, onto: /^[0-9a-f]{40,64}$/i.test(onto) ? onto : undefined, commit: /^[0-9a-f]{7,64}$/i.test(commit) ? commit : undefined, step: number(step), total: number(total) } };
+    }
+    const [revertHead, cherry, sequencer, todo, original, bisect] = await Promise.all([
+      read('REVERT_HEAD'), exists('CHERRY_PICK_HEAD'), exists('sequencer'), read('sequencer', 'todo'), read('sequencer', 'head'), exists('BISECT_START'),
+    ]);
+    if (cherry) return { gitDir, unsupported: 'cherry-pick' };
+    const commands = todo.split(/\r?\n/).filter(line => line.trim() && !line.startsWith('#'));
+    if (revertHead || (sequencer && commands.length > 0 && commands.every(line => /^revert\s/.test(line)))) {
+      const commit = revertHead || commands[0]?.split(/\s+/)[1];
+      const commits = [...new Set([revertHead, ...commands.map(line => line.split(/\s+/)[1])].filter(value => value && /^[0-9a-f]{7,64}$/i.test(value)))];
+      return { gitDir, originalHead: original || undefined, commits, operation: { kind: 'revert', commit: commit && /^[0-9a-f]{7,64}$/i.test(commit) ? commit : undefined } };
+    }
+    if (sequencer) return { gitDir, unsupported: 'Git sequencer' };
+    if (bisect) return { gitDir, unsupported: 'bisect' };
+    return { gitDir };
+  }
+  private async historyBackup(gitDir: string): Promise<string | undefined> {
+    try {
+      const value: unknown = JSON.parse(await fs.readFile(path.join(gitDir, 'harborgit-history-backup.json'), 'utf8'));
+      const reference = value && typeof value === 'object' && 'ref' in value ? (value as { ref: unknown }).ref : undefined;
+      if (typeof reference !== 'string' || !/^refs\/harborgit\/backups\/[a-zA-Z0-9-]+$/.test(reference)) return undefined;
+      const result = await this.git(['rev-parse', '--verify', `${reference}^{commit}`], { accepted: [0, 128] });
+      return result.code === 0 ? reference : undefined;
+    } catch (e) {
+      if ((e as NodeJS.ErrnoException).code === 'ENOENT' || e instanceof SyntaxError) return undefined;
+      throw e;
+    }
+  }
+  private async saveHistoryBackup(state: Repository, operation: string) {
+    const gitDir = (await this.git(['rev-parse', '--absolute-git-dir'])).stdout.trim();
+    const reference = `refs/harborgit/backups/${new Date().toISOString().replace(/[-:.TZ]/g, '')}-${randomUUID()}`;
+    // This ref preserves committed history only. It is deliberately not called a WIP backup.
+    await this.git(['update-ref', '--create-reflog', '-m', `HarborGit before ${operation}`, reference, state.head]);
+    const target = path.join(gitDir, 'harborgit-history-backup.json'), temporary = `${target}.${randomUUID()}.tmp`;
+    try { await fs.writeFile(temporary, JSON.stringify({ ref: reference, head: state.head, operation, createdAt: new Date().toISOString() }), 'utf8'); await fs.rename(temporary, target); }
+    finally { await fs.rm(temporary, { force: true }).catch(() => {}); }
+    return reference;
+  }
+  private async expectedHead(expected: unknown, state: Repository) {
+    if (typeof expected !== 'string' || !/^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(expected) || expected.toLowerCase() !== state.head.toLowerCase()) throw new GitError({ message: 'HEAD 已变化或确认版本无效，请刷新后重新选择操作' });
+    const current = (await this.git(['rev-parse', '--verify', 'HEAD'])).stdout.trim();
+    if (current.toLowerCase() !== expected.toLowerCase()) throw new GitError({ message: 'HEAD 已变化，请刷新后重新选择操作' });
+  }
+  private async requireNoOperation(state: Repository, requireBranch = true) {
+    const active = await this.operationState();
+    if (active.operation || active.unsupported || state.mergeInProgress || state.entries.some(file => file.conflict)) throw new GitError({ message: `请先完成或中止当前${active.operation?.kind === 'rebase' ? '变基' : active.operation?.kind === 'revert' ? '撤销提交' : active.unsupported || '合并/冲突'}操作` });
+    if (state.unborn || (requireBranch && state.detached)) throw new GitError({ message: '此操作需要正常的已提交本地分支' });
+    if (state.mergeWorkspace) throw new GitError({ message: '请先完成并关闭临时合并工作区，再执行历史操作' });
+  }
+  private async requireAncestor(target: string, head: string) {
+    if ((await this.git(['merge-base', '--is-ancestor', target, head], { accepted: [0, 1] })).code !== 0) throw new GitError({ message: '所选提交不在当前 HEAD 的祖先历史中，请刷新后选择当前分支历史中的提交' });
+  }
+  private async indexPaths(): Promise<TreePath[]> {
+    const result = await this.git(['ls-files', '--stage', '-z']);
+    if (result.truncated) throw new GitError({ message: '索引过大，无法完整验证文件安全性' });
+    return result.stdout.split('\0').filter(Boolean).map(record => {
+      const tab = record.indexOf('\t');
+      if (tab < 0) throw new GitError({ message: '无法解析索引路径，未修改文件' });
+      return { mode: record.slice(0, tab).split(' ')[0], path: filePath(record.slice(tab + 1)) };
+    });
+  }
+  private async treePaths(id: string): Promise<TreePath[]> {
+    const result = await this.git(['ls-tree', '-r', '-z', '--full-tree', id]);
+    if (result.truncated) throw new GitError({ message: '提交文件树过大，无法完整验证文件安全性' });
+    return result.stdout.split('\0').filter(Boolean).map(record => {
+      const tab = record.indexOf('\t');
+      if (tab < 0) throw new GitError({ message: '无法解析提交文件树，未修改文件' });
+      return { mode: record.slice(0, tab).split(' ')[0], path: filePath(record.slice(tab + 1)) };
+    });
+  }
+  private async untrackedPaths(ignoredOnly?: boolean): Promise<string[]> {
+    const values: string[] = [];
+    // --directory includes otherwise invisible empty directories and prevents an
+    // ignored blocker from being silently removed by reset --hard or a sequencer.
+    for (const ignored of ignoredOnly === undefined ? [false, true] : [ignoredOnly]) {
+      const result = await this.git(['ls-files', '--others', '--directory', '--exclude-standard', ...(ignored ? ['--ignored'] : []), '-z']);
+      if (result.truncated) throw new GitError({ message: '未跟踪内容过多，无法完整验证文件安全性' });
+      values.push(...result.stdout.split('\0').filter(Boolean));
+    }
+    return values;
+  }
+  private pathsCollide(a: string, b: string) {
+    const normalize = (value: string) => { const p = value.replace(/\/+$/, ''); return process.platform === 'win32' ? p.toLowerCase() : p; };
+    const left = normalize(a), right = normalize(b);
+    return left === right || left.startsWith(right + '/') || right.startsWith(left + '/');
+  }
+  private async replayCommits(onto: string, originalHead: string): Promise<string[]> {
+    const result = await this.git(['rev-list', '--topo-order', `${hash(onto)}..${hash(originalHead)}`, '--']);
+    if (result.truncated) throw new GitError({ message: '待重放历史过大，无法完整验证变基文件安全性' });
+    return result.stdout.trim().split(/\r?\n/).filter(Boolean);
+  }
+  private async changedTreePaths(commits: string[]): Promise<TreePath[]> {
+    if (!commits.length) return [];
+    // Raw -m diffs cover every parent and both sides of a rename. In particular,
+    // an add-then-delete path is still checked even when neither endpoint tree has it.
+    const result = await this.git(['diff-tree', '--stdin', '--root', '--no-commit-id', '-r', '-m', '--no-renames', '--raw', '-z'], { input: [...new Set(commits.map(hash))].join('\n') + '\n' });
+    if (result.truncated) throw new GitError({ message: '历史变更路径过多，无法完整验证被忽略文件的安全性' });
+    const records = result.stdout.split('\0'), paths: TreePath[] = [];
+    for (let i = 0; i < records.length && records[i]; i += 2) {
+      const metadata = records[i].split(' '), p = records[i + 1];
+      if (!/^:\d{6}$/.test(metadata[0]) || !/^\d{6}$/.test(metadata[1] || '') || !p) throw new GitError({ message: '无法解析历史变更路径，未修改文件' });
+      for (const mode of [metadata[0].slice(1), metadata[1]]) if (mode !== '000000') paths.push({ mode, path: filePath(p) });
+    }
+    return paths;
+  }
+  private async safeWritePath(p: string) {
+    filePath(p);
+    const segments = p.split('/');
+    if (segments.some(segment => !segment || segment === '.' || (process.platform === 'win32' && (/[<>:"|?*\x00-\x1f]/.test(segment) || /[. ]$/.test(segment) || /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(segment))))) throw new GitError({ message: '文件路径无法安全恢复，未修改任何文件' });
+    let current = this.root;
+    for (let i = 0; i < segments.length; i++) {
+      current = path.join(current, segments[i]);
+      const stat = await fs.lstat(current).catch((e: NodeJS.ErrnoException) => { if (e.code === 'ENOENT') return null; throw e; });
+      if (!stat) return;
+      if (stat.isSymbolicLink()) throw new GitError({ message: '恢复操作不支持符号链接或联接目录，请先在外部处理，未修改文件' });
+      if (i < segments.length - 1 ? !stat.isDirectory() : !stat.isFile()) throw new GitError({ message: '恢复路径被目录或非普通文件占用，未修改任何文件' });
+      const resolved = await fs.realpath(current), relative = path.relative(this.root, resolved);
+      if (relative.startsWith('..' + path.sep) || relative === '..' || path.isAbsolute(relative)) throw new GitError({ message: '恢复路径指向仓库外部，未修改任何文件' });
+    }
+  }
+  private async safeTreeWrites(commits: string[], policy: 'sequencer' | 'hard' | 'conservative' = 'conservative', changedCommits: string[] = []) {
+    const ordinary = await this.untrackedPaths(false), ignored = await this.untrackedPaths(true);
+    if ((policy !== 'hard' && ordinary.length) || (policy === 'conservative' && ignored.length)) throw new GitError({ message: policy === 'conservative' ? '请先移走或妥善保存所有未跟踪及忽略内容（包括目录），此操作不会删除这些内容' : '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' });
+    const entries = [...await this.indexPaths()];
+    for (const id of new Set(commits.filter(id => /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(id)))) entries.push(...await this.treePaths(id));
+    entries.push(...await this.changedTreePaths(changedCommits));
+    const paths = new Set<string>();
+    for (const entry of entries) {
+      if (!['100644', '100755'].includes(entry.mode)) throw new GitError({ message: '此操作暂不支持含子模块、符号链接或特殊索引条目的仓库，请使用外部 Git 工具' });
+      paths.add(entry.path);
+    }
+    const protectedPaths = policy === 'hard' ? [...ordinary, ...ignored] : ignored, writes = [...paths];
+    if (policy !== 'conservative' && protectedPaths.some(protectedPath => writes.some(p => this.pathsCollide(protectedPath, p)))) throw new GitError({ message: policy === 'hard' ? 'Hard Reset 路径与未跟踪或忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' : '操作路径（包括历史中间提交）与被忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' });
+    for (const p of paths) await this.safeWritePath(p);
+  }
+  private async sequencerCommand(kind: 'rebase' | 'revert', args: string[]) {
+    try { await this.git(args); }
+    catch (error) {
+      if (!(error instanceof GitError) || error.details.cancelled) throw error;
+      const stopped = await this.snapshot();
+      if (stopped.operation?.kind === kind && stopped.entries.some(file => file.conflict)) return stopped;
+      throw error;
+    }
+    return this.snapshot();
+  }
+  private async startRebase(p: Record<string, unknown>) {
+    const target = ref(p.branch), state = await this.snapshot();
+    await this.expectedHead(p.expectedHead, state); await this.requireNoOperation(state);
+    if (state.entries.length) throw new GitError({ message: '变基前请提交或妥善处理暂存区、工作区及未跟踪改动' });
+    if (p.preserveMerges !== undefined && typeof p.preserveMerges !== 'boolean') throw new GitError({ message: '保留合并结构选项无效' });
+    const selected = (await this.branches()).find(branch => branch.name === target);
+    if (!selected) throw new GitError({ message: '目标分支不存在，请刷新后重试' });
+    if (!selected.remote && selected.name === state.branch) throw new GitError({ message: '请选择不同于当前分支的变基目标' });
+    const fullRef = `refs/${selected.remote ? 'remotes' : 'heads'}/${target}`;
+    const onto = (await this.git(['rev-parse', '--verify', `${fullRef}^{commit}`])).stdout.trim();
+    await this.safeTreeWrites([state.head, onto], 'sequencer', await this.replayCommits(onto, state.head)); await this.expectedHead(p.expectedHead, state);
+    await this.saveHistoryBackup(state, 'rebase');
+    return this.sequencerCommand('rebase', ['-c', 'rebase.updateRefs=false', '-c', 'rebase.autoStash=false', '-c', 'rebase.autoSquash=false', '-c', 'submodule.recurse=false', 'rebase', '--no-update-refs', '--no-autostash', '--no-autosquash', p.preserveMerges ? '--rebase-merges' : '--no-rebase-merges', '--', onto]);
+  }
+  private async rebaseAction(action: unknown) {
+    if (!['continue', 'skip', 'abort'].includes(action as string)) throw new GitError({ message: '变基操作无效' });
+    const active = await this.operationState();
+    if (active.operation?.kind !== 'rebase') throw new GitError({ message: '没有可继续或中止的变基操作，请刷新状态' });
+    const state = await this.snapshot();
+    if (action === 'continue' && state.entries.some(file => file.conflict)) return state;
+    const completeRange = !!active.originalHead && !!active.operation.onto;
+    await this.safeTreeWrites([state.head, active.originalHead || '', active.operation.onto || ''], completeRange ? 'sequencer' : 'conservative', completeRange ? await this.replayCommits(active.operation.onto!, active.originalHead!) : []);
+    return this.sequencerCommand('rebase', ['-c', 'rebase.updateRefs=false', '-c', 'rebase.autoStash=false', '-c', 'submodule.recurse=false', 'rebase', `--${action}`]);
+  }
+  private async startRevert(p: Record<string, unknown>) {
+    const state = await this.snapshot(); await this.expectedHead(p.expectedHead, state); await this.requireNoOperation(state);
+    if (state.entries.length) throw new GitError({ message: '撤销提交前请提交或妥善处理暂存区、工作区及未跟踪改动' });
+    const id = await this.commitHash(p.hash); await this.requireAncestor(id, state.head);
+    const parents = await this.parents(id);
+    if (parents.length > 1 ? !Number.isInteger(p.mainline) || (p.mainline as number) < 1 || (p.mainline as number) > parents.length : p.mainline !== undefined) throw new GitError({ message: parents.length > 1 ? `撤销合并提交必须选择 1 至 ${parents.length} 的主线父提交` : '普通提交不应指定主线父提交' });
+    await this.safeTreeWrites([state.head, id], 'sequencer', [id]); await this.expectedHead(p.expectedHead, state);
+    await this.saveHistoryBackup(state, 'revert');
+    return this.sequencerCommand('revert', ['-c', 'submodule.recurse=false', 'revert', '--no-edit', ...(parents.length > 1 ? ['--mainline', String(p.mainline)] : []), id]);
+  }
+  private async revertAction(action: unknown) {
+    if (!['continue', 'abort'].includes(action as string)) throw new GitError({ message: '撤销提交操作无效' });
+    const active = await this.operationState();
+    if (active.operation?.kind !== 'revert') throw new GitError({ message: '没有可继续或中止的撤销提交操作，请刷新状态' });
+    const state = await this.snapshot();
+    if (action === 'continue' && state.entries.some(file => file.conflict)) return state;
+    const commits = await Promise.all((active.commits || []).map(id => this.commitHash(id)));
+    await this.safeTreeWrites([state.head, active.originalHead || '', ...commits], 'sequencer', commits);
+    return this.sequencerCommand('revert', ['-c', 'submodule.recurse=false', 'revert', `--${action}`]);
+  }
+  private async resetHistory(p: Record<string, unknown>) {
+    if (!['soft', 'mixed', 'hard'].includes(p.mode as string)) throw new GitError({ message: 'Reset 模式无效' });
+    if (p.mode === 'hard' && p.discard !== true) throw new GitError({ message: 'Hard Reset 会丢弃已跟踪的未提交改动，必须明确确认后才能执行' });
+    const state = await this.snapshot(); await this.expectedHead(p.expectedHead, state); await this.requireNoOperation(state, false);
+    const id = await this.commitHash(p.hash); await this.requireAncestor(id, state.head);
+    if (p.mode === 'hard') await this.safeTreeWrites([state.head, id], 'hard');
+    await this.expectedHead(p.expectedHead, state); await this.saveHistoryBackup(state, `reset ${p.mode}`);
+    await this.git(['-c', 'submodule.recurse=false', 'reset', `--${p.mode}`, '--no-recurse-submodules', id, '--']);
+    return this.snapshot();
+  }
+  private async rollback(p: Record<string, unknown>) {
+    const requested = names(p.paths);
+    if (!['worktree', 'all'].includes(p.scope as string) || p.discard !== true) throw new GitError({ message: '文件恢复范围无效，或尚未明确确认丢弃所选改动' });
+    const state = await this.snapshot(); await this.expectedHead(p.expectedHead, state); await this.requireNoOperation(state, false);
+    const head = await this.treePaths(state.head), index = await this.indexPaths();
+    const headMap = new Map(head.map(entry => [entry.path, entry])), indexMap = new Map(index.map(entry => [entry.path, entry]));
+    const paths = new Set<string>();
+    for (const selected of requested) {
+      const entry = state.entries.find(entry => entry.path === selected || entry.originalPath === selected);
+      if (!entry || entry.conflict || entry.worktree === '?' || entry.index === '?') throw new GitError({ message: '只能恢复当前状态中已跟踪的改动文件；不会删除未跟踪文件' });
+      const renamed = !!entry.originalPath && (entry.index === 'R' || entry.worktree === 'R');
+      if (!headMap.has(entry.path) && !(renamed && headMap.has(entry.originalPath!))) throw new GitError({ message: '所选文件在 HEAD 中不存在，请先取消暂存并在外部处理新文件，文件内容未删除' });
+      if (p.scope === 'worktree') {
+        if (!indexMap.has(entry.path)) throw new GitError({ message: '所选文件已从暂存区删除，请先取消暂存，或选择恢复 HEAD 的工作区及暂存区' });
+        paths.add(entry.path);
+      } else {
+        paths.add(entry.path); if (renamed) paths.add(filePath(entry.originalPath!));
+      }
+    }
+    const untracked = await this.untrackedPaths();
+    for (const selected of paths) {
+      if (untracked.some(value => this.pathsCollide(value, selected))) throw new GitError({ message: '恢复路径存在未跟踪或忽略内容，未覆盖或删除任何文件' });
+      for (const entry of [headMap.get(selected), indexMap.get(selected)]) if (entry && !['100644', '100755'].includes(entry.mode)) throw new GitError({ message: '文件恢复仅支持普通已跟踪文件，不支持子模块或符号链接' });
+      await this.safeWritePath(selected);
+    }
+    await this.expectedHead(p.expectedHead, state); await this.saveHistoryBackup(state, 'rollback selected files');
+    await this.git(['-c', 'submodule.recurse=false', 'restore', ...(p.scope === 'all' ? ['--source=HEAD', '--staged', '--worktree'] : ['--worktree']), '--no-recurse-submodules', '--pathspec-from-file=-', '--pathspec-file-nul'], { input: [...paths].join('\0') + '\0' });
+    return this.snapshot();
   }
   private async mergeMetadata(): Promise<MergeWorkspace | undefined> {
     const dir = (await this.git(['rev-parse', '--absolute-git-dir'])).stdout.trim();
@@ -170,7 +420,7 @@ export class GitService {
   private async mergeInto(target: string): Promise<MergeIntoResult> {
     ref(target); await this.branchExists(target, true);
     const original = await this.snapshot();
-    if (original.unborn || original.detached || original.mergeInProgress || original.entries.some(e => e.conflict) || original.mergeWorkspace) throw new GitError({ message: '请从正常的已提交分支发起合并，先结束正在进行的合并' });
+    if (original.unborn || original.detached || original.mergeInProgress || original.operation || (await this.operationState()).unsupported || original.entries.some(e => e.conflict) || original.mergeWorkspace) throw new GitError({ message: '请从正常的已提交分支发起合并，先完成或中止正在进行的 Git 操作' });
     if (original.branch === target) throw new GitError({ message: '目标分支必须与当前分支不同' });
     const trees = (await this.git(['worktree', 'list', '--porcelain', '-z'])).stdout.split('\0\0');
     for (const record of trees) if (record.split('\0').includes(`branch refs/heads/${target}`)) {
@@ -380,6 +630,11 @@ export class GitService {
   private async dispatch(operation: keyof Requests, payload: unknown): Promise<unknown> {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) throw new GitError({ message: '请求参数无效' });
     const p = payload as Record<string, unknown>;
+    if (this.root && operation !== 'open' && operation !== 'clone') {
+      const active = await this.operationState();
+      const permitted = new Set<keyof Requests>(['refresh', 'diff', 'history', 'commitFiles', 'branches', 'remotes', 'stagedSnapshot', 'stagedTree', 'generateCommit', 'stage', 'unstage', 'resolve', 'conflict', 'identity', 'rebaseAction', 'revertAction']);
+      if ((active.operation || active.unsupported) && !permitted.has(operation)) throw new GitError({ message: `当前正在进行${active.operation?.kind === 'rebase' ? '变基，请使用变基的继续、跳过或中止' : active.operation?.kind === 'revert' ? '撤销提交，请使用撤销提交的继续或中止' : `${active.unsupported}，请先在外部 Git 工具中完成或中止`}操作` });
+    }
     switch (operation) {
       case 'open': return this.open(text(p.path, '仓库路径'));
       case 'clone': {
@@ -473,6 +728,12 @@ export class GitService {
       case 'conflict': return this.conflict(text(p.path, '文件路径'));
       case 'resolve': return this.resolve(text(p.path, '文件路径'), text(p.choice, '解决方式'), p.content as string | undefined);
       case 'abortMerge': { if (!(await this.snapshot()).mergeInProgress) throw new GitError({ message: '没有进行中的合并' }); await this.git(['merge', '--abort']); return this.snapshot(); }
+      case 'rebase': return this.startRebase(p);
+      case 'rebaseAction': return this.rebaseAction(p.action);
+      case 'revert': return this.startRevert(p);
+      case 'revertAction': return this.revertAction(p.action);
+      case 'reset': return this.resetHistory(p);
+      case 'rollback': return this.rollback(p);
       case 'identity': { const name = text(p.name, '用户名', 256), email = text(p.email, '邮箱', 256); await this.git(['config', '--local', 'user.name', name]); await this.git(['config', '--local', 'user.email', email]); return this.snapshot(); }
       default: throw new GitError({ message: '不支持的操作' });
     }
