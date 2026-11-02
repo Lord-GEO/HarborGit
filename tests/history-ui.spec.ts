@@ -1,6 +1,6 @@
 import { test, expect, _electron as electron, type ElectronApplication, type Page } from '@playwright/test';
 import { spawnSync } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const project = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
@@ -214,4 +214,18 @@ test('history actions UI: saved changes restoration conflict keeps backup and re
   await finish.getByLabel('已检查并处理恢复的改动', { exact: true }).check(); await finish.getByRole('button', { name: '确认结束恢复并保留备份', exact: true }).click();
   await expect(finish).toBeHidden(); await idle(page); expect(git(repo, ['rev-parse', 'HEAD'])).toBe(head); expect(git(repo, ['show', 'HEAD:dirty.txt'])).toBe('UPSTREAM');
   expect(await readFile(path.join(repo, 'dirty.txt'), 'utf8')).toBe('UPSTREAM and PRIVATE_WIP\n'); expect(git(repo, ['show', `${backup}:dirty.txt`])).toBe('PRIVATE_WIP'); await close(app, errors);
+});
+
+test('history actions UI: clean rebase starts with unrelated empty directories and no autosave checkbox', async () => {
+  const { root, repo } = await fixture(); await commit(repo, 'base.txt', 'base\n', 'base'); git(repo, ['switch', '-c', 'dev']);
+  const original = await commit(repo, 'dev.txt', 'dev\n', 'dev feature'); git(repo, ['switch', 'master']);
+  const target = await commit(repo, 'master.txt', 'master\n', 'master feature'); git(repo, ['switch', 'dev']);
+  const empty = path.join(repo, '输出 临时', 'empty'); await mkdir(empty, { recursive: true }); expect(git(repo, ['status', '--porcelain'])).toBe('');
+  const { app, page, errors } = await launch(root); await open(page, repo); await navigate(page, '分支管理');
+  await page.getByRole('button', { name: /变基/ }).first().click(); const dialog = page.getByRole('dialog', { name: '将当前分支变基到目标分支', exact: true });
+  await dialog.getByLabel('变基目标分支', { exact: true }).selectOption('master');
+  await expect(dialog.getByLabel('自动保存未提交改动后变基', { exact: true })).toHaveCount(0); await expect(dialog.getByRole('button', { name: '开始变基', exact: true })).toBeEnabled();
+  await dialog.getByRole('button', { name: '开始变基', exact: true }).click(); await expect(dialog).toBeHidden(); await idle(page);
+  expect(git(repo, ['rev-parse', 'HEAD^'])).toBe(target); expect(git(repo, ['rev-parse', 'HEAD'])).not.toBe(original); expect(git(repo, ['branch', '--show-current'])).toBe('dev'); expect((await stat(empty)).isDirectory()).toBe(true);
+  await capture(app, 'v1.6.1-rebase-empty-directory.png'); await close(app, errors);
 });

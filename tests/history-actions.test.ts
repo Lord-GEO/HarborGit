@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, rename, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rename, rm, stat, symlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GitService } from '../src/main/git-service';
@@ -215,6 +215,40 @@ test('ordinary ignored build artifacts do not prevent a clean rebase or revert',
   assert.equal(result.operation, undefined); assert.equal(result.entries.length, 0);
   const reverted = await service.request('revert', { hash: result.head, expectedHead: result.head });
   assert.equal(reverted.operation, undefined); assert.equal(await readFile(path.join(repo, 'node_modules/private.txt'), 'utf8'), 'ignored build output\n');
+});
+
+test('unrelated untracked empty directories do not block starting a clean rebase', async () => {
+  const { repo } = await fixture(); await commit(repo, 'base.txt', 'base\n', 'base');
+  git(repo, ['switch', '-c', 'dev']); const original = await commit(repo, 'dev.txt', 'dev\n', 'dev');
+  git(repo, ['switch', 'master']); const target = await commit(repo, 'master.txt', 'master\n', 'master'); git(repo, ['switch', 'dev']);
+  const empty = path.join(repo, '输出 临时', '空目录'); await mkdir(empty, { recursive: true });
+  assert.equal(git(repo, ['status', '--porcelain=v2', '-z']), ''); assert.match(git(repo, ['-c', 'core.quotepath=false', 'ls-files', '--others', '--directory', '--exclude-standard']), /输出 临时\//);
+  const { service, state } = await open(repo); assert.equal(state.entries.length, 0);
+  const result = await service.request('rebase', { branch: 'master', expectedHead: original });
+  assert.equal(result.operation, undefined); assert.equal(result.entries.length, 0); assert.equal(git(repo, ['rev-parse', 'HEAD^']), target); assert.ok((await stat(empty)).isDirectory());
+});
+
+test('unrelated untracked files and empty directories survive rebase continue, skip and abort', async () => {
+  for (const action of ['continue', 'skip', 'abort'] as const) {
+    const { repo, service, original } = await conflictFixture();
+    const paused = await service.request('rebase', { branch: 'master', expectedHead: original }); assert.equal(paused.operation?.kind, 'rebase');
+    await writeFile(path.join(repo, '生成 输出[1].txt'), `private ${action}\n`); const empty = path.join(repo, 'tools', 'empty'); await mkdir(empty, { recursive: true });
+    if (action === 'continue') await service.request('resolve', { path: '冲突 文件.txt', choice: 'manual', content: 'master and dev\n' });
+    const result = await service.request('rebaseAction', { action }); assert.equal(result.operation, undefined); assert.equal(result.branch, 'dev');
+    assert.equal(await readFile(path.join(repo, '生成 输出[1].txt'), 'utf8'), `private ${action}\n`); assert.ok((await stat(empty)).isDirectory());
+    assert.ok(result.entries.some(file => file.path === '生成 输出[1].txt' && file.worktree === '?'));
+    if (action === 'abort') assert.equal(result.head, original);
+  }
+});
+
+test('untracked empty directory touched by an intermediate replay commit is blocked with its exact path', async () => {
+  const { repo } = await fixture(); await commit(repo, 'base.txt', 'base\n', 'base'); git(repo, ['switch', '-c', 'dev']);
+  await mkdir(path.join(repo, '临时 目录')); await commit(repo, '临时 目录/file.txt', 'intermediate\n', 'intermediate add');
+  git(repo, ['rm', '--', '临时 目录/file.txt']); git(repo, ['commit', '-m', 'intermediate delete']); const original = git(repo, ['rev-parse', 'HEAD']);
+  git(repo, ['switch', 'master']); await commit(repo, 'master.txt', 'master\n', 'master'); git(repo, ['switch', 'dev']);
+  await mkdir(path.join(repo, '临时 目录')); const { service } = await open(repo); assert.equal(git(repo, ['status', '--porcelain']), '');
+  await assert.rejects(service.request('rebase', { branch: 'master', expectedHead: original }), error => error instanceof Error && error.message.includes('临时 目录/'));
+  assert.equal(git(repo, ['rev-parse', 'HEAD']), original); assert.ok((await stat(path.join(repo, '临时 目录'))).isDirectory());
 });
 
 test('ignored paths touched by intermediate replay commits or revert parents are protected', async () => {

@@ -2,6 +2,8 @@
 
 HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户端，通过本机 Git 管理代码仓库，提供 Windows 和 macOS 打包配置。
 
+**v1.6.1 修复变基误拦截**：无关未跟踪空目录不再阻止开始变基；变基暂停期间产生的无关未跟踪文件，也可在继续、跳过或中止时保留。确有覆盖风险时仍会阻止，并列出冲突路径。见 [补丁说明与验证](docs/RELEASE-1.6.1.md)。
+
 **v1.6.0 支持有未提交改动时尝试变基**：勾选“自动保存未提交改动后变基”，先保存暂存、未暂存和未跟踪文件，完成或中止后尝试恢复。若在 dev 上选择对 master 变基，会切回 dev 恢复其原改动；恢复冲突时保留备份并等待处理。见 [自动保存与恢复说明](docs/REBASE-SAVED-CHANGES.md) 和 [IDEA 静态证据](docs/IDEA-REBASE-WIP-ANALYSIS.md)。
 
 保留 v1.5 的 [指定分支与提交变基](docs/REBASE-TO-COMMIT.md)，以及 [文件回滚、Revert、Reset](docs/HISTORY-ACTIONS.md)。旧版文档中的“变基必须先处理全部改动”限制由本版的显式自动保存选项补充；Revert 等操作的限制不变。

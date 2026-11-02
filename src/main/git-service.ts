@@ -382,7 +382,7 @@ export class GitService {
       if (![record.originalBranch, record.sourceBranch].includes(state.branch)) throw new GitError({ message: `当前分支不是本次记录的源分支或原 ${record.originalBranch}，未恢复到错误分支` });
       const saved = await this.savedPaths(record);
       // This also rejects ignored blockers and special file modes in the saved trees.
-      await this.safeTreeWrites([state.head, originalHead, record.stashOid!, saved.parents[1], ...(saved.parents[2] ? [saved.parents[2]] : [])], 'sequencer');
+      await this.safeTreeWrites([state.head, originalHead, record.stashOid!, saved.parents[1], ...(saved.parents[2] ? [saved.parents[2]] : [])], 'rebase');
       if (state.branch !== record.originalBranch) {
         const trees = await this.git(['worktree', 'list', '--porcelain', '-z']);
         if (trees.truncated || trees.stdout.split('\0\0').some(tree => tree.split('\0').includes(`branch ${originalRef}`))) throw new GitError({ message: `原 ${record.originalBranch} 分支在其他工作区被占用，备份保留，未切换` });
@@ -524,9 +524,9 @@ export class GitService {
       if (relative.startsWith('..' + path.sep) || relative === '..' || path.isAbsolute(relative)) throw new GitError({ message: '恢复路径指向仓库外部，未修改任何文件' });
     }
   }
-  private async safeTreeWrites(commits: string[], policy: 'sequencer' | 'hard' | 'conservative' | 'saving' = 'conservative', changedCommits: string[] = []) {
+  private async safeTreeWrites(commits: string[], policy: 'sequencer' | 'rebase' | 'hard' | 'conservative' | 'saving' = 'conservative', changedCommits: string[] = []) {
     const ordinary = await this.untrackedPaths(false), ignored = await this.untrackedPaths(true);
-    if ((policy !== 'hard' && policy !== 'saving' && ordinary.length) || (policy === 'conservative' && ignored.length)) throw new GitError({ message: policy === 'conservative' ? '请先移走或妥善保存所有未跟踪及忽略内容（包括目录），此操作不会删除这些内容' : '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' });
+    if ((policy !== 'hard' && policy !== 'saving' && policy !== 'rebase' && ordinary.length) || (policy === 'conservative' && ignored.length)) throw new GitError({ message: policy === 'conservative' ? '请先移走或妥善保存所有未跟踪及忽略内容（包括目录），此操作不会删除这些内容' : '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' });
     const entries = [...await this.indexPaths()];
     for (const id of new Set(commits.filter(id => /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(id)))) entries.push(...await this.treePaths(id));
     entries.push(...await this.changedTreePaths(changedCommits));
@@ -535,8 +535,18 @@ export class GitService {
       if (!['100644', '100755'].includes(entry.mode)) throw new GitError({ message: '此操作暂不支持含子模块、符号链接或特殊索引条目的仓库，请使用外部 Git 工具' });
       paths.add(entry.path);
     }
-    const protectedPaths = policy === 'hard' ? [...ordinary, ...ignored] : ignored, writes = [...paths];
-    if (policy !== 'conservative' && protectedPaths.some(protectedPath => writes.some(p => this.pathsCollide(protectedPath, p)))) throw new GitError({ message: policy === 'hard' ? 'Hard Reset 路径与未跟踪或忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' : '操作路径（包括历史中间提交）与被忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' });
+    const protectedPaths = policy === 'hard' || policy === 'rebase' ? [...ordinary, ...ignored] : ignored, writes = [...paths];
+    // Git status omits empty directories, while ls-files --others --directory
+    // includes them. For rebase, protect actual overlapping paths rather than
+    // refusing unrelated files/directories (including those created while paused).
+    const blockers = protectedPaths.filter(protectedPath => writes.some(p => this.pathsCollide(protectedPath, p)));
+    if (policy !== 'conservative' && blockers.length) {
+      if (policy === 'rebase') {
+        const listed = [...new Set(blockers)];
+        throw new GitError({ message: `变基可能覆盖未跟踪或被忽略内容（含中间提交）：${listed.slice(0, 8).join('、')}${listed.length > 8 ? `，另有 ${listed.length - 8} 项` : ''}。请先移走或保存这些路径，未修改任何文件。` });
+      }
+      throw new GitError({ message: policy === 'hard' ? 'Hard Reset 路径与未跟踪或忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' : '操作路径（包括历史中间提交）与被忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' });
+    }
     for (const p of paths) await this.safeWritePath(p);
     if (policy === 'saving') {
       const files = await this.git(['ls-files', '--others', '--exclude-standard', '-z']);
@@ -597,7 +607,7 @@ export class GitService {
     // A non-current source is checked out by Git itself. Protect both that tree
     // transition and every source commit to be replayed, including deleted paths.
     const replay = await this.replayCommits(onto, sourceHead);
-    await this.safeTreeWrites([state.head, sourceHead, onto], state.entries.length ? 'saving' : 'sequencer', replay);
+    await this.safeTreeWrites([state.head, sourceHead, onto], state.entries.length ? 'saving' : 'rebase', replay);
     await verifyReferences();
     await this.saveHistoryBackup({ ...state, head: sourceHead, branch: source }, 'rebase');
     await verifyReferences();
@@ -608,7 +618,7 @@ export class GitService {
         const clean = await this.snapshot();
         if (clean.entries.length) throw new GitError({ message: `保存后仍有未处理改动（${clean.entries.slice(0, 8).map(entry => entry.path).join('、')}），未开始变基，请检查保存备份及工作区` });
         await verifyReferences();
-        await this.safeTreeWrites([state.head, sourceHead, onto], 'sequencer', replay);
+        await this.safeTreeWrites([state.head, sourceHead, onto], 'rebase', replay);
         saved.rebaseStarted = true;
         await this.writeSavedRecord((await this.operationState()).gitDir, saved);
       }
@@ -625,7 +635,7 @@ export class GitService {
     const state = await this.snapshot();
     if (action === 'continue' && state.entries.some(file => file.conflict)) return state;
     const completeRange = !!active.originalHead && !!active.operation.onto;
-    await this.safeTreeWrites([state.head, active.originalHead || '', active.operation.onto || ''], completeRange ? 'sequencer' : 'conservative', completeRange ? await this.replayCommits(active.operation.onto!, active.originalHead!) : []);
+    await this.safeTreeWrites([state.head, active.originalHead || '', active.operation.onto || ''], completeRange ? 'rebase' : 'conservative', completeRange ? await this.replayCommits(active.operation.onto!, active.originalHead!) : []);
     const saved = await this.readSavedRecord(active.gitDir);
     try {
       const result = await this.sequencerCommand('rebase', ['-c', 'rebase.updateRefs=false', '-c', 'rebase.autoStash=false', '-c', 'submodule.recurse=false', 'rebase', `--${action}`]);

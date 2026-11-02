@@ -1,0 +1,56 @@
+✖ unrelated untracked empty directories do not block starting a clean rebase (4375.7935ms)
+✖ unrelated untracked files and empty directories survive rebase continue, skip and abort (8670.29ms)
+✖ untracked empty directory touched by an intermediate replay commit is blocked with its exact path (4041.8772ms)
+✔ reset hard preserves unrelated untracked files and ignored build directories (3908.0489ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21681.6912
+
+✖ failing tests:
+
+test at tests\history-actions.test.ts:220:1
+✖ unrelated untracked empty directories do not block starting a clean rebase (4375.7935ms)
+  Error [GitError]: 请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容
+      at GitService.safeTreeWrites (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:529:127)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async <anonymous> (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:600:5)
+      at async GitService.manageRebaseSave (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:236:18) {
+    details: { message: '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' }
+  }
+
+test at tests\history-actions.test.ts:231:1
+✖ unrelated untracked files and empty directories survive rebase continue, skip and abort (8670.29ms)
+  Error [GitError]: 请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容
+      at GitService.safeTreeWrites (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:529:127)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async <anonymous> (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:628:5)
+      at async GitService.manageRebaseSave (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:236:18) {
+    details: { message: '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' }
+  }
+
+test at tests\history-actions.test.ts:244:1
+✖ untracked empty directory touched by an intermediate replay commit is blocked with its exact path (4041.8772ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  GitError: 请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\tests\history-actions.test.ts:250:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: GitError: 请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容
+        at GitService.safeTreeWrites (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:529:127)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async <anonymous> (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:600:5)
+        at async GitService.manageRebaseSave (C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\src\main\git-service.ts:236:18),
+    operator: 'rejects',
+    diff: 'simple'
+  }

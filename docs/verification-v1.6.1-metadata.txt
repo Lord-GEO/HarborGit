@@ -1,0 +1,35 @@
+
+> harbor-git@1.6.1 verify:updates
+> node scripts/verify-update-metadata.mjs
+
+{
+  "status": "passed",
+  "version": "1.6.1",
+  "setup": "HarborGit-1.6.1-Setup-x64.exe",
+  "bytes": 124509987,
+  "sha256": "4642695c4b06d542782f987823717dd3102d5ab8ce33129996315f2d7be902aa",
+  "sha512": "WX9uSjZSsYmDlyG5zblOSni8DIH2KJcQfTZJvXjZH4iGjx9pT2Wiyd6/VdFyDxlMFy/a7BQP8es6BgOtgl9wTQ==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.6.1",
+    "files": [
+      {
+        "url": "HarborGit-1.6.1-Setup-x64.exe",
+        "sha512": "WX9uSjZSsYmDlyG5zblOSni8DIH2KJcQfTZJvXjZH4iGjx9pT2Wiyd6/VdFyDxlMFy/a7BQP8es6BgOtgl9wTQ==",
+        "size": 124509987
+      }
+    ],
+    "path": "HarborGit-1.6.1-Setup-x64.exe",
+    "sha512": "WX9uSjZSsYmDlyG5zblOSni8DIH2KJcQfTZJvXjZH4iGjx9pT2Wiyd6/VdFyDxlMFy/a7BQP8es6BgOtgl9wTQ==",
+    "releaseNotes": "# HarborGit v1.6.1\r\n\r\n- 修复开始变基时的误拦截：仓库状态显示干净，但存在无关未跟踪空目录时，不再错误要求先移走全部内容。\r\n- 修复继续、跳过或中止变基时对无关未跟踪文件的过严检查，保留暂停期间产生的无关文件和目录。\r\n- 对确有覆盖风险的未跟踪或忽略内容继续阻止操作，并列出具体路径；仍检查历史中间提交、大小写路径及目录层级冲突。\r\n- 保留 1.6.0 的自动保存 WIP、原暂存状态恢复、跨分支恢复和持久备份功能；不通过删除拦截路径来绕过保护。\r\n\r\n这是 1.6.x 的问题修复版本。安装新版后重试变基；如仍提示路径冲突，请按列出的路径保存或移走相应内容。有实际未提交文件改动时，仍需明确勾选“自动保存未提交改动后变基”。\r\n\r\n发布时请同时上传 Setup、对应 `.exe.blockmap` 和 `latest.yml`。\r\n",
+    "releaseDate": "2026-11-02T08:02:37.981Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GitService, GitError } from '../src/main/git-service';
@@ -73,9 +73,10 @@ test('saved changes rebase: suspended operation survives reopen and abort restor
   const stopped = await service.request('rebase', { branch: 'master', expectedHead: devHead, autoSaveChanges: true });
   assert.equal(stopped.operation?.kind, 'rebase'); assert.equal(stopped.rebaseSavedChanges?.status, 'saved'); const ref = savedRef(repo, stopped, devHead);
   const next = await open(repo); assert.equal(next.state.rebaseSavedChanges?.ref, ref);
+  const empty = path.join(repo, 'tools', 'empty after pause'); await mkdir(empty, { recursive: true });
   const result = await next.service.request('rebaseAction', { action: 'abort' });
   assert.equal(result.head, devHead); assert.equal(result.branch, 'dev'); assert.equal(result.operation, undefined); assert.equal(result.rebaseSavedChanges?.status, 'restored');
-  assert.equal(git(repo, ['write-tree']), before.tree); await assertWip(repo);
+  assert.equal(git(repo, ['write-tree']), before.tree); await assertWip(repo); assert.ok((await stat(empty)).isDirectory());
 });
 
 test('saved changes rebase: conflict resolution and continue restore saved WIP after the rewritten commit', async () => {

@@ -1,0 +1,34 @@
+﻿{
+    "version":  "1.6.1",
+    "qaIdentity":  "HarborGit Installer QA",
+    "installDir":  "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-dwhIcY\\installed 中文 path",
+    "originalHarborGitBefore":  [
+                                    {
+                                        "ProcessId":  49912,
+                                        "ExecutablePath":  "D:\\Harbor\\HarborGit\\HarborGit.exe"
+                                    }
+                                ],
+    "checks":  [
+                   "Custom install path containing spaces and Chinese characters accepted",
+                   "Start menu/desktop shortcuts and uninstall registry entry created",
+                   "Installed executable is byte-identical to shipped HarborGit.exe (only filename differs)",
+                   "Installed application passed core Git, history actions, and installed updater detection/IPC/preference UI checks",
+                   "Uninstall removed the QA application, registration and both shortcuts"
+               ],
+    "registration":  {
+                         "path":  "Microsoft.PowerShell.Core\\Registry::HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\13f59bcc-d816-59cd-8095-8c57888f33a3",
+                         "version":  "1.6.1",
+                         "displayIcon":  "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-dwhIcY\\installed 中文 path\\uninstallerIcon.ico"
+                     },
+    "payloadHashes":  {
+                          "asar":  "60E3ACBA58E001E814E04FA85B691D9E6179699E7D5CB83E082E315C7F822252",
+                          "exe":  "E51425D4E42231E343104F97E1A6855EF8BB89B92B67D8ADBDEEFCC1DDFD6CE5"
+                      },
+    "originalHarborGitAfter":  [
+                                   {
+                                       "ProcessId":  49912,
+                                       "ExecutablePath":  "D:\\Harbor\\HarborGit\\HarborGit.exe"
+                                   }
+                               ],
+    "status":  "passed"
+}
