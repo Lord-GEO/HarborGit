@@ -1,0 +1,438 @@
+[
+  {
+    "class": "git4idea.GitTag",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member_sha256": "ca723cff65ce80018fcce73db4a9106bbf3d0582a7c4e1d94f481c6186b12264",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-J-Dfile.encoding=UTF-8",
+      "-v",
+      "-p",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.GitTag"
+    ],
+    "stdout_sha256": "fe2bce042751e747e201617d61e91238e0b18669cb245318c1a6f2cc80f9d5a3",
+    "stdout_lines": 264,
+    "display_encoding": "ASCII with non-ASCII original bytes escaped using backslashreplace",
+    "selected_lines": [
+      {
+        "line": 261,
+        "text": "BootstrapMethods:"
+      },
+      {
+        "line": 262,
+        "text": "  0: #40 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 263,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 264,
+        "text": "      #33 refs/tags/\\u0001"
+      }
+    ]
+  },
+  {
+    "class": "git4idea.push.GitPushOperation",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member_sha256": "1eb8d95e06c57449609587a462a328cb978bdfcedd7f718b9e8e766f47622467",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-J-Dfile.encoding=UTF-8",
+      "-v",
+      "-p",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.push.GitPushOperation"
+    ],
+    "stdout_sha256": "cdde971c42fec1e9153946c1b2946305aefebc6b59b8bb1012120c51d86b8355",
+    "stdout_lines": 5666,
+    "display_encoding": "ASCII with non-ASCII original bytes escaped using backslashreplace",
+    "selected_lines": [
+      {
+        "line": 5568,
+        "text": "BootstrapMethods:"
+      },
+      {
+        "line": 5569,
+        "text": "  0: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5570,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5571,
+        "text": "      #1134 Starting push attempt #\\u0001"
+      },
+      {
+        "line": 5572,
+        "text": "  1: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5573,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5574,
+        "text": "      #1136 roots to update: \\u0001"
+      },
+      {
+        "line": 5575,
+        "text": "  2: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5576,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5577,
+        "text": "      #1138 update result: \\u0001"
+      },
+      {
+        "line": 5578,
+        "text": "  3: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5579,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5580,
+        "text": "      #1140 (Ljava/lang/Object;)Ljava/lang/Object;"
+      },
+      {
+        "line": 5581,
+        "text": "      #1141 REF_invokeVirtual git4idea/push/GitPushOperation.lambda$findRootsWithMergeCommits$0:(Lgit4idea/repo/GitRepository;)Lcom/intellij/openapi/vfs/VirtualFile;"
+      },
+      {
+        "line": 5582,
+        "text": "      #1144 (Lgit4idea/repo/GitRepository;)Lcom/intellij/openapi/vfs/VirtualFile;"
+      },
+      {
+        "line": 5583,
+        "text": "  4: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5584,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5585,
+        "text": "      #1145 (Ljava/lang/Object;)Z"
+      },
+      {
+        "line": 5586,
+        "text": "      #1146 REF_invokeStatic git4idea/push/GitPushOperation.lambda$deriveForceWithoutLease$1:(Ljava/util/List;Lgit4idea/repo/GitRepository;)Z"
+      },
+      {
+        "line": 5587,
+        "text": "      #1149 (Lgit4idea/repo/GitRepository;)Z"
+      },
+      {
+        "line": 5588,
+        "text": "  5: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5589,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5590,
+        "text": "      #1145 (Ljava/lang/Object;)Z"
+      },
+      {
+        "line": 5591,
+        "text": "      #1151 REF_invokeStatic git4idea/push/GitPushOperation.lambda$pushingToNotTrackedBranch$2:(Ljava/util/Map$Entry;)Z"
+      },
+      {
+        "line": 5592,
+        "text": "      #1154 (Ljava/util/Map$Entry;)Z"
+      },
+      {
+        "line": 5593,
+        "text": "  6: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5594,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5595,
+        "text": "      #1155 Pushing to not tracked branch condition is [\\u0001]"
+      },
+      {
+        "line": 5596,
+        "text": "  7: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5597,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5598,
+        "text": "      #1145 (Ljava/lang/Object;)Z"
+      },
+      {
+        "line": 5599,
+        "text": "      #1157 REF_invokeStatic git4idea/push/GitPushOperation.lambda$pushingNotCurrentBranch$3:(Ljava/util/Map$Entry;)Z"
+      },
+      {
+        "line": 5600,
+        "text": "      #1154 (Ljava/util/Map$Entry;)Z"
+      },
+      {
+        "line": 5601,
+        "text": "  8: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5602,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5603,
+        "text": "      #1160 Pushing non current branch condition is [\\u0001]"
+      },
+      {
+        "line": 5604,
+        "text": "  9: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5605,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5606,
+        "text": "      #1145 (Ljava/lang/Object;)Z"
+      },
+      {
+        "line": 5607,
+        "text": "      #1162 REF_invokeStatic git4idea/push/GitPushOperation.lambda$getRejectedAndNotPushed$4:(Ljava/util/Map;Lgit4idea/repo/GitRepository;)Z"
+      },
+      {
+        "line": 5608,
+        "text": "      #1149 (Lgit4idea/repo/GitRepository;)Z"
+      },
+      {
+        "line": 5609,
+        "text": "  10: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5610,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5611,
+        "text": "      #1165 (Ljava/lang/Object;)V"
+      },
+      {
+        "line": 5612,
+        "text": "      #1166 REF_invokeInterface com/intellij/dvcs/repo/Repository.update:()V"
+      },
+      {
+        "line": 5613,
+        "text": "      #1170 (Lgit4idea/repo/GitRepository;)V"
+      },
+      {
+        "line": 5614,
+        "text": "  11: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5615,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5616,
+        "text": "      #1140 (Ljava/lang/Object;)Ljava/lang/Object;"
+      },
+      {
+        "line": 5617,
+        "text": "      #1172 REF_invokeInterface com/intellij/dvcs/repo/Repository.getCurrentRevision:()Ljava/lang/String;"
+      },
+      {
+        "line": 5618,
+        "text": "      #1176 (Lgit4idea/repo/GitRepository;)Ljava/lang/String;"
+      },
+      {
+        "line": 5619,
+        "text": "  12: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5620,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5621,
+        "text": "      #1178 Pushed to \\u0001: \\u0001"
+      },
+      {
+        "line": 5622,
+        "text": "  13: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5623,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5624,
+        "text": "      #1180 No result for branch or commit among: [\\u0001]\\nFull result: \\u0001"
+      },
+      {
+        "line": 5625,
+        "text": "  14: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5626,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5627,
+        "text": "      #1145 (Ljava/lang/Object;)Z"
+      },
+      {
+        "line": 5628,
+        "text": "      #1182 REF_invokeStatic git4idea/push/GitPushOperation.lambda$push$5:(Lgit4idea/push/GitPushNativeResult;Lgit4idea/push/GitPushNativeResult;)Z"
+      },
+      {
+        "line": 5629,
+        "text": "      #1185 (Lgit4idea/push/GitPushNativeResult;)Z"
+      },
+      {
+        "line": 5630,
+        "text": "  15: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5631,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5632,
+        "text": "      #1186 Converted result: \\u0001"
+      },
+      {
+        "line": 5633,
+        "text": "  16: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5634,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5635,
+        "text": "      #1145 (Ljava/lang/Object;)Z"
+      },
+      {
+        "line": 5636,
+        "text": "      #1188 REF_invokeStatic git4idea/push/GitPushOperation.lambda$getPushedBranchOrCommit$6:(Lgit4idea/push/GitPushNativeResult;)Z"
+      },
+      {
+        "line": 5637,
+        "text": "      #1185 (Lgit4idea/push/GitPushNativeResult;)Z"
+      },
+      {
+        "line": 5638,
+        "text": "  17: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5639,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5640,
+        "text": "      #1191 Range of pushed commits not reported in \\u0001"
+      },
+      {
+        "line": 5641,
+        "text": "  18: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5642,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5643,
+        "text": "      #1193 Couldn\\'t collect commits from range \\u0001"
+      },
+      {
+        "line": 5644,
+        "text": "  19: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5645,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5646,
+        "text": "      #1195 refs/heads/\\u0001"
+      },
+      {
+        "line": 5647,
+        "text": "  20: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5648,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5649,
+        "text": "      #1197 \\u0001:\\u0001"
+      },
+      {
+        "line": 5650,
+        "text": "  21: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5651,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5652,
+        "text": "      #1145 (Ljava/lang/Object;)Z"
+      },
+      {
+        "line": 5653,
+        "text": "      #1199 REF_invokeStatic git4idea/push/GitPushOperation.lambda$branchTrackingInfoIsSet$7:(Lgit4idea/GitLocalBranch;Lgit4idea/repo/GitBranchTrackInfo;)Z"
+      },
+      {
+        "line": 5654,
+        "text": "      #1202 (Lgit4idea/repo/GitBranchTrackInfo;)Z"
+      },
+      {
+        "line": 5655,
+        "text": "  22: #1216 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5656,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5657,
+        "text": "      #1204 ()V"
+      },
+      {
+        "line": 5658,
+        "text": "      #1205 REF_invokeVirtual git4idea/push/GitPushOperation.lambda$showDialogAndGetExitCode$8:(Ljava/util/Set;Lgit4idea/push/PushUpdateSettings;ZLcom/intellij/openapi/util/Ref;)V"
+      },
+      {
+        "line": 5659,
+        "text": "      #1204 ()V"
+      },
+      {
+        "line": 5660,
+        "text": "  23: #1210 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;"
+      },
+      {
+        "line": 5661,
+        "text": "    Method arguments:"
+      },
+      {
+        "line": 5662,
+        "text": "      #1208 Unexpected exit code: \\u0001"
+      }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+Compiled from "GitPushOptionsPanel.java"
+class git4idea.push.GitPushOptionsPanel$1 implements java.awt.event.ActionListener {
+  final git4idea.push.GitPushOptionsPanel this$0;
+
+  git4idea.push.GitPushOptionsPanel$1(git4idea.push.GitPushOptionsPanel);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field this$0:Lgit4idea/push/GitPushOptionsPanel;
+       5: aload_0
+       6: invokespecial #7                  // Method java/lang/Object."<init>":()V
+       9: return
+
+  public void actionPerformed(java.awt.event.ActionEvent);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #61                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #1                  // Field this$0:Lgit4idea/push/GitPushOptionsPanel;
+      12: getfield      #13                 // Field git4idea/push/GitPushOptionsPanel.myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+      15: aload_0
+      16: getfield      #1                  // Field this$0:Lgit4idea/push/GitPushOptionsPanel;
+      19: getfield      #19                 // Field git4idea/push/GitPushOptionsPanel.myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+      22: invokevirtual #23                 // Method com/intellij/ui/components/JBCheckBox.isSelected:()Z
+      25: invokevirtual #29                 // Method com/intellij/openapi/ui/ComboBox.setEnabled:(Z)V
+      28: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #63                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #8                  // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: ldc           #64                 // String e
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc           #65                 // String git4idea/push/GitPushOptionsPanel$1
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: ldc           #66                 // String actionPerformed
+      20: aastore
+      21: invokestatic  #72                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      24: new           #74                 // class java/lang/IllegalArgumentException
+      27: dup_x1
+      28: swap
+      29: invokespecial #77                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      32: athrow
+}

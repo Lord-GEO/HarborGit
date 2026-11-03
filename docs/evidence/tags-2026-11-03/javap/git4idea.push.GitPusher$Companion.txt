@@ -1,0 +1,170 @@
+Compiled from "GitPusher.kt"
+public final class git4idea.push.GitPusher$Companion {
+  private git4idea.push.GitPusher$Companion();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public final void pushAndNotify(com.intellij.openapi.project.Project, git4idea.push.GitPushOperation, java.util.Map<java.lang.String, ? extends com.intellij.dvcs.push.VcsPushOptionValue>);
+    Code:
+       0: aload_1
+       1: ldc           #17                 // String project
+       3: invokestatic  #23                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #25                 // String pushOperation
+       9: invokestatic  #23                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #27                 // String customParams
+      15: invokestatic  #23                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_2
+      19: invokevirtual #33                 // Method git4idea/push/GitPushOperation.execute:()Lgit4idea/push/GitPushResult;
+      22: dup
+      23: ldc           #35                 // String execute(...)
+      25: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      28: astore        4
+      30: aload_1
+      31: invokeinterface #44,  1           // InterfaceMethod com/intellij/openapi/project/Project.getMessageBus:()Lcom/intellij/util/messages/MessageBus;
+      36: getstatic     #50                 // Field git4idea/push/GitPushListener.Companion:Lgit4idea/push/GitPushListener$Companion;
+      39: invokevirtual #56                 // Method git4idea/push/GitPushListener$Companion.getTOPIC:()Lcom/intellij/util/messages/Topic;
+      42: invokeinterface #62,  2           // InterfaceMethod com/intellij/util/messages/MessageBus.syncPublisher:(Lcom/intellij/util/messages/Topic;)Ljava/lang/Object;
+      47: checkcast     #46                 // class git4idea/push/GitPushListener
+      50: astore        5
+      52: aload         4
+      54: invokevirtual #68                 // Method git4idea/push/GitPushResult.getResults:()Ljava/util/Map;
+      57: dup
+      58: ldc           #70                 // String getResults(...)
+      60: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      63: astore        6
+      65: iconst_0
+      66: istore        7
+      68: aload         6
+      70: invokeinterface #76,  1           // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      75: invokeinterface #82,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      80: astore        8
+      82: aload         8
+      84: invokeinterface #88,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      89: ifeq          162
+      92: aload         8
+      94: invokeinterface #92,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      99: checkcast     #94                 // class java/util/Map$Entry
+     102: astore        9
+     104: aload         9
+     106: astore        10
+     108: iconst_0
+     109: istore        11
+     111: aload         10
+     113: invokeinterface #97,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     118: checkcast     #99                 // class git4idea/repo/GitRepository
+     121: astore        12
+     123: aload         10
+     125: invokeinterface #102,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     130: checkcast     #104                // class git4idea/push/GitPushRepoResult
+     133: astore        13
+     135: aload         5
+     137: aload         12
+     139: invokestatic  #108                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     142: aload         12
+     144: aload         13
+     146: invokestatic  #108                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     149: aload         13
+     151: aload_3
+     152: invokeinterface #112,  4          // InterfaceMethod git4idea/push/GitPushListener.onCompleted:(Lgit4idea/repo/GitRepository;Lgit4idea/push/GitPushRepoResult;Ljava/util/Map;)V
+     157: nop
+     158: nop
+     159: goto          82
+     162: nop
+     163: aload         4
+     165: invokevirtual #115                // Method git4idea/push/GitPushResult.getUpdatedRanges:()Ljava/util/Map;
+     168: dup
+     169: ldc           #117                // String getUpdatedRanges(...)
+     171: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     174: astore        6
+     176: aload         6
+     178: invokeinterface #120,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+     183: ifne          202
+     186: new           #122                // class git4idea/update/GitUpdateInfoAsLog
+     189: dup
+     190: aload_1
+     191: aload         6
+     193: invokespecial #125                // Method git4idea/update/GitUpdateInfoAsLog."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/Map;)V
+     196: invokevirtual #129                // Method git4idea/update/GitUpdateInfoAsLog.calculateDataAndCreateLogTab:()Lgit4idea/update/GitUpdateInfoAsLog$NotificationData;
+     199: goto          203
+     202: aconst_null
+     203: astore        7
+     205: new           #131                // class git4idea/push/GitPusher$Companion$pushAndNotify$actions$1
+     208: dup
+     209: aload_1
+     210: aload         4
+     212: aload_3
+     213: aconst_null
+     214: invokespecial #134                // Method git4idea/push/GitPusher$Companion$pushAndNotify$actions$1."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/push/GitPushResult;Ljava/util/Map;Lkotlin/coroutines/Continuation;)V
+     217: checkcast     #136                // class kotlin/jvm/functions/Function2
+     220: invokestatic  #142                // Method com/intellij/openapi/progress/CoroutinesKt.runBlockingCancellable:(Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
+     223: checkcast     #144                // class java/util/List
+     226: astore        8
+     228: invokestatic  #150                // Method com/intellij/openapi/application/ApplicationManager.getApplication:()Lcom/intellij/openapi/application/Application;
+     231: aload_1
+     232: aload         4
+     234: aload_2
+     235: aload         7
+     237: aload_3
+     238: aload         8
+     240: invokedynamic #167,  0            // InvokeDynamic #0:run:(Lcom/intellij/openapi/project/Project;Lgit4idea/push/GitPushResult;Lgit4idea/push/GitPushOperation;Lgit4idea/update/GitUpdateInfoAsLog$NotificationData;Ljava/util/Map;Ljava/util/List;)Ljava/lang/Runnable;
+     245: invokeinterface #173,  2          // InterfaceMethod com/intellij/openapi/application/Application.invokeLater:(Ljava/lang/Runnable;)V
+     250: return
+
+  private static final void pushAndNotify$lambda$1(com.intellij.openapi.project.Project, git4idea.push.GitPushResult, git4idea.push.GitPushOperation, git4idea.update.GitUpdateInfoAsLog$NotificationData, java.util.Map, java.util.List);
+    Code:
+       0: aload_0
+       1: invokestatic  #203                // Method git4idea/GitUtil.getRepositoryManager:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+       4: invokevirtual #208                // Method git4idea/repo/GitRepositoryManager.moreThanOneRoot:()Z
+       7: istore        6
+       9: aload_0
+      10: aload_1
+      11: aload_2
+      12: iload         6
+      14: aload_3
+      15: aload         4
+      17: invokestatic  #214                // Method git4idea/push/GitPushResultNotification.create:(Lcom/intellij/openapi/project/Project;Lgit4idea/push/GitPushResult;Lgit4idea/push/GitPushOperation;ZLgit4idea/update/GitUpdateInfoAsLog$NotificationData;Ljava/util/Map;)Lgit4idea/push/GitPushResultNotification;
+      20: dup
+      21: ldc           #216                // String create(...)
+      23: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      26: astore        7
+      28: aload         5
+      30: checkcast     #218                // class java/lang/Iterable
+      33: astore        8
+      35: iconst_0
+      36: istore        9
+      38: aload         8
+      40: invokeinterface #219,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      45: astore        10
+      47: aload         10
+      49: invokeinterface #88,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      54: ifeq          88
+      57: aload         10
+      59: invokeinterface #92,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      64: astore        11
+      66: aload         11
+      68: checkcast     #221                // class com/intellij/openapi/actionSystem/AnAction
+      71: astore        12
+      73: iconst_0
+      74: istore        13
+      76: aload         7
+      78: aload         12
+      80: invokevirtual #225                // Method git4idea/push/GitPushResultNotification.addAction:(Lcom/intellij/openapi/actionSystem/AnAction;)Lcom/intellij/notification/Notification;
+      83: pop
+      84: nop
+      85: goto          47
+      88: nop
+      89: aload         7
+      91: aload_0
+      92: invokevirtual #229                // Method git4idea/push/GitPushResultNotification.notify:(Lcom/intellij/openapi/project/Project;)V
+      95: return
+
+  public git4idea.push.GitPusher$Companion(kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: aload_0
+       1: invokespecial #246                // Method "<init>":()V
+       4: return
+}

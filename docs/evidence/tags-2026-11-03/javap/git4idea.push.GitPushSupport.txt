@@ -1,0 +1,870 @@
+Compiled from "GitPushSupport.java"
+public final class git4idea.push.GitPushSupport extends com.intellij.dvcs.push.PushSupport<git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget> {
+  private final git4idea.repo.GitRepositoryManager myRepositoryManager;
+
+  private final git4idea.GitVcs myVcs;
+
+  private final com.intellij.dvcs.push.Pusher<git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget> myPusher;
+
+  private final com.intellij.dvcs.push.OutgoingCommitsProvider<git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget> myOutgoingCommitsProvider;
+
+  private final git4idea.config.GitVcsSettings mySettings;
+
+  private final git4idea.config.GitSharedSettings mySharedSettings;
+
+  private final com.intellij.dvcs.push.PushSettings myCommonPushSettings;
+
+  private git4idea.push.GitPushSupport(com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: invokespecial #1                  // Method com/intellij/dvcs/push/PushSupport."<init>":()V
+      12: aload_0
+      13: aload_1
+      14: invokestatic  #7                  // Method git4idea/repo/GitRepositoryManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      17: putfield      #13                 // Field myRepositoryManager:Lgit4idea/repo/GitRepositoryManager;
+      20: aload_0
+      21: aload_1
+      22: invokestatic  #19                 // Method git4idea/GitVcs.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/GitVcs;
+      25: putfield      #24                 // Field myVcs:Lgit4idea/GitVcs;
+      28: aload_0
+      29: aload_1
+      30: invokestatic  #28                 // Method git4idea/config/GitVcsSettings.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitVcsSettings;
+      33: putfield      #33                 // Field mySettings:Lgit4idea/config/GitVcsSettings;
+      36: aload_0
+      37: new           #37                 // class git4idea/push/GitPusher
+      40: dup
+      41: aload_1
+      42: aload_0
+      43: getfield      #33                 // Field mySettings:Lgit4idea/config/GitVcsSettings;
+      46: aload_0
+      47: invokespecial #39                 // Method git4idea/push/GitPusher."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/config/GitVcsSettings;Lgit4idea/push/GitPushSupport;)V
+      50: putfield      #42                 // Field myPusher:Lcom/intellij/dvcs/push/Pusher;
+      53: aload_0
+      54: new           #46                 // class git4idea/push/GitOutgoingCommitsProvider
+      57: dup
+      58: aload_1
+      59: invokespecial #48                 // Method git4idea/push/GitOutgoingCommitsProvider."<init>":(Lcom/intellij/openapi/project/Project;)V
+      62: putfield      #51                 // Field myOutgoingCommitsProvider:Lcom/intellij/dvcs/push/OutgoingCommitsProvider;
+      65: aload_0
+      66: aload_1
+      67: invokestatic  #55                 // Method git4idea/config/GitSharedSettings.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/config/GitSharedSettings;
+      70: putfield      #60                 // Field mySharedSettings:Lgit4idea/config/GitSharedSettings;
+      73: aload_0
+      74: aload_1
+      75: ldc           #64                 // class com/intellij/dvcs/push/PushSettings
+      77: invokeinterface #66,  2           // InterfaceMethod com/intellij/openapi/project/Project.getService:(Ljava/lang/Class;)Ljava/lang/Object;
+      82: checkcast     #64                 // class com/intellij/dvcs/push/PushSettings
+      85: putfield      #72                 // Field myCommonPushSettings:Lcom/intellij/dvcs/push/PushSettings;
+      88: return
+
+  public com.intellij.openapi.vcs.AbstractVcs getVcs();
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field myVcs:Lgit4idea/GitVcs;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_1
+       9: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  public com.intellij.dvcs.push.Pusher<git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget> getPusher();
+    Code:
+       0: aload_0
+       1: getfield      #42                 // Field myPusher:Lcom/intellij/dvcs/push/Pusher;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_2
+       9: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  public com.intellij.dvcs.push.OutgoingCommitsProvider<git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget> getOutgoingCommitsProvider();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field myOutgoingCommitsProvider:Lcom/intellij/dvcs/push/OutgoingCommitsProvider;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_3
+       9: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  public boolean canBePushed(git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     25
+      20: bipush        6
+      22: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      25: aload_1
+      26: invokeinterface #76,  1           // InterfaceMethod git4idea/repo/GitRepository.isFresh:()Z
+      31: ifeq          36
+      34: iconst_0
+      35: ireturn
+      36: iconst_1
+      37: ireturn
+
+  public git4idea.push.GitPushTarget getDefaultTarget(git4idea.repo.GitRepository);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        7
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #76,  1           // InterfaceMethod git4idea/repo/GitRepository.isFresh:()Z
+      15: ifeq          20
+      18: aconst_null
+      19: areturn
+      20: aload_1
+      21: invokeinterface #82,  1           // InterfaceMethod git4idea/repo/GitRepository.getCurrentBranch:()Lgit4idea/GitLocalBranch;
+      26: astore_2
+      27: aload_2
+      28: ifnonnull     33
+      31: aconst_null
+      32: areturn
+      33: aload_0
+      34: aload_1
+      35: aload_2
+      36: invokestatic  #86                 // Method git4idea/push/GitPushSource.create:(Lgit4idea/GitLocalBranch;)Lgit4idea/push/GitPushSource;
+      39: invokevirtual #92                 // Method getDefaultTarget:(Lgit4idea/repo/GitRepository;Lgit4idea/push/GitPushSource;)Lgit4idea/push/GitPushTarget;
+      42: areturn
+
+  public git4idea.push.GitPushTarget getDefaultTarget(git4idea.repo.GitRepository, git4idea.push.GitPushSource);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        8
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        9
+      15: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: invokevirtual #96                 // Method git4idea/push/GitPushSource.getBranch:()Lgit4idea/GitLocalBranch;
+      22: astore_3
+      23: aload_3
+      24: ifnull        42
+      27: aload_1
+      28: aload_3
+      29: invokestatic  #99                 // Method getPushTargetIfExist:(Lgit4idea/repo/GitRepository;Lgit4idea/GitLocalBranch;)Lgit4idea/push/GitPushTarget;
+      32: astore        4
+      34: aload         4
+      36: ifnull        42
+      39: aload         4
+      41: areturn
+      42: aload_1
+      43: invokeinterface #103,  1          // InterfaceMethod git4idea/repo/GitRepository.getRemotes:()Ljava/util/Collection;
+      48: invokestatic  #107                // Method git4idea/GitUtil.getDefaultOrFirstRemote:(Ljava/util/Collection;)Lgit4idea/repo/GitRemote;
+      51: astore        4
+      53: aload         4
+      55: ifnonnull     60
+      58: aconst_null
+      59: areturn
+      60: aload_3
+      61: ifnull        75
+      64: aload_1
+      65: aload         4
+      67: aload_3
+      68: invokevirtual #113                // Method git4idea/GitLocalBranch.getName:()Ljava/lang/String;
+      71: invokestatic  #119                // Method makeTargetForNewBranch:(Lgit4idea/repo/GitRepository;Lgit4idea/repo/GitRemote;Ljava/lang/String;)Lgit4idea/push/GitPushTarget;
+      74: areturn
+      75: aload_1
+      76: invokeinterface #82,  1           // InterfaceMethod git4idea/repo/GitRepository.getCurrentBranch:()Lgit4idea/GitLocalBranch;
+      81: astore        5
+      83: aload         5
+      85: ifnull        100
+      88: aload_1
+      89: aload         4
+      91: aload         5
+      93: invokevirtual #113                // Method git4idea/GitLocalBranch.getName:()Ljava/lang/String;
+      96: invokestatic  #119                // Method makeTargetForNewBranch:(Lgit4idea/repo/GitRepository;Lgit4idea/repo/GitRemote;Ljava/lang/String;)Lgit4idea/push/GitPushTarget;
+      99: areturn
+     100: aload_1
+     101: invokeinterface #123,  1          // InterfaceMethod git4idea/repo/GitRepository.getBranches:()Lgit4idea/branch/GitBranchesCollection;
+     106: invokevirtual #127                // Method git4idea/branch/GitBranchesCollection.getRemoteBranches:()Ljava/util/Collection;
+     109: aload         4
+     111: invokedynamic #132,  0            // InvokeDynamic #0:fun:(Lgit4idea/repo/GitRemote;)Lcom/intellij/util/Function;
+     116: invokestatic  #136                // Method com/intellij/util/containers/ContainerUtil.map2SetNotNull:(Ljava/util/Collection;Lcom/intellij/util/Function;)Ljava/util/Set;
+     119: astore        6
+     121: ldc           #142                // String detached
+     123: ldc           #144                // String
+     125: ldc           #144                // String
+     127: aload         6
+     129: invokestatic  #146                // Method com/intellij/util/text/UniqueNameGenerator.generateUniqueName:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Collection;)Ljava/lang/String;
+     132: astore        7
+     134: aload_1
+     135: aload         4
+     137: aload         7
+     139: invokestatic  #119                // Method makeTargetForNewBranch:(Lgit4idea/repo/GitRepository;Lgit4idea/repo/GitRemote;Ljava/lang/String;)Lgit4idea/push/GitPushTarget;
+     142: areturn
+
+  public static git4idea.push.GitPushTarget getPushTargetIfExist(git4idea.repo.GitRepository, git4idea.GitLocalBranch);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        10
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        11
+      15: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      18: aload_0
+      19: aload_1
+      20: invokestatic  #152                // Method git4idea/push/GitPushTarget.getFromPushSpec:(Lgit4idea/repo/GitRepository;Lgit4idea/GitLocalBranch;)Lgit4idea/push/GitPushTarget;
+      23: astore_2
+      24: aload_2
+      25: ifnull        30
+      28: aload_2
+      29: areturn
+      30: aload_0
+      31: aload_1
+      32: invokestatic  #157                // Method git4idea/branch/GitBranchUtil.getTrackInfoForBranch:(Lgit4idea/repo/GitRepository;Lgit4idea/GitLocalBranch;)Lgit4idea/repo/GitBranchTrackInfo;
+      35: astore_3
+      36: aload_3
+      37: ifnull        56
+      40: new           #153                // class git4idea/push/GitPushTarget
+      43: dup
+      44: aload_3
+      45: invokevirtual #163                // Method git4idea/repo/GitBranchTrackInfo.getRemoteBranch:()Lgit4idea/GitRemoteBranch;
+      48: iconst_0
+      49: getstatic     #169                // Field git4idea/push/GitPushTargetType.TRACKING_BRANCH:Lgit4idea/push/GitPushTargetType;
+      52: invokespecial #175                // Method git4idea/push/GitPushTarget."<init>":(Lgit4idea/GitRemoteBranch;ZLgit4idea/push/GitPushTargetType;)V
+      55: areturn
+      56: aconst_null
+      57: areturn
+
+  private static git4idea.push.GitPushTarget makeTargetForNewBranch(git4idea.repo.GitRepository, git4idea.repo.GitRemote, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        12
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        13
+      15: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        14
+      24: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      27: aload_0
+      28: aload_1
+      29: aload_2
+      30: invokestatic  #178                // Method git4idea/GitUtil.findRemoteBranch:(Lgit4idea/repo/GitRepository;Lgit4idea/repo/GitRemote;Ljava/lang/String;)Lgit4idea/GitRemoteBranch;
+      33: astore_3
+      34: aload_3
+      35: ifnull        51
+      38: new           #153                // class git4idea/push/GitPushTarget
+      41: dup
+      42: aload_3
+      43: iconst_0
+      44: getstatic     #169                // Field git4idea/push/GitPushTargetType.TRACKING_BRANCH:Lgit4idea/push/GitPushTargetType;
+      47: invokespecial #175                // Method git4idea/push/GitPushTarget."<init>":(Lgit4idea/GitRemoteBranch;ZLgit4idea/push/GitPushTargetType;)V
+      50: areturn
+      51: new           #153                // class git4idea/push/GitPushTarget
+      54: dup
+      55: new           #182                // class git4idea/GitStandardRemoteBranch
+      58: dup
+      59: aload_1
+      60: aload_2
+      61: invokespecial #184                // Method git4idea/GitStandardRemoteBranch."<init>":(Lgit4idea/repo/GitRemote;Ljava/lang/String;)V
+      64: iconst_1
+      65: getstatic     #169                // Field git4idea/push/GitPushTargetType.TRACKING_BRANCH:Lgit4idea/push/GitPushTargetType;
+      68: invokespecial #175                // Method git4idea/push/GitPushTarget."<init>":(Lgit4idea/GitRemoteBranch;ZLgit4idea/push/GitPushTargetType;)V
+      71: areturn
+
+  public git4idea.push.GitPushSource getSource(git4idea.repo.GitRepository);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        15
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: invokeinterface #82,  1           // InterfaceMethod git4idea/repo/GitRepository.getCurrentBranch:()Lgit4idea/GitLocalBranch;
+      15: astore_2
+      16: aload_2
+      17: ifnull        25
+      20: aload_2
+      21: invokestatic  #86                 // Method git4idea/push/GitPushSource.create:(Lgit4idea/GitLocalBranch;)Lgit4idea/push/GitPushSource;
+      24: areturn
+      25: aload_1
+      26: invokeinterface #187,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentRevision:()Ljava/lang/String;
+      31: astore_3
+      32: aload_3
+      33: ifnull        41
+      36: aload_3
+      37: invokestatic  #190                // Method git4idea/push/GitPushSource.createDetached:(Ljava/lang/String;)Lgit4idea/push/GitPushSource;
+      40: areturn
+      41: aconst_null
+      42: areturn
+
+  public com.intellij.dvcs.repo.RepositoryManager<git4idea.repo.GitRepository> getRepositoryManager();
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field myRepositoryManager:Lgit4idea/repo/GitRepositoryManager;
+       4: dup
+       5: ifnonnull     13
+       8: bipush        16
+      10: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      13: areturn
+
+  public com.intellij.dvcs.push.PushTargetPanel<git4idea.push.GitPushTarget> createTargetPanel(git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        17
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        18
+      15: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      18: new           #194                // class git4idea/push/GitPushTargetPanel
+      21: dup
+      22: aload_0
+      23: aload_1
+      24: aload_2
+      25: aload_3
+      26: invokespecial #196                // Method git4idea/push/GitPushTargetPanel."<init>":(Lgit4idea/push/GitPushSupport;Lgit4idea/repo/GitRepository;Lgit4idea/push/GitPushSource;Lgit4idea/push/GitPushTarget;)V
+      29: areturn
+
+  public boolean isForcePushAllowed(git4idea.repo.GitRepository, git4idea.push.GitPushTarget);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        19
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        20
+      15: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: invokevirtual #199                // Method git4idea/push/GitPushTarget.getBranch:()Lgit4idea/GitRemoteBranch;
+      22: invokevirtual #201                // Method git4idea/GitRemoteBranch.getNameForRemoteOperations:()Ljava/lang/String;
+      25: astore_3
+      26: aload_0
+      27: getfield      #60                 // Field mySharedSettings:Lgit4idea/config/GitSharedSettings;
+      30: aload_3
+      31: invokevirtual #206                // Method git4idea/config/GitSharedSettings.isBranchProtected:(Ljava/lang/String;)Z
+      34: ifne          41
+      37: iconst_1
+      38: goto          42
+      41: iconst_0
+      42: ireturn
+
+  public java.lang.String getForcePushConfigurablePath();
+    Code:
+       0: ldc           #210                // String push.dialog.prohibited.branch.configurable.path
+       2: iconst_1
+       3: anewarray     #212                // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: invokestatic  #214                // Method com/intellij/CommonBundle.settingsTitle:()Ljava/lang/String;
+      11: aastore
+      12: invokestatic  #219                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      15: dup
+      16: ifnonnull     24
+      19: bipush        21
+      21: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+      24: areturn
+
+  public com.intellij.dvcs.push.VcsPushOptionsPanel createOptionsPanel();
+    Code:
+       0: new           #225                // class git4idea/push/GitPushOptionsPanel
+       3: dup
+       4: aload_0
+       5: getfield      #33                 // Field mySettings:Lgit4idea/config/GitVcsSettings;
+       8: invokevirtual #227                // Method git4idea/config/GitVcsSettings.getPushTagMode:()Lgit4idea/push/GitPushTagMode;
+      11: getstatic     #231                // Field git4idea/config/GitVersionSpecialty.SUPPORTS_FOLLOW_TAGS:Lgit4idea/config/GitVersionSpecialty;
+      14: aload_0
+      15: getfield      #24                 // Field myVcs:Lgit4idea/GitVcs;
+      18: invokevirtual #237                // Method git4idea/config/GitVersionSpecialty.existsIn:(Lcom/intellij/openapi/vcs/AbstractVcs;)Z
+      21: aload_0
+      22: invokevirtual #241                // Method shouldShowSkipHookOption:()Z
+      25: invokespecial #244                // Method git4idea/push/GitPushOptionsPanel."<init>":(Lgit4idea/push/GitPushTagMode;ZZ)V
+      28: areturn
+
+  private boolean shouldShowSkipHookOption();
+    Code:
+       0: getstatic     #247                // Field git4idea/config/GitVersionSpecialty.PRE_PUSH_HOOK:Lgit4idea/config/GitVersionSpecialty;
+       3: aload_0
+       4: getfield      #24                 // Field myVcs:Lgit4idea/GitVcs;
+       7: invokevirtual #237                // Method git4idea/config/GitVersionSpecialty.existsIn:(Lcom/intellij/openapi/vcs/AbstractVcs;)Z
+      10: ifeq          54
+      13: aload_0
+      14: invokevirtual #250                // Method getRepositoryManager:()Lcom/intellij/dvcs/repo/RepositoryManager;
+      17: invokeinterface #254,  1          // InterfaceMethod com/intellij/dvcs/repo/RepositoryManager.getRepositories:()Ljava/util/List;
+      22: invokeinterface #260,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      27: invokedynamic #266,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      32: invokeinterface #270,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      37: invokedynamic #276,  0            // InvokeDynamic #2:test:()Ljava/util/function/Predicate;
+      42: invokeinterface #280,  2          // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+      47: ifeq          54
+      50: iconst_1
+      51: goto          55
+      54: iconst_0
+      55: ireturn
+
+  public boolean isSilentForcePushAllowed(git4idea.push.GitPushTarget);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        22
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #72                 // Field myCommonPushSettings:Lcom/intellij/dvcs/push/PushSettings;
+      13: aload_1
+      14: invokevirtual #199                // Method git4idea/push/GitPushTarget.getBranch:()Lgit4idea/GitRemoteBranch;
+      17: invokevirtual #284                // Method git4idea/GitRemoteBranch.getRemote:()Lgit4idea/repo/GitRemote;
+      20: invokevirtual #288                // Method git4idea/repo/GitRemote.getName:()Ljava/lang/String;
+      23: aload_1
+      24: invokevirtual #199                // Method git4idea/push/GitPushTarget.getBranch:()Lgit4idea/GitRemoteBranch;
+      27: invokevirtual #201                // Method git4idea/GitRemoteBranch.getNameForRemoteOperations:()Ljava/lang/String;
+      30: invokevirtual #291                // Method com/intellij/dvcs/push/PushSettings.containsForcePushTarget:(Ljava/lang/String;Ljava/lang/String;)Z
+      33: ireturn
+
+  public void saveSilentForcePushTarget(git4idea.push.GitPushTarget);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        23
+       6: invokestatic  #456                // Method $$$reportNull$$$0:(I)V
+       9: aload_0
+      10: getfield      #72                 // Field myCommonPushSettings:Lcom/intellij/dvcs/push/PushSettings;
+      13: aload_1
+      14: invokevirtual #199                // Method git4idea/push/GitPushTarget.getBranch:()Lgit4idea/GitRemoteBranch;
+      17: invokevirtual #284                // Method git4idea/GitRemoteBranch.getRemote:()Lgit4idea/repo/GitRemote;
+      20: invokevirtual #288                // Method git4idea/repo/GitRemote.getName:()Ljava/lang/String;
+      23: aload_1
+      24: invokevirtual #199                // Method git4idea/push/GitPushTarget.getBranch:()Lgit4idea/GitRemoteBranch;
+      27: invokevirtual #201                // Method git4idea/GitRemoteBranch.getNameForRemoteOperations:()Ljava/lang/String;
+      30: invokevirtual #295                // Method com/intellij/dvcs/push/PushSettings.addForcePushTarget:(Ljava/lang/String;Ljava/lang/String;)V
+      33: return
+
+  public boolean mayChangeTargetsSync();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public void saveSilentForcePushTarget(com.intellij.dvcs.push.PushTarget);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #153                // class git4idea/push/GitPushTarget
+       5: invokevirtual #299                // Method saveSilentForcePushTarget:(Lgit4idea/push/GitPushTarget;)V
+       8: return
+
+  public boolean isSilentForcePushAllowed(com.intellij.dvcs.push.PushTarget);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #153                // class git4idea/push/GitPushTarget
+       5: invokevirtual #303                // Method isSilentForcePushAllowed:(Lgit4idea/push/GitPushTarget;)Z
+       8: ireturn
+
+  public boolean isForcePushAllowed(com.intellij.dvcs.repo.Repository, com.intellij.dvcs.push.PushTarget);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #77                 // class git4idea/repo/GitRepository
+       5: aload_2
+       6: checkcast     #153                // class git4idea/push/GitPushTarget
+       9: invokevirtual #307                // Method isForcePushAllowed:(Lgit4idea/repo/GitRepository;Lgit4idea/push/GitPushTarget;)Z
+      12: ireturn
+
+  public com.intellij.dvcs.push.PushTargetPanel createTargetPanel(com.intellij.dvcs.repo.Repository, com.intellij.dvcs.push.PushSource, com.intellij.dvcs.push.PushTarget);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #77                 // class git4idea/repo/GitRepository
+       5: aload_2
+       6: checkcast     #87                 // class git4idea/push/GitPushSource
+       9: aload_3
+      10: checkcast     #153                // class git4idea/push/GitPushTarget
+      13: invokevirtual #311                // Method createTargetPanel:(Lgit4idea/repo/GitRepository;Lgit4idea/push/GitPushSource;Lgit4idea/push/GitPushTarget;)Lcom/intellij/dvcs/push/PushTargetPanel;
+      16: areturn
+
+  public com.intellij.dvcs.push.PushSource getSource(com.intellij.dvcs.repo.Repository);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #77                 // class git4idea/repo/GitRepository
+       5: invokevirtual #315                // Method getSource:(Lgit4idea/repo/GitRepository;)Lgit4idea/push/GitPushSource;
+       8: areturn
+
+  public com.intellij.dvcs.push.PushTarget getDefaultTarget(com.intellij.dvcs.repo.Repository, com.intellij.dvcs.push.PushSource);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #77                 // class git4idea/repo/GitRepository
+       5: aload_2
+       6: checkcast     #87                 // class git4idea/push/GitPushSource
+       9: invokevirtual #92                 // Method getDefaultTarget:(Lgit4idea/repo/GitRepository;Lgit4idea/push/GitPushSource;)Lgit4idea/push/GitPushTarget;
+      12: areturn
+
+  public com.intellij.dvcs.push.PushTarget getDefaultTarget(com.intellij.dvcs.repo.Repository);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #77                 // class git4idea/repo/GitRepository
+       5: invokevirtual #319                // Method getDefaultTarget:(Lgit4idea/repo/GitRepository;)Lgit4idea/push/GitPushTarget;
+       8: areturn
+
+  public boolean canBePushed(com.intellij.dvcs.repo.Repository, com.intellij.dvcs.push.PushSource, com.intellij.dvcs.push.PushTarget);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #77                 // class git4idea/repo/GitRepository
+       5: aload_2
+       6: checkcast     #87                 // class git4idea/push/GitPushSource
+       9: aload_3
+      10: checkcast     #153                // class git4idea/push/GitPushTarget
+      13: invokevirtual #322                // Method canBePushed:(Lgit4idea/repo/GitRepository;Lgit4idea/push/GitPushSource;Lgit4idea/push/GitPushTarget;)Z
+      16: ireturn
+
+  private static git4idea.repo.GitHooksInfo lambda$shouldShowSkipHookOption$1(git4idea.repo.GitRepository);
+    Code:
+       0: aload_0
+       1: invokeinterface #326,  1          // InterfaceMethod git4idea/repo/GitRepository.getInfo:()Lgit4idea/repo/GitRepoInfo;
+       6: invokevirtual #330                // Method git4idea/repo/GitRepoInfo.getHooksInfo:()Lgit4idea/repo/GitHooksInfo;
+       9: areturn
+
+  private static java.lang.String lambda$getDefaultTarget$0(git4idea.repo.GitRemote, git4idea.GitRemoteBranch);
+    Code:
+       0: aload_1
+       1: invokevirtual #284                // Method git4idea/GitRemoteBranch.getRemote:()Lgit4idea/repo/GitRemote;
+       4: aload_0
+       5: invokevirtual #336                // Method git4idea/repo/GitRemote.equals:(Ljava/lang/Object;)Z
+       8: ifeq          18
+      11: aload_1
+      12: invokevirtual #201                // Method git4idea/GitRemoteBranch.getNameForRemoteOperations:()Ljava/lang/String;
+      15: goto          19
+      18: aconst_null
+      19: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 23
+                     0: 112
+                     1: 118
+                     2: 118
+                     3: 118
+                     4: 112
+                     5: 112
+                     6: 112
+                     7: 112
+                     8: 112
+                     9: 112
+                    10: 112
+                    11: 112
+                    12: 112
+                    13: 112
+                    14: 112
+                    15: 112
+                    16: 118
+                    17: 112
+                    18: 112
+                    19: 112
+                    20: 112
+                    21: 118
+                    22: 112
+                    23: 112
+               default: 112
+          }
+     112: ldc_w         #462                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+     115: goto          124
+     118: ldc_w         #464                // String @NotNull method %s.%s must not return null
+     121: goto          124
+     124: iload_0
+     125: tableswitch   { // 0 to 23
+                     0: 236
+                     1: 240
+                     2: 240
+                     3: 240
+                     4: 236
+                     5: 236
+                     6: 236
+                     7: 236
+                     8: 236
+                     9: 236
+                    10: 236
+                    11: 236
+                    12: 236
+                    13: 236
+                    14: 236
+                    15: 236
+                    16: 240
+                    17: 236
+                    18: 236
+                    19: 236
+                    20: 236
+                    21: 240
+                    22: 236
+                    23: 236
+               default: 236
+          }
+     236: iconst_3
+     237: goto          244
+     240: iconst_2
+     241: goto          244
+     244: anewarray     #212                // class java/lang/Object
+     247: iload_0
+     248: tableswitch   { // 0 to 23
+                     0: 360
+                     1: 369
+                     2: 369
+                     3: 369
+                     4: 378
+                     5: 387
+                     6: 396
+                     7: 378
+                     8: 378
+                     9: 387
+                    10: 378
+                    11: 405
+                    12: 378
+                    13: 414
+                    14: 423
+                    15: 378
+                    16: 369
+                    17: 378
+                    18: 387
+                    19: 432
+                    20: 396
+                    21: 369
+                    22: 396
+                    23: 396
+               default: 360
+          }
+     360: dup
+     361: iconst_0
+     362: ldc_w         #465                // String project
+     365: aastore
+     366: goto          441
+     369: dup
+     370: iconst_0
+     371: ldc_w         #466                // String git4idea/push/GitPushSupport
+     374: aastore
+     375: goto          441
+     378: dup
+     379: iconst_0
+     380: ldc_w         #467                // String repository
+     383: aastore
+     384: goto          441
+     387: dup
+     388: iconst_0
+     389: ldc_w         #468                // String source
+     392: aastore
+     393: goto          441
+     396: dup
+     397: iconst_0
+     398: ldc_w         #469                // String target
+     401: aastore
+     402: goto          441
+     405: dup
+     406: iconst_0
+     407: ldc_w         #470                // String localBranch
+     410: aastore
+     411: goto          441
+     414: dup
+     415: iconst_0
+     416: ldc_w         #471                // String remote
+     419: aastore
+     420: goto          441
+     423: dup
+     424: iconst_0
+     425: ldc_w         #472                // String branchName
+     428: aastore
+     429: goto          441
+     432: dup
+     433: iconst_0
+     434: ldc_w         #473                // String repo
+     437: aastore
+     438: goto          441
+     441: iload_0
+     442: tableswitch   { // 0 to 23
+                     0: 552
+                     1: 561
+                     2: 570
+                     3: 579
+                     4: 552
+                     5: 552
+                     6: 552
+                     7: 552
+                     8: 552
+                     9: 552
+                    10: 552
+                    11: 552
+                    12: 552
+                    13: 552
+                    14: 552
+                    15: 552
+                    16: 588
+                    17: 552
+                    18: 552
+                    19: 552
+                    20: 552
+                    21: 597
+                    22: 552
+                    23: 552
+               default: 552
+          }
+     552: dup
+     553: iconst_1
+     554: ldc_w         #466                // String git4idea/push/GitPushSupport
+     557: aastore
+     558: goto          606
+     561: dup
+     562: iconst_1
+     563: ldc_w         #474                // String getVcs
+     566: aastore
+     567: goto          606
+     570: dup
+     571: iconst_1
+     572: ldc_w         #475                // String getPusher
+     575: aastore
+     576: goto          606
+     579: dup
+     580: iconst_1
+     581: ldc_w         #476                // String getOutgoingCommitsProvider
+     584: aastore
+     585: goto          606
+     588: dup
+     589: iconst_1
+     590: ldc_w         #477                // String getRepositoryManager
+     593: aastore
+     594: goto          606
+     597: dup
+     598: iconst_1
+     599: ldc_w         #478                // String getForcePushConfigurablePath
+     602: aastore
+     603: goto          606
+     606: iload_0
+     607: tableswitch   { // 0 to 23
+                     0: 716
+                     1: 725
+                     2: 725
+                     3: 725
+                     4: 728
+                     5: 728
+                     6: 728
+                     7: 737
+                     8: 737
+                     9: 737
+                    10: 746
+                    11: 746
+                    12: 755
+                    13: 755
+                    14: 755
+                    15: 764
+                    16: 725
+                    17: 773
+                    18: 773
+                    19: 782
+                    20: 782
+                    21: 725
+                    22: 791
+                    23: 800
+               default: 716
+          }
+     716: dup
+     717: iconst_2
+     718: ldc_w         #479                // String <init>
+     721: aastore
+     722: goto          809
+     725: goto          809
+     728: dup
+     729: iconst_2
+     730: ldc_w         #480                // String canBePushed
+     733: aastore
+     734: goto          809
+     737: dup
+     738: iconst_2
+     739: ldc_w         #481                // String getDefaultTarget
+     742: aastore
+     743: goto          809
+     746: dup
+     747: iconst_2
+     748: ldc_w         #482                // String getPushTargetIfExist
+     751: aastore
+     752: goto          809
+     755: dup
+     756: iconst_2
+     757: ldc_w         #483                // String makeTargetForNewBranch
+     760: aastore
+     761: goto          809
+     764: dup
+     765: iconst_2
+     766: ldc_w         #484                // String getSource
+     769: aastore
+     770: goto          809
+     773: dup
+     774: iconst_2
+     775: ldc_w         #485                // String createTargetPanel
+     778: aastore
+     779: goto          809
+     782: dup
+     783: iconst_2
+     784: ldc_w         #486                // String isForcePushAllowed
+     787: aastore
+     788: goto          809
+     791: dup
+     792: iconst_2
+     793: ldc_w         #487                // String isSilentForcePushAllowed
+     796: aastore
+     797: goto          809
+     800: dup
+     801: iconst_2
+     802: ldc_w         #488                // String saveSilentForcePushTarget
+     805: aastore
+     806: goto          809
+     809: invokestatic  #491                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     812: iload_0
+     813: tableswitch   { // 0 to 23
+                     0: 924
+                     1: 935
+                     2: 935
+                     3: 935
+                     4: 924
+                     5: 924
+                     6: 924
+                     7: 924
+                     8: 924
+                     9: 924
+                    10: 924
+                    11: 924
+                    12: 924
+                    13: 924
+                    14: 924
+                    15: 924
+                    16: 935
+                    17: 924
+                    18: 924
+                    19: 924
+                    20: 924
+                    21: 935
+                    22: 924
+                    23: 924
+               default: 924
+          }
+     924: new           #493                // class java/lang/IllegalArgumentException
+     927: dup_x1
+     928: swap
+     929: invokespecial #496                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     932: goto          946
+     935: new           #498                // class java/lang/IllegalStateException
+     938: dup_x1
+     939: swap
+     940: invokespecial #499                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     943: goto          946
+     946: athrow
+}

@@ -1,0 +1,74 @@
+Compiled from "GitBrancherImpl.java"
+class git4idea.branch.GitBrancherImpl$3 extends git4idea.branch.GitBrancherImpl$CommonBackgroundTask {
+  final java.lang.String val$name;
+
+  final java.lang.String val$reference;
+
+  final java.util.List val$repositories;
+
+  final git4idea.branch.GitBrancherImpl this$0;
+
+  git4idea.branch.GitBrancherImpl$3(git4idea.branch.GitBrancherImpl, com.intellij.openapi.project.Project, java.lang.String, java.lang.Runnable, java.lang.String, java.lang.String, java.util.List);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field this$0:Lgit4idea/branch/GitBrancherImpl;
+       5: aload_0
+       6: aload         5
+       8: putfield      #7                  // Field val$name:Ljava/lang/String;
+      11: aload_0
+      12: aload         6
+      14: putfield      #11                 // Field val$reference:Ljava/lang/String;
+      17: aload_0
+      18: aload         7
+      20: putfield      #14                 // Field val$repositories:Ljava/util/List;
+      23: aload_0
+      24: aload_2
+      25: aload_3
+      26: aload         4
+      28: invokespecial #18                 // Method git4idea/branch/GitBrancherImpl$CommonBackgroundTask."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/Runnable;)V
+      31: return
+
+  public void execute(com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #66                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #1                  // Field this$0:Lgit4idea/branch/GitBrancherImpl;
+      12: aload_1
+      13: invokevirtual #24                 // Method git4idea/branch/GitBrancherImpl.newWorker:(Lcom/intellij/openapi/progress/ProgressIndicator;)Lgit4idea/branch/GitBranchWorker;
+      16: aload_0
+      17: getfield      #7                  // Field val$name:Ljava/lang/String;
+      20: aload_0
+      21: getfield      #11                 // Field val$reference:Ljava/lang/String;
+      24: aload_0
+      25: getfield      #14                 // Field val$repositories:Ljava/util/List;
+      28: invokevirtual #30                 // Method git4idea/branch/GitBranchWorker.createNewTag:(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+      31: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #68                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #70                 // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: ldc           #71                 // String indicator
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc           #72                 // String git4idea/branch/GitBrancherImpl$3
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: ldc           #73                 // String execute
+      20: aastore
+      21: invokestatic  #79                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      24: new           #81                 // class java/lang/IllegalArgumentException
+      27: dup_x1
+      28: swap
+      29: invokespecial #84                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      32: athrow
+}

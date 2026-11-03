@@ -1,0 +1,1237 @@
+Compiled from "GitTagDialog.java"
+public class git4idea.ui.GitTagDialog extends com.intellij.openapi.ui.DialogWrapper {
+  private static final com.intellij.openapi.diagnostic.Logger LOG;
+
+  private final javax.swing.JPanel myPanel;
+
+  private final javax.swing.JComboBox myGitRootComboBox;
+
+  private final javax.swing.JLabel myCurrentBranch;
+
+  private final javax.swing.JTextField myTagNameTextField;
+
+  private final javax.swing.JCheckBox myForceCheckBox;
+
+  private final javax.swing.JTextArea myMessageTextArea;
+
+  private final javax.swing.JTextField myCommitTextField;
+
+  private final javax.swing.JButton myValidateButton;
+
+  private final git4idea.ui.GitReferenceValidator myCommitTextFieldValidator;
+
+  private final com.intellij.openapi.project.Project myProject;
+
+  private final git4idea.commands.Git myGit;
+
+  private final com.intellij.openapi.vcs.VcsNotifier myNotifier;
+
+  private final java.util.Set<java.lang.String> myExistingTags;
+
+  private static final java.lang.String MESSAGE_FILE_PREFIX;
+
+  private static final java.lang.String MESSAGE_FILE_SUFFIX;
+
+  private static final java.lang.String MESSAGE_FILE_ENCODING;
+
+  private static java.lang.reflect.Method $$$cachedGetBundleMethod$$$;
+
+  public git4idea.ui.GitTagDialog(com.intellij.openapi.project.Project, java.util.List<com.intellij.openapi.vfs.VirtualFile>, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iconst_1
+       3: invokespecial #5                  // Method com/intellij/openapi/ui/DialogWrapper."<init>":(Lcom/intellij/openapi/project/Project;Z)V
+       6: aload_0
+       7: new           #11                 // class java/util/HashSet
+      10: dup
+      11: invokespecial #13                 // Method java/util/HashSet."<init>":()V
+      14: putfield      #16                 // Field myExistingTags:Ljava/util/Set;
+      17: aload_0
+      18: new           #22                 // class javax/swing/JPanel
+      21: dup
+      22: invokespecial #24                 // Method javax/swing/JPanel."<init>":()V
+      25: putfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+      28: aload_0
+      29: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+      32: new           #29                 // class com/intellij/uiDesigner/core/GridLayoutManager
+      35: dup
+      36: bipush        6
+      38: iconst_2
+      39: new           #31                 // class java/awt/Insets
+      42: dup
+      43: iconst_0
+      44: iconst_0
+      45: iconst_0
+      46: iconst_0
+      47: invokespecial #33                 // Method java/awt/Insets."<init>":(IIII)V
+      50: iconst_m1
+      51: iconst_m1
+      52: invokespecial #36                 // Method com/intellij/uiDesigner/core/GridLayoutManager."<init>":(IILjava/awt/Insets;II)V
+      55: invokevirtual #39                 // Method javax/swing/JPanel.setLayout:(Ljava/awt/LayoutManager;)V
+      58: new           #43                 // class javax/swing/JLabel
+      61: dup
+      62: invokespecial #45                 // Method javax/swing/JLabel."<init>":()V
+      65: astore        4
+      67: aload_0
+      68: aload         4
+      70: aload_0
+      71: ldc           #46                 // String messages/GitBundle
+      73: ldc           #48                 // String common.git.root
+      75: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      78: invokevirtual #54                 // Method $$$loadLabelText$$$:(Ljavax/swing/JLabel;Ljava/lang/String;)V
+      81: aload_0
+      82: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+      85: aload         4
+      87: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+      90: dup
+      91: iconst_0
+      92: iconst_0
+      93: iconst_1
+      94: iconst_1
+      95: bipush        8
+      97: iconst_0
+      98: iconst_0
+      99: iconst_0
+     100: aconst_null
+     101: aconst_null
+     102: aconst_null
+     103: iconst_0
+     104: iconst_0
+     105: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     108: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     111: aload_0
+     112: new           #67                 // class javax/swing/JComboBox
+     115: dup
+     116: invokespecial #69                 // Method javax/swing/JComboBox."<init>":()V
+     119: putfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+     122: aload_0
+     123: getfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+     126: aload_0
+     127: ldc           #46                 // String messages/GitBundle
+     129: ldc           #74                 // String common.git.root.tooltip
+     131: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     134: invokevirtual #76                 // Method javax/swing/JComboBox.setToolTipText:(Ljava/lang/String;)V
+     137: aload_0
+     138: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     141: aload_0
+     142: getfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+     145: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     148: dup
+     149: iconst_0
+     150: iconst_1
+     151: iconst_1
+     152: iconst_1
+     153: bipush        8
+     155: iconst_1
+     156: iconst_2
+     157: iconst_0
+     158: aconst_null
+     159: aconst_null
+     160: aconst_null
+     161: iconst_0
+     162: iconst_0
+     163: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     166: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     169: new           #43                 // class javax/swing/JLabel
+     172: dup
+     173: invokespecial #45                 // Method javax/swing/JLabel."<init>":()V
+     176: astore        5
+     178: aload_0
+     179: aload         5
+     181: aload_0
+     182: ldc           #46                 // String messages/GitBundle
+     184: ldc           #80                 // String common.current.branch
+     186: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     189: invokevirtual #54                 // Method $$$loadLabelText$$$:(Ljavax/swing/JLabel;Ljava/lang/String;)V
+     192: aload_0
+     193: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     196: aload         5
+     198: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     201: dup
+     202: iconst_1
+     203: iconst_0
+     204: iconst_1
+     205: iconst_1
+     206: bipush        8
+     208: iconst_0
+     209: iconst_0
+     210: iconst_0
+     211: aconst_null
+     212: aconst_null
+     213: aconst_null
+     214: iconst_0
+     215: iconst_0
+     216: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     219: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     222: aload_0
+     223: new           #43                 // class javax/swing/JLabel
+     226: dup
+     227: invokespecial #45                 // Method javax/swing/JLabel."<init>":()V
+     230: putfield      #82                 // Field myCurrentBranch:Ljavax/swing/JLabel;
+     233: aload_0
+     234: getfield      #82                 // Field myCurrentBranch:Ljavax/swing/JLabel;
+     237: ldc           #86                 // String
+     239: invokevirtual #88                 // Method javax/swing/JLabel.setText:(Ljava/lang/String;)V
+     242: aload_0
+     243: getfield      #82                 // Field myCurrentBranch:Ljavax/swing/JLabel;
+     246: aload_0
+     247: ldc           #46                 // String messages/GitBundle
+     249: ldc           #91                 // String common.current.branch.tooltip
+     251: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     254: invokevirtual #93                 // Method javax/swing/JLabel.setToolTipText:(Ljava/lang/String;)V
+     257: aload_0
+     258: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     261: aload_0
+     262: getfield      #82                 // Field myCurrentBranch:Ljavax/swing/JLabel;
+     265: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     268: dup
+     269: iconst_1
+     270: iconst_1
+     271: iconst_1
+     272: iconst_1
+     273: iconst_0
+     274: iconst_1
+     275: iconst_4
+     276: iconst_0
+     277: aconst_null
+     278: aconst_null
+     279: aconst_null
+     280: iconst_0
+     281: iconst_0
+     282: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     285: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     288: new           #43                 // class javax/swing/JLabel
+     291: dup
+     292: invokespecial #45                 // Method javax/swing/JLabel."<init>":()V
+     295: astore        6
+     297: aload_0
+     298: aload         6
+     300: aload_0
+     301: ldc           #46                 // String messages/GitBundle
+     303: ldc           #94                 // String tag.name.label
+     305: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     308: invokevirtual #54                 // Method $$$loadLabelText$$$:(Ljavax/swing/JLabel;Ljava/lang/String;)V
+     311: aload_0
+     312: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     315: aload         6
+     317: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     320: dup
+     321: iconst_2
+     322: iconst_0
+     323: iconst_1
+     324: iconst_1
+     325: bipush        8
+     327: iconst_0
+     328: iconst_0
+     329: iconst_0
+     330: aconst_null
+     331: aconst_null
+     332: aconst_null
+     333: iconst_0
+     334: iconst_0
+     335: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     338: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     341: aload_0
+     342: new           #96                 // class javax/swing/JTextField
+     345: dup
+     346: invokespecial #98                 // Method javax/swing/JTextField."<init>":()V
+     349: putfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+     352: aload_0
+     353: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+     356: aload_0
+     357: ldc           #46                 // String messages/GitBundle
+     359: ldc           #103                // String tag.name.tooltip
+     361: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     364: invokevirtual #105                // Method javax/swing/JTextField.setToolTipText:(Ljava/lang/String;)V
+     367: aload_0
+     368: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     371: aload_0
+     372: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+     375: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     378: dup
+     379: iconst_2
+     380: iconst_1
+     381: iconst_1
+     382: iconst_1
+     383: bipush        8
+     385: iconst_1
+     386: iconst_4
+     387: iconst_0
+     388: aconst_null
+     389: new           #106                // class java/awt/Dimension
+     392: dup
+     393: sipush        150
+     396: iconst_m1
+     397: invokespecial #108                // Method java/awt/Dimension."<init>":(II)V
+     400: aconst_null
+     401: iconst_0
+     402: iconst_0
+     403: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     406: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     409: new           #43                 // class javax/swing/JLabel
+     412: dup
+     413: invokespecial #45                 // Method javax/swing/JLabel."<init>":()V
+     416: astore        7
+     418: aload_0
+     419: aload         7
+     421: aload_0
+     422: ldc           #46                 // String messages/GitBundle
+     424: ldc           #111                // String tag.message.label
+     426: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     429: invokevirtual #54                 // Method $$$loadLabelText$$$:(Ljavax/swing/JLabel;Ljava/lang/String;)V
+     432: aload         7
+     434: iconst_0
+     435: invokevirtual #113                // Method javax/swing/JLabel.setVerticalAlignment:(I)V
+     438: aload_0
+     439: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     442: aload         7
+     444: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     447: dup
+     448: iconst_5
+     449: iconst_0
+     450: iconst_1
+     451: iconst_1
+     452: bipush        9
+     454: iconst_0
+     455: iconst_0
+     456: iconst_0
+     457: aconst_null
+     458: aconst_null
+     459: aconst_null
+     460: iconst_0
+     461: iconst_0
+     462: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     465: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     468: new           #117                // class com/intellij/ui/components/JBScrollPane
+     471: dup
+     472: invokespecial #119                // Method com/intellij/ui/components/JBScrollPane."<init>":()V
+     475: astore        8
+     477: aload_0
+     478: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     481: aload         8
+     483: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     486: dup
+     487: iconst_5
+     488: iconst_1
+     489: iconst_1
+     490: iconst_1
+     491: iconst_0
+     492: iconst_3
+     493: iconst_5
+     494: iconst_5
+     495: aconst_null
+     496: aconst_null
+     497: aconst_null
+     498: iconst_0
+     499: iconst_0
+     500: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     503: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     506: aload_0
+     507: new           #120                // class javax/swing/JTextArea
+     510: dup
+     511: invokespecial #122                // Method javax/swing/JTextArea."<init>":()V
+     514: putfield      #123                // Field myMessageTextArea:Ljavax/swing/JTextArea;
+     517: aload_0
+     518: getfield      #123                // Field myMessageTextArea:Ljavax/swing/JTextArea;
+     521: iconst_4
+     522: invokevirtual #127                // Method javax/swing/JTextArea.setRows:(I)V
+     525: aload_0
+     526: getfield      #123                // Field myMessageTextArea:Ljavax/swing/JTextArea;
+     529: aload_0
+     530: ldc           #46                 // String messages/GitBundle
+     532: ldc           #130                // String tag.message.tooltip
+     534: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     537: invokevirtual #132                // Method javax/swing/JTextArea.setToolTipText:(Ljava/lang/String;)V
+     540: aload         8
+     542: aload_0
+     543: getfield      #123                // Field myMessageTextArea:Ljavax/swing/JTextArea;
+     546: invokevirtual #133                // Method com/intellij/ui/components/JBScrollPane.setViewportView:(Ljava/awt/Component;)V
+     549: new           #43                 // class javax/swing/JLabel
+     552: dup
+     553: invokespecial #45                 // Method javax/swing/JLabel."<init>":()V
+     556: astore        9
+     558: aload_0
+     559: aload         9
+     561: aload_0
+     562: ldc           #46                 // String messages/GitBundle
+     564: ldc           #137                // String tag.commit.label
+     566: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     569: invokevirtual #54                 // Method $$$loadLabelText$$$:(Ljavax/swing/JLabel;Ljava/lang/String;)V
+     572: aload_0
+     573: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     576: aload         9
+     578: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     581: dup
+     582: iconst_4
+     583: iconst_0
+     584: iconst_1
+     585: iconst_1
+     586: bipush        8
+     588: iconst_0
+     589: iconst_0
+     590: iconst_0
+     591: aconst_null
+     592: aconst_null
+     593: aconst_null
+     594: iconst_0
+     595: iconst_0
+     596: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     599: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     602: aload_0
+     603: new           #139                // class javax/swing/JCheckBox
+     606: dup
+     607: invokespecial #141                // Method javax/swing/JCheckBox."<init>":()V
+     610: putfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+     613: aload_0
+     614: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+     617: iconst_0
+     618: invokevirtual #146                // Method javax/swing/JCheckBox.setEnabled:(Z)V
+     621: aload_0
+     622: aload_0
+     623: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+     626: aload_0
+     627: ldc           #46                 // String messages/GitBundle
+     629: ldc           #150                // String tag.force
+     631: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     634: invokevirtual #152                // Method $$$loadButtonText$$$:(Ljavax/swing/AbstractButton;Ljava/lang/String;)V
+     637: aload_0
+     638: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+     641: aload_0
+     642: ldc           #46                 // String messages/GitBundle
+     644: ldc           #156                // String tag.force.tooltip
+     646: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     649: invokevirtual #158                // Method javax/swing/JCheckBox.setToolTipText:(Ljava/lang/String;)V
+     652: aload_0
+     653: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     656: aload_0
+     657: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+     660: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     663: dup
+     664: iconst_3
+     665: iconst_1
+     666: iconst_1
+     667: iconst_1
+     668: bipush        8
+     670: iconst_0
+     671: iconst_3
+     672: iconst_0
+     673: aconst_null
+     674: aconst_null
+     675: aconst_null
+     676: iconst_0
+     677: iconst_0
+     678: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     681: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     684: new           #22                 // class javax/swing/JPanel
+     687: dup
+     688: invokespecial #24                 // Method javax/swing/JPanel."<init>":()V
+     691: astore        10
+     693: aload         10
+     695: new           #29                 // class com/intellij/uiDesigner/core/GridLayoutManager
+     698: dup
+     699: iconst_1
+     700: iconst_2
+     701: new           #31                 // class java/awt/Insets
+     704: dup
+     705: iconst_0
+     706: iconst_0
+     707: iconst_0
+     708: iconst_0
+     709: invokespecial #33                 // Method java/awt/Insets."<init>":(IIII)V
+     712: iconst_m1
+     713: iconst_m1
+     714: invokespecial #36                 // Method com/intellij/uiDesigner/core/GridLayoutManager."<init>":(IILjava/awt/Insets;II)V
+     717: invokevirtual #39                 // Method javax/swing/JPanel.setLayout:(Ljava/awt/LayoutManager;)V
+     720: aload_0
+     721: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+     724: aload         10
+     726: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     729: dup
+     730: iconst_4
+     731: iconst_1
+     732: iconst_1
+     733: iconst_1
+     734: iconst_0
+     735: iconst_3
+     736: iconst_3
+     737: iconst_3
+     738: aconst_null
+     739: aconst_null
+     740: aconst_null
+     741: iconst_0
+     742: iconst_0
+     743: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     746: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     749: aload_0
+     750: new           #96                 // class javax/swing/JTextField
+     753: dup
+     754: invokespecial #98                 // Method javax/swing/JTextField."<init>":()V
+     757: putfield      #159                // Field myCommitTextField:Ljavax/swing/JTextField;
+     760: aload_0
+     761: getfield      #159                // Field myCommitTextField:Ljavax/swing/JTextField;
+     764: aload_0
+     765: ldc           #46                 // String messages/GitBundle
+     767: ldc           #162                // String tag.commit.tooltip
+     769: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     772: invokevirtual #105                // Method javax/swing/JTextField.setToolTipText:(Ljava/lang/String;)V
+     775: aload         10
+     777: aload_0
+     778: getfield      #159                // Field myCommitTextField:Ljavax/swing/JTextField;
+     781: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     784: dup
+     785: iconst_0
+     786: iconst_0
+     787: iconst_1
+     788: iconst_1
+     789: bipush        8
+     791: iconst_1
+     792: iconst_4
+     793: iconst_0
+     794: aconst_null
+     795: new           #106                // class java/awt/Dimension
+     798: dup
+     799: sipush        150
+     802: iconst_m1
+     803: invokespecial #108                // Method java/awt/Dimension."<init>":(II)V
+     806: aconst_null
+     807: iconst_0
+     808: iconst_0
+     809: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     812: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     815: aload_0
+     816: new           #164                // class javax/swing/JButton
+     819: dup
+     820: invokespecial #166                // Method javax/swing/JButton."<init>":()V
+     823: putfield      #167                // Field myValidateButton:Ljavax/swing/JButton;
+     826: aload_0
+     827: aload_0
+     828: getfield      #167                // Field myValidateButton:Ljavax/swing/JButton;
+     831: aload_0
+     832: ldc           #46                 // String messages/GitBundle
+     834: ldc           #171                // String tag.validate
+     836: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     839: invokevirtual #152                // Method $$$loadButtonText$$$:(Ljavax/swing/AbstractButton;Ljava/lang/String;)V
+     842: aload_0
+     843: getfield      #167                // Field myValidateButton:Ljavax/swing/JButton;
+     846: aload_0
+     847: ldc           #46                 // String messages/GitBundle
+     849: ldc           #173                // String tag.validate.tooltip
+     851: invokevirtual #50                 // Method $$$getMessageFromBundle$$$:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     854: invokevirtual #175                // Method javax/swing/JButton.setToolTipText:(Ljava/lang/String;)V
+     857: aload         10
+     859: aload_0
+     860: getfield      #167                // Field myValidateButton:Ljavax/swing/JButton;
+     863: new           #58                 // class com/intellij/uiDesigner/core/GridConstraints
+     866: dup
+     867: iconst_0
+     868: iconst_1
+     869: iconst_1
+     870: iconst_1
+     871: iconst_0
+     872: iconst_1
+     873: iconst_3
+     874: iconst_0
+     875: aconst_null
+     876: aconst_null
+     877: aconst_null
+     878: iconst_0
+     879: iconst_0
+     880: invokespecial #60                 // Method com/intellij/uiDesigner/core/GridConstraints."<init>":(IIIIIIIILjava/awt/Dimension;Ljava/awt/Dimension;Ljava/awt/Dimension;IZ)V
+     883: invokevirtual #63                 // Method javax/swing/JPanel.add:(Ljava/awt/Component;Ljava/lang/Object;)V
+     886: aload         4
+     888: aload_0
+     889: getfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+     892: invokevirtual #176                // Method javax/swing/JLabel.setLabelFor:(Ljava/awt/Component;)V
+     895: aload         6
+     897: aload_0
+     898: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+     901: invokevirtual #176                // Method javax/swing/JLabel.setLabelFor:(Ljava/awt/Component;)V
+     904: aload         7
+     906: aload_0
+     907: getfield      #123                // Field myMessageTextArea:Ljavax/swing/JTextArea;
+     910: invokevirtual #176                // Method javax/swing/JLabel.setLabelFor:(Ljava/awt/Component;)V
+     913: aload         9
+     915: aload_0
+     916: getfield      #159                // Field myCommitTextField:Ljavax/swing/JTextField;
+     919: invokevirtual #176                // Method javax/swing/JLabel.setLabelFor:(Ljava/awt/Component;)V
+     922: aload_0
+     923: ldc           #179                // String tag.title
+     925: iconst_0
+     926: anewarray     #181                // class java/lang/Object
+     929: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     932: invokevirtual #189                // Method setTitle:(Ljava/lang/String;)V
+     935: aload_0
+     936: ldc           #192                // String tag.button
+     938: iconst_0
+     939: anewarray     #181                // class java/lang/Object
+     942: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     945: invokevirtual #194                // Method setOKButtonText:(Ljava/lang/String;)V
+     948: aload_0
+     949: aload_1
+     950: putfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+     953: aload_0
+     954: aload_0
+     955: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+     958: invokestatic  #201                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+     961: putfield      #207                // Field myNotifier:Lcom/intellij/openapi/vcs/VcsNotifier;
+     964: aload_0
+     965: invokestatic  #211                // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+     968: putfield      #216                // Field myGit:Lgit4idea/commands/Git;
+     971: aload_0
+     972: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+     975: aload_2
+     976: aload_3
+     977: aload_0
+     978: getfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+     981: aload_0
+     982: getfield      #82                 // Field myCurrentBranch:Ljavax/swing/JLabel;
+     985: invokestatic  #220                // Method git4idea/util/GitUIUtil.setupRootChooser:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;Ljavax/swing/JComboBox;Ljavax/swing/JLabel;)V
+     988: aload_0
+     989: getfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+     992: new           #226                // class git4idea/ui/GitTagDialog$1
+     995: dup
+     996: aload_0
+     997: invokespecial #228                // Method git4idea/ui/GitTagDialog$1."<init>":(Lgit4idea/ui/GitTagDialog;)V
+    1000: invokevirtual #231                // Method javax/swing/JComboBox.addActionListener:(Ljava/awt/event/ActionListener;)V
+    1003: aload_0
+    1004: invokevirtual #235                // Method fetchTags:()V
+    1007: aload_0
+    1008: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+    1011: invokevirtual #238                // Method javax/swing/JTextField.getDocument:()Ljavax/swing/text/Document;
+    1014: new           #242                // class git4idea/ui/GitTagDialog$2
+    1017: dup
+    1018: aload_0
+    1019: invokespecial #244                // Method git4idea/ui/GitTagDialog$2."<init>":(Lgit4idea/ui/GitTagDialog;)V
+    1022: invokeinterface #245,  2          // InterfaceMethod javax/swing/text/Document.addDocumentListener:(Ljavax/swing/event/DocumentListener;)V
+    1027: aload_0
+    1028: new           #251                // class git4idea/ui/GitReferenceValidator
+    1031: dup
+    1032: aload_1
+    1033: aload_0
+    1034: getfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+    1037: aload_0
+    1038: getfield      #159                // Field myCommitTextField:Ljavax/swing/JTextField;
+    1041: aload_0
+    1042: getfield      #167                // Field myValidateButton:Ljavax/swing/JButton;
+    1045: aload_0
+    1046: invokedynamic #253,  0            // InvokeDynamic #0:run:(Lgit4idea/ui/GitTagDialog;)Ljava/lang/Runnable;
+    1051: invokespecial #257                // Method git4idea/ui/GitReferenceValidator."<init>":(Lcom/intellij/openapi/project/Project;Ljavax/swing/JComboBox;Ljavax/swing/JTextField;Ljavax/swing/JButton;Ljava/lang/Runnable;)V
+    1054: putfield      #260                // Field myCommitTextFieldValidator:Lgit4idea/ui/GitReferenceValidator;
+    1057: aload_0
+    1058: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+    1061: new           #264                // class git4idea/ui/GitTagDialog$3
+    1064: dup
+    1065: aload_0
+    1066: invokespecial #266                // Method git4idea/ui/GitTagDialog$3."<init>":(Lgit4idea/ui/GitTagDialog;)V
+    1069: invokevirtual #267                // Method javax/swing/JCheckBox.addActionListener:(Ljava/awt/event/ActionListener;)V
+    1072: aload_0
+    1073: invokevirtual #268                // Method init:()V
+    1076: aload_0
+    1077: invokevirtual #271                // Method validateFields:()V
+    1080: return
+
+  private java.lang.String $$$getMessageFromBundle$$$(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokevirtual #274                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: astore        4
+       6: getstatic     #278                // Field $$$cachedGetBundleMethod$$$:Ljava/lang/reflect/Method;
+       9: ifnonnull     52
+      12: aload         4
+      14: invokevirtual #282                // Method java/lang/Class.getClassLoader:()Ljava/lang/ClassLoader;
+      17: ldc_w         #288                // String com.intellij.DynamicBundle
+      20: invokevirtual #290                // Method java/lang/ClassLoader.loadClass:(Ljava/lang/String;)Ljava/lang/Class;
+      23: astore        5
+      25: aload         5
+      27: ldc_w         #296                // String getBundle
+      30: iconst_2
+      31: anewarray     #283                // class java/lang/Class
+      34: dup
+      35: iconst_0
+      36: ldc_w         #298                // class java/lang/String
+      39: aastore
+      40: dup
+      41: iconst_1
+      42: ldc_w         #283                // class java/lang/Class
+      45: aastore
+      46: invokevirtual #300                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      49: putstatic     #278                // Field $$$cachedGetBundleMethod$$$:Ljava/lang/reflect/Method;
+      52: getstatic     #278                // Field $$$cachedGetBundleMethod$$$:Ljava/lang/reflect/Method;
+      55: aconst_null
+      56: iconst_2
+      57: anewarray     #181                // class java/lang/Object
+      60: dup
+      61: iconst_0
+      62: aload_1
+      63: aastore
+      64: dup
+      65: iconst_1
+      66: aload         4
+      68: aastore
+      69: invokevirtual #304                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      72: checkcast     #310                // class java/util/ResourceBundle
+      75: astore_3
+      76: goto          86
+      79: astore        4
+      81: aload_1
+      82: invokestatic  #314                // Method java/util/ResourceBundle.getBundle:(Ljava/lang/String;)Ljava/util/ResourceBundle;
+      85: astore_3
+      86: aload_3
+      87: aload_2
+      88: invokevirtual #317                // Method java/util/ResourceBundle.getString:(Ljava/lang/String;)Ljava/lang/String;
+      91: areturn
+    Exception table:
+       from    to  target type
+           0    76    79   Class java/lang/Exception
+
+  private void $$$loadLabelText$$$(javax.swing.JLabel, java.lang.String);
+    Code:
+       0: new           #321                // class java/lang/StringBuffer
+       3: dup
+       4: invokespecial #323                // Method java/lang/StringBuffer."<init>":()V
+       7: astore_3
+       8: iconst_0
+       9: istore        4
+      11: iconst_0
+      12: istore        5
+      14: iconst_m1
+      15: istore        6
+      17: iconst_0
+      18: istore        7
+      20: iload         7
+      22: aload_2
+      23: invokevirtual #324                // Method java/lang/String.length:()I
+      26: if_icmpge     105
+      29: aload_2
+      30: iload         7
+      32: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      35: bipush        38
+      37: if_icmpne     88
+      40: iinc          7, 1
+      43: iload         7
+      45: aload_2
+      46: invokevirtual #324                // Method java/lang/String.length:()I
+      49: if_icmpne     55
+      52: goto          105
+      55: iload         4
+      57: ifne          88
+      60: aload_2
+      61: iload         7
+      63: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      66: bipush        38
+      68: if_icmpeq     88
+      71: iconst_1
+      72: istore        4
+      74: aload_2
+      75: iload         7
+      77: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      80: istore        5
+      82: aload_3
+      83: invokevirtual #332                // Method java/lang/StringBuffer.length:()I
+      86: istore        6
+      88: aload_3
+      89: aload_2
+      90: iload         7
+      92: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      95: invokevirtual #333                // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+      98: pop
+      99: iinc          7, 1
+     102: goto          20
+     105: aload_1
+     106: aload_3
+     107: invokevirtual #337                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     110: invokevirtual #88                 // Method javax/swing/JLabel.setText:(Ljava/lang/String;)V
+     113: iload         4
+     115: ifeq          130
+     118: aload_1
+     119: iload         5
+     121: invokevirtual #341                // Method javax/swing/JLabel.setDisplayedMnemonic:(C)V
+     124: aload_1
+     125: iload         6
+     127: invokevirtual #345                // Method javax/swing/JLabel.setDisplayedMnemonicIndex:(I)V
+     130: return
+
+  private void $$$loadButtonText$$$(javax.swing.AbstractButton, java.lang.String);
+    Code:
+       0: new           #321                // class java/lang/StringBuffer
+       3: dup
+       4: invokespecial #323                // Method java/lang/StringBuffer."<init>":()V
+       7: astore_3
+       8: iconst_0
+       9: istore        4
+      11: iconst_0
+      12: istore        5
+      14: iconst_m1
+      15: istore        6
+      17: iconst_0
+      18: istore        7
+      20: iload         7
+      22: aload_2
+      23: invokevirtual #324                // Method java/lang/String.length:()I
+      26: if_icmpge     105
+      29: aload_2
+      30: iload         7
+      32: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      35: bipush        38
+      37: if_icmpne     88
+      40: iinc          7, 1
+      43: iload         7
+      45: aload_2
+      46: invokevirtual #324                // Method java/lang/String.length:()I
+      49: if_icmpne     55
+      52: goto          105
+      55: iload         4
+      57: ifne          88
+      60: aload_2
+      61: iload         7
+      63: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      66: bipush        38
+      68: if_icmpeq     88
+      71: iconst_1
+      72: istore        4
+      74: aload_2
+      75: iload         7
+      77: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      80: istore        5
+      82: aload_3
+      83: invokevirtual #332                // Method java/lang/StringBuffer.length:()I
+      86: istore        6
+      88: aload_3
+      89: aload_2
+      90: iload         7
+      92: invokevirtual #328                // Method java/lang/String.charAt:(I)C
+      95: invokevirtual #333                // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+      98: pop
+      99: iinc          7, 1
+     102: goto          20
+     105: aload_1
+     106: aload_3
+     107: invokevirtual #337                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     110: invokevirtual #348                // Method javax/swing/AbstractButton.setText:(Ljava/lang/String;)V
+     113: iload         4
+     115: ifeq          130
+     118: aload_1
+     119: iload         5
+     121: invokevirtual #351                // Method javax/swing/AbstractButton.setMnemonic:(C)V
+     124: aload_1
+     125: iload         6
+     127: invokevirtual #354                // Method javax/swing/AbstractButton.setDisplayedMnemonicIndex:(I)V
+     130: return
+
+  public javax.swing.JComponent $$$getRootComponent$$$();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+       4: areturn
+
+  public javax.swing.JComponent getPreferredFocusedComponent();
+    Code:
+       0: aload_0
+       1: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+       4: areturn
+
+  public void runAction();
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field myMessageTextArea:Ljavax/swing/JTextArea;
+       4: invokevirtual #355                // Method javax/swing/JTextArea.getText:()Ljava/lang/String;
+       7: astore_1
+       8: aload_1
+       9: invokevirtual #358                // Method java/lang/String.trim:()Ljava/lang/String;
+      12: invokevirtual #361                // Method java/lang/String.isEmpty:()Z
+      15: ifne          22
+      18: iconst_1
+      19: goto          23
+      22: iconst_0
+      23: istore_2
+      24: iload_2
+      25: ifeq          175
+      28: invokestatic  #365                // Method git4idea/config/GitEelExecutableDetectionHelper.canUseEel:()Z
+      31: ifeq          52
+      34: aload_0
+      35: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+      38: ldc_w         #370                // String git-tag-message-
+      41: ldc_w         #372                // String .txt
+      44: iconst_1
+      45: invokestatic  #374                // Method com/intellij/platform/eel/provider/utils/EelPathUtils.createTemporaryFile:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/String;Z)Ljava/nio/file/Path;
+      48: astore_3
+      49: goto          74
+      52: ldc_w         #370                // String git-tag-message-
+      55: ldc_w         #372                // String .txt
+      58: invokestatic  #380                // Method com/intellij/openapi/util/io/FileUtil.createTempFile:(Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
+      61: astore        4
+      63: aload         4
+      65: invokevirtual #386                // Method java/io/File.deleteOnExit:()V
+      68: aload         4
+      70: invokevirtual #391                // Method java/io/File.toPath:()Ljava/nio/file/Path;
+      73: astore_3
+      74: new           #395                // class java/io/OutputStreamWriter
+      77: dup
+      78: aload_3
+      79: iconst_0
+      80: anewarray     #397                // class java/nio/file/OpenOption
+      83: invokestatic  #399                // Method java/nio/file/Files.newOutputStream:(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/io/OutputStream;
+      86: ldc_w         #405                // String UTF-8
+      89: invokespecial #407                // Method java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/lang/String;)V
+      92: astore        4
+      94: aload         4
+      96: aload_1
+      97: invokevirtual #410                // Method java/io/Writer.write:(Ljava/lang/String;)V
+     100: aload         4
+     102: invokevirtual #415                // Method java/io/Writer.close:()V
+     105: goto          130
+     108: astore        5
+     110: aload         4
+     112: invokevirtual #415                // Method java/io/Writer.close:()V
+     115: goto          127
+     118: astore        6
+     120: aload         5
+     122: aload         6
+     124: invokevirtual #420                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+     127: aload         5
+     129: athrow
+     130: goto          177
+     133: astore        4
+     135: aload_0
+     136: getfield      #207                // Field myNotifier:Lcom/intellij/openapi/vcs/VcsNotifier;
+     139: ldc_w         #426                // String git.tag.not.created
+     142: ldc_w         #428                // String git.tag.could.not.create.tag
+     145: iconst_0
+     146: anewarray     #181                // class java/lang/Object
+     149: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     152: ldc_w         #430                // String tag.error.creating.message.file.message
+     155: iconst_1
+     156: anewarray     #181                // class java/lang/Object
+     159: dup
+     160: iconst_0
+     161: aload         4
+     163: invokevirtual #432                // Method java/io/IOException.toString:()Ljava/lang/String;
+     166: aastore
+     167: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     170: invokevirtual #433                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/notification/Notification;
+     173: pop
+     174: return
+     175: aconst_null
+     176: astore_3
+     177: new           #437                // class git4idea/commands/GitLineHandler
+     180: dup
+     181: aload_0
+     182: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+     185: aload_0
+     186: invokevirtual #439                // Method getGitRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     189: getstatic     #443                // Field git4idea/commands/GitCommand.TAG:Lgit4idea/commands/GitCommand;
+     192: invokespecial #449                // Method git4idea/commands/GitLineHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitCommand;)V
+     195: astore        4
+     197: iload_2
+     198: ifeq          216
+     201: aload         4
+     203: iconst_1
+     204: anewarray     #298                // class java/lang/String
+     207: dup
+     208: iconst_0
+     209: ldc_w         #452                // String -a
+     212: aastore
+     213: invokevirtual #454                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     216: aload_0
+     217: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+     220: invokevirtual #458                // Method javax/swing/JCheckBox.isEnabled:()Z
+     223: ifeq          251
+     226: aload_0
+     227: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+     230: invokevirtual #461                // Method javax/swing/JCheckBox.isSelected:()Z
+     233: ifeq          251
+     236: aload         4
+     238: iconst_1
+     239: anewarray     #298                // class java/lang/String
+     242: dup
+     243: iconst_0
+     244: ldc_w         #464                // String -f
+     247: aastore
+     248: invokevirtual #454                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     251: iload_2
+     252: ifeq          281
+     255: aload         4
+     257: iconst_1
+     258: anewarray     #298                // class java/lang/String
+     261: dup
+     262: iconst_0
+     263: ldc_w         #466                // String -F
+     266: aastore
+     267: invokevirtual #454                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     270: aload         4
+     272: aload_3
+     273: invokeinterface #468,  1          // InterfaceMethod java/nio/file/Path.toFile:()Ljava/io/File;
+     278: invokevirtual #474                // Method git4idea/commands/GitLineHandler.addAbsoluteFile:(Ljava/io/File;)V
+     281: aload         4
+     283: iconst_1
+     284: anewarray     #298                // class java/lang/String
+     287: dup
+     288: iconst_0
+     289: aload_0
+     290: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+     293: invokevirtual #478                // Method javax/swing/JTextField.getText:()Ljava/lang/String;
+     296: aastore
+     297: invokevirtual #454                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     300: aload_0
+     301: getfield      #159                // Field myCommitTextField:Ljavax/swing/JTextField;
+     304: invokevirtual #478                // Method javax/swing/JTextField.getText:()Ljava/lang/String;
+     307: invokevirtual #358                // Method java/lang/String.trim:()Ljava/lang/String;
+     310: astore        5
+     312: aload         5
+     314: invokevirtual #361                // Method java/lang/String.isEmpty:()Z
+     317: ifne          334
+     320: aload         4
+     322: iconst_1
+     323: anewarray     #298                // class java/lang/String
+     326: dup
+     327: iconst_0
+     328: aload         5
+     330: aastore
+     331: invokevirtual #454                // Method git4idea/commands/GitLineHandler.addParameters:([Ljava/lang/String;)V
+     334: aload_0
+     335: getfield      #216                // Field myGit:Lgit4idea/commands/Git;
+     338: aload         4
+     340: invokeinterface #479,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lgit4idea/commands/GitLineHandler;)Lgit4idea/commands/GitCommandResult;
+     345: astore        6
+     347: aload         6
+     349: invokevirtual #483                // Method git4idea/commands/GitCommandResult.success:()Z
+     352: ifeq          396
+     355: aload_0
+     356: getfield      #207                // Field myNotifier:Lcom/intellij/openapi/vcs/VcsNotifier;
+     359: ldc_w         #488                // String git.tag.created
+     362: aload_0
+     363: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+     366: invokevirtual #478                // Method javax/swing/JTextField.getText:()Ljava/lang/String;
+     369: ldc_w         #490                // String git.tag.created.tag.successfully
+     372: iconst_1
+     373: anewarray     #181                // class java/lang/Object
+     376: dup
+     377: iconst_0
+     378: aload_0
+     379: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+     382: invokevirtual #478                // Method javax/swing/JTextField.getText:()Ljava/lang/String;
+     385: aastore
+     386: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     389: invokevirtual #492                // Method com/intellij/openapi/vcs/VcsNotifier.notifySuccess:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/notification/Notification;
+     392: pop
+     393: goto          423
+     396: aload_0
+     397: getfield      #207                // Field myNotifier:Lcom/intellij/openapi/vcs/VcsNotifier;
+     400: ldc_w         #426                // String git.tag.not.created
+     403: ldc_w         #428                // String git.tag.could.not.create.tag
+     406: iconst_0
+     407: anewarray     #181                // class java/lang/Object
+     410: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     413: aload         6
+     415: invokevirtual #495                // Method git4idea/commands/GitCommandResult.getErrorOutputAsHtmlString:()Ljava/lang/String;
+     418: iconst_1
+     419: invokevirtual #498                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Lcom/intellij/notification/Notification;
+     422: pop
+     423: aload_0
+     424: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+     427: invokestatic  #501                // Method git4idea/GitUtil.getRepositoryManager:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+     430: aload_0
+     431: invokevirtual #439                // Method getGitRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     434: invokevirtual #507                // Method git4idea/repo/GitRepositoryManager.getRepositoryForRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+     437: checkcast     #513                // class git4idea/repo/GitRepository
+     440: astore        7
+     442: aload         7
+     444: ifnull        460
+     447: aload         7
+     449: invokeinterface #515,  1          // InterfaceMethod git4idea/repo/GitRepository.getRepositoryFiles:()Lgit4idea/repo/GitRepositoryFiles;
+     454: invokevirtual #519                // Method git4idea/repo/GitRepositoryFiles.refreshTagsFiles:()V
+     457: goto          478
+     460: getstatic     #524                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+     463: aload_0
+     464: invokevirtual #439                // Method getGitRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     467: invokestatic  #528                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     470: invokedynamic #532,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     475: invokevirtual #535                // Method com/intellij/openapi/diagnostic/Logger.error:(Ljava/lang/String;)V
+     478: aload_3
+     479: ifnull        512
+     482: aload_3
+     483: invokestatic  #540                // Method java/nio/file/Files.delete:(Ljava/nio/file/Path;)V
+     486: goto          512
+     489: astore        4
+     491: goto          512
+     494: astore        8
+     496: aload_3
+     497: ifnull        509
+     500: aload_3
+     501: invokestatic  #540                // Method java/nio/file/Files.delete:(Ljava/nio/file/Path;)V
+     504: goto          509
+     507: astore        9
+     509: aload         8
+     511: athrow
+     512: return
+    Exception table:
+       from    to  target type
+          94   100   108   Class java/lang/Throwable
+         110   115   118   Class java/lang/Throwable
+          28   130   133   Class java/io/IOException
+         482   486   489   Class java/io/IOException
+         177   478   494   any
+         500   504   507   Class java/io/IOException
+         494   496   494   any
+
+  private void validateFields();
+    Code:
+       0: aload_0
+       1: getfield      #99                 // Field myTagNameTextField:Ljavax/swing/JTextField;
+       4: invokevirtual #478                // Method javax/swing/JTextField.getText:()Ljava/lang/String;
+       7: astore_1
+       8: aload_0
+       9: getfield      #16                 // Field myExistingTags:Ljava/util/Set;
+      12: aload_1
+      13: invokeinterface #544,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      18: ifeq          59
+      21: aload_0
+      22: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+      25: iconst_1
+      26: invokevirtual #146                // Method javax/swing/JCheckBox.setEnabled:(Z)V
+      29: aload_0
+      30: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+      33: invokevirtual #461                // Method javax/swing/JCheckBox.isSelected:()Z
+      36: ifne          75
+      39: aload_0
+      40: ldc_w         #550                // String tag.error.tag.exists
+      43: iconst_0
+      44: anewarray     #181                // class java/lang/Object
+      47: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      50: invokevirtual #552                // Method setErrorText:(Ljava/lang/String;)V
+      53: aload_0
+      54: iconst_0
+      55: invokevirtual #555                // Method setOKActionEnabled:(Z)V
+      58: return
+      59: aload_0
+      60: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+      63: iconst_0
+      64: invokevirtual #146                // Method javax/swing/JCheckBox.setEnabled:(Z)V
+      67: aload_0
+      68: getfield      #142                // Field myForceCheckBox:Ljavax/swing/JCheckBox;
+      71: iconst_0
+      72: invokevirtual #558                // Method javax/swing/JCheckBox.setSelected:(Z)V
+      75: aload_0
+      76: getfield      #260                // Field myCommitTextFieldValidator:Lgit4idea/ui/GitReferenceValidator;
+      79: invokevirtual #561                // Method git4idea/ui/GitReferenceValidator.isInvalid:()Z
+      82: ifeq          105
+      85: aload_0
+      86: ldc_w         #564                // String tag.error.invalid.commit
+      89: iconst_0
+      90: anewarray     #181                // class java/lang/Object
+      93: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      96: invokevirtual #552                // Method setErrorText:(Ljava/lang/String;)V
+      99: aload_0
+     100: iconst_0
+     101: invokevirtual #555                // Method setOKActionEnabled:(Z)V
+     104: return
+     105: aload_1
+     106: invokevirtual #361                // Method java/lang/String.isEmpty:()Z
+     109: ifeq          123
+     112: aload_0
+     113: aconst_null
+     114: invokevirtual #552                // Method setErrorText:(Ljava/lang/String;)V
+     117: aload_0
+     118: iconst_0
+     119: invokevirtual #555                // Method setOKActionEnabled:(Z)V
+     122: return
+     123: aload_0
+     124: aconst_null
+     125: invokevirtual #552                // Method setErrorText:(Ljava/lang/String;)V
+     128: aload_0
+     129: iconst_1
+     130: invokevirtual #555                // Method setOKActionEnabled:(Z)V
+     133: return
+
+  private void fetchTags();
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field myExistingTags:Ljava/util/Set;
+       4: invokeinterface #566,  1          // InterfaceMethod java/util/Set.clear:()V
+       9: aload_0
+      10: getfield      #16                 // Field myExistingTags:Ljava/util/Set;
+      13: invokestatic  #569                // Method com/intellij/openapi/progress/ProgressManager.getInstance:()Lcom/intellij/openapi/progress/ProgressManager;
+      16: aload_0
+      17: invokedynamic #574,  0            // InvokeDynamic #2:compute:(Lgit4idea/ui/GitTagDialog;)Lcom/intellij/openapi/util/ThrowableComputable;
+      22: ldc_w         #578                // String tag.getting.existing.tags
+      25: iconst_0
+      26: anewarray     #181                // class java/lang/Object
+      29: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      32: iconst_0
+      33: aload_0
+      34: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+      37: invokevirtual #580                // Method com/intellij/openapi/progress/ProgressManager.runProcessWithProgressSynchronously:(Lcom/intellij/openapi/util/ThrowableComputable;Ljava/lang/String;ZLcom/intellij/openapi/project/Project;)Ljava/lang/Object;
+      40: checkcast     #584                // class java/util/Collection
+      43: invokeinterface #586,  2          // InterfaceMethod java/util/Set.addAll:(Ljava/util/Collection;)Z
+      48: pop
+      49: goto          82
+      52: astore_1
+      53: aload_0
+      54: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+      57: ldc_w         #578                // String tag.getting.existing.tags
+      60: iconst_0
+      61: anewarray     #181                // class java/lang/Object
+      64: invokestatic  #183                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      67: aload_1
+      68: invokevirtual #592                // Method com/intellij/openapi/vcs/VcsException.getMessage:()Ljava/lang/String;
+      71: invokestatic  #595                // Method git4idea/util/GitUIUtil.showOperationError:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Ljava/lang/String;)V
+      74: new           #599                // class com/intellij/openapi/progress/ProcessCanceledException
+      77: dup
+      78: invokespecial #601                // Method com/intellij/openapi/progress/ProcessCanceledException."<init>":()V
+      81: athrow
+      82: return
+    Exception table:
+       from    to  target type
+           9    49    52   Class com/intellij/openapi/vcs/VcsException
+
+  private com.intellij.openapi.vfs.VirtualFile getGitRoot();
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field myGitRootComboBox:Ljavax/swing/JComboBox;
+       4: invokevirtual #602                // Method javax/swing/JComboBox.getSelectedItem:()Ljava/lang/Object;
+       7: checkcast     #606                // class com/intellij/openapi/vfs/VirtualFile
+      10: areturn
+
+  protected javax.swing.JComponent createCenterPanel();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field myPanel:Ljavax/swing/JPanel;
+       4: areturn
+
+  protected java.lang.String getDimensionServiceKey();
+    Code:
+       0: aload_0
+       1: invokevirtual #274                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: invokevirtual #608                // Method java/lang/Class.getName:()Ljava/lang/String;
+       7: areturn
+
+  protected java.lang.String getHelpId();
+    Code:
+       0: ldc_w         #611                // String reference.VersionControl.Git.TagFiles
+       3: areturn
+
+  private java.util.List lambda$fetchTags$1() throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: getfield      #197                // Field myProject:Lcom/intellij/openapi/project/Project;
+       4: aload_0
+       5: invokevirtual #439                // Method getGitRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+       8: invokestatic  #613                // Method git4idea/branch/GitBranchUtil.getAllTags:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Ljava/util/List;
+      11: areturn
+
+  private void lambda$new$0();
+    Code:
+       0: aload_0
+       1: invokevirtual #271                // Method validateFields:()V
+       4: return
+
+  static {};
+    Code:
+       0: ldc           #17                 // class git4idea/ui/GitTagDialog
+       2: invokestatic  #619                // Method com/intellij/openapi/diagnostic/Logger.getInstance:(Ljava/lang/Class;)Lcom/intellij/openapi/diagnostic/Logger;
+       5: putstatic     #524                // Field LOG:Lcom/intellij/openapi/diagnostic/Logger;
+       8: aconst_null
+       9: putstatic     #278                // Field $$$cachedGetBundleMethod$$$:Ljava/lang/reflect/Method;
+      12: return
+}

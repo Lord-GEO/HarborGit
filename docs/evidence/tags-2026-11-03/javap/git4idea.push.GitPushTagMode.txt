@@ -1,0 +1,192 @@
+Compiled from "GitPushTagMode.kt"
+public final class git4idea.push.GitPushTagMode extends com.intellij.openapi.components.BaseState {
+  public static final git4idea.push.GitPushTagMode$Companion Companion;
+
+  static final kotlin.reflect.KProperty<java.lang.Object>[] $$delegatedProperties;
+
+  private final kotlin.properties.ReadWriteProperty title$delegate;
+
+  private final kotlin.properties.ReadWriteProperty argument$delegate;
+
+  public static final git4idea.push.GitPushTagMode ALL;
+
+  public static final git4idea.push.GitPushTagMode FOLLOW;
+
+  private static final git4idea.push.GitPushTagMode[] values;
+
+  public final java.lang.String getTitle();
+    Code:
+       0: aload_0
+       1: getfield      #11                 // Field title$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #15                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_0
+       9: aaload
+      10: invokeinterface #21,  3           // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #23                 // class java/lang/String
+      18: areturn
+
+  public final void setTitle(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #11                 // Field title$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #15                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_0
+       9: aaload
+      10: aload_1
+      11: invokeinterface #31,  4           // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      16: return
+
+  public final java.lang.String getArgument();
+    Code:
+       0: aload_0
+       1: getfield      #37                 // Field argument$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #15                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_1
+       9: aaload
+      10: invokeinterface #21,  3           // InterfaceMethod kotlin/properties/ReadWriteProperty.getValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+      15: checkcast     #23                 // class java/lang/String
+      18: areturn
+
+  public final void setArgument(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #37                 // Field argument$delegate:Lkotlin/properties/ReadWriteProperty;
+       4: aload_0
+       5: getstatic     #15                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+       8: iconst_1
+       9: aaload
+      10: aload_1
+      11: invokeinterface #31,  4           // InterfaceMethod kotlin/properties/ReadWriteProperty.setValue:(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V
+      16: return
+
+  public git4idea.push.GitPushTagMode();
+    Code:
+       0: aload_0
+       1: getstatic     #43                 // Field ALL:Lgit4idea/push/GitPushTagMode;
+       4: invokevirtual #45                 // Method getTitle:()Ljava/lang/String;
+       7: dup
+       8: invokestatic  #51                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      11: getstatic     #43                 // Field ALL:Lgit4idea/push/GitPushTagMode;
+      14: invokevirtual #53                 // Method getArgument:()Ljava/lang/String;
+      17: dup
+      18: invokestatic  #51                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+      21: invokespecial #56                 // Method "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      24: return
+
+  public git4idea.push.GitPushTagMode(java.lang.String, java.lang.String);
+    Code:
+       0: aload_1
+       1: ldc           #59                 // String title
+       3: invokestatic  #63                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #65                 // String argument
+       9: invokestatic  #63                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: invokespecial #67                 // Method com/intellij/openapi/components/BaseState."<init>":()V
+      16: aload_0
+      17: aload_0
+      18: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+      21: aconst_null
+      22: iconst_1
+      23: aconst_null
+      24: invokestatic  #71                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+      27: aload_0
+      28: getstatic     #15                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      31: iconst_0
+      32: aaload
+      33: invokevirtual #77                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+      36: putfield      #11                 // Field title$delegate:Lkotlin/properties/ReadWriteProperty;
+      39: aload_0
+      40: aload_0
+      41: checkcast     #4                  // class com/intellij/openapi/components/BaseState
+      44: aconst_null
+      45: iconst_1
+      46: aconst_null
+      47: invokestatic  #71                 // Method com/intellij/openapi/components/BaseState.string$default:(Lcom/intellij/openapi/components/BaseState;Ljava/lang/String;ILjava/lang/Object;)Lcom/intellij/openapi/components/StoredPropertyBase;
+      50: aload_0
+      51: getstatic     #15                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      54: iconst_1
+      55: aaload
+      56: invokevirtual #77                 // Method com/intellij/openapi/components/StoredPropertyBase.provideDelegate:(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lkotlin/properties/ReadWriteProperty;
+      59: putfield      #37                 // Field argument$delegate:Lkotlin/properties/ReadWriteProperty;
+      62: aload_0
+      63: aload_1
+      64: invokevirtual #79                 // Method setTitle:(Ljava/lang/String;)V
+      67: aload_0
+      68: aload_2
+      69: invokevirtual #81                 // Method setArgument:(Ljava/lang/String;)V
+      72: return
+
+  public static final git4idea.push.GitPushTagMode[] getValues();
+    Code:
+       0: getstatic     #87                 // Field Companion:Lgit4idea/push/GitPushTagMode$Companion;
+       3: invokevirtual #91                 // Method git4idea/push/GitPushTagMode$Companion.getValues:()[Lgit4idea/push/GitPushTagMode;
+       6: areturn
+
+  public static final git4idea.push.GitPushTagMode[] access$getValues$cp();
+    Code:
+       0: getstatic     #96                 // Field values:[Lgit4idea/push/GitPushTagMode;
+       3: areturn
+
+  static {};
+    Code:
+       0: iconst_2
+       1: anewarray     #99                 // class kotlin/reflect/KProperty
+       4: astore_0
+       5: aload_0
+       6: iconst_0
+       7: new           #101                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+      10: dup
+      11: ldc           #2                  // class git4idea/push/GitPushTagMode
+      13: ldc           #59                 // String title
+      15: ldc           #103                // String getTitle()Ljava/lang/String;
+      17: iconst_0
+      18: invokespecial #106                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+      21: aastore
+      22: aload_0
+      23: iconst_1
+      24: new           #101                // class kotlin/jvm/internal/MutablePropertyReference1Impl
+      27: dup
+      28: ldc           #2                  // class git4idea/push/GitPushTagMode
+      30: ldc           #65                 // String argument
+      32: ldc           #108                // String getArgument()Ljava/lang/String;
+      34: iconst_0
+      35: invokespecial #106                // Method kotlin/jvm/internal/MutablePropertyReference1Impl."<init>":(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+      38: aastore
+      39: aload_0
+      40: putstatic     #15                 // Field $$delegatedProperties:[Lkotlin/reflect/KProperty;
+      43: new           #89                 // class git4idea/push/GitPushTagMode$Companion
+      46: dup
+      47: aconst_null
+      48: invokespecial #111                // Method git4idea/push/GitPushTagMode$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+      51: putstatic     #87                 // Field Companion:Lgit4idea/push/GitPushTagMode$Companion;
+      54: new           #2                  // class git4idea/push/GitPushTagMode
+      57: dup
+      58: ldc           #113                // String All
+      60: ldc           #115                // String --tags
+      62: invokespecial #56                 // Method "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      65: putstatic     #43                 // Field ALL:Lgit4idea/push/GitPushTagMode;
+      68: new           #2                  // class git4idea/push/GitPushTagMode
+      71: dup
+      72: ldc           #117                // String Current Branch
+      74: ldc           #119                // String --follow-tags
+      76: invokespecial #56                 // Method "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      79: putstatic     #122                // Field FOLLOW:Lgit4idea/push/GitPushTagMode;
+      82: iconst_2
+      83: anewarray     #2                  // class git4idea/push/GitPushTagMode
+      86: astore_0
+      87: aload_0
+      88: iconst_0
+      89: getstatic     #43                 // Field ALL:Lgit4idea/push/GitPushTagMode;
+      92: aastore
+      93: aload_0
+      94: iconst_1
+      95: getstatic     #122                // Field FOLLOW:Lgit4idea/push/GitPushTagMode;
+      98: aastore
+      99: aload_0
+     100: putstatic     #96                 // Field values:[Lgit4idea/push/GitPushTagMode;
+     103: return
+}

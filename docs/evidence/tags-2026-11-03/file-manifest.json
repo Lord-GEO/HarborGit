@@ -1,0 +1,172 @@
+[
+  {
+    "path": "collect_tags.py",
+    "bytes": 5408,
+    "sha256": "07608cce795e9e733976790b8c46242d34af4fb11b8d3d724891a7936e587182"
+  },
+  {
+    "path": "concat-recipes.json",
+    "bytes": 17761,
+    "sha256": "a5f8e34a4a1afbee3ac4c672e3a0bab00a45c8d982826926a49a5560f33281d6"
+  },
+  {
+    "path": "javap/git4idea.actions.GitCreateTagAction$1.txt",
+    "bytes": 1344,
+    "sha256": "d820b44c9815d2f1f151b29f0c0c4fada82de2406c2a8a82bf747f1f131619b1"
+  },
+  {
+    "path": "javap/git4idea.actions.GitCreateTagAction.txt",
+    "bytes": 6471,
+    "sha256": "477857887a6e8ee19c9cc5e9346862b3b0ec9f9fd5806253bfb5dede176c68c3"
+  },
+  {
+    "path": "javap/git4idea.actions.GitTag$1.txt",
+    "bytes": 2198,
+    "sha256": "5b05ca31f5df367cb0f8fed51f254d3c9e390182d1816fb6b0e2046fb86c47a8"
+  },
+  {
+    "path": "javap/git4idea.actions.GitTag.txt",
+    "bytes": 6340,
+    "sha256": "dafb095fcb9dd0ae8dbb42bb56d96852f3e115ff434daaadda5aeb02f2e7b300"
+  },
+  {
+    "path": "javap/git4idea.actions.tag.GitPushTagAction$actionPerformed$1$1.txt",
+    "bytes": 6982,
+    "sha256": "f08a88e9eddee576e55a0bb3726e4b20237516d6871822497287c7eb1677a9ec"
+  },
+  {
+    "path": "javap/git4idea.actions.tag.GitPushTagAction$actionPerformed$1.txt",
+    "bytes": 7162,
+    "sha256": "bc416baa1493c33e6e4cef679e93bd694e81ba779fb678dae29e22e3a11c749d"
+  },
+  {
+    "path": "javap/git4idea.actions.tag.GitPushTagAction$Companion.txt",
+    "bytes": 3049,
+    "sha256": "4c26369cfeefbf05fb4202b5bcd295fdf134e069df359e2613103388a66a9fa8"
+  },
+  {
+    "path": "javap/git4idea.actions.tag.GitPushTagAction.txt",
+    "bytes": 10914,
+    "sha256": "bb11f374bcdcf0ae7983f2ee0e7d3f7f72b9807759873a9672d13866df21bff0"
+  },
+  {
+    "path": "javap/git4idea.actions.tag.GitPushTagsActionGroup.txt",
+    "bytes": 12547,
+    "sha256": "656ac3eee3a11e4e5ba6c1376bd4b47a32658b651be482b3b31eff49156ac6c1"
+  },
+  {
+    "path": "javap/git4idea.branch.GitBrancherImpl$3.txt",
+    "bytes": 3440,
+    "sha256": "562e05302b06fa01aff528ec48e5e5abf4eeb5996cc2c920dfc4dbc1d8eec36e"
+  },
+  {
+    "path": "javap/git4idea.GitTag.txt",
+    "bytes": 2692,
+    "sha256": "d31cc0b68534f8eaa57def9a9d12749aab0cc75702cc7ab87dd92fd09e5c0a48"
+  },
+  {
+    "path": "javap/git4idea.push.GitPusher$Companion.txt",
+    "bytes": 10260,
+    "sha256": "34e4fb678d3dac4f76f84c2a27599814a0cbead19f08b2a0ada4ee502a063efd"
+  },
+  {
+    "path": "javap/git4idea.push.GitPusher.txt",
+    "bytes": 9561,
+    "sha256": "7826e425e575e5bfc8841f460e2facb6ffe5ee93cc2d10083fd2b3fe09ec36d5"
+  },
+  {
+    "path": "javap/git4idea.push.GitPushOptionsPanel$1.txt",
+    "bytes": 2534,
+    "sha256": "1e12138bb14e82b8fe64ed10399cabf7d8256a05c56ad0e4a059dd8b718f4a17"
+  },
+  {
+    "path": "javap/git4idea.push.GitPushOptionsPanel.txt",
+    "bytes": 15759,
+    "sha256": "7714e3fb67fe1d5ee48a52ac207c6028cd051f902a82308eeffc007f8a80826e"
+  },
+  {
+    "path": "javap/git4idea.push.GitPushSource$Tag.txt",
+    "bytes": 5542,
+    "sha256": "72417de9dd10cc462c9d159c1cc95cc1bd4a7f6e7018f1fd35ed18a512485157"
+  },
+  {
+    "path": "javap/git4idea.push.GitPushSupport.txt",
+    "bytes": 38807,
+    "sha256": "83aa1478b3bbf24fd33573db8ffd57fcb06f67c1fad8bfcc21b1fb2bf674b25c"
+  },
+  {
+    "path": "javap/git4idea.push.GitPushTagMode$Companion.txt",
+    "bytes": 807,
+    "sha256": "70fd00078af563604ffb25c913a24a1fbb1fb95b3a5c30de8f13f5d1f3c37699"
+  },
+  {
+    "path": "javap/git4idea.push.GitPushTagMode.txt",
+    "bytes": 10388,
+    "sha256": "85568c08583ce8d01351f72b42794dbb05715f28346fefc5dfca3dd2888df6e8"
+  },
+  {
+    "path": "javap/git4idea.push.GitSpecialRefRemoteBranch.txt",
+    "bytes": 2054,
+    "sha256": "9d489d4142f3136c37f8bb00da7266b2d9022fef525fd7befb94031c19aaf333"
+  },
+  {
+    "path": "javap/git4idea.ui.GitTagDialog.txt",
+    "bytes": 63746,
+    "sha256": "088ed3d909e48c338d1e3ec9632a67f0b678a5244e4740731ac060a84470c29b"
+  },
+  {
+    "path": "javap-provenance.json",
+    "bytes": 15231,
+    "sha256": "adc3b634e9175663486cb31450afe479a07229f305c7d37840cc5a944530b3fb"
+  },
+  {
+    "path": "rea-evidence-bundle.json",
+    "bytes": 7113,
+    "sha256": "38b132d8313a39d78b5bcf54d588831cdb3155e9f3c99165a4970ecb42b4f3cd"
+  },
+  {
+    "path": "rea-selected-occurrences.json",
+    "bytes": 16295,
+    "sha256": "1fe0b683504837db5010e488390a95a58a37326f3f545280c4ea49ba87dbc38d"
+  },
+  {
+    "path": "rea-session-end.json",
+    "bytes": 153,
+    "sha256": "8937e9f33c814411535f8dea79f2c039a7a8dd6af751f07ae536be36a89e6f6b"
+  },
+  {
+    "path": "rea-session-start.json",
+    "bytes": 208302,
+    "sha256": "ca83bf01352a275a1fd77abc0ec8ca02e33d9f05def5bfcb3695a82efebaace0"
+  },
+  {
+    "path": "resource-excerpts.json",
+    "bytes": 15566,
+    "sha256": "fbcb03ae62bc23f65cf5a66189abfd36efec9ea31b4cfb118ec44951f1fbcc35"
+  },
+  {
+    "path": "reused-bytecode.json",
+    "bytes": 3907,
+    "sha256": "50577ee100f4a3867fabb91dc5c3d2317875662739788b7c17928b7b43d4230a"
+  },
+  {
+    "path": "scope-and-verification.json",
+    "bytes": 623,
+    "sha256": "72bb8eacfaa187540be0eeed1accd20379f2af45084ba9f036c5bb0ab0229398"
+  },
+  {
+    "path": "source-identities.json",
+    "bytes": 455,
+    "sha256": "6452687e2c545951812fa35549e3cab3ca85453b8c172626ac12e182ecf3e72f"
+  },
+  {
+    "path": "verify_tags.py",
+    "bytes": 2478,
+    "sha256": "e0da2f6b922b1ff480e1ea39eede55fdbad3d0740eda30868e5819f6d801722b"
+  },
+  {
+    "path": "../../IDEA-TAGS-ANALYSIS.md",
+    "bytes": 13249,
+    "sha256": "ff4c4e2eb175eea8017d681905c6ef6a6ce46f3236446288fb6eb5f1cabe6d94"
+  }
+]

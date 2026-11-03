@@ -1,0 +1,51 @@
+Compiled from "GitTag.java"
+class git4idea.actions.GitTag$1 extends com.intellij.openapi.progress.Task$Modal {
+  final git4idea.ui.GitTagDialog val$d;
+
+  git4idea.actions.GitTag$1(git4idea.actions.GitTag, com.intellij.openapi.project.Project, java.lang.String, boolean, git4idea.ui.GitTagDialog);
+    Code:
+       0: aload_0
+       1: aload         5
+       3: putfield      #1                  // Field val$d:Lgit4idea/ui/GitTagDialog;
+       6: aload_0
+       7: aload_2
+       8: aload_3
+       9: iload         4
+      11: invokespecial #7                  // Method com/intellij/openapi/progress/Task$Modal."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Z)V
+      14: return
+
+  public void run(com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #57                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #1                  // Field val$d:Lgit4idea/ui/GitTagDialog;
+      12: invokevirtual #13                 // Method git4idea/ui/GitTagDialog.runAction:()V
+      15: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #59                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #61                 // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: ldc           #62                 // String indicator
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc           #63                 // String git4idea/actions/GitTag$1
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: ldc           #64                 // String run
+      20: aastore
+      21: invokestatic  #70                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      24: new           #72                 // class java/lang/IllegalArgumentException
+      27: dup_x1
+      28: swap
+      29: invokespecial #75                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      32: athrow
+}

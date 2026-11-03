@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.7.0",
+  "setup": "HarborGit-1.7.0-Setup-x64.exe",
+  "bytes": 124519455,
+  "sha256": "c78491fa398c045d4369dd40e0161d556f031103ec5e0a100b56ffc0a15d9123",
+  "sha512": "w3aKdXk83UjMX1MIyOKS33LChZe4q39upGwX8Dn1iZN53ev8OjKIKjSOSUHKpVTT76Jh77Is6wGqvn3aDMQdJQ==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.7.0",
+    "files": [
+      {
+        "url": "HarborGit-1.7.0-Setup-x64.exe",
+        "sha512": "w3aKdXk83UjMX1MIyOKS33LChZe4q39upGwX8Dn1iZN53ev8OjKIKjSOSUHKpVTT76Jh77Is6wGqvn3aDMQdJQ==",
+        "size": 124519455
+      }
+    ],
+    "path": "HarborGit-1.7.0-Setup-x64.exe",
+    "sha512": "w3aKdXk83UjMX1MIyOKS33LChZe4q39upGwX8Dn1iZN53ev8OjKIKjSOSUHKpVTT76Jh77Is6wGqvn3aDMQdJQ==",
+    "releaseNotes": "# HarborGit v1.7.0\r\n\r\n- 新增“标签管理”，查看、搜索本地标签，识别附注标签与轻量标签。\r\n- 支持给当前 HEAD 或历史中选中的提交创建标签；附注标签可填写版本说明。\r\n- 标签创建后，选择远程仓库单独推送该标签；保留当前分支、暂存区及未提交文件。\r\n- 精确推送选中标签，避免自动跟随其他标签或镜像配置带来的额外引用推送；不会强制覆盖同名远程标签。\r\n- 推送前检查标签是否被外部修改；支持操作日志、错误详情、超时和取消。\r\n- 新界面适配亮暗主题及较小窗口，保留已有 Git、AI、多项目、更新和变基备份功能。\r\n\r\n使用路径：提交历史 → 选中提交 → 创建标签 → 标签管理 → 推送标签 → 选择远程并确认。\r\n\r\n本版新增标签管理能力，采用次版本 1.7.0。暂未提供标签删除、强制移动、签名及批量推送。\r\n\r\n发布时请同时上传 Setup、对应 `.exe.blockmap` 与 `latest.yml`。\r\n",
+    "releaseDate": "2026-11-03T02:41:13.775Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

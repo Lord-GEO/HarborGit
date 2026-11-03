@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-03",
+  "version": "1.6.2",
+  "scope": "Dedicated local worktree and bare repository only; system/global Git configuration disabled.",
+  "gitVersion": "git version 2.50.1.windows.1",
+  "historyRefs": "HEAD -> refs/heads/main, tag: refs/tags/v-proof-lightweight, tag: refs/tags/v-proof-annotated",
+  "unsupported": {
+    "createTag": "不支持的操作",
+    "pushTag": "不支持的操作"
+  },
+  "pushFollowTagsFalse": [],
+  "pushFollowTagsTrue": [
+    "refs/tags/v-proof-annotated"
+  ],
+  "pushCommands": [
+    "git push --progress --set-upstream -- origin HEAD:refs/heads/main",
+    "git push --progress --set-upstream -- origin HEAD:refs/heads/main"
+  ],
+  "conclusion": "No tag creation/push API. History exposes tag decorations. Default GUI branch push sends no tags, but inherited push.followTags=true adds reachable annotated tags, not lightweight tags."
+}

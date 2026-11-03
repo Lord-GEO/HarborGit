@@ -1,0 +1,159 @@
+Compiled from "GitPusher.kt"
+public final class git4idea.push.GitPusher extends com.intellij.dvcs.push.Pusher<git4idea.repo.GitRepository, git4idea.push.GitPushSource, git4idea.push.GitPushTarget> {
+  public static final git4idea.push.GitPusher$Companion Companion;
+
+  private final com.intellij.openapi.project.Project project;
+
+  private final git4idea.config.GitVcsSettings settings;
+
+  private final git4idea.push.GitPushSupport pushSupport;
+
+  public git4idea.push.GitPusher(com.intellij.openapi.project.Project, git4idea.config.GitVcsSettings, git4idea.push.GitPushSupport);
+    Code:
+       0: aload_1
+       1: ldc           #10                 // String project
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #18                 // String settings
+       9: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #20                 // String pushSupport
+      15: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload_0
+      19: invokespecial #23                 // Method com/intellij/dvcs/push/Pusher."<init>":()V
+      22: aload_0
+      23: aload_1
+      24: putfield      #26                 // Field project:Lcom/intellij/openapi/project/Project;
+      27: aload_0
+      28: aload_2
+      29: putfield      #29                 // Field settings:Lgit4idea/config/GitVcsSettings;
+      32: aload_0
+      33: aload_3
+      34: putfield      #32                 // Field pushSupport:Lgit4idea/push/GitPushSupport;
+      37: return
+
+  public void push(java.util.Map<git4idea.repo.GitRepository, ? extends com.intellij.dvcs.push.PushSpec<git4idea.push.GitPushSource, git4idea.push.GitPushTarget>>, com.intellij.dvcs.push.VcsPushOptionValue, boolean);
+    Code:
+       0: aload_1
+       1: ldc           #40                 // String pushSpecs
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: iload_3
+      10: invokestatic  #46                 // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+      13: invokevirtual #49                 // Method push:(Ljava/util/Map;Lcom/intellij/dvcs/push/VcsPushOptionValue;ZLjava/util/Map;)V
+      16: return
+
+  public void push(java.util.Map<git4idea.repo.GitRepository, ? extends com.intellij.dvcs.push.PushSpec<git4idea.push.GitPushSource, git4idea.push.GitPushTarget>>, com.intellij.dvcs.push.VcsPushOptionValue, boolean, java.util.Map<java.lang.String, ? extends com.intellij.dvcs.push.VcsPushOptionValue>);
+    Code:
+       0: aload_1
+       1: ldc           #40                 // String pushSpecs
+       3: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload         4
+       8: ldc           #57                 // String customParams
+      10: invokestatic  #16                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      13: aload_0
+      14: invokespecial #60                 // Method expireExistingErrorsAndWarnings:()V
+      17: aload_2
+      18: instanceof    #62                 // class git4idea/push/GitVcsPushOptionValue
+      21: ifeq          47
+      24: aload_2
+      25: checkcast     #62                 // class git4idea/push/GitVcsPushOptionValue
+      28: invokevirtual #66                 // Method git4idea/push/GitVcsPushOptionValue.getPushTagMode:()Lgit4idea/push/GitPushTagMode;
+      31: aload_2
+      32: checkcast     #62                 // class git4idea/push/GitVcsPushOptionValue
+      35: invokevirtual #70                 // Method git4idea/push/GitVcsPushOptionValue.isSkipHook:()Z
+      38: invokestatic  #76                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      41: invokestatic  #82                 // Method kotlin/TuplesKt.to:(Ljava/lang/Object;Ljava/lang/Object;)Lkotlin/Pair;
+      44: goto          55
+      47: aconst_null
+      48: iconst_0
+      49: invokestatic  #76                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      52: invokestatic  #82                 // Method kotlin/TuplesKt.to:(Ljava/lang/Object;Ljava/lang/Object;)Lkotlin/Pair;
+      55: astore        5
+      57: aload         5
+      59: invokevirtual #88                 // Method kotlin/Pair.component1:()Ljava/lang/Object;
+      62: checkcast     #90                 // class git4idea/push/GitPushTagMode
+      65: astore        6
+      67: aload         5
+      69: invokevirtual #93                 // Method kotlin/Pair.component2:()Ljava/lang/Object;
+      72: checkcast     #72                 // class java/lang/Boolean
+      75: invokevirtual #96                 // Method java/lang/Boolean.booleanValue:()Z
+      78: istore        7
+      80: aload_0
+      81: getfield      #29                 // Field settings:Lgit4idea/config/GitVcsSettings;
+      84: aload         6
+      86: invokevirtual #102                // Method git4idea/config/GitVcsSettings.setPushTagMode:(Lgit4idea/push/GitPushTagMode;)V
+      89: new           #104                // class git4idea/push/GitPushOperation
+      92: dup
+      93: aload_0
+      94: getfield      #26                 // Field project:Lcom/intellij/openapi/project/Project;
+      97: aload_0
+      98: getfield      #32                 // Field pushSupport:Lgit4idea/push/GitPushSupport;
+     101: aload_1
+     102: aload         6
+     104: iload_3
+     105: iload         7
+     107: invokespecial #107                // Method git4idea/push/GitPushOperation."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/push/GitPushSupport;Ljava/util/Map;Lgit4idea/push/GitPushTagMode;ZZ)V
+     110: astore        8
+     112: getstatic     #111                // Field Companion:Lgit4idea/push/GitPusher$Companion;
+     115: aload_0
+     116: getfield      #26                 // Field project:Lcom/intellij/openapi/project/Project;
+     119: aload         8
+     121: aload         4
+     123: invokevirtual #117                // Method git4idea/push/GitPusher$Companion.pushAndNotify:(Lcom/intellij/openapi/project/Project;Lgit4idea/push/GitPushOperation;Ljava/util/Map;)V
+     126: return
+
+  private final void expireExistingErrorsAndWarnings();
+    Code:
+       0: invokestatic  #129                // Method com/intellij/notification/NotificationsManager.getNotificationsManager:()Lcom/intellij/notification/NotificationsManager;
+       3: ldc           #131                // class git4idea/push/GitPushResultNotification
+       5: aload_0
+       6: getfield      #26                 // Field project:Lcom/intellij/openapi/project/Project;
+       9: invokevirtual #135                // Method com/intellij/notification/NotificationsManager.getNotificationsOfType:(Ljava/lang/Class;Lcom/intellij/openapi/project/Project;)[Lcom/intellij/notification/Notification;
+      12: dup
+      13: ldc           #137                // String getNotificationsOfType(...)
+      15: invokestatic  #140                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: checkcast     #142                // class "[Lgit4idea/push/GitPushResultNotification;"
+      21: astore_1
+      22: iconst_0
+      23: istore_2
+      24: aload_1
+      25: arraylength
+      26: istore_3
+      27: iload_2
+      28: iload_3
+      29: if_icmpge     59
+      32: aload_1
+      33: iload_2
+      34: aaload
+      35: astore        4
+      37: aload         4
+      39: invokevirtual #146                // Method git4idea/push/GitPushResultNotification.getType:()Lcom/intellij/notification/NotificationType;
+      42: getstatic     #152                // Field com/intellij/notification/NotificationType.INFORMATION:Lcom/intellij/notification/NotificationType;
+      45: if_acmpeq     53
+      48: aload         4
+      50: invokevirtual #155                // Method git4idea/push/GitPushResultNotification.expire:()V
+      53: iinc          2, 1
+      56: goto          27
+      59: return
+
+  public static final void pushAndNotify(com.intellij.openapi.project.Project, git4idea.push.GitPushOperation, java.util.Map<java.lang.String, ? extends com.intellij.dvcs.push.VcsPushOptionValue>);
+    Code:
+       0: getstatic     #111                // Field Companion:Lgit4idea/push/GitPusher$Companion;
+       3: aload_0
+       4: aload_1
+       5: aload_2
+       6: invokevirtual #117                // Method git4idea/push/GitPusher$Companion.pushAndNotify:(Lcom/intellij/openapi/project/Project;Lgit4idea/push/GitPushOperation;Ljava/util/Map;)V
+       9: return
+
+  static {};
+    Code:
+       0: new           #113                // class git4idea/push/GitPusher$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #164                // Method git4idea/push/GitPusher$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #111                // Field Companion:Lgit4idea/push/GitPusher$Companion;
+      11: return
+}

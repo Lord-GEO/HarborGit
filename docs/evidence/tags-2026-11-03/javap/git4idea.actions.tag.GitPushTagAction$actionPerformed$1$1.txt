@@ -1,0 +1,117 @@
+Compiled from "GitPushTagsAction.kt"
+final class git4idea.actions.tag.GitPushTagAction$actionPerformed$1$1 extends kotlin.coroutines.jvm.internal.SuspendLambda implements kotlin.jvm.functions.Function2<kotlinx.coroutines.CoroutineScope, kotlin.coroutines.Continuation<? super kotlin.Unit>, java.lang.Object> {
+  int label;
+
+  final com.intellij.openapi.project.Project $project;
+
+  final git4idea.GitTag $reference;
+
+  final git4idea.repo.GitRemote $remote;
+
+  final git4idea.repo.GitRepository $repository;
+
+  git4idea.actions.tag.GitPushTagAction$actionPerformed$1$1(com.intellij.openapi.project.Project, git4idea.GitTag, git4idea.repo.GitRemote, git4idea.repo.GitRepository, kotlin.coroutines.Continuation<? super git4idea.actions.tag.GitPushTagAction$actionPerformed$1$1>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #14                 // Field $project:Lcom/intellij/openapi/project/Project;
+       5: aload_0
+       6: aload_2
+       7: putfield      #18                 // Field $reference:Lgit4idea/GitTag;
+      10: aload_0
+      11: aload_3
+      12: putfield      #22                 // Field $remote:Lgit4idea/repo/GitRemote;
+      15: aload_0
+      16: aload         4
+      18: putfield      #26                 // Field $repository:Lgit4idea/repo/GitRepository;
+      21: aload_0
+      22: iconst_2
+      23: aload         5
+      25: invokespecial #29                 // Method kotlin/coroutines/jvm/internal/SuspendLambda."<init>":(ILkotlin/coroutines/Continuation;)V
+      28: return
+
+  public final java.lang.Object invokeSuspend(java.lang.Object);
+    Code:
+       0: invokestatic  #54                 // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
+       3: pop
+       4: aload_0
+       5: getfield      #58                 // Field label:I
+       8: tableswitch   { // 0 to 0
+                     0: 28
+               default: 94
+          }
+      28: aload_1
+      29: invokestatic  #64                 // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+      32: aload_0
+      33: getfield      #14                 // Field $project:Lcom/intellij/openapi/project/Project;
+      36: invokestatic  #70                 // Method git4idea/GitVcs.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/GitVcs;
+      39: checkcast     #72                 // class com/intellij/openapi/vcs/AbstractVcs
+      42: invokestatic  #78                 // Method com/intellij/dvcs/DvcsUtil.getPushSupport:(Lcom/intellij/openapi/vcs/AbstractVcs;)Lcom/intellij/dvcs/push/PushSupport;
+      45: dup
+      46: ldc           #80                 // String null cannot be cast to non-null type git4idea.push.GitPushSupport
+      48: invokestatic  #86                 // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+      51: checkcast     #88                 // class git4idea/push/GitPushSupport
+      54: astore_2
+      55: getstatic     #94                 // Field git4idea/actions/tag/GitPushTagAction.Companion:Lgit4idea/actions/tag/GitPushTagAction$Companion;
+      58: aload_0
+      59: getfield      #18                 // Field $reference:Lgit4idea/GitTag;
+      62: aload_0
+      63: getfield      #22                 // Field $remote:Lgit4idea/repo/GitRemote;
+      66: invokevirtual #100                // Method git4idea/actions/tag/GitPushTagAction$Companion.preparePushSpec$intellij_vcs_git:(Lgit4idea/GitTag;Lgit4idea/repo/GitRemote;)Lcom/intellij/dvcs/push/PushSpec;
+      69: astore_3
+      70: aload_2
+      71: invokevirtual #104                // Method git4idea/push/GitPushSupport.getPusher:()Lcom/intellij/dvcs/push/Pusher;
+      74: aload_0
+      75: getfield      #26                 // Field $repository:Lgit4idea/repo/GitRepository;
+      78: aload_3
+      79: invokestatic  #110                // Method kotlin/TuplesKt.to:(Ljava/lang/Object;Ljava/lang/Object;)Lkotlin/Pair;
+      82: invokestatic  #116                // Method kotlin/collections/MapsKt.mapOf:(Lkotlin/Pair;)Ljava/util/Map;
+      85: aconst_null
+      86: iconst_0
+      87: invokevirtual #122                // Method com/intellij/dvcs/push/Pusher.push:(Ljava/util/Map;Lcom/intellij/dvcs/push/VcsPushOptionValue;Z)V
+      90: getstatic     #128                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      93: areturn
+      94: new           #130                // class java/lang/IllegalStateException
+      97: dup
+      98: ldc           #132                // String call to \'resume\' before \'invoke\' with coroutine
+     100: invokespecial #135                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     103: athrow
+
+  public final kotlin.coroutines.Continuation<kotlin.Unit> create(java.lang.Object, kotlin.coroutines.Continuation<?>);
+    Code:
+       0: new           #2                  // class git4idea/actions/tag/GitPushTagAction$actionPerformed$1$1
+       3: dup
+       4: aload_0
+       5: getfield      #14                 // Field $project:Lcom/intellij/openapi/project/Project;
+       8: aload_0
+       9: getfield      #18                 // Field $reference:Lgit4idea/GitTag;
+      12: aload_0
+      13: getfield      #22                 // Field $remote:Lgit4idea/repo/GitRemote;
+      16: aload_0
+      17: getfield      #26                 // Field $repository:Lgit4idea/repo/GitRepository;
+      20: aload_2
+      21: invokespecial #146                // Method "<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/GitTag;Lgit4idea/repo/GitRemote;Lgit4idea/repo/GitRepository;Lkotlin/coroutines/Continuation;)V
+      24: checkcast     #148                // class kotlin/coroutines/Continuation
+      27: areturn
+
+  public final java.lang.Object invoke(kotlinx.coroutines.CoroutineScope, kotlin.coroutines.Continuation<? super kotlin.Unit>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #154                // Method create:(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Lkotlin/coroutines/Continuation;
+       6: checkcast     #2                  // class git4idea/actions/tag/GitPushTagAction$actionPerformed$1$1
+       9: getstatic     #128                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      12: invokevirtual #156                // Method invokeSuspend:(Ljava/lang/Object;)Ljava/lang/Object;
+      15: areturn
+
+  public java.lang.Object invoke(java.lang.Object, java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #162                // class kotlinx/coroutines/CoroutineScope
+       5: aload_2
+       6: checkcast     #148                // class kotlin/coroutines/Continuation
+       9: invokevirtual #164                // Method invoke:(Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+      12: areturn
+}

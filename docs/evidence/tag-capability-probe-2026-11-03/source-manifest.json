@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-03",
+  "version": "1.6.2",
+  "files": [
+    {
+      "path": "package.json",
+      "sha256": "07814d4abba51b4ae2f52b838a8bd6edb18b052cd43cef20944d73cf657f7979"
+    },
+    {
+      "path": "src/main/git-service.ts",
+      "sha256": "336a67f19f7f27ab1b595e378e3bb821ec9ec5784d60dc9294a021f5f8b2cd6d"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "sha256": "b5bad87b66a61f5384a0edd0b85edd96674511235dab5642861bc09d7c357948"
+    },
+    {
+      "path": "src/renderer/App.tsx",
+      "sha256": "a6fb8d869f014a4515c4f936e93adfd497251a0ed00be1a1ec6ea0e7abb58988"
+    },
+    {
+      "path": "src/renderer/CommitHistory.tsx",
+      "sha256": "3ae0b074fed37750149bea1b6ce1d6cc5c0c63ea9029be9655c684ec60e017db"
+    },
+    {
+      "path": "src/shared/commit-graph.ts",
+      "sha256": "013412b177da387c762b518292587bc26235f147fa72ccbce3d4f86756add7a4"
+    },
+    {
+      "path": ".github/workflows/build-desktop.yml",
+      "sha256": "eacf3d6a2649ae7c137706ae004cd663938aa4853ec3a346755f424f20fcee89"
+    },
+    {
+      "path": "docs/evidence/tag-capability-probe-2026-11-03/probe.ts",
+      "sha256": "359ceae5c7ada8acfdb31719f2e4d0a3472e0420f87fc81f02a273932789f8b5"
+    }
+  ]
+}

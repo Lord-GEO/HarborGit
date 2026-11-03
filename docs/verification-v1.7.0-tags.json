@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "version": "1.7.0",
+  "backend": {
+    "passed": 80,
+    "total": 80,
+    "new_tag_tests": 9,
+    "log": "verification-v1.7.0-backend.txt"
+  },
+  "source_tag_ui": {
+    "passed": 3,
+    "total": 3,
+    "minimum_window": "1100x720",
+    "log": "verification-v1.7.0-tags-ui.txt"
+  },
+  "installed_ui": {
+    "passed": 17,
+    "total": 17,
+    "log": "verification-v1.7.0-installed-ui.txt"
+  },
+  "installer": {
+    "report": "verification-v1.7.0-installer.json",
+    "qa_tree_removed": true,
+    "original_app_unchanged": true
+  },
+  "setup_sha256": "c78491fa398c045d4369dd40e0161d556f031103ec5e0a100b56ffc0a15d9123",
+  "validation_scope": "Dedicated test repositories, local bare remotes and isolated Electron profiles only. No actual GitHub writes.",
+  "limitations": [
+    "No tag deletion or moving",
+    "No signed tag creation",
+    "No batch push",
+    "No remote tag listing or synchronization status",
+    "Multiple push URLs rejected"
+  ]
+}

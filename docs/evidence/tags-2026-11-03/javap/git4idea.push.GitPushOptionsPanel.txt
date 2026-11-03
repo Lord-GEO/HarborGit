@@ -1,0 +1,309 @@
+Compiled from "GitPushOptionsPanel.java"
+public class git4idea.push.GitPushOptionsPanel extends com.intellij.dvcs.push.VcsPushOptionsPanel {
+  private final com.intellij.ui.components.JBCheckBox myPushTags;
+
+  private final com.intellij.openapi.ui.ComboBox<git4idea.push.GitPushTagMode> myPushTagsMode;
+
+  private final com.intellij.ui.components.JBCheckBox myRunHooks;
+
+  public git4idea.push.GitPushOptionsPanel(git4idea.push.GitPushTagMode, boolean, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method com/intellij/dvcs/push/VcsPushOptionsPanel."<init>":()V
+       4: ldc           #7                  // String push.dialog.push.tags
+       6: iconst_0
+       7: anewarray     #9                  // class java/lang/Object
+      10: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      13: astore        4
+      15: iload_2
+      16: ifeq          28
+      19: aload         4
+      21: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      26: astore        4
+      28: aload_0
+      29: new           #21                 // class com/intellij/ui/components/JBCheckBox
+      32: dup
+      33: aload         4
+      35: invokespecial #23                 // Method com/intellij/ui/components/JBCheckBox."<init>":(Ljava/lang/String;)V
+      38: putfield      #26                 // Field myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+      41: aload_0
+      42: getfield      #26                 // Field myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+      45: aload_1
+      46: ifnull        53
+      49: iconst_1
+      50: goto          54
+      53: iconst_0
+      54: invokevirtual #32                 // Method com/intellij/ui/components/JBCheckBox.setSelected:(Z)V
+      57: aload_0
+      58: new           #36                 // class com/intellij/openapi/ui/ComboBox
+      61: dup
+      62: invokestatic  #38                 // Method git4idea/push/GitPushTagMode.getValues:()[Lgit4idea/push/GitPushTagMode;
+      65: invokespecial #44                 // Method com/intellij/openapi/ui/ComboBox."<init>":([Ljava/lang/Object;)V
+      68: putfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+      71: aload_0
+      72: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+      75: ldc           #51                 // String
+      77: invokedynamic #53,  0             // InvokeDynamic #1:fun:()Lcom/intellij/util/Function;
+      82: invokestatic  #57                 // Method com/intellij/ui/SimpleListCellRenderer.create:(Ljava/lang/String;Lcom/intellij/util/Function;)Lcom/intellij/ui/SimpleListCellRenderer;
+      85: invokevirtual #63                 // Method com/intellij/openapi/ui/ComboBox.setRenderer:(Ljavax/swing/ListCellRenderer;)V
+      88: aload_0
+      89: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+      92: aload_0
+      93: getfield      #26                 // Field myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+      96: invokevirtual #67                 // Method com/intellij/ui/components/JBCheckBox.isSelected:()Z
+      99: invokevirtual #71                 // Method com/intellij/openapi/ui/ComboBox.setEnabled:(Z)V
+     102: aload_1
+     103: ifnull        114
+     106: aload_0
+     107: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+     110: aload_1
+     111: invokevirtual #74                 // Method com/intellij/openapi/ui/ComboBox.setSelectedItem:(Ljava/lang/Object;)V
+     114: aload_0
+     115: getfield      #26                 // Field myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+     118: new           #78                 // class git4idea/push/GitPushOptionsPanel$1
+     121: dup
+     122: aload_0
+     123: invokespecial #80                 // Method git4idea/push/GitPushOptionsPanel$1."<init>":(Lgit4idea/push/GitPushOptionsPanel;)V
+     126: invokevirtual #83                 // Method com/intellij/ui/components/JBCheckBox.addActionListener:(Ljava/awt/event/ActionListener;)V
+     129: aload_0
+     130: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+     133: iload_2
+     134: invokevirtual #87                 // Method com/intellij/openapi/ui/ComboBox.setVisible:(Z)V
+     137: aload_0
+     138: new           #21                 // class com/intellij/ui/components/JBCheckBox
+     141: dup
+     142: ldc           #90                 // String checkbox.run.git.hooks
+     144: iconst_0
+     145: anewarray     #9                  // class java/lang/Object
+     148: invokestatic  #11                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     151: invokespecial #23                 // Method com/intellij/ui/components/JBCheckBox."<init>":(Ljava/lang/String;)V
+     154: putfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+     157: aload_0
+     158: getfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+     161: iconst_1
+     162: invokevirtual #32                 // Method com/intellij/ui/components/JBCheckBox.setSelected:(Z)V
+     165: aload_0
+     166: getfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+     169: iload_3
+     170: invokevirtual #95                 // Method com/intellij/ui/components/JBCheckBox.setVisible:(Z)V
+     173: aload_0
+     174: new           #96                 // class java/awt/FlowLayout
+     177: dup
+     178: iconst_0
+     179: iconst_0
+     180: iconst_0
+     181: invokespecial #98                 // Method java/awt/FlowLayout."<init>":(III)V
+     184: invokevirtual #101                // Method setLayout:(Ljava/awt/LayoutManager;)V
+     187: aload_0
+     188: aload_0
+     189: getfield      #26                 // Field myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+     192: invokevirtual #105                // Method add:(Ljava/awt/Component;)Ljava/awt/Component;
+     195: pop
+     196: aload_0
+     197: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+     200: invokevirtual #109                // Method com/intellij/openapi/ui/ComboBox.isVisible:()Z
+     203: ifeq          236
+     206: aload_0
+     207: bipush        8
+     209: aload_0
+     210: getfield      #26                 // Field myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+     213: aload_0
+     214: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+     217: invokestatic  #112                // Method calcStrutWidth:(ILjavax/swing/JComponent;Ljavax/swing/JComponent;)I
+     220: invokestatic  #116                // Method javax/swing/Box.createHorizontalStrut:(I)Ljava/awt/Component;
+     223: invokevirtual #105                // Method add:(Ljava/awt/Component;)Ljava/awt/Component;
+     226: pop
+     227: aload_0
+     228: aload_0
+     229: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+     232: invokevirtual #105                // Method add:(Ljava/awt/Component;)Ljava/awt/Component;
+     235: pop
+     236: aload_0
+     237: getfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+     240: invokevirtual #122                // Method com/intellij/ui/components/JBCheckBox.isVisible:()Z
+     243: ifeq          276
+     246: aload_0
+     247: bipush        16
+     249: aload_0
+     250: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+     253: aload_0
+     254: getfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+     257: invokestatic  #112                // Method calcStrutWidth:(ILjavax/swing/JComponent;Ljavax/swing/JComponent;)I
+     260: invokestatic  #116                // Method javax/swing/Box.createHorizontalStrut:(I)Ljava/awt/Component;
+     263: invokevirtual #105                // Method add:(Ljava/awt/Component;)Ljava/awt/Component;
+     266: pop
+     267: aload_0
+     268: aload_0
+     269: getfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+     272: invokevirtual #105                // Method add:(Ljava/awt/Component;)Ljava/awt/Component;
+     275: pop
+     276: return
+
+  private static int calcStrutWidth(int, javax.swing.JComponent, javax.swing.JComponent);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #237                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #237                // Method $$$reportNull$$$0:(I)V
+      16: iload_0
+      17: invokestatic  #123                // Method com/intellij/ui/scale/JBUIScale.scale:(I)I
+      20: aload_2
+      21: invokevirtual #129                // Method javax/swing/JComponent.getInsets:()Ljava/awt/Insets;
+      24: invokestatic  #135                // Method com/intellij/util/ui/JBInsets.create:(Ljava/awt/Insets;)Lcom/intellij/util/ui/JBInsets;
+      27: getfield      #140                // Field com/intellij/util/ui/JBInsets.left:I
+      30: isub
+      31: aload_1
+      32: invokevirtual #129                // Method javax/swing/JComponent.getInsets:()Ljava/awt/Insets;
+      35: invokestatic  #135                // Method com/intellij/util/ui/JBInsets.create:(Ljava/awt/Insets;)Lcom/intellij/util/ui/JBInsets;
+      38: getfield      #144                // Field com/intellij/util/ui/JBInsets.right:I
+      41: isub
+      42: ireturn
+
+  public com.intellij.dvcs.push.VcsPushOptionValue getValue();
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+       4: invokevirtual #109                // Method com/intellij/openapi/ui/ComboBox.isVisible:()Z
+       7: ifne          16
+      10: getstatic     #147                // Field git4idea/push/GitPushTagMode.ALL:Lgit4idea/push/GitPushTagMode;
+      13: goto          26
+      16: aload_0
+      17: getfield      #47                 // Field myPushTagsMode:Lcom/intellij/openapi/ui/ComboBox;
+      20: invokevirtual #151                // Method com/intellij/openapi/ui/ComboBox.getSelectedItem:()Ljava/lang/Object;
+      23: checkcast     #39                 // class git4idea/push/GitPushTagMode
+      26: astore_1
+      27: aload_0
+      28: getfield      #26                 // Field myPushTags:Lcom/intellij/ui/components/JBCheckBox;
+      31: invokevirtual #67                 // Method com/intellij/ui/components/JBCheckBox.isSelected:()Z
+      34: ifeq          41
+      37: aload_1
+      38: goto          42
+      41: aconst_null
+      42: astore_2
+      43: new           #155                // class git4idea/push/GitVcsPushOptionValue
+      46: dup
+      47: aload_2
+      48: aload_0
+      49: getfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+      52: invokevirtual #122                // Method com/intellij/ui/components/JBCheckBox.isVisible:()Z
+      55: ifeq          72
+      58: aload_0
+      59: getfield      #92                 // Field myRunHooks:Lcom/intellij/ui/components/JBCheckBox;
+      62: invokevirtual #67                 // Method com/intellij/ui/components/JBCheckBox.isSelected:()Z
+      65: ifne          72
+      68: iconst_1
+      69: goto          73
+      72: iconst_0
+      73: invokespecial #157                // Method git4idea/push/GitVcsPushOptionValue."<init>":(Lgit4idea/push/GitPushTagMode;Z)V
+      76: areturn
+
+  public com.intellij.dvcs.push.VcsPushOptionsPanel$OptionsPanelPosition getPosition();
+    Code:
+       0: getstatic     #160                // Field com/intellij/dvcs/push/VcsPushOptionsPanel$OptionsPanelPosition.SOUTH:Lcom/intellij/dvcs/push/VcsPushOptionsPanel$OptionsPanelPosition;
+       3: dup
+       4: ifnonnull     11
+       7: iconst_2
+       8: invokestatic  #237                // Method $$$reportNull$$$0:(I)V
+      11: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 2
+                     0: 28
+                     1: 28
+                     2: 33
+               default: 28
+          }
+      28: ldc           #239                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      30: goto          38
+      33: ldc           #241                // String @NotNull method %s.%s must not return null
+      35: goto          38
+      38: iload_0
+      39: tableswitch   { // 0 to 2
+                     0: 64
+                     1: 64
+                     2: 68
+               default: 64
+          }
+      64: iconst_3
+      65: goto          72
+      68: iconst_2
+      69: goto          72
+      72: anewarray     #9                  // class java/lang/Object
+      75: iload_0
+      76: tableswitch   { // 0 to 2
+                     0: 104
+                     1: 112
+                     2: 120
+               default: 104
+          }
+     104: dup
+     105: iconst_0
+     106: ldc           #242                // String leftComponent
+     108: aastore
+     109: goto          128
+     112: dup
+     113: iconst_0
+     114: ldc           #243                // String rightComponent
+     116: aastore
+     117: goto          128
+     120: dup
+     121: iconst_0
+     122: ldc           #244                // String git4idea/push/GitPushOptionsPanel
+     124: aastore
+     125: goto          128
+     128: iload_0
+     129: tableswitch   { // 0 to 2
+                     0: 156
+                     1: 156
+                     2: 164
+               default: 156
+          }
+     156: dup
+     157: iconst_1
+     158: ldc           #244                // String git4idea/push/GitPushOptionsPanel
+     160: aastore
+     161: goto          172
+     164: dup
+     165: iconst_1
+     166: ldc           #245                // String getPosition
+     168: aastore
+     169: goto          172
+     172: iload_0
+     173: tableswitch   { // 0 to 2
+                     0: 200
+                     1: 200
+                     2: 208
+               default: 200
+          }
+     200: dup
+     201: iconst_2
+     202: ldc           #246                // String calcStrutWidth
+     204: aastore
+     205: goto          211
+     208: goto          211
+     211: invokestatic  #249                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     214: iload_0
+     215: tableswitch   { // 0 to 2
+                     0: 240
+                     1: 240
+                     2: 251
+               default: 240
+          }
+     240: new           #251                // class java/lang/IllegalArgumentException
+     243: dup_x1
+     244: swap
+     245: invokespecial #252                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     248: goto          262
+     251: new           #254                // class java/lang/IllegalStateException
+     254: dup_x1
+     255: swap
+     256: invokespecial #255                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     259: goto          262
+     262: athrow
+}

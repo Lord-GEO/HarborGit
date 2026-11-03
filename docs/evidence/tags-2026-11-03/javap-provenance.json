@@ -1,0 +1,359 @@
+[
+  {
+    "output": "javap/git4idea.actions.GitCreateTagAction.txt",
+    "output_sha256": "477857887a6e8ee19c9cc5e9346862b3b0ec9f9fd5806253bfb5dede176c68c3",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitCreateTagAction.class",
+    "member_sha256": "cab15b309848b4bd86bc467cf67c5b87774243e97469c658e96faa2debb9f294",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitCreateTagAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitCreateTagAction$1.txt",
+    "output_sha256": "d820b44c9815d2f1f151b29f0c0c4fada82de2406c2a8a82bf747f1f131619b1",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitCreateTagAction$1.class",
+    "member_sha256": "c4f32b177d98753b124f8ce6976dfffe2a7332c19ebc569902d91d691c1bcf66",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitCreateTagAction$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitTag.txt",
+    "output_sha256": "dafb095fcb9dd0ae8dbb42bb56d96852f3e115ff434daaadda5aeb02f2e7b300",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitTag.class",
+    "member_sha256": "1dacd4c79523fc3f02eaf2cecce285cc78f8da502f235852d84a62adc90d8e2e",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitTag"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.GitTag$1.txt",
+    "output_sha256": "5b05ca31f5df367cb0f8fed51f254d3c9e390182d1816fb6b0e2046fb86c47a8",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/GitTag$1.class",
+    "member_sha256": "e9a9927ffd0b19adb5208eb1890f00d33a7579654b0c95c298e4e02eb1a3d329",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitTag$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.ui.GitTagDialog.txt",
+    "output_sha256": "088ed3d909e48c338d1e3ec9632a67f0b678a5244e4740731ac060a84470c29b",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/ui/GitTagDialog.class",
+    "member_sha256": "d498db30fa77e988df5358036a51a9883dc197756f61149a352b1c4d40123cd9",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.ui.GitTagDialog"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPushOptionsPanel.txt",
+    "output_sha256": "7714e3fb67fe1d5ee48a52ac207c6028cd051f902a82308eeffc007f8a80826e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/push/GitPushOptionsPanel.class",
+    "member_sha256": "76bd9f12f52c6bb38abdc04dc14be3fd15148a3f794d3462e130de63f20727d7",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.push.GitPushOptionsPanel"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPushOptionsPanel$1.txt",
+    "output_sha256": "1e12138bb14e82b8fe64ed10399cabf7d8256a05c56ad0e4a059dd8b718f4a17",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/push/GitPushOptionsPanel$1.class",
+    "member_sha256": "2ce93c86bb5fd03a94a09515ac8f75695d501eea5d12e31cf35974ca2b2b7aa6",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.push.GitPushOptionsPanel$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPushTagMode.txt",
+    "output_sha256": "85568c08583ce8d01351f72b42794dbb05715f28346fefc5dfca3dd2888df6e8",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/push/GitPushTagMode.class",
+    "member_sha256": "85230c11e931378c1dd87769e0a4319e835da7d7f7b973d2fd709896166e72bc",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.push.GitPushTagMode"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPushTagMode$Companion.txt",
+    "output_sha256": "70fd00078af563604ffb25c913a24a1fbb1fb95b3a5c30de8f13f5d1f3c37699",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/push/GitPushTagMode$Companion.class",
+    "member_sha256": "1c9c0d61652211584668bd688afeb2e365d4c40d117924bdeb4e946e1bbd2676",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.push.GitPushTagMode$Companion"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.tag.GitPushTagAction.txt",
+    "output_sha256": "bb11f374bcdcf0ae7983f2ee0e7d3f7f72b9807759873a9672d13866df21bff0",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/tag/GitPushTagAction.class",
+    "member_sha256": "2a422cf80b1375ceb05dad09b9ab596b2ce2e606b1a0398090118902649995d0",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.tag.GitPushTagAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.tag.GitPushTagsActionGroup.txt",
+    "output_sha256": "656ac3eee3a11e4e5ba6c1376bd4b47a32658b651be482b3b31eff49156ac6c1",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/tag/GitPushTagsActionGroup.class",
+    "member_sha256": "977a257244bd87c4eedf904a84dbf8704ac2eff84b0b4f0cb93b6a7241f3a342",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.tag.GitPushTagsActionGroup"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPushSupport.txt",
+    "output_sha256": "83aa1478b3bbf24fd33573db8ffd57fcb06f67c1fad8bfcc21b1fb2bf674b25c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/push/GitPushSupport.class",
+    "member_sha256": "93da3161440de3ac4c14cd552fb07c33c2b62c2c93dc1e54db9a955fa12a2f5e",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.push.GitPushSupport"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPusher$Companion.txt",
+    "output_sha256": "34e4fb678d3dac4f76f84c2a27599814a0cbead19f08b2a0ada4ee502a063efd",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/push/GitPusher$Companion.class",
+    "member_sha256": "857c12980d7fcab7830f3a3f9b376c1c63518a1a76c9e70ce227c998b8d84479",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.push.GitPusher$Companion"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.tag.GitPushTagAction$actionPerformed$1.txt",
+    "output_sha256": "bc416baa1493c33e6e4cef679e93bd694e81ba779fb678dae29e22e3a11c749d",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/tag/GitPushTagAction$actionPerformed$1.class",
+    "member_sha256": "b1da6bb43e4d53ecde02dd76ce54b8e10d467e168652ab32e34f50a1bb7fbe44",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.tag.GitPushTagAction$actionPerformed$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.tag.GitPushTagAction$actionPerformed$1$1.txt",
+    "output_sha256": "f08a88e9eddee576e55a0bb3726e4b20237516d6871822497287c7eb1677a9ec",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/tag/GitPushTagAction$actionPerformed$1$1.class",
+    "member_sha256": "d3749fa2065673c99a66770e43f9f75b2a61deac0fbeff96eb83b526544fd972",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.tag.GitPushTagAction$actionPerformed$1$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPushSource$Tag.txt",
+    "output_sha256": "72417de9dd10cc462c9d159c1cc95cc1bd4a7f6e7018f1fd35ed18a512485157",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/push/GitPushSource$Tag.class",
+    "member_sha256": "337e07c35e1dca4a1fb61b07ec61462b1d2be8c48ccc8e0af2bb1d39456857e5",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.push.GitPushSource$Tag"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.actions.tag.GitPushTagAction$Companion.txt",
+    "output_sha256": "4c26369cfeefbf05fb4202b5bcd295fdf134e069df359e2613103388a66a9fa8",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/actions/tag/GitPushTagAction$Companion.class",
+    "member_sha256": "a6444f963068e91fe43e52c8f71426cf05e48e34b5be865a990fbbcc0355bfd8",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.tag.GitPushTagAction$Companion"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitPusher.txt",
+    "output_sha256": "7826e425e575e5bfc8841f460e2facb6ffe5ee93cc2d10083fd2b3fe09ec36d5",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/push/GitPusher.class",
+    "member_sha256": "f2a216f74ae527bc3f77bc23e8b3a89d566d6c2b67973aa1545cd0b8e5ca3a86",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.push.GitPusher"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.GitTag.txt",
+    "output_sha256": "d31cc0b68534f8eaa57def9a9d12749aab0cc75702cc7ab87dd92fd09e5c0a48",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/GitTag.class",
+    "member_sha256": "ca723cff65ce80018fcce73db4a9106bbf3d0582a7c4e1d94f481c6186b12264",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.GitTag"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.push.GitSpecialRefRemoteBranch.txt",
+    "output_sha256": "9d489d4142f3136c37f8bb00da7266b2d9022fef525fd7befb94031c19aaf333",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "member": "git4idea/push/GitSpecialRefRemoteBranch.class",
+    "member_sha256": "d484d3b1bd5807d74cd02cecb7fbff6f2d4ebef21a951dd15fe9b3f8de92ceec",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+      "git4idea.push.GitSpecialRefRemoteBranch"
+    ],
+    "stderr": ""
+  },
+  {
+    "output": "javap/git4idea.branch.GitBrancherImpl$3.txt",
+    "output_sha256": "562e05302b06fa01aff528ec48e5e5abf4eeb5996cc2c920dfc4dbc1d8eec36e",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/branch/GitBrancherImpl$3.class",
+    "member_sha256": "80b89ec44d06c602ff025d44acec4bf6498018ed04aa2588ca8fad377bf87718",
+    "arguments": [
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.branch.GitBrancherImpl$3"
+    ],
+    "stderr": ""
+  }
+]

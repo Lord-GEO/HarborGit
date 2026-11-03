@@ -3,7 +3,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { createReadStream } from 'node:fs';
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
-import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, Remote, Repository, RepositoryOperation, RebaseSavedChanges, Requests, Responses, MergeWorkspace, MergeIntoResult, StagedSnapshot, AiSuggestion } from '../shared/types';
+import type { Activity, Branch, Commit, CommitFile, Conflict, Diff, Failure, FileChange, GitTag, Remote, Repository, RepositoryOperation, RebaseSavedChanges, Requests, Responses, MergeWorkspace, MergeIntoResult, StagedSnapshot, AiSuggestion } from '../shared/types';
 
 export class GitError extends Error {
   readonly details: Failure;
@@ -784,6 +784,44 @@ export class GitService {
     return remotes;
   }
   private async commitHash(v: unknown) { return (await this.git(['rev-parse', '--verify', `${hash(v)}^{commit}`])).stdout.trim(); }
+  private async tags(): Promise<GitTag[]> {
+    // All fields are ref metadata, never arbitrary annotation text or filenames.
+    const result = await this.git(['for-each-ref', '--sort=-creatordate', '--format=%(refname)%00%(objectname)%00%(objecttype)%00%(*objectname)%00%(*objecttype)%00%(creatordate:iso-strict)', 'refs/tags/']);
+    if (result.truncated) throw new GitError({ message: '标签列表过大，无法完整读取' });
+    return result.stdout.split('\n').filter(Boolean).map(line => {
+      const [full, objectId, objectType, peeled, peeledType, date] = line.split('\0');
+      return { name: full.slice('refs/tags/'.length), objectId, kind: objectType === 'tag' ? 'annotated' : 'lightweight', target: peeled || objectId, targetType: peeledType || objectType, date };
+    });
+  }
+  private async tagName(value: unknown) {
+    const name = ref(value, '标签名称');
+    if ((await this.git(['check-ref-format', `refs/tags/${name}`], { accepted: [0, 1] })).code !== 0) throw new GitError({ message: '标签名称无效，请勿包含空格、连续点号或特殊字符' });
+    return name;
+  }
+  private async createTag(p: Record<string, unknown>) {
+    const name = await this.tagName(p.name), target = await this.commitHash(p.targetCommit);
+    if (!['annotated', 'lightweight'].includes(String(p.kind))) throw new GitError({ message: '标签类型无效' });
+    if ((await this.git(['show-ref', '--verify', '--quiet', `refs/tags/${name}`], { accepted: [0, 1] })).code === 0) throw new GitError({ message: '同名标签已存在，请使用其他名称' });
+    const message = p.kind === 'annotated' ? text(p.message, '标签说明', 65536).trim() : '';
+    if (p.kind === 'annotated' && !message) throw new GitError({ message: '请填写附注标签的说明' });
+    // Explicit unsigned mode keeps the chosen type independent of tag.gpgSign.
+    await this.git(['-c', 'tag.gpgSign=false', 'tag', '--no-sign', ...(p.kind === 'annotated' ? ['-a', '--file=-', '--cleanup=strip'] : []), '--', name, target], { input: message });
+    return this.snapshot();
+  }
+  private async pushTag(p: Record<string, unknown>) {
+    const name = await this.tagName(p.name), remote = ref(p.remote, '远程名称');
+    if (!(await this.remotes()).some(r => r.name === remote)) throw new GitError({ message: '远程仓库不存在，请刷新后重试' });
+    const pushUrls = (await this.git(['remote', 'get-url', '--push', '--all', '--', remote])).stdout.trim().split('\n').filter(Boolean);
+    if (pushUrls.length !== 1) throw new GitError({ message: '该远程配置了多个推送地址，请先在外部 Git 工具中确认；当前仅支持单地址标签推送' });
+    const expected = text(p.expectedObjectId, '标签对象 ID', 64);
+    if (!/^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(expected)) throw new GitError({ message: '标签对象 ID 无效' });
+    const current = (await this.git(['show-ref', '--verify', '--hash', `refs/tags/${name}`], { accepted: [0, 1, 128] })).stdout.trim();
+    if (current !== expected) throw new GitError({ message: '标签已被修改或删除，请关闭对话框并刷新标签列表后重试' });
+    // Pin the reviewed object even if another process moves the tag after this check.
+    // Explicit refspec and no-follow-tags avoid pushing branches or incidental tags.
+    await this.git(['-c', 'push.followTags=false', '-c', `remote.${remote}.mirror=false`, 'push', '--no-follow-tags', '--no-mirror', '--recurse-submodules=no', '--progress', '--', remote, `${expected}:refs/tags/${name}`], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
+    return this.snapshot();
+  }
   private async parents(id: string) { return (await this.git(['rev-list', '--parents', '-n', '1', id])).stdout.trim().split(' ').slice(1); }
   private async history(skip = 0, limit = 100, scope: 'current' | 'all' = 'current'): Promise<Commit[]> {
     if (!Number.isInteger(skip) || skip < 0 || !Number.isInteger(limit) || limit < 1 || limit > 300) throw new GitError({ message: '历史分页参数无效' });
@@ -925,7 +963,7 @@ export class GitService {
     const p = payload as Record<string, unknown>;
     if (this.root && operation !== 'open' && operation !== 'clone') {
       const active = await this.operationState();
-      const permitted = new Set<keyof Requests>(['refresh', 'diff', 'history', 'commitFiles', 'branches', 'remotes', 'stagedSnapshot', 'stagedTree', 'generateCommit', 'stage', 'unstage', 'resolve', 'conflict', 'identity', 'rebaseAction', 'revertAction']);
+      const permitted = new Set<keyof Requests>(['refresh', 'diff', 'history', 'commitFiles', 'branches', 'tags', 'remotes', 'stagedSnapshot', 'stagedTree', 'generateCommit', 'stage', 'unstage', 'resolve', 'conflict', 'identity', 'rebaseAction', 'revertAction']);
       if ((active.operation || active.unsupported) && !permitted.has(operation)) throw new GitError({ message: `当前正在进行${active.operation?.kind === 'rebase' ? '变基，请使用变基的继续、跳过或中止' : active.operation?.kind === 'revert' ? '撤销提交，请使用撤销提交的继续或中止' : `${active.unsupported}，请先在外部 Git 工具中完成或中止`}操作` });
       const saved = await this.savedRebaseRecord(active);
       const recoveryPermitted = new Set<keyof Requests>([...permitted, 'rebaseSavedAction']);
@@ -972,6 +1010,9 @@ export class GitService {
       case 'generateCommit': return this.generateCommit();
       case 'commitFiles': return this.commitFiles(p.hash);
       case 'branches': return this.branches();
+      case 'tags': return this.tags();
+      case 'createTag': return this.createTag(p);
+      case 'pushTag': return this.pushTag(p);
       case 'createBranch': {
         const name = ref(p.name); await this.git(['check-ref-format', '--branch', name]);
         await this.git(['switch', '-c', name, ...(p.startPoint ? [ref(p.startPoint)] : [])]); return this.snapshot();

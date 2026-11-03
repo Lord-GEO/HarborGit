@@ -1,0 +1,51 @@
+Compiled from "GitPushTagsAction.kt"
+public final class git4idea.actions.tag.GitPushTagAction$Companion {
+  private git4idea.actions.tag.GitPushTagAction$Companion();
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public final com.intellij.dvcs.push.PushSpec<git4idea.push.GitPushSource, git4idea.push.GitPushTarget> preparePushSpec$intellij_vcs_git(git4idea.GitTag, git4idea.repo.GitRemote);
+    Code:
+       0: aload_1
+       1: ldc           #17                 // String reference
+       3: invokestatic  #23                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #25                 // String remote
+       9: invokestatic  #23                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_1
+      13: invokestatic  #31                 // Method git4idea/push/GitPushSource.createTag:(Lgit4idea/GitTag;)Lgit4idea/push/GitPushSource;
+      16: dup
+      17: ldc           #33                 // String createTag(...)
+      19: invokestatic  #36                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      22: astore_3
+      23: new           #38                 // class git4idea/push/GitPushTarget
+      26: dup
+      27: new           #40                 // class git4idea/push/GitSpecialRefRemoteBranch
+      30: dup
+      31: aload_1
+      32: invokevirtual #46                 // Method git4idea/GitTag.getFullName:()Ljava/lang/String;
+      35: aload_2
+      36: invokespecial #49                 // Method git4idea/push/GitSpecialRefRemoteBranch."<init>":(Ljava/lang/String;Lgit4idea/repo/GitRemote;)V
+      39: checkcast     #51                 // class git4idea/GitRemoteBranch
+      42: iconst_1
+      43: iconst_1
+      44: getstatic     #57                 // Field git4idea/push/GitPushTargetType.PUSH_SPEC:Lgit4idea/push/GitPushTargetType;
+      47: invokespecial #60                 // Method git4idea/push/GitPushTarget."<init>":(Lgit4idea/GitRemoteBranch;ZZLgit4idea/push/GitPushTargetType;)V
+      50: astore        4
+      52: new           #62                 // class com/intellij/dvcs/push/PushSpec
+      55: dup
+      56: aload_3
+      57: checkcast     #64                 // class com/intellij/dvcs/push/PushSource
+      60: aload         4
+      62: checkcast     #66                 // class com/intellij/dvcs/push/PushTarget
+      65: invokespecial #69                 // Method com/intellij/dvcs/push/PushSpec."<init>":(Lcom/intellij/dvcs/push/PushSource;Lcom/intellij/dvcs/push/PushTarget;)V
+      68: areturn
+
+  public git4idea.actions.tag.GitPushTagAction$Companion(kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: aload_0
+       1: invokespecial #77                 // Method "<init>":()V
+       4: return
+}

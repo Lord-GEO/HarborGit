@@ -1,0 +1,15 @@
+✔ tags: annotated historical target and lightweight HEAD preserve staged, unstaged and untracked Unicode files (6955.4209ms)
+✔ tags: duplicate, malformed, option-like names, invalid target and empty annotation fail without moving tags or files (4517.3859ms)
+✔ tags: explicit push sends only selected annotated tag despite followTags and mirror configuration; repeat is safe (6315.6228ms)
+✔ tags: lightweight push works and remote rejection never overwrites existing tag (4237.7631ms)
+✔ tags: stale push confirmation and unknown remote are rejected before any push (4097.2036ms)
+✔ tags: detached HEAD can tag a committed version; non-commit existing tags remain visible (3912.2183ms)
+✔ tags: long-running remote timeout leaves remote unchanged and reports cancellation (6410.3869ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36701.577

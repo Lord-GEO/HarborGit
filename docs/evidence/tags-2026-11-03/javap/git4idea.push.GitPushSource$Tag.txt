@@ -1,0 +1,167 @@
+Compiled from "GitPushSource.java"
+public final class git4idea.push.GitPushSource$Tag extends git4idea.push.GitPushSource {
+  private final git4idea.GitTag tag;
+
+  public git4idea.push.GitPushSource$Tag(git4idea.GitTag);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: invokespecial #1                  // Method git4idea/push/GitPushSource."<init>":()V
+      12: aload_0
+      13: aload_1
+      14: putfield      #7                  // Field tag:Lgit4idea/GitTag;
+      17: return
+
+  public java.lang.String getPresentation();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field tag:Lgit4idea/GitTag;
+       4: invokevirtual #13                 // Method git4idea/GitTag.getName:()Ljava/lang/String;
+       7: dup
+       8: ifnonnull     15
+      11: iconst_1
+      12: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+      15: areturn
+
+  public git4idea.GitLocalBranch getBranch();
+    Code:
+       0: aconst_null
+       1: areturn
+
+  public java.lang.String getRevision();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field tag:Lgit4idea/GitTag;
+       4: invokevirtual #19                 // Method git4idea/GitTag.getFullName:()Ljava/lang/String;
+       7: dup
+       8: ifnonnull     15
+      11: iconst_2
+      12: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+      15: areturn
+
+  public boolean isBranchRef();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  git4idea.GitTag getTag();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field tag:Lgit4idea/GitTag;
+       4: dup
+       5: ifnonnull     12
+       8: iconst_3
+       9: invokestatic  #55                 // Method $$$reportNull$$$0:(I)V
+      12: areturn
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 3
+                     0: 32
+                     1: 37
+                     2: 37
+                     3: 37
+               default: 32
+          }
+      32: ldc           #59                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      34: goto          42
+      37: ldc           #61                 // String @NotNull method %s.%s must not return null
+      39: goto          42
+      42: iload_0
+      43: tableswitch   { // 0 to 3
+                     0: 72
+                     1: 76
+                     2: 76
+                     3: 76
+               default: 72
+          }
+      72: iconst_3
+      73: goto          80
+      76: iconst_2
+      77: goto          80
+      80: anewarray     #63                 // class java/lang/Object
+      83: iload_0
+      84: tableswitch   { // 0 to 3
+                     0: 116
+                     1: 124
+                     2: 124
+                     3: 124
+               default: 116
+          }
+     116: dup
+     117: iconst_0
+     118: ldc           #64                 // String tag
+     120: aastore
+     121: goto          132
+     124: dup
+     125: iconst_0
+     126: ldc           #65                 // String git4idea/push/GitPushSource$Tag
+     128: aastore
+     129: goto          132
+     132: iload_0
+     133: tableswitch   { // 0 to 3
+                     0: 164
+                     1: 172
+                     2: 180
+                     3: 188
+               default: 164
+          }
+     164: dup
+     165: iconst_1
+     166: ldc           #65                 // String git4idea/push/GitPushSource$Tag
+     168: aastore
+     169: goto          196
+     172: dup
+     173: iconst_1
+     174: ldc           #66                 // String getPresentation
+     176: aastore
+     177: goto          196
+     180: dup
+     181: iconst_1
+     182: ldc           #67                 // String getRevision
+     184: aastore
+     185: goto          196
+     188: dup
+     189: iconst_1
+     190: ldc           #68                 // String getTag
+     192: aastore
+     193: goto          196
+     196: iload_0
+     197: tableswitch   { // 0 to 3
+                     0: 228
+                     1: 236
+                     2: 236
+                     3: 236
+               default: 228
+          }
+     228: dup
+     229: iconst_2
+     230: ldc           #69                 // String <init>
+     232: aastore
+     233: goto          239
+     236: goto          239
+     239: invokestatic  #73                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     242: iload_0
+     243: tableswitch   { // 0 to 3
+                     0: 272
+                     1: 283
+                     2: 283
+                     3: 283
+               default: 272
+          }
+     272: new           #75                 // class java/lang/IllegalArgumentException
+     275: dup_x1
+     276: swap
+     277: invokespecial #78                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     280: goto          294
+     283: new           #80                 // class java/lang/IllegalStateException
+     286: dup_x1
+     287: swap
+     288: invokespecial #81                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     291: goto          294
+     294: athrow
+}

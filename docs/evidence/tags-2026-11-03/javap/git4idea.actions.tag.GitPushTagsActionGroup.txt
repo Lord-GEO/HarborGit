@@ -1,0 +1,241 @@
+Compiled from "GitPushTagsActionGroup.kt"
+public final class git4idea.actions.tag.GitPushTagsActionGroup extends com.intellij.openapi.actionSystem.ActionGroup {
+  public static final git4idea.actions.tag.GitPushTagsActionGroup$Companion Companion;
+
+  private static final com.intellij.openapi.actionSystem.DataKey<git4idea.repo.GitRemote> REMOTE_IN_REPOSITORY_KEY;
+
+  private static final int MAX_ACTIONS_UNTIL_POPUP;
+
+  public git4idea.actions.tag.GitPushTagsActionGroup();
+    Code:
+       0: aload_0
+       1: ldc           #8                  // String action.Git.Push.Tag.text
+       3: iconst_0
+       4: anewarray     #10                 // class java/lang/Object
+       7: invokestatic  #16                 // Method git4idea/i18n/GitBundle.messagePointer:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/function/Supplier;
+      10: iconst_0
+      11: invokespecial #19                 // Method com/intellij/openapi/actionSystem/ActionGroup."<init>":(Ljava/util/function/Supplier;Z)V
+      14: return
+
+  public void update(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: ldc           #26                 // String e
+       3: invokestatic  #32                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_1
+       7: getstatic     #38                 // Field com/intellij/vcs/git/actions/GitSingleRefActions.SELECTED_REF_DATA_KEY:Lcom/intellij/openapi/actionSystem/DataKey;
+      10: invokevirtual #44                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getData:(Lcom/intellij/openapi/actionSystem/DataKey;)Ljava/lang/Object;
+      13: astore_3
+      14: aload_3
+      15: instanceof    #46                 // class git4idea/GitTag
+      18: ifeq          28
+      21: aload_3
+      22: checkcast     #46                 // class git4idea/GitTag
+      25: goto          29
+      28: aconst_null
+      29: astore_2
+      30: aload_1
+      31: getstatic     #51                 // Field git4idea/actions/branch/GitBranchActionsDataKeys.AFFECTED_REPOSITORIES:Lcom/intellij/openapi/actionSystem/DataKey;
+      34: invokevirtual #44                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getData:(Lcom/intellij/openapi/actionSystem/DataKey;)Ljava/lang/Object;
+      37: checkcast     #53                 // class java/util/List
+      40: astore_3
+      41: aload_2
+      42: ifnull        49
+      45: aload_3
+      46: ifnonnull     58
+      49: aload_1
+      50: invokevirtual #57                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+      53: iconst_0
+      54: invokevirtual #63                 // Method com/intellij/openapi/actionSystem/Presentation.setEnabledAndVisible:(Z)V
+      57: return
+      58: aload_3
+      59: checkcast     #65                 // class java/lang/Iterable
+      62: astore        5
+      64: iconst_0
+      65: istore        6
+      67: aload         5
+      69: invokeinterface #69,  1           // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      74: astore        7
+      76: aload         7
+      78: invokeinterface #75,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      83: ifeq          133
+      86: aload         7
+      88: invokeinterface #79,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      93: astore        8
+      95: iload         6
+      97: aload         8
+      99: checkcast     #81                 // class git4idea/repo/GitRepository
+     102: astore        9
+     104: istore        11
+     106: iconst_0
+     107: istore        10
+     109: aload         9
+     111: invokeinterface #85,  1           // InterfaceMethod git4idea/repo/GitRepository.getRemotes:()Ljava/util/Collection;
+     116: invokeinterface #91,  1           // InterfaceMethod java/util/Collection.size:()I
+     121: istore        12
+     123: iload         11
+     125: iload         12
+     127: iadd
+     128: istore        6
+     130: goto          76
+     133: iload         6
+     135: istore        4
+     137: aload_1
+     138: invokevirtual #57                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getPresentation:()Lcom/intellij/openapi/actionSystem/Presentation;
+     141: iload         4
+     143: bipush        6
+     145: if_icmplt     152
+     148: iconst_1
+     149: goto          153
+     152: iconst_0
+     153: invokevirtual #94                 // Method com/intellij/openapi/actionSystem/Presentation.setPopupGroup:(Z)V
+     156: return
+
+  public com.intellij.openapi.actionSystem.ActionUpdateThread getActionUpdateThread();
+    Code:
+       0: getstatic     #112                // Field com/intellij/openapi/actionSystem/ActionUpdateThread.BGT:Lcom/intellij/openapi/actionSystem/ActionUpdateThread;
+       3: areturn
+
+  public com.intellij.openapi.actionSystem.AnAction[] getChildren(com.intellij.openapi.actionSystem.AnActionEvent);
+    Code:
+       0: aload_1
+       1: dup
+       2: ifnull        18
+       5: getstatic     #51                 // Field git4idea/actions/branch/GitBranchActionsDataKeys.AFFECTED_REPOSITORIES:Lcom/intellij/openapi/actionSystem/DataKey;
+       8: invokevirtual #44                 // Method com/intellij/openapi/actionSystem/AnActionEvent.getData:(Lcom/intellij/openapi/actionSystem/DataKey;)Ljava/lang/Object;
+      11: checkcast     #53                 // class java/util/List
+      14: dup
+      15: ifnonnull     24
+      18: pop
+      19: iconst_0
+      20: anewarray     #117                // class com/intellij/openapi/actionSystem/AnAction
+      23: areturn
+      24: astore_2
+      25: invokestatic  #123                // Method com/intellij/openapi/actionSystem/ActionManager.getInstance:()Lcom/intellij/openapi/actionSystem/ActionManager;
+      28: ldc           #125                // String Git.Tag.Push
+      30: invokevirtual #129                // Method com/intellij/openapi/actionSystem/ActionManager.getAction:(Ljava/lang/String;)Lcom/intellij/openapi/actionSystem/AnAction;
+      33: astore_3
+      34: aload_2
+      35: checkcast     #65                 // class java/lang/Iterable
+      38: astore        4
+      40: iconst_0
+      41: istore        5
+      43: aload         4
+      45: astore        6
+      47: new           #131                // class java/util/ArrayList
+      50: dup
+      51: invokespecial #133                // Method java/util/ArrayList."<init>":()V
+      54: checkcast     #87                 // class java/util/Collection
+      57: astore        7
+      59: iconst_0
+      60: istore        8
+      62: aload         6
+      64: invokeinterface #69,  1           // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+      69: astore        9
+      71: aload         9
+      73: invokeinterface #75,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      78: ifeq          240
+      81: aload         9
+      83: invokeinterface #79,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      88: astore        10
+      90: aload         10
+      92: checkcast     #81                 // class git4idea/repo/GitRepository
+      95: astore        11
+      97: iconst_0
+      98: istore        12
+     100: aload         11
+     102: invokeinterface #85,  1           // InterfaceMethod git4idea/repo/GitRepository.getRemotes:()Ljava/util/Collection;
+     107: dup
+     108: ldc           #135                // String getRemotes(...)
+     110: invokestatic  #138                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     113: checkcast     #65                 // class java/lang/Iterable
+     116: astore        13
+     118: iconst_0
+     119: istore        14
+     121: aload         13
+     123: astore        15
+     125: new           #131                // class java/util/ArrayList
+     128: dup
+     129: aload         13
+     131: bipush        10
+     133: invokestatic  #144                // Method kotlin/collections/CollectionsKt.collectionSizeOrDefault:(Ljava/lang/Iterable;I)I
+     136: invokespecial #147                // Method java/util/ArrayList."<init>":(I)V
+     139: checkcast     #87                 // class java/util/Collection
+     142: astore        16
+     144: iconst_0
+     145: istore        17
+     147: aload         15
+     149: invokeinterface #69,  1           // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+     154: astore        18
+     156: aload         18
+     158: invokeinterface #75,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+     163: ifeq          217
+     166: aload         18
+     168: invokeinterface #79,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     173: astore        19
+     175: aload         16
+     177: aload         19
+     179: checkcast     #149                // class git4idea/repo/GitRemote
+     182: astore        20
+     184: astore        21
+     186: iconst_0
+     187: istore        22
+     189: new           #151                // class git4idea/actions/tag/GitPushTagActionWrapper
+     192: dup
+     193: aload_3
+     194: invokestatic  #155                // Method kotlin/jvm/internal/Intrinsics.checkNotNull:(Ljava/lang/Object;)V
+     197: aload_3
+     198: aload         11
+     200: aload         20
+     202: invokespecial #158                // Method git4idea/actions/tag/GitPushTagActionWrapper."<init>":(Lcom/intellij/openapi/actionSystem/AnAction;Lgit4idea/repo/GitRepository;Lgit4idea/repo/GitRemote;)V
+     205: aload         21
+     207: swap
+     208: invokeinterface #162,  2          // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+     213: pop
+     214: goto          156
+     217: aload         16
+     219: checkcast     #53                 // class java/util/List
+     222: nop
+     223: checkcast     #65                 // class java/lang/Iterable
+     226: nop
+     227: astore        11
+     229: aload         7
+     231: aload         11
+     233: invokestatic  #166                // Method kotlin/collections/CollectionsKt.addAll:(Ljava/util/Collection;Ljava/lang/Iterable;)Z
+     236: pop
+     237: goto          71
+     240: aload         7
+     242: checkcast     #53                 // class java/util/List
+     245: nop
+     246: checkcast     #87                 // class java/util/Collection
+     249: astore        4
+     251: nop
+     252: iconst_0
+     253: istore        5
+     255: aload         4
+     257: astore        6
+     259: aload         6
+     261: iconst_0
+     262: anewarray     #117                // class com/intellij/openapi/actionSystem/AnAction
+     265: invokeinterface #170,  2          // InterfaceMethod java/util/Collection.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+     270: checkcast     #172                // class "[Lcom/intellij/openapi/actionSystem/AnAction;"
+     273: areturn
+
+  public static final com.intellij.openapi.actionSystem.DataKey access$getREMOTE_IN_REPOSITORY_KEY$cp();
+    Code:
+       0: getstatic     #201                // Field REMOTE_IN_REPOSITORY_KEY:Lcom/intellij/openapi/actionSystem/DataKey;
+       3: areturn
+
+  static {};
+    Code:
+       0: new           #204                // class git4idea/actions/tag/GitPushTagsActionGroup$Companion
+       3: dup
+       4: aconst_null
+       5: invokespecial #207                // Method git4idea/actions/tag/GitPushTagsActionGroup$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+       8: putstatic     #211                // Field Companion:Lgit4idea/actions/tag/GitPushTagsActionGroup$Companion;
+      11: getstatic     #216                // Field com/intellij/openapi/actionSystem/DataKey.Companion:Lcom/intellij/openapi/actionSystem/DataKey$Companion;
+      14: ldc           #218                // String Git.Remote.In.Repository
+      16: invokevirtual #224                // Method com/intellij/openapi/actionSystem/DataKey$Companion.create:(Ljava/lang/String;)Lcom/intellij/openapi/actionSystem/DataKey;
+      19: putstatic     #201                // Field REMOTE_IN_REPOSITORY_KEY:Lcom/intellij/openapi/actionSystem/DataKey;
+      22: return
+}

@@ -1,0 +1,6 @@
+{
+  "open": false,
+  "cleanup_pending": false,
+  "package": "6.8.0",
+  "observation": "binary_session after export; no target was opened by this task"
+}

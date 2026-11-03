@@ -1,0 +1,15 @@
+{
+  "artifact_hashes_passed": 2,
+  "class_and_javap_output_hashes_passed": 27,
+  "resource_member_hashes_passed": 2,
+  "target_opened_by_this_task": false,
+  "end_target_open": false,
+  "cleanup_pending": false,
+  "ui_actions": 0,
+  "git_repository_mutations": 0,
+  "remote_operations": 0,
+  "rea_inventory_view_coverage": "6/6 selected occurrences",
+  "report": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\outputs\\HarborGit\\docs\\IDEA-TAGS-ANALYSIS.md",
+  "links_passed": true,
+  "scope": "Only new IDEA tags report and this evidence directory; no HarborGit implementation/version changes"
+}

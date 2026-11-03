@@ -1,0 +1,14 @@
+
+> harbor-git@1.7.0 test:ui
+> playwright test tags-ui.spec.ts
+
+
+Running 3 tests using 1 worker
+
+(node:8044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\tags-ui.spec.ts:47:1 › tags UI: create on selected history commit, retain dirty index, create lightweight HEAD and push only selected tag (1.7m)
+  ok 2 tests\tags-ui.spec.ts:75:1 › tags UI: duplicate creation, stale confirmation and conflicting remote tag keep dialogs open with actionable errors (59.4s)
+  ok 3 tests\tags-ui.spec.ts:90:1 › tags UI: empty repository disables creation and missing remote links to offline remote settings (30.5s)
+
+  3 passed (3.2m)

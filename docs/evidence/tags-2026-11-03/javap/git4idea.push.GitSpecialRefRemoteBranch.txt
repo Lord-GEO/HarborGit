@@ -1,0 +1,49 @@
+Compiled from "GitSpecialRefRemoteBranch.kt"
+public final class git4idea.push.GitSpecialRefRemoteBranch extends git4idea.GitRemoteBranch {
+  private final java.lang.String nameForRemoteOperations;
+
+  private final java.lang.String nameForLocalOperations;
+
+  private final java.lang.String fullName;
+
+  public git4idea.push.GitSpecialRefRemoteBranch(java.lang.String, git4idea.repo.GitRemote);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String ref
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #17                 // String remote
+       9: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_0
+      13: aload_1
+      14: aload_2
+      15: invokespecial #19                 // Method git4idea/GitRemoteBranch."<init>":(Ljava/lang/String;Lgit4idea/repo/GitRemote;)V
+      18: aload_0
+      19: aload_1
+      20: putfield      #23                 // Field nameForRemoteOperations:Ljava/lang/String;
+      23: aload_0
+      24: aload_1
+      25: putfield      #26                 // Field nameForLocalOperations:Ljava/lang/String;
+      28: aload_0
+      29: aload_1
+      30: putfield      #29                 // Field fullName:Ljava/lang/String;
+      33: return
+
+  public java.lang.String getNameForRemoteOperations();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field nameForRemoteOperations:Ljava/lang/String;
+       4: areturn
+
+  public java.lang.String getNameForLocalOperations();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field nameForLocalOperations:Ljava/lang/String;
+       4: areturn
+
+  public java.lang.String getFullName();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field fullName:Ljava/lang/String;
+       4: areturn
+}

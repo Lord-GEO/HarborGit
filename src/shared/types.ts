@@ -16,6 +16,7 @@ export interface CommitFile { path: string; oldPath?: string; status: string; }
 export interface Diff { text: string; binary: boolean; truncated: boolean; }
 export interface Branch { name: string; current: boolean; remote: boolean; upstream: string; subject: string; hash: string; }
 export interface Remote { name: string; fetch: string; push: string; }
+export interface GitTag { name: string; objectId: string; kind: 'annotated' | 'lightweight'; target: string; targetType: string; date: string; }
 export interface Conflict { path: string; base: string | null; ours: string | null; theirs: string | null; worktree: string; binary: boolean; truncated: boolean; }
 export interface Activity { id: string; sessionId?: string; command: string; kind: 'start' | 'progress' | 'finish'; text: string; time: string; exitCode?: number; }
 export interface Failure { message: string; code?: number | string; command?: string; stderr?: string; stdout?: string; cancelled?: boolean; }
@@ -34,6 +35,9 @@ export interface Requests {
   history: { skip?: number; limit?: number; scope?: 'all' | 'current' }; commitFiles: { hash: string }; branches: Record<string, never>;
   stagedSnapshot: Record<string, never>; stagedTree: Record<string, never>; generateCommit: Record<string, never>;
   createBranch: { name: string; startPoint?: string }; checkout: { name: string }; deleteBranch: { name: string };
+  tags: Record<string, never>;
+  createTag: { name: string; targetCommit: string; kind: 'annotated' | 'lightweight'; message?: string };
+  pushTag: { name: string; remote: string; expectedObjectId: string };
   remotes: Record<string, never>; remote: { action: 'fetch' | 'pull' | 'push'; remote: string; branch?: string };
   saveRemote: { name: string; url: string; pushUrl?: string; create: boolean }; removeRemote: { name: string };
   merge: { branch: string }; mergeInto: { target: string }; finishMergeWorkspace: Record<string, never>; conflict: { path: string }; resolve: { path: string; choice: 'ours' | 'theirs' | 'manual'; content?: string };
@@ -50,6 +54,7 @@ export interface Responses {
   open: Repository; clone: Repository; refresh: Repository; diff: Diff; stage: Repository; unstage: Repository; commit: Repository;
   history: Commit[]; commitFiles: CommitFile[]; branches: Branch[]; createBranch: Repository; checkout: Repository; deleteBranch: Repository;
   stagedSnapshot: StagedSnapshot; stagedTree: string; generateCommit: AiSuggestion;
+  tags: GitTag[]; createTag: Repository; pushTag: Repository;
   remotes: Remote[]; remote: Repository; merge: Repository; mergeInto: MergeIntoResult; finishMergeWorkspace: { sourceRoot: string }; conflict: Conflict; resolve: Repository; abortMerge: Repository; identity: Repository;
   saveRemote: Repository; removeRemote: Repository;
   rebase: Repository; rebaseAction: Repository; rebaseSavedAction: Repository; revert: Repository; revertAction: Repository; reset: Repository; rollback: Repository;
