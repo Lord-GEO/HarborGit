@@ -46,6 +46,11 @@ export class Workspaces {
     if (service.pendingCount) throw new GitError({ message: '该项目仍有任务运行，请完成或取消后再关闭标签' });
     this.services.delete(id); return true;
   }
+  rootFor(id: string): string {
+    const root = typeof id === 'string' && this.services.get(id)?.repositoryRoot;
+    if (!root) throw new GitError({ message: '项目已关闭，请先打开仓库' });
+    return root;
+  }
   cancel(id: string) { for (const service of this.services.values()) if (service.cancel(id)) return true; return false; }
   cancelAll() { for (const service of this.services.values()) service.cancelAll(); }
   get pendingCount() { return [...this.services.values()].reduce((count, service) => count + service.pendingCount, 0); }

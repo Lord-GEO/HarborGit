@@ -1,0 +1,13 @@
+{
+  "version": "1.8.0",
+  "status": "passed",
+  "checks": [
+    "Packaged native PTY, interactive input, Chinese output, repository cwd and Git command",
+    "Hide/show and project switching preserve independent shell sessions; Git UI refresh stays manual",
+    "Ctrl+C interrupts running command; resize and light theme remain usable",
+    "Closing a project and quitting the app clean up their own PTYs"
+  ],
+  "mode": "packaged",
+  "fullRegressionRun": false,
+  "fixtureRemoved": true
+}

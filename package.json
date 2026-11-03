@@ -1,6 +1,6 @@
 {
   "name": "harbor-git",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "An independent desktop Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",
@@ -28,11 +28,15 @@
     "dist:portable": "npm run build && node -e \"require('electron')\" && electron-builder --win portable --x64 -c.electronDist=node_modules/electron/dist --publish never",
     "dist:mac": "npm run build && electron-builder --mac --arm64 --x64 --publish never",
     "dist:mac:arm64": "npm run build && electron-builder --mac --arm64 --publish never",
-    "dist:mac:x64": "npm run build && electron-builder --mac --x64 --publish never"
+    "dist:mac:x64": "npm run build && electron-builder --mac --x64 --publish never",
+    "test:terminal": "node scripts/smoke-terminal.mjs"
   },
   "dependencies": {
+    "@xterm/addon-fit": "0.11.0",
+    "@xterm/xterm": "6.0.0",
     "builder-util-runtime": "9.7.0",
     "electron-updater": "6.8.11",
+    "node-pty": "1.1.0",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
@@ -59,10 +63,14 @@
       "dist-electron/**/*",
       "assets/**/*",
       "package.json",
-      "LICENSE"
+      "LICENSE",
+      "!node_modules/node-pty/**/*.pdb",
+      "!node_modules/node-pty/third_party/**/*"
     ],
     "asar": true,
-    "releaseInfo": { "releaseNotesFile": "release-notes.md" },
+    "releaseInfo": {
+      "releaseNotesFile": "release-notes.md"
+    },
     "mac": {
       "publish": null,
       "target": [
@@ -77,7 +85,15 @@
       "notarize": false
     },
     "win": {
-      "publish": [{ "provider": "github", "owner": "Lord-GEO", "repo": "HarborGit", "releaseType": "release", "channel": "latest" }],
+      "publish": [
+        {
+          "provider": "github",
+          "owner": "Lord-GEO",
+          "repo": "HarborGit",
+          "releaseType": "release",
+          "channel": "latest"
+        }
+      ],
       "target": [
         "nsis"
       ],
@@ -107,6 +123,10 @@
     },
     "portable": {
       "artifactName": "HarborGit-${version}-Windows-x64.exe"
-    }
+    },
+    "npmRebuild": false,
+    "asarUnpack": [
+      "node_modules/node-pty/**/*"
+    ]
   }
 }

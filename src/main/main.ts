@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain, safeStorage, shell, type IpcMainInvokeEvent } from 'electron';
+import { app, BrowserWindow, clipboard, dialog, ipcMain, safeStorage, shell, type IpcMainEvent, type IpcMainInvokeEvent } from 'electron';
 import path from 'node:path';
 import * as fs from 'node:fs/promises';
 import { GitError } from './git-service';
@@ -7,6 +7,7 @@ import { AiSettingsStore, generateMessage } from './ai';
 import { UpdateService, RELEASES_URL } from './updates';
 import { createUpdateEngine } from './update-engine';
 import { AppearanceStore } from './appearance';
+import { TerminalService } from './terminal';
 import type { Requests, Result, AiSettingsInput } from '../shared/types';
 
 if (process.env.HARBOR_USER_DATA && path.isAbsolute(process.env.HARBOR_USER_DATA)) app.setPath('userData', process.env.HARBOR_USER_DATA);
@@ -18,8 +19,9 @@ let updateConfirmationOpen = false;
 let recentPaths: string[] = [];
 const ai = new AiSettingsStore(path.join(app.getPath('userData'), 'ai-settings.json'), { available: () => safeStorage.isEncryptionAvailable(), encrypt: value => safeStorage.encryptStringAsync(value), decrypt: async value => (await safeStorage.decryptStringAsync(value)).result });
 const service = new Workspaces({ generateMessage: async (snapshot, signal) => generateMessage(await ai.requestConfig(), snapshot, signal), mergeWorkspaceRoot: path.join(app.getPath('userData'), 'merge-workspaces'), onActivity: event => { if (win && !win.isDestroyed()) win.webContents.send('harbor:activity', event); } });
+const terminals = new TerminalService(id => service.rootFor(id), event => { if (win && !win.isDestroyed() && !win.webContents.isDestroyed()) win.webContents.send('harbor:terminal-event', event); });
 const recentFile = () => path.join(app.getPath('userData'), 'recent.json');
-function verifySender(event: IpcMainInvokeEvent) {
+function verifySender(event: IpcMainInvokeEvent | IpcMainEvent) {
   if (!win || event.sender !== win.webContents || event.senderFrame !== win.webContents.mainFrame) throw new Error('Invalid IPC sender');
 }
 async function remember(root: string) {
@@ -42,7 +44,7 @@ app.whenReady().then(async () => {
     currentVersion: app.getVersion(), mode, settingsFile: path.join(app.getPath('userData'), 'update-settings.json'),
     message: mode === 'development' ? '开发模式不执行应用更新，请使用 Windows Setup 安装版。' : mode === 'manual' ? '此版本请从发布页下载更新。Windows 安装版支持应用内下载和安装；当前便携版、目录版及未签名 macOS 版使用手动更新。' : undefined,
     engine: installed ? createUpdateEngine(error => updates?.installFailed(error)) : undefined,
-    canInstall: () => service.pendingCount === 0,
+    canInstall: () => service.pendingCount === 0 && terminals.runningCount === 0,
     onState: state => { if (win && !win.isDestroyed()) win.webContents.send('harbor:update', state); },
   });
   await updates.load();
@@ -61,8 +63,35 @@ app.whenReady().then(async () => {
   });
   ipcMain.handle('harbor:close-repository', (event, sessionId: string): Result<boolean> => {
     verifySender(event);
-    try { return { ok: true, data: service.close(sessionId) }; }
+    try { const closed = service.close(sessionId); if (closed) terminals.stop(sessionId); return { ok: true, data: closed }; }
     catch (e) { return { ok: false, error: e instanceof GitError ? e.details : { message: String(e) } }; }
+  });
+  ipcMain.handle('harbor:terminal-open', async (event, sessionId: string, cols: number, rows: number) => {
+    verifySender(event);
+    try { if (updates?.isInstalling) throw new Error('正在安装更新'); return { ok: true, data: await terminals.open(sessionId, cols, rows) }; }
+    catch (error) { return { ok: false, error: { message: error instanceof Error ? error.message : '终端启动失败' } }; }
+  });
+  ipcMain.handle('harbor:terminal-stop', (event, sessionId: string, id: string) => {
+    verifySender(event);
+    try { service.rootFor(sessionId); return { ok: true, data: terminals.stop(sessionId, id) }; }
+    catch (error) { return { ok: false, error: { message: error instanceof Error ? error.message : '终端结束失败' } }; }
+  });
+  ipcMain.handle('harbor:terminal-clipboard', async (event, sessionId: string, id: string, action: unknown, text?: string) => {
+    verifySender(event);
+    try {
+      terminals.validate(sessionId, id);
+      if (action === 'copy' && typeof text === 'string' && text.length <= 1024 * 1024) { await clipboard.writeText(text); return { ok: true, data: '' }; }
+      if (action === 'paste') { const value = await clipboard.readText(); if (value.length > 1024 * 1024) throw new Error('粘贴内容过长，请分段粘贴'); return { ok: true, data: value }; }
+      throw new Error('剪贴板操作无效');
+    } catch (error) { return { ok: false, error: { message: error instanceof Error ? error.message : '剪贴板操作失败' } }; }
+  });
+  for (const action of ['input', 'resize', 'ack'] as const) ipcMain.on(`harbor:terminal-${action}`, (event, sessionId: string, id: string, value: unknown, rows?: number) => {
+    try {
+      verifySender(event);
+      if (action === 'input') terminals.input(sessionId, id, value);
+      else if (action === 'resize') terminals.resize(sessionId, id, value as number, rows!);
+      else terminals.acknowledge(sessionId, id, value as number);
+    } catch { /* Late input/resize/ack after a terminal closes is discarded. */ }
   });
   ipcMain.handle('harbor:pick-directory', async event => { verifySender(event); const result = await dialog.showOpenDialog(win!, { title: '选择仓库或父目录', properties: ['openDirectory', 'createDirectory'] }); return result.canceled ? null : result.filePaths[0]; });
   ipcMain.handle('harbor:cancel', (event, id: string) => { verifySender(event); return typeof id === 'string' && service.cancel(id); });
@@ -85,6 +114,7 @@ app.whenReady().then(async () => {
         case 'install': {
           if (updates!.snapshot.phase !== 'downloaded') throw new Error('请先下载并校验更新');
           if (service.pendingCount) throw new Error('项目仍有任务运行，请完成或取消后再安装更新');
+          if (terminals.runningCount) throw new Error('请先结束内置终端会话，再安装更新');
           if (updateConfirmationOpen) throw new Error('请先处理已打开的安装确认窗口');
           updateConfirmationOpen = true;
           try {
@@ -119,5 +149,5 @@ app.whenReady().then(async () => {
   if (devURL) await win.loadURL(devURL); else await win.loadFile(path.join(__dirname, '../dist/index.html'));
   if (!process.env.HARBOR_TEST_HIDDEN) updates.schedule();
 });
-app.on('window-all-closed', () => { service.cancelAll(); app.quit(); });
-app.on('before-quit', () => { updates?.dispose(); service.cancelAll(); });
+app.on('window-all-closed', () => { terminals.dispose(); service.cancelAll(); app.quit(); });
+app.on('before-quit', () => { terminals.dispose(); updates?.dispose(); service.cancelAll(); });

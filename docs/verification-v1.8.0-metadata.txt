@@ -1,0 +1,35 @@
+
+> harbor-git@1.8.0 verify:updates
+> node scripts/verify-update-metadata.mjs
+
+{
+  "status": "passed",
+  "version": "1.8.0",
+  "setup": "HarborGit-1.8.0-Setup-x64.exe",
+  "bytes": 128336244,
+  "sha256": "9ed7c44e540cca66d9f0272cba2ac08989f83716df9e7d75c4ac333f9141c04a",
+  "sha512": "YcnX2wCjDcw55wzH/MQHvfxfOJ8qOWQxcbMyrlGeSHIX+NN9eLl0HX1807aEX47Kru3aOu2rIYENYV+AsyCnqA==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.8.0",
+    "files": [
+      {
+        "url": "HarborGit-1.8.0-Setup-x64.exe",
+        "sha512": "YcnX2wCjDcw55wzH/MQHvfxfOJ8qOWQxcbMyrlGeSHIX+NN9eLl0HX1807aEX47Kru3aOu2rIYENYV+AsyCnqA==",
+        "size": 128336244
+      }
+    ],
+    "path": "HarborGit-1.8.0-Setup-x64.exe",
+    "sha512": "YcnX2wCjDcw55wzH/MQHvfxfOJ8qOWQxcbMyrlGeSHIX+NN9eLl0HX1807aEX47Kru3aOu2rIYENYV+AsyCnqA==",
+    "releaseNotes": "# HarborGit v1.8.0\r\n\r\n- 新增项目内置终端，点击左下角“终端”或 Ctrl + 反引号键 打开。\r\n- 使用真实 PowerShell 会话，在当前仓库目录直接运行 Git 和其他命令，支持中文、交互输入和 Ctrl+C。\r\n- 每个项目独立保留终端；收起面板或切换项目不会结束会话。\r\n- 支持拖动调整高度、亮暗主题、复制粘贴、清屏、结束与重新启动。\r\n- 关闭项目或退出应用时清理对应终端；安装更新前需先结束终端会话。\r\n- 终端操作不触发 Git 界面的自动刷新；完成后可点击刷新或按 Ctrl+R。\r\n\r\n本版新增终端功能，采用次版本 1.8.0。保留此前的手动刷新、标签、Git、AI、多项目与更新功能。\r\n\r\n发布时请同时上传 Setup、对应 `.exe.blockmap` 与 `latest.yml`。\r\n",
+    "releaseDate": "2026-11-03T03:51:21.813Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}
