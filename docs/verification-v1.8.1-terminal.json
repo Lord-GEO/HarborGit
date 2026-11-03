@@ -1,0 +1,14 @@
+{
+  "version": "1.8.1",
+  "status": "passed",
+  "checks": [
+    "Packaged native PTY, interactive input, Chinese output, repository cwd and Git command",
+    "Multiple terminal tabs in one project isolate variables/cwd, continue background commands, and close independently",
+    "Hide/show and project switching preserve independent shell sessions; Git UI refresh stays manual",
+    "Ctrl+C interrupts running command; resize and light theme remain usable",
+    "Closing a project cleans all its terminal sessions without affecting another project; app exit cleans the rest"
+  ],
+  "mode": "packaged",
+  "fullRegressionRun": false,
+  "fixtureRemoved": true
+}

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.8.1",
+  "setup": "HarborGit-1.8.1-Setup-x64.exe",
+  "bytes": 128339916,
+  "sha256": "3df7156cc0aacabbec1a917733bd0f16980891324181d90f7454e9110a2188d0",
+  "sha512": "N5OHTgMciy8+zPFnnLJaNS0Ql8/Smosb9lmkc7HP7x/zsOk8WXZIhgrpnJEnUv5BrIMB2r7A+ojCOxmN9nTcIA==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.8.1",
+    "files": [
+      {
+        "url": "HarborGit-1.8.1-Setup-x64.exe",
+        "sha512": "N5OHTgMciy8+zPFnnLJaNS0Ql8/Smosb9lmkc7HP7x/zsOk8WXZIhgrpnJEnUv5BrIMB2r7A+ojCOxmN9nTcIA==",
+        "size": 128339916
+      }
+    ],
+    "path": "HarborGit-1.8.1-Setup-x64.exe",
+    "sha512": "N5OHTgMciy8+zPFnnLJaNS0Ql8/Smosb9lmkc7HP7x/zsOk8WXZIhgrpnJEnUv5BrIMB2r7A+ojCOxmN9nTcIA==",
+    "releaseNotes": "# HarborGit v1.8.1\r\n\r\n- 项目内可新建多个终端，点击终端面板上方“＋ 新建终端”。\r\n- 使用终端标签页切换会话；各终端分别保留目录、变量、输出和运行中的命令。\r\n- 关闭单个终端只结束该会话；收起面板或切换项目保留全部终端。\r\n- 关闭项目会清理其全部终端，保留其他项目中的会话。\r\n- 保留中文输入、Ctrl+C、复制粘贴、明暗主题和手动刷新行为。\r\n\r\n本版继续完善 1.8.x 终端功能。安装更新前，请先结束正在运行的终端会话。\r\n\r\n发布时请同时上传 Setup、对应 `.exe.blockmap` 与 `latest.yml`。\r\n",
+    "releaseDate": "2026-11-03T06:48:24.296Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

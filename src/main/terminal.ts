@@ -15,27 +15,37 @@ function size(value: unknown, min: number, max: number) {
   return value as number;
 }
 
-/** One real PTY per open repository. Output is bounded and acknowledged by xterm. */
+/** Independent PTYs, scoped by repository and stable terminal tab key. */
 export class TerminalService {
   private sessions = new Map<string, Session>();
+  private closedKeys = new Map<string, Set<string>>();
   private native?: typeof import('node-pty');
   private disposed = false;
   constructor(private rootFor: (id: string) => string, private emit: (event: TerminalEvent) => void) {}
   get runningCount() { return [...this.sessions.values()].filter(session => session.info.running).length; }
   private find(sessionId: string, id: string) {
     this.rootFor(sessionId);
-    const session = this.sessions.get(sessionId);
-    if (!session || session.info.id !== id) throw new Error('终端会话已结束，请重新启动');
+    const session = this.sessions.get(id);
+    if (!session || session.info.sessionId !== sessionId) throw new Error('终端会话已结束，请重新启动');
     return session;
   }
-  async open(sessionId: string, cols: number, rows: number): Promise<TerminalSnapshot> {
-    size(cols, 2, 1000); size(rows, 1, 500);
+  private slot(sessionId: string, terminalKey: string) {
+    return [...this.sessions.values()].find(session => session.info.sessionId === sessionId && session.info.terminalKey === terminalKey);
+  }
+  private checkKey(sessionId: string, terminalKey: string) {
     this.rootFor(sessionId);
+    if (typeof terminalKey !== 'string' || !/^[a-zA-Z0-9-]{1,80}$/.test(terminalKey)) throw new Error('终端标签标识无效');
+    if (this.closedKeys.get(sessionId)?.has(terminalKey)) throw new Error('终端标签已关闭，请新建终端');
+    if (this.disposed) throw new Error('应用正在退出');
+  }
+  async open(sessionId: string, cols: number, rows: number, terminalKey = 'default'): Promise<TerminalSnapshot> {
+    size(cols, 2, 1000); size(rows, 1, 500);
+    this.checkKey(sessionId, terminalKey);
     // Native loading stays lazy so a terminal failure never prevents opening Git.
     this.native ??= await import('node-pty');
     const cwd = this.rootFor(sessionId);
-    if (this.disposed) throw new Error('应用正在退出');
-    let session = this.sessions.get(sessionId);
+    this.checkKey(sessionId, terminalKey);
+    let session = this.slot(sessionId, terminalKey);
     if (!session?.info.running) {
       let shell: string, args: string[];
       if (process.platform === 'win32') {
@@ -49,16 +59,16 @@ export class TerminalService {
         args = ['-l'];
       }
       // Another open request may have completed during shell discovery.
-      this.rootFor(sessionId);
-      if (this.disposed) throw new Error('应用正在退出');
-      session = this.sessions.get(sessionId);
+      this.checkKey(sessionId, terminalKey);
+      session = this.slot(sessionId, terminalKey);
       if (!session?.info.running) {
+        if (session) { this.sessions.delete(session.info.id); if (session.timer) clearTimeout(session.timer); }
         const env = { ...process.env, TERM: 'xterm-256color', COLORTERM: 'truecolor', TERM_PROGRAM: 'HarborGit' };
         for (const key of ['ELECTRON_RUN_AS_NODE', 'NODE_OPTIONS', 'HARBOR_USER_DATA', 'HARBOR_DEV_URL', 'HARBOR_TEST_HIDDEN']) delete (env as NodeJS.ProcessEnv)[key];
         const pty = this.native.spawn(shell, args, { cwd, cols, rows, name: 'xterm-256color', env, useConpty: true, useConptyDll: false });
-        session = { info: { id: randomUUID(), sessionId, pid: pty.pid, shell: path.basename(shell), cwd, running: true }, pty, history: '', pending: '', sequence: 0, sent: 0, acknowledged: 0, paused: false };
+        session = { info: { id: randomUUID(), sessionId, terminalKey, pid: pty.pid, shell: path.basename(shell), cwd, running: true }, pty, history: '', pending: '', sequence: 0, sent: 0, acknowledged: 0, paused: false };
         const current = session;
-        this.sessions.set(sessionId, current);
+        this.sessions.set(current.info.id, current);
         pty.onData(data => {
           current.sequence += data.length; current.history = (current.history + data).slice(-WINDOW); current.pending += data;
           this.pressure(current); this.schedule(current);
@@ -66,7 +76,7 @@ export class TerminalService {
         pty.onExit(event => {
           current.info.running = false;
           this.flush(current, true);
-          this.emit({ id: current.info.id, sessionId, kind: 'exit', exitCode: event.exitCode });
+          this.emit({ id: current.info.id, sessionId, terminalKey, kind: 'exit', exitCode: event.exitCode });
         });
       }
     }
@@ -93,7 +103,7 @@ export class TerminalService {
     if (count < session.pending.length && /[\uD800-\uDBFF]/.test(session.pending[count - 1] || '')) count--;
     if (count > 0) {
       const data = session.pending.slice(0, count); session.pending = session.pending.slice(count); session.sent += count;
-      this.emit({ id: session.info.id, sessionId: session.info.sessionId, kind: 'data', data, sequence: session.sent });
+      this.emit({ id: session.info.id, sessionId: session.info.sessionId, terminalKey: session.info.terminalKey, kind: 'data', data, sequence: session.sent });
     }
     this.pressure(session);
     if (session.pending && room > count && count > 0) this.schedule(session);
@@ -116,12 +126,23 @@ export class TerminalService {
   }
   validate(sessionId: string, id: string) { this.find(sessionId, id); }
   stop(sessionId: string, id?: string) {
-    const session = this.sessions.get(sessionId);
-    if (!session || (id && session.info.id !== id)) return false;
-    this.sessions.delete(sessionId);
-    if (session.timer) clearTimeout(session.timer);
-    if (session.info.running) { session.info.running = false; session.pty.kill(); }
+    const targets = [...this.sessions.values()].filter(session => session.info.sessionId === sessionId && (!id || session.info.id === id));
+    for (const session of targets) {
+      this.sessions.delete(session.info.id);
+      if (session.timer) clearTimeout(session.timer);
+      if (session.info.running) { session.info.running = false; session.pty.kill(); }
+    }
+    if (!id) this.closedKeys.delete(sessionId);
+    return targets.length > 0;
+  }
+  close(sessionId: string, terminalKey: string) {
+    this.rootFor(sessionId);
+    if (typeof terminalKey !== 'string' || !/^[a-zA-Z0-9-]{1,80}$/.test(terminalKey)) throw new Error('终端标签标识无效');
+    const keys = this.closedKeys.get(sessionId) || new Set<string>(); keys.add(terminalKey); this.closedKeys.set(sessionId, keys);
+    const session = this.slot(sessionId, terminalKey);
+    // The tombstone also cancels an open that is still awaiting native/shell discovery.
+    if (session) this.stop(sessionId, session.info.id);
     return true;
   }
-  dispose() { this.disposed = true; for (const id of this.sessions.keys()) this.stop(id); }
+  dispose() { this.disposed = true; for (const id of new Set([...this.sessions.values()].map(session => session.info.sessionId))) this.stop(id); this.closedKeys.clear(); }
 }

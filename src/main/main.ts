@@ -66,10 +66,15 @@ app.whenReady().then(async () => {
     try { const closed = service.close(sessionId); if (closed) terminals.stop(sessionId); return { ok: true, data: closed }; }
     catch (e) { return { ok: false, error: e instanceof GitError ? e.details : { message: String(e) } }; }
   });
-  ipcMain.handle('harbor:terminal-open', async (event, sessionId: string, cols: number, rows: number) => {
+  ipcMain.handle('harbor:terminal-open', async (event, sessionId: string, cols: number, rows: number, terminalKey?: string) => {
     verifySender(event);
-    try { if (updates?.isInstalling) throw new Error('正在安装更新'); return { ok: true, data: await terminals.open(sessionId, cols, rows) }; }
+    try { if (updates?.isInstalling) throw new Error('正在安装更新'); return { ok: true, data: await terminals.open(sessionId, cols, rows, terminalKey) }; }
     catch (error) { return { ok: false, error: { message: error instanceof Error ? error.message : '终端启动失败' } }; }
+  });
+  ipcMain.handle('harbor:terminal-close', (event, sessionId: string, terminalKey: string) => {
+    verifySender(event);
+    try { return { ok: true, data: terminals.close(sessionId, terminalKey) }; }
+    catch (error) { return { ok: false, error: { message: error instanceof Error ? error.message : '终端关闭失败' } }; }
   });
   ipcMain.handle('harbor:terminal-stop', (event, sessionId: string, id: string) => {
     verifySender(event);

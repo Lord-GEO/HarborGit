@@ -20,9 +20,9 @@ export interface GitTag { name: string; objectId: string; kind: 'annotated' | 'l
 export interface Conflict { path: string; base: string | null; ours: string | null; theirs: string | null; worktree: string; binary: boolean; truncated: boolean; }
 export interface Activity { id: string; sessionId?: string; command: string; kind: 'start' | 'progress' | 'finish'; text: string; time: string; exitCode?: number; }
 export interface Failure { message: string; code?: number | string; command?: string; stderr?: string; stdout?: string; cancelled?: boolean; }
-export interface TerminalInfo { id: string; sessionId: string; pid: number; shell: string; cwd: string; running: boolean; }
+export interface TerminalInfo { id: string; sessionId: string; terminalKey: string; pid: number; shell: string; cwd: string; running: boolean; }
 export interface TerminalSnapshot { info: TerminalInfo; output: string; sequence: number; }
-export type TerminalEvent = { id: string; sessionId: string } & ({ kind: 'data'; data: string; sequence: number } | { kind: 'exit'; exitCode: number });
+export type TerminalEvent = { id: string; sessionId: string; terminalKey: string } & ({ kind: 'data'; data: string; sequence: number } | { kind: 'exit'; exitCode: number });
 export type Result<T> = { ok: true; data: T } | { ok: false; error: Failure };
 export type UpdateAction = 'check' | 'download' | 'cancel' | 'install' | 'open-release';
 export interface UpdateProgress { percent: number; transferred: number; total: number; bytesPerSecond: number; }
@@ -68,7 +68,8 @@ export interface HarborAPI {
   setTheme(theme: AppTheme): Promise<Result<AppAppearance>>;
   request<K extends keyof Requests>(operation: K, payload: Requests[K], sessionId?: string): Promise<Result<Responses[K]>>;
   closeRepository(sessionId: string): Promise<Result<boolean>>;
-  terminalOpen(sessionId: string, cols: number, rows: number): Promise<Result<TerminalSnapshot>>;
+  terminalOpen(sessionId: string, cols: number, rows: number, terminalKey?: string): Promise<Result<TerminalSnapshot>>;
+  terminalClose(sessionId: string, terminalKey: string): Promise<Result<boolean>>;
   terminalStop(sessionId: string, terminalId: string): Promise<Result<boolean>>;
   terminalInput(sessionId: string, terminalId: string, data: string): void;
   terminalResize(sessionId: string, terminalId: string, cols: number, rows: number): void;

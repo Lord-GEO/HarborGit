@@ -29,13 +29,16 @@ async function open(page, folder) {
 async function start(page) {
   await page.getByRole('button', { name: '打开项目终端', exact: true }).click();
   const region = page.getByRole('region', { name: '项目终端', exact: true });
+  return ready(page, region);
+}
+async function ready(page, region) {
   await expect(region).toBeVisible(); await expect(region).toHaveAttribute('data-terminal-id', /.+/, { timeout: 20000 });
   const id = await region.getAttribute('data-terminal-id'), pid = Number(await region.getAttribute('data-terminal-pid'));
   await expect.poll(() => page.evaluate(id => (window.terminalSmokeOutput[id] || '').replace(/\x1B(?:\[[0-?]*[ -/]*[@-~]|\][^\x07]*(?:\x07|\x1B\\))/g, '').includes('PS '), id), { timeout: 20000 }).toBe(true);
   return { region, id, pid };
 }
 async function command(page, region, text) {
-  const input = region.locator('.xterm-helper-textarea'); await input.focus();
+  const input = region.locator('.project-terminal:not([hidden]) .xterm-helper-textarea'); await input.focus();
   // CDP insertText does not represent xterm's key/composition handling. Use
   // real key events for ASCII and the real paste handler for Unicode text.
   if (/^[\x00-\x7f]*$/.test(text)) await page.keyboard.type(text);
@@ -61,6 +64,28 @@ try {
   await first.region.getByRole('button', { name: '收起终端' }).click(); await page.getByRole('button', { name: '刷新仓库', exact: true }).click(); await idle(page);
   await expect(page.getByRole('button', { name: '工作区 terminal-中文.txt', exact: true })).toBeVisible();
   await page.getByRole('button', { name: '打开项目终端', exact: true }).click(); await expect(first.region).toHaveAttribute('data-terminal-id', first.id);
+  await first.region.getByRole('button', { name: '新建终端', exact: true }).click();
+  await expect(first.region.getByRole('tab', { name: '终端 2', exact: true })).toHaveAttribute('aria-selected', 'true');
+  const sibling = await ready(page, first.region); expect(sibling.id).not.toBe(first.id); expect(sibling.pid).not.toBe(first.pid);
+  await command(page, sibling.region, "$secondOnly='独立会话2'; [IO.File]::WriteAllText((Join-Path $PWD 'multi-new.txt'), \"$PWD`n$PID`n$harborTerminalProbe\", [Text.UTF8Encoding]::new($false)); New-Item -ItemType Directory -Force '子目录' | Out-Null; Set-Location '子目录'; [IO.File]::WriteAllText((Join-Path $PWD 'bg-start.txt'), 'start'); Start-Sleep -Seconds 2; [IO.File]::WriteAllText((Join-Path $PWD 'bg-done.txt'), $secondOnly, [Text.UTF8Encoding]::new($false))");
+  await expect.poll(() => contents(path.join(a, '子目录/bg-start.txt')), { timeout: 15000 }).toBe('start');
+  expect(await contents(path.join(a, 'multi-new.txt'))).not.toContain('项目A');
+  await first.region.getByRole('tab', { name: '终端 1', exact: true }).click(); await expect(first.region).toHaveAttribute('data-terminal-id', first.id);
+  await command(page, first.region, "[IO.File]::WriteAllText((Join-Path $PWD 'multi-first.txt'), $harborTerminalProbe, [Text.UTF8Encoding]::new($false))");
+  await expect.poll(() => contents(path.join(a, 'multi-first.txt')), { timeout: 15000 }).toBe('项目A');
+  await expect.poll(() => contents(path.join(a, '子目录/bg-done.txt')), { timeout: 15000 }).toBe('独立会话2');
+  await first.region.getByRole('tab', { name: '终端 2', exact: true }).click();
+  await command(page, sibling.region, "[IO.File]::WriteAllText((Join-Path $PWD 'retained-second.txt'), \"$PWD`n$secondOnly\", [Text.UTF8Encoding]::new($false))");
+  await expect.poll(() => contents(path.join(a, '子目录/retained-second.txt')), { timeout: 15000 }).toContain('独立会话2');
+  expect(await contents(path.join(a, '子目录/retained-second.txt'))).toContain(path.join(a, '子目录'));
+  await first.region.getByRole('button', { name: '关闭终端 2', exact: true }).click();
+  await expect(first.region.getByRole('tab', { name: '终端 2', exact: true })).toHaveCount(0);
+  await expect.poll(() => alive(sibling.pid), { timeout: 12000 }).toBe(false); expect(alive(first.pid)).toBe(true);
+  await first.region.getByRole('button', { name: '新建终端', exact: true }).click();
+  await expect(first.region.getByRole('tab', { name: '终端 3', exact: true })).toHaveAttribute('aria-selected', 'true');
+  const third = await ready(page, first.region); expect(third.id).not.toBe(first.id);
+  await first.region.getByRole('tab', { name: '终端 1', exact: true }).click();
+  report.checks.push('Multiple terminal tabs in one project isolate variables/cwd, continue background commands, and close independently');
   await page.getByRole('button', { name: '新建项目标签', exact: true }).click(); await open(page, b); const second = await start(page);
   expect(second.id).not.toBe(first.id); expect(second.pid).not.toBe(first.pid);
   await command(page, second.region, "[IO.File]::WriteAllText((Join-Path $PWD 'terminal-B.txt'), \"$PWD`n$harborTerminalProbe\", [Text.UTF8Encoding]::new($false))");
@@ -78,17 +103,17 @@ try {
   expect(await access(path.join(a, 'should-not-run.txt')).then(() => true, () => false)).toBe(false);
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setBounds({ width: 1100, height: 720 }));
   await page.getByRole('button', { name: '切换为亮色主题', exact: true }).click();
-  await expect.poll(() => first.region.locator('.xterm-screen').evaluate(element => element.getBoundingClientRect().width)).toBeGreaterThan(100);
+  await expect.poll(() => first.region.locator('.project-terminal:not([hidden]) .xterm-screen').evaluate(element => element.getBoundingClientRect().width)).toBeGreaterThan(100);
   report.checks.push('Ctrl+C interrupts running command; resize and light theme remain usable');
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].showInactive()); await page.waitForTimeout(180);
   const png = await app.evaluate(async ({ BrowserWindow }) => (await BrowserWindow.getAllWindows()[0].webContents.capturePage(undefined, { stayAwake: true })).toPNG().toString('base64'));
   await writeFile(path.join(project, `docs/screenshots/v${version}-terminal.png`), Buffer.from(png, 'base64'));
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].hide());
-  await page.getByRole('button', { name: '关闭项目 项目 B', exact: true }).click();
-  await expect.poll(() => alive(second.pid), { timeout: 12000 }).toBe(false); expect(alive(first.pid)).toBe(true);
+  await page.getByRole('button', { name: '关闭项目 项目 A 中文 space', exact: true }).click();
+  await expect.poll(() => alive(first.pid) || alive(third.pid), { timeout: 12000 }).toBe(false); expect(alive(second.pid)).toBe(true);
   expect(errors).toEqual([]); await app.close(); app = undefined;
-  await expect.poll(() => alive(first.pid), { timeout: 12000 }).toBe(false);
-  report.checks.push('Closing a project and quitting the app clean up their own PTYs'); report.status = 'passed';
+  await expect.poll(() => alive(second.pid), { timeout: 12000 }).toBe(false);
+  report.checks.push('Closing a project cleans all its terminal sessions without affecting another project; app exit cleans the rest'); report.status = 'passed';
 } catch (error) {
   report.error = error.stack || String(error);
   if (app) report.terminalOutput = await (await app.firstWindow()).evaluate(() => Object.fromEntries(Object.entries(window.terminalSmokeOutput || {}).map(([id, text]) => [id, text.slice(-16000)]))).catch(() => ({}));
