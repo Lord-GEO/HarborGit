@@ -1,6 +1,6 @@
 {
   "name": "harbor-git",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "An independent desktop Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",

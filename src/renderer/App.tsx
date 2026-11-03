@@ -137,6 +137,7 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
   const [historyScope, setHistoryScope] = useState<'all' | 'current'>('all');
   const [historyLoading, setHistoryLoading] = useState(false);
   const historyQuery = useRef(0);
+  const historyLoaded = useRef(false);
   const [selectedCommit, setSelectedCommit] = useState<Commit | null>(null);
   const [commitFiles, setCommitFiles] = useState<CommitFile[]>([]);
   const historyEpoch = useRef(0);
@@ -213,25 +214,37 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     setHistoryLoading(true);
     try {
       const next = await call('history', { skip: more ? commits.length : 0, limit: 100, scope });
-      if (next && root === repoKey.current && ticket === historyQuery.current) setCommits(current => more ? [...current, ...next.filter(c => !current.some(old => old.hash === c.hash))] : next);
+      if (next && root === repoKey.current && ticket === historyQuery.current) { historyLoaded.current = true; setCommits(current => more ? [...current, ...next.filter(c => !current.some(old => old.hash === c.hash))] : next); }
     } finally { if (ticket === historyQuery.current) setHistoryLoading(false); }
   }, [call, commits.length, historyScope]);
   const changeHistoryScope = (scope: 'all' | 'current') => {
+    historyLoaded.current = false;
     ++historyEpoch.current; setHistoryScope(scope); setCommits([]); setSelectedCommit(null); setCommitFiles([]); setSelection(null); void loadHistory(false, scope);
   };
 
   const run = useCallback(async (label: string, action: () => Promise<Repository | undefined>, success?: string) => {
     if (busyRef.current) return;
     busyRef.current = true; setBusy(label); setError(null); setNotice('');
+    historyLoaded.current = false;
     try {
       const next = await action();
-      if (next) { acceptRepo(next); if (success) setNotice(success); await loadSupplementary(); if (view === 'history') await loadHistory(); }
+      if (next) { acceptRepo(next); if (success) setNotice(success); if (next.sessionId === id) { await loadSupplementary(); if (view === 'history') await loadHistory(); } }
       else if (repoKey.current) { const fresh = await call('refresh', {}); if (fresh) acceptRepo(fresh); }
       return next;
     } finally { busyRef.current = false; setBusy(''); }
-  }, [acceptRepo, call, loadHistory, loadSupplementary, view]);
+  }, [acceptRepo, call, id, loadHistory, loadSupplementary, view]);
 
-  useEffect(() => { if (active && repoKey.current && !busyRef.current && !modal && !conflict && !actionIntent && !tagIntent) void run('刷新项目…', () => call('refresh', {})); }, [active]);
+  // Backend-created tabs already carry a fresh repository snapshot. Read their
+  // supplementary data once; selecting an existing tab must not refresh it.
+  useEffect(() => { if (initialRepo) void loadSupplementary(); }, []);
+  // Explicitly reopening an already-open path brings a new snapshot from the
+  // backend. Apply that user-requested result without refreshing on activation.
+  useEffect(() => {
+    if (initialRepo && initialRepo !== latestRepository.current) {
+      historyLoaded.current = false; acceptRepo(initialRepo); void loadSupplementary();
+      if (view === 'history') void loadHistory();
+    }
+  }, [initialRepo]);
 
   useEffect(() => {
     const epoch = ++diffEpoch.current;
@@ -240,13 +253,7 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     void call('diff', selection).then(next => { if (epoch === diffEpoch.current) { if (next) setDiff(next); setDiffLoading(false); } });
   }, [selection, repo, call]);
 
-  useEffect(() => { if (repo && view === 'history') void loadHistory(); }, [view, repo?.root]);
-  useEffect(() => { if (repo && (view === 'branches' || view === 'tags')) void loadSupplementary(); }, [view, repo?.root, loadSupplementary]);
-  useEffect(() => {
-    const onFocus = () => { if (active && repoKey.current && !busyRef.current && !modal && !conflict && !actionIntent && !tagIntent) void run('刷新仓库…', () => call('refresh', {})); };
-    window.addEventListener('focus', onFocus);
-    return () => window.removeEventListener('focus', onFocus);
-  }, [active, call, run, modal, conflict, actionIntent, tagIntent]);
+  useEffect(() => { if (repo && view === 'history' && !historyLoaded.current) void loadHistory(); }, [view, repo?.root]);
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (!event.ctrlKey || event.altKey || event.shiftKey || !['KeyO', 'KeyR'].includes(event.code)) return;

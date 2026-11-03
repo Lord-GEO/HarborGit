@@ -1,10 +1,10 @@
 {
-  "root": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-Ki9RCZ",
+  "root": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-XFkiHF",
   "project": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\outputs\\HarborGit\\",
-  "version": "1.7.0",
-  "setup": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-Ki9RCZ\\artifacts\\HarborGit-Installer-QA-Setup.exe",
-  "installDir": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-Ki9RCZ\\installed 中文 path",
+  "version": "1.7.1",
+  "setup": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-XFkiHF\\artifacts\\HarborGit-Installer-QA-Setup.exe",
+  "installDir": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-XFkiHF\\installed 中文 path",
   "exeName": "HarborGit-Installer-QA.exe",
   "qaName": "HarborGit Installer QA",
-  "contextFile": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-Ki9RCZ\\context.json"
+  "contextFile": "C:\\Users\\Admin\\Documents\\Codex\\2026-10-29\\new-chat\\work\\installer-verification\\harborgit-setup-qa-XFkiHF\\context.json"
 }

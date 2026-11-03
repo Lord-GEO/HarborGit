@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "version": "1.7.1",
+  "source_ui": {
+    "passed": 4,
+    "total": 4,
+    "log": "verification-v1.7.1-source-ui.txt"
+  },
+  "installed_ui": {
+    "passed": 19,
+    "total": 19,
+    "log": "verification-v1.7.1-installed-ui.txt"
+  },
+  "passive_switch_git_commands": 0,
+  "verified": [
+    "No Git activity on focus, visibility events, project switching or cached page return",
+    "External file, branch and tag changes appear on manual refresh",
+    "Ctrl+R updates local state",
+    "Stage, commit and history updates remain functional",
+    "Project drafts retained",
+    "Explicit reopen applies a fresh snapshot",
+    "Isolated merge tabs still open and complete"
+  ],
+  "backend_unchanged_from": "1.7.0",
+  "backend_files_sha256_verified": 10,
+  "backend_baseline_tests": {
+    "passed": 80,
+    "total": 80,
+    "log": "verification-v1.7.0-backend.txt",
+    "rerun_this_patch": false
+  },
+  "installer": {
+    "report": "verification-v1.7.1-installer.json",
+    "qa_tree_removed": true,
+    "original_app_unchanged": true
+  },
+  "setup_sha256": "8ed13e025829f791feb086945ba5df76ae609920408713d54f66254326c8de52",
+  "scope": "Dedicated test repositories, local bare remotes and isolated app profiles only. No actual GitHub writes."
+}

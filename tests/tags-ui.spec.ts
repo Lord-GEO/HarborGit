@@ -74,6 +74,7 @@ test('tags UI: create on selected history commit, retain dirty index, create lig
 
 test('tags UI: duplicate creation, stale confirmation and conflicting remote tag keep dialogs open with actionable errors', async () => {
   const { repo, bare, first, head, app, page, errors } = await fixture(); git(repo, ['tag', 'v-test', first]);
+  await page.getByRole('button', { name: '刷新仓库', exact: true }).click(); await idle(page);
   await navigate(page, '标签管理'); await page.getByRole('button', { name: '＋ 新建标签', exact: true }).click();
   let dialog = page.getByRole('dialog', { name: '创建标签', exact: true }); await dialog.getByLabel('标签类型').selectOption('lightweight'); await dialog.getByLabel('标签名称', { exact: true }).fill('v-test');
   await dialog.getByRole('button', { name: '创建标签', exact: true }).click(); await expect(dialog.getByRole('alert')).toContainText('同名标签已存在'); await idle(page);
@@ -89,6 +90,7 @@ test('tags UI: duplicate creation, stale confirmation and conflicting remote tag
 
 test('tags UI: empty repository disables creation and missing remote links to offline remote settings', async () => {
   const { repo, app, page, errors } = await fixture(); git(repo, ['remote', 'remove', 'release']); git(repo, ['tag', 'v-local']);
+  await page.getByRole('button', { name: '刷新仓库', exact: true }).click(); await idle(page);
   await navigate(page, '标签管理'); await page.getByRole('button', { name: '推送标签 v-local', exact: true }).click();
   let dialog = page.getByRole('dialog', { name: '推送标签', exact: true }); await expect(dialog.getByRole('button', { name: '推送标签', exact: true })).toBeDisabled();
   await dialog.getByRole('button', { name: '管理远程仓库地址', exact: true }).click(); dialog = page.getByRole('dialog', { name: '远程仓库设置', exact: true }); await expect(dialog).toBeVisible();

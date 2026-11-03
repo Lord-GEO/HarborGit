@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.7.1",
+  "setup": "HarborGit-1.7.1-Setup-x64.exe",
+  "bytes": 124519517,
+  "sha256": "8ed13e025829f791feb086945ba5df76ae609920408713d54f66254326c8de52",
+  "sha512": "L/evzVT47kzleUL8uMILIYkH3m+lc1td/0TywWhaEvdL31/X+2bfsm6o99+yLkxBxfm0RtDEa+Md9Pd6xob0Tg==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.7.1",
+    "files": [
+      {
+        "url": "HarborGit-1.7.1-Setup-x64.exe",
+        "sha512": "L/evzVT47kzleUL8uMILIYkH3m+lc1td/0TywWhaEvdL31/X+2bfsm6o99+yLkxBxfm0RtDEa+Md9Pd6xob0Tg==",
+        "size": 124519517
+      }
+    ],
+    "path": "HarborGit-1.7.1-Setup-x64.exe",
+    "sha512": "L/evzVT47kzleUL8uMILIYkH3m+lc1td/0TywWhaEvdL31/X+2bfsm6o99+yLkxBxfm0RtDEa+Md9Pd6xob0Tg==",
+    "releaseNotes": "# HarborGit v1.7.1\r\n\r\n- 取消切回软件和切换项目标签页时的自动刷新。\r\n- 返回已加载的历史、分支和标签页面时保留当前数据，避免重复读取。\r\n- 外部改动通过刷新按钮或 Ctrl+R 手动更新；首次打开仓库及 Git 操作完成后的状态更新保留。\r\n- 保留各项目草稿、历史分页，以及明确重新打开已有项目时的状态更新。\r\n- 原先切换触发的是本地状态读取，没有自动 Fetch / Pull；远程操作继续由用户手动确认。\r\n\r\n本版为 1.7.x 的交互修复，保留标签管理及已有 Git、AI、多项目、主题和更新功能。\r\n\r\n发布时请同时上传 Setup、对应 `.exe.blockmap` 与 `latest.yml`。\r\n",
+    "releaseDate": "2026-11-03T03:05:22.978Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}
