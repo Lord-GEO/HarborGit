@@ -1,6 +1,6 @@
 import type { Branch, Commit } from './types';
 
-export const GRAPH_ROW_HEIGHT = 102;
+export const GRAPH_ROW_HEIGHT = 148;
 export const GRAPH_LANE_WIDTH = 15;
 export function branchHue(name: string): number {
   const key = name.replace(/^refs\/(heads|remotes)\//, '');

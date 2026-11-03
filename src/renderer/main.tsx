@@ -5,5 +5,6 @@ import './styles.css';
 import './themes.css';
 import './features.css';
 import './history-actions.css';
+import './readability.css';
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

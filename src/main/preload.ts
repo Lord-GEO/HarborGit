@@ -1,6 +1,9 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import type { Activity, HarborAPI, UpdateState } from '../shared/types';
 const api: HarborAPI = {
+  platform: process.platform,
+  appearance: () => ipcRenderer.invoke('harbor:appearance'),
+  setTheme: theme => ipcRenderer.invoke('harbor:set-theme', theme),
   request: (operation, payload, sessionId) => ipcRenderer.invoke('harbor:request', operation, payload, sessionId),
   closeRepository: sessionId => ipcRenderer.invoke('harbor:close-repository', sessionId),
   pickDirectory: () => ipcRenderer.invoke('harbor:pick-directory'),

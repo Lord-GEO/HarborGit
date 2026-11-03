@@ -1,0 +1,65 @@
+.window-titlebar{height:36px;min-height:36px;display:flex;align-items:center;gap:8px;padding:0 16px;padding-right:max(148px,calc(100vw - env(titlebar-area-width,100vw) + 12px));background:var(--panel);color:var(--text);border-bottom:1px solid var(--line);font-size:var(--font-xs);user-select:none;-webkit-app-region:drag}
+.window-titlebar img{width:16px;height:16px;pointer-events:none}
+.project-strip{height:46px;padding:0 12px;gap:14px}
+.project-tabs-area{display:flex;align-items:center;flex:1;min-width:0;height:100%;gap:4px;overflow:hidden}
+.project-tabs{flex:0 1 auto;max-width:calc(100% - 40px);height:100%;min-width:0}
+.project-tab{max-width:264px;height:100%;border-radius:7px 7px 0 0}
+.project-tab>[role=tab]{font-size:var(--font-sm);padding:10px 12px;min-width:92px;max-width:228px}
+.new-project-tab{width:32px;height:32px;flex:0 0 32px;margin-left:2px;border-radius:6px}
+.project-strip-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto}
+.theme-toggle{font-size:var(--font-sm);padding:7px 12px;min-height:32px;border-radius:6px}
+.app-header{height:68px}
+.sidebar{width:232px;min-height:0;overflow-y:auto}
+.sidebar-top{padding:24px 20px}
+.sidebar-top h2{font-size:18px}
+.repo-location,.sidebar-bottom>small,.toolbar-subtitle,.commit-row small,.commit-row small>span,.commit-detail-header>small,.commit-detail-header span{color:var(--muted)}
+.workspace-toolbar{padding:22px 24px 18px;align-items:flex-start}
+.workspace-toolbar h1{font-size:24px;line-height:1.4}
+.toolbar-subtitle{display:block;margin-top:6px;margin-left:0;font-size:var(--font-sm);font-weight:400;line-height:1.5}
+.toolbar-buttons{flex-wrap:wrap;justify-content:flex-end;row-gap:8px;padding-top:5px}
+.changes-list{width:332px}
+.file-row{min-height:46px}
+.file-name{font-size:var(--font-body);line-height:1.5}
+.file-name small{font-size:var(--font-xs);margin-top:3px;line-height:1.5}
+.file-status{min-width:21px;min-height:22px;font-size:var(--font-xs)}
+.group-heading{min-height:43px}
+.diff-heading strong{font-size:var(--font-body);line-height:1.5}
+.diff-heading small{font-size:var(--font-xs);line-height:1.6}
+.diff-table,.diff-table pre{font-size:var(--font-code);line-height:1.8}
+.diff-table .line-number{font-size:var(--font-xs);min-width:46px;color:var(--muted)}
+.diff-table .metadata,.diff-table .metadata pre{font-size:var(--font-xs)}
+.graph-history{width:450px;min-width:350px;max-width:44%}
+.graph-commit-row{padding-top:13px;padding-bottom:12px}
+.graph-commit-row strong{font-size:var(--font-body);line-height:1.5}
+.graph-commit-row small{font-size:var(--font-xs);line-height:1.5}
+.graph-commit-row code{font-size:var(--font-xs);line-height:1.3;margin-top:5px}
+.graph-ref-list{max-height:27px;gap:6px;margin-top:6px}
+.graph-ref{font-size:var(--font-xs);padding:2px 6px}
+.merge-label{font-size:var(--font-xs)}
+.graph-help{font-size:var(--font-xs);line-height:1.6;padding:10px 14px}
+.commit-detail-header{max-height:220px;padding:18px 22px 16px}
+.commit-detail-header>div{flex-wrap:wrap;row-gap:8px}
+.commit-detail-header>small{font-size:var(--font-xs);overflow-wrap:anywhere}
+.commit-detail-header h2{font-size:19px;line-height:1.55}
+.history-files{padding:12px 20px;max-height:152px}
+.history-files .eyebrow{font-size:var(--font-xs);letter-spacing:.5px}
+.history-files>div{gap:6px}
+.history-files button{font-size:var(--font-sm);min-height:32px;padding:6px 10px;line-height:1.5}
+.history-files button .file-status{width:21px;height:22px;font-size:var(--font-xs)}
+.status-bar{height:32px;font-size:var(--font-xs)}
+.sidebar-bottom>small{font-size:var(--font-xs);letter-spacing:.5px;line-height:1.6}
+.modal label,.form-help,.confirmation-copy{line-height:1.7}
+.modal-backdrop{top:var(--window-titlebar-height)}
+.update-notice{top:calc(var(--window-titlebar-height) + 60px)}
+.activity-drawer{bottom:32px}
+.commit-box{--commit-surface:#16212a;scroll-padding-bottom:64px}
+.commit-submit{position:sticky;bottom:0;z-index:1;padding-top:10px;background:var(--commit-surface);box-shadow:0 -8px 12px var(--commit-surface)}
+:root[data-theme=light] .commit-box{--commit-surface:#edf3f7}
+:root[data-theme=light] .history-files button:hover{background:#e0ebf2;color:#28485d}
+:root[data-theme=light] .history-files button.selected:hover{background:#cfe7dc;color:#1d5e43}
+:root[data-theme=light] .history-files button:focus-visible{outline-color:#137859}
+@media(max-width:1250px){.sidebar{width:204px}.changes-list{width:302px}.graph-history{width:370px;min-width:330px}.brand-caption{display:none}.workspace-toolbar{padding:18px 20px 15px}.workspace-toolbar h1{font-size:22px}.project-strip{gap:10px}.project-strip-actions{gap:6px}.theme-toggle{padding:7px 10px}.branch-row{flex-wrap:wrap;row-gap:12px}.branch-row .inline-actions{margin-left:auto}}
+@media(max-height:800px){.workspace-toolbar{padding-top:14px;padding-bottom:12px}.sidebar-top{padding-top:18px;padding-bottom:18px}.commit-detail-header{max-height:170px;padding-top:13px;padding-bottom:12px}.history-files{max-height:116px}.graph-help{padding:7px 12px}.app-header{height:60px}}
+.desktop-shell small{font-size:var(--font-xs)}
+.desktop-shell{--window-titlebar-height:0px}
+.desktop-shell:has(>.window-titlebar){--window-titlebar-height:36px}

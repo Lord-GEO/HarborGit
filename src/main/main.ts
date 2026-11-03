@@ -6,6 +6,7 @@ import { Workspaces } from './workspaces';
 import { AiSettingsStore, generateMessage } from './ai';
 import { UpdateService, RELEASES_URL } from './updates';
 import { createUpdateEngine } from './update-engine';
+import { AppearanceStore } from './appearance';
 import type { Requests, Result, AiSettingsInput } from '../shared/types';
 
 if (process.env.HARBOR_USER_DATA && path.isAbsolute(process.env.HARBOR_USER_DATA)) app.setPath('userData', process.env.HARBOR_USER_DATA);
@@ -26,6 +27,14 @@ async function remember(root: string) {
   try { await fs.mkdir(app.getPath('userData'), { recursive: true }); await fs.writeFile(recentFile(), JSON.stringify(recentPaths), 'utf8'); } catch { /* A read-only profile does not prevent using Git. */ }
 }
 app.whenReady().then(async () => {
+  const appearance = new AppearanceStore(path.join(app.getPath('userData'), 'appearance.json'));
+  await appearance.load();
+  ipcMain.handle('harbor:appearance', event => { verifySender(event); return appearance.snapshot; });
+  ipcMain.handle('harbor:set-theme', async (event, theme: unknown) => {
+    verifySender(event);
+    try { return { ok: true, data: await appearance.set(theme) }; }
+    catch (error) { return { ok: false, error: { message: error instanceof Error ? error.message : '主题设置失败' } }; }
+  });
   const executable = app.getPath('exe');
   const installed = app.isPackaged && process.platform === 'win32' && !process.env.PORTABLE_EXECUTABLE_FILE && await fs.access(path.join(path.dirname(executable), `Uninstall ${path.basename(executable, '.exe')}.exe`)).then(() => true, () => false);
   const mode = !app.isPackaged ? 'development' : installed ? 'installer' : 'manual';
@@ -94,10 +103,12 @@ app.whenReady().then(async () => {
     verifySender(event); try { return { ok: true, data: await ai.save(input) }; } catch (e) { return { ok: false, error: { message: e instanceof Error ? e.message : String(e) } }; }
   });
   win = new BrowserWindow({
-    title: 'HarborGit', icon: path.join(__dirname, '../assets/harborgit-256.png'), width: 1460, height: 940, minWidth: 1100, minHeight: 720, backgroundColor: '#111820',
+    ...appearance.windowOptions(),
+    title: 'HarborGit', icon: path.join(__dirname, '../assets/harborgit-256.png'), width: 1460, height: 940, minWidth: 1100, minHeight: 720,
     autoHideMenuBar: true, show: false,
     webPreferences: { preload: path.join(__dirname, 'preload.cjs'), nodeIntegration: false, contextIsolation: true, sandbox: true, webSecurity: true, spellcheck: false }
   });
+  appearance.attach(win);
   win.setMenuBarVisibility(false);
   win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   win.webContents.on('will-attach-webview', e => e.preventDefault());

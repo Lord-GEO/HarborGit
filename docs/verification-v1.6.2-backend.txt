@@ -1,0 +1,24 @@
+✔ all-branch history exposes real merge parents, unmerged tips, topo order, pagination and unborn HEAD (4496.2544ms)
+✔ graph preserves octopus parent edges and never joins unrelated roots (1.5235ms)
+✔ AI snapshot includes only immutable staged content, rename metadata and binary notice; preserves working state (4525.5261ms)
+✔ Responses and Chat protocols use configured endpoint/model, parse text, and never transmit credentials in payload (101.5591ms)
+✔ AI provider reports HTTP/malformed/empty errors, redacts key, times out and supports cancellation (230.082ms)
+✔ settings keep key out of public responses/plaintext disk, and endpoint changes clear old credentials (519.227ms)
+✔ generation marks changed index stale and cancellation leaves both index and commit history intact (5538.3342ms)
+✔ check exposes a newer release without downloading or installing; latest clears previous release (7.6851ms)
+✔ duplicate checks are rejected; check timeout cannot be overwritten by a late response (31.1441ms)
+✔ download progress, cancellation, retry and explicit installation (1.8972ms)
+✔ download checksum failure cannot install and permits retry (1.6512ms)
+✔ download timeout aborts the actual engine and remains retryable (26.8967ms)
+✔ running Git or AI work prevents installation and a launcher failure permits another attempt (1.6903ms)
+✔ auto-check preference survives restart; snapshots are isolated and invalid values rejected (5.035ms)
+✔ development and manual packages never check, download or install automatically (2.3511ms)
+✔ public feed errors are actionable without exposing raw response bodies (0.6543ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15748.3722

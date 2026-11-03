@@ -2,6 +2,7 @@
 // update engine. No external network, installer launch or real user profile.
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { UpdateService } from '../src/main/updates';
+import { AppearanceStore } from '../src/main/appearance';
 import path from 'node:path';
 const project = process.env.HARBOR_FIXTURE_PROJECT!, root = process.env.HARBOR_USER_DATA!;
 if (!project || !root || !path.resolve(root).startsWith(path.resolve(project, '../../work/ui-integration') + path.sep)) throw new Error('Invalid fixture directory');
@@ -10,7 +11,9 @@ let busy = false, checkError = false, downloads = 0, installs = 0;
 ipcMain.on('fixture:control', (_event, value) => { busy = !!value.busy; checkError = !!value.checkError; });
 ipcMain.handle('fixture:counters', () => ({ downloads, installs }));
 app.whenReady().then(async () => {
-  const win = new BrowserWindow({ show: false, width: 1460, height: 940, webPreferences: { preload: path.join(project, 'dist-electron/preload.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false } });
+  const appearance = new AppearanceStore(path.join(root, 'appearance.json')); await appearance.load();
+  const win = new BrowserWindow({ ...appearance.windowOptions(), show: false, width: 1460, height: 940, webPreferences: { preload: path.join(project, 'dist-electron/preload.cjs'), contextIsolation: true, sandbox: true, nodeIntegration: false } });
+  appearance.attach(win);
   const updates = new UpdateService({ currentVersion: '1.3.0', mode: 'installer', settingsFile: path.join(root, 'update-settings.json'), canInstall: () => !busy, onState: value => win.webContents.send('harbor:update', value), engine: {
     async check() { if (checkError) throw new Error('404 fixture'); return { version: '1.3.1', notes: '本地 UI fixture：展示更新说明。\n<script>window.untrusted=true</script>' }; },
     async download(signal, progress) {
@@ -25,6 +28,8 @@ app.whenReady().then(async () => {
   } });
   await updates.load();
   const verify = (event: Electron.IpcMainInvokeEvent) => { if (event.sender !== win.webContents || event.senderFrame !== win.webContents.mainFrame) throw new Error('Invalid fixture sender'); };
+  ipcMain.handle('harbor:appearance', event => { verify(event); return appearance.snapshot; });
+  ipcMain.handle('harbor:set-theme', async (event, theme) => { verify(event); try { return { ok: true, data: await appearance.set(theme) }; } catch (error) { return { ok: false, error: { message: String(error) } }; } });
   ipcMain.handle('harbor:recent', () => []); ipcMain.handle('harbor:version', () => '1.3.0');
   ipcMain.handle('harbor:update-status', event => { verify(event); return updates.snapshot; });
   ipcMain.handle('harbor:update-auto-check', async (event, enabled) => { verify(event); return { ok: true, data: await updates.saveAutoCheck(enabled) }; });

@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:35216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\appearance-ui.spec.ts:99:1 › appearance UI: plus follows tabs and remains usable with long names at compact window size (31.4s)
+
+  1 passed (32.4s)

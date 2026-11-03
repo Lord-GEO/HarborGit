@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.6.2",
+  "setup": "HarborGit-1.6.2-Setup-x64.exe",
+  "bytes": 124512794,
+  "sha256": "c9ade151c86d99d811515bfbba0bee3c2e0eca512c614d21ddae79eff45d947b",
+  "sha512": "IRixryibNhbNg+XL9sDysF79riuhZblIsVVkOGxs2VlYTKFud8qWLaWZ/2coHuWBO5EJeKb/9RbvyygysVATgQ==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.6.2",
+    "files": [
+      {
+        "url": "HarborGit-1.6.2-Setup-x64.exe",
+        "sha512": "IRixryibNhbNg+XL9sDysF79riuhZblIsVVkOGxs2VlYTKFud8qWLaWZ/2coHuWBO5EJeKb/9RbvyygysVATgQ==",
+        "size": 124512794
+      }
+    ],
+    "path": "HarborGit-1.6.2-Setup-x64.exe",
+    "sha512": "IRixryibNhbNg+XL9sDysF79riuhZblIsVVkOGxs2VlYTKFud8qWLaWZ/2coHuWBO5EJeKb/9RbvyygysVATgQ==",
+    "releaseNotes": "# HarborGit v1.6.2\r\n\r\n- 提高界面可读性：辅助文字以 12px 为主，按钮和正文使用 13–14px，Diff 代码使用 13px。\r\n- 调整侧栏、文件列表、提交图行高和间距，让较大的文字有足够空间；窄窗口中的提交按钮保持可达。\r\n- Windows 标题栏和系统最小化、最大化、关闭按钮随应用主题统一配色，保留系统窗口操作。\r\n- 记住标题栏与应用主题，兼容升级前已有的亮暗主题设置。\r\n- 修复亮色主题中变更文件悬停时出现深色背景的问题，区分普通悬停和选中状态。\r\n- “＋”新建项目按钮紧跟最后一个项目标签；长标签溢出、打开新项目和关闭标签后保持可见。\r\n\r\n本版为 1.6.x 的界面修复与体验优化，保留已有 Git、AI、多项目、更新和变基备份功能。\r\n\r\n发布时请同时上传 Setup、对应 `.exe.blockmap` 与 `latest.yml`。\r\n",
+    "releaseDate": "2026-11-02T09:22:59.110Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

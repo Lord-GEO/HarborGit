@@ -1,4 +1,6 @@
 export type Area = 'worktree' | 'index' | 'commit';
+export type AppTheme = 'dark' | 'light';
+export interface AppAppearance { theme: AppTheme; saved: boolean; }
 export interface FileChange { path: string; originalPath?: string; index: string; worktree: string; conflict: boolean; }
 export interface MergeWorkspace { sourceRoot: string; sourceBranch: string; targetBranch: string; }
 export interface RepositoryOperation { kind: 'rebase' | 'revert'; branch?: string; onto?: string; commit?: string; step?: number; total?: number; }
@@ -53,6 +55,9 @@ export interface Responses {
   rebase: Repository; rebaseAction: Repository; rebaseSavedAction: Repository; revert: Repository; revertAction: Repository; reset: Repository; rollback: Repository;
 }
 export interface HarborAPI {
+  platform: string;
+  appearance(): Promise<AppAppearance>;
+  setTheme(theme: AppTheme): Promise<Result<AppAppearance>>;
   request<K extends keyof Requests>(operation: K, payload: Requests[K], sessionId?: string): Promise<Result<Responses[K]>>;
   closeRepository(sessionId: string): Promise<Result<boolean>>;
   pickDirectory(): Promise<string | null>;

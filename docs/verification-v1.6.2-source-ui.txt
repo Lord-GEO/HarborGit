@@ -1,0 +1,12 @@
+
+Running 5 tests using 1 worker
+
+(node:28372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\appearance-ui.spec.ts:64:1 › appearance UI: readable history, light hover, native title bar and saved theme agree after restart (19.4s)
+  ok 2 tests\appearance-ui.spec.ts:99:1 › appearance UI: plus follows tabs and remains usable with long names at compact window size (44.4s)
+  ok 3 tests\electron.spec.ts:55:1 › software updates UI: release notes, progress, cancel, retry, theme and busy installation guard (22.2s)
+  ok 4 tests\electron.spec.ts:302:1 › desktop UI: multiple project tabs isolate drafts and staging; light/dark theme persists (57.2s)
+  ok 5 tests\electron.spec.ts:403:1 › desktop UI: colored all-branch graph shows real fork/merge edges and filters current history (19.2s)
+
+  5 passed (2.7m)
