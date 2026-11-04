@@ -1,0 +1,14 @@
+  • electron-builder  version=26.18.0 os=10.0.26200
+  • loaded configuration  file=package.json ("build" field)
+  • skipped dependencies rebuild  reason=npmRebuild is set to false
+  • packaging       platform=win32 arch=x64 electron=45.1.0 appOutDir=release\win-unpacked
+  • using custom unpacked Electron distribution  electronDist=node_modules\electron\dist
+  • copying unpacked Electron  source=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\node_modules\electron\dist destination=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit\release\win-unpacked
+  • searching for node modules  pm=npm searchDir=C:\Users\Admin\Documents\Codex\2026-10-29\new-chat\outputs\HarborGit
+  • duplicate dependency references  dependencies=["builder-util-runtime@9.7.0"]
+  • updating asar integrity executable resource  executablePath=release\win-unpacked\HarborGit.exe
+  • file signing skipped via signExecutable configuration  file=release\win-unpacked\HarborGit.exe
+  • building        target=nsis file=release\HarborGit-1.8.2-Setup-x64.exe archs=x64 oneClick=false perMachine=false
+  • file signing skipped via signExecutable configuration  file=release\HarborGit-1.8.2-Setup-x64.__uninstaller.exe
+  • file signing skipped via signExecutable configuration  file=release\HarborGit-1.8.2-Setup-x64.exe
+  • building block map  blockMapFile=release\HarborGit-1.8.2-Setup-x64.exe.blockmap

@@ -1,0 +1,19 @@
+{
+  "version": "1.8.2",
+  "status": "passed",
+  "checks": [
+    "Navigation and file columns drag independently; double click resets, keyboard adjusts, preferences persist",
+    "History column drags independently; 1100px window preserves detail space with no horizontal page overflow; dark/light themes captured",
+    "Returning to worktree retains width; branches and tags retain their actions; no renderer errors"
+  ],
+  "fullRegressionRun": false,
+  "mode": "packaged",
+  "narrowWindow": {
+    "viewport": 1099,
+    "mainRight": 1099,
+    "detailRight": 1089,
+    "detailWidth": 357,
+    "documentWidth": 1099
+  },
+  "fixtureRemoved": true
+}

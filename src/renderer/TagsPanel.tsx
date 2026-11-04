@@ -10,7 +10,7 @@ export function TagsPanel({ tags, busy, blocked, canCreate, onCreate, onPush, on
   const [filter, setFilter] = useState('');
   const visible = tags.filter(tag => tag.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
   return <section className="tags-view" aria-label="标签列表">
-    <div className="tags-heading"><div><h2>为重要提交留下坐标</h2><p>先创建本地标签，再选择远程仓库推送。</p></div>
+    <div className="tags-heading"><div><h2>本地标签</h2></div>
       <button className="primary-button compact" disabled={busy || blocked || !canCreate} onClick={onCreate}>＋ 新建标签</button>
     </div>
     <div className="tags-tools"><input aria-label="筛选标签" placeholder="搜索标签名称…" value={filter} onChange={event => setFilter(event.target.value)} /><span>{visible.length} / {tags.length} 个本地标签</span><button className="text-button" disabled={busy} onClick={onHistory}>在历史中选择提交</button></div>
@@ -21,7 +21,6 @@ export function TagsPanel({ tags, busy, blocked, canCreate, onCreate, onPush, on
       </div><button className="secondary-button compact" aria-label={`推送标签 ${tag.name}`} disabled={busy || blocked} onClick={() => onPush(tag)}>推送标签…</button>
     </article>)}</div>
     {!visible.length && <div className="tags-empty"><h3>{tags.length ? '没有匹配的标签' : '还没有本地标签'}</h3><p>{tags.length ? '试试其他名称。' : '给当前提交创建标签，或从提交历史中选择更早的提交。'}</p></div>}
-    <p className="tags-footnote">创建标签保留工作区和暂存区。推送时仅发送选中的标签及其引用的提交；不会单独更新远端分支。</p>
   </section>;
 }
 

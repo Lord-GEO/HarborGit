@@ -8,14 +8,15 @@ function graphPath(from: number, to: number, top: number, bottom: number) {
   const x1 = 13 + from * GRAPH_LANE_WIDTH, x2 = 13 + to * GRAPH_LANE_WIDTH;
   return x1 === x2 ? `M ${x1} ${top} V ${bottom}` : `M ${x1} ${top} C ${x1} ${top + (bottom - top) * .6} ${x2} ${top + (bottom - top) * .4} ${x2} ${bottom}`;
 }
-export function CommitHistory({ commits, branches, selected, scope, loading, busy, onScope, onSelect, onRefresh, onMore }: {
+export function CommitHistory({ commits, branches, selected, scope, loading, busy, onScope, onSelect, onRefresh, onMore, style }: {
+  style?: CSSProperties;
   commits: Commit[]; branches: Branch[]; selected: string | undefined; scope: 'all' | 'current'; loading: boolean; busy: boolean;
   onScope(scope: 'all' | 'current'): void; onSelect(commit: Commit): void; onRefresh(): void; onMore(): void;
 }) {
   const graph = useMemo(() => buildCommitGraph(commits, branches), [commits, branches]);
   const colors = useMemo(() => branchColors(branches), [branches]);
   const width = graph.laneCount * GRAPH_LANE_WIDTH + 17;
-  return <section className="history-list graph-history" aria-label="提交列表">
+  return <section style={style} className="history-list graph-history" aria-label="提交列表">
     <div className="graph-history-toolbar"><select aria-label="历史分支范围" value={scope} disabled={busy || loading} onChange={e => onScope(e.target.value as 'all' | 'current')}><option value="all">全部分支</option><option value="current">当前分支</option></select><span>{commits.length} 个提交</span><button className="icon-button" aria-label="刷新历史" disabled={busy || loading} onClick={onRefresh}>↻</button></div>
     <div className="graph-legend" aria-label="分支颜色图例">{branches.filter(b => !b.remote).map(branch => <span key={branch.name} style={hueStyle(colors.get(branch.name)!)} title={`${branch.name}${branch.current ? ' · 当前分支' : ''}`}><i />{branch.name}{branch.current ? ' •' : ''}</span>)}</div>
     <div className="commit-list-scroll"><div className="graph-rows" style={{ minWidth: width + 210 }}>
@@ -32,6 +33,5 @@ export function CommitHistory({ commits, branches, selected, scope, loading, bus
     </div>{!commits.length && <div className="list-empty">{loading ? '正在读取提交历史…' : '此范围内还没有提交'}</div>}
     {graph.continuations > 0 && <p className="graph-continuation">路径继续到更早的提交 ↓</p>}
     <button className="load-more" disabled={busy || loading || !commits.length} onClick={onMore}>{loading ? '正在加载…' : '加载更多提交'}</button></div>
-    <p className="graph-help">分支沿第一父提交延续颜色，共享祖先由连线汇合；双圈表示合并提交。</p>
   </section>;
 }

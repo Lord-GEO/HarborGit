@@ -1,0 +1,122 @@
+/* Shared spacing and surfaces for the desktop workspace. */
+:root{--radius-sm:9px;--radius-md:12px;--radius-lg:16px;--surface:#141e27;--surface-soft:#18242e;--surface-selected:#203b34}
+:root[data-theme=light]{--surface:#fff;--surface-soft:#f4f7f9;--surface-selected:#e2f1e9}
+.app-shell{min-width:980px}
+.project-strip{height:48px;padding:5px 14px;gap:16px}
+.project-tabs-area{gap:7px}
+.project-tab{height:36px;border-radius:var(--radius-sm);border-bottom:0}
+.project-tab.active{box-shadow:inset 0 0 0 1px var(--line)}
+.project-tab>[role=tab]{padding:9px 12px}
+.new-project-tab,.theme-toggle,.quiet-button,.icon-button{border-radius:var(--radius-sm)}
+.theme-toggle{padding:7px 11px}
+.app-header{height:56px;padding:0 22px;border-bottom:0;background:var(--bg)}
+.brand-mark{width:28px;height:28px;transform:none;box-shadow:none}
+.brand>strong{font-size:19px}
+.main-shell{padding:0 14px 14px;min-width:0}
+.sidebar{border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);min-height:0;overflow-y:auto}
+.sidebar-top{padding:22px 18px 20px}
+.sidebar-top h2{margin-top:0;font-size:17px}
+.repo-location{margin-top:8px;line-height:1.6}
+.current-branch{margin-top:16px}
+.current-branch>span:first-of-type{max-width:none;min-width:0}
+.sidebar nav{padding:0 10px;gap:7px}
+.nav-item{border-radius:var(--radius-md);padding:12px;min-height:44px}
+.nav-item.active:before{display:none}
+.nav-item b{border-radius:6px;padding:2px 7px}
+.sync-summary{margin:20px 18px 0;padding-top:12px;display:grid;grid-template-columns:1fr 1fr;column-gap:12px}
+.sync-summary>div{margin-top:0;gap:6px}
+.sync-summary>small{margin-top:8px;grid-column:1/-1}
+.sidebar-bottom{padding:16px 12px 12px;gap:2px}
+.sidebar-bottom .quiet-button{padding:7px 10px}
+.sidebar-bottom>small{margin-top:12px}
+.workspace{border-radius:var(--radius-lg);overflow:hidden;min-width:0}
+.workspace-toolbar{padding:16px 6px 18px;align-items:center;gap:16px}
+.workspace-toolbar h1{font-size:22px;line-height:1.4;margin:0;letter-spacing:0}
+.toolbar-buttons{padding:0;gap:8px}
+.primary-button,.secondary-button{border-radius:var(--radius-sm);min-height:36px}
+input,textarea,select{border-radius:var(--radius-sm)}
+.changes-layout,.history-layout{border:0;min-width:0;padding:0 0 2px}
+.changes-list,.history-list.graph-history{border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);overflow:hidden;min-height:0}
+.changes-list{overflow-y:auto}
+.diff-panel,.history-detail{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:var(--surface)}
+.history-detail .diff-panel{border:0;border-radius:0}
+.panel-top{min-height:66px;padding:14px 18px;background:var(--surface);gap:12px;flex-wrap:wrap}
+.diff-heading{flex:1;min-width:130px}
+.diff-heading small{margin-top:3px}
+.panel-top .inline-actions{flex-wrap:wrap;row-gap:8px}
+.panel-top .danger-text{font-size:var(--font-xs)}
+.list-search{padding:16px 16px 8px}
+.list-search input{padding:10px 12px}
+.file-groups{padding:0 8px 14px;min-height:85px}
+.group-heading{padding:10px 8px;min-height:44px}
+.file-row{border:0;border-radius:var(--radius-sm);padding:0 6px;min-height:48px;margin-bottom:3px}
+.file-row.selected{box-shadow:inset 3px 0 0 var(--accent)}
+.file-select{padding:9px 5px}
+.file-name small{font-size:var(--font-xs)}
+.file-status{border-radius:6px}
+.list-empty{padding:10px 10px 14px;color:var(--muted);font-size:var(--font-sm)}
+.commit-box{padding:16px;max-height:60%;background:var(--surface-soft);--commit-surface:var(--surface-soft)}
+:root[data-theme=light] .commit-box{background:var(--surface-soft);--commit-surface:var(--surface-soft)}
+.commit-box-heading{margin-bottom:12px}
+.commit-box textarea{min-height:92px;font-size:var(--font-body);padding:12px}
+.ai-commit-actions{margin-bottom:12px;gap:10px}
+.commit-identity{margin-top:12px;margin-bottom:4px}
+.commit-submit{padding-top:12px}
+.commit-box .primary-button{min-height:40px;font-size:var(--font-body)}
+.diff-scroll{padding-top:10px}
+.center-message{gap:10px;padding:30px}
+.center-message h3{font-size:16px;letter-spacing:0;color:var(--muted)}
+.empty-icon{width:60px;height:60px;border-radius:var(--radius-lg);margin-bottom:6px}
+.graph-history-toolbar{padding:14px;gap:10px}
+.graph-history-toolbar select{width:140px;min-width:0;flex-shrink:1}
+.graph-legend{padding:10px 14px}
+.graph-commit-row{border-left:0}
+.graph-commit-row strong{font-size:var(--font-body)}
+.graph-commit-row small{margin-top:6px}
+.graph-commit-row code{margin-top:4px}
+.commit-detail-header{padding:18px 20px;max-height:240px}
+.commit-detail-header h2{font-size:19px;margin-top:12px}
+.history-commit-actions{gap:8px;flex-wrap:wrap}
+.history-commit-actions button{font-size:var(--font-xs);padding:8px 10px}
+.history-files{padding:14px 18px;max-height:150px}
+.history-files>div{gap:8px}
+.history-files button{border-radius:var(--radius-sm);padding:7px 10px}
+.branches-view,.tags-view{padding:20px 6px 32px;border-top:0}
+.branch-heading{margin-bottom:18px;gap:14px;flex-wrap:wrap}
+.branch-heading h2{font-size:17px}
+.branch-list,.tags-list{border-radius:var(--radius-lg)}
+.branch-row{padding:18px;gap:14px;flex-wrap:wrap}
+.branch-row .inline-actions{flex-wrap:wrap;gap:10px;margin-left:auto}
+.merge-direction,.rebase-direction{display:inline-flex;vertical-align:top;margin:0 12px 20px 0}
+.tags-heading{gap:16px;flex-wrap:wrap}
+.tags-heading h2{font-size:17px}
+.tags-tools{gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.tag-row{padding:18px;gap:16px;flex-wrap:wrap}
+.modal,.conflict-dialog{border-radius:20px}
+.modal-header .eyebrow{display:none}
+.modal-header h2{margin-top:0}
+.modal-actions{gap:12px}
+.success-banner,.error-banner,.merge-banner,.operation-banner,.merge-workspace-banner{border-radius:var(--radius-md);margin:0 0 12px}
+.status-bar{height:30px;border-top:0;padding:0 20px;background:var(--bg)}
+.welcome{border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);justify-content:center;padding:32px}
+.welcome-mark{transform:none;border-radius:20px;width:64px;height:64px;box-shadow:none;margin-bottom:22px;flex-shrink:0}
+.welcome-mark svg{transform:none}
+.welcome h1{font-size:27px;line-height:1.5;margin-top:0}
+.welcome-actions{margin-top:26px;gap:14px;flex-wrap:wrap;justify-content:center}
+.recent-list{margin-top:30px;max-width:500px}
+.recent-list button{border-radius:var(--radius-md);padding:12px}
+.project-terminals{margin-top:12px;border:1px solid var(--line);border-radius:var(--radius-lg)}
+.terminal-tabs-bar{padding:5px 8px;min-height:42px;flex-basis:42px;gap:8px}
+.terminal-tab{border-radius:var(--radius-sm);border-bottom:0}
+.terminal-tab.active{box-shadow:inset 0 0 0 1px var(--line)}
+.terminal-add{font-size:var(--font-sm);border-radius:var(--radius-sm);margin:0}
+.terminal-toolbar{padding:9px 14px;gap:10px}
+.terminal-heading>small{display:none}
+.panel-divider{width:12px;flex:0 0 12px;position:relative;cursor:col-resize;touch-action:none;border-radius:8px;outline-offset:-3px}
+.panel-divider:before{content:"";position:absolute;width:3px;left:4.5px;top:calc(50% - 20px);height:40px;border-radius:4px;background:var(--line);transition:height .15s,background .15s}
+.panel-divider:hover:before,.panel-divider:focus-visible:before,.panel-divider[data-resizing]:before{background:var(--accent);height:64px;top:calc(50% - 32px)}
+html:has(.panel-divider[data-resizing]) *{cursor:col-resize!important;user-select:none!important}
+:root[data-theme=light] .app-header,:root[data-theme=light] .status-bar{background:var(--bg)}
+:root[data-theme=light] .sidebar,:root[data-theme=light] .changes-list,:root[data-theme=light] .history-list,:root[data-theme=light] .panel-top{background:var(--surface)}
+@media(max-width:1150px){.main-shell{padding:0 10px 10px}.workspace-toolbar{padding:14px 2px 16px}.toolbar-buttons{gap:6px}.toolbar-buttons .compact{padding:8px 10px}.branch-row{padding:16px}.history-commit-actions button{padding:7px 9px}.project-strip-actions{gap:5px}.project-strip{gap:10px}}
+@media(max-height:780px){.sidebar-top{padding:18px 16px}.sidebar-bottom{padding-top:16px}.workspace-toolbar{padding-top:12px;padding-bottom:14px}.commit-box{padding:14px}.commit-box textarea{min-height:80px}.commit-detail-header{max-height:190px}.history-files{max-height:120px}.welcome{padding:24px}.recent-list{margin-top:24px}}

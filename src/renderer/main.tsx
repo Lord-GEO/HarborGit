@@ -8,5 +8,6 @@ import './history-actions.css';
 import './readability.css';
 import './tags.css';
 import './terminal.css';
+import './layout.css';
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

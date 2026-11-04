@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.8.2",
+  "setup": "HarborGit-1.8.2-Setup-x64.exe",
+  "bytes": 128342270,
+  "sha256": "9f42b25eb0250c302ab0aa5fa8342d77f972d359d92877ade6ac61c47a8ce30f",
+  "sha512": "klbrgEF1+uaKGy3U+oSeszGim/f0MjVwGIqK1WsIRFCZJA1SR4XQ+e/t0t0vyFGGro+OUenJQcoJGUlwjOaPRA==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.8.2",
+    "files": [
+      {
+        "url": "HarborGit-1.8.2-Setup-x64.exe",
+        "sha512": "klbrgEF1+uaKGy3U+oSeszGim/f0MjVwGIqK1WsIRFCZJA1SR4XQ+e/t0t0vyFGGro+OUenJQcoJGUlwjOaPRA==",
+        "size": 128342270
+      }
+    ],
+    "path": "HarborGit-1.8.2-Setup-x64.exe",
+    "sha512": "klbrgEF1+uaKGy3U+oSeszGim/f0MjVwGIqK1WsIRFCZJA1SR4XQ+e/t0t0vyFGGro+OUenJQcoJGUlwjOaPRA==",
+    "releaseNotes": "# HarborGit v1.8.2\r\n\r\n- 界面统一为圆角面板，增加面板间距和列表留白，亮暗主题同步优化。\r\n- 导航栏、工作区文件列表、提交历史列表支持独立拖拽调宽，并记住偏好宽度；双击分隔线恢复默认。\r\n- 分隔线支持键盘左右方向键调节，窗口缩小时自动为右侧内容保留空间。\r\n- 精简重复的英文标题、宣传文案和常驻说明，保留路径悬浮提示、文件状态与操作所需信息。\r\n- 调整提交区和历史操作区，窄窗口下按钮可换行，减少拥挤。\r\n\r\n本版为 1.8.x 界面优化补丁。仅执行构建及界面专项检查，没有运行全量回归或安装卸载测试。\r\n",
+    "releaseDate": "2026-11-04T01:54:41.305Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}
