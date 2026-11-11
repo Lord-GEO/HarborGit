@@ -2,6 +2,8 @@
 
 HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户端，通过本机 Git 管理代码仓库，提供 Windows 和 macOS 打包配置。
 
+**v1.8.3 批量撤销**：工作区和暂存区支持勾选、多选和全选，确认文件列表后批量撤销；单文件、Diff 与批量入口统一为 IDEA 回滚图标。见 [用法与验证](docs/RELEASE-1.8.3.md)。
+
 **v1.8.2 界面整理**：统一圆角和面板留白，精简重复说明；导航、文件列表和历史列表可拖拽调宽并记忆宽度，双击分隔线恢复默认。亮暗主题同步调整。见 [界面说明](docs/RELEASE-1.8.2.md)。
 
 **v1.8.1 多终端**：在终端面板点击“＋ 新建终端”，同一项目可打开多个独立会话，通过标签页切换。关闭单个终端不影响其他会话；收起面板保留全部终端。见 [终端说明](docs/TERMINAL.md)。
@@ -106,3 +108,5 @@ npm run dist:mac:x64    # 仅 Intel
 推送与项目版本一致的 `v` 标签（如版本 `1.2.3` 对应标签 `v1.2.3`）会自动构建，全部成功后发布 GitHub Release 并上传安装包。使用此方式无需本地 Mac。
 
 打包后的应用自带 Electron，使用者仍需安装 Git 并配置远程认证。
+
+IDEA 回滚图标使用 JetBrains 的 Apache-2.0 资源；版权与许可见 [JetBrains 图标说明](assets/licenses/JetBrains-NOTICE.txt) 和 [Apache-2.0 许可](assets/licenses/Apache-2.0.txt)。应用自行编写的代码继续使用 MIT 许可。

@@ -1,0 +1,17 @@
+{
+  "version": "1.8.3",
+  "status": "passed",
+  "mode": "packaged",
+  "checks": [
+    "Individual and filtered select-all, mixed checkbox state, filter clears selection, new/untracked files disabled, and cancel preserves content",
+    "One batch restores both chosen working files to the index while preserving staged content and unrelated edits",
+    "One batch restores both staged files to HEAD, leaves new/untracked files and unrelated edits intact, and clears completed selections",
+    "Dark/light IDEA rollback resources display in actual packaged app; no renderer errors"
+  ],
+  "fullRegressionRun": false,
+  "restoreCommands": [
+    "git -c submodule.recurse=false restore --worktree --no-recurse-submodules --pathspec-from-file=- --pathspec-file-nul",
+    "git -c submodule.recurse=false restore --source=HEAD --staged --worktree --no-recurse-submodules --pathspec-from-file=- --pathspec-file-nul"
+  ],
+  "fixtureRemoved": true
+}

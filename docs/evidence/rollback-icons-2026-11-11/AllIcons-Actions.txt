@@ -1,0 +1,1685 @@
+Compiled from "AllIcons.java"
+public final class com.intellij.icons.AllIcons$Actions {
+  public static final javax.swing.Icon AddDirectory;
+
+  public static final javax.swing.Icon AddFile;
+
+  public static final javax.swing.Icon AddList;
+
+  public static final javax.swing.Icon AddMulticaret;
+
+  public static final javax.swing.Icon AddToDictionary;
+
+  public static final javax.swing.Icon AiIntentionBulb;
+
+  public static final javax.swing.Icon Annotate;
+
+  public static final javax.swing.Icon ArrowCollapse;
+
+  public static final javax.swing.Icon ArrowExpand;
+
+  public static final javax.swing.Icon Attach;
+
+  public static final javax.swing.Icon Back;
+
+  public static final javax.swing.Icon BuildAutoReloadChanges;
+
+  public static final javax.swing.Icon BuildLoadChanges;
+
+  public static final javax.swing.Icon Cancel;
+
+  public static final javax.swing.Icon ChangeView;
+
+  public static final javax.swing.Icon Checked;
+
+  public static final javax.swing.Icon Checked_selected;
+
+  public static final javax.swing.Icon CheckMulticaret;
+
+  public static final javax.swing.Icon CheckOut;
+
+  public static final javax.swing.Icon ClearCash;
+
+  public static final javax.swing.Icon Close;
+
+  public static final javax.swing.Icon CloseDarkGrey;
+
+  public static final javax.swing.Icon CloseHovered;
+
+  public static final javax.swing.Icon Collapseall;
+
+  public static final javax.swing.Icon Colors;
+
+  public static final javax.swing.Icon Commit;
+
+  public static final javax.swing.Icon Compile;
+
+  public static final javax.swing.Icon Copy;
+
+  public static final javax.swing.Icon DeleteTag;
+
+  public static final javax.swing.Icon DeleteTagHover;
+
+  public static final javax.swing.Icon DependencyAnalyzer;
+
+  public static final javax.swing.Icon DiagramDiff;
+
+  public static final javax.swing.Icon Diff;
+
+  public static final javax.swing.Icon DiffWithClipboard;
+
+  public static final javax.swing.Icon Download;
+
+  public static final javax.swing.Icon Dump;
+
+  public static final javax.swing.Icon DynamicUsages;
+
+  public static final javax.swing.Icon Edit;
+
+  public static final javax.swing.Icon EditScheme;
+
+  public static final javax.swing.Icon EditSource;
+
+  public static final javax.swing.Icon EnableNewUi;
+
+  public static final javax.swing.Icon EnableNewUiSelected;
+
+  public static final javax.swing.Icon Execute;
+
+  public static final javax.swing.Icon Exit;
+
+  public static final javax.swing.Icon Expandall;
+
+  public static final javax.swing.Icon Find;
+
+  public static final javax.swing.Icon FindAndShowNextMatches;
+
+  public static final javax.swing.Icon FindAndShowNextMatchesSmall;
+
+  public static final javax.swing.Icon FindAndShowPrevMatches;
+
+  public static final javax.swing.Icon FindAndShowPrevMatchesSmall;
+
+  public static final javax.swing.Icon FindBackward;
+
+  public static final javax.swing.Icon FindEntireFile;
+
+  public static final javax.swing.Icon FindForward;
+
+  public static final javax.swing.Icon ForceRefresh;
+
+  public static final javax.swing.Icon Forward;
+
+  public static final javax.swing.Icon GC;
+
+  public static final javax.swing.Icon GeneratedFolder;
+
+  public static final javax.swing.Icon GroupBy;
+
+  public static final javax.swing.Icon GroupByClass;
+
+  public static final javax.swing.Icon GroupByFile;
+
+  public static final javax.swing.Icon GroupByMethod;
+
+  public static final javax.swing.Icon GroupByModule;
+
+  public static final javax.swing.Icon GroupByModuleGroup;
+
+  public static final javax.swing.Icon GroupByPackage;
+
+  public static final javax.swing.Icon GroupByPrefix;
+
+  public static final javax.swing.Icon GroupByTestProduction;
+
+  public static final javax.swing.Icon Help;
+
+  public static final javax.swing.Icon Highlighting;
+
+  public static final javax.swing.Icon InlayDropTriangle;
+
+  public static final javax.swing.Icon InlayGear;
+
+  public static final javax.swing.Icon InlayGlobe;
+
+  public static final javax.swing.Icon InlayRenameInComments;
+
+  public static final javax.swing.Icon InlayRenameInCommentsActive;
+
+  public static final javax.swing.Icon InlayRenameInNoCodeFiles;
+
+  public static final javax.swing.Icon InlayRenameInNoCodeFilesActive;
+
+  public static final javax.swing.Icon InlaySecuredShield;
+
+  public static final javax.swing.Icon InlineDropFrame;
+
+  public static final javax.swing.Icon InlineDropFrameSelected;
+
+  public static final javax.swing.Icon InSelection;
+
+  public static final javax.swing.Icon Install;
+
+  public static final javax.swing.Icon IntentionBulb;
+
+  public static final javax.swing.Icon IntentionBulbGrey;
+
+  public static final javax.swing.Icon Learn;
+
+  public static final javax.swing.Icon Lightning;
+
+  public static final javax.swing.Icon ListChanges;
+
+  public static final javax.swing.Icon ListFiles;
+
+  public static final javax.swing.Icon MatchCase;
+
+  public static final javax.swing.Icon MatchCaseHovered;
+
+  public static final javax.swing.Icon MatchCaseSelected;
+
+  public static final javax.swing.Icon MenuCut;
+
+  public static final javax.swing.Icon Menu_cut;
+
+  public static final javax.swing.Icon MenuOpen;
+
+  public static final javax.swing.Icon Menu_open;
+
+  public static final javax.swing.Icon MenuPaste;
+
+  public static final javax.swing.Icon Menu_paste;
+
+  public static final javax.swing.Icon MenuSaveall;
+
+  public static final javax.swing.Icon Menu_saveall;
+
+  public static final javax.swing.Icon Minimap;
+
+  public static final javax.swing.Icon ModuleDirectory;
+
+  public static final javax.swing.Icon More;
+
+  public static final javax.swing.Icon MoreHorizontal;
+
+  public static final javax.swing.Icon MoveToButton;
+
+  public static final javax.swing.Icon MoveDown;
+
+  public static final javax.swing.Icon MoveTo2;
+
+  public static final javax.swing.Icon MoveToBottomLeft;
+
+  public static final javax.swing.Icon MoveToBottomRight;
+
+  public static final javax.swing.Icon MoveToLeftBottom;
+
+  public static final javax.swing.Icon MoveToLeftTop;
+
+  public static final javax.swing.Icon MoveToRightBottom;
+
+  public static final javax.swing.Icon MoveToRightTop;
+
+  public static final javax.swing.Icon MoveToTopLeft;
+
+  public static final javax.swing.Icon MoveToTopRight;
+
+  public static final javax.swing.Icon MoveToWindow;
+
+  public static final javax.swing.Icon MoveUp;
+
+  public static final javax.swing.Icon New;
+
+  public static final javax.swing.Icon NewFolder;
+
+  public static final javax.swing.Icon NextOccurence;
+
+  public static final javax.swing.Icon OfflineMode;
+
+  public static final javax.swing.Icon OpenNewTab;
+
+  public static final javax.swing.Icon Pause;
+
+  public static final javax.swing.Icon PinTab;
+
+  public static final javax.swing.Icon Play_back;
+
+  public static final javax.swing.Icon Play_first;
+
+  public static final javax.swing.Icon Play_forward;
+
+  public static final javax.swing.Icon Play_last;
+
+  public static final javax.swing.Icon PopFrame;
+
+  public static final javax.swing.Icon PresentationAssistantSettings;
+
+  public static final javax.swing.Icon PreserveCase;
+
+  public static final javax.swing.Icon PreserveCaseHover;
+
+  public static final javax.swing.Icon PreserveCaseSelected;
+
+  public static final javax.swing.Icon PrettyPrint;
+
+  public static final javax.swing.Icon Preview;
+
+  public static final javax.swing.Icon PreviewDetails;
+
+  public static final javax.swing.Icon PreviewDetailsVertically;
+
+  public static final javax.swing.Icon PreviousOccurence;
+
+  public static final javax.swing.Icon Profile;
+
+  public static final javax.swing.Icon ProfileBlue;
+
+  public static final javax.swing.Icon ProfileCPU;
+
+  public static final javax.swing.Icon ProfileMemory;
+
+  public static final javax.swing.Icon ProfileRed;
+
+  public static final javax.swing.Icon ProfileYellow;
+
+  public static final javax.swing.Icon ProjectDirectory;
+
+  public static final javax.swing.Icon ProjectWideAnalysisOff;
+
+  public static final javax.swing.Icon ProjectWideAnalysisOn;
+
+  public static final javax.swing.Icon Properties;
+
+  public static final javax.swing.Icon QuickfixBulb;
+
+  public static final javax.swing.Icon QuickfixOffBulb;
+
+  public static final javax.swing.Icon RealIntentionBulb;
+
+  public static final javax.swing.Icon Rebuild;
+
+  public static final javax.swing.Icon Redo;
+
+  public static final javax.swing.Icon RefactoringBulb;
+
+  public static final javax.swing.Icon ReformatCode;
+
+  public static final javax.swing.Icon Refresh;
+
+  public static final javax.swing.Icon Regex;
+
+  public static final javax.swing.Icon RegexHovered;
+
+  public static final javax.swing.Icon RegexSelected;
+
+  public static final javax.swing.Icon RemoveMulticaret;
+
+  public static final javax.swing.Icon Replace;
+
+  public static final javax.swing.Icon Report;
+
+  public static final javax.swing.Icon Rerun;
+
+  public static final javax.swing.Icon RerunAutomatically;
+
+  public static final javax.swing.Icon Restart;
+
+  public static final javax.swing.Icon RestartDebugger;
+
+  public static final javax.swing.Icon RestartFrame;
+
+  public static final javax.swing.Icon RestartStop;
+
+  public static final javax.swing.Icon Resume;
+
+  public static final javax.swing.Icon Rollback;
+
+  public static final javax.swing.Icon RunAll;
+
+  public static final javax.swing.Icon RunAnything;
+
+  public static final javax.swing.Icon Run_anything;
+
+  public static final javax.swing.Icon RunToCursor;
+
+  public static final javax.swing.Icon Scratch;
+
+  public static final javax.swing.Icon Search;
+
+  public static final javax.swing.Icon SearchNewLine;
+
+  public static final javax.swing.Icon SearchNewLineHover;
+
+  public static final javax.swing.Icon SearchWithHistory;
+
+  public static final javax.swing.Icon Selectall;
+
+  public static final javax.swing.Icon SetDefault;
+
+  public static final javax.swing.Icon Share;
+
+  public static final javax.swing.Icon ShortcutFilter;
+
+  public static final javax.swing.Icon Show;
+
+  public static final javax.swing.Icon ShowAsTree;
+
+  public static final javax.swing.Icon ShowCode;
+
+  public static final javax.swing.Icon ShowImportStatements;
+
+  public static final javax.swing.Icon ShowReadAccess;
+
+  public static final javax.swing.Icon ShowWriteAccess;
+
+  public static final javax.swing.Icon SplitHorizontally;
+
+  public static final javax.swing.Icon SplitVertically;
+
+  public static final javax.swing.Icon StartDebugger;
+
+  public static final javax.swing.Icon StartMemoryProfile;
+
+  public static final javax.swing.Icon StepOut;
+
+  public static final javax.swing.Icon StepOutCodeBlock;
+
+  public static final javax.swing.Icon StopAndRestart;
+
+  public static final javax.swing.Icon StopRefresh;
+
+  public static final javax.swing.Icon StopWatch;
+
+  public static final javax.swing.Icon Stub;
+
+  public static final javax.swing.Icon SuggestedRefactoringBulb;
+
+  public static final javax.swing.Icon Suspend;
+
+  public static final javax.swing.Icon SwapPanels;
+
+  public static final javax.swing.Icon SynchronizeScrolling;
+
+  public static final javax.swing.Icon SyncPanels;
+
+  public static final javax.swing.Icon ToggleSoftWrap;
+
+  public static final javax.swing.Icon ToggleVisibility;
+
+  public static final javax.swing.Icon TraceInto;
+
+  public static final javax.swing.Icon TraceOver;
+
+  public static final javax.swing.Icon Undo;
+
+  public static final javax.swing.Icon Uninstall;
+
+  public static final javax.swing.Icon Unselectall;
+
+  public static final javax.swing.Icon Unshare;
+
+  public static final javax.swing.Icon Upload;
+
+  public static final javax.swing.Icon ViewAsImage;
+
+  public static final javax.swing.Icon Words;
+
+  public static final javax.swing.Icon WordsHovered;
+
+  public static final javax.swing.Icon WordsSelected;
+
+  public static final javax.swing.Icon ShowViewer;
+
+  public com.intellij.icons.AllIcons$Actions();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  static {};
+    Code:
+       0: ldc           #7                  // String expui/actions/addDirectory.svg
+       2: ldc           #9                  // int 1001061326
+       4: iconst_2
+       5: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+       8: putstatic     #16                 // Field AddDirectory:Ljavax/swing/Icon;
+      11: ldc           #22                 // String expui/actions/addFile.svg
+      13: ldc           #24                 // String actions/addFile.svg
+      15: ldc           #26                 // int -401992031
+      17: iconst_2
+      18: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+      21: putstatic     #30                 // Field AddFile:Ljavax/swing/Icon;
+      24: ldc           #33                 // String expui/bookmarks/addBookmarksList.svg
+      26: ldc           #35                 // String actions/addList.svg
+      28: ldc           #37                 // int 687312006
+      30: iconst_2
+      31: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+      34: putstatic     #38                 // Field AddList:Ljavax/swing/Icon;
+      37: ldc           #41                 // String expui/general/add.svg
+      39: ldc           #43                 // String actions/AddMulticaret.svg
+      41: ldc           #45                 // int 14246848
+      43: iconst_2
+      44: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+      47: putstatic     #46                 // Field AddMulticaret:Ljavax/swing/Icon;
+      50: ldc           #49                 // String expui/actions/addToDictionary.svg
+      52: ldc           #51                 // String actions/addToDictionary.svg
+      54: ldc           #53                 // int -854911886
+      56: iconst_2
+      57: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+      60: putstatic     #54                 // Field AddToDictionary:Ljavax/swing/Icon;
+      63: ldc           #57                 // String expui/actions/aiIntentionBulb.svg
+      65: ldc           #59                 // int -2142579745
+      67: iconst_2
+      68: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+      71: putstatic     #60                 // Field AiIntentionBulb:Ljavax/swing/Icon;
+      74: ldc           #63                 // String expui/general/listFiles.svg
+      76: ldc           #65                 // String actions/annotate.svg
+      78: ldc           #67                 // int -264543398
+      80: iconst_2
+      81: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+      84: putstatic     #68                 // Field Annotate:Ljavax/swing/Icon;
+      87: ldc           #71                 // String expui/general/chevronLeft.svg
+      89: ldc           #73                 // String actions/arrowCollapse.svg
+      91: ldc           #75                 // int -296923721
+      93: iconst_2
+      94: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+      97: putstatic     #76                 // Field ArrowCollapse:Ljavax/swing/Icon;
+     100: ldc           #79                 // String expui/general/chevronRight.svg
+     102: ldc           #81                 // String actions/arrowExpand.svg
+     104: ldc           #83                 // int 2111993468
+     106: iconst_2
+     107: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     110: putstatic     #84                 // Field ArrowExpand:Ljavax/swing/Icon;
+     113: ldc           #87                 // String expui/actions/attach.svg
+     115: ldc           #89                 // int 312051375
+     117: iconst_2
+     118: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     121: putstatic     #90                 // Field Attach:Ljavax/swing/Icon;
+     124: ldc           #93                 // String expui/general/left.svg
+     126: ldc           #95                 // String actions/back.svg
+     128: ldc           #97                 // int 1990199139
+     130: iconst_2
+     131: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     134: putstatic     #98                 // Field Back:Ljavax/swing/Icon;
+     137: ldc           #101                // String expui/actions/buildAutoReloadChanges.svg
+     139: ldc           #103                // String actions/buildAutoReloadChanges.svg
+     141: ldc           #105                // int 1799776131
+     143: iconst_2
+     144: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     147: putstatic     #106                // Field BuildAutoReloadChanges:Ljavax/swing/Icon;
+     150: ldc           #109                // String expui/actions/buildLoadChanges.svg
+     152: ldc           #111                // String actions/buildLoadChanges.svg
+     154: ldc           #113                // int -2056072706
+     156: iconst_2
+     157: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     160: putstatic     #114                // Field BuildLoadChanges:Ljavax/swing/Icon;
+     163: ldc           #117                // String expui/general/close.svg
+     165: ldc           #119                // String actions/cancel.svg
+     167: ldc           #121                // int -263776084
+     169: iconst_2
+     170: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     173: putstatic     #122                // Field Cancel:Ljavax/swing/Icon;
+     176: ldc           #125                // String expui/actions/changeView.svg
+     178: ldc           #127                // String actions/changeView.svg
+     180: ldc           #129                // int -598441630
+     182: iconst_2
+     183: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     186: putstatic     #130                // Field ChangeView:Ljavax/swing/Icon;
+     189: ldc           #133                // String expui/actions/checked.svg
+     191: ldc           #135                // String actions/checked.svg
+     193: ldc           #137                // int -988548294
+     195: iconst_0
+     196: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     199: putstatic     #138                // Field Checked:Ljavax/swing/Icon;
+     202: ldc           #141                // String actions/checked_selected.svg
+     204: ldc           #143                // int -434989657
+     206: iconst_0
+     207: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     210: putstatic     #144                // Field Checked_selected:Ljavax/swing/Icon;
+     213: ldc           #147                // String actions/CheckMulticaret.svg
+     215: ldc           #149                // int 164939994
+     217: iconst_2
+     218: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     221: putstatic     #150                // Field CheckMulticaret:Ljavax/swing/Icon;
+     224: ldc           #153                // String expui/vcs/update.svg
+     226: ldc           #155                // String actions/checkOut.svg
+     228: ldc           #157                // int 464330888
+     230: iconst_2
+     231: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     234: putstatic     #158                // Field CheckOut:Ljavax/swing/Icon;
+     237: ldc           #161                // String expui/actions/clearCash.svg
+     239: ldc           #163                // int 1918690860
+     241: iconst_2
+     242: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     245: putstatic     #164                // Field ClearCash:Ljavax/swing/Icon;
+     248: ldc           #167                // String expui/general/closeSmall.svg
+     250: ldc           #169                // String actions/close.svg
+     252: ldc           #171                // int 340159074
+     254: iconst_0
+     255: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     258: putstatic     #172                // Field Close:Ljavax/swing/Icon;
+     261: ldc           #175                // String actions/closeDarkGrey.svg
+     263: ldc           #177                // int -770212526
+     265: iconst_2
+     266: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     269: putstatic     #178                // Field CloseDarkGrey:Ljavax/swing/Icon;
+     272: ldc           #181                // String expui/general/closeSmallHovered.svg
+     274: ldc           #183                // String actions/closeHovered.svg
+     276: ldc           #185                // int 874802347
+     278: iconst_0
+     279: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     282: putstatic     #186                // Field CloseHovered:Ljavax/swing/Icon;
+     285: ldc           #189                // String expui/general/collapseAll.svg
+     287: ldc           #191                // String actions/collapseall.svg
+     289: ldc           #193                // int 49808704
+     291: iconst_2
+     292: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     295: putstatic     #194                // Field Collapseall:Ljavax/swing/Icon;
+     298: ldc           #197                // String actions/colors.svg
+     300: ldc           #199                // int 1344876210
+     302: iconst_2
+     303: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     306: putstatic     #200                // Field Colors:Ljavax/swing/Icon;
+     309: ldc           #203                // String expui/vcs/commit.svg
+     311: ldc           #205                // String actions/commit.svg
+     313: ldc           #207                // int 1634981977
+     315: iconst_2
+     316: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     319: putstatic     #208                // Field Commit:Ljavax/swing/Icon;
+     322: ldc           #211                // String expui/build/build.svg
+     324: ldc           #213                // String actions/compile.svg
+     326: ldc           #215                // int -74779340
+     328: iconst_2
+     329: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     332: putstatic     #216                // Field Compile:Ljavax/swing/Icon;
+     335: ldc           #219                // String expui/general/copy.svg
+     337: ldc           #221                // String actions/copy.svg
+     339: ldc           #223                // int 472024350
+     341: iconst_2
+     342: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     345: putstatic     #224                // Field Copy:Ljavax/swing/Icon;
+     348: ldc           #227                // String actions/deleteTag.svg
+     350: ldc           #229                // int -206512106
+     352: iconst_2
+     353: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     356: putstatic     #230                // Field DeleteTag:Ljavax/swing/Icon;
+     359: ldc           #233                // String actions/deleteTagHover.svg
+     361: ldc           #235                // int -1791200756
+     363: iconst_2
+     364: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     367: putstatic     #236                // Field DeleteTagHover:Ljavax/swing/Icon;
+     370: ldc           #239                // String expui/build/dependencyAnalyzer.svg
+     372: ldc           #241                // String actions/dependencyAnalyzer.svg
+     374: ldc           #243                // int -456221722
+     376: iconst_2
+     377: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     380: putstatic     #244                // Field DependencyAnalyzer:Ljavax/swing/Icon;
+     383: ldc           #247                // String expui/actions/diagramDiff.svg
+     385: ldc           #249                // String actions/diagramDiff.svg
+     387: ldc           #251                // int 1592610798
+     389: iconst_2
+     390: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     393: putstatic     #252                // Field DiagramDiff:Ljavax/swing/Icon;
+     396: ldc           #255                // String expui/vcs/diff.svg
+     398: ldc_w         #257                // String actions/diff.svg
+     401: ldc_w         #259                // int 585433782
+     404: iconst_2
+     405: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     408: putstatic     #260                // Field Diff:Ljavax/swing/Icon;
+     411: ldc_w         #263                // String expui/actions/diffWithClipboard.svg
+     414: ldc_w         #265                // String actions/diffWithClipboard.svg
+     417: ldc_w         #267                // int 2000090926
+     420: iconst_2
+     421: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     424: putstatic     #268                // Field DiffWithClipboard:Ljavax/swing/Icon;
+     427: ldc_w         #271                // String expui/general/download.svg
+     430: ldc_w         #273                // String actions/download.svg
+     433: ldc_w         #275                // int 107885055
+     436: iconst_2
+     437: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     440: putstatic     #276                // Field Download:Ljavax/swing/Icon;
+     443: ldc_w         #279                // String expui/run/dumpThreads.svg
+     446: ldc_w         #281                // String actions/dump.svg
+     449: ldc_w         #283                // int -846856013
+     452: iconst_2
+     453: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     456: putstatic     #284                // Field Dump:Ljavax/swing/Icon;
+     459: ldc_w         #287                // String actions/dynamicUsages.svg
+     462: ldc_w         #289                // int -522036272
+     465: iconst_2
+     466: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     469: putstatic     #290                // Field DynamicUsages:Ljavax/swing/Icon;
+     472: ldc_w         #293                // String expui/general/edit.svg
+     475: ldc_w         #295                // String actions/edit.svg
+     478: ldc_w         #297                // int -483863471
+     481: iconst_2
+     482: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     485: putstatic     #298                // Field Edit:Ljavax/swing/Icon;
+     488: ldc_w         #293                // String expui/general/edit.svg
+     491: ldc_w         #301                // String actions/editScheme.svg
+     494: ldc_w         #303                // int -2140024882
+     497: iconst_2
+     498: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     501: putstatic     #304                // Field EditScheme:Ljavax/swing/Icon;
+     504: ldc_w         #293                // String expui/general/edit.svg
+     507: ldc_w         #307                // String actions/editSource.svg
+     510: ldc_w         #309                // int 1733514533
+     513: iconst_2
+     514: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     517: putstatic     #310                // Field EditSource:Ljavax/swing/Icon;
+     520: ldc_w         #313                // String actions/enableNewUi.svg
+     523: ldc_w         #315                // int 944382817
+     526: iconst_0
+     527: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     530: putstatic     #316                // Field EnableNewUi:Ljavax/swing/Icon;
+     533: ldc_w         #319                // String actions/enableNewUiSelected.svg
+     536: ldc_w         #321                // int 1993898906
+     539: iconst_0
+     540: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     543: putstatic     #322                // Field EnableNewUiSelected:Ljavax/swing/Icon;
+     546: ldc_w         #325                // String expui/run/run.svg
+     549: ldc_w         #327                // String actions/execute.svg
+     552: ldc_w         #329                // int 917793291
+     555: bipush        10
+     557: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     560: putstatic     #330                // Field Execute:Ljavax/swing/Icon;
+     563: ldc_w         #333                // String expui/general/exit.svg
+     566: ldc_w         #335                // String actions/exit.svg
+     569: ldc_w         #337                // int -83756038
+     572: iconst_2
+     573: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     576: putstatic     #338                // Field Exit:Ljavax/swing/Icon;
+     579: ldc_w         #341                // String expui/general/expandAll.svg
+     582: ldc_w         #343                // String actions/expandall.svg
+     585: ldc_w         #345                // int 879771216
+     588: iconst_2
+     589: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     592: putstatic     #346                // Field Expandall:Ljavax/swing/Icon;
+     595: ldc_w         #349                // String expui/general/search.svg
+     598: ldc_w         #351                // String actions/find.svg
+     601: ldc_w         #353                // int 1275373899
+     604: iconst_2
+     605: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     608: putstatic     #354                // Field Find:Ljavax/swing/Icon;
+     611: ldc_w         #357                // String expui/general/chevronDown.svg
+     614: ldc_w         #359                // String actions/findAndShowNextMatches.svg
+     617: ldc_w         #361                // int -1547028108
+     620: iconst_2
+     621: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     624: putstatic     #362                // Field FindAndShowNextMatches:Ljavax/swing/Icon;
+     627: ldc_w         #357                // String expui/general/chevronDown.svg
+     630: ldc_w         #365                // String actions/findAndShowNextMatchesSmall.svg
+     633: ldc_w         #367                // int 1412713913
+     636: iconst_2
+     637: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     640: putstatic     #368                // Field FindAndShowNextMatchesSmall:Ljavax/swing/Icon;
+     643: ldc_w         #371                // String expui/general/chevronUp.svg
+     646: ldc_w         #373                // String actions/findAndShowPrevMatches.svg
+     649: ldc_w         #375                // int 1577129294
+     652: iconst_2
+     653: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     656: putstatic     #376                // Field FindAndShowPrevMatches:Ljavax/swing/Icon;
+     659: ldc_w         #371                // String expui/general/chevronUp.svg
+     662: ldc_w         #379                // String actions/findAndShowPrevMatchesSmall.svg
+     665: ldc_w         #381                // int -641725766
+     668: iconst_2
+     669: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     672: putstatic     #382                // Field FindAndShowPrevMatchesSmall:Ljavax/swing/Icon;
+     675: ldc_w         #385                // String expui/actions/findBackward.svg
+     678: ldc_w         #387                // String actions/findBackward.svg
+     681: ldc_w         #389                // int 1373712790
+     684: iconst_2
+     685: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     688: putstatic     #390                // Field FindBackward:Ljavax/swing/Icon;
+     691: ldc_w         #393                // String expui/actions/findEntireFile.svg
+     694: ldc_w         #395                // String actions/findEntireFile.svg
+     697: ldc_w         #397                // int -875287273
+     700: iconst_2
+     701: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     704: putstatic     #398                // Field FindEntireFile:Ljavax/swing/Icon;
+     707: ldc_w         #401                // String expui/actions/findForward.svg
+     710: ldc_w         #403                // String actions/findForward.svg
+     713: ldc_w         #405                // int -2015650359
+     716: iconst_2
+     717: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     720: putstatic     #406                // Field FindForward:Ljavax/swing/Icon;
+     723: ldc_w         #409                // String expui/actions/forceRefresh.svg
+     726: ldc_w         #411                // String actions/forceRefresh.svg
+     729: ldc_w         #413                // int 1506719599
+     732: iconst_2
+     733: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     736: putstatic     #414                // Field ForceRefresh:Ljavax/swing/Icon;
+     739: ldc_w         #417                // String expui/general/right.svg
+     742: ldc_w         #419                // String actions/forward.svg
+     745: ldc_w         #421                // int 625314766
+     748: iconst_2
+     749: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     752: putstatic     #422                // Field Forward:Ljavax/swing/Icon;
+     755: ldc_w         #425                // String expui/general/delete.svg
+     758: ldc_w         #427                // String actions/gc.svg
+     761: ldc_w         #429                // int -382610359
+     764: iconst_2
+     765: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     768: putstatic     #430                // Field GC:Ljavax/swing/Icon;
+     771: ldc_w         #433                // String expui/actions/generated.svg
+     774: ldc_w         #435                // String actions/generatedFolder.svg
+     777: ldc_w         #437                // int -1188638644
+     780: iconst_2
+     781: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     784: putstatic     #438                // Field GeneratedFolder:Ljavax/swing/Icon;
+     787: ldc_w         #441                // String expui/general/show.svg
+     790: ldc_w         #443                // String actions/groupBy.svg
+     793: ldc_w         #445                // int 73174374
+     796: iconst_2
+     797: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     800: putstatic     #446                // Field GroupBy:Ljavax/swing/Icon;
+     803: ldc_w         #449                // String expui/actions/groupByClass.svg
+     806: ldc_w         #451                // String actions/GroupByClass.svg
+     809: ldc_w         #453                // int 833211609
+     812: iconst_2
+     813: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     816: putstatic     #454                // Field GroupByClass:Ljavax/swing/Icon;
+     819: ldc_w         #457                // String expui/actions/groupByFile.svg
+     822: ldc_w         #459                // String actions/GroupByFile.svg
+     825: ldc_w         #461                // int -1739369473
+     828: iconst_2
+     829: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     832: putstatic     #462                // Field GroupByFile:Ljavax/swing/Icon;
+     835: ldc_w         #465                // String expui/actions/groupByMethod.svg
+     838: ldc_w         #467                // String actions/groupByMethod.svg
+     841: ldc_w         #469                // int -172508434
+     844: iconst_2
+     845: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     848: putstatic     #470                // Field GroupByMethod:Ljavax/swing/Icon;
+     851: ldc_w         #473                // String expui/actions/groupByModule.svg
+     854: ldc_w         #475                // String actions/GroupByModule.svg
+     857: ldc_w         #477                // int 762451994
+     860: iconst_2
+     861: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     864: putstatic     #478                // Field GroupByModule:Ljavax/swing/Icon;
+     867: ldc_w         #481                // String expui/actions/groupByModuleGroup.svg
+     870: ldc_w         #483                // String actions/GroupByModuleGroup.svg
+     873: ldc_w         #485                // int -1876724743
+     876: iconst_2
+     877: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     880: putstatic     #486                // Field GroupByModuleGroup:Ljavax/swing/Icon;
+     883: ldc_w         #489                // String expui/actions/groupByPackage.svg
+     886: ldc_w         #491                // String actions/GroupByPackage.svg
+     889: ldc_w         #493                // int -2005050728
+     892: iconst_2
+     893: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     896: putstatic     #494                // Field GroupByPackage:Ljavax/swing/Icon;
+     899: ldc_w         #497                // String actions/GroupByPrefix.svg
+     902: ldc_w         #499                // int -1453880873
+     905: iconst_2
+     906: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     909: putstatic     #500                // Field GroupByPrefix:Ljavax/swing/Icon;
+     912: ldc_w         #503                // String expui/actions/groupByTestProduction.svg
+     915: ldc_w         #505                // String actions/groupByTestProduction.svg
+     918: ldc_w         #507                // int -1535893700
+     921: iconst_2
+     922: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     925: putstatic     #508                // Field GroupByTestProduction:Ljavax/swing/Icon;
+     928: ldc_w         #511                // String expui/general/help.svg
+     931: ldc_w         #513                // String actions/help.svg
+     934: ldc_w         #515                // int 1634111868
+     937: iconst_2
+     938: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     941: putstatic     #516                // Field Help:Ljavax/swing/Icon;
+     944: ldc_w         #519                // String expui/actions/highlighting.svg
+     947: ldc_w         #521                // String actions/highlighting.svg
+     950: ldc_w         #523                // int -207354251
+     953: iconst_2
+     954: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     957: putstatic     #524                // Field Highlighting:Ljavax/swing/Icon;
+     960: ldc_w         #527                // String actions/inlayDropTriangle.svg
+     963: ldc_w         #529                // int -995758888
+     966: iconst_0
+     967: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+     970: putstatic     #530                // Field InlayDropTriangle:Ljavax/swing/Icon;
+     973: ldc_w         #533                // String expui/codeInsight/inlaySettings.svg
+     976: ldc_w         #535                // String actions/inlayGear.svg
+     979: ldc_w         #537                // int 1238199129
+     982: iconst_0
+     983: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+     986: putstatic     #538                // Field InlayGear:Ljavax/swing/Icon;
+     989: ldc_w         #541                // String expui/codeInsight/inlayGlobe.svg
+     992: ldc_w         #543                // String actions/inlayGlobe.svg
+     995: ldc_w         #545                // int 2099234919
+     998: iconst_0
+     999: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1002: putstatic     #546                // Field InlayGlobe:Ljavax/swing/Icon;
+    1005: ldc_w         #549                // String expui/codeInsight/inlayRenameInComments.svg
+    1008: ldc_w         #551                // String actions/inlayRenameInComments.svg
+    1011: ldc_w         #553                // int 1405010969
+    1014: iconst_0
+    1015: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1018: putstatic     #554                // Field InlayRenameInComments:Ljavax/swing/Icon;
+    1021: ldc_w         #557                // String expui/codeInsight/inlayRenameInCommentsActive.svg
+    1024: ldc_w         #559                // String actions/inlayRenameInCommentsActive.svg
+    1027: ldc_w         #561                // int 1577110730
+    1030: iconst_2
+    1031: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1034: putstatic     #562                // Field InlayRenameInCommentsActive:Ljavax/swing/Icon;
+    1037: ldc_w         #565                // String expui/codeInsight/inlayRenameInNoCodeFiles.svg
+    1040: ldc_w         #567                // String actions/inlayRenameInNoCodeFiles.svg
+    1043: ldc_w         #569                // int 457631883
+    1046: iconst_0
+    1047: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1050: putstatic     #570                // Field InlayRenameInNoCodeFiles:Ljavax/swing/Icon;
+    1053: ldc_w         #573                // String expui/codeInsight/inlayRenameInNoCodeFilesActive.svg
+    1056: ldc_w         #575                // String actions/inlayRenameInNoCodeFilesActive.svg
+    1059: ldc_w         #577                // int -471103115
+    1062: iconst_2
+    1063: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1066: putstatic     #578                // Field InlayRenameInNoCodeFilesActive:Ljavax/swing/Icon;
+    1069: ldc_w         #581                // String expui/codeInsight/inlaySecuredShield.svg
+    1072: ldc_w         #583                // String actions/inlaySecuredShield.svg
+    1075: ldc_w         #585                // int -658413079
+    1078: iconst_0
+    1079: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1082: putstatic     #586                // Field InlaySecuredShield:Ljavax/swing/Icon;
+    1085: ldc_w         #589                // String actions/inlineDropFrame.svg
+    1088: ldc_w         #591                // int -1741854760
+    1091: iconst_2
+    1092: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    1095: putstatic     #592                // Field InlineDropFrame:Ljavax/swing/Icon;
+    1098: ldc_w         #595                // String actions/inlineDropFrameSelected.svg
+    1101: ldc_w         #597                // int 600697658
+    1104: iconst_2
+    1105: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    1108: putstatic     #598                // Field InlineDropFrameSelected:Ljavax/swing/Icon;
+    1111: ldc_w         #601                // String expui/actions/inSelection.svg
+    1114: ldc_w         #603                // String actions/inSelection.svg
+    1117: ldc_w         #605                // int 1095183570
+    1120: iconst_2
+    1121: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1124: putstatic     #606                // Field InSelection:Ljavax/swing/Icon;
+    1127: ldc_w         #609                // String expui/actions/install.svg
+    1130: ldc_w         #611                // String actions/install.svg
+    1133: ldc_w         #613                // int -1205666017
+    1136: iconst_2
+    1137: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1140: putstatic     #614                // Field Install:Ljavax/swing/Icon;
+    1143: ldc_w         #617                // String expui/codeInsight/intentionBulb.svg
+    1146: ldc_w         #619                // String actions/intentionBulb.svg
+    1149: ldc_w         #621                // int -42443329
+    1152: iconst_2
+    1153: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1156: putstatic     #622                // Field IntentionBulb:Ljavax/swing/Icon;
+    1159: ldc_w         #625                // String expui/codeInsight/intentionBulbGrey.svg
+    1162: ldc_w         #627                // String actions/intentionBulbGrey.svg
+    1165: ldc_w         #629                // int 738364044
+    1168: iconst_2
+    1169: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1172: putstatic     #630                // Field IntentionBulbGrey:Ljavax/swing/Icon;
+    1175: ldc_w         #633                // String expui/actions/learn.svg
+    1178: ldc_w         #635                // String actions/learn.svg
+    1181: ldc_w         #637                // int -1694136226
+    1184: iconst_2
+    1185: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1188: putstatic     #638                // Field Learn:Ljavax/swing/Icon;
+    1191: ldc_w         #641                // String expui/actions/lightning.svg
+    1194: ldc_w         #643                // String actions/lightning.svg
+    1197: ldc_w         #645                // int 1372299981
+    1200: iconst_2
+    1201: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1204: putstatic     #646                // Field Lightning:Ljavax/swing/Icon;
+    1207: ldc_w         #649                // String expui/vcs/changes.svg
+    1210: ldc_w         #651                // String actions/listChanges.svg
+    1213: ldc_w         #653                // int -1946328934
+    1216: iconst_2
+    1217: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1220: putstatic     #654                // Field ListChanges:Ljavax/swing/Icon;
+    1223: ldc           #63                 // String expui/general/listFiles.svg
+    1225: ldc_w         #657                // String actions/listFiles.svg
+    1228: ldc_w         #659                // int -1292692624
+    1231: iconst_2
+    1232: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1235: putstatic     #660                // Field ListFiles:Ljavax/swing/Icon;
+    1238: ldc_w         #663                // String expui/inline/matchCase.svg
+    1241: ldc_w         #665                // String actions/matchCase.svg
+    1244: ldc_w         #667                // int 669255855
+    1247: iconst_0
+    1248: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1251: putstatic     #668                // Field MatchCase:Ljavax/swing/Icon;
+    1254: ldc_w         #663                // String expui/inline/matchCase.svg
+    1257: ldc_w         #671                // String actions/matchCaseHovered.svg
+    1260: ldc_w         #673                // int -484151390
+    1263: iconst_0
+    1264: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1267: putstatic     #674                // Field MatchCaseHovered:Ljavax/swing/Icon;
+    1270: ldc_w         #663                // String expui/inline/matchCase.svg
+    1273: ldc_w         #677                // String actions/matchCaseSelected.svg
+    1276: ldc_w         #679                // int -1865066843
+    1279: iconst_0
+    1280: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1283: putstatic     #680                // Field MatchCaseSelected:Ljavax/swing/Icon;
+    1286: ldc_w         #683                // String expui/general/cut.svg
+    1289: ldc_w         #685                // String actions/menu-cut.svg
+    1292: ldc_w         #687                // int 246355046
+    1295: iconst_2
+    1296: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1299: putstatic     #688                // Field MenuCut:Ljavax/swing/Icon;
+    1302: getstatic     #688                // Field MenuCut:Ljavax/swing/Icon;
+    1305: putstatic     #691                // Field Menu_cut:Ljavax/swing/Icon;
+    1308: ldc_w         #694                // String expui/general/open.svg
+    1311: ldc_w         #696                // String actions/menu-open.svg
+    1314: ldc_w         #698                // int 736641834
+    1317: iconst_2
+    1318: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1321: putstatic     #699                // Field MenuOpen:Ljavax/swing/Icon;
+    1324: getstatic     #699                // Field MenuOpen:Ljavax/swing/Icon;
+    1327: putstatic     #702                // Field Menu_open:Ljavax/swing/Icon;
+    1330: ldc_w         #705                // String expui/general/paste.svg
+    1333: ldc_w         #707                // String actions/menu-paste.svg
+    1336: ldc_w         #709                // int -1575072734
+    1339: iconst_2
+    1340: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1343: putstatic     #710                // Field MenuPaste:Ljavax/swing/Icon;
+    1346: getstatic     #710                // Field MenuPaste:Ljavax/swing/Icon;
+    1349: putstatic     #713                // Field Menu_paste:Ljavax/swing/Icon;
+    1352: ldc_w         #716                // String expui/general/save.svg
+    1355: ldc_w         #718                // String actions/menu-saveall.svg
+    1358: ldc_w         #720                // int 63691479
+    1361: iconst_2
+    1362: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1365: putstatic     #721                // Field MenuSaveall:Ljavax/swing/Icon;
+    1368: getstatic     #721                // Field MenuSaveall:Ljavax/swing/Icon;
+    1371: putstatic     #724                // Field Menu_saveall:Ljavax/swing/Icon;
+    1374: ldc_w         #727                // String expui/actions/minimap.svg
+    1377: ldc_w         #729                // String actions/minimap.svg
+    1380: ldc_w         #731                // int -319068080
+    1383: iconst_2
+    1384: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1387: putstatic     #732                // Field Minimap:Ljavax/swing/Icon;
+    1390: ldc_w         #735                // String expui/nodes/module.svg
+    1393: ldc_w         #737                // String actions/moduleDirectory.svg
+    1396: ldc_w         #739                // int -1320924233
+    1399: iconst_2
+    1400: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1403: putstatic     #740                // Field ModuleDirectory:Ljavax/swing/Icon;
+    1406: ldc_w         #743                // String expui/general/moreVertical.svg
+    1409: ldc_w         #745                // String actions/more.svg
+    1412: ldc_w         #747                // int 2111376411
+    1415: bipush        10
+    1417: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1420: putstatic     #748                // Field More:Ljavax/swing/Icon;
+    1423: ldc_w         #751                // String expui/general/moreHorizontal.svg
+    1426: ldc_w         #753                // String actions/moreHorizontal.svg
+    1429: ldc_w         #755                // int -2048319791
+    1432: iconst_2
+    1433: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1436: putstatic     #756                // Field MoreHorizontal:Ljavax/swing/Icon;
+    1439: ldc_w         #759                // String expui/actions/moveToButton.svg
+    1442: ldc_w         #761                // String actions/move-to-button.svg
+    1445: ldc_w         #763                // int -118707213
+    1448: iconst_2
+    1449: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1452: putstatic     #764                // Field MoveToButton:Ljavax/swing/Icon;
+    1455: ldc_w         #767                // String expui/general/moveDown.svg
+    1458: ldc_w         #769                // String actions/moveDown.svg
+    1461: ldc_w         #771                // int -2118323295
+    1464: iconst_2
+    1465: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1468: putstatic     #772                // Field MoveDown:Ljavax/swing/Icon;
+    1471: ldc_w         #775                // String expui/actions/moveToWindow.svg
+    1474: ldc_w         #777                // String actions/MoveTo2.svg
+    1477: ldc_w         #779                // int 1643543562
+    1480: iconst_2
+    1481: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1484: putstatic     #780                // Field MoveTo2:Ljavax/swing/Icon;
+    1487: ldc_w         #783                // String expui/actions/moveToBottomLeft.svg
+    1490: ldc_w         #785                // String actions/moveToBottomLeft.svg
+    1493: ldc_w         #787                // int -571630777
+    1496: iconst_2
+    1497: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1500: putstatic     #788                // Field MoveToBottomLeft:Ljavax/swing/Icon;
+    1503: ldc_w         #791                // String expui/actions/moveToBottomRight.svg
+    1506: ldc_w         #793                // String actions/moveToBottomRight.svg
+    1509: ldc_w         #795                // int 1506844169
+    1512: iconst_2
+    1513: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1516: putstatic     #796                // Field MoveToBottomRight:Ljavax/swing/Icon;
+    1519: ldc_w         #799                // String expui/actions/moveToLeftBottom.svg
+    1522: ldc_w         #801                // String actions/moveToLeftBottom.svg
+    1525: ldc_w         #803                // int -1888615188
+    1528: iconst_2
+    1529: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1532: putstatic     #804                // Field MoveToLeftBottom:Ljavax/swing/Icon;
+    1535: ldc_w         #807                // String expui/actions/moveToLeftTop.svg
+    1538: ldc_w         #809                // String actions/moveToLeftTop.svg
+    1541: ldc_w         #811                // int 1131863880
+    1544: iconst_2
+    1545: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1548: putstatic     #812                // Field MoveToLeftTop:Ljavax/swing/Icon;
+    1551: ldc_w         #815                // String expui/actions/moveToRightBottom.svg
+    1554: ldc_w         #817                // String actions/moveToRightBottom.svg
+    1557: ldc_w         #819                // int 2029282363
+    1560: iconst_2
+    1561: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1564: putstatic     #820                // Field MoveToRightBottom:Ljavax/swing/Icon;
+    1567: ldc_w         #823                // String expui/actions/moveToRightTop.svg
+    1570: ldc_w         #825                // String actions/moveToRightTop.svg
+    1573: ldc_w         #827                // int 2034850953
+    1576: iconst_2
+    1577: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1580: putstatic     #828                // Field MoveToRightTop:Ljavax/swing/Icon;
+    1583: ldc_w         #831                // String actions/moveToTopLeft.svg
+    1586: ldc_w         #833                // int 1557541143
+    1589: iconst_2
+    1590: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    1593: putstatic     #834                // Field MoveToTopLeft:Ljavax/swing/Icon;
+    1596: ldc_w         #837                // String actions/moveToTopRight.svg
+    1599: ldc_w         #839                // int 1602400676
+    1602: iconst_2
+    1603: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    1606: putstatic     #840                // Field MoveToTopRight:Ljavax/swing/Icon;
+    1609: ldc_w         #775                // String expui/actions/moveToWindow.svg
+    1612: ldc_w         #843                // String actions/moveToWindow.svg
+    1615: ldc_w         #845                // int 434637226
+    1618: iconst_2
+    1619: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1622: putstatic     #846                // Field MoveToWindow:Ljavax/swing/Icon;
+    1625: ldc_w         #849                // String expui/general/moveUp.svg
+    1628: ldc_w         #851                // String actions/moveUp.svg
+    1631: ldc_w         #853                // int 462475104
+    1634: iconst_2
+    1635: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1638: putstatic     #854                // Field MoveUp:Ljavax/swing/Icon;
+    1641: ldc_w         #857                // String actions/new.svg
+    1644: ldc_w         #859                // int 418266197
+    1647: iconst_2
+    1648: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    1651: putstatic     #860                // Field New:Ljavax/swing/Icon;
+    1654: ldc_w         #863                // String expui/actions/newFolder.svg
+    1657: ldc_w         #865                // String actions/newFolder.svg
+    1660: ldc_w         #867                // int 1755918051
+    1663: iconst_2
+    1664: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1667: putstatic     #868                // Field NewFolder:Ljavax/swing/Icon;
+    1670: ldc_w         #871                // String expui/general/down.svg
+    1673: ldc_w         #873                // String actions/nextOccurence.svg
+    1676: ldc_w         #875                // int -462515105
+    1679: iconst_2
+    1680: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1683: putstatic     #876                // Field NextOccurence:Ljavax/swing/Icon;
+    1686: ldc_w         #879                // String expui/build/toggleOfflineMode.svg
+    1689: ldc_w         #881                // String actions/offlineMode.svg
+    1692: ldc_w         #883                // int 1767884287
+    1695: iconst_2
+    1696: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1699: putstatic     #884                // Field OfflineMode:Ljavax/swing/Icon;
+    1702: ldc_w         #887                // String expui/general/openNewTab.svg
+    1705: ldc_w         #889                // String actions/openNewTab.svg
+    1708: ldc_w         #891                // int 1663264499
+    1711: iconst_2
+    1712: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1715: putstatic     #892                // Field OpenNewTab:Ljavax/swing/Icon;
+    1718: ldc_w         #895                // String expui/run/pause.svg
+    1721: ldc_w         #897                // String actions/pause.svg
+    1724: ldc_w         #899                // int -1885569410
+    1727: iconst_2
+    1728: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1731: putstatic     #900                // Field Pause:Ljavax/swing/Icon;
+    1734: ldc_w         #903                // String expui/general/pin.svg
+    1737: ldc_w         #905                // String actions/pinTab.svg
+    1740: ldc_w         #907                // int -1265255697
+    1743: iconst_0
+    1744: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1747: putstatic     #908                // Field PinTab:Ljavax/swing/Icon;
+    1750: ldc_w         #911                // String expui/actions/playBack.svg
+    1753: ldc_w         #913                // String actions/play_back.svg
+    1756: ldc_w         #915                // int -1317377797
+    1759: iconst_2
+    1760: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1763: putstatic     #916                // Field Play_back:Ljavax/swing/Icon;
+    1766: ldc_w         #919                // String expui/actions/playFirst.svg
+    1769: ldc_w         #921                // String actions/play_first.svg
+    1772: ldc_w         #923                // int -987505166
+    1775: iconst_2
+    1776: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1779: putstatic     #924                // Field Play_first:Ljavax/swing/Icon;
+    1782: ldc_w         #927                // String expui/actions/playForward.svg
+    1785: ldc_w         #929                // String actions/play_forward.svg
+    1788: ldc_w         #931                // int 84808551
+    1791: iconst_2
+    1792: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1795: putstatic     #932                // Field Play_forward:Ljavax/swing/Icon;
+    1798: ldc_w         #935                // String expui/actions/playLast.svg
+    1801: ldc_w         #937                // String actions/play_last.svg
+    1804: ldc_w         #939                // int 1200003259
+    1807: iconst_2
+    1808: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1811: putstatic     #940                // Field Play_last:Ljavax/swing/Icon;
+    1814: ldc_w         #943                // String expui/actions/popFrame.svg
+    1817: ldc_w         #945                // String actions/popFrame.svg
+    1820: ldc_w         #947                // int -2061379356
+    1823: iconst_2
+    1824: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1827: putstatic     #948                // Field PopFrame:Ljavax/swing/Icon;
+    1830: ldc_w         #951                // String actions/presentationAssistantSettings.svg
+    1833: ldc_w         #953                // int -1777013294
+    1836: iconst_0
+    1837: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    1840: putstatic     #954                // Field PresentationAssistantSettings:Ljavax/swing/Icon;
+    1843: ldc_w         #957                // String expui/inline/preserveCase.svg
+    1846: ldc_w         #959                // String actions/preserveCase.svg
+    1849: ldc_w         #961                // int 1309462994
+    1852: iconst_0
+    1853: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1856: putstatic     #962                // Field PreserveCase:Ljavax/swing/Icon;
+    1859: ldc_w         #957                // String expui/inline/preserveCase.svg
+    1862: ldc_w         #965                // String actions/preserveCaseHover.svg
+    1865: ldc_w         #967                // int 819147333
+    1868: iconst_0
+    1869: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1872: putstatic     #968                // Field PreserveCaseHover:Ljavax/swing/Icon;
+    1875: ldc_w         #957                // String expui/inline/preserveCase.svg
+    1878: ldc_w         #971                // String actions/preserveCaseSelected.svg
+    1881: ldc_w         #973                // int 456685590
+    1884: iconst_0
+    1885: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1888: putstatic     #974                // Field PreserveCaseSelected:Ljavax/swing/Icon;
+    1891: ldc_w         #977                // String expui/json/object.svg
+    1894: ldc_w         #979                // String actions/prettyPrint.svg
+    1897: ldc_w         #981                // int -1796124934
+    1900: iconst_2
+    1901: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1904: putstatic     #982                // Field PrettyPrint:Ljavax/swing/Icon;
+    1907: ldc_w         #985                // String expui/actions/preview.svg
+    1910: ldc_w         #987                // String actions/preview.svg
+    1913: ldc_w         #989                // int -611174879
+    1916: iconst_2
+    1917: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1920: putstatic     #990                // Field Preview:Ljavax/swing/Icon;
+    1923: ldc_w         #993                // String expui/general/previewVertically.svg
+    1926: ldc_w         #995                // String actions/previewDetails.svg
+    1929: ldc_w         #997                // int -784397614
+    1932: iconst_2
+    1933: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1936: putstatic     #998                // Field PreviewDetails:Ljavax/swing/Icon;
+    1939: ldc_w         #1001               // String expui/general/previewHorizontally.svg
+    1942: ldc_w         #1003               // String actions/previewDetailsVertically.svg
+    1945: ldc_w         #1005               // int -2143150468
+    1948: iconst_2
+    1949: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1952: putstatic     #1006               // Field PreviewDetailsVertically:Ljavax/swing/Icon;
+    1955: ldc_w         #1009               // String expui/general/up.svg
+    1958: ldc_w         #1011               // String actions/previousOccurence.svg
+    1961: ldc_w         #1013               // int -753321803
+    1964: iconst_2
+    1965: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1968: putstatic     #1014               // Field PreviousOccurence:Ljavax/swing/Icon;
+    1971: ldc_w         #1017               // String expui/run/profile.svg
+    1974: ldc_w         #1019               // String actions/profile.svg
+    1977: ldc_w         #1021               // int 296104332
+    1980: iconst_2
+    1981: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    1984: putstatic     #1022               // Field Profile:Ljavax/swing/Icon;
+    1987: ldc_w         #1025               // String expui/actions/profileBlue.svg
+    1990: ldc_w         #1027               // String actions/profileBlue.svg
+    1993: ldc_w         #1029               // int 1511636999
+    1996: iconst_2
+    1997: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2000: putstatic     #1030               // Field ProfileBlue:Ljavax/swing/Icon;
+    2003: ldc_w         #1033               // String expui/actions/profileCPU.svg
+    2006: ldc_w         #1035               // String actions/profileCPU.svg
+    2009: ldc_w         #1037               // int 343461760
+    2012: iconst_2
+    2013: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2016: putstatic     #1038               // Field ProfileCPU:Ljavax/swing/Icon;
+    2019: ldc_w         #1041               // String expui/actions/profileMemory.svg
+    2022: ldc_w         #1043               // String actions/profileMemory.svg
+    2025: ldc_w         #1045               // int -744762259
+    2028: iconst_2
+    2029: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2032: putstatic     #1046               // Field ProfileMemory:Ljavax/swing/Icon;
+    2035: ldc_w         #1049               // String expui/actions/profileRed.svg
+    2038: ldc_w         #1051               // String actions/profileRed.svg
+    2041: ldc_w         #1053               // int 1685012249
+    2044: iconst_2
+    2045: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2048: putstatic     #1054               // Field ProfileRed:Ljavax/swing/Icon;
+    2051: ldc_w         #1057               // String expui/actions/profileYellow.svg
+    2054: ldc_w         #1059               // String actions/profileYellow.svg
+    2057: ldc_w         #1061               // int -1080286067
+    2060: iconst_2
+    2061: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2064: putstatic     #1062               // Field ProfileYellow:Ljavax/swing/Icon;
+    2067: ldc_w         #1065               // String expui/actions/projectDirectory.svg
+    2070: ldc_w         #1067               // String actions/projectDirectory.svg
+    2073: ldc_w         #1069               // int 2070345485
+    2076: iconst_2
+    2077: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2080: putstatic     #1070               // Field ProjectDirectory:Ljavax/swing/Icon;
+    2083: ldc_w         #1073               // String expui/general/projectWideAnalysisOff.svg
+    2086: ldc_w         #1075               // String actions/projectWideAnalysisOff.svg
+    2089: ldc_w         #1077               // int 1724481315
+    2092: iconst_2
+    2093: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2096: putstatic     #1078               // Field ProjectWideAnalysisOff:Ljavax/swing/Icon;
+    2099: ldc_w         #1081               // String expui/general/projectWideAnalysisOn.svg
+    2102: ldc_w         #1083               // String actions/projectWideAnalysisOn.svg
+    2105: ldc_w         #1085               // int -1997754020
+    2108: iconst_2
+    2109: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2112: putstatic     #1086               // Field ProjectWideAnalysisOn:Ljavax/swing/Icon;
+    2115: ldc_w         #1089               // String expui/actions/properties.svg
+    2118: ldc_w         #1091               // String actions/properties.svg
+    2121: ldc_w         #1093               // int -2069838629
+    2124: iconst_2
+    2125: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2128: putstatic     #1094               // Field Properties:Ljavax/swing/Icon;
+    2131: ldc_w         #1097               // String expui/codeInsight/quickfixBulb.svg
+    2134: ldc_w         #1099               // String actions/quickfixBulb.svg
+    2137: ldc_w         #1101               // int 504966466
+    2140: iconst_2
+    2141: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2144: putstatic     #1102               // Field QuickfixBulb:Ljavax/swing/Icon;
+    2147: ldc_w         #1105               // String expui/codeInsight/quickfixOffBulb.svg
+    2150: ldc_w         #1107               // String actions/quickfixOffBulb.svg
+    2153: ldc_w         #1109               // int 1578042208
+    2156: iconst_2
+    2157: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2160: putstatic     #1110               // Field QuickfixOffBulb:Ljavax/swing/Icon;
+    2163: ldc_w         #1113               // String expui/actions/realIntentionBulb.svg
+    2166: ldc_w         #1115               // String actions/realIntentionBulb.svg
+    2169: ldc_w         #1117               // int -278510297
+    2172: iconst_2
+    2173: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2176: putstatic     #1118               // Field RealIntentionBulb:Ljavax/swing/Icon;
+    2179: ldc_w         #1121               // String expui/build/rebuild.svg
+    2182: ldc_w         #1123               // String actions/rebuild.svg
+    2185: ldc_w         #1125               // int 1344326415
+    2188: iconst_2
+    2189: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2192: putstatic     #1126               // Field Rebuild:Ljavax/swing/Icon;
+    2195: ldc_w         #1129               // String expui/general/redo.svg
+    2198: ldc_w         #1131               // String actions/redo.svg
+    2201: ldc_w         #1133               // int 570708211
+    2204: iconst_2
+    2205: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2208: putstatic     #1134               // Field Redo:Ljavax/swing/Icon;
+    2211: ldc_w         #1137               // String expui/actions/refactoringBulb.svg
+    2214: ldc_w         #1139               // String actions/refactoringBulb.svg
+    2217: ldc_w         #1141               // int 1311756364
+    2220: iconst_2
+    2221: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2224: putstatic     #1142               // Field RefactoringBulb:Ljavax/swing/Icon;
+    2227: ldc_w         #1145               // String expui/actions/reformatCode.svg
+    2230: ldc_w         #1147               // String actions/reformatCode.svg
+    2233: ldc_w         #1149               // int 1951359266
+    2236: iconst_2
+    2237: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2240: putstatic     #1150               // Field ReformatCode:Ljavax/swing/Icon;
+    2243: ldc_w         #1153               // String expui/general/refresh.svg
+    2246: ldc_w         #1155               // String actions/refresh.svg
+    2249: ldc_w         #1157               // int -1006736095
+    2252: iconst_2
+    2253: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2256: putstatic     #1158               // Field Refresh:Ljavax/swing/Icon;
+    2259: ldc_w         #1161               // String expui/inline/regex.svg
+    2262: ldc_w         #1163               // String actions/regex.svg
+    2265: ldc_w         #1165               // int -427608526
+    2268: iconst_0
+    2269: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2272: putstatic     #1166               // Field Regex:Ljavax/swing/Icon;
+    2275: ldc_w         #1161               // String expui/inline/regex.svg
+    2278: ldc_w         #1169               // String actions/regexHovered.svg
+    2281: ldc_w         #1171               // int 277788380
+    2284: iconst_0
+    2285: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2288: putstatic     #1172               // Field RegexHovered:Ljavax/swing/Icon;
+    2291: ldc_w         #1161               // String expui/inline/regex.svg
+    2294: ldc_w         #1175               // String actions/regexSelected.svg
+    2297: ldc_w         #1177               // int -1236895115
+    2300: iconst_0
+    2301: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2304: putstatic     #1178               // Field RegexSelected:Ljavax/swing/Icon;
+    2307: ldc_w         #1181               // String expui/general/remove.svg
+    2310: ldc_w         #1183               // String actions/RemoveMulticaret.svg
+    2313: ldc_w         #1185               // int -1355504116
+    2316: iconst_2
+    2317: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2320: putstatic     #1186               // Field RemoveMulticaret:Ljavax/swing/Icon;
+    2323: ldc_w         #1189               // String expui/actions/replace.svg
+    2326: ldc_w         #1191               // String actions/replace.svg
+    2329: ldc_w         #1193               // int -1345158078
+    2332: iconst_2
+    2333: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2336: putstatic     #1194               // Field Replace:Ljavax/swing/Icon;
+    2339: ldc_w         #1197               // String expui/actions/report.svg
+    2342: ldc_w         #1199               // String actions/report.svg
+    2345: ldc_w         #1201               // int -500605036
+    2348: iconst_2
+    2349: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2352: putstatic     #1202               // Field Report:Ljavax/swing/Icon;
+    2355: ldc_w         #1205               // String expui/run/rerun.svg
+    2358: ldc_w         #1207               // String actions/rerun.svg
+    2361: ldc_w         #1209               // int 1211368783
+    2364: bipush        10
+    2366: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2369: putstatic     #1210               // Field Rerun:Ljavax/swing/Icon;
+    2372: ldc_w         #1213               // String expui/actions/rerunAutomatically.svg
+    2375: ldc_w         #1215               // String actions/rerunAutomatically.svg
+    2378: ldc_w         #1217               // int -404420348
+    2381: iconst_2
+    2382: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2385: putstatic     #1218               // Field RerunAutomatically:Ljavax/swing/Icon;
+    2388: ldc_w         #1221               // String expui/run/restart.svg
+    2391: ldc_w         #1223               // String actions/restart.svg
+    2394: ldc_w         #1225               // int -1074337097
+    2397: iconst_2
+    2398: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2401: putstatic     #1226               // Field Restart:Ljavax/swing/Icon;
+    2404: ldc_w         #1229               // String expui/run/restartDebug.svg
+    2407: ldc_w         #1231               // String actions/restartDebugger.svg
+    2410: ldc_w         #1233               // int 893306448
+    2413: bipush        10
+    2415: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2418: putstatic     #1234               // Field RestartDebugger:Ljavax/swing/Icon;
+    2421: ldc_w         #1237               // String expui/run/restartFrame.svg
+    2424: ldc_w         #1239               // String actions/restartFrame.svg
+    2427: ldc_w         #1241               // int 251948842
+    2430: iconst_2
+    2431: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2434: putstatic     #1242               // Field RestartFrame:Ljavax/swing/Icon;
+    2437: ldc_w         #1245               // String expui/actions/restartStop.svg
+    2440: ldc_w         #1247               // int 1857418841
+    2443: iconst_2
+    2444: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    2447: putstatic     #1248               // Field RestartStop:Ljavax/swing/Icon;
+    2450: ldc_w         #1251               // String expui/run/resume.svg
+    2453: ldc_w         #1253               // String actions/resume.svg
+    2456: ldc_w         #1255               // int 1214638615
+    2459: bipush        10
+    2461: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2464: putstatic     #1256               // Field Resume:Ljavax/swing/Icon;
+    2467: ldc_w         #1259               // String expui/vcs/revert.svg
+    2470: ldc_w         #1261               // String actions/rollback.svg
+    2473: ldc_w         #1263               // int 2087548212
+    2476: iconst_2
+    2477: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2480: putstatic     #1264               // Field Rollback:Ljavax/swing/Icon;
+    2483: ldc_w         #1267               // String expui/actions/runAll.svg
+    2486: ldc_w         #1269               // String actions/runAll.svg
+    2489: ldc_w         #1271               // int -398248691
+    2492: iconst_2
+    2493: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2496: putstatic     #1272               // Field RunAll:Ljavax/swing/Icon;
+    2499: ldc_w         #1275               // String expui/general/runAnything.svg
+    2502: ldc_w         #1277               // String actions/runAnything.svg
+    2505: ldc_w         #1279               // int -1866617388
+    2508: iconst_2
+    2509: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2512: putstatic     #1280               // Field RunAnything:Ljavax/swing/Icon;
+    2515: getstatic     #1280               // Field RunAnything:Ljavax/swing/Icon;
+    2518: putstatic     #1283               // Field Run_anything:Ljavax/swing/Icon;
+    2521: ldc_w         #1286               // String expui/run/runToCursor.svg
+    2524: ldc_w         #1288               // String actions/runToCursor.svg
+    2527: ldc_w         #1290               // int -378582672
+    2530: iconst_2
+    2531: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2534: putstatic     #1291               // Field RunToCursor:Ljavax/swing/Icon;
+    2537: ldc_w         #1294               // String expui/fileTypes/scratch.svg
+    2540: ldc_w         #1296               // String actions/scratch.svg
+    2543: ldc_w         #1298               // int -459337085
+    2546: iconst_2
+    2547: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2550: putstatic     #1299               // Field Scratch:Ljavax/swing/Icon;
+    2553: ldc_w         #349                // String expui/general/search.svg
+    2556: ldc_w         #1302               // String actions/search.svg
+    2559: ldc_w         #1304               // int -2085119439
+    2562: iconst_0
+    2563: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2566: putstatic     #1305               // Field Search:Ljavax/swing/Icon;
+    2569: ldc_w         #1308               // String expui/inline/newLine.svg
+    2572: ldc_w         #1310               // String actions/searchNewLine.svg
+    2575: ldc_w         #1312               // int 1127889338
+    2578: iconst_0
+    2579: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2582: putstatic     #1313               // Field SearchNewLine:Ljavax/swing/Icon;
+    2585: ldc_w         #1308               // String expui/inline/newLine.svg
+    2588: ldc_w         #1316               // String actions/searchNewLineHover.svg
+    2591: ldc_w         #1318               // int 988702348
+    2594: iconst_0
+    2595: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2598: putstatic     #1319               // Field SearchNewLineHover:Ljavax/swing/Icon;
+    2601: ldc_w         #1322               // String expui/inline/searchHistory.svg
+    2604: ldc_w         #1324               // String actions/searchWithHistory.svg
+    2607: ldc_w         #1326               // int 1432525015
+    2610: iconst_0
+    2611: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2614: putstatic     #1327               // Field SearchWithHistory:Ljavax/swing/Icon;
+    2617: ldc_w         #1330               // String expui/actions/selectAll.svg
+    2620: ldc_w         #1332               // String actions/selectall.svg
+    2623: ldc_w         #1334               // int -42839868
+    2626: iconst_2
+    2627: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2630: putstatic     #1335               // Field Selectall:Ljavax/swing/Icon;
+    2633: ldc           #133                // String expui/actions/checked.svg
+    2635: ldc_w         #1338               // String actions/setDefault.svg
+    2638: ldc_w         #1340               // int -1583117311
+    2641: iconst_2
+    2642: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2645: putstatic     #1341               // Field SetDefault:Ljavax/swing/Icon;
+    2648: ldc_w         #441                // String expui/general/show.svg
+    2651: ldc_w         #1344               // String actions/share.png
+    2654: iconst_0
+    2655: iconst_1
+    2656: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2659: putstatic     #1346               // Field Share:Ljavax/swing/Icon;
+    2662: ldc_w         #1349               // String expui/actions/shortcutFilter.svg
+    2665: ldc_w         #1351               // String actions/shortcutFilter.svg
+    2668: ldc_w         #1353               // int -1865443324
+    2671: iconst_2
+    2672: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2675: putstatic     #1354               // Field ShortcutFilter:Ljavax/swing/Icon;
+    2678: ldc_w         #441                // String expui/general/show.svg
+    2681: ldc_w         #1357               // String actions/show.svg
+    2684: ldc_w         #1359               // int 106880337
+    2687: iconst_2
+    2688: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2691: putstatic     #1360               // Field Show:Ljavax/swing/Icon;
+    2694: ldc_w         #1363               // String expui/general/showAsTree.svg
+    2697: ldc_w         #1365               // String actions/showAsTree.svg
+    2700: ldc_w         #1367               // int -1651129437
+    2703: iconst_2
+    2704: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2707: putstatic     #1368               // Field ShowAsTree:Ljavax/swing/Icon;
+    2710: ldc_w         #1371               // String expui/actions/toggleVisibility.svg
+    2713: ldc_w         #1373               // String actions/showCode.svg
+    2716: ldc_w         #1375               // int 960964407
+    2719: iconst_2
+    2720: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2723: putstatic     #1376               // Field ShowCode:Ljavax/swing/Icon;
+    2726: ldc_w         #1379               // String expui/actions/showImportStatements.svg
+    2729: ldc_w         #1381               // String actions/showImportStatements.svg
+    2732: ldc_w         #1383               // int 703949292
+    2735: iconst_2
+    2736: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2739: putstatic     #1384               // Field ShowImportStatements:Ljavax/swing/Icon;
+    2742: ldc_w         #1387               // String expui/actions/showReadAccess.svg
+    2745: ldc_w         #1389               // String actions/showReadAccess.svg
+    2748: ldc_w         #1391               // int -1565481823
+    2751: iconst_2
+    2752: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2755: putstatic     #1392               // Field ShowReadAccess:Ljavax/swing/Icon;
+    2758: ldc_w         #1395               // String expui/actions/showWriteAccess.svg
+    2761: ldc_w         #1397               // String actions/showWriteAccess.svg
+    2764: ldc_w         #1399               // int 13731892
+    2767: iconst_2
+    2768: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2771: putstatic     #1400               // Field ShowWriteAccess:Ljavax/swing/Icon;
+    2774: ldc_w         #1403               // String expui/general/splitHorizontally.svg
+    2777: ldc_w         #1405               // String actions/splitHorizontally.svg
+    2780: ldc_w         #1407               // int 1504815794
+    2783: iconst_2
+    2784: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2787: putstatic     #1408               // Field SplitHorizontally:Ljavax/swing/Icon;
+    2790: ldc_w         #1411               // String expui/general/splitVertically.svg
+    2793: ldc_w         #1413               // String actions/splitVertically.svg
+    2796: ldc_w         #1415               // int 438630781
+    2799: iconst_2
+    2800: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2803: putstatic     #1416               // Field SplitVertically:Ljavax/swing/Icon;
+    2806: ldc_w         #1419               // String expui/run/debug.svg
+    2809: ldc_w         #1421               // String actions/startDebugger.svg
+    2812: ldc_w         #1423               // int 1950427196
+    2815: bipush        10
+    2817: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2820: putstatic     #1424               // Field StartDebugger:Ljavax/swing/Icon;
+    2823: ldc_w         #1427               // String expui/actions/startMemoryProfile.svg
+    2826: ldc_w         #1429               // String actions/startMemoryProfile.svg
+    2829: ldc_w         #1431               // int -1333802318
+    2832: iconst_2
+    2833: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2836: putstatic     #1432               // Field StartMemoryProfile:Ljavax/swing/Icon;
+    2839: ldc_w         #1435               // String expui/run/stepOut.svg
+    2842: ldc_w         #1437               // String actions/stepOut.svg
+    2845: ldc_w         #1439               // int -525700232
+    2848: iconst_2
+    2849: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2852: putstatic     #1440               // Field StepOut:Ljavax/swing/Icon;
+    2855: ldc_w         #1443               // String expui/run/stepOutCodeBlock.svg
+    2858: ldc_w         #1445               // String actions/stepOutCodeBlock.svg
+    2861: ldc_w         #1447               // int 1629750131
+    2864: iconst_2
+    2865: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2868: putstatic     #1448               // Field StepOutCodeBlock:Ljavax/swing/Icon;
+    2871: ldc_w         #1451               // String actions/stopAndRestart.svg
+    2874: ldc_w         #1453               // int 1639589680
+    2877: iconst_2
+    2878: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    2881: putstatic     #1454               // Field StopAndRestart:Ljavax/swing/Icon;
+    2884: ldc_w         #1457               // String expui/actions/stopRefresh.svg
+    2887: ldc_w         #1459               // String actions/stopRefresh.svg
+    2890: ldc_w         #1461               // int -1056556267
+    2893: iconst_2
+    2894: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2897: putstatic     #1462               // Field StopRefresh:Ljavax/swing/Icon;
+    2900: ldc_w         #1465               // String expui/actions/stopWatch.svg
+    2903: ldc_w         #1467               // String actions/stopWatch.svg
+    2906: ldc_w         #1469               // int -1197416482
+    2909: iconst_0
+    2910: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2913: putstatic     #1470               // Field StopWatch:Ljavax/swing/Icon;
+    2916: ldc_w         #1473               // String actions/stub.svg
+    2919: ldc_w         #1475               // int -953319628
+    2922: iconst_2
+    2923: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    2926: putstatic     #1476               // Field Stub:Ljavax/swing/Icon;
+    2929: ldc_w         #1479               // String expui/actions/suggestedRefactoringBulb.svg
+    2932: ldc_w         #1481               // String actions/suggestedRefactoringBulb.svg
+    2935: ldc_w         #1483               // int 1703386418
+    2938: iconst_2
+    2939: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2942: putstatic     #1484               // Field SuggestedRefactoringBulb:Ljavax/swing/Icon;
+    2945: ldc_w         #1487               // String expui/run/stop.svg
+    2948: ldc_w         #1489               // String actions/suspend.svg
+    2951: ldc_w         #1491               // int 43249293
+    2954: bipush        10
+    2956: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2959: putstatic     #1492               // Field Suspend:Ljavax/swing/Icon;
+    2962: ldc_w         #1495               // String expui/actions/swapPanels.svg
+    2965: ldc_w         #1497               // String actions/swapPanels.svg
+    2968: ldc_w         #1499               // int -1733374780
+    2971: iconst_2
+    2972: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2975: putstatic     #1500               // Field SwapPanels:Ljavax/swing/Icon;
+    2978: ldc_w         #1503               // String expui/actions/synchronizeScrolling.svg
+    2981: ldc_w         #1505               // String actions/synchronizeScrolling.svg
+    2984: ldc_w         #1507               // int 1717611130
+    2987: iconst_2
+    2988: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    2991: putstatic     #1508               // Field SynchronizeScrolling:Ljavax/swing/Icon;
+    2994: ldc_w         #1511               // String actions/syncPanels.svg
+    2997: ldc_w         #1513               // int 1293631191
+    3000: iconst_2
+    3001: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    3004: putstatic     #1514               // Field SyncPanels:Ljavax/swing/Icon;
+    3007: ldc_w         #1517               // String expui/general/softWrap.svg
+    3010: ldc_w         #1519               // String actions/toggleSoftWrap.svg
+    3013: ldc_w         #1521               // int 605284848
+    3016: iconst_2
+    3017: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3020: putstatic     #1522               // Field ToggleSoftWrap:Ljavax/swing/Icon;
+    3023: ldc_w         #1371               // String expui/actions/toggleVisibility.svg
+    3026: ldc_w         #1525               // String actions/toggleVisibility.svg
+    3029: ldc_w         #1527               // int 374335214
+    3032: iconst_2
+    3033: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3036: putstatic     #1528               // Field ToggleVisibility:Ljavax/swing/Icon;
+    3039: ldc_w         #1531               // String expui/run/stepInto.svg
+    3042: ldc_w         #1533               // String actions/traceInto.svg
+    3045: ldc_w         #1535               // int -402354793
+    3048: iconst_2
+    3049: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3052: putstatic     #1536               // Field TraceInto:Ljavax/swing/Icon;
+    3055: ldc_w         #1539               // String expui/run/stepOver.svg
+    3058: ldc_w         #1541               // String actions/traceOver.svg
+    3061: ldc_w         #1543               // int 1371545688
+    3064: iconst_2
+    3065: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3068: putstatic     #1544               // Field TraceOver:Ljavax/swing/Icon;
+    3071: ldc_w         #1547               // String expui/general/undo.svg
+    3074: ldc_w         #1549               // String actions/undo.svg
+    3077: ldc_w         #1551               // int -1189463185
+    3080: iconst_2
+    3081: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3084: putstatic     #1552               // Field Undo:Ljavax/swing/Icon;
+    3087: ldc_w         #1555               // String expui/actions/uninstall.svg
+    3090: ldc_w         #1557               // String actions/uninstall.svg
+    3093: ldc_w         #1559               // int -536173621
+    3096: iconst_2
+    3097: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3100: putstatic     #1560               // Field Uninstall:Ljavax/swing/Icon;
+    3103: ldc_w         #1563               // String expui/actions/unselectAll.svg
+    3106: ldc_w         #1565               // String actions/unselectall.svg
+    3109: ldc_w         #1567               // int 1710075134
+    3112: iconst_2
+    3113: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3116: putstatic     #1568               // Field Unselectall:Ljavax/swing/Icon;
+    3119: ldc_w         #1571               // String expui/actions/unshare.svg
+    3122: ldc_w         #1573               // String actions/unshare.png
+    3125: iconst_0
+    3126: iconst_1
+    3127: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3130: putstatic     #1575               // Field Unshare:Ljavax/swing/Icon;
+    3133: ldc_w         #1578               // String expui/general/upload.svg
+    3136: ldc_w         #1580               // String actions/upload.svg
+    3139: ldc_w         #1582               // int -1680651230
+    3142: iconst_2
+    3143: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3146: putstatic     #1583               // Field Upload:Ljavax/swing/Icon;
+    3149: ldc_w         #1586               // String expui/actions/viewAsImage.svg
+    3152: ldc_w         #1588               // int -384883859
+    3155: iconst_2
+    3156: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    3159: putstatic     #1589               // Field ViewAsImage:Ljavax/swing/Icon;
+    3162: ldc_w         #1592               // String expui/inline/exactWords.svg
+    3165: ldc_w         #1594               // String actions/words.svg
+    3168: ldc_w         #1596               // int -2038279531
+    3171: iconst_0
+    3172: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3175: putstatic     #1597               // Field Words:Ljavax/swing/Icon;
+    3178: ldc_w         #1592               // String expui/inline/exactWords.svg
+    3181: ldc_w         #1600               // String actions/wordsHovered.svg
+    3184: ldc_w         #1602               // int 1488302022
+    3187: iconst_0
+    3188: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3191: putstatic     #1603               // Field WordsHovered:Ljavax/swing/Icon;
+    3194: ldc_w         #1592               // String expui/inline/exactWords.svg
+    3197: ldc_w         #1606               // String actions/wordsSelected.svg
+    3200: ldc_w         #1608               // int 128086410
+    3203: iconst_0
+    3204: invokestatic  #27                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;Ljava/lang/String;II)Ljavax/swing/Icon;
+    3207: putstatic     #1609               // Field WordsSelected:Ljavax/swing/Icon;
+    3210: ldc_w         #1612               // String actions/showViewer.png
+    3213: iconst_0
+    3214: iconst_0
+    3215: invokestatic  #10                 // Method com/intellij/icons/AllIcons.load:(Ljava/lang/String;II)Ljavax/swing/Icon;
+    3218: putstatic     #1614               // Field ShowViewer:Ljavax/swing/Icon;
+    3221: return
+}

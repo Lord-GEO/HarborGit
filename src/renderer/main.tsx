@@ -9,5 +9,6 @@ import './readability.css';
 import './tags.css';
 import './terminal.css';
 import './layout.css';
+import './bulk-selection.css';
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

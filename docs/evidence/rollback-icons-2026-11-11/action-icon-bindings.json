@@ -1,0 +1,30 @@
+{
+  "source": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.vcs.impl.jar",
+  "matches": [
+    {
+      "member": "META-INF/VcsActions.xml",
+      "line": 131,
+      "excerpt": "    </group>\n\n    <action id=\"ChangesView.Revert\" class=\"com.intellij.openapi.vcs.changes.actions.RollbackAction\"\n            icon=\"AllIcons.Actions.Rollback\"/>\n    <action id=\"ChangesView.RevertFiles\" class=\"com.intellij.openapi.vcs.changes.actions.RollbackFilesAction\"/>"
+    },
+    {
+      "member": "META-INF/VcsActions.xml",
+      "line": 132,
+      "excerpt": "\n    <action id=\"ChangesView.Revert\" class=\"com.intellij.openapi.vcs.changes.actions.RollbackAction\"\n            icon=\"AllIcons.Actions.Rollback\"/>\n    <action id=\"ChangesView.RevertFiles\" class=\"com.intellij.openapi.vcs.changes.actions.RollbackFilesAction\"/>\n"
+    },
+    {
+      "member": "META-INF/VcsActions.xml",
+      "line": 280,
+      "excerpt": "    <action id=\"Vcs.OpenRepositoryVersion\" class=\"com.intellij.openapi.vcs.changes.actions.OpenRepositoryVersionAction\"/>\n    <action id=\"Vcs.RevertSelectedChanges\" class=\"com.intellij.openapi.vcs.changes.actions.RevertSelectedChangesAction$Revert\"\n            icon=\"AllIcons.Actions.Rollback\"/>\n    <action id=\"Vcs.ApplySelectedChanges\" class=\"com.intellij.openapi.vcs.changes.actions.RevertSelectedChangesAction$Apply\"/>\n"
+    },
+    {
+      "member": "META-INF/VcsActions.xml",
+      "line": 324,
+      "excerpt": "      <reference ref=\"ChangesView.CreatePatchFromChanges\"/>\n      <action id=\"CommittedChanges.Revert\" class=\"com.intellij.openapi.vcs.changes.actions.RevertChangeListAction\"\n              icon=\"AllIcons.Actions.Rollback\"/>\n      <action id=\"CommittedChanges.Clear\" class=\"com.intellij.openapi.vcs.changes.committed.ClearCommittedAction\"\n              icon=\"AllIcons.Actions.GC\"/>"
+    },
+    {
+      "member": "META-INF/VcsActions.xml",
+      "line": 444,
+      "excerpt": "    </group>\n    <group id=\"Vcs.Diff.KeymapGroup\" searchable=\"false\">\n      <action id=\"Vcs.RollbackChangedLines\" class=\"com.intellij.openapi.vcs.ex.RollbackLineStatusAction\" icon=\"AllIcons.Actions.Rollback\"/>\n      <action id=\"Vcs.ShowDiffChangedLines\" class=\"com.intellij.openapi.vcs.ex.ShowDiffLineStatusAction\" icon=\"AllIcons.Actions.Diff\"/>\n      <action id=\"Vcs.MoveChangedLinesToChangelist\" class=\"com.intellij.openapi.vcs.ex.MoveChangesLineStatusAction\"/>"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+JetBrains IntelliJ Platform icons
+
+assets/idea-rollback.svg and assets/idea-rollback-dark.svg are unmodified copies
+of expui/vcs/revert.svg and expui/vcs/revert_dark.svg from IntelliJ IDEA
+2026.1.3 (intellij.platform.ide.jar).
+
+Copyright 2000-2024 JetBrains s.r.o. and contributors.
+Licensed under the Apache License, Version 2.0. See Apache-2.0.txt.
+
+Historical icon resources retained under docs/evidence/rollback-icons-2026-11-11
+also preserve the JetBrains copyright and Apache-2.0 notices in each file.
+These icon resources are excluded from HarborGit's own MIT license grant.
+The icons identify rollback actions; HarborGit is an independent application.

@@ -1,0 +1,59 @@
+{
+  "source": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.ide.jar",
+  "sha256": "720656f47aab69ac6954350eee0abee841a0d26daa9049efc455cc3c96fd6e37",
+  "members": [
+    {
+      "name": "actions/rollback.svg",
+      "sha256": "fead0fcc704f547b82adb2cf32945de3144c129f3da2ea4799855097d8597e6e",
+      "bytes": 619
+    },
+    {
+      "name": "actions/rollback_dark.svg",
+      "sha256": "cd37414e07dabb975d4063a53c0452160073c2cf2b8c3210aedfb9b9f5cc3bc8",
+      "bytes": 650
+    },
+    {
+      "name": "actions/undo.svg",
+      "sha256": "ae3ed89959fedb3fca70462cae848c05a7d8f3e46f6749d1402ecde250a050b8",
+      "bytes": 610
+    },
+    {
+      "name": "expui/vcs/revert.svg",
+      "sha256": "39c353087d43ee3d91992fd1cd848cd19e6e01d92687c47f0b7ffa7280af4902",
+      "bytes": 865
+    },
+    {
+      "name": "expui/vcs/revert_dark.svg",
+      "sha256": "6821edf449ea5086e6ff37ce24c1cd4a7b7f4ddfef339df61b5f157e703988b2",
+      "bytes": 865
+    }
+  ],
+  "com.intellij.icons.AllIcons$Actions": {
+    "jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.util.ui.jar",
+    "jar_sha256": "3bcd95cf1647a2d0fb191efd9c424e56f0e95dee0db230b43861b5d08785b95f",
+    "args": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.util.ui.jar",
+      "com.intellij.icons.AllIcons$Actions"
+    ],
+    "output": "AllIcons-Actions.txt",
+    "sha256": "5ccdef507cc15ee090ede559bdf9dc3ae8ea0a64aa6bbe5169043c052efc97a8"
+  },
+  "com.intellij.openapi.vcs.changes.actions.RollbackAction": {
+    "jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.vcs.impl.jar",
+    "jar_sha256": "cbae07100b8eeecf5def4a8c358fdc396b66f2e44e1eee23179d6f67e3e8b0d5",
+    "args": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\lib\\intellij.platform.vcs.impl.jar",
+      "com.intellij.openapi.vcs.changes.actions.RollbackAction"
+    ],
+    "output": "RollbackAction.txt",
+    "sha256": "28f234c26805c818548537fb7cc1990ae5cbf793e83731a37cdae5957ae3333a"
+  }
+}

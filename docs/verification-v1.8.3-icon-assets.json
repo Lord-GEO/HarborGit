@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "files": [
+    {
+      "path": "assets/idea-rollback.svg",
+      "bytes": 865,
+      "sha256": "39c353087d43ee3d91992fd1cd848cd19e6e01d92687c47f0b7ffa7280af4902"
+    },
+    {
+      "path": "assets/idea-rollback-dark.svg",
+      "bytes": 865,
+      "sha256": "6821edf449ea5086e6ff37ce24c1cd4a7b7f4ddfef339df61b5f157e703988b2"
+    },
+    {
+      "path": "assets/licenses/Apache-2.0.txt",
+      "bytes": 9197,
+      "sha256": "a7d00bfd54525bc694b6e32f64c7ebcf5e6b7ae3657be5cc12767bce74654a47"
+    },
+    {
+      "path": "assets/licenses/JetBrains-NOTICE.txt",
+      "bytes": 673,
+      "sha256": "e7936fb3ad96a07b2dcaf476ce4275e53ceba9f27267126d47da19659edf795e"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.8.3",
+  "setup": "HarborGit-1.8.3-Setup-x64.exe",
+  "bytes": 128348799,
+  "sha256": "6628ad3e8ac4ee121e0402cde74f54d1e77c9d744d95680943078fcbd2f881f0",
+  "sha512": "VSverdl0f3uRZf/x1WLSaxteowSl25LrOVde9AcU6RIuqKXXeoZQWlSqEPxRagTGAY6LWC/b345VbJhTMsMTdA==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.8.3",
+    "files": [
+      {
+        "url": "HarborGit-1.8.3-Setup-x64.exe",
+        "sha512": "VSverdl0f3uRZf/x1WLSaxteowSl25LrOVde9AcU6RIuqKXXeoZQWlSqEPxRagTGAY6LWC/b345VbJhTMsMTdA==",
+        "size": 128348799
+      }
+    ],
+    "path": "HarborGit-1.8.3-Setup-x64.exe",
+    "sha512": "VSverdl0f3uRZf/x1WLSaxteowSl25LrOVde9AcU6RIuqKXXeoZQWlSqEPxRagTGAY6LWC/b345VbJhTMsMTdA==",
+    "releaseNotes": "# HarborGit v1.8.3\r\n\r\n- 工作区与暂存区文件列表新增多选和全选，勾选后可一次撤销多个文件。\r\n- 工作区批量撤销保留暂存内容；暂存区批量撤销将所选文件的暂存区和工作区恢复到 HEAD。\r\n- 确认对话框列出全部选中文件，明确确认后才执行。筛选变化时清空选择，避免误操作隐藏文件。\r\n- 未跟踪文件、没有 HEAD 版本的新文件和冲突文件不参与批量撤销。\r\n- 单文件、Diff 与批量撤销入口统一使用 IDEA 新界面的回滚图标，自动适配亮暗主题。\r\n\r\n本版为 1.8.x 功能补丁。仅做构建与批量撤销专项检查，未运行全量回归或安装卸载测试。\r\n",
+    "releaseDate": "2026-11-11T09:07:57.192Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}
