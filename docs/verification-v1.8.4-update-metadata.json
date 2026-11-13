@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.8.4",
+  "setup": "HarborGit-1.8.4-Setup-x64.exe",
+  "bytes": 128348800,
+  "sha256": "85e962d6be976350de47a7a53754951e449c4c2789e9ba9c632a366771a2239c",
+  "sha512": "ilDjrgbGPBmzpDcPqoFY4Os/2rMtFRMPWXwhFxx0JX+3ZXt6J3YAa0lGF2CgjCARXzFj9RdmNDf528r6rZISHA==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.8.4",
+    "files": [
+      {
+        "url": "HarborGit-1.8.4-Setup-x64.exe",
+        "sha512": "ilDjrgbGPBmzpDcPqoFY4Os/2rMtFRMPWXwhFxx0JX+3ZXt6J3YAa0lGF2CgjCARXzFj9RdmNDf528r6rZISHA==",
+        "size": 128348800
+      }
+    ],
+    "path": "HarborGit-1.8.4-Setup-x64.exe",
+    "sha512": "ilDjrgbGPBmzpDcPqoFY4Os/2rMtFRMPWXwhFxx0JX+3ZXt6J3YAa0lGF2CgjCARXzFj9RdmNDf528r6rZISHA==",
+    "releaseNotes": "# HarborGit v1.8.4\r\n\r\n- 勾选文件后，工作区的“全部暂存”改为“暂存所选”，仅暂存勾选项；没有勾选时保留全部暂存。\r\n- 暂存区同样支持“取消暂存所选”，不影响其他已暂存文件。\r\n- 未跟踪文件和新增文件现在也可勾选、全选并暂存。\r\n- 全选限于当前筛选结果，筛选变化时清空勾选；两组分别选择、分别执行。\r\n- 所选文件包含不能撤销的新文件等内容时，整批撤销保持禁用，避免跳过文件或删除新文件。\r\n- 操作完成后清理失效勾选，小宽度面板中的操作按钮可换行。\r\n\r\n本版为 1.8.x 选择操作补丁。仅执行构建和暂存专项检查，未运行全量回归或安装卸载测试。\r\n",
+    "releaseDate": "2026-11-13T08:56:13.263Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

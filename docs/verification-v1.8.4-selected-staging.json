@@ -1,0 +1,13 @@
+{
+  "version": "1.8.4",
+  "status": "passed",
+  "mode": "packaged",
+  "checks": [
+    "Selected staging includes a Chinese/space path and untracked new file, leaves unchecked edits/deletion outside the index, and clears completed selections",
+    "Selected unstaging removes only the checked new file and preserves its content; unselected staged file remains, while no-selection unstaging still processes all",
+    "No-selection staging still stages all; selected unstaging handles modified/deleted files, leaves unchecked staged entries, and preserves HEAD and all working content",
+    "Filtered select-all includes new files, filter changes clear selection, invalid mixed rollback remains disabled, and selected-action buttons fit a narrow panel"
+  ],
+  "fullRegressionRun": false,
+  "fixtureRemoved": true
+}

@@ -158,7 +158,7 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
       for (const area of ['index', 'worktree'] as const) {
         for (const entry of repo.entries) {
           const present = area === 'index' ? isStaged(entry.index) : isChanged(entry.worktree);
-          if (present && current[area].has(entry.path) && !rollbackUnavailable(entry, area, repo)) next[area].add(entry.path);
+          if (present && current[area].has(entry.path) && !entry.conflict) next[area].add(entry.path);
         }
       }
       return next.index.size === current.index.size && next.worktree.size === current.worktree.size ? current : next;
@@ -445,7 +445,7 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     const code = entry.conflict ? 'U' : area === 'index' ? entry.index : entry.worktree;
     const selected = selection?.path === entry.path && selection.area === area;
     return <div className={`file-row ${selected ? 'selected' : ''} ${checkedFiles[area].has(entry.path) ? 'bulk-selected' : ''}`} key={`${area}:${entry.path}`}>
-      <FileCheckbox label={`选择${area === 'index' ? '暂存区' : '工作区'} ${entry.path}`} checked={checkedFiles[area].has(entry.path)} disabled={!!busy || !!repo?.mergeInProgress || ordinaryWriteBlocked || !!(repo && rollbackUnavailable(entry, area, repo))} title={repo ? rollbackUnavailable(entry, area, repo) : undefined} onChange={checked => setCheckedFiles(current => { const paths = new Set(current[area]); if (checked) paths.add(entry.path); else paths.delete(entry.path); return { ...current, [area]: paths }; })} />
+      <FileCheckbox label={`选择${area === 'index' ? '暂存区' : '工作区'} ${entry.path}`} checked={checkedFiles[area].has(entry.path)} disabled={!!busy || entry.conflict} title={entry.conflict ? '请先解决冲突' : `选择${entry.path}`} onChange={checked => setCheckedFiles(current => { const paths = new Set(current[area]); if (checked) paths.add(entry.path); else paths.delete(entry.path); return { ...current, [area]: paths }; })} />
       <button className="file-select" onClick={() => setSelection({ path: entry.path, oldPath: entry.originalPath, area })} title={entry.originalPath ? `${entry.originalPath} → ${entry.path}` : entry.path} aria-label={`${area === 'index' ? '暂存区' : '工作区'} ${entry.path}`}><span className={`file-status status-${code}`} title={statusLabels[code] || code}>{code}</span><span className="file-name">{basename(entry.path)}{entry.path.includes('/') && <small>{entry.path.substring(0, entry.path.lastIndexOf('/'))}</small>}</span></button>
       {entry.conflict ? <button className="icon-button" title="解决冲突" aria-label={`解决冲突 ${entry.path}`} disabled={!!busy} onClick={() => void showConflict(entry.path)}><Icon name="merge" size={15} /></button> : <button className="icon-button" title={area === 'index' ? '取消暂存' : '暂存文件'} aria-label={`${area === 'index' ? '取消暂存' : '暂存'} ${entry.path}`} disabled={!!busy} onClick={() => void (area === 'index' ? unstage([entry.path]) : stage([entry.path]))}><Icon name={area === 'index' ? 'minus' : 'plus'} size={16} /></button>}
       {!entry.conflict && !(area === 'worktree' && entry.worktree === '?') && <button className="icon-button file-rollback" title={area === 'index' ? '撤销暂存及工作区修改' : '撤销未暂存修改'} aria-label={`${area === 'index' ? '撤销暂存及工作区修改' : '撤销未暂存修改'} ${entry.path}`} disabled={!!busy || !!repo?.mergeInProgress || ordinaryWriteBlocked} onClick={() => showRollback([entry], area === 'index' ? 'all' : 'worktree')}><RollbackIcon /></button>}
@@ -455,13 +455,17 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     if (!repo) return null;
     const label = area === 'index' ? '暂存区' : '工作区';
     const visible = entries.filter(entry => entry.path.toLowerCase().includes(fileFilter.toLowerCase()));
-    const selectable = visible.filter(entry => !rollbackUnavailable(entry, area, repo));
-    const chosen = visible.filter(entry => checkedFiles[area].has(entry.path) && !rollbackUnavailable(entry, area, repo));
+    const selectable = visible.filter(entry => !entry.conflict);
+    const chosen = selectable.filter(entry => checkedFiles[area].has(entry.path));
+    const rollbackBlocked = chosen.map(entry => rollbackUnavailable(entry, area, repo)).find(Boolean);
+    const targets = chosen.length ? chosen : entries.filter(entry => !entry.conflict);
+    const selectionAction = area === 'index' ? '取消暂存所选' : '暂存所选';
+    const allAction = area === 'index' ? '全部取消暂存' : '全部暂存';
     const blocked = !!busy || repo.mergeInProgress || ordinaryWriteBlocked;
     return <div className="file-group"><div className="group-heading"><span>
-      <FileCheckbox label={`全选${label}可撤销文件`} checked={!!selectable.length && chosen.length === selectable.length}
-        mixed={!!chosen.length && chosen.length < selectable.length} disabled={blocked || !selectable.length}
-        title={`选择筛选结果中可撤销的${label}文件`} onChange={checked => setCheckedFiles(current => {
+      <FileCheckbox label={`全选${label}文件`} checked={!!selectable.length && chosen.length === selectable.length}
+        mixed={!!chosen.length && chosen.length < selectable.length} disabled={!!busy || !selectable.length}
+        title={`选择筛选结果中的${label}文件（不含冲突）`} onChange={checked => setCheckedFiles(current => {
           const paths = new Set(current[area]);
           for (const entry of selectable) { if (checked) paths.add(entry.path); else paths.delete(entry.path); }
           return { ...current, [area]: paths };
@@ -469,11 +473,11 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
       <i className={`section-dot ${area === 'index' ? 'green' : 'amber'}`} />{label} <b>{entries.length}</b></span>
       <div className="inline-actions">{!!chosen.length && <button className="bulk-rollback"
         aria-label={area === 'index' ? '批量撤销暂存及工作区修改' : '批量撤销工作区修改'}
-        title={area === 'index' ? `将所选 ${chosen.length} 个文件的暂存区和工作区恢复到 HEAD` : `撤销所选 ${chosen.length} 个文件的未暂存修改，保留暂存内容`}
-        disabled={blocked} onClick={() => showRollback(chosen, area === 'index' ? 'all' : 'worktree')}><RollbackIcon />撤销 {chosen.length} 项</button>}
-      <button title={area === 'index' ? '全部取消暂存' : '全部暂存（不含冲突）'} aria-label={area === 'index' ? '全部取消暂存' : '全部暂存'} className="icon-button"
-        disabled={!!busy || !(area === 'index' ? entries.length : entries.some(entry => !entry.conflict))}
-        onClick={() => void (area === 'index' ? unstage(entries.map(entry => entry.path)) : stage(entries.filter(entry => !entry.conflict).map(entry => entry.path)))}><Icon name={area === 'index' ? 'minus' : 'plus'} size={15} /></button></div></div>
+        title={rollbackBlocked || (area === 'index' ? `将所选 ${chosen.length} 个文件的暂存区和工作区恢复到 HEAD` : `撤销所选 ${chosen.length} 个文件的未暂存修改，保留暂存内容`)}
+        disabled={blocked || !!rollbackBlocked} onClick={() => showRollback(chosen, area === 'index' ? 'all' : 'worktree')}><RollbackIcon />撤销 {chosen.length} 项</button>}
+      <button title={chosen.length ? `${selectionAction} ${chosen.length} 个文件` : `${allAction}（不含冲突）`} aria-label={chosen.length ? selectionAction : allAction} className={chosen.length ? 'selection-stage' : 'icon-button'}
+        disabled={!!busy || !targets.length}
+        onClick={() => void (area === 'index' ? unstage(targets.map(entry => entry.path)) : stage(targets.map(entry => entry.path)))}><Icon name={area === 'index' ? 'minus' : 'plus'} size={15} />{!!chosen.length && <span>{area === 'index' ? '取消' : '暂存'} {chosen.length}</span>}</button></div></div>
       {visible.map(entry => fileButton(entry, area))}{!entries.length && <p className="list-empty">{area === 'index' ? '暂无暂存文件' : '工作区干净'}</p>}
     </div>;
   };
