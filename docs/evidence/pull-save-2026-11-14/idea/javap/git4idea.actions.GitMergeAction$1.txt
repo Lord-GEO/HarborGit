@@ -1,0 +1,296 @@
+Compiled from "GitMergeAction.java"
+class git4idea.actions.GitMergeAction$1 extends com.intellij.openapi.progress.Task$Backgroundable {
+  static final boolean $assertionsDisabled;
+
+  final com.intellij.openapi.project.Project val$project;
+
+  final com.intellij.openapi.vfs.VirtualFile val$selectedRoot;
+
+  final git4idea.GitBranch val$selectedBranch;
+
+  final java.util.function.Supplier val$handlerProvider;
+
+  final com.intellij.history.Label val$beforeLabel;
+
+  final git4idea.actions.GitMergeAction$DialogState val$dialogState;
+
+  final git4idea.actions.GitMergeAction this$0;
+
+  git4idea.actions.GitMergeAction$1(git4idea.actions.GitMergeAction, com.intellij.openapi.project.Project, java.lang.String, boolean, com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, git4idea.GitBranch, java.util.function.Supplier, com.intellij.history.Label, git4idea.actions.GitMergeAction$DialogState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field this$0:Lgit4idea/actions/GitMergeAction;
+       5: aload_0
+       6: aload         5
+       8: putfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+      11: aload_0
+      12: aload         6
+      14: putfield      #11                 // Field val$selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      17: aload_0
+      18: aload         7
+      20: putfield      #15                 // Field val$selectedBranch:Lgit4idea/GitBranch;
+      23: aload_0
+      24: aload         8
+      26: putfield      #19                 // Field val$handlerProvider:Ljava/util/function/Supplier;
+      29: aload_0
+      30: aload         9
+      32: putfield      #23                 // Field val$beforeLabel:Lcom/intellij/history/Label;
+      35: aload_0
+      36: aload         10
+      38: putfield      #27                 // Field val$dialogState:Lgit4idea/actions/GitMergeAction$DialogState;
+      41: aload_0
+      42: aload_2
+      43: aload_3
+      44: iload         4
+      46: invokespecial #31                 // Method com/intellij/openapi/progress/Task$Backgroundable."<init>":(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Z)V
+      49: return
+
+  public void run(com.intellij.openapi.progress.ProgressIndicator);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #346                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+      12: invokestatic  #37                 // Method git4idea/GitUtil.getRepositoryManager:(Lcom/intellij/openapi/project/Project;)Lgit4idea/repo/GitRepositoryManager;
+      15: astore_2
+      16: invokestatic  #43                 // InterfaceMethod git4idea/commands/Git.getInstance:()Lgit4idea/commands/Git;
+      19: astore_3
+      20: new           #49                 // class git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector
+      23: dup
+      24: aload_0
+      25: getfield      #11                 // Field val$selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      28: getstatic     #51                 // Field git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation.MERGE:Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation;
+      31: invokespecial #57                 // Method git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector."<init>":(Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation;)V
+      34: astore        4
+      36: new           #60                 // class git4idea/commands/GitUntrackedFilesOverwrittenByOperationDetector
+      39: dup
+      40: aload_0
+      41: getfield      #11                 // Field val$selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      44: invokespecial #62                 // Method git4idea/commands/GitUntrackedFilesOverwrittenByOperationDetector."<init>":(Lcom/intellij/openapi/vfs/VirtualFile;)V
+      47: astore        5
+      49: new           #65                 // class git4idea/commands/GitSimpleEventDetector
+      52: dup
+      53: getstatic     #67                 // Field git4idea/commands/GitSimpleEventDetector$Event.MERGE_CONFLICT:Lgit4idea/commands/GitSimpleEventDetector$Event;
+      56: invokespecial #73                 // Method git4idea/commands/GitSimpleEventDetector."<init>":(Lgit4idea/commands/GitSimpleEventDetector$Event;)V
+      59: astore        6
+      61: aload_2
+      62: aload_0
+      63: getfield      #11                 // Field val$selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      66: invokevirtual #76                 // Method git4idea/repo/GitRepositoryManager.getRepositoryForRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)Lcom/intellij/dvcs/repo/Repository;
+      69: checkcast     #82                 // class git4idea/repo/GitRepository
+      72: astore        7
+      74: getstatic     #84                 // Field $assertionsDisabled:Z
+      77: ifne          105
+      80: aload         7
+      82: ifnonnull     105
+      85: new           #88                 // class java/lang/AssertionError
+      88: dup
+      89: aload_0
+      90: getfield      #11                 // Field val$selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      93: invokestatic  #90                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      96: invokedynamic #96,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     101: invokespecial #100                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+     104: athrow
+     105: aconst_null
+     106: astore        8
+     108: aload         7
+     110: invokeinterface #103,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentBranch:()Lgit4idea/GitLocalBranch;
+     115: ifnull        154
+     118: new           #107                // class git4idea/branch/GitBranchPair
+     121: dup
+     122: aload         7
+     124: invokeinterface #103,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentBranch:()Lgit4idea/GitLocalBranch;
+     129: aload_0
+     130: getfield      #15                 // Field val$selectedBranch:Lgit4idea/GitBranch;
+     133: invokespecial #109                // Method git4idea/branch/GitBranchPair."<init>":(Lgit4idea/GitLocalBranch;Lgit4idea/GitBranch;)V
+     136: astore        9
+     138: aload_0
+     139: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+     142: aload         7
+     144: aload         9
+     146: invokestatic  #112                // Method java/util/Collections.singletonMap:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+     149: invokestatic  #118                // Method git4idea/update/GitUpdatedRanges.calcInitialPositions:(Lcom/intellij/openapi/project/Project;Ljava/util/Map;)Lgit4idea/update/GitUpdatedRanges;
+     152: astore        8
+     154: aload         7
+     156: invokeinterface #124,  1          // InterfaceMethod git4idea/repo/GitRepository.getCurrentRevision:()Ljava/lang/String;
+     161: astore        9
+     163: aload_0
+     164: getfield      #1                  // Field this$0:Lgit4idea/actions/GitMergeAction;
+     167: aload_0
+     168: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+     171: aload_0
+     172: getfield      #11                 // Field val$selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+     175: invokevirtual #128                // Method git4idea/actions/GitMergeAction.shouldSetupRebaseEditor:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)Z
+     178: istore        10
+     180: invokestatic  #134                // Method com/intellij/openapi/util/Ref.create:()Lcom/intellij/openapi/util/Ref;
+     183: astore        11
+     185: aload_0
+     186: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+     189: ldc           #140                // String activity.name.merge
+     191: iconst_0
+     192: anewarray     #142                // class java/lang/Object
+     195: invokestatic  #144                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     198: getstatic     #150                // Field git4idea/GitActivity.Merge:Lcom/intellij/history/ActivityId;
+     201: invokestatic  #156                // Method com/intellij/dvcs/DvcsUtil.workingTreeChangeStarted:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/history/ActivityId;)Lcom/intellij/openapi/application/AccessToken;
+     204: astore        12
+     206: aload_3
+     207: aload_0
+     208: getfield      #19                 // Field val$handlerProvider:Ljava/util/function/Supplier;
+     211: iload         10
+     213: aload         11
+     215: aload_0
+     216: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+     219: aload_0
+     220: getfield      #11                 // Field val$selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+     223: aload         4
+     225: aload         5
+     227: aload         6
+     229: invokedynamic #162,  0            // InvokeDynamic #1:compute:(Ljava/util/function/Supplier;ZLcom/intellij/openapi/util/Ref;Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector;Lgit4idea/commands/GitUntrackedFilesOverwrittenByOperationDetector;Lgit4idea/commands/GitSimpleEventDetector;)Lcom/intellij/openapi/util/Computable;
+     234: invokeinterface #166,  2          // InterfaceMethod git4idea/commands/Git.runCommand:(Lcom/intellij/openapi/util/Computable;)Lgit4idea/commands/GitCommandResult;
+     239: astore        13
+     241: aload         9
+     243: ifnull        293
+     246: new           #170                // class git4idea/GitRevisionNumber
+     249: dup
+     250: aload         9
+     252: invokespecial #172                // Method git4idea/GitRevisionNumber."<init>":(Ljava/lang/String;)V
+     255: astore        14
+     257: aload_0
+     258: getfield      #1                  // Field this$0:Lgit4idea/actions/GitMergeAction;
+     261: aload         13
+     263: aload_0
+     264: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+     267: aload         6
+     269: aload         4
+     271: aload         5
+     273: aload         7
+     275: aload         14
+     277: aload_0
+     278: getfield      #23                 // Field val$beforeLabel:Lcom/intellij/history/Label;
+     281: aload         8
+     283: aload_0
+     284: getfield      #27                 // Field val$dialogState:Lgit4idea/actions/GitMergeAction$DialogState;
+     287: getfield      #175                // Field git4idea/actions/GitMergeAction$DialogState.commitAfterMerge:Z
+     290: invokevirtual #180                // Method git4idea/actions/GitMergeAction.handleResult:(Lgit4idea/commands/GitCommandResult;Lcom/intellij/openapi/project/Project;Lgit4idea/commands/GitSimpleEventDetector;Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector;Lgit4idea/commands/GitUntrackedFilesOverwrittenByOperationDetector;Lgit4idea/repo/GitRepository;Lgit4idea/GitRevisionNumber;Lcom/intellij/history/Label;Lgit4idea/update/GitUpdatedRanges;Z)V
+     293: aload         12
+     295: ifnull        333
+     298: aload         12
+     300: invokevirtual #184                // Method com/intellij/openapi/application/AccessToken.close:()V
+     303: goto          333
+     306: astore        13
+     308: aload         12
+     310: ifnull        330
+     313: aload         12
+     315: invokevirtual #184                // Method com/intellij/openapi/application/AccessToken.close:()V
+     318: goto          330
+     321: astore        14
+     323: aload         13
+     325: aload         14
+     327: invokevirtual #192                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+     330: aload         13
+     332: athrow
+     333: aload         11
+     335: invokevirtual #196                // Method com/intellij/openapi/util/Ref.isNull:()Z
+     338: ifne          379
+     341: aload         11
+     343: invokevirtual #200                // Method com/intellij/openapi/util/Ref.get:()Ljava/lang/Object;
+     346: checkcast     #204                // class git4idea/rebase/GitHandlerRebaseEditorManager
+     349: invokevirtual #206                // Method git4idea/rebase/GitHandlerRebaseEditorManager.close:()V
+     352: goto          379
+     355: astore        15
+     357: aload         11
+     359: invokevirtual #196                // Method com/intellij/openapi/util/Ref.isNull:()Z
+     362: ifne          376
+     365: aload         11
+     367: invokevirtual #200                // Method com/intellij/openapi/util/Ref.get:()Ljava/lang/Object;
+     370: checkcast     #204                // class git4idea/rebase/GitHandlerRebaseEditorManager
+     373: invokevirtual #206                // Method git4idea/rebase/GitHandlerRebaseEditorManager.close:()V
+     376: aload         15
+     378: athrow
+     379: return
+    Exception table:
+       from    to  target type
+         206   293   306   Class java/lang/Throwable
+         313   318   321   Class java/lang/Throwable
+         185   333   355   any
+         355   357   355   any
+
+  private static git4idea.commands.GitLineHandler lambda$run$0(java.util.function.Supplier, boolean, com.intellij.openapi.util.Ref, com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile, git4idea.commands.GitLocalChangesWouldBeOverwrittenDetector, git4idea.commands.GitUntrackedFilesOverwrittenByOperationDetector, git4idea.commands.GitSimpleEventDetector);
+    Code:
+       0: aload_0
+       1: invokeinterface #207,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #210                // class git4idea/commands/GitLineHandler
+       9: astore        8
+      11: iload_1
+      12: ifeq          63
+      15: aload_2
+      16: invokevirtual #196                // Method com/intellij/openapi/util/Ref.isNull:()Z
+      19: ifne          32
+      22: aload_2
+      23: invokevirtual #200                // Method com/intellij/openapi/util/Ref.get:()Ljava/lang/Object;
+      26: checkcast     #204                // class git4idea/rebase/GitHandlerRebaseEditorManager
+      29: invokevirtual #206                // Method git4idea/rebase/GitHandlerRebaseEditorManager.close:()V
+      32: new           #212                // class git4idea/rebase/GitInteractiveRebaseEditorHandler
+      35: dup
+      36: aload_3
+      37: aload         4
+      39: invokespecial #214                // Method git4idea/rebase/GitInteractiveRebaseEditorHandler."<init>":(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      42: astore        9
+      44: aload_2
+      45: aload         8
+      47: aload         9
+      49: invokestatic  #217                // Method git4idea/rebase/GitHandlerRebaseEditorManager.prepareEditor:(Lgit4idea/commands/GitHandler;Lgit4idea/rebase/GitRebaseEditorHandler;)Lgit4idea/rebase/GitHandlerRebaseEditorManager;
+      52: invokevirtual #221                // Method com/intellij/openapi/util/Ref.set:(Ljava/lang/Object;)V
+      55: aload         8
+      57: getstatic     #224                // Field git4idea/commands/GitImpl.REBASE_CONFIG_PARAMS:Ljava/util/List;
+      60: invokevirtual #230                // Method git4idea/commands/GitLineHandler.addConfigParameters:(Ljava/util/List;)V
+      63: aload         8
+      65: aload         5
+      67: invokevirtual #234                // Method git4idea/commands/GitLineHandler.addLineListener:(Lgit4idea/commands/GitLineHandlerListener;)V
+      70: aload         8
+      72: aload         6
+      74: invokevirtual #234                // Method git4idea/commands/GitLineHandler.addLineListener:(Lgit4idea/commands/GitLineHandlerListener;)V
+      77: aload         8
+      79: aload         7
+      81: invokevirtual #234                // Method git4idea/commands/GitLineHandler.addLineListener:(Lgit4idea/commands/GitLineHandlerListener;)V
+      84: aload         8
+      86: areturn
+
+  static {};
+    Code:
+       0: ldc           #129                // class git4idea/actions/GitMergeAction
+       2: invokevirtual #238                // Method java/lang/Class.desiredAssertionStatus:()Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putstatic     #84                 // Field $assertionsDisabled:Z
+      16: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc_w         #350                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       3: iconst_3
+       4: anewarray     #142                // class java/lang/Object
+       7: dup
+       8: iconst_0
+       9: ldc_w         #351                // String indicator
+      12: aastore
+      13: dup
+      14: iconst_1
+      15: ldc_w         #352                // String git4idea/actions/GitMergeAction$1
+      18: aastore
+      19: dup
+      20: iconst_2
+      21: ldc_w         #353                // String run
+      24: aastore
+      25: invokestatic  #356                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      28: new           #358                // class java/lang/IllegalArgumentException
+      31: dup_x1
+      32: swap
+      33: invokespecial #359                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      36: athrow
+}

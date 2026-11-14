@@ -1,0 +1,10 @@
+✔ saved changes rebase: staged, unstaged, Unicode untracked and binary content restore without touching existing stash (23787.1358ms)
+✔ saved changes rebase: another source branch changes while original dev WIP and index return exactly (15279.1796ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39468.1784

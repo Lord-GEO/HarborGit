@@ -1,6 +1,6 @@
 {
   "name": "harbor-git",
-  "version": "1.8.4",
+  "version": "1.9.1",
   "description": "An independent desktop Git workspace client",
   "author": "HarborGit contributors",
   "license": "MIT",
@@ -29,7 +29,9 @@
     "dist:mac": "npm run build && electron-builder --mac --arm64 --x64 --publish never",
     "dist:mac:arm64": "npm run build && electron-builder --mac --arm64 --publish never",
     "dist:mac:x64": "npm run build && electron-builder --mac --x64 --publish never",
-    "test:terminal": "node scripts/smoke-terminal.mjs"
+    "test:terminal": "node scripts/smoke-terminal.mjs",
+    "test:checkout": "tsx --test tests/checkout-save.test.ts",
+    "test:pull": "tsx --test tests/pull-save.test.ts"
   },
   "dependencies": {
     "@xterm/addon-fit": "0.11.0",

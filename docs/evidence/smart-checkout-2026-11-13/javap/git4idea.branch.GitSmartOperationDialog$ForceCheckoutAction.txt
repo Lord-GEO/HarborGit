@@ -1,0 +1,80 @@
+Compiled from "GitSmartOperationDialog.java"
+class git4idea.branch.GitSmartOperationDialog$ForceCheckoutAction extends javax.swing.AbstractAction {
+  final git4idea.branch.GitSmartOperationDialog this$0;
+
+  git4idea.branch.GitSmartOperationDialog$ForceCheckoutAction(git4idea.branch.GitSmartOperationDialog, java.lang.String, java.lang.String);
+    Code:
+       0: aload_2
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #77                 // Method $$$reportNull$$$0:(I)V
+       8: aload_3
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #77                 // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: aload_1
+      18: putfield      #3                  // Field this$0:Lgit4idea/branch/GitSmartOperationDialog;
+      21: aload_0
+      22: aload_2
+      23: invokespecial #9                  // Method javax/swing/AbstractAction."<init>":(Ljava/lang/String;)V
+      26: ldc           #15                 // String smart.operation.dialog.operation.name.and.overwrite.local.changes
+      28: iconst_1
+      29: anewarray     #17                 // class java/lang/Object
+      32: dup
+      33: iconst_0
+      34: aload_3
+      35: invokestatic  #19                 // Method com/intellij/openapi/util/text/StringUtil.capitalize:(Ljava/lang/String;)Ljava/lang/String;
+      38: aastore
+      39: invokestatic  #25                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      42: astore        4
+      44: aload_0
+      45: ldc           #33                 // String ShortDescription
+      47: aload         4
+      49: invokevirtual #35                 // Method putValue:(Ljava/lang/String;Ljava/lang/Object;)V
+      52: return
+
+  public void actionPerformed(java.awt.event.ActionEvent);
+    Code:
+       0: aload_0
+       1: getfield      #3                  // Field this$0:Lgit4idea/branch/GitSmartOperationDialog;
+       4: iconst_2
+       5: invokevirtual #39                 // Method git4idea/branch/GitSmartOperationDialog.close:(I)V
+       8: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc           #79                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       2: iconst_3
+       3: anewarray     #17                 // class java/lang/Object
+       6: iload_0
+       7: tableswitch   { // 0 to 1
+                     0: 28
+                     1: 36
+               default: 28
+          }
+      28: dup
+      29: iconst_0
+      30: ldc           #80                 // String buttonTitle
+      32: aastore
+      33: goto          44
+      36: dup
+      37: iconst_0
+      38: ldc           #81                 // String operationTitle
+      40: aastore
+      41: goto          44
+      44: dup
+      45: iconst_1
+      46: ldc           #82                 // String git4idea/branch/GitSmartOperationDialog$ForceCheckoutAction
+      48: aastore
+      49: dup
+      50: iconst_2
+      51: ldc           #83                 // String <init>
+      53: aastore
+      54: invokestatic  #88                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      57: new           #90                 // class java/lang/IllegalArgumentException
+      60: dup_x1
+      61: swap
+      62: invokespecial #91                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      65: athrow
+}

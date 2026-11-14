@@ -1,0 +1,287 @@
+[
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/actions/GitMergeAction.class",
+    "member_sha256": "c73fe0086eeead8d9c73c39d7a7998c56f193a28a29461782f5507634cd06925",
+    "output": "javap\\git4idea.actions.GitMergeAction.txt",
+    "output_sha256": "5ea53e395bc40fb40aa0c549267601d7867f61f1d7c2a5bb758fd1188af99237",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitMergeAction"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/actions/GitMergeAction$1.class",
+    "member_sha256": "4d0a9dfee1d0d83c73d25ee9cda6a6d2726f785946aaac056781c95936d4f723",
+    "output": "javap\\git4idea.actions.GitMergeAction$1.txt",
+    "output_sha256": "17ecef6fab39c13493aa4f02acaa46ecac8900d3b4924b4355a59d8ead7f1f34",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitMergeAction$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/actions/GitMergeAction$2.class",
+    "member_sha256": "84e67c0b025c44c615e34c3f113555839782214b9c09f8e5f95b85c10cf1486c",
+    "output": "javap\\git4idea.actions.GitMergeAction$2.txt",
+    "output_sha256": "9fc1068e4a3d27527c57dc7137a4f4db26ab188a81ef48c6f054484409d93981",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitMergeAction$2"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/merge/GitMergeCommittingConflictResolver.class",
+    "member_sha256": "73e85904b5fe30f93f4e9974aa7ad23d932250aa0ab3f155252dad8b8709b45e",
+    "output": "javap\\git4idea.merge.GitMergeCommittingConflictResolver.txt",
+    "output_sha256": "5223f95a57b0725191c1785af8219e1cce03fcdeef2eda5be32062c2208d3d16",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.merge.GitMergeCommittingConflictResolver"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitMergeUpdater.class",
+    "member_sha256": "e712e13afcee185c7dc31ee180ff443b726cbbf16e7c523cee3baa1f3e2d02c4",
+    "output": "javap\\git4idea.update.GitMergeUpdater.txt",
+    "output_sha256": "8f7d26aaa765af601bb473877a3aada02aa033f462660b259f2273acdd0044d0",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitMergeUpdater"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitMergeUpdater$MyConflictResolver.class",
+    "member_sha256": "31afa517ee727a069cb040851bdb313e15a9d4781abcf4667b58b422cbbd39d5",
+    "output": "javap\\git4idea.update.GitMergeUpdater$MyConflictResolver.txt",
+    "output_sha256": "36931f4270d6ae86a21c06d7af742d10c910c46666a18fafc306e3e463852185",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitMergeUpdater$MyConflictResolver"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitUpdateProcess.class",
+    "member_sha256": "40b62f2bd494cac1d2cb560f5da556d07b7f3d66356499ef38c589fda5d764aa",
+    "output": "javap\\git4idea.update.GitUpdateProcess.txt",
+    "output_sha256": "e06286a1c618290adc4ec57e6176c0c583e6394697ad6c7ef7b80f6a20c13eb5",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitUpdateProcess"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitUpdateExecutionProcess.class",
+    "member_sha256": "ad847f283506c56b94a568300e883c52d01ecbd366016b14ddd1269c43862ab3",
+    "output": "javap\\git4idea.update.GitUpdateExecutionProcess.txt",
+    "output_sha256": "7a6e75d9310e51c3678dd845f13968837397002e722266195b2c5191a0b023d7",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitUpdateExecutionProcess"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/pull/GitPullOption.class",
+    "member_sha256": "2021fa03d842d5c7589050cfe27888adeb860b22ac6bf459edda71f869d32f03",
+    "output": "javap\\git4idea.pull.GitPullOption.txt",
+    "output_sha256": "f1c58829351306732726a6c5787af95c85b8b276f80c869ff4b9699aed3294f2",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.pull.GitPullOption"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitUpdateResult.class",
+    "member_sha256": "84cdc31ba53662a44a1ccf3268cdef457dc8ff9154e9083038d5214bbdf09eb3",
+    "output": "javap\\git4idea.update.GitUpdateResult.txt",
+    "output_sha256": "16b76cc8bcfc9209fb95de52564e0f20fa0b64a785d572116ff1c097da27b2ca",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitUpdateResult"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitUpdater.class",
+    "member_sha256": "a869a2c693009fde1b852837cbf1a528979a403605be356ed9173b56b0f7cfc6",
+    "output": "javap\\git4idea.update.GitUpdater.txt",
+    "output_sha256": "e1587a07af36c63f821e804ad47b3e54b9a2b73b7b8e4f67678782ee5dfbbf05",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitUpdater"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/GitUtil.class",
+    "member_sha256": "fe1fdb99bd04cc9480a28ed0edd9c8b2d0c9a8858a497cf066e41709d8a991ae",
+    "output": "javap\\git4idea.GitUtil.txt",
+    "output_sha256": "6a8589ef7603131e026aa46f1e4b5929f53431c5fb9451c46038cbd5e776cff5",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.GitUtil"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitUpdateExecutionProcess$createSpec$updateEnvironment$1.class",
+    "member_sha256": "f7df151de971ee62c751471ed78aef8ed9402a600bb46302c3bae0c48eff046c",
+    "output": "javap\\git4idea.update.GitUpdateExecutionProcess$createSpec$updateEnvironment$1.txt",
+    "output_sha256": "af3bae7b49f40d1ae7629c738fb595c92df3c4283d5048bf9317c80c4dfa95ba",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitUpdateExecutionProcess$createSpec$updateEnvironment$1"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/actions/GitPull.class",
+    "member_sha256": "37a9d2ad40e778761017ad8926609f21fdf50218104809e9b16d8977fe4a09f5",
+    "output": "javap\\git4idea.actions.GitPull.txt",
+    "output_sha256": "90eb9bbfcf8d8b8a3924e54e6534cb0255b8a6d55dbe5d5855e5b458730e4585",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.actions.GitPull"
+    ],
+    "stderr": ""
+  },
+  {
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/update/GitRebaseUpdater.class",
+    "member_sha256": "c31e053537974ede77f81645d1944239c9faa666fc2a1ee5a8fb4fd20349c465",
+    "output": "javap\\git4idea.update.GitRebaseUpdater.txt",
+    "output_sha256": "30ccf3341ab584abe3699a067f86ad8acc7ec6deb252685601011c0d18ad9ebd",
+    "arguments": [
+      "C:\\Program Files\\Zulu\\zulu-21\\bin\\javap.exe",
+      "-J-Duser.language=en",
+      "-J-Duser.country=US",
+      "-p",
+      "-c",
+      "-classpath",
+      "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+      "git4idea.update.GitRebaseUpdater"
+    ],
+    "stderr": ""
+  }
+]

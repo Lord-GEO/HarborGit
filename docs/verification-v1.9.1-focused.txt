@@ -1,0 +1,10 @@
+✔ smart checkout carries staged, unstaged and untracked changes to target without moving branch tips (8892.5383ms)
+✔ Pull fetch failure leaves WIP untouched; fast-forward restores index, worktree, binary untracked and older stash (10610.3925ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10852.2485

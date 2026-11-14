@@ -1,0 +1,141 @@
+Compiled from "GitUpdateExecutionProcess.kt"
+public final class git4idea.update.GitUpdateExecutionProcess$createSpec$updateEnvironment$1 implements com.intellij.openapi.vcs.update.UpdateEnvironment {
+  private final git4idea.update.GitUpdateEnvironment $$delegate_0;
+
+  final git4idea.update.GitUpdateEnvironment $gitUpdateEnvironment;
+
+  final boolean $shouldSetAsUpstream;
+
+  final java.util.Map<git4idea.repo.GitRepository, git4idea.branch.GitBranchPair> $updateConfig;
+
+  final com.intellij.openapi.project.Project $project;
+
+  final git4idea.config.UpdateMethod $updateMethod;
+
+  git4idea.update.GitUpdateExecutionProcess$createSpec$updateEnvironment$1(git4idea.update.GitUpdateEnvironment, boolean, java.util.Map<git4idea.repo.GitRepository, git4idea.branch.GitBranchPair>, com.intellij.openapi.project.Project, git4idea.config.UpdateMethod);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #13                 // Field $gitUpdateEnvironment:Lgit4idea/update/GitUpdateEnvironment;
+       5: aload_0
+       6: iload_2
+       7: putfield      #17                 // Field $shouldSetAsUpstream:Z
+      10: aload_0
+      11: aload_3
+      12: putfield      #21                 // Field $updateConfig:Ljava/util/Map;
+      15: aload_0
+      16: aload         4
+      18: putfield      #25                 // Field $project:Lcom/intellij/openapi/project/Project;
+      21: aload_0
+      22: aload         5
+      24: putfield      #29                 // Field $updateMethod:Lgit4idea/config/UpdateMethod;
+      27: aload_0
+      28: invokespecial #32                 // Method java/lang/Object."<init>":()V
+      31: aload_0
+      32: aload_1
+      33: putfield      #35                 // Field $$delegate_0:Lgit4idea/update/GitUpdateEnvironment;
+      36: return
+
+  public com.intellij.openapi.vcs.update.UpdateSession updateDirectories(com.intellij.openapi.vcs.FilePath[], com.intellij.openapi.vcs.update.UpdatedFiles, com.intellij.openapi.progress.ProgressIndicator, com.intellij.openapi.util.Ref<com.intellij.openapi.vcs.update.SequentialUpdatesContext>);
+    Code:
+       0: aload_1
+       1: ldc           #42                 // String contentRoots
+       3: invokestatic  #48                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #50                 // String updatedFiles
+       9: invokestatic  #48                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #52                 // String progressIndicator
+      15: invokestatic  #48                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         4
+      20: ldc           #54                 // String context
+      22: invokestatic  #48                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload_0
+      26: getfield      #17                 // Field $shouldSetAsUpstream:Z
+      29: ifeq          132
+      32: aload_0
+      33: getfield      #21                 // Field $updateConfig:Ljava/util/Map;
+      36: dup
+      37: ifnull        130
+      40: astore        5
+      42: iconst_0
+      43: istore        6
+      45: aload         5
+      47: invokeinterface #60,  1           // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      52: invokeinterface #66,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      57: astore        7
+      59: aload         7
+      61: invokeinterface #72,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      66: ifeq          126
+      69: aload         7
+      71: invokeinterface #76,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      76: checkcast     #78                 // class java/util/Map$Entry
+      79: astore        8
+      81: aload         8
+      83: astore        9
+      85: iconst_0
+      86: istore        10
+      88: aload         9
+      90: invokeinterface #81,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      95: checkcast     #83                 // class git4idea/repo/GitRepository
+      98: astore        11
+     100: aload         9
+     102: invokeinterface #86,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     107: checkcast     #88                 // class git4idea/branch/GitBranchPair
+     110: astore        12
+     112: getstatic     #94                 // Field git4idea/update/GitUpdateExecutionProcess.INSTANCE:Lgit4idea/update/GitUpdateExecutionProcess;
+     115: aload         11
+     117: aload         12
+     119: invokestatic  #98                 // Method git4idea/update/GitUpdateExecutionProcess.access$setBranchUpstream:(Lgit4idea/update/GitUpdateExecutionProcess;Lgit4idea/repo/GitRepository;Lgit4idea/branch/GitBranchPair;)V
+     122: nop
+     123: goto          59
+     126: nop
+     127: goto          132
+     130: pop
+     131: nop
+     132: aload_0
+     133: getfield      #25                 // Field $project:Lcom/intellij/openapi/project/Project;
+     136: aload_1
+     137: aload_2
+     138: aload_3
+     139: aload_0
+     140: getfield      #29                 // Field $updateMethod:Lgit4idea/config/UpdateMethod;
+     143: aload_0
+     144: getfield      #21                 // Field $updateConfig:Ljava/util/Map;
+     147: invokestatic  #104                // Method git4idea/update/GitUpdateEnvironment.performUpdate:(Lcom/intellij/openapi/project/Project;[Lcom/intellij/openapi/vcs/FilePath;Lcom/intellij/openapi/vcs/update/UpdatedFiles;Lcom/intellij/openapi/progress/ProgressIndicator;Lgit4idea/config/UpdateMethod;Ljava/util/Map;)Lcom/intellij/openapi/vcs/update/UpdateSession;
+     150: dup
+     151: ldc           #106                // String performUpdate(...)
+     153: invokestatic  #109                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     156: areturn
+
+  public boolean hasCustomNotification();
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field $gitUpdateEnvironment:Lgit4idea/update/GitUpdateEnvironment;
+       4: invokevirtual #133                // Method git4idea/update/GitUpdateEnvironment.hasCustomNotification:()Z
+       7: ireturn
+
+  public void fillGroups(com.intellij.openapi.vcs.update.UpdatedFiles);
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field $$delegate_0:Lgit4idea/update/GitUpdateEnvironment;
+       4: aload_1
+       5: invokevirtual #137                // Method git4idea/update/GitUpdateEnvironment.fillGroups:(Lcom/intellij/openapi/vcs/update/UpdatedFiles;)V
+       8: return
+
+  public com.intellij.openapi.options.Configurable createConfigurable(java.util.Collection<com.intellij.openapi.vcs.FilePath>);
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field $$delegate_0:Lgit4idea/update/GitUpdateEnvironment;
+       4: aload_1
+       5: invokevirtual #144                // Method git4idea/update/GitUpdateEnvironment.createConfigurable:(Ljava/util/Collection;)Lcom/intellij/openapi/options/Configurable;
+       8: areturn
+
+  public boolean validateOptions(java.util.Collection<com.intellij.openapi.vcs.FilePath>);
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field $$delegate_0:Lgit4idea/update/GitUpdateEnvironment;
+       4: aload_1
+       5: invokevirtual #150                // Method git4idea/update/GitUpdateEnvironment.validateOptions:(Ljava/util/Collection;)Z
+       8: ireturn
+}

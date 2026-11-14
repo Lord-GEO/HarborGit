@@ -1,0 +1,345 @@
+Compiled from "GitPullOption.kt"
+public final class git4idea.pull.GitPullOption extends java.lang.Enum<git4idea.pull.GitPullOption> {
+  public static final git4idea.pull.GitPullOption$Companion Companion;
+
+  private final java.lang.String option;
+
+  private final java.lang.String description;
+
+  private static final java.util.List<git4idea.pull.GitPullOption> REBASE_INCOMPATIBLE;
+
+  private static final java.util.List<git4idea.pull.GitPullOption> FF_ONLY_INCOMPATIBLE;
+
+  private static final java.util.List<git4idea.pull.GitPullOption> NO_FF_INCOMPATIBLE;
+
+  private static final java.util.List<git4idea.pull.GitPullOption> SQUASH_COMMIT_INCOMPATIBLE;
+
+  public static final git4idea.pull.GitPullOption REBASE;
+
+  public static final git4idea.pull.GitPullOption FF_ONLY;
+
+  public static final git4idea.pull.GitPullOption NO_FF;
+
+  public static final git4idea.pull.GitPullOption SQUASH;
+
+  public static final git4idea.pull.GitPullOption NO_COMMIT;
+
+  public static final git4idea.pull.GitPullOption NO_VERIFY;
+
+  private static final git4idea.pull.GitPullOption[] $VALUES;
+
+  private static final kotlin.enums.EnumEntries $ENTRIES;
+
+  private git4idea.pull.GitPullOption(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #13                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: aload_0
+       7: aload_3
+       8: putfield      #17                 // Field option:Ljava/lang/String;
+      11: aload_0
+      12: aload         4
+      14: putfield      #20                 // Field description:Ljava/lang/String;
+      17: return
+
+  public final java.lang.String getOption();
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field option:Ljava/lang/String;
+       4: areturn
+
+  public final java.lang.String getDescription();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field description:Ljava/lang/String;
+       4: areturn
+
+  public final boolean isOptionSuitable(git4idea.pull.GitPullOption);
+    Code:
+       0: aload_1
+       1: ldc           #32                 // String option
+       3: invokestatic  #38                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_0
+       7: getstatic     #44                 // Field git4idea/pull/GitPullOption$WhenMappings.$EnumSwitchMapping$0:[I
+      10: swap
+      11: invokevirtual #48                 // Method ordinal:()I
+      14: iaload
+      15: tableswitch   { // 1 to 5
+                     1: 48
+                     2: 68
+                     3: 88
+                     4: 108
+                     5: 128
+               default: 143
+          }
+      48: getstatic     #52                 // Field REBASE_INCOMPATIBLE:Ljava/util/List;
+      51: aload_1
+      52: invokeinterface #58,  2           // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+      57: ifne          64
+      60: iconst_1
+      61: goto          144
+      64: iconst_0
+      65: goto          144
+      68: getstatic     #61                 // Field FF_ONLY_INCOMPATIBLE:Ljava/util/List;
+      71: aload_1
+      72: invokeinterface #58,  2           // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+      77: ifne          84
+      80: iconst_1
+      81: goto          144
+      84: iconst_0
+      85: goto          144
+      88: getstatic     #64                 // Field NO_FF_INCOMPATIBLE:Ljava/util/List;
+      91: aload_1
+      92: invokeinterface #58,  2           // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+      97: ifne          104
+     100: iconst_1
+     101: goto          144
+     104: iconst_0
+     105: goto          144
+     108: getstatic     #67                 // Field SQUASH_COMMIT_INCOMPATIBLE:Ljava/util/List;
+     111: aload_1
+     112: invokeinterface #58,  2           // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+     117: ifne          124
+     120: iconst_1
+     121: goto          144
+     124: iconst_0
+     125: goto          144
+     128: aload_1
+     129: getstatic     #70                 // Field REBASE:Lgit4idea/pull/GitPullOption;
+     132: if_acmpeq     139
+     135: iconst_1
+     136: goto          144
+     139: iconst_0
+     140: goto          144
+     143: iconst_1
+     144: ireturn
+
+  public static git4idea.pull.GitPullOption[] values();
+    Code:
+       0: getstatic     #76                 // Field $VALUES:[Lgit4idea/pull/GitPullOption;
+       3: invokevirtual #82                 // Method java/lang/Object.clone:()Ljava/lang/Object;
+       6: checkcast     #83                 // class "[Lgit4idea/pull/GitPullOption;"
+       9: areturn
+
+  public static git4idea.pull.GitPullOption valueOf(java.lang.String);
+    Code:
+       0: ldc           #2                  // class git4idea/pull/GitPullOption
+       2: aload_0
+       3: invokestatic  #88                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #2                  // class git4idea/pull/GitPullOption
+       9: areturn
+
+  public static kotlin.enums.EnumEntries<git4idea.pull.GitPullOption> getEntries();
+    Code:
+       0: getstatic     #96                 // Field $ENTRIES:Lkotlin/enums/EnumEntries;
+       3: areturn
+
+  private static final git4idea.pull.GitPullOption[] $values();
+    Code:
+       0: bipush        6
+       2: anewarray     #2                  // class git4idea/pull/GitPullOption
+       5: astore_0
+       6: aload_0
+       7: iconst_0
+       8: getstatic     #70                 // Field REBASE:Lgit4idea/pull/GitPullOption;
+      11: aastore
+      12: aload_0
+      13: iconst_1
+      14: getstatic     #100                // Field FF_ONLY:Lgit4idea/pull/GitPullOption;
+      17: aastore
+      18: aload_0
+      19: iconst_2
+      20: getstatic     #103                // Field NO_FF:Lgit4idea/pull/GitPullOption;
+      23: aastore
+      24: aload_0
+      25: iconst_3
+      26: getstatic     #106                // Field SQUASH:Lgit4idea/pull/GitPullOption;
+      29: aastore
+      30: aload_0
+      31: iconst_4
+      32: getstatic     #109                // Field NO_COMMIT:Lgit4idea/pull/GitPullOption;
+      35: aastore
+      36: aload_0
+      37: iconst_5
+      38: getstatic     #112                // Field NO_VERIFY:Lgit4idea/pull/GitPullOption;
+      41: aastore
+      42: aload_0
+      43: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class git4idea/pull/GitPullOption
+       3: dup
+       4: ldc           #115                // String REBASE
+       6: iconst_0
+       7: ldc           #117                // String --rebase
+       9: ldc           #119                // String pull.option.rebase
+      11: iconst_0
+      12: anewarray     #78                 // class java/lang/Object
+      15: invokestatic  #125                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      18: dup
+      19: ldc           #127                // String message(...)
+      21: invokestatic  #130                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      24: invokespecial #132                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      27: putstatic     #70                 // Field REBASE:Lgit4idea/pull/GitPullOption;
+      30: new           #2                  // class git4idea/pull/GitPullOption
+      33: dup
+      34: ldc           #133                // String FF_ONLY
+      36: iconst_1
+      37: ldc           #135                // String --ff-only
+      39: ldc           #137                // String pull.option.ff.only
+      41: iconst_0
+      42: anewarray     #78                 // class java/lang/Object
+      45: invokestatic  #125                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      48: dup
+      49: ldc           #127                // String message(...)
+      51: invokestatic  #130                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      54: invokespecial #132                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      57: putstatic     #100                // Field FF_ONLY:Lgit4idea/pull/GitPullOption;
+      60: new           #2                  // class git4idea/pull/GitPullOption
+      63: dup
+      64: ldc           #138                // String NO_FF
+      66: iconst_2
+      67: ldc           #140                // String --no-ff
+      69: ldc           #142                // String pull.option.no.ff
+      71: iconst_0
+      72: anewarray     #78                 // class java/lang/Object
+      75: invokestatic  #125                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      78: dup
+      79: ldc           #127                // String message(...)
+      81: invokestatic  #130                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      84: invokespecial #132                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      87: putstatic     #103                // Field NO_FF:Lgit4idea/pull/GitPullOption;
+      90: new           #2                  // class git4idea/pull/GitPullOption
+      93: dup
+      94: ldc           #143                // String SQUASH
+      96: iconst_3
+      97: ldc           #145                // String --squash
+      99: ldc           #147                // String pull.option.squash.commit
+     101: iconst_0
+     102: anewarray     #78                 // class java/lang/Object
+     105: invokestatic  #125                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     108: dup
+     109: ldc           #127                // String message(...)
+     111: invokestatic  #130                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     114: invokespecial #132                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     117: putstatic     #106                // Field SQUASH:Lgit4idea/pull/GitPullOption;
+     120: new           #2                  // class git4idea/pull/GitPullOption
+     123: dup
+     124: ldc           #148                // String NO_COMMIT
+     126: iconst_4
+     127: ldc           #150                // String --no-commit
+     129: ldc           #152                // String pull.option.no.commit
+     131: iconst_0
+     132: anewarray     #78                 // class java/lang/Object
+     135: invokestatic  #125                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     138: dup
+     139: ldc           #127                // String message(...)
+     141: invokestatic  #130                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     144: invokespecial #132                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     147: putstatic     #109                // Field NO_COMMIT:Lgit4idea/pull/GitPullOption;
+     150: new           #2                  // class git4idea/pull/GitPullOption
+     153: dup
+     154: ldc           #153                // String NO_VERIFY
+     156: iconst_5
+     157: ldc           #155                // String --no-verify
+     159: ldc           #157                // String merge.option.no.verify
+     161: iconst_0
+     162: anewarray     #78                 // class java/lang/Object
+     165: invokestatic  #125                // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     168: dup
+     169: ldc           #127                // String message(...)
+     171: invokestatic  #130                // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+     174: invokespecial #132                // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     177: putstatic     #112                // Field NO_VERIFY:Lgit4idea/pull/GitPullOption;
+     180: invokestatic  #159                // Method $values:()[Lgit4idea/pull/GitPullOption;
+     183: putstatic     #76                 // Field $VALUES:[Lgit4idea/pull/GitPullOption;
+     186: getstatic     #76                 // Field $VALUES:[Lgit4idea/pull/GitPullOption;
+     189: checkcast     #161                // class "[Ljava/lang/Enum;"
+     192: invokestatic  #167                // Method kotlin/enums/EnumEntriesKt.enumEntries:([Ljava/lang/Enum;)Lkotlin/enums/EnumEntries;
+     195: putstatic     #96                 // Field $ENTRIES:Lkotlin/enums/EnumEntries;
+     198: new           #169                // class git4idea/pull/GitPullOption$Companion
+     201: dup
+     202: aconst_null
+     203: invokespecial #172                // Method git4idea/pull/GitPullOption$Companion."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+     206: putstatic     #176                // Field Companion:Lgit4idea/pull/GitPullOption$Companion;
+     209: iconst_4
+     210: anewarray     #2                  // class git4idea/pull/GitPullOption
+     213: astore_0
+     214: aload_0
+     215: iconst_0
+     216: getstatic     #100                // Field FF_ONLY:Lgit4idea/pull/GitPullOption;
+     219: aastore
+     220: aload_0
+     221: iconst_1
+     222: getstatic     #103                // Field NO_FF:Lgit4idea/pull/GitPullOption;
+     225: aastore
+     226: aload_0
+     227: iconst_2
+     228: getstatic     #106                // Field SQUASH:Lgit4idea/pull/GitPullOption;
+     231: aastore
+     232: aload_0
+     233: iconst_3
+     234: getstatic     #109                // Field NO_COMMIT:Lgit4idea/pull/GitPullOption;
+     237: aastore
+     238: aload_0
+     239: invokestatic  #182                // Method kotlin/collections/CollectionsKt.listOf:([Ljava/lang/Object;)Ljava/util/List;
+     242: putstatic     #52                 // Field REBASE_INCOMPATIBLE:Ljava/util/List;
+     245: iconst_3
+     246: anewarray     #2                  // class git4idea/pull/GitPullOption
+     249: astore_0
+     250: aload_0
+     251: iconst_0
+     252: getstatic     #103                // Field NO_FF:Lgit4idea/pull/GitPullOption;
+     255: aastore
+     256: aload_0
+     257: iconst_1
+     258: getstatic     #106                // Field SQUASH:Lgit4idea/pull/GitPullOption;
+     261: aastore
+     262: aload_0
+     263: iconst_2
+     264: getstatic     #70                 // Field REBASE:Lgit4idea/pull/GitPullOption;
+     267: aastore
+     268: aload_0
+     269: invokestatic  #182                // Method kotlin/collections/CollectionsKt.listOf:([Ljava/lang/Object;)Ljava/util/List;
+     272: putstatic     #61                 // Field FF_ONLY_INCOMPATIBLE:Ljava/util/List;
+     275: iconst_3
+     276: anewarray     #2                  // class git4idea/pull/GitPullOption
+     279: astore_0
+     280: aload_0
+     281: iconst_0
+     282: getstatic     #100                // Field FF_ONLY:Lgit4idea/pull/GitPullOption;
+     285: aastore
+     286: aload_0
+     287: iconst_1
+     288: getstatic     #106                // Field SQUASH:Lgit4idea/pull/GitPullOption;
+     291: aastore
+     292: aload_0
+     293: iconst_2
+     294: getstatic     #70                 // Field REBASE:Lgit4idea/pull/GitPullOption;
+     297: aastore
+     298: aload_0
+     299: invokestatic  #182                // Method kotlin/collections/CollectionsKt.listOf:([Ljava/lang/Object;)Ljava/util/List;
+     302: putstatic     #64                 // Field NO_FF_INCOMPATIBLE:Ljava/util/List;
+     305: iconst_3
+     306: anewarray     #2                  // class git4idea/pull/GitPullOption
+     309: astore_0
+     310: aload_0
+     311: iconst_0
+     312: getstatic     #103                // Field NO_FF:Lgit4idea/pull/GitPullOption;
+     315: aastore
+     316: aload_0
+     317: iconst_1
+     318: getstatic     #100                // Field FF_ONLY:Lgit4idea/pull/GitPullOption;
+     321: aastore
+     322: aload_0
+     323: iconst_2
+     324: getstatic     #70                 // Field REBASE:Lgit4idea/pull/GitPullOption;
+     327: aastore
+     328: aload_0
+     329: invokestatic  #182                // Method kotlin/collections/CollectionsKt.listOf:([Ljava/lang/Object;)Ljava/util/List;
+     332: putstatic     #67                 // Field SQUASH_COMMIT_INCOMPATIBLE:Ljava/util/List;
+     335: return
+}

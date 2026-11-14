@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "kind": "static-evidence-file-verification",
+  "captured_outputs_verified": 9,
+  "report_links_resolve": true,
+  "application_changed": false,
+  "application_tests_run": false,
+  "real_repository_writes": false,
+  "report_sha256": "ebfcea20592f8f3c866b110f78f286aaa4a1c480b0425025a122ddeccf943b36"
+}

@@ -9,10 +9,12 @@ export function RebaseSavedChangesBanner({ repository, busy, onRestore, onConfir
   const conflicts = repository.entries.some(entry => entry.conflict);
   const dirty = repository.entries.length > 0;
   const restored = saved.status === 'restored';
+  const checkout = saved.kind === 'checkout';
+  const pull = saved.kind === 'pull';
   const canOfferRecovery = !activeOperation && ['saved', 'restore-pending', 'restore-conflicts'].includes(saved.status);
   const canApply = canOfferRecovery && !busy && !dirty && !conflicts;
-  return <section className={`saved-changes-banner ${restored ? 'restored' : saved.status === 'restore-conflicts' ? 'has-conflicts' : ''}`} aria-label="变基未提交改动备份">
-    <div className="saved-changes-heading"><strong>{restored ? '未提交改动恢复已结束' : saved.status === 'saving' ? '正在保存未提交改动' : saved.status === 'restore-conflicts' ? '保存的改动恢复时出现冲突' : saved.status === 'restore-pending' ? '保存的未提交改动等待恢复' : '未提交改动已安全保存'}</strong><span>{saved.originalBranch}{saved.sourceBranch !== saved.originalBranch ? ` · 变基分支 ${saved.sourceBranch}` : ''}</span></div>
+  return <section className={`saved-changes-banner ${restored ? 'restored' : saved.status === 'restore-conflicts' ? 'has-conflicts' : ''}`} aria-label={pull ? 'Pull 改动备份' : checkout ? '智能签出改动备份' : '变基未提交改动备份'}>
+    <div className="saved-changes-heading"><strong>{pull && repository.mergeInProgress && !restored ? '远程合并进行中 · 原改动已保存' : restored ? '未提交改动恢复已结束' : saved.status === 'saving' ? '正在保存未提交改动' : saved.status === 'restore-conflicts' ? '保存的改动恢复时出现冲突' : saved.status === 'restore-pending' ? '保存的未提交改动等待恢复' : '未提交改动已安全保存'}</strong><span>{pull ? `${saved.pullRemote}/${saved.pullBranch} → ${saved.originalBranch}` : checkout ? `${saved.originalBranch} → ${saved.targetBranch}` : `${saved.originalBranch}${saved.sourceBranch !== saved.originalBranch ? ` · 变基分支 ${saved.sourceBranch}` : ''}`}</span></div>
     <p>{saved.message || (restored ? '保存的改动已恢复，备份仍保留，不影响继续工作。' : activeOperation ? '变基期间，原工作区改动保存在下面的专用引用中。完成或中止后将尝试恢复。' : '请检查保存的改动并完成恢复；备份会保留。')}</p>
     <code>{saved.ref}</code>
     {!restored && saved.status !== 'saving' && <small>包含保存的暂存、未暂存和未跟踪内容；忽略文件未保存。备份不会自动删除。</small>}

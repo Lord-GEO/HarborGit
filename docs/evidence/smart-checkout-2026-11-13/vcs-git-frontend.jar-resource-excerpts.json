@@ -1,0 +1,77 @@
+[
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 426,
+    "text": "smart.operation.dialog.north.panel.label.shelf.text=<html>Your local changes to the following files would be overwritten by {0}.<br/> {1} can shelve the changes, {0} and unshelve them after that.</html>"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 427,
+    "text": "smart.operation.dialog.north.panel.label.stash.text=<html>Your local changes to the following files would be overwritten by {0}.<br/> {1} can stash the changes, {0} and unstash them after that.</html>"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 428,
+    "text": "smart.operation.dialog.ok.action.shelf.description=Shelve local changes, {0}, unshelve"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 429,
+    "text": "smart.operation.dialog.ok.action.stash.description=Stash local changes, {0}, unstash"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 430,
+    "text": "smart.operation.dialog.operation.name.and.overwrite.local.changes={0} and overwrite local changes"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 431,
+    "text": "smart.operation.dialog.git.operation.name.problem=Git {0} Problem"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 432,
+    "text": "smart.operation.dialog.smart.operation.name=Smart {0}"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 433,
+    "text": "smart.operation.dialog.don.t.operation.name=Don''t {0}"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 1337,
+    "text": "checkout.operation.force.checkout=&Force Checkout"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 1338,
+    "text": "checkout.operation.name=checkout"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 1637,
+    "text": "notification.title.untracked.files.prevent.operation=Untracked Files Prevent {0}"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 1638,
+    "text": "notification.content.untracked.files.prevent.operation.move.or.commit=Move or commit them before {0}<br/>{1}"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 1640,
+    "text": "dialog.title.untracked.files.preventing.operation=Untracked Files Preventing {0}"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 1641,
+    "text": "dialog.message.untracked.files.will.be.overwritten.by.operation=These untracked files will be overwritten by {0}"
+  },
+  {
+    "member": "messages/GitBundle.properties",
+    "line": 1810,
+    "text": "share.untracked.files.dialog.title=Add Files For Initial Commit"
+  }
+]

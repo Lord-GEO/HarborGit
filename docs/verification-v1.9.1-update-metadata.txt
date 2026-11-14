@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.9.1",
+  "setup": "HarborGit-1.9.1-Setup-x64.exe",
+  "bytes": 128358264,
+  "sha256": "fb87a4b691fc5416e073f72868144898cfae97e0939571c5d3c66c7c7102066b",
+  "sha512": "MROPDAUqE8xFkpfSqFQfZLnWp6h+6CvGCQJq69KZ0E0RJ0bsmy+d2nxYTf8PZ4tepggQ+0uXTi5bRkUgU7lW6g==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.9.1",
+    "files": [
+      {
+        "url": "HarborGit-1.9.1-Setup-x64.exe",
+        "sha512": "MROPDAUqE8xFkpfSqFQfZLnWp6h+6CvGCQJq69KZ0E0RJ0bsmy+d2nxYTf8PZ4tepggQ+0uXTi5bRkUgU7lW6g==",
+        "size": 128358264
+      }
+    ],
+    "path": "HarborGit-1.9.1-Setup-x64.exe",
+    "sha512": "MROPDAUqE8xFkpfSqFQfZLnWp6h+6CvGCQJq69KZ0E0RJ0bsmy+d2nxYTf8PZ4tepggQ+0uXTi5bRkUgU7lW6g==",
+    "releaseNotes": "# HarborGit v1.9.1\r\n\r\n- Pull 默认自动保存本地暂存、未暂存和未跟踪改动，合并远程提交后恢复原改动及暂存状态。\r\n- 本地与远程分叉时生成合并提交，解决此前 --ff-only 导致 Pull 中止的问题。\r\n- 远程合并冲突与本地改动恢复冲突分开处理；解决并提交合并，或中止合并后，再恢复原改动。\r\n- 专用 WIP 引用及 Stash 保留，支持重新打开后处理，避免重复应用和误恢复到其他分支。\r\n- 网络失败不移动本地改动；重名未跟踪 / 忽略文件和外部提交变化继续受到保护。\r\n\r\n借鉴 IDEA Update Project 的保存与恢复流程，独立实现。仅做专用仓库、本地裸仓库和打包版界面的专项验证，未运行全量回归或安装卸载测试。\r\n",
+    "releaseDate": "2026-11-14T12:49:00.514Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

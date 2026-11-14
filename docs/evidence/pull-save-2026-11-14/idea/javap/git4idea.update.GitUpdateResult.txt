@@ -1,0 +1,270 @@
+Compiled from "GitUpdateResult.java"
+public final class git4idea.update.GitUpdateResult extends java.lang.Enum<git4idea.update.GitUpdateResult> {
+  public static final git4idea.update.GitUpdateResult NOTHING_TO_UPDATE;
+
+  public static final git4idea.update.GitUpdateResult SUCCESS;
+
+  public static final git4idea.update.GitUpdateResult SUCCESS_WITH_RESOLVED_CONFLICTS;
+
+  public static final git4idea.update.GitUpdateResult INCOMPLETE;
+
+  public static final git4idea.update.GitUpdateResult CANCEL;
+
+  public static final git4idea.update.GitUpdateResult ERROR;
+
+  public static final git4idea.update.GitUpdateResult NOT_READY;
+
+  private final int myPriority;
+
+  private static final git4idea.update.GitUpdateResult[] $VALUES;
+
+  public static git4idea.update.GitUpdateResult[] values();
+    Code:
+       0: getstatic     #25                 // Field $VALUES:[Lgit4idea/update/GitUpdateResult;
+       3: invokevirtual #29                 // Method "[Lgit4idea/update/GitUpdateResult;".clone:()Ljava/lang/Object;
+       6: checkcast     #30                 // class "[Lgit4idea/update/GitUpdateResult;"
+       9: areturn
+
+  public static git4idea.update.GitUpdateResult valueOf(java.lang.String);
+    Code:
+       0: ldc           #1                  // class git4idea/update/GitUpdateResult
+       2: aload_0
+       3: invokestatic  #34                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #1                  // class git4idea/update/GitUpdateResult
+       9: areturn
+
+  private git4idea.update.GitUpdateResult(int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #40                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: aload_0
+       7: iload_3
+       8: putfield      #44                 // Field myPriority:I
+      11: return
+
+  public boolean isSuccess();
+    Code:
+       0: aload_0
+       1: getstatic     #7                  // Field SUCCESS:Lgit4idea/update/GitUpdateResult;
+       4: if_acmpeq     28
+       7: aload_0
+       8: getstatic     #10                 // Field SUCCESS_WITH_RESOLVED_CONFLICTS:Lgit4idea/update/GitUpdateResult;
+      11: if_acmpeq     28
+      14: aload_0
+      15: getstatic     #13                 // Field INCOMPLETE:Lgit4idea/update/GitUpdateResult;
+      18: if_acmpeq     28
+      21: aload_0
+      22: getstatic     #3                  // Field NOTHING_TO_UPDATE:Lgit4idea/update/GitUpdateResult;
+      25: if_acmpne     32
+      28: iconst_1
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  public git4idea.update.GitUpdateResult join(git4idea.update.GitUpdateResult);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #91                 // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #44                 // Field myPriority:I
+      12: aload_1
+      13: getfield      #44                 // Field myPriority:I
+      16: if_icmplt     29
+      19: aload_0
+      20: dup
+      21: ifnonnull     28
+      24: iconst_1
+      25: invokestatic  #91                 // Method $$$reportNull$$$0:(I)V
+      28: areturn
+      29: aload_1
+      30: dup
+      31: ifnonnull     38
+      34: iconst_2
+      35: invokestatic  #91                 // Method $$$reportNull$$$0:(I)V
+      38: areturn
+
+  private static git4idea.update.GitUpdateResult[] $values();
+    Code:
+       0: bipush        7
+       2: anewarray     #1                  // class git4idea/update/GitUpdateResult
+       5: dup
+       6: iconst_0
+       7: getstatic     #3                  // Field NOTHING_TO_UPDATE:Lgit4idea/update/GitUpdateResult;
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: getstatic     #7                  // Field SUCCESS:Lgit4idea/update/GitUpdateResult;
+      16: aastore
+      17: dup
+      18: iconst_2
+      19: getstatic     #10                 // Field SUCCESS_WITH_RESOLVED_CONFLICTS:Lgit4idea/update/GitUpdateResult;
+      22: aastore
+      23: dup
+      24: iconst_3
+      25: getstatic     #13                 // Field INCOMPLETE:Lgit4idea/update/GitUpdateResult;
+      28: aastore
+      29: dup
+      30: iconst_4
+      31: getstatic     #16                 // Field CANCEL:Lgit4idea/update/GitUpdateResult;
+      34: aastore
+      35: dup
+      36: iconst_5
+      37: getstatic     #19                 // Field ERROR:Lgit4idea/update/GitUpdateResult;
+      40: aastore
+      41: dup
+      42: bipush        6
+      44: getstatic     #22                 // Field NOT_READY:Lgit4idea/update/GitUpdateResult;
+      47: aastore
+      48: areturn
+
+  static {};
+    Code:
+       0: new           #1                  // class git4idea/update/GitUpdateResult
+       3: dup
+       4: ldc           #48                 // String NOTHING_TO_UPDATE
+       6: iconst_0
+       7: iconst_1
+       8: invokespecial #49                 // Method "<init>":(Ljava/lang/String;II)V
+      11: putstatic     #3                  // Field NOTHING_TO_UPDATE:Lgit4idea/update/GitUpdateResult;
+      14: new           #1                  // class git4idea/update/GitUpdateResult
+      17: dup
+      18: ldc           #52                 // String SUCCESS
+      20: iconst_1
+      21: iconst_2
+      22: invokespecial #49                 // Method "<init>":(Ljava/lang/String;II)V
+      25: putstatic     #7                  // Field SUCCESS:Lgit4idea/update/GitUpdateResult;
+      28: new           #1                  // class git4idea/update/GitUpdateResult
+      31: dup
+      32: ldc           #53                 // String SUCCESS_WITH_RESOLVED_CONFLICTS
+      34: iconst_2
+      35: iconst_3
+      36: invokespecial #49                 // Method "<init>":(Ljava/lang/String;II)V
+      39: putstatic     #10                 // Field SUCCESS_WITH_RESOLVED_CONFLICTS:Lgit4idea/update/GitUpdateResult;
+      42: new           #1                  // class git4idea/update/GitUpdateResult
+      45: dup
+      46: ldc           #54                 // String INCOMPLETE
+      48: iconst_3
+      49: iconst_4
+      50: invokespecial #49                 // Method "<init>":(Ljava/lang/String;II)V
+      53: putstatic     #13                 // Field INCOMPLETE:Lgit4idea/update/GitUpdateResult;
+      56: new           #1                  // class git4idea/update/GitUpdateResult
+      59: dup
+      60: ldc           #55                 // String CANCEL
+      62: iconst_4
+      63: iconst_5
+      64: invokespecial #49                 // Method "<init>":(Ljava/lang/String;II)V
+      67: putstatic     #16                 // Field CANCEL:Lgit4idea/update/GitUpdateResult;
+      70: new           #1                  // class git4idea/update/GitUpdateResult
+      73: dup
+      74: ldc           #56                 // String ERROR
+      76: iconst_5
+      77: bipush        6
+      79: invokespecial #49                 // Method "<init>":(Ljava/lang/String;II)V
+      82: putstatic     #19                 // Field ERROR:Lgit4idea/update/GitUpdateResult;
+      85: new           #1                  // class git4idea/update/GitUpdateResult
+      88: dup
+      89: ldc           #57                 // String NOT_READY
+      91: bipush        6
+      93: bipush        7
+      95: invokespecial #49                 // Method "<init>":(Ljava/lang/String;II)V
+      98: putstatic     #22                 // Field NOT_READY:Lgit4idea/update/GitUpdateResult;
+     101: invokestatic  #58                 // Method $values:()[Lgit4idea/update/GitUpdateResult;
+     104: putstatic     #25                 // Field $VALUES:[Lgit4idea/update/GitUpdateResult;
+     107: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 2
+                     0: 28
+                     1: 33
+                     2: 33
+               default: 28
+          }
+      28: ldc           #93                 // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      30: goto          38
+      33: ldc           #95                 // String @NotNull method %s.%s must not return null
+      35: goto          38
+      38: iload_0
+      39: tableswitch   { // 0 to 2
+                     0: 64
+                     1: 68
+                     2: 68
+               default: 64
+          }
+      64: iconst_3
+      65: goto          72
+      68: iconst_2
+      69: goto          72
+      72: anewarray     #97                 // class java/lang/Object
+      75: iload_0
+      76: tableswitch   { // 0 to 2
+                     0: 104
+                     1: 112
+                     2: 112
+               default: 104
+          }
+     104: dup
+     105: iconst_0
+     106: ldc           #98                 // String next
+     108: aastore
+     109: goto          120
+     112: dup
+     113: iconst_0
+     114: ldc           #99                 // String git4idea/update/GitUpdateResult
+     116: aastore
+     117: goto          120
+     120: iload_0
+     121: tableswitch   { // 0 to 2
+                     0: 148
+                     1: 156
+                     2: 156
+               default: 148
+          }
+     148: dup
+     149: iconst_1
+     150: ldc           #99                 // String git4idea/update/GitUpdateResult
+     152: aastore
+     153: goto          164
+     156: dup
+     157: iconst_1
+     158: ldc           #100                // String join
+     160: aastore
+     161: goto          164
+     164: iload_0
+     165: tableswitch   { // 0 to 2
+                     0: 192
+                     1: 200
+                     2: 200
+               default: 192
+          }
+     192: dup
+     193: iconst_2
+     194: ldc           #100                // String join
+     196: aastore
+     197: goto          203
+     200: goto          203
+     203: invokestatic  #106                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     206: iload_0
+     207: tableswitch   { // 0 to 2
+                     0: 232
+                     1: 243
+                     2: 243
+               default: 232
+          }
+     232: new           #108                // class java/lang/IllegalArgumentException
+     235: dup_x1
+     236: swap
+     237: invokespecial #111                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     240: goto          254
+     243: new           #113                // class java/lang/IllegalStateException
+     246: dup_x1
+     247: swap
+     248: invokespecial #114                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     251: goto          254
+     254: athrow
+}

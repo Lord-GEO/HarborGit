@@ -1,0 +1,13 @@
+✔ Pull fetch failure leaves WIP untouched; fast-forward restores index, worktree, binary untracked and older stash (8692.8056ms)
+✔ divergent Pull creates a two-parent merge then restores WIP without committing private modifications (8312.5707ms)
+✔ remote merge conflict survives reopen; resolve and commit merge automatically restores saved WIP (13377.1394ms)
+✔ aborting remote merge restores original HEAD and original staged and unstaged modifications (13026.162ms)
+✔ WIP restore conflict is separate from remote merge, cannot be replayed, and can be resolved without a merge commit (15075.703ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59035.3605

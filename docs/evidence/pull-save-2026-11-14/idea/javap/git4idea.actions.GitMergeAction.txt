@@ -1,0 +1,506 @@
+Compiled from "GitMergeAction.java"
+abstract class git4idea.actions.GitMergeAction<T> extends git4idea.actions.GitRepositoryAction {
+  git4idea.actions.GitMergeAction();
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method git4idea/actions/GitRepositoryAction."<init>":()V
+       4: return
+
+  protected abstract git4idea.actions.GitMergeAction$DialogState<T> displayDialog(com.intellij.openapi.project.Project, java.util.List<com.intellij.openapi.vfs.VirtualFile>, com.intellij.openapi.vfs.VirtualFile);
+
+  protected abstract java.lang.String getNotificationErrorDisplayId();
+
+  protected final void perform(com.intellij.openapi.project.Project, java.util.List<com.intellij.openapi.vfs.VirtualFile>, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      16: aload_3
+      17: ifnonnull     24
+      20: iconst_2
+      21: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      24: aload_0
+      25: aload_1
+      26: aload_2
+      27: aload_3
+      28: invokevirtual #9                  // Method displayDialog:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Lcom/intellij/openapi/vfs/VirtualFile;)Lgit4idea/actions/GitMergeAction$DialogState;
+      31: astore        4
+      33: aload         4
+      35: ifnonnull     39
+      38: return
+      39: aload_0
+      40: aload         4
+      42: aload_1
+      43: invokevirtual #15                 // Method perform:(Lgit4idea/actions/GitMergeAction$DialogState;Lcom/intellij/openapi/project/Project;)V
+      46: return
+
+  protected void perform(git4idea.actions.GitMergeAction$DialogState<T>, com.intellij.openapi.project.Project);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_3
+       5: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_4
+      13: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      16: aload_1
+      17: getfield      #19                 // Field git4idea/actions/GitMergeAction$DialogState.selectedRoot:Lcom/intellij/openapi/vfs/VirtualFile;
+      20: astore_3
+      21: aload_1
+      22: getfield      #25                 // Field git4idea/actions/GitMergeAction$DialogState.handlerProvider:Ljava/util/function/Supplier;
+      25: astore        4
+      27: invokestatic  #29                 // Method com/intellij/history/LocalHistory.getInstance:()Lcom/intellij/history/LocalHistory;
+      30: aload_2
+      31: ldc           #35                 // String merge.action.before.update.label
+      33: iconst_0
+      34: anewarray     #37                 // class java/lang/Object
+      37: invokestatic  #39                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      40: invokevirtual #45                 // Method com/intellij/history/LocalHistory.putSystemLabel:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lcom/intellij/history/Label;
+      43: astore        5
+      45: aload_1
+      46: getfield      #49                 // Field git4idea/actions/GitMergeAction$DialogState.selectedBranch:Lgit4idea/GitBranch;
+      49: astore        6
+      51: new           #53                 // class git4idea/actions/GitMergeAction$1
+      54: dup
+      55: aload_0
+      56: aload_2
+      57: aload_1
+      58: getfield      #55                 // Field git4idea/actions/GitMergeAction$DialogState.progressTitle:Ljava/lang/String;
+      61: iconst_1
+      62: aload_2
+      63: aload_3
+      64: aload         6
+      66: aload         4
+      68: aload         5
+      70: aload_1
+      71: invokespecial #59                 // Method git4idea/actions/GitMergeAction$1."<init>":(Lgit4idea/actions/GitMergeAction;Lcom/intellij/openapi/project/Project;Ljava/lang/String;ZLcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Lgit4idea/GitBranch;Ljava/util/function/Supplier;Lcom/intellij/history/Label;Lgit4idea/actions/GitMergeAction$DialogState;)V
+      74: invokevirtual #62                 // Method git4idea/actions/GitMergeAction$1.queue:()V
+      77: return
+
+  protected boolean shouldSetupRebaseEditor(com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_5
+       5: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+       8: iconst_0
+       9: ireturn
+
+  private void handleResult(git4idea.commands.GitCommandResult, com.intellij.openapi.project.Project, git4idea.commands.GitSimpleEventDetector, git4idea.commands.GitLocalChangesWouldBeOverwrittenDetector, git4idea.commands.GitUntrackedFilesOverwrittenByOperationDetector, git4idea.repo.GitRepository, git4idea.GitRevisionNumber, com.intellij.history.Label, git4idea.update.GitUpdatedRanges, boolean);
+    Code:
+       0: aload_1
+       1: ifnonnull     9
+       4: bipush        6
+       6: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+       9: aload_2
+      10: ifnonnull     18
+      13: bipush        7
+      15: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      18: aload_3
+      19: ifnonnull     27
+      22: bipush        8
+      24: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      27: aload         4
+      29: ifnonnull     37
+      32: bipush        9
+      34: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      37: aload         5
+      39: ifnonnull     47
+      42: bipush        10
+      44: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      47: aload         6
+      49: ifnonnull     57
+      52: bipush        11
+      54: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      57: aload         7
+      59: ifnonnull     67
+      62: bipush        12
+      64: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      67: aload         8
+      69: ifnonnull     77
+      72: bipush        13
+      74: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      77: aload         6
+      79: invokeinterface #65,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+      84: astore        11
+      86: aload_3
+      87: invokevirtual #71                 // Method git4idea/commands/GitSimpleEventDetector.isDetected:()Z
+      90: ifeq          124
+      93: new           #77                 // class git4idea/actions/GitMergeAction$2
+      96: dup
+      97: aload_0
+      98: aload_2
+      99: aload         11
+     101: invokestatic  #79                 // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+     104: new           #85                 // class git4idea/merge/GitConflictResolver$Params
+     107: dup
+     108: aload_2
+     109: invokespecial #87                 // Method git4idea/merge/GitConflictResolver$Params."<init>":(Lcom/intellij/openapi/project/Project;)V
+     112: iload         10
+     114: aload_2
+     115: aload         11
+     117: invokespecial #90                 // Method git4idea/actions/GitMergeAction$2."<init>":(Lgit4idea/actions/GitMergeAction;Lcom/intellij/openapi/project/Project;Ljava/util/Collection;Lgit4idea/merge/GitConflictResolver$Params;ZLcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;)V
+     120: invokevirtual #93                 // Method git4idea/actions/GitMergeAction$2.merge:()Z
+     123: pop
+     124: aload_1
+     125: invokevirtual #96                 // Method git4idea/commands/GitCommandResult.success:()Z
+     128: ifne          138
+     131: aload_3
+     132: invokevirtual #71                 // Method git4idea/commands/GitSimpleEventDetector.isDetected:()Z
+     135: ifeq          323
+     138: aload         11
+     140: invokestatic  #101                // Method git4idea/GitUtil.refreshVfsInRoot:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+     143: aload         6
+     145: invokeinterface #107,  1          // InterfaceMethod git4idea/repo/GitRepository.update:()V
+     150: aload         9
+     152: ifnull        306
+     155: aload_2
+     156: invokestatic  #110                // Method git4idea/GitVcs.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/GitVcs;
+     159: invokestatic  #79                 // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+     162: invokestatic  #115                // Method com/intellij/openapi/vcs/update/AbstractCommonUpdateAction.showsCustomNotification:(Ljava/util/Collection;)Z
+     165: ifeq          306
+     168: iload         10
+     170: ifeq          306
+     173: aload         9
+     175: invokevirtual #121                // Method git4idea/update/GitUpdatedRanges.calcCurrentPositions:()Ljava/util/Map;
+     178: astore        12
+     180: new           #127                // class git4idea/update/GitUpdateInfoAsLog
+     183: dup
+     184: aload_2
+     185: aload         12
+     187: invokespecial #129                // Method git4idea/update/GitUpdateInfoAsLog."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/Map;)V
+     190: invokevirtual #132                // Method git4idea/update/GitUpdateInfoAsLog.calculateDataAndCreateLogTab:()Lgit4idea/update/GitUpdateInfoAsLog$NotificationData;
+     193: astore        13
+     195: aload         13
+     197: ifnull        268
+     200: aload         13
+     202: invokevirtual #136                // Method git4idea/update/GitUpdateInfoAsLog$NotificationData.getUpdatedFilesCount:()I
+     205: aload         13
+     207: invokevirtual #142                // Method git4idea/update/GitUpdateInfoAsLog$NotificationData.getReceivedCommitsCount:()I
+     210: invokestatic  #145                // Method git4idea/update/GitUpdateSessionKt.getTitleForUpdateNotification:(II)Ljava/lang/String;
+     213: astore        15
+     215: aload         13
+     217: invokevirtual #151                // Method git4idea/update/GitUpdateInfoAsLog$NotificationData.getFilteredCommitsCount:()Ljava/lang/Integer;
+     220: invokestatic  #155                // Method git4idea/update/GitUpdateSessionKt.getBodyForUpdateNotification:(Ljava/lang/Integer;)Ljava/lang/String;
+     223: astore        16
+     225: invokestatic  #159                // Method com/intellij/openapi/vcs/VcsNotifier.standardNotification:()Lcom/intellij/notification/NotificationGroup;
+     228: aload         15
+     230: aload         16
+     232: getstatic     #165                // Field com/intellij/notification/NotificationType.INFORMATION:Lcom/intellij/notification/NotificationType;
+     235: invokevirtual #171                // Method com/intellij/notification/NotificationGroup.createNotification:(Ljava/lang/String;Ljava/lang/String;Lcom/intellij/notification/NotificationType;)Lcom/intellij/notification/Notification;
+     238: ldc           #177                // String git.files.updated.after.merge
+     240: invokevirtual #179                // Method com/intellij/notification/Notification.setDisplayId:(Ljava/lang/String;)Lcom/intellij/notification/Notification;
+     243: ldc           #185                // String action.NotificationAction.GitMergeAction.text.view.commits
+     245: iconst_0
+     246: anewarray     #37                 // class java/lang/Object
+     249: invokestatic  #39                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     252: aload         13
+     254: invokevirtual #187                // Method git4idea/update/GitUpdateInfoAsLog$NotificationData.getViewCommitAction:()Ljava/lang/Runnable;
+     257: invokestatic  #191                // Method com/intellij/notification/NotificationAction.createSimple:(Ljava/lang/String;Ljava/lang/Runnable;)Lcom/intellij/notification/NotificationAction;
+     260: invokevirtual #197                // Method com/intellij/notification/Notification.addAction:(Lcom/intellij/openapi/actionSystem/AnAction;)Lcom/intellij/notification/Notification;
+     263: astore        14
+     265: goto          293
+     268: invokestatic  #159                // Method com/intellij/openapi/vcs/VcsNotifier.standardNotification:()Lcom/intellij/notification/NotificationGroup;
+     271: ldc           #201                // String message.text.all.files.are.up.to.date
+     273: iconst_0
+     274: anewarray     #37                 // class java/lang/Object
+     277: invokestatic  #203                // Method com/intellij/openapi/vcs/VcsBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     280: getstatic     #165                // Field com/intellij/notification/NotificationType.INFORMATION:Lcom/intellij/notification/NotificationType;
+     283: invokevirtual #206                // Method com/intellij/notification/NotificationGroup.createNotification:(Ljava/lang/String;Lcom/intellij/notification/NotificationType;)Lcom/intellij/notification/Notification;
+     286: ldc           #209                // String git.all.files.are.up.to.date
+     288: invokevirtual #179                // Method com/intellij/notification/Notification.setDisplayId:(Ljava/lang/String;)Lcom/intellij/notification/Notification;
+     291: astore        14
+     293: aload_2
+     294: invokestatic  #211                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+     297: aload         14
+     299: invokevirtual #214                // Method com/intellij/openapi/vcs/VcsNotifier.notify:(Lcom/intellij/notification/Notification;)Lcom/intellij/notification/Notification;
+     302: pop
+     303: goto          422
+     306: aload_2
+     307: aload         6
+     309: aload         7
+     311: aload         8
+     313: aload_0
+     314: invokevirtual #218                // Method getActionName:()Ljava/lang/String;
+     317: invokestatic  #222                // Method showUpdates:(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Lgit4idea/GitRevisionNumber;Lcom/intellij/history/Label;Ljava/lang/String;)V
+     320: goto          422
+     323: aload         4
+     325: invokevirtual #226                // Method git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector.isDetected:()Z
+     328: ifeq          356
+     331: aload_2
+     332: ldc           #229                // String git.merge.local.changes.detected
+     334: aload         6
+     336: invokeinterface #65,  1           // InterfaceMethod git4idea/repo/GitRepository.getRoot:()Lcom/intellij/openapi/vfs/VirtualFile;
+     341: aload_0
+     342: invokevirtual #218                // Method getActionName:()Ljava/lang/String;
+     345: aload         4
+     347: invokevirtual #231                // Method git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector.getRelativeFilePaths:()Ljava/util/Set;
+     350: invokestatic  #235                // Method git4idea/util/LocalChangesWouldBeOverwrittenHelper.showErrorNotification:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/lang/String;Ljava/util/Collection;)V
+     353: goto          422
+     356: aload         5
+     358: invokevirtual #241                // Method git4idea/commands/GitUntrackedFilesOverwrittenByOperationDetector.isDetected:()Z
+     361: ifeq          383
+     364: aload_2
+     365: aload         11
+     367: aload         5
+     369: invokevirtual #244                // Method git4idea/commands/GitUntrackedFilesOverwrittenByOperationDetector.getRelativeFilePaths:()Ljava/util/Set;
+     372: aload_0
+     373: invokevirtual #218                // Method getActionName:()Ljava/lang/String;
+     376: aconst_null
+     377: invokestatic  #245                // Method git4idea/util/GitUntrackedFilesHelper.notifyUntrackedFilesOverwrittenBy:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vfs/VirtualFile;Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;)V
+     380: goto          422
+     383: aload_2
+     384: invokestatic  #211                // Method com/intellij/openapi/vcs/VcsNotifier.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/VcsNotifier;
+     387: aload_0
+     388: invokevirtual #251                // Method getNotificationErrorDisplayId:()Ljava/lang/String;
+     391: ldc           #254                // String merge.action.operation.failed
+     393: iconst_1
+     394: anewarray     #37                 // class java/lang/Object
+     397: dup
+     398: iconst_0
+     399: aload_0
+     400: invokevirtual #218                // Method getActionName:()Ljava/lang/String;
+     403: aastore
+     404: invokestatic  #39                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     407: aload_1
+     408: invokevirtual #256                // Method git4idea/commands/GitCommandResult.getErrorOutputAsHtmlString:()Ljava/lang/String;
+     411: invokevirtual #259                // Method com/intellij/openapi/vcs/VcsNotifier.notifyError:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/intellij/notification/Notification;
+     414: pop
+     415: aload         6
+     417: invokeinterface #107,  1          // InterfaceMethod git4idea/repo/GitRepository.update:()V
+     422: return
+
+  private static void showUpdates(com.intellij.openapi.project.Project, git4idea.repo.GitRepository, git4idea.GitRevisionNumber, com.intellij.history.Label, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnonnull     9
+       4: bipush        14
+       6: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+       9: aload_1
+      10: ifnonnull     18
+      13: bipush        15
+      15: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      18: aload_2
+      19: ifnonnull     27
+      22: bipush        16
+      24: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      27: aload_3
+      28: ifnonnull     36
+      31: bipush        17
+      33: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      36: aload         4
+      38: ifnonnull     46
+      41: bipush        18
+      43: invokestatic  #447                // Method $$$reportNull$$$0:(I)V
+      46: invokestatic  #263                // Method com/intellij/openapi/vcs/update/UpdatedFiles.create:()Lcom/intellij/openapi/vcs/update/UpdatedFiles;
+      49: astore        5
+      51: new           #269                // class git4idea/merge/MergeChangeCollector
+      54: dup
+      55: aload_0
+      56: aload_1
+      57: aload_2
+      58: invokespecial #271                // Method git4idea/merge/MergeChangeCollector."<init>":(Lcom/intellij/openapi/project/Project;Lgit4idea/repo/GitRepository;Lgit4idea/GitRevisionNumber;)V
+      61: astore        6
+      63: aload         6
+      65: aload         5
+      67: invokevirtual #274                // Method git4idea/merge/MergeChangeCollector.collect:(Lcom/intellij/openapi/vcs/update/UpdatedFiles;)V
+      70: invokestatic  #278                // Method com/intellij/openapi/application/ModalityState.defaultModalityState:()Lcom/intellij/openapi/application/ModalityState;
+      73: aload_0
+      74: aload         5
+      76: aload         4
+      78: aload_3
+      79: invokedynamic #284,  0            // InvokeDynamic #0:run:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vcs/update/UpdatedFiles;Ljava/lang/String;Lcom/intellij/history/Label;)Ljava/lang/Runnable;
+      84: invokestatic  #288                // Method com/intellij/util/ModalityUiUtil.invokeLaterIfNeeded:(Lcom/intellij/openapi/application/ModalityState;Ljava/lang/Runnable;)V
+      87: goto          106
+      90: astore        5
+      92: aload_0
+      93: invokestatic  #110                // Method git4idea/GitVcs.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/GitVcs;
+      96: aload         5
+      98: invokestatic  #79                 // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+     101: aload         4
+     103: invokevirtual #296                // Method git4idea/GitVcs.showErrors:(Ljava/util/List;Ljava/lang/String;)V
+     106: return
+    Exception table:
+       from    to  target type
+          46    87    90   Class com/intellij/openapi/vcs/VcsException
+
+  private static void lambda$showUpdates$0(com.intellij.openapi.project.Project, com.intellij.openapi.vcs.update.UpdatedFiles, java.lang.String, com.intellij.history.Label);
+    Code:
+       0: aload_0
+       1: invokestatic  #300                // Method com/intellij/openapi/vcs/ProjectLevelVcsManager.getInstance:(Lcom/intellij/openapi/project/Project;)Lcom/intellij/openapi/vcs/ProjectLevelVcsManager;
+       4: checkcast     #305                // class com/intellij/openapi/vcs/ex/ProjectLevelVcsManagerEx
+       7: astore        4
+       9: aload         4
+      11: aload_1
+      12: aload_2
+      13: getstatic     #307                // Field com/intellij/openapi/vcs/update/ActionInfo.UPDATE:Lcom/intellij/openapi/vcs/update/ActionInfo;
+      16: iconst_0
+      17: invokevirtual #313                // Method com/intellij/openapi/vcs/ex/ProjectLevelVcsManagerEx.showUpdateProjectInfo:(Lcom/intellij/openapi/vcs/update/UpdatedFiles;Ljava/lang/String;Lcom/intellij/openapi/vcs/update/ActionInfo;Z)Lcom/intellij/openapi/vcs/update/UpdateInfoTree;
+      20: astore        5
+      22: aload         5
+      24: ifnull        61
+      27: aload         5
+      29: aload_3
+      30: invokevirtual #317                // Method com/intellij/openapi/vcs/update/UpdateInfoTree.setBefore:(Lcom/intellij/history/Label;)V
+      33: aload         5
+      35: invokestatic  #29                 // Method com/intellij/history/LocalHistory.getInstance:()Lcom/intellij/history/LocalHistory;
+      38: aload_0
+      39: ldc_w         #323                // String merge.action.after.update.label
+      42: iconst_0
+      43: anewarray     #37                 // class java/lang/Object
+      46: invokestatic  #39                 // Method git4idea/i18n/GitBundle.message:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      49: invokevirtual #45                 // Method com/intellij/history/LocalHistory.putSystemLabel:(Lcom/intellij/openapi/project/Project;Ljava/lang/String;)Lcom/intellij/history/Label;
+      52: invokevirtual #325                // Method com/intellij/openapi/vcs/update/UpdateInfoTree.setAfter:(Lcom/intellij/history/Label;)V
+      55: aload_0
+      56: aload         5
+      58: invokestatic  #328                // Method com/intellij/vcs/ViewUpdateInfoNotification.focusUpdateInfoTree:(Lcom/intellij/openapi/project/Project;Lcom/intellij/openapi/vcs/update/UpdateInfoTree;)V
+      61: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: ldc_w         #449                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+       3: iconst_3
+       4: anewarray     #37                 // class java/lang/Object
+       7: iload_0
+       8: tableswitch   { // 0 to 18
+                     0: 100
+                     1: 109
+                     2: 118
+                     3: 127
+                     4: 100
+                     5: 100
+                     6: 136
+                     7: 100
+                     8: 145
+                     9: 154
+                    10: 163
+                    11: 172
+                    12: 181
+                    13: 190
+                    14: 100
+                    15: 172
+                    16: 181
+                    17: 190
+                    18: 199
+               default: 100
+          }
+     100: dup
+     101: iconst_0
+     102: ldc_w         #450                // String project
+     105: aastore
+     106: goto          208
+     109: dup
+     110: iconst_0
+     111: ldc_w         #451                // String gitRoots
+     114: aastore
+     115: goto          208
+     118: dup
+     119: iconst_0
+     120: ldc_w         #452                // String defaultRoot
+     123: aastore
+     124: goto          208
+     127: dup
+     128: iconst_0
+     129: ldc_w         #453                // String dialogState
+     132: aastore
+     133: goto          208
+     136: dup
+     137: iconst_0
+     138: ldc_w         #454                // String result
+     141: aastore
+     142: goto          208
+     145: dup
+     146: iconst_0
+     147: ldc_w         #455                // String mergeConflictDetector
+     150: aastore
+     151: goto          208
+     154: dup
+     155: iconst_0
+     156: ldc_w         #456                // String localChangesDetector
+     159: aastore
+     160: goto          208
+     163: dup
+     164: iconst_0
+     165: ldc_w         #457                // String untrackedFilesDetector
+     168: aastore
+     169: goto          208
+     172: dup
+     173: iconst_0
+     174: ldc_w         #458                // String repository
+     177: aastore
+     178: goto          208
+     181: dup
+     182: iconst_0
+     183: ldc_w         #459                // String currentRev
+     186: aastore
+     187: goto          208
+     190: dup
+     191: iconst_0
+     192: ldc_w         #460                // String beforeLabel
+     195: aastore
+     196: goto          208
+     199: dup
+     200: iconst_0
+     201: ldc_w         #461                // String actionName
+     204: aastore
+     205: goto          208
+     208: dup
+     209: iconst_1
+     210: ldc_w         #462                // String git4idea/actions/GitMergeAction
+     213: aastore
+     214: iload_0
+     215: tableswitch   { // 0 to 18
+                     0: 304
+                     1: 304
+                     2: 304
+                     3: 304
+                     4: 304
+                     5: 313
+                     6: 322
+                     7: 322
+                     8: 322
+                     9: 322
+                    10: 322
+                    11: 322
+                    12: 322
+                    13: 322
+                    14: 331
+                    15: 331
+                    16: 331
+                    17: 331
+                    18: 331
+               default: 304
+          }
+     304: dup
+     305: iconst_2
+     306: ldc_w         #463                // String perform
+     309: aastore
+     310: goto          340
+     313: dup
+     314: iconst_2
+     315: ldc_w         #464                // String shouldSetupRebaseEditor
+     318: aastore
+     319: goto          340
+     322: dup
+     323: iconst_2
+     324: ldc_w         #465                // String handleResult
+     327: aastore
+     328: goto          340
+     331: dup
+     332: iconst_2
+     333: ldc_w         #466                // String showUpdates
+     336: aastore
+     337: goto          340
+     340: invokestatic  #471                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     343: new           #473                // class java/lang/IllegalArgumentException
+     346: dup_x1
+     347: swap
+     348: invokespecial #476                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     351: athrow
+}

@@ -1,0 +1,42 @@
+Compiled from "GitMergeAction.java"
+class git4idea.actions.GitMergeAction$2 extends git4idea.merge.GitConflictResolver {
+  final boolean val$commitAfterMerge;
+
+  final com.intellij.openapi.project.Project val$project;
+
+  final com.intellij.openapi.vfs.VirtualFile val$root;
+
+  git4idea.actions.GitMergeAction$2(git4idea.actions.GitMergeAction, com.intellij.openapi.project.Project, java.util.Collection, git4idea.merge.GitConflictResolver$Params, boolean, com.intellij.openapi.project.Project, com.intellij.openapi.vfs.VirtualFile);
+    Code:
+       0: aload_0
+       1: iload         5
+       3: putfield      #1                  // Field val$commitAfterMerge:Z
+       6: aload_0
+       7: aload         6
+       9: putfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+      12: aload_0
+      13: aload         7
+      15: putfield      #11                 // Field val$root:Lcom/intellij/openapi/vfs/VirtualFile;
+      18: aload_0
+      19: aload_2
+      20: aload_3
+      21: aload         4
+      23: invokespecial #15                 // Method git4idea/merge/GitConflictResolver."<init>":(Lcom/intellij/openapi/project/Project;Ljava/util/Collection;Lgit4idea/merge/GitConflictResolver$Params;)V
+      26: return
+
+  protected boolean proceedAfterAllMerged() throws com.intellij.openapi.vcs.VcsException;
+    Code:
+       0: aload_0
+       1: getfield      #1                  // Field val$commitAfterMerge:Z
+       4: ifeq          25
+       7: new           #21                 // class git4idea/merge/GitMerger
+      10: dup
+      11: aload_0
+      12: getfield      #7                  // Field val$project:Lcom/intellij/openapi/project/Project;
+      15: invokespecial #23                 // Method git4idea/merge/GitMerger."<init>":(Lcom/intellij/openapi/project/Project;)V
+      18: aload_0
+      19: getfield      #11                 // Field val$root:Lcom/intellij/openapi/vfs/VirtualFile;
+      22: invokevirtual #26                 // Method git4idea/merge/GitMerger.mergeCommit:(Lcom/intellij/openapi/vfs/VirtualFile;)V
+      25: iconst_1
+      26: ireturn
+}

@@ -15,7 +15,8 @@ interface RunOptions { accepted?: number[]; input?: string; limit?: number; time
 interface OperationState { gitDir: string; operation?: RepositoryOperation; unsupported?: string; originalHead?: string; commits?: string[]; }
 interface TreePath { path: string; mode: string; }
 interface SavedRebaseRecord extends RebaseSavedChanges {
-  version: 1; token: string; originalHead: string; sourceHead: string; stashOid?: string;
+  version: 1 | 2 | 3; token: string; originalHead: string; sourceHead: string; stashOid?: string;
+  targetHead?: string; restoreBranch?: string; checkoutStarted?: boolean;
   saveCompleted?: boolean; rebaseStarted?: boolean; restoreHead?: string;
   applyAttempted?: boolean; applyInProgress?: boolean; beforeFingerprint?: string; invalidRef?: boolean;
 }
@@ -228,8 +229,8 @@ export class GitService {
     return reference;
   }
   private publicSavedChanges(record: SavedRebaseRecord): RebaseSavedChanges {
-    const { ref, originalBranch, sourceBranch, status, message } = record;
-    return { ref, originalBranch, sourceBranch, status, message };
+    const { ref, originalBranch, sourceBranch, status, message, kind, targetBranch, pullRemote, pullBranch, pullPhase, pullFailed } = record;
+    return { ref, originalBranch, sourceBranch, status, message, kind, targetBranch, pullRemote, pullBranch, pullPhase, pullFailed };
   }
   private async manageRebaseSave<T>(action: () => Promise<T>): Promise<T> {
     const previous = this.managingRebaseSave; this.managingRebaseSave = true;
@@ -240,8 +241,14 @@ export class GitService {
     try { value = JSON.parse(await fs.readFile(path.join(gitDir, 'harborgit-rebase-save.json'), 'utf8')); }
     catch (e) { if ((e as NodeJS.ErrnoException).code === 'ENOENT') return undefined; throw new GitError({ message: '变基改动保存记录无法读取，请保留 Git 元数据并在外部检查，未执行新的写操作' }); }
     const oid = (v: unknown) => typeof v === 'string' && /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(v);
-    if (!value || value.version !== 1 || typeof value.token !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value.token) || value.ref !== `refs/harborgit/wip/${value.token}` || !oid(value.originalHead) || !oid(value.sourceHead) || !['saving', 'saved', 'restore-pending', 'restore-conflicts', 'restored'].includes(value.status) || typeof value.message !== 'string' || (value.stashOid !== undefined && !oid(value.stashOid)) || (value.restoreHead !== undefined && !oid(value.restoreHead))) throw new GitError({ message: '变基改动保存记录无效，未执行新的写操作；请保留备份并在外部检查' });
+    const validKind = value && (value.version === 1 ? value.kind === undefined : value.version === 2 ? value.kind === 'checkout' && oid(value.targetHead) && typeof value.restoreBranch === 'string' && typeof value.targetBranch === 'string' : value.version === 3 && value.kind === 'pull' && oid(value.targetHead) && typeof value.pullRemote === 'string' && typeof value.pullBranch === 'string' && ['prepared', 'merging', 'restore'].includes(value.pullPhase || '') && (value.pullFailed === undefined || typeof value.pullFailed === 'boolean'));
+    if (!validKind || typeof value.token !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value.token) || value.ref !== `refs/harborgit/wip/${value.token}` || !oid(value.originalHead) || !oid(value.sourceHead) || !['saving', 'saved', 'restore-pending', 'restore-conflicts', 'restored'].includes(value.status) || typeof value.message !== 'string' || (value.stashOid !== undefined && !oid(value.stashOid)) || (value.restoreHead !== undefined && !oid(value.restoreHead))) throw new GitError({ message: '改动保存记录无效，未执行新的写操作；请保留备份并在外部检查' });
     ref(value.originalBranch, '原工作区分支'); ref(value.sourceBranch, '变基源分支');
+    if (value.kind === 'checkout') {
+      ref(value.targetBranch, '签出目标分支'); ref(value.restoreBranch, '改动恢复分支');
+      if (![value.originalBranch, value.targetBranch].includes(value.restoreBranch!) || (value.checkoutStarted !== undefined && typeof value.checkoutStarted !== 'boolean')) throw new GitError({ message: '智能签出恢复目标无效，未应用备份' });
+    }
+    if (value.kind === 'pull') { ref(value.pullRemote, 'Pull 远程名称'); ref(value.pullBranch, 'Pull 远程分支'); }
     return value;
   }
   private async writeSavedRecord(gitDir: string, record: SavedRebaseRecord) {
@@ -252,7 +259,7 @@ export class GitService {
       await fs.rename(temporary, target);
     } finally { await fs.rm(temporary, { force: true }).catch(() => {}); }
   }
-  private saveMarker(record: SavedRebaseRecord) { return `HarborGit rebase autosave ${record.token}`; }
+  private saveMarker(record: SavedRebaseRecord) { return `HarborGit ${record.kind || 'rebase'} autosave ${record.token}`; }
   private async verifySavedStash(record: SavedRebaseRecord, id: string) {
     const subject = (await this.git(['show', '--no-patch', '--format=%s', id])).stdout.trim();
     const parents = await this.parents(id);
@@ -277,6 +284,13 @@ export class GitService {
     } else await this.git(['update-ref', '--create-reflog', '-m', this.saveMarker(record), record.ref, id, '0'.repeat(id.length)]);
     record.stashOid = id; record.invalidRef = false;
   }
+  private locateCheckoutRestore(record: SavedRebaseRecord, current: { branch: string; head: string }) {
+    if (current.branch === record.targetBranch && current.head === record.targetHead) {
+      record.restoreBranch = record.targetBranch; record.restoreHead = record.targetHead;
+    } else if (current.branch === record.originalBranch && current.head === record.originalHead) {
+      record.restoreBranch = record.originalBranch; record.restoreHead = record.originalHead;
+    } else throw new GitError({ message: '智能签出期间分支或提交已变化，不能确定恢复位置；备份保留，请手工检查' });
+  }
   private async savedRebaseRecord(active: OperationState, current?: { head: string; branch: string }): Promise<SavedRebaseRecord | undefined> {
     const record = await this.readSavedRecord(active.gitDir);
     if (!record || record.status === 'restored' || this.managingRebaseSave) return record;
@@ -286,9 +300,9 @@ export class GitService {
         const id = record.stashOid || await this.findSavedStash(record);
         if (id) {
           await this.bindSavedRef(record, id); record.status = 'restore-pending';
-          record.message = '保存过程曾中断，已通过唯一标识找回本次 WIP 备份。未执行新的变基或自动重复恢复，请检查工作区后选择恢复。'; changed = true;
+          record.message = '保存过程曾中断，已通过唯一标识找回本次 WIP 备份。未执行新的仓库操作或自动重复恢复，请检查工作区后选择恢复。'; changed = true;
         } else {
-          record.status = 'restore-pending'; record.message = '保存过程未完成，尚未确认可用的 WIP 对象。未开始新的变基，请检查原文件与 Stash；处理完成后可结束恢复。'; changed = true;
+          record.status = 'restore-pending'; record.message = '保存过程未完成，尚未确认可用的 WIP 对象。未开始新的仓库操作，请检查原文件与 Stash；处理完成后可结束恢复。'; changed = true;
         }
       } else {
         await this.bindSavedRef(record, record.stashOid);
@@ -296,11 +310,23 @@ export class GitService {
       if (record.applyInProgress) {
         record.applyInProgress = false; record.status = 'restore-pending';
         record.message = '上次恢复过程被中断，可能已部分写入。备份保留；请检查文件，只有确认工作区完全未变时才可选择不保留暂存状态重试，否则请手工处理后确认完成。'; changed = true;
-      } else if (record.status === 'saved' && !active.operation && !active.unsupported) {
+      } else if (record.kind === 'pull' && !record.applyAttempted && !active.operation && !active.unsupported) {
+        const state = current || { head: (await this.git(['rev-parse', 'HEAD'])).stdout.trim(), branch: (await this.git(['branch', '--show-current'])).stdout.trim() };
+        if (await this.pullMergeMatches(record, state)) {
+          record.status = 'saved'; record.message = '远程合并尚未完成；原暂存、未暂存和未跟踪改动仍在备份中。请解决冲突并提交合并，或中止合并，随后恢复原改动。';
+        } else if (!await this.mergeHead(active.gitDir)) {
+          await this.locatePullRestore(record, state); record.status = 'restore-pending';
+          record.message = 'Pull 已结束或被中断，原改动仍在专用备份中。请确认当前状态后恢复，程序不会在重新打开时自动重复应用。';
+        } else throw new GitError({ message: '当前合并不属于本次 Pull，原改动继续保留在备份中' });
+        changed = true;
+      } else if (record.kind !== 'pull' && record.status === 'saved' && !active.operation && !active.unsupported) {
         record.status = 'restore-pending';
-        record.message = '变基已结束或保存后任务被中断；原改动仍在专用备份中，请确认后恢复，程序不会盲目重复应用。'; changed = true;
+        record.message = `${record.kind === 'checkout' ? '智能签出' : '变基'}已结束或保存后任务被中断；原改动仍在专用备份中，请确认后恢复，程序不会盲目重复应用。`; changed = true;
       }
-      if (!record.restoreHead && !active.operation && current && (record.originalBranch !== record.sourceBranch || (current.branch === record.originalBranch && current.head === record.originalHead))) {
+      if (record.kind === 'checkout' && record.checkoutStarted && !record.applyAttempted && current) {
+        this.locateCheckoutRestore(record, current); changed = true;
+      }
+      if (!record.kind && !record.restoreHead && !active.operation && current && (record.originalBranch !== record.sourceBranch || (current.branch === record.originalBranch && current.head === record.originalHead))) {
         record.restoreHead = record.originalHead; changed = true;
       }
     } catch (e) {
@@ -310,9 +336,11 @@ export class GitService {
     if (changed) await this.writeSavedRecord(active.gitDir, record);
     return record;
   }
-  private async beginRebaseSave(state: Repository, sourceBranch: string, sourceHead: string): Promise<SavedRebaseRecord> {
+  private async beginRebaseSave(state: Repository, sourceBranch: string, sourceHead: string, checkout?: { targetBranch: string; targetHead: string }, pull?: { targetHead: string; pullRemote: string; pullBranch: string }): Promise<SavedRebaseRecord> {
     const active = await this.operationState(), token = randomUUID();
     const record: SavedRebaseRecord = { version: 1, token, ref: `refs/harborgit/wip/${token}`, originalBranch: state.branch, originalHead: state.head, sourceBranch, sourceHead, status: 'saving', message: '正在保存本次变基前的暂存区、工作区和未跟踪文件；忽略内容不收进备份。' };
+    if (checkout) Object.assign(record, { version: 2, kind: 'checkout', ...checkout, restoreBranch: state.branch, restoreHead: state.head, message: '正在保存智能签出前的暂存、未暂存和未跟踪内容；忽略文件不保存。' });
+    if (pull) Object.assign(record, { version: 3, kind: 'pull', ...pull, pullPhase: 'prepared', message: '正在保存 Pull 前的暂存、未暂存和未跟踪内容；忽略文件不保存。' });
     // The durable intent precedes the only command that moves WIP out of the tree.
     await this.writeSavedRecord(active.gitDir, record);
     try {
@@ -321,15 +349,15 @@ export class GitService {
       // command has no user pathspec, so let stash interpret its own pathspecs.
       await this.git(['--no-literal-pathspecs', '-c', 'submodule.recurse=false', 'stash', 'push', '--include-untracked', '--message', this.saveMarker(record)]);
       const id = await this.findSavedStash(record);
-      if (!id) throw new GitError({ message: '未找到可确认归属的保存对象，未开始变基，请检查原工作区改动' });
+      if (!id) throw new GitError({ message: '未找到可确认归属的保存对象，未开始后续仓库操作，请检查原工作区改动' });
       await this.bindSavedRef(record, id); record.saveCompleted = true; record.status = 'saved';
-      record.message = `原 ${record.originalBranch} 的改动已保存到专用 WIP 备份；变基暂停时不会将其应用到其他分支。`;
+      record.message = record.kind === 'pull' ? '本地改动已保存，准备合并远程提交；合并未完成时暂缓恢复。' : record.kind === 'checkout' ? `原 ${record.originalBranch} 的改动已保存，准备签出 ${record.targetBranch}；专用备份保留。` : `原 ${record.originalBranch} 的改动已保存到专用 WIP 备份；变基暂停时不会将其应用到其他分支。`;
       await this.writeSavedRecord(active.gitDir, record);
       return record;
     } catch (error) {
       try { const id = record.stashOid || await this.findSavedStash(record); if (id) { await this.bindSavedRef(record, id); record.status = 'restore-pending'; } }
       catch { /* Keep the intent; a later snapshot can find the unique token again. */ }
-      record.message = '保存改动失败或被取消，未开始变基。请检查当前文件与保存备份；不要重复应用已部分恢复的内容。';
+      record.message = '保存改动失败或被取消，未开始后续仓库操作。请检查当前文件与保存备份；不要重复应用已部分恢复的内容。';
       await this.writeSavedRecord(active.gitDir, record);
       throw error;
     }
@@ -376,38 +404,39 @@ export class GitService {
       let state = await this.snapshot();
       if (state.mergeInProgress || state.entries.length) throw new GitError({ message: '恢复前工作区和暂存区必须干净，不能覆盖当前改动或重复应用已有冲突' });
       if (await fs.access(path.join(active.gitDir, 'index.lock')).then(() => true, () => false)) throw new GitError({ message: 'Git 索引仍被其他任务占用，请等待后再恢复' });
-      const originalRef = `refs/heads/${record.originalBranch}`, originalHead = (await this.git(['rev-parse', '--verify', `${originalRef}^{commit}`])).stdout.trim();
-      const expected = record.originalBranch === record.sourceBranch ? record.restoreHead || record.originalHead : record.originalHead;
-      if (originalHead !== expected) throw new GitError({ message: `原 ${record.originalBranch} 分支已被外部改动，未切换或恢复；请在外部核对专用备份` });
-      if (![record.originalBranch, record.sourceBranch].includes(state.branch)) throw new GitError({ message: `当前分支不是本次记录的源分支或原 ${record.originalBranch}，未恢复到错误分支` });
+      const restoreBranch = record.kind === 'checkout' ? record.restoreBranch! : record.originalBranch;
+      const originalRef = `refs/heads/${restoreBranch}`, originalHead = (await this.git(['rev-parse', '--verify', `${originalRef}^{commit}`])).stdout.trim();
+      const expected = record.kind === 'checkout' ? restoreBranch === record.targetBranch ? record.targetHead! : record.originalHead : record.originalBranch === record.sourceBranch ? record.restoreHead || record.originalHead : record.originalHead;
+      if (originalHead !== expected) throw new GitError({ message: `恢复目标 ${restoreBranch} 分支已被外部改动，未切换或恢复；请在外部核对专用备份` });
+      if (!(record.kind === 'checkout' ? [record.originalBranch, record.targetBranch!] : [record.originalBranch, record.sourceBranch]).includes(state.branch)) throw new GitError({ message: `当前分支不属于本次保存记录，未恢复到错误分支` });
       const saved = await this.savedPaths(record);
       // This also rejects ignored blockers and special file modes in the saved trees.
-      await this.safeTreeWrites([state.head, originalHead, record.stashOid!, saved.parents[1], ...(saved.parents[2] ? [saved.parents[2]] : [])], 'rebase');
-      if (state.branch !== record.originalBranch) {
+      await this.safeTreeWrites([state.head, originalHead, record.stashOid!, saved.parents[1], ...(saved.parents[2] ? [saved.parents[2]] : [])], record.kind === 'checkout' ? 'checkout' : 'rebase');
+      if (state.branch !== restoreBranch) {
         const trees = await this.git(['worktree', 'list', '--porcelain', '-z']);
-        if (trees.truncated || trees.stdout.split('\0\0').some(tree => tree.split('\0').includes(`branch ${originalRef}`))) throw new GitError({ message: `原 ${record.originalBranch} 分支在其他工作区被占用，备份保留，未切换` });
-        await this.git(['switch', record.originalBranch]); state = await this.snapshot();
+        if (trees.truncated || trees.stdout.split('\0\0').some(tree => tree.split('\0').includes(`branch ${originalRef}`))) throw new GitError({ message: `恢复分支 ${restoreBranch} 在其他工作区被占用，备份保留，未切换` });
+        await this.git(['switch', restoreBranch]); state = await this.snapshot();
       }
-      if (state.branch !== record.originalBranch || state.head !== expected || state.entries.length) throw new GitError({ message: '恢复目标分支或版本已变化，未应用保存改动' });
+      if (state.branch !== restoreBranch || state.head !== expected || state.entries.length) throw new GitError({ message: '恢复目标分支或版本已变化，未应用保存改动' });
       for (const p of saved.untracked) if (await fs.lstat(path.join(this.root, p)).then(() => true, (e: NodeJS.ErrnoException) => { if (e.code === 'ENOENT') return false; throw e; })) throw new GitError({ message: `保存的未跟踪文件 ${p} 已有同名内容，未覆盖该文件` });
       const fingerprint = await this.savedFingerprint(saved.paths);
       const indexTree = (await this.git(['write-tree'])).stdout.trim(), headTree = (await this.git(['rev-parse', 'HEAD^{tree}'])).stdout.trim();
       if (indexTree !== headTree) throw new GitError({ message: '当前暂存区不是干净的 HEAD，未应用保存改动' });
       if (record.applyAttempted && (preserveIndex || !record.beforeFingerprint || record.beforeFingerprint !== fingerprint)) throw new GitError({ message: '上次恢复可能已部分应用，禁止重复应用；请手工处理后确认完成' });
       record.beforeFingerprint = fingerprint; record.applyAttempted = true; record.applyInProgress = true; record.status = 'restore-pending';
-      record.message = `正在向原 ${record.originalBranch} 恢复改动，专用备份与 Stash 均保留。`;
+      record.message = `正在向 ${restoreBranch} 恢复改动，专用备份与 Stash 均保留。`;
       await this.writeSavedRecord(active.gitDir, record);
       try {
         await this.git(['--no-literal-pathspecs', '-c', 'submodule.recurse=false', 'stash', 'apply', ...(preserveIndex ? ['--index'] : []), record.ref]);
         record.applyInProgress = false; record.status = 'restored';
-        record.message = `${record.sourceBranch !== record.originalBranch ? `源分支 ${record.sourceBranch} 的变基任务已结束，并已切回原 ${record.originalBranch}；` : ''}已恢复原改动${preserveIndex ? '及暂存状态' : '到工作区（未保留原暂存状态）'}。专用 WIP 备份和 Stash 条目继续保留。`;
+        record.message = record.kind === 'pull' ? `${record.pullFailed ? 'Pull 未完成或已中止' : 'Pull 合并已完成'}，已恢复原改动${preserveIndex ? '及暂存状态' : '到工作区（未保留原暂存状态）'}。专用 WIP 备份和 Stash 条目保留。` : record.kind === 'checkout' ? `${restoreBranch === record.targetBranch ? `已签出 ${restoreBranch}，并将原 ${record.originalBranch} 的改动恢复到该分支` : `未完成签出 ${record.targetBranch}，已在原 ${restoreBranch} 恢复改动`}${preserveIndex ? '及暂存状态' : '（未保留原暂存状态）'}。专用 WIP 备份和 Stash 条目保留。` : `${record.sourceBranch !== record.originalBranch ? `源分支 ${record.sourceBranch} 的变基任务已结束，并已切回原 ${record.originalBranch}；` : ''}已恢复原改动${preserveIndex ? '及暂存状态' : '到工作区（未保留原暂存状态）'}。专用 WIP 备份和 Stash 条目继续保留。`;
         await this.writeSavedRecord(active.gitDir, record); return this.snapshot();
       } catch (error) {
         record.applyInProgress = false;
         const after = await this.snapshot();
         record.status = after.entries.some(file => file.conflict) ? 'restore-conflicts' : 'restore-pending';
         let untouched = false;
-        if (!(error instanceof GitError && error.details.cancelled) && !after.entries.length && after.branch === record.originalBranch && after.head === expected) {
+        if (!(error instanceof GitError && error.details.cancelled) && !after.entries.length && after.branch === restoreBranch && after.head === expected) {
           const currentIndex = (await this.git(['write-tree'])).stdout.trim();
           untouched = currentIndex === headTree && await this.savedFingerprint(saved.paths) === fingerprint;
         }
@@ -429,11 +458,113 @@ export class GitService {
     const active = await this.operationState(); await this.writeSavedRecord(active.gitDir, record);
     return this.restoreRebaseSaved(record, true, true);
   }
+  private async mergeHead(gitDir: string): Promise<string> {
+    try { return (await fs.readFile(path.join(gitDir, 'MERGE_HEAD'), 'utf8')).trim(); }
+    catch (e) { if ((e as NodeJS.ErrnoException).code === 'ENOENT') return ''; throw e; }
+  }
+  private async pullMergeMatches(record: SavedRebaseRecord, state: { branch: string; head: string }): Promise<boolean> {
+    if (record.kind !== 'pull' || record.pullPhase !== 'merging' || record.applyAttempted || state.branch !== record.originalBranch || state.head !== record.originalHead) return false;
+    return await this.mergeHead((await this.operationState()).gitDir) === record.targetHead;
+  }
+  /** Accept only the original tip, the fetched fast-forward tip, or our exact two-parent merge. */
+  private async locatePullRestore(record: SavedRebaseRecord, state: { branch: string; head: string }) {
+    if (state.branch !== record.originalBranch) throw new GitError({ message: 'Pull 期间当前分支已变化，不能自动恢复原改动' });
+    if (record.restoreHead) {
+      if (state.head !== record.restoreHead) throw new GitError({ message: 'Pull 恢复目标提交已变化，请检查专用备份后手工处理' });
+      return;
+    }
+    const target = record.targetHead!;
+    const forward = state.head === target && (await this.git(['merge-base', '--is-ancestor', record.originalHead, target], { accepted: [0, 1] })).code === 0;
+    const parents = (await this.git(['show', '-s', '--format=%P', state.head])).stdout.trim().split(' ');
+    if (state.head !== record.originalHead && !forward && !(parents.length === 2 && parents[0] === record.originalHead && parents[1] === target)) throw new GitError({ message: 'Pull 后提交不符合本次合并结果，未向不确定的版本恢复改动' });
+    if (state.head === record.originalHead && !record.pullFailed) record.pullFailed = (await this.git(['merge-base', '--is-ancestor', target, state.head], { accepted: [0, 1] })).code !== 0;
+    record.restoreHead = state.head; record.pullPhase = 'restore';
+  }
+  private async completePullSave(record: SavedRebaseRecord, state: Repository): Promise<Repository> {
+    if (state.mergeInProgress || state.operation) throw new GitError({ message: '请先完成或中止远程合并，再恢复本地改动' });
+    await this.locatePullRestore(record, state);
+    record.status = 'restore-pending'; record.message = '远程合并已结束，正在恢复原改动及暂存状态。';
+    await this.writeSavedRecord((await this.operationState()).gitDir, record);
+    return this.restoreRebaseSaved(record, true, true);
+  }
+  private async finishPullMerge(message?: string): Promise<Repository> {
+    return this.manageRebaseSave(async () => {
+      const active = await this.operationState(), record = await this.readSavedRecord(active.gitDir), state = await this.snapshot();
+      if (!record || record.status === 'restored' || !await this.pullMergeMatches(record, state)) throw new GitError({ message: '当前合并不属于待恢复的 Pull，未提交或中止' });
+      if (message !== undefined) {
+        if (state.entries.some(entry => entry.conflict)) throw new GitError({ message: '请先解决并暂存全部合并冲突' });
+        await this.git(['commit', '--file=-'], { input: message });
+      } else {
+        await this.git(['-c', 'submodule.recurse=false', 'merge', '--abort']); record.pullFailed = true;
+      }
+      return this.completePullSave(record, await this.snapshot());
+    });
+  }
+  private async pullWithSavedChanges(p: Record<string, unknown>, remote: string, requestedBranch: string): Promise<Repository> {
+    return this.manageRebaseSave(async () => {
+      const before = await this.snapshot(); await this.requireNoOperation(before);
+      if (p.autoSaveChanges !== undefined && typeof p.autoSaveChanges !== 'boolean') throw new GitError({ message: '自动保存选项无效' });
+      if (p.expectedHead !== undefined) await this.expectedHead(p.expectedHead, before);
+      if (p.expectedBranch !== undefined && p.expectedBranch !== before.branch) throw new GitError({ message: '当前分支已变化，请重新打开 Pull 对话框' });
+      const branch = requestedBranch || before.branch;
+      await this.git(['check-ref-format', `refs/heads/${branch}`]);
+      if (before.entries.length && p.autoSaveChanges === false) throw new GitError({ message: '当前有未提交改动，请开启自动保存或先处理改动后再 Pull' });
+      const fetchRef = `refs/harborgit/fetch/${randomUUID()}`;
+      let target = '';
+      try {
+        // Fetch first: authentication/network failures must not move local WIP.
+        // A private ref pins the requested remote branch; never merge a shared FETCH_HEAD.
+        await this.git(['fetch', '--progress', '--no-tags', '--no-recurse-submodules', '--', remote, `refs/heads/${branch}:${fetchRef}`], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
+        target = (await this.git(['rev-parse', '--verify', `${fetchRef}^{commit}`])).stdout.trim();
+        const state = await this.snapshot(); await this.requireNoOperation(state);
+        await this.expectedHead(before.head, state);
+        if (state.branch !== before.branch) throw new GitError({ message: '获取远程期间分支已变化，未保存或合并任何改动' });
+        if (state.entries.length && p.autoSaveChanges === false) throw new GitError({ message: '获取远程期间出现未提交改动，请开启自动保存后重试' });
+        await this.safeTreeWrites([state.head, target], state.entries.length ? 'saving' : 'checkout');
+        const targetPaths = await this.treePaths(target);
+        for (const entry of state.entries.filter(entry => entry.worktree === '?')) {
+          if (targetPaths.some(other => other.path === entry.path || other.path.startsWith(entry.path + '/') || entry.path.startsWith(other.path + '/'))) throw new GitError({ message: `未跟踪内容与远程文件重名：${entry.path}。请先移走或保存该文件，未覆盖内容` });
+        }
+        const record = state.entries.length ? await this.beginRebaseSave(state, state.branch, state.head, undefined, { targetHead: target, pullRemote: remote, pullBranch: branch }) : undefined;
+        if (record) {
+          record.pullPhase = 'merging'; await this.writeSavedRecord((await this.operationState()).gitDir, record);
+        }
+        try {
+          const ready = await this.snapshot(); await this.expectedHead(state.head, ready);
+          if (ready.branch !== state.branch) throw new GitError({ message: '保存改动期间当前分支已变化，未合并远程内容；备份保留' });
+          await this.git(['-c', 'submodule.recurse=false', '-c', 'merge.autoStash=false', 'merge', '--ff', '--no-edit', '--no-squash', '--commit', '--no-autostash', '--', target]);
+        } catch (error) {
+          if (!record) {
+            const failed = await this.snapshot();
+            if (failed.mergeInProgress && await this.mergeHead((await this.operationState()).gitDir) === target) return failed;
+            throw error;
+          }
+          const failed = await this.snapshot();
+          if (await this.pullMergeMatches(record, failed)) {
+            record.status = 'saved'; record.message = '远程提交存在合并冲突；原本地改动已保存。请解决冲突并提交合并，或中止合并，随后自动恢复原改动。';
+            await this.writeSavedRecord((await this.operationState()).gitDir, record); return this.snapshot();
+          }
+          record.pullFailed = true;
+          try { await this.completePullSave(record, failed); }
+          catch (restoreError) {
+            record.status = 'restore-pending'; record.message = `Pull 未完成，自动恢复暂停：${restoreError instanceof Error ? restoreError.message : String(restoreError)}。原改动备份保留。`;
+            await this.writeSavedRecord((await this.operationState()).gitDir, record);
+          }
+          throw error;
+        }
+        return record ? this.completePullSave(record, await this.snapshot()) : this.snapshot();
+      } finally {
+        // Delete only this operation's private fetch ref, with an expected OID.
+        const fetched = await this.git(['rev-parse', '--verify', fetchRef], { accepted: [0, 128] }).catch(() => undefined);
+        if (fetched?.code === 0) await this.git(['update-ref', '-d', fetchRef, target || fetched.stdout.trim()]).catch(() => undefined);
+      }
+    });
+  }
   private async rebaseSavedAction(action: unknown): Promise<Repository> {
     return this.manageRebaseSave(async () => {
       if (!['restore', 'restore-unstaged', 'finish'].includes(action as string)) throw new GitError({ message: '保存改动恢复操作无效' });
       const active = await this.operationState(), record = await this.readSavedRecord(active.gitDir);
-      if (!record || record.status === 'restored') throw new GitError({ message: '没有待处理的变基保存改动' });
+      if (!record || record.status === 'restored') throw new GitError({ message: '没有待处理的保存改动' });
       if (action !== 'finish') return this.restoreRebaseSaved(record, action === 'restore');
       const state = await this.snapshot();
       if (active.operation || active.unsupported || state.mergeInProgress || state.entries.some(file => file.conflict)) throw new GitError({ message: '请先完成当前 Git 操作并处理全部未合并文件，再确认恢复处理完成' });
@@ -524,9 +655,9 @@ export class GitService {
       if (relative.startsWith('..' + path.sep) || relative === '..' || path.isAbsolute(relative)) throw new GitError({ message: '恢复路径指向仓库外部，未修改任何文件' });
     }
   }
-  private async safeTreeWrites(commits: string[], policy: 'sequencer' | 'rebase' | 'hard' | 'conservative' | 'saving' = 'conservative', changedCommits: string[] = []) {
+  private async safeTreeWrites(commits: string[], policy: 'sequencer' | 'rebase' | 'hard' | 'conservative' | 'saving' | 'checkout' = 'conservative', changedCommits: string[] = []) {
     const ordinary = await this.untrackedPaths(false), ignored = await this.untrackedPaths(true);
-    if ((policy !== 'hard' && policy !== 'saving' && policy !== 'rebase' && ordinary.length) || (policy === 'conservative' && ignored.length)) throw new GitError({ message: policy === 'conservative' ? '请先移走或妥善保存所有未跟踪及忽略内容（包括目录），此操作不会删除这些内容' : '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' });
+    if ((policy !== 'hard' && policy !== 'saving' && policy !== 'rebase' && policy !== 'checkout' && ordinary.length) || (policy === 'conservative' && ignored.length)) throw new GitError({ message: policy === 'conservative' ? '请先移走或妥善保存所有未跟踪及忽略内容（包括目录），此操作不会删除这些内容' : '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' });
     const entries = [...await this.indexPaths()];
     for (const id of new Set(commits.filter(id => /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(id)))) entries.push(...await this.treePaths(id));
     entries.push(...await this.changedTreePaths(changedCommits));
@@ -535,15 +666,15 @@ export class GitService {
       if (!['100644', '100755'].includes(entry.mode)) throw new GitError({ message: '此操作暂不支持含子模块、符号链接或特殊索引条目的仓库，请使用外部 Git 工具' });
       paths.add(entry.path);
     }
-    const protectedPaths = policy === 'hard' || policy === 'rebase' ? [...ordinary, ...ignored] : ignored, writes = [...paths];
+    const protectedPaths = policy === 'hard' || policy === 'rebase' || policy === 'checkout' ? [...ordinary, ...ignored] : ignored, writes = [...paths];
     // Git status omits empty directories, while ls-files --others --directory
     // includes them. For rebase, protect actual overlapping paths rather than
     // refusing unrelated files/directories (including those created while paused).
     const blockers = protectedPaths.filter(protectedPath => writes.some(p => this.pathsCollide(protectedPath, p)));
     if (policy !== 'conservative' && blockers.length) {
-      if (policy === 'rebase') {
+      if (policy === 'rebase' || policy === 'checkout') {
         const listed = [...new Set(blockers)];
-        throw new GitError({ message: `变基可能覆盖未跟踪或被忽略内容（含中间提交）：${listed.slice(0, 8).join('、')}${listed.length > 8 ? `，另有 ${listed.length - 8} 项` : ''}。请先移走或保存这些路径，未修改任何文件。` });
+        throw new GitError({ message: `${policy === 'checkout' ? '改动恢复' : '变基'}可能覆盖未跟踪或被忽略内容（含中间提交）：${listed.slice(0, 8).join('、')}${listed.length > 8 ? `，另有 ${listed.length - 8} 项` : ''}。请先移走或保存这些路径，未修改任何文件。` });
       }
       throw new GitError({ message: policy === 'hard' ? 'Hard Reset 路径与未跟踪或忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' : '操作路径（包括历史中间提交）与被忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' });
     }
@@ -563,6 +694,85 @@ export class GitService {
       throw error;
     }
     return this.snapshot();
+  }
+  private async checkoutBranch(p: Record<string, unknown>): Promise<Repository> {
+    const name = ref(p.name);
+    if (p.smart !== undefined && typeof p.smart !== 'boolean') throw new GitError({ message: '智能签出选项无效' });
+    await this.branchExists(name);
+    const branch = (await this.branches()).find(value => value.name === name)!;
+    const state = await this.snapshot();
+    if (!p.smart) {
+      // Git may overwrite ignored files even during an ordinary checkout.
+      // Refuse those collisions before the initial attempt as well.
+      const ignored = await this.untrackedPaths(true), targetPaths = await this.treePaths(branch.hash);
+      const blockers = ignored.filter(value => targetPaths.some(entry => this.pathsCollide(value, entry.path)));
+      if (blockers.length) throw new GitError({ message: `目标分支可能覆盖被忽略内容：${blockers.slice(0, 8).join('、')}。请先保存这些路径，未执行签出` });
+      try { await this.git(branch.remote ? ['switch', '--track', name] : ['switch', name]); return this.snapshot(); }
+      catch (error) {
+        if (error instanceof GitError && !error.details.cancelled && !branch.remote && !state.unborn && !state.detached && state.entries.length && /local changes[\s\S]*would be overwritten by (?:checkout|switch)/i.test(error.details.stderr || error.message)) {
+          const fresh = await this.snapshot();
+          if (fresh.branch !== state.branch || fresh.head !== state.head) throw new GitError({ message: '当前分支已变化，请刷新后重新签出' });
+          throw new GitError({ ...error.details, message: '本地改动会被目标分支覆盖，可以选择智能签出', checkout: {
+            name, originalBranch: state.branch, targetBranch: name, expectedHead: state.head, expectedTargetHead: branch.hash,
+            paths: state.entries.map(entry => entry.path),
+          } });
+        }
+        throw error;
+      }
+    }
+    return this.manageRebaseSave(async () => {
+      await this.requireNoOperation(state);
+      if (branch.remote) throw new GitError({ message: '智能签出仅支持本地分支，请先基于远程分支创建本地分支' });
+      if (p.expectedBranch !== state.branch || state.branch === name) throw new GitError({ message: '当前分支已变化，请关闭对话框并重新选择目标分支' });
+      if (typeof p.expectedTargetHead !== 'string' || !/^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(p.expectedTargetHead) || p.expectedTargetHead.toLowerCase() !== branch.hash.toLowerCase()) throw new GitError({ message: '目标分支已变化，请关闭对话框并刷新后重新签出' });
+      const targetHead = branch.hash;
+      const verify = async () => {
+        const current = await this.snapshot();
+        await this.expectedHead(p.expectedHead, current);
+        if (current.branch !== state.branch) throw new GitError({ message: '当前分支已变化，未继续签出' });
+        if ((await this.git(['rev-parse', '--verify', `refs/heads/${name}^{commit}`])).stdout.trim() !== targetHead) throw new GitError({ message: '目标分支已变化，未继续签出' });
+        const trees = await this.git(['worktree', 'list', '--porcelain', '-z']);
+        if (trees.truncated || trees.stdout.split('\0\0').some(tree => tree.split('\0').includes(`branch refs/heads/${name}`))) throw new GitError({ message: `目标 ${name} 已在另一个工作区签出，未保存或切换当前改动` });
+      };
+      await verify();
+      await this.safeTreeWrites([state.head, targetHead], 'saving');
+      const targetPaths = await this.treePaths(targetHead), untracked = await this.untrackedPaths(false);
+      const collisions = untracked.filter(value => targetPaths.some(entry => this.pathsCollide(value, entry.path)));
+      if (collisions.length) throw new GitError({ message: `目标分支与未跟踪内容重名：${collisions.slice(0, 8).join('、')}。请先移走这些内容，未保存、覆盖或删除任何文件` });
+      if (!state.entries.length) { await this.git(['switch', name]); return this.snapshot(); }
+      const record = await this.beginRebaseSave(state, state.branch, state.head, { targetBranch: name, targetHead });
+      const active = await this.operationState();
+      try {
+        await verify();
+        if ((await this.snapshot()).entries.length) throw new GitError({ message: '保存后仍有未提交改动，未继续签出；请检查原文件和备份' });
+        record.checkoutStarted = true;
+        await this.writeSavedRecord(active.gitDir, record);
+        await this.git(['switch', name]);
+        const switched = await this.snapshot();
+        this.locateCheckoutRestore(record, switched);
+        record.status = 'restore-pending'; record.message = `已签出 ${name}，准备恢复原 ${state.branch} 的改动；备份保留。`;
+        await this.writeSavedRecord(active.gitDir, record);
+        return this.restoreRebaseSaved(record, true, true);
+      } catch (error) {
+        // Resolve the actual branch after cancellation/command failure before
+        // choosing where to restore. Never force checkout or guess a new HEAD.
+        const current = await this.snapshot();
+        record.status = 'restore-pending';
+        try { this.locateCheckoutRestore(record, current); }
+        catch {
+          record.message = `智能签出中断，当前分支或提交已变化，未自动恢复。请保留 ${record.ref} 并手工检查。`;
+          await this.writeSavedRecord(active.gitDir, record); return this.snapshot();
+        }
+        record.message = `智能签出未完成：${error instanceof Error ? error.message : String(error)}。准备在 ${record.restoreBranch} 恢复改动，备份保留。`;
+        await this.writeSavedRecord(active.gitDir, record);
+        await this.restoreRebaseSaved(record, true, true);
+        if (record.restoreBranch === record.originalBranch) {
+          record.message += ` 签出未完成原因：${error instanceof Error ? error.message : String(error)}`;
+          await this.writeSavedRecord(active.gitDir, record);
+        }
+        return this.snapshot();
+      }
+    });
   }
   private async startRebase(p: Record<string, unknown>) {
     return this.manageRebaseSave(async () => {
@@ -967,7 +1177,8 @@ export class GitService {
       if ((active.operation || active.unsupported) && !permitted.has(operation)) throw new GitError({ message: `当前正在进行${active.operation?.kind === 'rebase' ? '变基，请使用变基的继续、跳过或中止' : active.operation?.kind === 'revert' ? '撤销提交，请使用撤销提交的继续或中止' : `${active.unsupported}，请先在外部 Git 工具中完成或中止`}操作` });
       const saved = await this.savedRebaseRecord(active);
       const recoveryPermitted = new Set<keyof Requests>([...permitted, 'rebaseSavedAction']);
-      if (saved && saved.status !== 'restored' && !recoveryPermitted.has(operation)) throw new GitError({ message: '请先恢复保存的变基改动或确认手工处理完成；专用 WIP 备份保留' });
+      if (saved?.kind === 'pull' && (operation === 'commit' || operation === 'abortMerge') && await this.pullMergeMatches(saved, { branch: (await this.git(['branch', '--show-current'])).stdout.trim(), head: (await this.git(['rev-parse', 'HEAD'])).stdout.trim() })) recoveryPermitted.add(operation);
+      if (saved && saved.status !== 'restored' && !recoveryPermitted.has(operation)) throw new GitError({ message: '请先恢复保存的未提交改动或确认手工处理完成；专用 WIP 备份保留' });
     }
     switch (operation) {
       case 'open': return this.open(text(p.path, '仓库路径'));
@@ -1002,6 +1213,7 @@ export class GitService {
         const status = await this.snapshot();
         if (status.entries.some(e => e.conflict)) throw new GitError({ message: '请先解决并暂存所有冲突' });
         if (!status.mergeInProgress && !status.entries.some(e => e.index !== ' ')) throw new GitError({ message: '暂存区为空' });
+        if (status.rebaseSavedChanges?.kind === 'pull' && status.rebaseSavedChanges.status !== 'restored') return this.finishPullMerge(message);
         await this.git(['commit', '--file=-'], { input: message }); return this.snapshot();
       }
       case 'history': return this.history(p.skip as number | undefined, p.limit as number | undefined, p.scope as 'current' | 'all' | undefined);
@@ -1017,7 +1229,7 @@ export class GitService {
         const name = ref(p.name); await this.git(['check-ref-format', '--branch', name]);
         await this.git(['switch', '-c', name, ...(p.startPoint ? [ref(p.startPoint)] : [])]); return this.snapshot();
       }
-      case 'checkout': { const name = ref(p.name); await this.branchExists(name); const b = (await this.branches()).find(b => b.name === name)!; if (b.remote) await this.git(['switch', '--track', name]); else await this.git(['switch', name]); return this.snapshot(); }
+      case 'checkout': return this.checkoutBranch(p);
       case 'deleteBranch': { const name = ref(p.name); await this.branchExists(name, true); await this.git(['branch', '-d', '--', name]); return this.snapshot(); }
       case 'remotes': return this.remotes();
       case 'saveRemote': {
@@ -1050,7 +1262,7 @@ export class GitService {
         if (!(await this.remotes()).some(r => r.name === remote)) throw new GitError({ message: '远程仓库不存在' });
         const branch = p.branch ? ref(p.branch) : '';
         if (action === 'fetch') await this.git(['fetch', '--progress', '--prune', '--', remote], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
-        else if (action === 'pull') await this.git(['pull', '--ff-only', '--no-rebase', '--progress', '--', remote, ...(branch ? [branch] : [])], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
+        else if (action === 'pull') return this.pullWithSavedChanges(p, remote, branch);
         else if (action === 'push') {
           const status = await this.snapshot();
           if (status.detached || status.unborn) throw new GitError({ message: 'Push 需要已提交的本地分支' });
@@ -1064,7 +1276,12 @@ export class GitService {
       case 'finishMergeWorkspace': return this.finishMergeWorkspace();
       case 'conflict': return this.conflict(text(p.path, '文件路径'));
       case 'resolve': return this.resolve(text(p.path, '文件路径'), text(p.choice, '解决方式'), p.content as string | undefined);
-      case 'abortMerge': { if (!(await this.snapshot()).mergeInProgress) throw new GitError({ message: '没有进行中的合并' }); await this.git(['merge', '--abort']); return this.snapshot(); }
+      case 'abortMerge': {
+        const state = await this.snapshot();
+        if (!state.mergeInProgress) throw new GitError({ message: '没有进行中的合并' });
+        if (state.rebaseSavedChanges?.kind === 'pull' && state.rebaseSavedChanges.status !== 'restored') return this.finishPullMerge();
+        await this.git(['merge', '--abort']); return this.snapshot();
+      }
       case 'rebase': return this.startRebase(p);
       case 'rebaseAction': return this.rebaseAction(p.action);
       case 'rebaseSavedAction': return this.rebaseSavedAction(p.action);

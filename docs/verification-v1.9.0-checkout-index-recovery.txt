@@ -1,0 +1,9 @@
+✔ target index restore can fail cleanly and retry without index without misreporting partial writes (9100.5731ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9322.3589

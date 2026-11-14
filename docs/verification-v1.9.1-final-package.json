@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "version": "1.9.1",
+  "files": [
+    {
+      "path": "dist-electron/main.cjs",
+      "sha256": "1fb1c9dbbd4a311538bc730b9d6bf0b88d3329a986ab7cc6d60001d145ee441b"
+    },
+    {
+      "path": "dist-electron/main.cjs.map",
+      "sha256": "61e008a3e1a28abfe667974fc66d739efae31989e7092cb3028ee638e2ef2580"
+    },
+    {
+      "path": "dist-electron/preload.cjs",
+      "sha256": "12aa707cba6011c027f7d92ccdaaa117ca6f28506382e8747be6d75ea7fd94b4"
+    },
+    {
+      "path": "dist/assets/harborgit-CcpJQ1co.svg",
+      "sha256": "1e65d9dce3fb4c4c9b38a873463944f0e56f5001c8f6bcd5fc87ab317fa61113"
+    },
+    {
+      "path": "dist/assets/index-Chc4eRhj.js",
+      "sha256": "0a349c658b0fa5e87273d4b3672e31f40486fcf8ef8e2bff73c17cd22c208590"
+    },
+    {
+      "path": "dist/assets/index-Chc4eRhj.js.map",
+      "sha256": "2f2cd234ad063b50ee914ba1e1c886e157c6229889362da00bc506f1d1178739"
+    },
+    {
+      "path": "dist/assets/index-DINlaXuI.css",
+      "sha256": "c5819dbce53ac721a72a554fac26c0c4b70a92fb3525756e0260ab611759d493"
+    },
+    {
+      "path": "dist/assets/ProjectTerminal-BrP-ENHg.css",
+      "sha256": "0e5386f16cb4be78a2fe911e014a810da76ea2db47d8c8b2a966516b2fd5270b"
+    },
+    {
+      "path": "dist/assets/ProjectTerminal-DS9ERfT_.js",
+      "sha256": "2c0c2e7d021a7d9fada53592c70cdf51785aac72843ab8f51f3d10d1f3103020"
+    },
+    {
+      "path": "dist/assets/ProjectTerminal-DS9ERfT_.js.map",
+      "sha256": "b9e9ec7d5cc0bd2eeffbfe9a24e401794f7e77a68d8c36f6f39b19b1b7b54cca"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "5c4b698474e51c3c319300a277556b1dfbf70db918d71d2381a26b5b177b6b89"
+    }
+  ]
+}

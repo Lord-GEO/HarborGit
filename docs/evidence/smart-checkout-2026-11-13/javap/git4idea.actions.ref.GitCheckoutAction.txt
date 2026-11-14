@@ -1,0 +1,90 @@
+Compiled from "GitCheckoutAction.kt"
+public final class git4idea.actions.ref.GitCheckoutAction extends git4idea.actions.ref.GitSingleRefAction<git4idea.GitReference> {
+  public git4idea.actions.ref.GitCheckoutAction();
+    Code:
+       0: aload_0
+       1: ldc           #9                  // String branches.checkout
+       3: iconst_0
+       4: anewarray     #11                 // class java/lang/Object
+       7: invokestatic  #17                 // Method git4idea/i18n/GitBundle.messagePointer:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/function/Supplier;
+      10: dup
+      11: ldc           #19                 // String messagePointer(...)
+      13: invokestatic  #25                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullExpressionValue:(Ljava/lang/Object;Ljava/lang/String;)V
+      16: invokespecial #28                 // Method git4idea/actions/ref/GitSingleRefAction."<init>":(Ljava/util/function/Supplier;)V
+      19: return
+
+  protected boolean isEnabledForRef(git4idea.GitReference, java.util.List<? extends git4idea.repo.GitRepository>);
+    Code:
+       0: aload_1
+       1: ldc           #36                 // String ref
+       3: invokestatic  #39                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #41                 // String repositories
+       9: invokestatic  #39                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: nop
+      13: aload_1
+      14: instanceof    #43                 // class git4idea/GitBranch
+      17: ifne          31
+      20: aload_1
+      21: instanceof    #45                 // class git4idea/GitTag
+      24: ifne          31
+      27: iconst_0
+      28: goto          65
+      31: getstatic     #49                 // Field git4idea/actions/ref/GitSingleRefAction.Companion:Lgit4idea/actions/ref/GitSingleRefAction$Companion;
+      34: aload_1
+      35: aload_2
+      36: invokevirtual #54                 // Method git4idea/actions/ref/GitSingleRefAction$Companion.isCurrentRefInAnyOtherWorkingTree:(Lgit4idea/GitReference;Ljava/util/List;)Z
+      39: ifeq          46
+      42: iconst_0
+      43: goto          65
+      46: getstatic     #49                 // Field git4idea/actions/ref/GitSingleRefAction.Companion:Lgit4idea/actions/ref/GitSingleRefAction$Companion;
+      49: aload_1
+      50: aload_2
+      51: invokevirtual #57                 // Method git4idea/actions/ref/GitSingleRefAction$Companion.isCurrentRefInAnyRepo$intellij_vcs_git:(Lgit4idea/GitReference;Ljava/util/List;)Z
+      54: ifeq          64
+      57: aload_2
+      58: invokestatic  #63                 // Method git4idea/actions/ref/GitCheckoutActionKt.access$diverged:(Ljava/util/List;)Z
+      61: goto          65
+      64: iconst_1
+      65: ireturn
+
+  public void actionPerformed(com.intellij.openapi.actionSystem.AnActionEvent, com.intellij.openapi.project.Project, java.util.List<? extends git4idea.repo.GitRepository>, git4idea.GitReference);
+    Code:
+       0: aload_1
+       1: ldc           #70                 // String e
+       3: invokestatic  #39                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: aload_2
+       7: ldc           #72                 // String project
+       9: invokestatic  #39                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      12: aload_3
+      13: ldc           #41                 // String repositories
+      15: invokestatic  #39                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      18: aload         4
+      20: ldc           #74                 // String reference
+      22: invokestatic  #39                 // Method kotlin/jvm/internal/Intrinsics.checkNotNullParameter:(Ljava/lang/Object;Ljava/lang/String;)V
+      25: aload         4
+      27: instanceof    #43                 // class git4idea/GitBranch
+      30: ifeq          41
+      33: aload         4
+      35: invokevirtual #80                 // Method git4idea/GitReference.getName:()Ljava/lang/String;
+      38: goto          46
+      41: aload         4
+      43: invokevirtual #83                 // Method git4idea/GitReference.getFullName:()Ljava/lang/String;
+      46: astore        5
+      48: aload         4
+      50: instanceof    #85                 // class git4idea/GitRemoteBranch
+      53: ifeq          66
+      56: aload_2
+      57: aload_3
+      58: aload         5
+      60: invokestatic  #91                 // Method git4idea/remote/hosting/GitRemoteBranchesUtil.checkoutRemoteBranch:(Lcom/intellij/openapi/project/Project;Ljava/util/List;Ljava/lang/String;)V
+      63: goto          80
+      66: aload_2
+      67: invokestatic  #97                 // InterfaceMethod git4idea/branch/GitBrancher.getInstance:(Lcom/intellij/openapi/project/Project;)Lgit4idea/branch/GitBrancher;
+      70: aload         5
+      72: iconst_0
+      73: aload_3
+      74: aconst_null
+      75: invokeinterface #101,  5          // InterfaceMethod git4idea/branch/GitBrancher.checkout:(Ljava/lang/String;ZLjava/util/List;Ljava/lang/Runnable;)V
+      80: return
+}

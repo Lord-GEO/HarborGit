@@ -1,0 +1,13 @@
+{
+  "version": "1.9.1",
+  "status": "passed",
+  "mode": "packaged",
+  "remote": "local bare only",
+  "checks": [
+    "Pull autosave defaults on, opt-out blocks dirty Pull; remote conflict defers all private WIP until merge commit",
+    "Merge commit excludes WIP; subsequent restore conflict has Pull-specific labels, resolves and finishes without additional commit; staged and untracked WIP and backups retained",
+    "No renderer errors; temporary fetch ref removed"
+  ],
+  "fullRegressionRun": false,
+  "fixtureRemoved": true
+}

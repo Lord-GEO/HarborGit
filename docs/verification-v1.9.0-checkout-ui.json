@@ -1,0 +1,48 @@
+{
+  "version": "1.9.0",
+  "status": "passed",
+  "mode": "packaged",
+  "checks": [
+    "Ordinary checkout protection opens review dialog listing all saved paths; cancel leaves branch, worktree and stash untouched",
+    "Smart checkout stays on target and distinguishes restore conflict from rebase, opens file conflict editor, and finishes recovery without committing or moving branch tips",
+    "Staged content, Unicode untracked file and dedicated WIP/Stash remain; no renderer errors"
+  ],
+  "fullRegressionRun": false,
+  "fixtureRemoved": true,
+  "rendererFiles": [
+    {
+      "path": "dist/assets/harborgit-CcpJQ1co.svg",
+      "sha256": "1e65d9dce3fb4c4c9b38a873463944f0e56f5001c8f6bcd5fc87ab317fa61113"
+    },
+    {
+      "path": "dist/assets/index-Bu3N5pRz.js",
+      "sha256": "40b06b92c1c36596b39c19df9be8e89cc042a812097cc8f865c32602a9ecee87"
+    },
+    {
+      "path": "dist/assets/index-Bu3N5pRz.js.map",
+      "sha256": "8ade931be21447e29c8d6eff551cef974e45770b9cc2e7f9032815536da3115a"
+    },
+    {
+      "path": "dist/assets/index-C0iDuC_E.css",
+      "sha256": "c7719eadb00f80a78a57300bf784856b245460130e7454906c362cb2223d4b12"
+    },
+    {
+      "path": "dist/assets/ProjectTerminal-BrP-ENHg.css",
+      "sha256": "0e5386f16cb4be78a2fe911e014a810da76ea2db47d8c8b2a966516b2fd5270b"
+    },
+    {
+      "path": "dist/assets/ProjectTerminal-Duf9A-zR.js",
+      "sha256": "0be2fb4700f9d9fce07922a099cb5e8ba4b8f6221fd5f46349679eaeaf859108"
+    },
+    {
+      "path": "dist/assets/ProjectTerminal-Duf9A-zR.js.map",
+      "sha256": "f006b0647a19538ef62d524863058d538f208a19753bc7f86788f976aa934162"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "7beb89083133bf58fc4da9346782c5f1a9916f40cd689303821d0b063ca465ce"
+    }
+  ],
+  "note": "The final rebuild is checked against these exact renderer bytes; the final index recovery condition has a separate focused backend check.",
+  "finalRendererUnchanged": true
+}

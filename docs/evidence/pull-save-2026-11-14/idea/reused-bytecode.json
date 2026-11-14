@@ -1,0 +1,56 @@
+[
+  {
+    "existing_output": "docs\\evidence\\rebase-wip-2026-10-30\\javap\\git4idea.stash.GitChangesSaver.txt",
+    "existing_output_sha256": "21236978c205f048284b46d6dd036ef62d6e25c02c304ba679372f2e93abcf88",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/stash/GitChangesSaver.class",
+    "member_sha256": "9fa996d1285464a64fe5b90757742fd704336a508281a86e6f8160a51b9137fe",
+    "validated_against_existing_provenance": true
+  },
+  {
+    "existing_output": "docs\\evidence\\rebase-wip-2026-10-30\\javap\\git4idea.stash.GitStashChangesSaver.txt",
+    "existing_output_sha256": "75650fe2808987597afe4fda1f7119933241535af076432a36c8f8373ff19a44",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/stash/GitStashChangesSaver.class",
+    "member_sha256": "dcbf7baf74df3a95164571ba26f02df2cf82f6bbbafa18358e22514334f57a80",
+    "validated_against_existing_provenance": true
+  },
+  {
+    "existing_output": "docs\\evidence\\rebase-wip-2026-10-30\\javap\\git4idea.stash.GitShelveChangesSaver.txt",
+    "existing_output_sha256": "a13657f59e030beff61d2026f4ab925f386926580c3337042eee18ee4e3f2e7f",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/stash/GitShelveChangesSaver.class",
+    "member_sha256": "fb8eaf3d02418808e11c8a8afbd8507349f9c74145e8f53890fd866d38a019a8",
+    "validated_against_existing_provenance": true
+  },
+  {
+    "existing_output": "docs\\evidence\\rebase-wip-2026-10-30\\javap\\git4idea.util.GitPreservingProcess.txt",
+    "existing_output_sha256": "5533ed0dc0c81422dc1b1b0368b25b5e248d29753027e687be8c3dc98ca39a63",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/util/GitPreservingProcess.class",
+    "member_sha256": "5825e6574676d4e3324ba480d87cbd9885e2d4b0ceb1b3d7080bcd96b18ec6ec",
+    "validated_against_existing_provenance": true
+  },
+  {
+    "existing_output": "docs\\evidence\\rebase-wip-2026-10-30\\javap\\git4idea.stash.GitStashOperations.txt",
+    "existing_output_sha256": "6eebef840920b93b1f6a1ef0a90d06b520407dfd70974e2955c1ab9ff38ac920",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "source_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0",
+    "member": "git4idea/stash/GitStashOperations.class",
+    "member_sha256": "db0219d388e490d59f411f03e369f1b0c20564108fde9411e94e07090a368321",
+    "validated_against_existing_provenance": true
+  },
+  {
+    "existing_output": "docs\\evidence\\rebase-wip-2026-10-30\\javap\\git4idea.config.GitVcsOptions.txt",
+    "existing_output_sha256": "aa305df05d76161e1219c6907e8df7a6060ff87b1655c2a5672a3ff65138aa8c",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git-frontend.jar",
+    "source_jar_sha256": "0e5135d36bcb94fbf4f5773bb123bd2f964566b872988bee6d5cfc6a0de75a17",
+    "member": "git4idea/config/GitVcsOptions.class",
+    "member_sha256": "f6de21f2ba2c9ab9ef7a3db7f14546045dc6dc736eb7d87a745e05fa8e693675",
+    "validated_against_existing_provenance": true
+  }
+]

@@ -1,0 +1,12 @@
+✔ smart checkout carries staged, unstaged and untracked changes to target without moving branch tips (8702.9391ms)
+✔ checkout restore conflict survives reopen, does not reapply, and resolves as WIP rather than rebase (12613.7046ms)
+✔ smart checkout rejects stale targets and untracked target collisions before creating WIP (10583.8675ms)
+✔ interrupted checkout journal recovers to the actual target without automatically applying WIP on reopen (14944.5557ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47425.939

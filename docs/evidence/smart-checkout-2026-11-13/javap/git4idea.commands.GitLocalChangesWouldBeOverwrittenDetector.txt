@@ -1,0 +1,339 @@
+Compiled from "GitLocalChangesWouldBeOverwrittenDetector.java"
+public class git4idea.commands.GitLocalChangesWouldBeOverwrittenDetector extends git4idea.commands.GitMessageWithFilesDetector {
+  private static final java.util.regex.Pattern OLD_CHECKOUT_PATTERN;
+
+  private static final java.util.regex.Pattern OLD_MERGE_PATTERN;
+
+  private static final java.util.regex.Pattern[] RESET_PATTERNS;
+
+  public static final git4idea.commands.GitMessageWithFilesDetector$Event NEW_PATTERN;
+
+  private final git4idea.commands.GitLocalChangesWouldBeOverwrittenDetector$Operation myOperation;
+
+  private final java.util.Set<java.lang.String> myAffectedFilesRawLines;
+
+  public git4idea.commands.GitLocalChangesWouldBeOverwrittenDetector(com.intellij.openapi.vfs.VirtualFile, git4idea.commands.GitLocalChangesWouldBeOverwrittenDetector$Operation);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_0
+       5: invokestatic  #204                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_1
+      13: invokestatic  #204                // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: getstatic     #1                  // Field NEW_PATTERN:Lgit4idea/commands/GitMessageWithFilesDetector$Event;
+      20: aload_1
+      21: invokespecial #7                  // Method git4idea/commands/GitMessageWithFilesDetector."<init>":(Lgit4idea/commands/GitMessageWithFilesDetector$Event;Lcom/intellij/openapi/vfs/VirtualFile;)V
+      24: aload_0
+      25: new           #13                 // class java/util/HashSet
+      28: dup
+      29: invokespecial #15                 // Method java/util/HashSet."<init>":()V
+      32: putfield      #18                 // Field myAffectedFilesRawLines:Ljava/util/Set;
+      35: aload_0
+      36: aload_2
+      37: putfield      #22                 // Field myOperation:Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation;
+      40: return
+
+  public java.util.Set<java.lang.String> getRelativeFilePaths();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field myAffectedFiles:Ljava/util/Set;
+       4: invokeinterface #29,  1           // InterfaceMethod java/util/Set.size:()I
+       9: iconst_1
+      10: if_icmpne     77
+      13: aload_0
+      14: getfield      #18                 // Field myAffectedFilesRawLines:Ljava/util/Set;
+      17: invokestatic  #35                 // Method com/intellij/util/containers/ContainerUtil.getOnlyItem:(Ljava/util/Collection;)Ljava/lang/Object;
+      20: checkcast     #41                 // class java/lang/String
+      23: astore_1
+      24: aload_1
+      25: ifnull        77
+      28: aload_1
+      29: ldc           #43                 // String ^ {2}([^ ].*)
+      31: invokevirtual #45                 // Method java/lang/String.matches:(Ljava/lang/String;)Z
+      34: ifeq          77
+      37: aload_0
+      38: getfield      #26                 // Field myAffectedFiles:Ljava/util/Set;
+      41: invokeinterface #49,  1           // InterfaceMethod java/util/Set.clear:()V
+      46: aload_0
+      47: getfield      #18                 // Field myAffectedFilesRawLines:Ljava/util/Set;
+      50: invokeinterface #49,  1           // InterfaceMethod java/util/Set.clear:()V
+      55: aload_0
+      56: getfield      #26                 // Field myAffectedFiles:Ljava/util/Set;
+      59: aload_1
+      60: invokevirtual #52                 // Method java/lang/String.trim:()Ljava/lang/String;
+      63: ldc           #56                 // String
+      65: invokevirtual #58                 // Method java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+      68: invokestatic  #62                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+      71: invokeinterface #68,  2           // InterfaceMethod java/util/Set.addAll:(Ljava/util/Collection;)Z
+      76: pop
+      77: aload_0
+      78: invokespecial #72                 // Method git4idea/commands/GitMessageWithFilesDetector.getRelativeFilePaths:()Ljava/util/Set;
+      81: dup
+      82: ifnonnull     89
+      85: iconst_2
+      86: invokestatic  #204                // Method $$$reportNull$$$0:(I)V
+      89: areturn
+
+  protected void handleAsAffectedFiles(java.lang.String);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_3
+       5: invokestatic  #204                // Method $$$reportNull$$$0:(I)V
+       8: aload_0
+       9: getfield      #18                 // Field myAffectedFilesRawLines:Ljava/util/Set;
+      12: aload_1
+      13: invokeinterface #76,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      18: pop
+      19: aload_0
+      20: aload_1
+      21: invokespecial #80                 // Method git4idea/commands/GitMessageWithFilesDetector.handleAsAffectedFiles:(Ljava/lang/String;)V
+      24: return
+
+  public void onLineAvailable(java.lang.String, com.intellij.openapi.util.Key);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_4
+       5: invokestatic  #204                // Method $$$reportNull$$$0:(I)V
+       8: aload_2
+       9: ifnonnull     16
+      12: iconst_5
+      13: invokestatic  #204                // Method $$$reportNull$$$0:(I)V
+      16: aload_0
+      17: getfield      #22                 // Field myOperation:Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation;
+      20: getstatic     #84                 // Field git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation.MERGE:Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation;
+      23: if_acmpne     60
+      26: aload_0
+      27: getfield      #89                 // Field myMessageOutputType:Lcom/intellij/openapi/util/Key;
+      30: ifnull        60
+      33: aload_1
+      34: ldc           #93                 // String ^<stdin>:\\d+:.*
+      36: invokevirtual #45                 // Method java/lang/String.matches:(Ljava/lang/String;)Z
+      39: ifeq          60
+      42: aload_0
+      43: getfield      #26                 // Field myAffectedFiles:Ljava/util/Set;
+      46: invokeinterface #29,  1           // InterfaceMethod java/util/Set.size:()I
+      51: iconst_1
+      52: if_icmpne     60
+      55: aload_0
+      56: aconst_null
+      57: putfield      #89                 // Field myMessageOutputType:Lcom/intellij/openapi/util/Key;
+      60: aload_0
+      61: aload_1
+      62: aload_2
+      63: invokespecial #95                 // Method git4idea/commands/GitMessageWithFilesDetector.onLineAvailable:(Ljava/lang/String;Lcom/intellij/openapi/util/Key;)V
+      66: aload_0
+      67: getfield      #22                 // Field myOperation:Lgit4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation;
+      70: invokevirtual #99                 // Method git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector$Operation.getPatterns:()[Ljava/util/regex/Pattern;
+      73: astore_3
+      74: aload_3
+      75: arraylength
+      76: istore        4
+      78: iconst_0
+      79: istore        5
+      81: iload         5
+      83: iload         4
+      85: if_icmpge     140
+      88: aload_3
+      89: iload         5
+      91: aaload
+      92: astore        6
+      94: aload         6
+      96: aload_1
+      97: invokevirtual #103                // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+     100: astore        7
+     102: aload         7
+     104: invokevirtual #109                // Method java/util/regex/Matcher.matches:()Z
+     107: ifeq          134
+     110: aload_0
+     111: iconst_1
+     112: putfield      #114                // Field myMessageDetected:Z
+     115: aload_0
+     116: getfield      #26                 // Field myAffectedFiles:Ljava/util/Set;
+     119: aload         7
+     121: iconst_1
+     122: invokevirtual #118                // Method java/util/regex/Matcher.group:(I)Ljava/lang/String;
+     125: invokeinterface #76,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     130: pop
+     131: goto          140
+     134: iinc          5, 1
+     137: goto          81
+     140: return
+
+  static {};
+    Code:
+       0: ldc           #122                // String .*You have local changes to \'(.*)\'; cannot switch branches.*
+       2: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+       5: putstatic     #128                // Field OLD_CHECKOUT_PATTERN:Ljava/util/regex/Pattern;
+       8: ldc           #132                // String .*Your local changes to \'(.*)\' would be overwritten by merge.*
+      10: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      13: putstatic     #134                // Field OLD_MERGE_PATTERN:Ljava/util/regex/Pattern;
+      16: iconst_2
+      17: anewarray     #104                // class java/util/regex/Pattern
+      20: dup
+      21: iconst_0
+      22: ldc           #137                // String .*Entry \'(.*)\' not uptodate. Cannot merge.*
+      24: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      27: aastore
+      28: dup
+      29: iconst_1
+      30: ldc           #139                // String .*Entry \'(.*)\' would be overwritten by merge.*
+      32: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      35: aastore
+      36: putstatic     #141                // Field RESET_PATTERNS:[Ljava/util/regex/Pattern;
+      39: new           #145                // class git4idea/commands/GitMessageWithFilesDetector$Event
+      42: dup
+      43: ldc           #147                // String LocalChangesDetector
+      45: ldc           #149                // String .*Your local changes to the following files would be overwritten by.*
+      47: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      50: invokestatic  #151                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+      53: ldc           #157                // String .*commit your changes or stash them before.*
+      55: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      58: ldc           #159                // String .*Merge with strategy .* failed.*
+      60: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      63: ldc           #161                // String .*No merge strategy handled the merge.*
+      65: invokestatic  #124                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      68: invokestatic  #163                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      71: invokespecial #166                // Method git4idea/commands/GitMessageWithFilesDetector$Event."<init>":(Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+      74: putstatic     #1                  // Field NEW_PATTERN:Lgit4idea/commands/GitMessageWithFilesDetector$Event;
+      77: return
+
+  private static void $$$reportNull$$$0(int);
+    Code:
+       0: iload_0
+       1: tableswitch   { // 0 to 5
+                     0: 40
+                     1: 40
+                     2: 45
+                     3: 40
+                     4: 40
+                     5: 40
+               default: 40
+          }
+      40: ldc           #206                // String Argument for @NotNull parameter \'%s\' of %s.%s must not be null
+      42: goto          50
+      45: ldc           #208                // String @NotNull method %s.%s must not return null
+      47: goto          50
+      50: iload_0
+      51: tableswitch   { // 0 to 5
+                     0: 88
+                     1: 88
+                     2: 92
+                     3: 88
+                     4: 88
+                     5: 88
+               default: 88
+          }
+      88: iconst_3
+      89: goto          96
+      92: iconst_2
+      93: goto          96
+      96: anewarray     #210                // class java/lang/Object
+      99: iload_0
+     100: tableswitch   { // 0 to 5
+                     0: 140
+                     1: 148
+                     2: 156
+                     3: 164
+                     4: 164
+                     5: 172
+               default: 140
+          }
+     140: dup
+     141: iconst_0
+     142: ldc           #211                // String root
+     144: aastore
+     145: goto          180
+     148: dup
+     149: iconst_0
+     150: ldc           #212                // String operation
+     152: aastore
+     153: goto          180
+     156: dup
+     157: iconst_0
+     158: ldc           #213                // String git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector
+     160: aastore
+     161: goto          180
+     164: dup
+     165: iconst_0
+     166: ldc           #214                // String line
+     168: aastore
+     169: goto          180
+     172: dup
+     173: iconst_0
+     174: ldc           #215                // String outputType
+     176: aastore
+     177: goto          180
+     180: iload_0
+     181: tableswitch   { // 0 to 5
+                     0: 220
+                     1: 220
+                     2: 228
+                     3: 220
+                     4: 220
+                     5: 220
+               default: 220
+          }
+     220: dup
+     221: iconst_1
+     222: ldc           #213                // String git4idea/commands/GitLocalChangesWouldBeOverwrittenDetector
+     224: aastore
+     225: goto          236
+     228: dup
+     229: iconst_1
+     230: ldc           #216                // String getRelativeFilePaths
+     232: aastore
+     233: goto          236
+     236: iload_0
+     237: tableswitch   { // 0 to 5
+                     0: 276
+                     1: 276
+                     2: 284
+                     3: 287
+                     4: 295
+                     5: 295
+               default: 276
+          }
+     276: dup
+     277: iconst_2
+     278: ldc           #217                // String <init>
+     280: aastore
+     281: goto          303
+     284: goto          303
+     287: dup
+     288: iconst_2
+     289: ldc           #218                // String handleAsAffectedFiles
+     291: aastore
+     292: goto          303
+     295: dup
+     296: iconst_2
+     297: ldc           #219                // String onLineAvailable
+     299: aastore
+     300: goto          303
+     303: invokestatic  #223                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     306: iload_0
+     307: tableswitch   { // 0 to 5
+                     0: 344
+                     1: 344
+                     2: 355
+                     3: 344
+                     4: 344
+                     5: 344
+               default: 344
+          }
+     344: new           #225                // class java/lang/IllegalArgumentException
+     347: dup_x1
+     348: swap
+     349: invokespecial #227                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     352: goto          366
+     355: new           #229                // class java/lang/IllegalStateException
+     358: dup_x1
+     359: swap
+     360: invokespecial #230                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     363: goto          366
+     366: athrow
+}

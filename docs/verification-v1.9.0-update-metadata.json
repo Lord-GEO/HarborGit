@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.9.0",
+  "setup": "HarborGit-1.9.0-Setup-x64.exe",
+  "bytes": 128353062,
+  "sha256": "0348ecf7db4ebd418b65b7137645003a2c8b200a187188d41e3c10af0593a2e3",
+  "sha512": "BhnF/nbi7ss4TxXqgV4xweON+/EMfmwVHZzy3RNTFYhgXFtvPlf/s8IPvOX5F/fdymuy0krXlk3CmXCiRKAqJg==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.9.0",
+    "files": [
+      {
+        "url": "HarborGit-1.9.0-Setup-x64.exe",
+        "sha512": "BhnF/nbi7ss4TxXqgV4xweON+/EMfmwVHZzy3RNTFYhgXFtvPlf/s8IPvOX5F/fdymuy0krXlk3CmXCiRKAqJg==",
+        "size": 128353062
+      }
+    ],
+    "path": "HarborGit-1.9.0-Setup-x64.exe",
+    "sha512": "BhnF/nbi7ss4TxXqgV4xweON+/EMfmwVHZzy3RNTFYhgXFtvPlf/s8IPvOX5F/fdymuy0krXlk3CmXCiRKAqJg==",
+    "releaseNotes": "# HarborGit v1.9.0\r\n\r\n- 分支切换遇到本地改动覆盖保护时，新增“智能签出”弹窗，列出将保存的全部改动。\r\n- 确认后先保存暂存、未暂存和未跟踪文件，再签出目标分支并尝试恢复改动及暂存状态。\r\n- 恢复出现冲突时停留在目标分支，进入文件冲突处理；解决并暂存后，可结束恢复继续工作。\r\n- 专用 WIP 引用和 Stash 均保留，按精确备份恢复；任务中断后重新打开可继续处理，不自动重复应用。\r\n- 执行前核对原分支、HEAD 和目标提交，保护其他工作区占用的分支以及重名的未跟踪 / 忽略内容。\r\n\r\n本版为新增智能签出的 1.x 小版本。仅对智能签出做专项验证，并补查两个共用备份机制的旧场景；未运行全量回归或安装卸载测试。\r\n",
+    "releaseDate": "2026-11-13T09:40:11.680Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "output": "javap/git4idea.branch.GitCheckoutOperation.txt",
+    "output_sha256": "26484b611cf706481e0be96bb3fe0eb5067cbb0f1811903b70e3b585c1d58ca1",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/branch/GitCheckoutOperation.class",
+    "member_sha256": "5ed70d41bcaf5be79f4adddff13d35889a8fd782e797bbcad000e16214fcbe01",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ],
+    "reused_output": "docs\\evidence\\javap\\git4idea.branch.GitCheckoutOperation.txt",
+    "current_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0"
+  },
+  {
+    "output": "javap/git4idea.commands.GitImpl.txt",
+    "output_sha256": "b623ce7d894f3bbddd512c0c8335d57add6a882e2c94bc4a048847d630e95372",
+    "source_jar": "D:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.1.3\\plugins\\vcs-git\\lib\\vcs-git.jar",
+    "member": "git4idea/commands/GitImpl.class",
+    "member_sha256": "1ad755d372fec89eba7e8bf7fc930e2a4a71798e4836893954d8a36a3341df41",
+    "tool": "javap 21.0.11",
+    "arguments": [
+      "-p",
+      "-c"
+    ],
+    "reused_output": "docs\\evidence\\javap\\git4idea.commands.GitImpl.txt",
+    "current_jar_sha256": "6dee7a6363454456b7b187c3c9682b01d78f62b50840b1f571b6d5afdf4e5be0"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "start": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "end": {
+    "open": false,
+    "cleanup_pending": false
+  },
+  "openedTarget": false,
+  "staticArtifactInspectionOnly": true
+}

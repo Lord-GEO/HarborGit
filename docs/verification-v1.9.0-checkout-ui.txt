@@ -1,0 +1,12 @@
+{
+  "version": "1.9.0",
+  "status": "passed",
+  "mode": "packaged",
+  "checks": [
+    "Ordinary checkout protection opens review dialog listing all saved paths; cancel leaves branch, worktree and stash untouched",
+    "Smart checkout stays on target and distinguishes restore conflict from rebase, opens file conflict editor, and finishes recovery without committing or moving branch tips",
+    "Staged content, Unicode untracked file and dedicated WIP/Stash remain; no renderer errors"
+  ],
+  "fullRegressionRun": false,
+  "fixtureRemoved": true
+}
