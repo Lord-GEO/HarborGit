@@ -2,6 +2,8 @@
 
 HarborGit 是基于 Electron、React 和 TypeScript 开发的 Git 图形客户端，通过本机 Git 管理代码仓库，提供 Windows 和 macOS 打包配置。
 
+**v1.9.2 分支合并自动保存**：修复“合并到当前”仍被本地改动阻止的问题。本地及远程分支合并都会先保存改动，合并完成或中止后恢复；合并冲突与恢复冲突分开处理。见 [补丁说明](docs/RELEASE-1.9.2.md)。
+
 **v1.9.1 Pull 自动保存与合并**：默认保存本地暂存、未暂存和未跟踪改动，获取并合并远程提交后恢复；分支分叉时生成合并提交，远程合并冲突与本地改动恢复冲突分步处理。见 [操作说明](docs/RELEASE-1.9.1.md) 和 [IDEA 取证与独立实现](docs/IDEA-PULL-SAVE-ANALYSIS.md)。
 
 **v1.9.0 智能签出**：切换分支遇到本地改动覆盖保护时，可选择先保存改动、签出目标并恢复；恢复冲突进入文件处理，保留专用备份。见 [智能签出说明](docs/RELEASE-1.9.0.md) 和 [IDEA 静态分析](docs/IDEA-SMART-CHECKOUT-ANALYSIS.md)。

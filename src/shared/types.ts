@@ -4,7 +4,7 @@ export interface AppAppearance { theme: AppTheme; saved: boolean; }
 export interface FileChange { path: string; originalPath?: string; index: string; worktree: string; conflict: boolean; }
 export interface MergeWorkspace { sourceRoot: string; sourceBranch: string; targetBranch: string; }
 export interface RepositoryOperation { kind: 'rebase' | 'revert'; branch?: string; onto?: string; commit?: string; step?: number; total?: number; }
-export interface RebaseSavedChanges { kind?: 'checkout' | 'pull'; targetBranch?: string; pullRemote?: string; pullBranch?: string; pullPhase?: 'prepared' | 'merging' | 'restore'; pullFailed?: boolean; ref: string; originalBranch: string; sourceBranch: string; status: 'saving' | 'saved' | 'restore-pending' | 'restore-conflicts' | 'restored'; message: string; }
+export interface RebaseSavedChanges { kind?: 'checkout' | 'pull' | 'merge'; targetBranch?: string; pullRemote?: string; pullBranch?: string; pullPhase?: 'prepared' | 'merging' | 'restore'; pullFailed?: boolean; mergeBranch?: string; mergePhase?: 'prepared' | 'merging' | 'restore'; mergeFailed?: boolean; ref: string; originalBranch: string; sourceBranch: string; status: 'saving' | 'saved' | 'restore-pending' | 'restore-conflicts' | 'restored'; message: string; }
 export interface CheckoutPrompt { name: string; originalBranch: string; targetBranch: string; expectedHead: string; expectedTargetHead: string; paths: string[]; }
 export interface Repository { sessionId?: string; mergeWorkspace?: MergeWorkspace; root: string; branch: string; head: string; unborn: boolean; detached: boolean; upstream: string; ahead: number; behind: number; entries: FileChange[]; mergeInProgress: boolean; operation?: RepositoryOperation; historyBackup?: string; rebaseSavedChanges?: RebaseSavedChanges; userName: string; userEmail: string; }
 export interface MergeIntoResult { repository: Repository; mergeRepository: Repository | null; status: 'merged' | 'attention'; message: string; }
@@ -44,7 +44,7 @@ export interface Requests {
   pushTag: { name: string; remote: string; expectedObjectId: string };
   remotes: Record<string, never>; remote: { action: 'fetch' | 'pull' | 'push'; remote: string; branch?: string; autoSaveChanges?: boolean; expectedHead?: string; expectedBranch?: string };
   saveRemote: { name: string; url: string; pushUrl?: string; create: boolean }; removeRemote: { name: string };
-  merge: { branch: string }; mergeInto: { target: string }; finishMergeWorkspace: Record<string, never>; conflict: { path: string }; resolve: { path: string; choice: 'ours' | 'theirs' | 'manual'; content?: string };
+  merge: { branch: string; autoSaveChanges?: boolean; expectedHead?: string; expectedBranch?: string; expectedTargetHead?: string }; mergeInto: { target: string }; finishMergeWorkspace: Record<string, never>; conflict: { path: string }; resolve: { path: string; choice: 'ours' | 'theirs' | 'manual'; content?: string };
   abortMerge: Record<string, never>; identity: { name: string; email: string };
   rebase: { branch?: string; targetCommit?: string; sourceBranch?: string; expectedSourceHead?: string; preserveMerges?: boolean; autoSaveChanges?: boolean; expectedHead: string };
   rebaseAction: { action: 'continue' | 'skip' | 'abort' };

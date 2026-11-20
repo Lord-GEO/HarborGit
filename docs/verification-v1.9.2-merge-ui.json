@@ -1,0 +1,11 @@
+{
+  "version": "1.9.2",
+  "status": "passed",
+  "mode": "packaged",
+  "checks": [
+    "Local dev merge automatically saves three dirty configuration files and untracked WIP; merge commit excludes private WIP",
+    "Branch conflict -> merge commit -> separate WIP conflict -> edit and finish; staged split explicitly checked and adjusted after restore conflict; source tip, untracked file and backups preserved; no renderer errors"
+  ],
+  "fullRegressionRun": false,
+  "fixtureRemoved": true
+}

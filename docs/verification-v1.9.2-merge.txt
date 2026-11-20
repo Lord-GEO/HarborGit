@@ -1,0 +1,12 @@
+✔ branch merge saves the three dirty configuration files, restores staged split, and guards stale sources and untracked or ignored collisions (8928.3713ms)
+✔ branch merge conflicts keep WIP saved across reopen, then restore only after the merge commit (11028.089ms)
+✔ aborting saved branch merge restores original HEAD and local modifications with backups intact (6819.1728ms)
+✔ branch WIP restore conflict is not a merge in progress and cannot be applied twice (9249.8282ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36434.767

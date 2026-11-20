@@ -1,0 +1,10 @@
+✔ remote merge conflict survives reopen; resolve and commit merge automatically restores saved WIP (10825.9368ms)
+✔ aborting remote merge restores original HEAD and original staged and unstaged modifications (8255.9923ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19232.4509
