@@ -72,6 +72,11 @@ test('branch merge saves the three dirty configuration files, restores staged sp
   assert.doesNotMatch(git(repo, ['show', `HEAD:${config}`]), /staged local|unstaged local/);
   assert.equal(git(repo, ['rev-parse', `${done.rebaseSavedChanges!.ref}^1`]), original);
   await restored(repo, older);
+  const stashes = git(repo, ['stash', 'list', '--format=%H']);
+  const upToDate = await service.request('merge', { ...payload, expectedHead: target });
+  assert.deepEqual(upToDate.entries, done.entries);
+  assert.equal(upToDate.rebaseSavedChanges?.ref, done.rebaseSavedChanges?.ref);
+  assert.equal(git(repo, ['stash', 'list', '--format=%H']), stashes);
 });
 
 test('branch merge conflicts keep WIP saved across reopen, then restore only after the merge commit', async () => {

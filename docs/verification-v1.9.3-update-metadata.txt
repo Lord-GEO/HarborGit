@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "1.9.3",
+  "setup": "HarborGit-1.9.3-Setup-x64.exe",
+  "bytes": 128363820,
+  "sha256": "dd55d117e59e1f0ec74c685f5cf8ec57e5971507ce786ad6a7b954b9488c9ee1",
+  "sha512": "jim/mLsJ6u3op/uG3OMGQ/7MzmRMwH5UQ1qC5RNWLPaRQNQggNh9s9KDNGTJs5KsQDZ0pG8Viso/n/oIcy3djQ==",
+  "feed": {
+    "owner": "Lord-GEO",
+    "repo": "HarborGit",
+    "provider": "github",
+    "releaseType": "release",
+    "channel": "latest",
+    "updaterCacheDirName": "harbor-git-updater"
+  },
+  "metadata": {
+    "version": "1.9.3",
+    "files": [
+      {
+        "url": "HarborGit-1.9.3-Setup-x64.exe",
+        "sha512": "jim/mLsJ6u3op/uG3OMGQ/7MzmRMwH5UQ1qC5RNWLPaRQNQggNh9s9KDNGTJs5KsQDZ0pG8Viso/n/oIcy3djQ==",
+        "size": 128363820
+      }
+    ],
+    "path": "HarborGit-1.9.3-Setup-x64.exe",
+    "sha512": "jim/mLsJ6u3op/uG3OMGQ/7MzmRMwH5UQ1qC5RNWLPaRQNQggNh9s9KDNGTJs5KsQDZ0pG8Viso/n/oIcy3djQ==",
+    "releaseNotes": "# HarborGit v1.9.3\r\n\r\n- Pull 与分支合并发现目标提交已合入时直接结束，跳过不必要的工作区检查与 Stash。\r\n- 复用同一次检查中的目录结果和目标文件清单，减少操作中的 Git 调用。\r\n- 暂存和取消暂存只刷新工作区状态。Pull、Push 和分支合并完成后更新分支列表。\r\n- 3,000 文件本地样本中，带改动合并从约 9.2 秒降至 4.4 秒，Pull 从约 11.1 秒降至 5.2 秒。\r\n",
+    "releaseDate": "2026-11-27T04:59:56.865Z"
+  },
+  "note": "Verified actual installer bytes against published metadata; no upload performed."
+}

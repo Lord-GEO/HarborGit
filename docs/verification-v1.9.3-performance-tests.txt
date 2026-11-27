@@ -1,0 +1,21 @@
+✔ smart checkout carries staged, unstaged and untracked changes to target without moving branch tips (9182.0857ms)
+✔ rebase honors --rebase-merges and works in a linked worktree without touching its sibling (7452.949ms)
+✔ ignored paths touched by intermediate replay commits or revert parents are protected (4455.364ms)
+✔ branch merge saves the three dirty configuration files, restores staged split, and guards stale sources and untracked or ignored collisions (11246.7992ms)
+✔ branch merge conflicts keep WIP saved across reopen, then restore only after the merge commit (9741.0994ms)
+✔ aborting saved branch merge restores original HEAD and local modifications with backups intact (8187.6593ms)
+✔ branch WIP restore conflict is not a merge in progress and cannot be applied twice (8741.7996ms)
+✔ Pull fetch failure leaves WIP untouched; fast-forward restores index, worktree, binary untracked and older stash (11383.9528ms)
+✔ divergent Pull creates a two-parent merge then restores WIP without committing private modifications (6930.9908ms)
+✔ remote merge conflict survives reopen; resolve and commit merge automatically restores saved WIP (11257.1058ms)
+✔ aborting remote merge restores original HEAD and original staged and unstaged modifications (9269.2374ms)
+✔ WIP restore conflict is separate from remote merge, cannot be replayed, and can be resolved without a merge commit (8536.8358ms)
+✔ saved changes rebase: failed index restore permits explicit unstaged fallback only before any partial write (12021.4798ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47759.9447

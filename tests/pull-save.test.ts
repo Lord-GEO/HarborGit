@@ -71,6 +71,12 @@ test('Pull fetch failure leaves WIP untouched; fast-forward restores index, work
   assert.equal(git(repo, ['rev-parse', `${done.rebaseSavedChanges!.ref}^1`]), original);
   assert.equal(git(repo, ['rev-parse', 'stash@{1}']), olderStash);
   await checkRestored(repo); assert.match(await readFile(path.join(repo, config), 'utf8'), /key0: remote/);
+  const stashes = git(repo, ['stash', 'list', '--format=%H']);
+  const upToDate = await service.request('remote', { action: 'pull', remote: 'origin', branch: 'master', expectedHead: target });
+  assert.deepEqual(upToDate.entries, done.entries);
+  assert.equal(upToDate.rebaseSavedChanges?.ref, done.rebaseSavedChanges?.ref);
+  assert.equal(git(repo, ['stash', 'list', '--format=%H']), stashes);
+  assert.equal(git(repo, ['for-each-ref', '--format=%(refname)', 'refs/harborgit/fetch']), '');
 });
 
 test('divergent Pull creates a two-parent merge then restores WIP without committing private modifications', async () => {

@@ -236,9 +236,13 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     void window.harbor.recent().then(setRecent).catch(() => {});
   }, [id, onOpened]);
 
-  const loadSupplementary = useCallback(async () => {
+  const loadSupplementary = useCallback(async (scope: 'all' | 'branches' = 'all') => {
     const root = repoKey.current;
-    const [nextBranches, nextRemotes, nextTags] = await Promise.all([call('branches', {}), call('remotes', {}), call('tags', {})]);
+    const [nextBranches, nextRemotes, nextTags] = await Promise.all([
+      call('branches', {}),
+      scope === 'all' ? call('remotes', {}) : undefined,
+      scope === 'all' ? call('tags', {}) : undefined,
+    ]);
     if (repoKey.current !== root) return;
     if (nextBranches) setBranches(nextBranches);
     if (nextTags) setTags(nextTags);
@@ -258,13 +262,20 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     ++historyEpoch.current; setHistoryScope(scope); setCommits([]); setSelectedCommit(null); setCommitFiles([]); setSelection(null); void loadHistory(false, scope);
   };
 
-  const run = useCallback(async (label: string, action: () => Promise<Repository | undefined>, success?: string) => {
+  const run = useCallback(async (label: string, action: () => Promise<Repository | undefined>, success?: string, refreshLists: 'all' | 'branches' | 'none' = 'all') => {
     if (busyRef.current) return;
     busyRef.current = true; setBusy(label); setError(null); setNotice('');
-    historyLoaded.current = false;
+    if (refreshLists !== 'none') historyLoaded.current = false;
     try {
       const next = await action();
-      if (next) { acceptRepo(next); if (success) setNotice(success); if (next.sessionId === id) { await loadSupplementary(); if (view === 'history') await loadHistory(); } }
+      if (next) {
+        acceptRepo(next);
+        if (success) setNotice(success);
+        if (next.sessionId === id && refreshLists !== 'none') {
+          await loadSupplementary(refreshLists);
+          if (view === 'history') await loadHistory();
+        }
+      }
       else if (repoKey.current) { const fresh = await call('refresh', {}); if (fresh) acceptRepo(fresh); }
       return next;
     } finally { busyRef.current = false; setBusy(''); }
@@ -313,8 +324,8 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
   const showOpen = () => { setPath(''); setModal('open'); setError(null); };
   const showClone = () => { setPath(''); setUrl(''); setModal('clone'); setError(null); };
   const refresh = () => run('刷新仓库…', () => call('refresh', {}));
-  const stage = (paths: string[]) => run('暂存文件…', () => call('stage', { paths }), '已暂存选中文件');
-  const unstage = (paths: string[]) => run('取消暂存…', () => call('unstage', { paths }), '已取消暂存，工作区内容已保留');
+  const stage = (paths: string[]) => run('暂存文件…', () => call('stage', { paths }), '已暂存选中文件', 'none');
+  const unstage = (paths: string[]) => run('取消暂存…', () => call('unstage', { paths }), '已取消暂存，工作区内容已保留', 'none');
   const chooseCommit = async (commit: Commit) => {
     const epoch = ++historyEpoch.current; setSelectedCommit(commit); setCommitFiles([]); setSelection(null);
     const files = await call('commitFiles', { hash: commit.hash });
@@ -393,10 +404,12 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     const source = branches.find(branch => branch.name === name);
     if (!source) { setError({ message: '分支列表已变化，请刷新后重新合并' }); return; }
     const previousRef = repo.rebaseSavedChanges?.ref;
-    const next = await run('保存改动并合并分支…', () => call('merge', { branch: name, autoSaveChanges: true, expectedHead: repo.head, expectedBranch: repo.branch, expectedTargetHead: source.hash }));
+    const next = await run('合并分支…', () => call('merge', { branch: name, autoSaveChanges: true, expectedHead: repo.head, expectedBranch: repo.branch, expectedTargetHead: source.hash }), undefined, 'branches');
     if (next) {
       const saved = next.rebaseSavedChanges;
-      setNotice(next.mergeInProgress ? '分支合并尚未完成，请解决冲突并提交，或中止合并；保存的原改动随后恢复' : saved?.kind === 'merge' && saved.ref !== previousRef ? saved.message : '分支合并已完成');
+      if (next.mergeInProgress) setNotice('分支合并尚未完成，请解决冲突并提交，或中止合并');
+      else if (saved?.kind === 'merge' && saved.ref !== previousRef) setNotice(saved.message);
+      else setNotice(next.head === repo.head ? '当前分支已包含所选提交' : '分支合并已完成');
       if (next.mergeInProgress || (saved && saved.status !== 'restored')) { setView('changes'); setSelection(null); }
     } else if (latestRepository.current?.rebaseSavedChanges?.kind === 'merge' && latestRepository.current.rebaseSavedChanges.ref !== previousRef) {
       setView('changes'); setSelection(null);
@@ -450,11 +463,14 @@ function RepositoryView({ id, active, initialRepo, onOpened, onClose, onAiSettin
     else if (modal === 'identity') await run('保存提交身份…', async () => { const next = await call('identity', { name: userName, email: userEmail }); if (next) setModal(null); return next; }, '已保存到当前仓库');
     else if (modal === 'remote') {
       const previousRef = repo?.rebaseSavedChanges?.ref;
-      const next = await run(`${remoteAction === 'fetch' ? '获取远程更新' : remoteAction === 'pull' ? '保存改动并拉取更新' : '推送提交'}…`, () => call('remote', { action: remoteAction, remote: remoteName, ...(remoteBranch ? { branch: remoteBranch } : {}), ...(remoteAction === 'pull' && repo ? { autoSaveChanges: autoSavePull, expectedHead: repo.head, expectedBranch: repo.branch } : {}) }));
+      const next = await run(`${remoteAction === 'fetch' ? '获取远程更新' : remoteAction === 'pull' ? '拉取更新' : '推送提交'}…`, () => call('remote', { action: remoteAction, remote: remoteName, ...(remoteBranch ? { branch: remoteBranch } : {}), ...(remoteAction === 'pull' && repo ? { autoSaveChanges: autoSavePull, expectedHead: repo.head, expectedBranch: repo.branch } : {}) }), undefined, remoteAction === 'fetch' ? 'all' : 'branches');
       if (next) {
         setModal(null);
         const saved = next.rebaseSavedChanges;
-        setNotice(remoteAction === 'pull' ? next.mergeInProgress ? saved?.kind === 'pull' && saved.status !== 'restored' ? '远程合并存在冲突，请解决并提交，或中止合并；原改动将在合并结束后恢复' : '远程合并存在冲突，请解决并提交，或中止合并' : saved?.kind === 'pull' && saved.ref !== previousRef ? saved.message : 'Pull 合并已完成' : '远程操作完成');
+        if (remoteAction !== 'pull') setNotice('远程操作完成');
+        else if (next.mergeInProgress) setNotice('远程合并尚未完成，请解决并提交，或中止合并');
+        else if (saved?.kind === 'pull' && saved.ref !== previousRef) setNotice(saved.message);
+        else setNotice(next.head === repo?.head ? '当前分支已包含拉取的提交' : 'Pull 合并已完成');
         if (remoteAction === 'pull' && (next.mergeInProgress || (saved && saved.status !== 'restored'))) { setView('changes'); setSelection(null); }
       } else if (remoteAction === 'pull' && latestRepository.current?.rebaseSavedChanges?.kind === 'pull' && latestRepository.current.rebaseSavedChanges.ref !== previousRef) {
         setModal(null); setView('changes'); setSelection(null);

@@ -160,17 +160,30 @@ export class GitService {
   }
   private git(args: string[], opts?: RunOptions) { if (!this.root) throw new GitError({ message: '请先打开仓库' }); return this.run(this.root, args, opts); }
   private async hasHead() { return (await this.git(['rev-parse', '--verify', 'HEAD'], { accepted: [0, 128] })).code === 0; }
-  private async snapshot(): Promise<Repository> {
+  private async workingStatus() {
     const result = await this.git(['status', '--porcelain=v2', '-z', '--branch', '--untracked-files=all']);
     if (result.truncated) throw new GitError({ message: '仓库状态超过 16 MiB 读取上限，无法完整展示' });
-    const status = parseStatus(result.stdout);
-    const mergePath = (await this.git(['rev-parse', '--git-path', 'MERGE_HEAD'])).stdout.trim();
-    const mergeInProgress = await fs.access(path.resolve(this.root, mergePath)).then(() => true, () => false);
-    const userName = (await this.git(['config', '--get', 'user.name'], { accepted: [0, 1] })).stdout.trim();
-    const userEmail = (await this.git(['config', '--get', 'user.email'], { accepted: [0, 1] })).stdout.trim();
+    return parseStatus(result.stdout);
+  }
+  private async worktreeState() {
+    const status = await this.workingStatus();
     const operationState = await this.operationState();
-    const saved = await this.savedRebaseRecord(operationState, { head: status.head, branch: status.branch });
-    return { root: this.root, ...status, mergeInProgress, userName, userEmail, operation: operationState.operation, historyBackup: await this.historyBackup(operationState.gitDir), rebaseSavedChanges: saved && this.publicSavedChanges(saved), mergeWorkspace: await this.mergeMetadata() };
+    const mergeInProgress = await fs.access(path.join(operationState.gitDir, 'MERGE_HEAD')).then(() => true, () => false);
+    return { ...status, mergeInProgress, operation: operationState.operation, operationState };
+  }
+  private async snapshot(state?: Awaited<ReturnType<GitService['worktreeState']>>): Promise<Repository> {
+    const { operationState, ...status } = state ?? await this.worktreeState();
+    const saved = await this.savedRebaseRecord(operationState, status);
+    const identity = (await this.git(['config', '--null', '--get-regexp', '^user\\.(name|email)$'], { accepted: [0, 1] })).stdout;
+    let userName = '', userEmail = '';
+    for (const field of identity.split('\0')) {
+      const separator = field.indexOf('\n');
+      if (separator === -1) continue;
+      const key = field.slice(0, separator), value = field.slice(separator + 1).trim();
+      if (key === 'user.name') userName = value;
+      else if (key === 'user.email') userEmail = value;
+    }
+    return { root: this.root, ...status, userName, userEmail, historyBackup: await this.historyBackup(operationState.gitDir), rebaseSavedChanges: saved && this.publicSavedChanges(saved), mergeWorkspace: await this.mergeMetadata(operationState.gitDir) };
   }
   /** State belongs to a Git worktree, not necessarily root/.git (which can be a file). */
   private async operationState(): Promise<OperationState> {
@@ -270,8 +283,9 @@ export class GitService {
   }
   private saveMarker(record: SavedRebaseRecord) { return `HarborGit ${record.kind || 'rebase'} autosave ${record.token}`; }
   private async verifySavedStash(record: SavedRebaseRecord, id: string) {
-    const subject = (await this.git(['show', '--no-patch', '--format=%s', id])).stdout.trim();
-    const parents = await this.parents(id);
+    const result = await this.git(['show', '--no-patch', '--format=%s%x00%P', id]);
+    const [subject, parentList = ''] = result.stdout.trim().split('\0');
+    const parents = parentList.trim().split(' ').filter(Boolean);
     if (!subject.endsWith(this.saveMarker(record)) || parents.length < 2 || parents.length > 3 || parents[0] !== record.originalHead) throw new GitError({ message: '无法确认该保存对象属于本次操作，未恢复或改写任何内容' });
     return parents;
   }
@@ -286,12 +300,13 @@ export class GitService {
     return [...candidates][0];
   }
   private async bindSavedRef(record: SavedRebaseRecord, id: string) {
-    await this.verifySavedStash(record, id);
+    const parents = await this.verifySavedStash(record, id);
     const existing = await this.git(['rev-parse', '--verify', `${record.ref}^{commit}`], { accepted: [0, 128] });
     if (existing.code === 0) {
       if (existing.stdout.trim() !== id) throw new GitError({ message: '本次 WIP 备份引用已被外部改动，未覆盖该引用或应用任何内容' });
     } else await this.git(['update-ref', '--create-reflog', '-m', this.saveMarker(record), record.ref, id, '0'.repeat(id.length)]);
     record.stashOid = id; record.invalidRef = false;
+    return parents;
   }
   private locateCheckoutRestore(record: SavedRebaseRecord, current: { branch: string; head: string }) {
     if (current.branch === record.targetBranch && current.head === record.targetHead) {
@@ -353,7 +368,7 @@ export class GitService {
     if (changed) await this.writeSavedRecord(active.gitDir, record);
     return record;
   }
-  private async beginRebaseSave(state: Repository, sourceBranch: string, sourceHead: string, checkout?: { targetBranch: string; targetHead: string }, integration?: MergeSaveOptions): Promise<SavedRebaseRecord> {
+  private async beginRebaseSave(state: Pick<Repository, 'branch' | 'head'>, sourceBranch: string, sourceHead: string, checkout?: { targetBranch: string; targetHead: string }, integration?: MergeSaveOptions): Promise<SavedRebaseRecord> {
     const active = await this.operationState(), token = randomUUID();
     const record: SavedRebaseRecord = { version: 1, token, ref: `refs/harborgit/wip/${token}`, originalBranch: state.branch, originalHead: state.head, sourceBranch, sourceHead, status: 'saving', message: '正在保存本次变基前的暂存区、工作区和未跟踪文件；忽略内容不收进备份。' };
     if (checkout) Object.assign(record, { version: 2, kind: 'checkout', ...checkout, restoreBranch: state.branch, restoreHead: state.head, message: '正在保存智能签出前的暂存、未暂存和未跟踪内容；忽略文件不保存。' });
@@ -384,8 +399,7 @@ export class GitService {
   }
   private async savedPaths(record: SavedRebaseRecord): Promise<{ paths: string[]; untracked: string[]; parents: string[] }> {
     if (!record.stashOid || record.invalidRef) throw new GitError({ message: '尚未确认本次 WIP 备份，不能自动恢复' });
-    await this.bindSavedRef(record, record.stashOid);
-    const parents = await this.verifySavedStash(record, record.stashOid), paths = new Set<string>();
+    const parents = await this.bindSavedRef(record, record.stashOid), paths = new Set<string>();
     for (const endpoint of [record.stashOid, parents[1]]) {
       const result = await this.git(['diff', '--name-only', '-z', '--no-renames', parents[0], endpoint]);
       if (result.truncated) throw new GitError({ message: '保存改动路径过多，无法安全恢复，请保留备份并在外部处理' });
@@ -417,11 +431,11 @@ export class GitService {
     record.message = active.operation?.kind === 'rebase' ? '变基已暂停或被中断；原改动仍在专用备份中，继续或中止变基后再恢复。' : `变基任务未完成：${error instanceof Error ? error.message : String(error)}。原改动备份保留，请确认后恢复，不会自动重放。`;
     await this.writeSavedRecord(active.gitDir, record);
   }
-  private async restoreRebaseSaved(record: SavedRebaseRecord, preserveIndex: boolean, automatic = false): Promise<Repository> {
-    const active = await this.operationState();
+  private async restoreRebaseSaved(record: SavedRebaseRecord, preserveIndex: boolean, automatic = false, checkedState?: Awaited<ReturnType<GitService['worktreeState']>>): Promise<Repository> {
+    let state = checkedState ?? await this.worktreeState();
+    const active = state.operationState;
     try {
       if (active.operation || active.unsupported) throw new GitError({ message: '请先完成或中止当前 Git 操作，再恢复保存改动' });
-      let state = await this.snapshot();
       if (state.mergeInProgress || state.entries.length) throw new GitError({ message: '恢复前工作区和暂存区必须干净，不能覆盖当前改动或重复应用已有冲突' });
       if (await fs.access(path.join(active.gitDir, 'index.lock')).then(() => true, () => false)) throw new GitError({ message: 'Git 索引仍被其他任务占用，请等待后再恢复' });
       const restoreBranch = record.kind === 'checkout' ? record.restoreBranch! : record.originalBranch;
@@ -435,7 +449,7 @@ export class GitService {
       if (state.branch !== restoreBranch) {
         const trees = await this.git(['worktree', 'list', '--porcelain', '-z']);
         if (trees.truncated || trees.stdout.split('\0\0').some(tree => tree.split('\0').includes(`branch ${originalRef}`))) throw new GitError({ message: `恢复分支 ${restoreBranch} 在其他工作区被占用，备份保留，未切换` });
-        await this.git(['switch', restoreBranch]); state = await this.snapshot();
+        await this.git(['switch', restoreBranch]); state = await this.worktreeState();
       }
       if (state.branch !== restoreBranch || state.head !== expected || state.entries.length) throw new GitError({ message: '恢复目标分支或版本已变化，未应用保存改动' });
       for (const p of saved.untracked) if (await fs.lstat(path.join(this.root, p)).then(() => true, (e: NodeJS.ErrnoException) => { if (e.code === 'ENOENT') return false; throw e; })) throw new GitError({ message: `保存的未跟踪文件 ${p} 已有同名内容，未覆盖该文件` });
@@ -453,7 +467,7 @@ export class GitService {
         await this.writeSavedRecord(active.gitDir, record); return this.snapshot();
       } catch (error) {
         record.applyInProgress = false;
-        const after = await this.snapshot();
+        const after = await this.worktreeState();
         record.status = after.entries.some(file => file.conflict) ? 'restore-conflicts' : 'restore-pending';
         let untouched = false;
         if (!(error instanceof GitError && error.details.cancelled) && !after.entries.length && after.branch === restoreBranch && after.head === expected) {
@@ -462,7 +476,7 @@ export class GitService {
         }
         if (untouched) record.applyAttempted = false;
         record.message = untouched ? '保留暂存状态的恢复未完成，但已确认工作区与索引未被部分修改。备份保留，可重试，或明确选择不保留暂存状态恢复。' : '恢复失败、被取消或产生冲突，可能已有部分内容写入，暂存划分也可能变化。专用备份和 Stash 保留，禁止重复应用；请检查暂存区并处理现有文件，再确认完成。';
-        await this.writeSavedRecord(active.gitDir, record); return this.snapshot();
+        await this.writeSavedRecord(active.gitDir, record); return this.snapshot(after);
       }
     } catch (error) {
       if (record.status !== 'restore-conflicts') record.status = 'restore-pending';
@@ -494,18 +508,20 @@ export class GitService {
       return;
     }
     const target = record.targetHead!;
-    const forward = state.head === target && (await this.git(['merge-base', '--is-ancestor', record.originalHead, target], { accepted: [0, 1] })).code === 0;
-    const parents = (await this.git(['show', '-s', '--format=%P', state.head])).stdout.trim().split(' ');
-    if (state.head !== record.originalHead && !forward && !(parents.length === 2 && parents[0] === record.originalHead && parents[1] === target)) throw new GitError({ message: '提交不符合本次合并结果，未向不确定的版本恢复改动' });
+    if (state.head !== record.originalHead) {
+      const forward = state.head === target && (await this.git(['merge-base', '--is-ancestor', record.originalHead, target], { accepted: [0, 1] })).code === 0;
+      const parents = forward ? [] : (await this.git(['show', '-s', '--format=%P', state.head])).stdout.trim().split(' ');
+      if (!forward && !(parents.length === 2 && parents[0] === record.originalHead && parents[1] === target)) throw new GitError({ message: '提交不符合本次合并结果，未向不确定的版本恢复改动' });
+    }
     if (state.head === record.originalHead && !this.savedMergeFailed(record) && (await this.git(['merge-base', '--is-ancestor', target, state.head], { accepted: [0, 1] })).code !== 0) this.setSavedMergeFailed(record);
     record.restoreHead = state.head; this.setSavedMergePhase(record, 'restore');
   }
-  private async completeMergeSave(record: SavedRebaseRecord, state: Repository): Promise<Repository> {
+  private async completeMergeSave(record: SavedRebaseRecord, state: Awaited<ReturnType<GitService['worktreeState']>>): Promise<Repository> {
     if (state.mergeInProgress || state.operation) throw new GitError({ message: '请先完成或中止合并，再恢复本地改动' });
     await this.locateMergeRestore(record, state);
     record.status = 'restore-pending'; record.message = '合并已结束，正在恢复原改动及暂存状态。';
-    await this.writeSavedRecord((await this.operationState()).gitDir, record);
-    return this.restoreRebaseSaved(record, true, true);
+    await this.writeSavedRecord(state.operationState.gitDir, record);
+    return this.restoreRebaseSaved(record, true, true, state);
   }
   private async finishSavedMerge(message?: string): Promise<Repository> {
     return this.manageRebaseSave(async () => {
@@ -517,12 +533,12 @@ export class GitService {
       } else {
         await this.git(['-c', 'submodule.recurse=false', 'merge', '--abort']); this.setSavedMergeFailed(record);
       }
-      return this.completeMergeSave(record, await this.snapshot());
+      return this.completeMergeSave(record, await this.worktreeState());
     });
   }
   private async pullWithSavedChanges(p: Record<string, unknown>, remote: string, requestedBranch: string): Promise<Repository> {
     return this.manageRebaseSave(async () => {
-      const before = await this.snapshot(); await this.requireNoOperation(before);
+      const before = await this.worktreeState(); await this.requireIntegrationBranch(before);
       if (p.autoSaveChanges !== undefined && typeof p.autoSaveChanges !== 'boolean') throw new GitError({ message: '自动保存选项无效' });
       if (p.expectedHead !== undefined) await this.expectedHead(p.expectedHead, before);
       if (p.expectedBranch !== undefined && p.expectedBranch !== before.branch) throw new GitError({ message: '当前分支已变化，请重新打开 Pull 对话框' });
@@ -536,7 +552,7 @@ export class GitService {
         // A private ref pins the requested remote branch; never merge a shared FETCH_HEAD.
         await this.git(['fetch', '--progress', '--no-tags', '--no-recurse-submodules', '--', remote, `refs/heads/${branch}:${fetchRef}`], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
         target = (await this.git(['rev-parse', '--verify', `${fetchRef}^{commit}`])).stdout.trim();
-        const state = await this.snapshot(); await this.requireNoOperation(state);
+        const state = await this.worktreeState(); await this.requireIntegrationBranch(state);
         await this.expectedHead(before.head, state);
         if (state.branch !== before.branch) throw new GitError({ message: '获取远程期间分支已变化，未保存或合并任何改动' });
         if (state.entries.length && p.autoSaveChanges === false) throw new GitError({ message: '获取远程期间出现未提交改动，请开启自动保存后重试' });
@@ -548,44 +564,49 @@ export class GitService {
       }
     });
   }
-  private async integrateSavedChanges(state: Repository, target: string, integration: MergeSaveOptions): Promise<Repository> {
-    await this.safeTreeWrites([state.head, target], state.entries.length ? 'saving' : 'checkout');
-    const targetPaths = await this.treePaths(target);
-    for (const entry of state.entries.filter(entry => entry.worktree === '?')) {
-      if (targetPaths.some(other => other.path === entry.path || other.path.startsWith(entry.path + '/') || entry.path.startsWith(other.path + '/'))) throw new GitError({ message: `未跟踪内容与合并源文件重名：${entry.path}。请先移走或保存该文件，未覆盖内容` });
+  private async integrateSavedChanges(state: Awaited<ReturnType<GitService['worktreeState']>>, target: string, integration: MergeSaveOptions): Promise<Repository> {
+    // Nothing can be overwritten when the selected commit is already included.
+    if (target === state.head || (await this.git(['merge-base', '--is-ancestor', target, state.head], { accepted: [0, 1] })).code === 0) return this.snapshot(state);
+    const trees = await this.safeTreeWrites([state.head, target], state.entries.length ? 'saving' : 'checkout');
+    const untracked = state.entries.filter(entry => entry.worktree === '?');
+    if (untracked.length) {
+      const collidesWithTarget = this.pathCollisionChecker(trees.get(target)!.map(entry => entry.path));
+      const blocker = untracked.find(entry => collidesWithTarget(entry.path));
+      if (blocker) throw new GitError({ message: `未跟踪内容与合并源文件重名：${blocker.path}。请先移走或保存该文件，未覆盖内容` });
     }
     const record = state.entries.length ? await this.beginRebaseSave(state, state.branch, state.head, undefined, integration) : undefined;
     if (record) {
-      this.setSavedMergePhase(record, 'merging'); await this.writeSavedRecord((await this.operationState()).gitDir, record);
+      this.setSavedMergePhase(record, 'merging'); await this.writeSavedRecord(state.operationState.gitDir, record);
     }
     try {
-      const ready = await this.snapshot(); await this.expectedHead(state.head, ready);
+      const ready = await this.workingStatus(); await this.expectedHead(state.head, ready);
       if (ready.branch !== state.branch) throw new GitError({ message: '保存改动期间当前分支已变化，未合并源分支内容；备份保留' });
+      if (ready.entries.length) throw new GitError({ message: '准备合并时发现新的未提交改动，请检查工作区后重试' });
       await this.git(['-c', 'submodule.recurse=false', '-c', 'merge.autoStash=false', 'merge', '--ff', '--no-edit', '--no-squash', '--commit', '--no-autostash', '--', target]);
     } catch (error) {
       if (!record) {
-        const failed = await this.snapshot();
-        if (failed.mergeInProgress && await this.mergeHead((await this.operationState()).gitDir) === target) return failed;
+        const failed = await this.worktreeState();
+        if (failed.mergeInProgress && await this.mergeHead(failed.operationState.gitDir) === target) return this.snapshot(failed);
         throw error;
       }
-      const failed = await this.snapshot();
+      const failed = await this.worktreeState();
       if (await this.savedMergeMatches(record, failed)) {
         record.status = 'saved'; record.message = `合并尚未完成：${error instanceof Error ? error.message.slice(0, 600) : String(error).slice(0, 600)}。原本地改动已保存；请完成合并提交或中止，随后自动恢复。`;
-        await this.writeSavedRecord((await this.operationState()).gitDir, record); return this.snapshot();
+        await this.writeSavedRecord(failed.operationState.gitDir, record); return this.snapshot(failed);
       }
       this.setSavedMergeFailed(record);
       try { await this.completeMergeSave(record, failed); }
       catch (restoreError) {
         record.status = 'restore-pending'; record.message = `${this.savedMergeName(record)}未完成，自动恢复暂停：${restoreError instanceof Error ? restoreError.message : String(restoreError)}。原改动备份保留。`;
-        await this.writeSavedRecord((await this.operationState()).gitDir, record);
+        await this.writeSavedRecord(failed.operationState.gitDir, record);
       }
       throw error;
     }
-    return record ? this.completeMergeSave(record, await this.snapshot()) : this.snapshot();
+    return record ? this.completeMergeSave(record, await this.worktreeState()) : this.snapshot();
   }
   private async mergeWithSavedChanges(p: Record<string, unknown>): Promise<Repository> {
     return this.manageRebaseSave(async () => {
-      const state = await this.snapshot(); await this.requireNoOperation(state);
+      const state = await this.worktreeState(); await this.requireIntegrationBranch(state);
       const name = ref(p.branch), source = await this.branchExists(name);
       const target = (await this.git(['rev-parse', '--verify', `refs/${source.remote ? 'remotes' : 'heads'}/${name}^{commit}`])).stdout.trim();
       if (p.autoSaveChanges !== undefined && typeof p.autoSaveChanges !== 'boolean') throw new GitError({ message: '自动保存选项无效' });
@@ -609,13 +630,16 @@ export class GitService {
       await this.writeSavedRecord(active.gitDir, record); return this.snapshot();
     });
   }
-  private async expectedHead(expected: unknown, state: Repository) {
+  private async expectedHead(expected: unknown, state: Pick<Repository, 'head'>) {
     if (typeof expected !== 'string' || !/^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(expected) || expected.toLowerCase() !== state.head.toLowerCase()) throw new GitError({ message: 'HEAD 已变化或确认版本无效，请刷新后重新选择操作' });
     const current = (await this.git(['rev-parse', '--verify', 'HEAD'])).stdout.trim();
     if (current.toLowerCase() !== expected.toLowerCase()) throw new GitError({ message: 'HEAD 已变化，请刷新后重新选择操作' });
   }
-  private async requireNoOperation(state: Repository, requireBranch = true) {
-    const active = await this.operationState();
+  private async requireIntegrationBranch(state: Awaited<ReturnType<GitService['worktreeState']>>) {
+    await this.requireNoOperation({ ...state, mergeWorkspace: await this.mergeMetadata(state.operationState.gitDir) }, true, state.operationState);
+  }
+  private async requireNoOperation(state: Pick<Repository, 'mergeInProgress' | 'entries' | 'unborn' | 'detached' | 'mergeWorkspace'>, requireBranch = true, checkedOperation?: OperationState) {
+    const active = checkedOperation ?? await this.operationState();
     if (active.operation || active.unsupported || state.mergeInProgress || state.entries.some(file => file.conflict)) throw new GitError({ message: `请先完成或中止当前${active.operation?.kind === 'rebase' ? '变基' : active.operation?.kind === 'revert' ? '撤销提交' : active.unsupported || '合并/冲突'}操作` });
     if (state.unborn || (requireBranch && state.detached)) throw new GitError({ message: '此操作需要正常的已提交本地分支' });
     if (state.mergeWorkspace) throw new GitError({ message: '请先完成并关闭临时合并工作区，再执行历史操作' });
@@ -652,10 +676,33 @@ export class GitService {
     }
     return values;
   }
+  private collisionKey(value: string) {
+    const p = value.replace(/\/+$/, '');
+    return process.platform === 'win32' ? p.toLowerCase() : p;
+  }
   private pathsCollide(a: string, b: string) {
-    const normalize = (value: string) => { const p = value.replace(/\/+$/, ''); return process.platform === 'win32' ? p.toLowerCase() : p; };
-    const left = normalize(a), right = normalize(b);
+    const left = this.collisionKey(a), right = this.collisionKey(b);
     return left === right || left.startsWith(right + '/') || right.startsWith(left + '/');
+  }
+  private pathCollisionChecker(paths: Iterable<string>) {
+    const files = new Set<string>(), directories = new Set<string>();
+    for (const p of paths) {
+      const key = this.collisionKey(p);
+      files.add(key);
+      for (let slash = key.lastIndexOf('/'); slash > 0; slash = key.lastIndexOf('/', slash - 1)) {
+        const directory = key.slice(0, slash);
+        if (directories.has(directory)) break;
+        directories.add(directory);
+      }
+    }
+    return (p: string) => {
+      const key = this.collisionKey(p);
+      if (files.has(key) || directories.has(key)) return true;
+      for (let slash = key.lastIndexOf('/'); slash > 0; slash = key.lastIndexOf('/', slash - 1)) {
+        if (files.has(key.slice(0, slash))) return true;
+      }
+      return false;
+    };
   }
   private async replayCommits(onto: string, originalHead: string): Promise<string[]> {
     const result = await this.git(['rev-list', '--topo-order', `${hash(onto)}..${hash(originalHead)}`, '--']);
@@ -676,37 +723,55 @@ export class GitService {
     }
     return paths;
   }
-  private async safeWritePath(p: string) {
+  private async safeWritePath(p: string, directories?: Map<string, Promise<boolean>>) {
     filePath(p);
     const segments = p.split('/');
     if (segments.some(segment => !segment || segment === '.' || (process.platform === 'win32' && (/[<>:"|?*\x00-\x1f]/.test(segment) || /[. ]$/.test(segment) || /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(segment))))) throw new GitError({ message: '文件路径无法安全恢复，未修改任何文件' });
     let current = this.root;
     for (let i = 0; i < segments.length; i++) {
       current = path.join(current, segments[i]);
-      const stat = await fs.lstat(current).catch((e: NodeJS.ErrnoException) => { if (e.code === 'ENOENT') return null; throw e; });
-      if (!stat) return;
-      if (stat.isSymbolicLink()) throw new GitError({ message: '恢复操作不支持符号链接或联接目录，请先在外部处理，未修改文件' });
-      if (i < segments.length - 1 ? !stat.isDirectory() : !stat.isFile()) throw new GitError({ message: '恢复路径被目录或非普通文件占用，未修改任何文件' });
-      const resolved = await fs.realpath(current), relative = path.relative(this.root, resolved);
-      if (relative.startsWith('..' + path.sep) || relative === '..' || path.isAbsolute(relative)) throw new GitError({ message: '恢复路径指向仓库外部，未修改任何文件' });
+      const isDirectory = i < segments.length - 1;
+      if (!isDirectory || !directories) {
+        if (!await this.checkWritePathSegment(current, isDirectory)) return;
+        continue;
+      }
+      let checked = directories.get(current);
+      if (!checked) {
+        checked = this.checkWritePathSegment(current, true);
+        directories.set(current, checked);
+      }
+      if (!await checked) return;
     }
+  }
+  private async checkWritePathSegment(current: string, isDirectory: boolean) {
+    const stat = await fs.lstat(current).catch((e: NodeJS.ErrnoException) => { if (e.code === 'ENOENT') return null; throw e; });
+    if (!stat) return false;
+    if (stat.isSymbolicLink()) throw new GitError({ message: '恢复操作不支持符号链接或联接目录，请先在外部处理，未修改文件' });
+    if (isDirectory ? !stat.isDirectory() : !stat.isFile()) throw new GitError({ message: '恢复路径被目录或非普通文件占用，未修改任何文件' });
+    const resolved = await fs.realpath(current), relative = path.relative(this.root, resolved);
+    if (relative.startsWith('..' + path.sep) || relative === '..' || path.isAbsolute(relative)) throw new GitError({ message: '恢复路径指向仓库外部，未修改任何文件' });
+    return true;
   }
   private async safeTreeWrites(commits: string[], policy: 'sequencer' | 'rebase' | 'hard' | 'conservative' | 'saving' | 'checkout' = 'conservative', changedCommits: string[] = []) {
     const ordinary = await this.untrackedPaths(false), ignored = await this.untrackedPaths(true);
     if ((policy !== 'hard' && policy !== 'saving' && policy !== 'rebase' && policy !== 'checkout' && ordinary.length) || (policy === 'conservative' && ignored.length)) throw new GitError({ message: policy === 'conservative' ? '请先移走或妥善保存所有未跟踪及忽略内容（包括目录），此操作不会删除这些内容' : '请先移走或妥善保存未跟踪内容，再继续操作；不会删除这些内容' });
-    const entries = [...await this.indexPaths()];
-    for (const id of new Set(commits.filter(id => /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(id)))) entries.push(...await this.treePaths(id));
+    const entries = [...await this.indexPaths()], trees = new Map<string, TreePath[]>();
+    for (const id of new Set(commits.filter(id => /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(id)))) {
+      const tree = await this.treePaths(id);
+      trees.set(id, tree);
+      for (const entry of tree) entries.push(entry);
+    }
     entries.push(...await this.changedTreePaths(changedCommits));
     const paths = new Set<string>();
     for (const entry of entries) {
       if (!['100644', '100755'].includes(entry.mode)) throw new GitError({ message: '此操作暂不支持含子模块、符号链接或特殊索引条目的仓库，请使用外部 Git 工具' });
       paths.add(entry.path);
     }
-    const protectedPaths = policy === 'hard' || policy === 'rebase' || policy === 'checkout' ? [...ordinary, ...ignored] : ignored, writes = [...paths];
+    const protectedPaths = policy === 'hard' || policy === 'rebase' || policy === 'checkout' ? [...ordinary, ...ignored] : ignored;
     // Git status omits empty directories, while ls-files --others --directory
     // includes them. For rebase, protect actual overlapping paths rather than
     // refusing unrelated files/directories (including those created while paused).
-    const blockers = protectedPaths.filter(protectedPath => writes.some(p => this.pathsCollide(protectedPath, p)));
+    const blockers = protectedPaths.length ? protectedPaths.filter(this.pathCollisionChecker(paths)) : [];
     if (policy !== 'conservative' && blockers.length) {
       if (policy === 'rebase' || policy === 'checkout') {
         const listed = [...new Set(blockers)];
@@ -714,12 +779,19 @@ export class GitService {
       }
       throw new GitError({ message: policy === 'hard' ? 'Hard Reset 路径与未跟踪或忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' : '操作路径（包括历史中间提交）与被忽略内容存在覆盖冲突，请先移走或保存这些内容，未修改任何文件' });
     }
-    for (const p of paths) await this.safeWritePath(p);
     if (policy === 'saving') {
       const files = await this.git(['ls-files', '--others', '--exclude-standard', '-z']);
       if (files.truncated) throw new GitError({ message: '未跟踪文件过多，无法完整验证保存安全性' });
-      for (const p of files.stdout.split('\0').filter(Boolean)) await this.safeWritePath(filePath(p));
+      for (const p of files.stdout.split('\0').filter(Boolean)) paths.add(p);
     }
+    // Share directory checks only within this preflight. Restore gets a fresh
+    // check after Git has changed the working tree.
+    const directories = new Map<string, Promise<boolean>>(), writes = [...paths];
+    for (let i = 0; i < writes.length; i += 32) {
+      const checked = await Promise.allSettled(writes.slice(i, i + 32).map(p => this.safeWritePath(p, directories)));
+      for (const result of checked) if (result.status === 'rejected') throw result.reason;
+    }
+    return trees;
   }
   private async sequencerCommand(kind: 'rebase' | 'revert', args: string[]) {
     try { await this.git(args); }
@@ -948,8 +1020,7 @@ export class GitService {
     await this.git(['-c', 'submodule.recurse=false', 'restore', ...(p.scope === 'all' ? ['--source=HEAD', '--staged', '--worktree'] : ['--worktree']), '--no-recurse-submodules', '--pathspec-from-file=-', '--pathspec-file-nul'], { input: [...paths].join('\0') + '\0' });
     return this.snapshot();
   }
-  private async mergeMetadata(): Promise<MergeWorkspace | undefined> {
-    const dir = (await this.git(['rev-parse', '--absolute-git-dir'])).stdout.trim();
+  private async mergeMetadata(dir: string): Promise<MergeWorkspace | undefined> {
     try {
       const v = JSON.parse(await fs.readFile(path.join(dir, 'harborgit-merge.json'), 'utf8'));
       if (v && typeof v.sourceRoot === 'string' && path.isAbsolute(v.sourceRoot) && typeof v.sourceBranch === 'string' && typeof v.targetBranch === 'string') return { sourceRoot: v.sourceRoot, sourceBranch: ref(v.sourceBranch), targetBranch: ref(v.targetBranch) };
@@ -1297,7 +1368,9 @@ export class GitService {
       }
       case 'remote': {
         const action = text(p.action, '远程操作'), remote = ref(p.remote, '远程名称');
-        if (!(await this.remotes()).some(r => r.name === remote)) throw new GitError({ message: '远程仓库不存在' });
+        // The selected remote only needs to exist. URL details are for the settings UI.
+        const remotes = (await this.git(['remote'])).stdout.trim().split(/\r?\n/);
+        if (!remotes.includes(remote)) throw new GitError({ message: '远程仓库不存在' });
         const branch = p.branch ? ref(p.branch) : '';
         if (action === 'fetch') await this.git(['fetch', '--progress', '--prune', '--', remote], { timeout: this.options.timeoutMs ?? 600000, authenticate: true });
         else if (action === 'pull') return this.pullWithSavedChanges(p, remote, branch);
